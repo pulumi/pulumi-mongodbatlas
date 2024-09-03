@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: StreamInstance
+// # Data Source: StreamInstance
 //
 // `StreamInstance` describes a stream instance.
 //

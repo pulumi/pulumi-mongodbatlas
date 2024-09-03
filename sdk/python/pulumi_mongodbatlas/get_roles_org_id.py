@@ -58,7 +58,7 @@ class AwaitableGetRolesOrgIdResult(GetRolesOrgIdResult):
 
 def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRolesOrgIdResult:
     """
-    ## # Data Source: get_roles_org_id
+    # Data Source: get_roles_org_id
 
     `get_roles_org_id` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
 
@@ -85,7 +85,7 @@ def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
 @_utilities.lift_output_func(get_roles_org_id)
 def get_roles_org_id_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRolesOrgIdResult]:
     """
-    ## # Data Source: get_roles_org_id
+    # Data Source: get_roles_org_id
 
     `get_roles_org_id` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
 

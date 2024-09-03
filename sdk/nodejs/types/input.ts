@@ -64,7 +64,6 @@ export interface AdvancedClusterAdvancedConfiguration {
 export interface AdvancedClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      */
@@ -351,16 +350,42 @@ export interface AdvancedClusterTag {
 export interface AlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
-     *
-     * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-     * |:----------           |:-------------       |:------                 |
-     * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-     * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-     * | `PORT`              | `CLUSTER_NAME`      |                         |
-     * | `HOSTNAME_AND_PORT` |                     |                         |
-     * | `REPLICA_SET_NAME`  |                     |                         |
-     *
-     *
+     * <table>
+     * <thead>
+     * <tr>
+     * <th style="text-align:left">Host alerts</th>
+     * <th style="text-align:left">Replica set alerts</th>
+     * <th style="text-align:left">Sharded cluster alerts</th>
+     * </tr>
+     * </thead>
+     * <tbody>
+     * <tr>
+     * <td style="text-align:left">`TYPE_NAME`</td>
+     * <td style="text-align:left">`REPLICA_SET_NAME`</td>
+     * <td style="text-align:left">`CLUSTER_NAME`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`HOSTNAME`</td>
+     * <td style="text-align:left">`SHARD_NAME`</td>
+     * <td style="text-align:left">`SHARD_NAME`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`PORT`</td>
+     * <td style="text-align:left">`CLUSTER_NAME`</td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+     * <td style="text-align:left"></td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`REPLICA_SET_NAME`</td>
+     * <td style="text-align:left"></td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * </tbody>
+     * </table>
      *
      * All other types of alerts do not support matchers.
      */
@@ -451,15 +476,40 @@ export interface AlertConfigurationNotification {
     /**
      * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
-     *
-     * | Project roles                   | Organization roles  |
-     * |:----------                      |:-----------         |
-     * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-     * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-     * | `GROUP_READ_ONLY`               |                     |
+     * <table>
+     * <thead>
+     * <tr>
+     * <th style="text-align:left">Project roles</th>
+     * <th style="text-align:left">Organization roles</th>
+     * </tr>
+     * </thead>
+     * <tbody>
+     * <tr>
+     * <td style="text-align:left">`GROUP_CLUSTER_MANAGER`</td>
+     * <td style="text-align:left">`ORG_OWNER`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_DATA_ACCESS_ADMIN`</td>
+     * <td style="text-align:left">`ORG_MEMBER`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_DATA_ACCESS_READ_ONLY`</td>
+     * <td style="text-align:left">`ORG_GROUP_CREATOR`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_DATA_ACCESS_READ_WRITE`</td>
+     * <td style="text-align:left">`ORG_BILLING_ADMIN`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_OWNER`</td>
+     * <td style="text-align:left">`ORG_READ_ONLY`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_READ_ONLY`</td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * </tbody>
+     * </table>
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -672,7 +722,7 @@ export interface CloudBackupScheduleCopySetting {
      */
     frequencies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
      */
     regionName?: pulumi.Input<string>;
     /**
@@ -819,11 +869,11 @@ export interface CloudBackupSchedulePolicyItemYearly {
 
 export interface CloudBackupSnapshotExportJobComponent {
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      */
     exportId?: pulumi.Input<string>;
     /**
-     * _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
      */
     replicaSetName?: pulumi.Input<string>;
 }
@@ -956,8 +1006,7 @@ export interface ClusterAdvancedConfiguration {
 export interface ClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
-     * - Set to `true` to enable BI Connector for Atlas.
+     * * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      */
     enabled?: pulumi.Input<boolean>;
@@ -1075,7 +1124,6 @@ export interface ClusterReplicationSpec {
     regionsConfigs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpecRegionsConfig>[]>;
     /**
      * Name for the zone in a Global Cluster.
-     *
      *
      * **Region Config**
      */
@@ -1846,7 +1894,7 @@ export interface OnlineArchiveCriteria {
     /**
      * Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
      *
-     * **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+     * ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value***
      *
      * The only field required for criteria type `CUSTOM`
      */

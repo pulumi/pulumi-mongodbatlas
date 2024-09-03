@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getSearchIndexes
+ * # Data Source: mongodbatlas.getSearchIndexes
  *
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *
@@ -74,7 +74,7 @@ export interface GetSearchIndexesResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: mongodbatlas.getSearchIndexes
+ * # Data Source: mongodbatlas.getSearchIndexes
  *
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *

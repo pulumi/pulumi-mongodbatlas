@@ -88,7 +88,7 @@ def get_x509_authentication_database_user(project_id: Optional[str] = None,
                                           username: Optional[str] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetX509AuthenticationDatabaseUserResult:
     """
-    ## # Data Source: X509AuthenticationDatabaseUser
+    # Data Source: X509AuthenticationDatabaseUser
 
     `X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
 
@@ -96,7 +96,7 @@ def get_x509_authentication_database_user(project_id: Optional[str] = None,
 
     ## Example Usage
 
-    ### S
+    ### s
 
     ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
     ```python
@@ -148,7 +148,7 @@ def get_x509_authentication_database_user_output(project_id: Optional[pulumi.Inp
                                                  username: Optional[pulumi.Input[Optional[str]]] = None,
                                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetX509AuthenticationDatabaseUserResult]:
     """
-    ## # Data Source: X509AuthenticationDatabaseUser
+    # Data Source: X509AuthenticationDatabaseUser
 
     `X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
 
@@ -156,7 +156,7 @@ def get_x509_authentication_database_user_output(project_id: Optional[pulumi.Inp
 
     ## Example Usage
 
-    ### S
+    ### s
 
     ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
     ```python

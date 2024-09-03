@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetDatabaseUser
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.DatabaseUser
+        /// # Data Source: mongodbatlas.DatabaseUser
         /// 
         /// `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
         /// 
@@ -114,7 +114,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseUserResult>("mongodbatlas:index/getDatabaseUser:getDatabaseUser", args ?? new GetDatabaseUserArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.DatabaseUser
+        /// # Data Source: mongodbatlas.DatabaseUser
         /// 
         /// `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
         /// 

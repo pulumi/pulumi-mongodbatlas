@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.ThirdPartyIntegration
+ * # Resource: mongodbatlas.ThirdPartyIntegration
  * 
  * `mongodbatlas.ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
  * 

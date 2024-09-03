@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: Auditing
+// # Data Source: Auditing
 //
 // `Auditing` describes a Auditing.
 //

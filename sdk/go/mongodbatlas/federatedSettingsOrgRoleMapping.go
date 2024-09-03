@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: FederatedSettingsOrgRoleMapping
+// # Resource: FederatedSettingsOrgRoleMapping
 //
 // `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
 //

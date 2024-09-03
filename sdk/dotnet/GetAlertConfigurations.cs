@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetAlertConfigurations
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAlertConfigurations
+        /// # Data Source: mongodbatlas.getAlertConfigurations
         /// 
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAlertConfigurations
+        /// # Data Source: mongodbatlas.getAlertConfigurations
         /// 
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getDataLakePipelineRun
+// # Data Source: getDataLakePipelineRun
 //
 // `getDataLakePipelineRun` describes a Data Lake Pipeline Run.
 //

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.MaintenanceWindow
+ * # Data Source: mongodbatlas.MaintenanceWindow
  *
  * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
  *
@@ -91,7 +91,7 @@ export interface GetMaintenanceWindowResult {
     readonly startAsap: boolean;
 }
 /**
- * ## # Data Source: mongodbatlas.MaintenanceWindow
+ * # Data Source: mongodbatlas.MaintenanceWindow
  *
  * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
  *

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getClusters
+// # Data Source: getClusters
 //
 // `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
 //

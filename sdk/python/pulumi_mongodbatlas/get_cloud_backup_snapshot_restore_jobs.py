@@ -109,7 +109,7 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[str] = None,
                                            project_id: Optional[str] = None,
                                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotRestoreJobsResult:
     """
-    ## # Data Source: get_cloud_backup_snapshot_restore_jobs
+    # Data Source: get_cloud_backup_snapshot_restore_jobs
 
     `get_cloud_backup_snapshot_restore_jobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 
@@ -177,7 +177,7 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
                                                   project_id: Optional[pulumi.Input[str]] = None,
                                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotRestoreJobsResult]:
     """
-    ## # Data Source: get_cloud_backup_snapshot_restore_jobs
+    # Data Source: get_cloud_backup_snapshot_restore_jobs
 
     `get_cloud_backup_snapshot_restore_jobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 

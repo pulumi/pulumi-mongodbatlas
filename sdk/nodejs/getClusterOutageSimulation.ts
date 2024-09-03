@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -80,7 +80,7 @@ export interface GetClusterOutageSimulationResult {
 /**
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

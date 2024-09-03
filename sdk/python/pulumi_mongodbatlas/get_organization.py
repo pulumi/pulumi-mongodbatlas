@@ -81,7 +81,7 @@ class GetOrganizationResult:
     @pulumi.getter(name="multiFactorAuthRequired")
     def multi_factor_auth_required(self) -> bool:
         """
-        (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
         """
         return pulumi.get(self, "multi_factor_auth_required")
 
@@ -102,7 +102,7 @@ class GetOrganizationResult:
     @pulumi.getter(name="restrictEmployeeAccess")
     def restrict_employee_access(self) -> bool:
         """
-        (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
         """
         return pulumi.get(self, "restrict_employee_access")
 
@@ -126,7 +126,7 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
 def get_organization(org_id: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
-    ## # Data Source: Organization
+    # Data Source: Organization
 
     `Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 
@@ -163,7 +163,7 @@ def get_organization(org_id: Optional[str] = None,
 def get_organization_output(org_id: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
     """
-    ## # Data Source: Organization
+    # Data Source: Organization
 
     `Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 

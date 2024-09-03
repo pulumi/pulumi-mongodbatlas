@@ -18,8 +18,7 @@ public final class ClusterBiConnectorConfigArgs extends com.pulumi.resources.Res
 
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
-     * - Set to `true` to enable BI Connector for Atlas.
+     * * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      * 
      */
@@ -28,8 +27,7 @@ public final class ClusterBiConnectorConfigArgs extends com.pulumi.resources.Res
 
     /**
      * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
-     * - Set to `true` to enable BI Connector for Atlas.
+     * * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      * 
      */
@@ -91,8 +89,7 @@ public final class ClusterBiConnectorConfigArgs extends com.pulumi.resources.Res
 
         /**
          * @param enabled Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-         * *
-         * - Set to `true` to enable BI Connector for Atlas.
+         * * - Set to `true` to enable BI Connector for Atlas.
          * - Set to `false` to disable BI Connector for Atlas.
          * 
          * @return builder
@@ -105,8 +102,7 @@ public final class ClusterBiConnectorConfigArgs extends com.pulumi.resources.Res
 
         /**
          * @param enabled Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-         * *
-         * - Set to `true` to enable BI Connector for Atlas.
+         * * - Set to `true` to enable BI Connector for Atlas.
          * - Set to `false` to disable BI Connector for Atlas.
          * 
          * @return builder

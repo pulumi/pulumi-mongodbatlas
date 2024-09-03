@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.SearchIndex
+    /// # Resource: mongodbatlas.SearchIndex
     /// 
     /// `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
     /// 

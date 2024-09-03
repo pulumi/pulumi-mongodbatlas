@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getDatabaseUsers
+ * # Data Source: mongodbatlas.getDatabaseUsers
  *
  * `mongodbatlas.getDatabaseUsers` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
  *
@@ -109,7 +109,7 @@ export interface GetDatabaseUsersResult {
     readonly results: outputs.GetDatabaseUsersResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getDatabaseUsers
+ * # Data Source: mongodbatlas.getDatabaseUsers
  *
  * `mongodbatlas.getDatabaseUsers` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
  *

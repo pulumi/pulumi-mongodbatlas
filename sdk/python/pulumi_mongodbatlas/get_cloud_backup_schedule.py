@@ -259,7 +259,7 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
                               use_zone_id_for_copy_settings: Optional[bool] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupScheduleResult:
     """
-    ## # Data Source: CloudBackupSchedule
+    # Data Source: CloudBackupSchedule
 
     `CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
 
@@ -305,7 +305,7 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[str]] =
                                      use_zone_id_for_copy_settings: Optional[pulumi.Input[Optional[bool]]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupScheduleResult]:
     """
-    ## # Data Source: CloudBackupSchedule
+    # Data Source: CloudBackupSchedule
 
     `CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
 

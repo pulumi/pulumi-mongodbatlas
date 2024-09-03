@@ -134,7 +134,7 @@ class ProjectApiKey(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Create And Assign PAK Together
+        ### Create and Assign PAK Together
 
         ```python
         import pulumi
@@ -148,7 +148,7 @@ class ProjectApiKey(pulumi.CustomResource):
             }])
         ```
 
-        ### Create And Assign PAK To Multiple Projects
+        ### Create and Assign PAK to Multiple Projects
 
         ```python
         import pulumi
@@ -193,7 +193,7 @@ class ProjectApiKey(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Create And Assign PAK Together
+        ### Create and Assign PAK Together
 
         ```python
         import pulumi
@@ -207,7 +207,7 @@ class ProjectApiKey(pulumi.CustomResource):
             }])
         ```
 
-        ### Create And Assign PAK To Multiple Projects
+        ### Create and Assign PAK to Multiple Projects
 
         ```python
         import pulumi

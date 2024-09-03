@@ -278,7 +278,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                  tenant_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: CloudBackupSnapshotExportBucket
+        # Resource: CloudBackupSnapshotExportBucket
 
         `CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
 
@@ -340,7 +340,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                  args: CloudBackupSnapshotExportBucketArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: CloudBackupSnapshotExportBucket
+        # Resource: CloudBackupSnapshotExportBucket
 
         `CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
 

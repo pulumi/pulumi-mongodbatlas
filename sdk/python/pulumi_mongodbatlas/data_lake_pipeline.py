@@ -310,7 +310,7 @@ class DataLakePipeline(pulumi.CustomResource):
                  transformations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineTransformationArgs', 'DataLakePipelineTransformationArgsDict']]]]] = None,
                  __props__=None):
         """
-        ## # Resource: DataLakePipeline
+        # Resource: DataLakePipeline
 
         `DataLakePipeline` provides a Data Lake Pipeline resource.
 
@@ -342,7 +342,7 @@ class DataLakePipeline(pulumi.CustomResource):
                  args: DataLakePipelineArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: DataLakePipeline
+        # Resource: DataLakePipeline
 
         `DataLakePipeline` provides a Data Lake Pipeline resource.
 

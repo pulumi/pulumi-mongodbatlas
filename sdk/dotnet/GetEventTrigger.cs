@@ -12,17 +12,17 @@ namespace Pulumi.Mongodbatlas
     public static class GetEventTrigger
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.EventTrigger
+        /// # Data Source: mongodbatlas.EventTrigger
         /// 
-        /// `mongodbatlas.EventTrigger` describes an Event Trigger. 
+        /// `mongodbatlas.EventTrigger` describes an Event Trigger.
         /// </summary>
         public static Task<GetEventTriggerResult> InvokeAsync(GetEventTriggerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEventTriggerResult>("mongodbatlas:index/getEventTrigger:getEventTrigger", args ?? new GetEventTriggerArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.EventTrigger
+        /// # Data Source: mongodbatlas.EventTrigger
         /// 
-        /// `mongodbatlas.EventTrigger` describes an Event Trigger. 
+        /// `mongodbatlas.EventTrigger` describes an Event Trigger.
         /// </summary>
         public static Output<GetEventTriggerResult> Invoke(GetEventTriggerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEventTriggerResult>("mongodbatlas:index/getEventTrigger:getEventTrigger", args ?? new GetEventTriggerInvokeArgs(), options.WithDefaults());
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        /// * For more details on `project_id` and `app_id` see: &lt;https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs&gt;
         /// </summary>
         [Input("appId", required: true)]
         public string AppId { get; set; } = null!;
@@ -60,7 +60,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        /// * For more details on `project_id` and `app_id` see: &lt;https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs&gt;
         /// </summary>
         [Input("appId", required: true)]
         public Input<string> AppId { get; set; } = null!;

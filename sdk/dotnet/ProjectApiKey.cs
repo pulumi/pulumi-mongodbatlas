@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ### Create And Assign PAK Together
+    /// ### Create and Assign PAK Together
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### Create And Assign PAK To Multiple Projects
+    /// ### Create and Assign PAK to Multiple Projects
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

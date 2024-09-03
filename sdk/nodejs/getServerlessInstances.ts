@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getServerlessInstances
+ * # Data Source: mongodbatlas.getServerlessInstances
  *
  * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
  *
@@ -60,7 +60,7 @@ export interface GetServerlessInstancesResult {
     readonly results: outputs.GetServerlessInstancesResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getServerlessInstances
+ * # Data Source: mongodbatlas.getServerlessInstances
  *
  * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
  *

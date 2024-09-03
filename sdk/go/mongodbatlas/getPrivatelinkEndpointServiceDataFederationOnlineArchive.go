@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: PrivatelinkEndpointServiceDataFederationOnlineArchive
+// # Data Source: PrivatelinkEndpointServiceDataFederationOnlineArchive
 //
 // `PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
 //

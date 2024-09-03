@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.Auditing
+ * # Data Source: mongodbatlas.Auditing
  *
  * `mongodbatlas.Auditing` describes a Auditing.
  *
@@ -73,7 +73,7 @@ export interface GetAuditingResult {
     readonly projectId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.Auditing
+ * # Data Source: mongodbatlas.Auditing
  *
  * `mongodbatlas.Auditing` describes a Auditing.
  *

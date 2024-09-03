@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.ThirdPartyIntegration
+ * # Resource: mongodbatlas.ThirdPartyIntegration
  *
  * `mongodbatlas.ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
  *
@@ -84,7 +84,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     public readonly serviceKey!: pulumi.Output<string>;
     public readonly teamName!: pulumi.Output<string>;
     /**
-     * Third-Party Integration Settings type 
+     * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
      * * OPS_GENIE
@@ -92,7 +92,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
      *
      * * `PAGER_DUTY`
      */
@@ -179,7 +178,7 @@ export interface ThirdPartyIntegrationState {
     serviceKey?: pulumi.Input<string>;
     teamName?: pulumi.Input<string>;
     /**
-     * Third-Party Integration Settings type 
+     * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
      * * OPS_GENIE
@@ -187,7 +186,6 @@ export interface ThirdPartyIntegrationState {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
      *
      * * `PAGER_DUTY`
      */
@@ -216,7 +214,7 @@ export interface ThirdPartyIntegrationArgs {
     serviceKey?: pulumi.Input<string>;
     teamName?: pulumi.Input<string>;
     /**
-     * Third-Party Integration Settings type 
+     * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
      * * OPS_GENIE
@@ -224,7 +222,6 @@ export interface ThirdPartyIntegrationArgs {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
      *
      * * `PAGER_DUTY`
      */

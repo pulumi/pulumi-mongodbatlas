@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: CloudBackupSnapshotExportBucket
+// # Resource: CloudBackupSnapshotExportBucket
 //
 // `CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
 //

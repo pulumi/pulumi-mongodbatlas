@@ -24,7 +24,7 @@ class CloudBackupSnapshotRestoreJobArgs:
         The set of arguments for constructing a CloudBackupSnapshotRestoreJob resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
                * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -70,7 +70,7 @@ class CloudBackupSnapshotRestoreJobArgs:
     @pulumi.getter(name="deliveryTypeConfig")
     def delivery_type_config(self) -> Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]:
         """
-        Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
         * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         * `delivery_type_config.download` - Set to `true` to use the download configuration.
         * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -117,7 +117,7 @@ class _CloudBackupSnapshotRestoreJobState:
         Input properties used for looking up and filtering CloudBackupSnapshotRestoreJob resources.
         :param pulumi.Input[bool] cancelled: Indicates whether the restore job was canceled.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
                * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -200,7 +200,7 @@ class _CloudBackupSnapshotRestoreJobState:
     @pulumi.getter(name="deliveryTypeConfig")
     def delivery_type_config(self) -> Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]:
         """
-        Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
         * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         * `delivery_type_config.download` - Set to `true` to use the download configuration.
         * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -470,7 +470,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
                * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -691,7 +691,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] cancelled: Indicates whether the restore job was canceled.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
                * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -760,7 +760,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
     @pulumi.getter(name="deliveryTypeConfig")
     def delivery_type_config(self) -> pulumi.Output[Optional['outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig']]:
         """
-        Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
         * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         * `delivery_type_config.download` - Set to `true` to use the download configuration.
         * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.

@@ -198,7 +198,7 @@ def get_network_container(container_id: Optional[str] = None,
                           project_id: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkContainerResult:
     """
-    ## # Data Source: NetworkContainer
+    # Data Source: NetworkContainer
 
     `NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
 
@@ -255,7 +255,7 @@ def get_network_container_output(container_id: Optional[pulumi.Input[str]] = Non
                                  project_id: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkContainerResult]:
     """
-    ## # Data Source: NetworkContainer
+    # Data Source: NetworkContainer
 
     `NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
 

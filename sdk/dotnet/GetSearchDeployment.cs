@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetSearchDeployment
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.SearchDeployment
+        /// # Data Source: mongodbatlas.SearchDeployment
         /// 
         /// `mongodbatlas.SearchDeployment` describes a search node deployment.
         /// 
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSearchDeploymentResult>("mongodbatlas:index/getSearchDeployment:getSearchDeployment", args ?? new GetSearchDeploymentArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.SearchDeployment
+        /// # Data Source: mongodbatlas.SearchDeployment
         /// 
         /// `mongodbatlas.SearchDeployment` describes a search node deployment.
         /// 

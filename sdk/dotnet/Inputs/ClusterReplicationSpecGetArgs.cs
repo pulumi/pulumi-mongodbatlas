@@ -39,7 +39,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Name for the zone in a Global Cluster.
         /// 
-        /// 
         /// **Region Config**
         /// </summary>
         [Input("zoneName")]

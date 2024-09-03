@@ -12,10 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudBackupSnapshotExportJob
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+        /// # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
         /// 
         /// `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
-        /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -67,10 +66,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobResult>("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", args ?? new GetCloudBackupSnapshotExportJobArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+        /// # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
         /// 
         /// `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
-        /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -181,7 +179,7 @@ namespace Pulumi.Mongodbatlas
     {
         public readonly string ClusterName;
         /// <summary>
-        /// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        /// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSnapshotExportJobComponentResult> Components;
         /// <summary>

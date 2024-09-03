@@ -230,7 +230,7 @@ def get_search_index(cluster_name: Optional[str] = None,
                      project_id: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSearchIndexResult:
     """
-    ## # Data Source: SearchIndex
+    # Data Source: SearchIndex
 
     `SearchIndex` describes a single search indexes. This represents a single search index that have been created.
 
@@ -285,7 +285,7 @@ def get_search_index_output(cluster_name: Optional[pulumi.Input[str]] = None,
                             project_id: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchIndexResult]:
     """
-    ## # Data Source: SearchIndex
+    # Data Source: SearchIndex
 
     `SearchIndex` describes a single search indexes. This represents a single search index that have been created.
 

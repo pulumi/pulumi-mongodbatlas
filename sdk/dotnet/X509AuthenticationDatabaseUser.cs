@@ -10,14 +10,27 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.X509AuthenticationDatabaseUser
+    /// # Resource: mongodbatlas.X509AuthenticationDatabaseUser
     /// 
     /// `mongodbatlas.X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The mongodbatlas.X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
-    /// 
-    /// | Management  | Description  |
-    /// |---|---|
-    /// | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
-    /// | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
+    /// &lt;table&gt;
+    /// &lt;thead&gt;
+    /// &lt;tr&gt;
+    /// &lt;th&gt;Management&lt;/th&gt;
+    /// &lt;th&gt;Description&lt;/th&gt;
+    /// &lt;/tr&gt;
+    /// &lt;/thead&gt;
+    /// &lt;tbody&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;Atlas&lt;/td&gt;
+    /// &lt;td&gt;Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;Customer&lt;/td&gt;
+    /// &lt;td&gt;You must provide a Certificate Authority and generate certificates for your MongoDB users.&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;/tbody&gt;
+    /// &lt;/table&gt;
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
@@ -25,7 +38,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// ### S
+    /// ### s
     /// 
     /// ## Import
     /// 

@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.SearchIndex
+ * # Data Source: mongodbatlas.SearchIndex
  *
  * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
  *
@@ -116,7 +116,7 @@ export interface GetSearchIndexResult {
     readonly type: string;
 }
 /**
- * ## # Data Source: mongodbatlas.SearchIndex
+ * # Data Source: mongodbatlas.SearchIndex
  *
  * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
  *

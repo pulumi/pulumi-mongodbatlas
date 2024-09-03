@@ -69,7 +69,7 @@ class AwaitableGetServerlessInstancesResult(GetServerlessInstancesResult):
 def get_serverless_instances(project_id: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerlessInstancesResult:
     """
-    ## # Data Source: get_serverless_instances
+    # Data Source: get_serverless_instances
 
     `get_serverless_instances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 
@@ -105,7 +105,7 @@ def get_serverless_instances(project_id: Optional[str] = None,
 def get_serverless_instances_output(project_id: Optional[pulumi.Input[str]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServerlessInstancesResult]:
     """
-    ## # Data Source: get_serverless_instances
+    # Data Source: get_serverless_instances
 
     `get_serverless_instances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 

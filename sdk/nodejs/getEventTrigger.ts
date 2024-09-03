@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.EventTrigger
+ * # Data Source: mongodbatlas.EventTrigger
  *
  * `mongodbatlas.EventTrigger` describes an Event Trigger.
  */
@@ -27,7 +27,7 @@ export function getEventTrigger(args: GetEventTriggerArgs, opts?: pulumi.InvokeO
 export interface GetEventTriggerArgs {
     /**
      * The ObjectID of your application.
-     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+     * * For more details on `projectId` and `appId` see: <https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs>
      */
     appId: string;
     /**
@@ -123,7 +123,7 @@ export interface GetEventTriggerResult {
     readonly unordered: boolean;
 }
 /**
- * ## # Data Source: mongodbatlas.EventTrigger
+ * # Data Source: mongodbatlas.EventTrigger
  *
  * `mongodbatlas.EventTrigger` describes an Event Trigger.
  */
@@ -137,7 +137,7 @@ export function getEventTriggerOutput(args: GetEventTriggerOutputArgs, opts?: pu
 export interface GetEventTriggerOutputArgs {
     /**
      * The ObjectID of your application.
-     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+     * * For more details on `projectId` and `appId` see: <https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs>
      */
     appId: pulumi.Input<string>;
     /**

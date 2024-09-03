@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: FederatedDatabaseInstance
+// # Data Source: FederatedDatabaseInstance
 //
 // `FederatedDatabaseInstance` provides a Federated Database Instance data source.
 //
@@ -21,7 +21,7 @@ import (
 //
 // ## Example Usage
 //
-// ### S With MongoDB Atlas Cluster As Storage Database
+// ### s with MongoDB Atlas Cluster as storage database
 //
 // ```go
 // package main
@@ -48,7 +48,7 @@ import (
 //
 // ```
 //
-// ### S With Amazon S3 Bucket As Storage Database
+// ### s with Amazon S3 bucket as storage database
 //
 // ```go
 // package main

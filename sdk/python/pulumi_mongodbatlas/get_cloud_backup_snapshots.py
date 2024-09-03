@@ -109,7 +109,7 @@ def get_cloud_backup_snapshots(cluster_name: Optional[str] = None,
                                project_id: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotsResult:
     """
-    ## # Data Source: get_cloud_backup_snapshots
+    # Data Source: get_cloud_backup_snapshots
 
     `get_cloud_backup_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
@@ -145,7 +145,7 @@ def get_cloud_backup_snapshots_output(cluster_name: Optional[pulumi.Input[str]] 
                                       project_id: Optional[pulumi.Input[str]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotsResult]:
     """
-    ## # Data Source: get_cloud_backup_snapshots
+    # Data Source: get_cloud_backup_snapshots
 
     `get_cloud_backup_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 

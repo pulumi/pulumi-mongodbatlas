@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetDataLakePipelines
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getDataLakePipelines
+        /// # Data Source: mongodbatlas.getDataLakePipelines
         /// 
         /// `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
         /// 
@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataLakePipelinesResult>("mongodbatlas:index/getDataLakePipelines:getDataLakePipelines", args ?? new GetDataLakePipelinesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getDataLakePipelines
+        /// # Data Source: mongodbatlas.getDataLakePipelines
         /// 
         /// `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
         /// 

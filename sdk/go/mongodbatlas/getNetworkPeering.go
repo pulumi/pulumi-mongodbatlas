@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: NetworkPeering
+// # Data Source: NetworkPeering
 //
 // `NetworkPeering` describes a Network Peering Connection.
 //

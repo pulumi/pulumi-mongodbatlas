@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetThirdPartyIntegration
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ThirdPartyIntegration
+        /// # Data Source: mongodbatlas.ThirdPartyIntegration
         /// 
         /// `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
         /// 
@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ThirdPartyIntegration
+        /// # Data Source: mongodbatlas.ThirdPartyIntegration
         /// 
         /// `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
         /// 

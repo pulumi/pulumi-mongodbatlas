@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: StreamInstance
+// # Resource: StreamInstance
 //
 // `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
 //

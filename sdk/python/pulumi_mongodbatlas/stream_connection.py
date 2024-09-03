@@ -314,7 +314,7 @@ class StreamConnection(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: StreamConnection
+        # Resource: StreamConnection
 
         `StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
 
@@ -385,7 +385,7 @@ class StreamConnection(pulumi.CustomResource):
                  args: StreamConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: StreamConnection
+        # Resource: StreamConnection
 
         `StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
 

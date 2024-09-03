@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: NetworkPeering
+// # Resource: NetworkPeering
 //
 // `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
 //
@@ -21,13 +21,11 @@ import (
 // > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details
 //
 // > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
-//
-//	Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
-//	Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
-//	Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
-//	Microsoft.Network/virtualNetworks/peer/action
-//
-// For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+// Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+// Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+// Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+// Microsoft.Network/virtualNetworks/peer/action
+// For more information see <https://docs.atlas.mongodb.com/security-vpc-peering/> and <https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/>
 //
 // > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the projectIpWhitelist resource.
 //

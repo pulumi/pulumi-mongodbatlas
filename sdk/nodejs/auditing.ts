@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.Auditing
+ * # Resource: mongodbatlas.Auditing
  *
  * `mongodbatlas.Auditing` provides an Auditing resource. This allows auditing to be created.
  *
@@ -69,7 +69,7 @@ export class Auditing extends pulumi.CustomResource {
      */
     public readonly auditFilter!: pulumi.Output<string>;
     /**
-     * Denotes the configuration method for the audit filter. Possible values are: 
+     * Denotes the configuration method for the audit filter. Possible values are:
      * * NONE - auditing not configured for the project.
      * * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
      * * FILTER_JSON - auditing configured via Atlas custom filter or API.
@@ -133,7 +133,7 @@ export interface AuditingState {
      */
     auditFilter?: pulumi.Input<string>;
     /**
-     * Denotes the configuration method for the audit filter. Possible values are: 
+     * Denotes the configuration method for the audit filter. Possible values are:
      * * NONE - auditing not configured for the project.
      * * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
      * * FILTER_JSON - auditing configured via Atlas custom filter or API.

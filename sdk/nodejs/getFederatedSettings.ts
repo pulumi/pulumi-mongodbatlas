@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getFederatedSettings
+ * # Data Source: mongodbatlas.getFederatedSettings
  *
  * `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
  *
@@ -65,7 +65,7 @@ export interface GetFederatedSettingsResult {
     readonly orgId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.getFederatedSettings
+ * # Data Source: mongodbatlas.getFederatedSettings
  *
  * `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
  *

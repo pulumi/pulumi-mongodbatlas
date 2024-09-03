@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getEventTriggers
+ * # Data Source: mongodbatlas.getEventTriggers
  *
  * `mongodbatlas.getEventTriggers` describes all Event Triggers.
  */
@@ -26,7 +26,7 @@ export function getEventTriggers(args: GetEventTriggersArgs, opts?: pulumi.Invok
 export interface GetEventTriggersArgs {
     /**
      * The ObjectID of your application.
-     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+     * * For more details on `projectId` and `appId` see: <https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs>
      */
     appId: string;
     /**
@@ -51,7 +51,7 @@ export interface GetEventTriggersResult {
     readonly results: outputs.GetEventTriggersResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getEventTriggers
+ * # Data Source: mongodbatlas.getEventTriggers
  *
  * `mongodbatlas.getEventTriggers` describes all Event Triggers.
  */
@@ -65,7 +65,7 @@ export function getEventTriggersOutput(args: GetEventTriggersOutputArgs, opts?: 
 export interface GetEventTriggersOutputArgs {
     /**
      * The ObjectID of your application.
-     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+     * * For more details on `projectId` and `appId` see: <https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs>
      */
     appId: pulumi.Input<string>;
     /**

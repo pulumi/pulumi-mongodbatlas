@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getProjects
+// # Data Source: getProjects
 //
 // `getProjects` describes all Projects. This represents projects that have been created.
 //

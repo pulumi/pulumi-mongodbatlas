@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

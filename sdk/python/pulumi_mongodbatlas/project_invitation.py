@@ -196,7 +196,7 @@ class ProjectInvitation(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### S
+        ### s
 
         ```python
         import pulumi
@@ -247,7 +247,7 @@ class ProjectInvitation(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### S
+        ### s
 
         ```python
         import pulumi

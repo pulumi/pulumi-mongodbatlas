@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.DataLakePipeline
+ * # Resource: mongodbatlas.DataLakePipeline
  *
  * `mongodbatlas.DataLakePipeline` provides a Data Lake Pipeline resource.
  *

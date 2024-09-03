@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getAtlasUser
+ * # Data Source: mongodbatlas.getAtlasUser
  *
  * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
  *
@@ -101,8 +101,8 @@ export interface GetAtlasUserResult {
     readonly roles: outputs.GetAtlasUserRole[];
     /**
      * List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
-     * * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
-     * * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+     * * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
+     * * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
      * * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
      * * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
      * * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
@@ -112,7 +112,7 @@ export interface GetAtlasUserResult {
     readonly username?: string;
 }
 /**
- * ## # Data Source: mongodbatlas.getAtlasUser
+ * # Data Source: mongodbatlas.getAtlasUser
  *
  * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
  *

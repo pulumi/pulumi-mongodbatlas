@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.CustomDbRole
+ * # Resource: mongodbatlas.CustomDbRole
  * 
  * `mongodbatlas.CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
  * 
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### With Inherited Roles
+ * ### with inherited roles
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

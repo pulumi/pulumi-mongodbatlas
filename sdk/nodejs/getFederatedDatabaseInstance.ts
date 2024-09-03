@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+ * # Data Source: mongodbatlas.FederatedDatabaseInstance
  *
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
  *
@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### S With MongoDB Atlas Cluster As Storage Database
+ * ### s with MongoDB Atlas Cluster as storage database
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### S With Amazon S3 Bucket As Storage Database
+ * ### s with Amazon S3 bucket as storage database
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -143,7 +143,7 @@ export interface GetFederatedDatabaseInstanceResult {
     readonly storageStores: outputs.GetFederatedDatabaseInstanceStorageStore[];
 }
 /**
- * ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+ * # Data Source: mongodbatlas.FederatedDatabaseInstance
  *
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
  *
@@ -153,7 +153,7 @@ export interface GetFederatedDatabaseInstanceResult {
  *
  * ## Example Usage
  *
- * ### S With MongoDB Atlas Cluster As Storage Database
+ * ### s with MongoDB Atlas Cluster as storage database
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -165,7 +165,7 @@ export interface GetFederatedDatabaseInstanceResult {
  * });
  * ```
  *
- * ### S With Amazon S3 Bucket As Storage Database
+ * ### s with Amazon S3 bucket as storage database
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

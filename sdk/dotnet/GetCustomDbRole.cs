@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCustomDbRole
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.CustomDbRole
+        /// # Data Source: mongodbatlas.CustomDbRole
         /// 
         /// `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
         /// 
@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.CustomDbRole
+        /// # Data Source: mongodbatlas.CustomDbRole
         /// 
         /// `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
         /// 

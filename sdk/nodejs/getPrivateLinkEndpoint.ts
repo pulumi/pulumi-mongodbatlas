@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.PrivateLinkEndpoint
+ * # Data Source: mongodbatlas.PrivateLinkEndpoint
  *
  * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
  *
@@ -119,7 +119,7 @@ export interface GetPrivateLinkEndpointResult {
     readonly status: string;
 }
 /**
- * ## # Data Source: mongodbatlas.PrivateLinkEndpoint
+ * # Data Source: mongodbatlas.PrivateLinkEndpoint
  *
  * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
  *

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.SearchDeployment
+    /// # Resource: mongodbatlas.SearchDeployment
     /// 
     /// `mongodbatlas.SearchDeployment` provides a Search Deployment resource. The resource lets you create, edit and delete dedicated search nodes in a cluster.
     /// 

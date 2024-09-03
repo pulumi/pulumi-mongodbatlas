@@ -7,13 +7,24 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.OnlineArchive
+ * # Data Source: mongodbatlas.OnlineArchive
  *
  * `mongodbatlas.OnlineArchive` describes an Online Archive
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getOnlineArchive({
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ *     archiveId: "5ebad3c1fe9c0ab8d37d61e1",
+ * });
+ * ```
  *
  * ## Attributes reference
  *
@@ -110,13 +121,24 @@ export interface GetOnlineArchiveResult {
     readonly state: string;
 }
 /**
- * ## # Data Source: mongodbatlas.OnlineArchive
+ * # Data Source: mongodbatlas.OnlineArchive
  *
  * `mongodbatlas.OnlineArchive` describes an Online Archive
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getOnlineArchive({
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ *     archiveId: "5ebad3c1fe9c0ab8d37d61e1",
+ * });
+ * ```
  *
  * ## Attributes reference
  *

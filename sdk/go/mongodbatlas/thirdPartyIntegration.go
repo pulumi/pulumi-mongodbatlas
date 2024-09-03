@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: ThirdPartyIntegration
+// # Resource: ThirdPartyIntegration
 //
 // `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
 //

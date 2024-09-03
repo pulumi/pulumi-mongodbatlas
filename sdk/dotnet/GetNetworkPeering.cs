@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetNetworkPeering
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.NetworkPeering
+        /// # Data Source: mongodbatlas.NetworkPeering
         /// 
         /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
         /// 
@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.NetworkPeering
+        /// # Data Source: mongodbatlas.NetworkPeering
         /// 
         /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
         /// 

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getOrganizations
+// # Data Source: getOrganizations
 //
 // `getOrganizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 //

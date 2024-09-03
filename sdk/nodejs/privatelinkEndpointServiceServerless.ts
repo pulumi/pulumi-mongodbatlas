@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: privatelinkEndpointServiceServerless
+ * # Resource: privatelinkEndpointServiceServerless
  *
  * `privatelinkEndpointServiceServerless` Provides a Serverless PrivateLink Endpoint Service resource.
  * This is the second of two resources required to configure PrivateLink for Serverless, the first is mongodbatlas_privatelink_endpoint_serverless.

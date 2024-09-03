@@ -552,7 +552,7 @@ def get_cluster(name: Optional[str] = None,
                 project_id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
-    ## # Data Source: Cluster
+    # Data Source: Cluster
 
     `Cluster` describes a Cluster. The data source requires your Project ID.
 
@@ -651,7 +651,7 @@ def get_cluster_output(name: Optional[pulumi.Input[str]] = None,
                        project_id: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterResult]:
     """
-    ## # Data Source: Cluster
+    # Data Source: Cluster
 
     `Cluster` describes a Cluster. The data source requires your Project ID.
 

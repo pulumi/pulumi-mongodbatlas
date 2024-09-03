@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## ## Attributes Reference
- * 
- * In addition to all arguments above, the following attributes are exported:
- * 
- * * `api_key_id` - Unique identifier for this Organization API key.
- * 
  * ## Import
  * 
  * API Keys must be imported using org ID, API Key ID e.g.
@@ -70,9 +64,17 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/apiKey:ApiKey")
 public class ApiKey extends com.pulumi.resources.CustomResource {
+    /**
+     * Unique identifier for this Organization API key.
+     * 
+     */
     @Export(name="apiKeyId", refs={String.class}, tree="[0]")
     private Output<String> apiKeyId;
 
+    /**
+     * @return Unique identifier for this Organization API key.
+     * 
+     */
     public Output<String> apiKeyId() {
         return this.apiKeyId;
     }

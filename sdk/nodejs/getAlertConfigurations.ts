@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getAlertConfigurations
+ * # Data Source: mongodbatlas.getAlertConfigurations
  *
  * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
  *
@@ -65,7 +65,7 @@ export interface GetAlertConfigurationsResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: mongodbatlas.getAlertConfigurations
+ * # Data Source: mongodbatlas.getAlertConfigurations
  *
  * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
  *

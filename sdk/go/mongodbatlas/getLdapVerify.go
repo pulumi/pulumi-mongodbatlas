@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: LdapVerify
+// # Data Source: LdapVerify
 //
 // `LdapVerify` describes a LDAP Verify.
 //

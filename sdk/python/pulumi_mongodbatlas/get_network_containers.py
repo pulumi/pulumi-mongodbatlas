@@ -82,7 +82,7 @@ def get_network_containers(project_id: Optional[str] = None,
                            provider_name: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkContainersResult:
     """
-    ## # Data Source: get_network_containers
+    # Data Source: get_network_containers
 
     `get_network_containers` describes all Network Peering Containers. The data source requires your Project ID.
 
@@ -130,7 +130,7 @@ def get_network_containers_output(project_id: Optional[pulumi.Input[str]] = None
                                   provider_name: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkContainersResult]:
     """
-    ## # Data Source: get_network_containers
+    # Data Source: get_network_containers
 
     `get_network_containers` describes all Network Peering Containers. The data source requires your Project ID.
 

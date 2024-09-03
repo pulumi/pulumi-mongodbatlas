@@ -30,7 +30,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string IamUserArn;
         /// <summary>
         /// Unique identifier of the role that the data lake can use to access the data stores.
-        /// #### `data_process_region` - The cloud provider region to which the Federated Instance routes client connections for data processing.
         /// </summary>
         public readonly string RoleId;
         public readonly string TestS3Bucket;

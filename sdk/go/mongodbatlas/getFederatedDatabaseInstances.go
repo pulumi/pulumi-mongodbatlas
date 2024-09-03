@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getFederatedDatabaseInstances
+// # Data Source: getFederatedDatabaseInstances
 //
 // `mongodbatlasFederatedDatabaseInstancess` provides a Federated Database Instance data source.
 //

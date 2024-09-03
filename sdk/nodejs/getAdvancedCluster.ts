@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.AdvancedCluster
+ * # Data Source: mongodbatlas.AdvancedCluster
  *
  * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
  *
@@ -214,7 +214,7 @@ export interface GetAdvancedClusterResult {
     readonly versionReleaseSystem: string;
 }
 /**
- * ## # Data Source: mongodbatlas.AdvancedCluster
+ * # Data Source: mongodbatlas.AdvancedCluster
  *
  * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
  *

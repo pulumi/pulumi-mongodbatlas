@@ -224,7 +224,7 @@ class PushBasedLogExport(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### S
+        ### s
 
         ```python
         import pulumi
@@ -269,7 +269,7 @@ class PushBasedLogExport(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### S
+        ### s
 
         ```python
         import pulumi

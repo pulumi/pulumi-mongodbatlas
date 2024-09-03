@@ -18,8 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool ComputeEnabled;
         /// <summary>
-        /// Maximum instance size to which your cluster can automatically scale (such as M40). 
-        /// #### Advanced Configuration
+        /// Maximum instance size to which your cluster can automatically scale (such as M40).
         /// </summary>
         public readonly string ComputeMaxInstanceSize;
         /// <summary>

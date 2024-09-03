@@ -147,7 +147,7 @@ class Team(pulumi.CustomResource):
                  usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        ## # Resource: Team
+        # Resource: Team
 
         `Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
 
@@ -193,7 +193,7 @@ class Team(pulumi.CustomResource):
                  args: TeamArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: Team
+        # Resource: Team
 
         `Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
 

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: CloudProviderAccessSetup
+// # Data Source: CloudProviderAccessSetup
 //
 // `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
 //
@@ -19,7 +19,7 @@ import (
 //
 // ## Example Usage
 //
-// ### With AWS
+// ### with AWS
 // ```go
 // package main
 //
@@ -50,7 +50,7 @@ import (
 //
 // ```
 //
-// ### With AZURE
+// ### with AZURE
 // ```go
 // package main
 //

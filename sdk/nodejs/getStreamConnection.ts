@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.StreamConnection
+ * # Data Source: mongodbatlas.StreamConnection
  *
  * `mongodbatlas.StreamConnection` describes a stream connection.
  *
@@ -90,7 +90,7 @@ export interface GetStreamConnectionResult {
     readonly type: string;
 }
 /**
- * ## # Data Source: mongodbatlas.StreamConnection
+ * # Data Source: mongodbatlas.StreamConnection
  *
  * `mongodbatlas.StreamConnection` describes a stream connection.
  *

@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.Organization
+ * # Resource: mongodbatlas.Organization
  * 
  * `mongodbatlas.Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
  * 
@@ -103,14 +103,14 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.federationSettingsId);
     }
     /**
-     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/&gt;.
      * 
      */
     @Export(name="multiFactorAuthRequired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> multiFactorAuthRequired;
 
     /**
-     * @return Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * @return Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/&gt;.
      * 
      */
     public Output<Boolean> multiFactorAuthRequired() {
@@ -179,14 +179,14 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return this.publicKey;
     }
     /**
-     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-restrict-support-access/&gt;.
      * 
      */
     @Export(name="restrictEmployeeAccess", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> restrictEmployeeAccess;
 
     /**
-     * @return Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * @return Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-restrict-support-access/&gt;.
      * 
      */
     public Output<Boolean> restrictEmployeeAccess() {

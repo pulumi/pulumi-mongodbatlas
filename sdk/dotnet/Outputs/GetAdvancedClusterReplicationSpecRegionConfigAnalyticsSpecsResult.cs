@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly double DiskSizeGb;
         /// <summary>
-        /// Type of storage you want to attach to your AWS-provisioned cluster. 
+        /// Type of storage you want to attach to your AWS-provisioned cluster.
         /// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
         /// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         /// </summary>

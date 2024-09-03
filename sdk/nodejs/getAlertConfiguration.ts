@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.AlertConfiguration
+ * # Data Source: mongodbatlas.AlertConfiguration
  *
  * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
  *
@@ -49,7 +49,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: <https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/>
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -173,7 +173,7 @@ export interface GetAlertConfigurationResult {
     readonly updated: string;
 }
 /**
- * ## # Data Source: mongodbatlas.AlertConfiguration
+ * # Data Source: mongodbatlas.AlertConfiguration
  *
  * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
  *
@@ -215,7 +215,7 @@ export interface GetAlertConfigurationResult {
  * });
  * ```
  *
- * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: <https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/>
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

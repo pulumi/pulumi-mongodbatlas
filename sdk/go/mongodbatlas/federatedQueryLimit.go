@@ -12,15 +12,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: FederatedQueryLimit
+// # Resource: FederatedQueryLimit
 //
-// `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+// `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see <https://www.mongodb.com/docs/atlas/data-federation/overview/>.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
 //
-// ### S
+// ### s
 //
 // ```go
 // package main

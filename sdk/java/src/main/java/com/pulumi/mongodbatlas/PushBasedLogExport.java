@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
- * ### S
+ * ### s
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

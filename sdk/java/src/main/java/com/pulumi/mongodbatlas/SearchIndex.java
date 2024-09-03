@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.SearchIndex
+ * # Resource: mongodbatlas.SearchIndex
  * 
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  * 

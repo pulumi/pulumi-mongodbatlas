@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.Team
+ * # Data Source: mongodbatlas.Team
  *
  * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
  *
@@ -104,7 +104,7 @@ export interface GetTeamResult {
     readonly usernames: string[];
 }
 /**
- * ## # Data Source: mongodbatlas.Team
+ * # Data Source: mongodbatlas.Team
  *
  * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
  *

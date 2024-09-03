@@ -78,7 +78,7 @@ class GetCloudBackupSnapshotExportJobResult:
     @pulumi.getter
     def components(self) -> Sequence['outputs.GetCloudBackupSnapshotExportJobComponentResult']:
         """
-        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         """
         return pulumi.get(self, "components")
 
@@ -206,7 +206,7 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
                                          project_id: Optional[str] = None,
                                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotExportJobResult:
     """
-    ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+    # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
 
     `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 
@@ -273,7 +273,7 @@ def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.In
                                                 project_id: Optional[pulumi.Input[str]] = None,
                                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportJobResult]:
     """
-    ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+    # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
 
     `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 

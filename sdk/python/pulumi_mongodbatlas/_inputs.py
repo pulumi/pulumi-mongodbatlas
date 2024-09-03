@@ -342,7 +342,6 @@ class AdvancedClusterBiConnectorConfigArgs:
                  read_preference: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
                - Set to `true` to enable BI Connector for Atlas.
                - Set to `false` to disable BI Connector for Atlas.
         :param pulumi.Input[str] read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
@@ -363,7 +362,6 @@ class AdvancedClusterBiConnectorConfigArgs:
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
         - Set to `true` to enable BI Connector for Atlas.
         - Set to `false` to disable BI Connector for Atlas.
         """
@@ -1423,16 +1421,42 @@ class AlertConfigurationMatcherArgs:
                  value: pulumi.Input[str]):
         """
         :param pulumi.Input[str] field_name: Name of the field in the target object to match on.
-               
-               | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-               |:----------           |:-------------       |:------                 |
-               | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-               | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-               | `PORT`              | `CLUSTER_NAME`      |                         |
-               | `HOSTNAME_AND_PORT` |                     |                         |
-               | `REPLICA_SET_NAME`  |                     |                         |
-               
-               
+               <table>
+               <thead>
+               <tr>
+               <th style="text-align:left">Host alerts</th>
+               <th style="text-align:left">Replica set alerts</th>
+               <th style="text-align:left">Sharded cluster alerts</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+               <td style="text-align:left">`TYPE_NAME`</td>
+               <td style="text-align:left">`REPLICA_SET_NAME`</td>
+               <td style="text-align:left">`CLUSTER_NAME`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`HOSTNAME`</td>
+               <td style="text-align:left">`SHARD_NAME`</td>
+               <td style="text-align:left">`SHARD_NAME`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`PORT`</td>
+               <td style="text-align:left">`CLUSTER_NAME`</td>
+               <td style="text-align:left"></td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+               <td style="text-align:left"></td>
+               <td style="text-align:left"></td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`REPLICA_SET_NAME`</td>
+               <td style="text-align:left"></td>
+               <td style="text-align:left"></td>
+               </tr>
+               </tbody>
+               </table>
                
                All other types of alerts do not support matchers.
         :param pulumi.Input[str] value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
@@ -1451,16 +1475,42 @@ class AlertConfigurationMatcherArgs:
     def field_name(self) -> pulumi.Input[str]:
         """
         Name of the field in the target object to match on.
-
-        | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-        |:----------           |:-------------       |:------                 |
-        | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-        | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-        | `PORT`              | `CLUSTER_NAME`      |                         |
-        | `HOSTNAME_AND_PORT` |                     |                         |
-        | `REPLICA_SET_NAME`  |                     |                         |
-
-
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align:left">Host alerts</th>
+        <th style="text-align:left">Replica set alerts</th>
+        <th style="text-align:left">Sharded cluster alerts</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align:left">`TYPE_NAME`</td>
+        <td style="text-align:left">`REPLICA_SET_NAME`</td>
+        <td style="text-align:left">`CLUSTER_NAME`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`HOSTNAME`</td>
+        <td style="text-align:left">`SHARD_NAME`</td>
+        <td style="text-align:left">`SHARD_NAME`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`PORT`</td>
+        <td style="text-align:left">`CLUSTER_NAME`</td>
+        <td style="text-align:left"></td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"></td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`REPLICA_SET_NAME`</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"></td>
+        </tr>
+        </tbody>
+        </table>
 
         All other types of alerts do not support matchers.
         """
@@ -1631,15 +1681,40 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[str] ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
                Accepted values are:
-               
-               | Project roles                   | Organization roles  |
-               |:----------                      |:-----------         |
-               | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-               | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-               | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-               | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-               | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-               | `GROUP_READ_ONLY`               |                     |
+               <table>
+               <thead>
+               <tr>
+               <th style="text-align:left">Project roles</th>
+               <th style="text-align:left">Organization roles</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+               <td style="text-align:left">`GROUP_CLUSTER_MANAGER`</td>
+               <td style="text-align:left">`ORG_OWNER`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_DATA_ACCESS_ADMIN`</td>
+               <td style="text-align:left">`ORG_MEMBER`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_DATA_ACCESS_READ_ONLY`</td>
+               <td style="text-align:left">`ORG_GROUP_CREATOR`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_DATA_ACCESS_READ_WRITE`</td>
+               <td style="text-align:left">`ORG_BILLING_ADMIN`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_OWNER`</td>
+               <td style="text-align:left">`ORG_READ_ONLY`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_READ_ONLY`</td>
+               <td style="text-align:left"></td>
+               </tr>
+               </tbody>
+               </table>
         :param pulumi.Input[str] service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param pulumi.Input[bool] sms_enabled: Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param pulumi.Input[str] team_id: Unique identifier of a team.
@@ -1900,15 +1975,40 @@ class AlertConfigurationNotificationArgs:
         """
         Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         Accepted values are:
-
-        | Project roles                   | Organization roles  |
-        |:----------                      |:-----------         |
-        | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-        | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-        | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-        | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-        | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-        | `GROUP_READ_ONLY`               |                     |
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align:left">Project roles</th>
+        <th style="text-align:left">Organization roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align:left">`GROUP_CLUSTER_MANAGER`</td>
+        <td style="text-align:left">`ORG_OWNER`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_DATA_ACCESS_ADMIN`</td>
+        <td style="text-align:left">`ORG_MEMBER`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_DATA_ACCESS_READ_ONLY`</td>
+        <td style="text-align:left">`ORG_GROUP_CREATOR`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_DATA_ACCESS_READ_WRITE`</td>
+        <td style="text-align:left">`ORG_BILLING_ADMIN`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_OWNER`</td>
+        <td style="text-align:left">`ORG_READ_ONLY`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_READ_ONLY`</td>
+        <td style="text-align:left"></td>
+        </tr>
+        </tbody>
+        </table>
         """
         return pulumi.get(self, "roles")
 
@@ -2582,7 +2682,7 @@ class CloudBackupScheduleCopySettingArgs:
         """
         :param pulumi.Input[str] cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
-        :param pulumi.Input[str] region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        :param pulumi.Input[str] region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
         :param pulumi.Input[str] replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param pulumi.Input[bool] should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param pulumi.Input[str] zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
@@ -2631,7 +2731,7 @@ class CloudBackupScheduleCopySettingArgs:
     @pulumi.getter(name="regionName")
     def region_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
         """
         return pulumi.get(self, "region_name")
 
@@ -3142,8 +3242,8 @@ class CloudBackupSnapshotExportJobComponentArgs:
                  export_id: Optional[pulumi.Input[str]] = None,
                  replica_set_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
-        :param pulumi.Input[str] replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        :param pulumi.Input[str] export_id: *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
+        :param pulumi.Input[str] replica_set_name: *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
         """
         if export_id is not None:
             pulumi.set(__self__, "export_id", export_id)
@@ -3154,7 +3254,7 @@ class CloudBackupSnapshotExportJobComponentArgs:
     @pulumi.getter(name="exportId")
     def export_id(self) -> Optional[pulumi.Input[str]]:
         """
-        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         """
         return pulumi.get(self, "export_id")
 
@@ -3166,7 +3266,7 @@ class CloudBackupSnapshotExportJobComponentArgs:
     @pulumi.getter(name="replicaSetName")
     def replica_set_name(self) -> Optional[pulumi.Input[str]]:
         """
-        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
         """
         return pulumi.get(self, "replica_set_name")
 
@@ -3736,8 +3836,7 @@ class ClusterBiConnectorConfigArgs:
                  read_preference: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
-               - Set to `true` to enable BI Connector for Atlas.
+               * - Set to `true` to enable BI Connector for Atlas.
                - Set to `false` to disable BI Connector for Atlas.
         :param pulumi.Input[str] read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
                
@@ -3757,8 +3856,7 @@ class ClusterBiConnectorConfigArgs:
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
-        - Set to `true` to enable BI Connector for Atlas.
+        * - Set to `true` to enable BI Connector for Atlas.
         - Set to `false` to disable BI Connector for Atlas.
         """
         return pulumi.get(self, "enabled")
@@ -4132,7 +4230,6 @@ class ClusterReplicationSpecArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]] regions_configs: Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param pulumi.Input[str] zone_name: Name for the zone in a Global Cluster.
                
-               
                **Region Config**
         """
         pulumi.set(__self__, "num_shards", num_shards)
@@ -4184,7 +4281,6 @@ class ClusterReplicationSpecArgs:
     def zone_name(self) -> Optional[pulumi.Input[str]]:
         """
         Name for the zone in a Global Cluster.
-
 
         **Region Config**
         """
@@ -6775,7 +6871,7 @@ class OnlineArchiveCriteriaArgs:
         :param pulumi.Input[str] date_format: Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
         :param pulumi.Input[int] expire_after_days: Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
                
-               **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+               ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value***
                
                The only field required for criteria type `CUSTOM`
         :param pulumi.Input[str] query: JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
@@ -6834,7 +6930,7 @@ class OnlineArchiveCriteriaArgs:
         """
         Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 
-        **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+        ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value***
 
         The only field required for criteria type `CUSTOM`
         """

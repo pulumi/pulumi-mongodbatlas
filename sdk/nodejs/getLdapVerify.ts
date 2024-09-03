@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.LdapVerify
+ * # Data Source: mongodbatlas.LdapVerify
  *
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
  *
@@ -117,7 +117,7 @@ export interface GetLdapVerifyResult {
     readonly validations: outputs.GetLdapVerifyValidation[];
 }
 /**
- * ## # Data Source: mongodbatlas.LdapVerify
+ * # Data Source: mongodbatlas.LdapVerify
  *
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
  *

@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
- * ### Create And Assign PAK Together
+ * ### Create and Assign PAK Together
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Create And Assign PAK To Multiple Projects
+ * ### Create and Assign PAK to Multiple Projects
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

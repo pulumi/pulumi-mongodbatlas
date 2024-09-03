@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.CustomDbRole
+    /// # Resource: mongodbatlas.CustomDbRole
     /// 
     /// `mongodbatlas.CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
     /// 
@@ -76,7 +76,7 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### With Inherited Roles
+    /// ### with inherited roles
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

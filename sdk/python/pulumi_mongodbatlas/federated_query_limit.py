@@ -304,15 +304,15 @@ class FederatedQueryLimit(pulumi.CustomResource):
                  value: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        ## # Resource: FederatedQueryLimit
+        # Resource: FederatedQueryLimit
 
-        `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+        `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see <https://www.mongodb.com/docs/atlas/data-federation/overview/>.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
 
-        ### S
+        ### s
 
         ```python
         import pulumi
@@ -358,15 +358,15 @@ class FederatedQueryLimit(pulumi.CustomResource):
                  args: FederatedQueryLimitArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: FederatedQueryLimit
+        # Resource: FederatedQueryLimit
 
-        `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+        `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see <https://www.mongodb.com/docs/atlas/data-federation/overview/>.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
 
-        ### S
+        ### s
 
         ```python
         import pulumi

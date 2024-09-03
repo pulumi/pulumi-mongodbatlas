@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.DatabaseUser
+ * # Data Source: mongodbatlas.DatabaseUser
  *
  * `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
  *
@@ -146,7 +146,7 @@ export interface GetDatabaseUserResult {
     readonly x509Type: string;
 }
 /**
- * ## # Data Source: mongodbatlas.DatabaseUser
+ * # Data Source: mongodbatlas.DatabaseUser
  *
  * `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
  *

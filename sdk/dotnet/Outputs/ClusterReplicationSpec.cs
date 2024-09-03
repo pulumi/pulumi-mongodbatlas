@@ -28,7 +28,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Name for the zone in a Global Cluster.
         /// 
-        /// 
         /// **Region Config**
         /// </summary>
         public readonly string? ZoneName;

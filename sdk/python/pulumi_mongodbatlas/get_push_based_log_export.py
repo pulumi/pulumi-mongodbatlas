@@ -104,13 +104,13 @@ class AwaitableGetPushBasedLogExportResult(GetPushBasedLogExportResult):
 def get_push_based_log_export(project_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPushBasedLogExportResult:
     """
-    ## # Data Source: PushBasedLogExport
+    # Data Source: PushBasedLogExport
 
     `PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
 
     ## Example Usage
 
-    ### S
+    ### s
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -160,13 +160,13 @@ def get_push_based_log_export(project_id: Optional[str] = None,
 def get_push_based_log_export_output(project_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPushBasedLogExportResult]:
     """
-    ## # Data Source: PushBasedLogExport
+    # Data Source: PushBasedLogExport
 
     `PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
 
     ## Example Usage
 
-    ### S
+    ### s
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas

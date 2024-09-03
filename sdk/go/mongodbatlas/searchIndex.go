@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: SearchIndex
+// # Resource: SearchIndex
 //
 // `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 //

@@ -15,6 +15,42 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         /// <summary>
         /// Name of the field in the target object to match on.
+        /// &lt;table&gt;
+        /// &lt;thead&gt;
+        /// &lt;tr&gt;
+        /// &lt;th style="text-align:left"&gt;Host alerts&lt;/th&gt;
+        /// &lt;th style="text-align:left"&gt;Replica set alerts&lt;/th&gt;
+        /// &lt;th style="text-align:left"&gt;Sharded cluster alerts&lt;/th&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/thead&gt;
+        /// &lt;tbody&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`TYPE_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`REPLICA_SET_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`CLUSTER_NAME`&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`HOSTNAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`SHARD_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`SHARD_NAME`&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`PORT`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`CLUSTER_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`HOSTNAME_AND_PORT`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`REPLICA_SET_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/tbody&gt;
+        /// &lt;/table&gt;
         /// </summary>
         public readonly string FieldName;
         /// <summary>

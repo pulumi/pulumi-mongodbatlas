@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: Project
+// # Resource: Project
 //
 // `Project` provides a Project resource. This allows project to be created.
 //

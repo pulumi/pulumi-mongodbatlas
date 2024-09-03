@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetPrivateLinkEndpointService
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.PrivateLinkEndpointService
+        /// # Data Source: mongodbatlas.PrivateLinkEndpointService
         /// 
         /// `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
         /// 
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivateLinkEndpointServiceResult>("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", args ?? new GetPrivateLinkEndpointServiceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.PrivateLinkEndpointService
+        /// # Data Source: mongodbatlas.PrivateLinkEndpointService
         /// 
         /// `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
         /// 

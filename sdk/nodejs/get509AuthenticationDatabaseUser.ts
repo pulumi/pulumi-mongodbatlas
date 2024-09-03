@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
+ * # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
  *
  * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
  *
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript
@@ -89,7 +89,7 @@ export interface Get509AuthenticationDatabaseUserResult {
     readonly username?: string;
 }
 /**
- * ## # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
+ * # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
  *
  * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
  *
@@ -97,7 +97,7 @@ export interface Get509AuthenticationDatabaseUserResult {
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript

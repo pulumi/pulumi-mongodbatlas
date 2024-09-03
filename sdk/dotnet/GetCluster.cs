@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCluster
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Cluster
+        /// # Data Source: mongodbatlas.Cluster
         /// 
         /// `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
         /// 
@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("mongodbatlas:index/getCluster:getCluster", args ?? new GetClusterArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Cluster
+        /// # Data Source: mongodbatlas.Cluster
         /// 
         /// `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
         /// 

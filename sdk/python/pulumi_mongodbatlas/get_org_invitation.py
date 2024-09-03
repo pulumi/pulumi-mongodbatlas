@@ -136,7 +136,7 @@ def get_org_invitation(invitation_id: Optional[str] = None,
                        username: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrgInvitationResult:
     """
-    ## # Data Source: OrgInvitation
+    # Data Source: OrgInvitation
 
     `OrgInvitation` describes an invitation for a user to join an Atlas organization.
 
@@ -170,7 +170,7 @@ def get_org_invitation_output(invitation_id: Optional[pulumi.Input[str]] = None,
                               username: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrgInvitationResult]:
     """
-    ## # Data Source: OrgInvitation
+    # Data Source: OrgInvitation
 
     `OrgInvitation` describes an invitation for a user to join an Atlas organization.
 

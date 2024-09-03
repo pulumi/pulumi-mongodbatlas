@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getDatabaseUsers
+// # Data Source: getDatabaseUsers
 //
 // `getDatabaseUsers` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
 //

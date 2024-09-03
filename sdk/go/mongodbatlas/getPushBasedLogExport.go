@@ -11,13 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: PushBasedLogExport
+// # Data Source: PushBasedLogExport
 //
 // `PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
 //
 // ## Example Usage
 //
-// ### S
+// ### s
 // ```go
 // package main
 //

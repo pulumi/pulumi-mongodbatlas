@@ -199,14 +199,27 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: X509AuthenticationDatabaseUser
+        # Resource: X509AuthenticationDatabaseUser
 
         `X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
-
-        | Management  | Description  |
-        |---|---|
-        | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
-        | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
+        <table>
+        <thead>
+        <tr>
+        <th>Management</th>
+        <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Atlas</td>
+        <td>Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.</td>
+        </tr>
+        <tr>
+        <td>Customer</td>
+        <td>You must provide a Certificate Authority and generate certificates for your MongoDB users.</td>
+        </tr>
+        </tbody>
+        </table>
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -214,7 +227,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### S
+        ### s
 
         ## Import
 
@@ -246,14 +259,27 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
                  args: X509AuthenticationDatabaseUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: X509AuthenticationDatabaseUser
+        # Resource: X509AuthenticationDatabaseUser
 
         `X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
-
-        | Management  | Description  |
-        |---|---|
-        | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
-        | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
+        <table>
+        <thead>
+        <tr>
+        <th>Management</th>
+        <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Atlas</td>
+        <td>Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.</td>
+        </tr>
+        <tr>
+        <td>Customer</td>
+        <td>You must provide a Certificate Authority and generate certificates for your MongoDB users.</td>
+        </tr>
+        </tbody>
+        </table>
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -261,7 +287,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### S
+        ### s
 
         ## Import
 

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: atlasUsers
+// # Data Source: atlasUsers
 //
 // `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
 //

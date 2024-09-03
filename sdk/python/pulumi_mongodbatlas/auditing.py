@@ -98,7 +98,7 @@ class _AuditingState:
         Input properties used for looking up and filtering Auditing resources.
         :param pulumi.Input[bool] audit_authorization_success: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         :param pulumi.Input[str] audit_filter: JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
-        :param pulumi.Input[str] configuration_type: Denotes the configuration method for the audit filter. Possible values are: 
+        :param pulumi.Input[str] configuration_type: Denotes the configuration method for the audit filter. Possible values are:
                * NONE - auditing not configured for the project.
                * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
                * FILTER_JSON - auditing configured via Atlas custom filter or API.
@@ -146,7 +146,7 @@ class _AuditingState:
     @pulumi.getter(name="configurationType")
     def configuration_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Denotes the configuration method for the audit filter. Possible values are: 
+        Denotes the configuration method for the audit filter. Possible values are:
         * NONE - auditing not configured for the project.
         * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
         * FILTER_JSON - auditing configured via Atlas custom filter or API.
@@ -195,7 +195,7 @@ class Auditing(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: Auditing
+        # Resource: Auditing
 
         `Auditing` provides an Auditing resource. This allows auditing to be created.
 
@@ -237,7 +237,7 @@ class Auditing(pulumi.CustomResource):
                  args: AuditingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: Auditing
+        # Resource: Auditing
 
         `Auditing` provides an Auditing resource. This allows auditing to be created.
 
@@ -322,7 +322,7 @@ class Auditing(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] audit_authorization_success: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         :param pulumi.Input[str] audit_filter: JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
-        :param pulumi.Input[str] configuration_type: Denotes the configuration method for the audit filter. Possible values are: 
+        :param pulumi.Input[str] configuration_type: Denotes the configuration method for the audit filter. Possible values are:
                * NONE - auditing not configured for the project.
                * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
                * FILTER_JSON - auditing configured via Atlas custom filter or API.
@@ -362,7 +362,7 @@ class Auditing(pulumi.CustomResource):
     @pulumi.getter(name="configurationType")
     def configuration_type(self) -> pulumi.Output[str]:
         """
-        Denotes the configuration method for the audit filter. Possible values are: 
+        Denotes the configuration method for the audit filter. Possible values are:
         * NONE - auditing not configured for the project.
         * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
         * FILTER_JSON - auditing configured via Atlas custom filter or API.

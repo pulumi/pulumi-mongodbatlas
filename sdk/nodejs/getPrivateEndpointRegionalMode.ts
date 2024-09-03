@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: privateEndpointRegionalMode
+ * # Data Source: privateEndpointRegionalMode
  *
  * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
  *
@@ -46,7 +46,7 @@ export interface GetPrivateEndpointRegionalModeResult {
     readonly projectId: string;
 }
 /**
- * ## # Data Source: privateEndpointRegionalMode
+ * # Data Source: privateEndpointRegionalMode
  *
  * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
  *

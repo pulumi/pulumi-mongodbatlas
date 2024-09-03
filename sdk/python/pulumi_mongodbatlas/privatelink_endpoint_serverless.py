@@ -194,7 +194,7 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: privatelink_endpoint_serverless
+        # Resource: privatelink_endpoint_serverless
 
         `privatelink_endpoint_serverless` Provides a Serverless PrivateLink Endpoint resource.
         This is the first of two resources required to configure PrivateLink for Serverless, the second is mongodbatlas_privatelink_endpoint_service_serverless.
@@ -243,7 +243,7 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
                  args: PrivatelinkEndpointServerlessArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: privatelink_endpoint_serverless
+        # Resource: privatelink_endpoint_serverless
 
         `privatelink_endpoint_serverless` Provides a Serverless PrivateLink Endpoint resource.
         This is the first of two resources required to configure PrivateLink for Serverless, the second is mongodbatlas_privatelink_endpoint_service_serverless.

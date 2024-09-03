@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.Project
+    /// # Resource: mongodbatlas.Project
     /// 
     /// `mongodbatlas.Project` provides a Project resource. This allows project to be created.
     /// 

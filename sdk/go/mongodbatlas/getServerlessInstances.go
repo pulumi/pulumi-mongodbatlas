@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getServerlessInstances
+// # Data Source: getServerlessInstances
 //
 // `getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 //

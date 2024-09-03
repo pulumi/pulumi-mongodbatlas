@@ -222,7 +222,7 @@ def get_third_party_integration(enabled: Optional[bool] = None,
                                 user_name: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetThirdPartyIntegrationResult:
     """
-    ## # Data Source: ThirdPartyIntegration
+    # Data Source: ThirdPartyIntegration
 
     `ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
 
@@ -297,7 +297,7 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
                                        user_name: Optional[pulumi.Input[Optional[str]]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetThirdPartyIntegrationResult]:
     """
-    ## # Data Source: ThirdPartyIntegration
+    # Data Source: ThirdPartyIntegration
 
     `ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
 

@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetCloudBackupSnapshotExportJobsResultResult
     {
         /// <summary>
-        /// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        /// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSnapshotExportJobsResultComponentResult> Components;
         /// <summary>

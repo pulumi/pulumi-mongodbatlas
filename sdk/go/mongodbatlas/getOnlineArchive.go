@@ -11,13 +11,39 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: OnlineArchive
+// # Data Source: OnlineArchive
 //
 // `OnlineArchive` describes an Online Archive
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.LookupOnlineArchive(ctx, &mongodbatlas.LookupOnlineArchiveArgs{
+//				ProjectId:   projectId,
+//				ClusterName: clusterName,
+//				ArchiveId:   "5ebad3c1fe9c0ab8d37d61e1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Attributes reference
 //

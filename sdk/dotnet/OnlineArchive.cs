@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.OnlineArchive
+    /// # Resource: mongodbatlas.OnlineArchive
     /// 
     /// `mongodbatlas.OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
     /// 
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// ### S
+    /// ### s
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -153,6 +153,12 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// 
     /// ## Import
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import mongodbatlas:index/onlineArchive:OnlineArchive users_archive &lt;project_id&gt;-&lt;cluster_name&gt;-&lt;archive_id&gt;
+    /// ```
     /// 
     /// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
     /// </summary>

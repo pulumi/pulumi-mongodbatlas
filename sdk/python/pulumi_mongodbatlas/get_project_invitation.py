@@ -124,7 +124,7 @@ def get_project_invitation(invitation_id: Optional[str] = None,
                            username: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectInvitationResult:
     """
-    ## # Data Source: ProjectInvitation
+    # Data Source: ProjectInvitation
 
     `ProjectInvitation` describes an invitation to a user to join an Atlas project.
 
@@ -132,7 +132,7 @@ def get_project_invitation(invitation_id: Optional[str] = None,
 
     ## Example Usage
 
-    ### S
+    ### s
 
     ```python
     import pulumi
@@ -175,7 +175,7 @@ def get_project_invitation_output(invitation_id: Optional[pulumi.Input[str]] = N
                                   username: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectInvitationResult]:
     """
-    ## # Data Source: ProjectInvitation
+    # Data Source: ProjectInvitation
 
     `ProjectInvitation` describes an invitation to a user to join an Atlas project.
 
@@ -183,7 +183,7 @@ def get_project_invitation_output(invitation_id: Optional[pulumi.Input[str]] = N
 
     ## Example Usage
 
-    ### S
+    ### s
 
     ```python
     import pulumi

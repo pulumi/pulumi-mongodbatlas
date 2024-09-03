@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getSearchIndexes
+// # Data Source: getSearchIndexes
 //
 // `getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
 //

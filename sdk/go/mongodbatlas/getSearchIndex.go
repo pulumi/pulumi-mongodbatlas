@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: SearchIndex
+// # Data Source: SearchIndex
 //
 // `SearchIndex` describes a single search indexes. This represents a single search index that have been created.
 //

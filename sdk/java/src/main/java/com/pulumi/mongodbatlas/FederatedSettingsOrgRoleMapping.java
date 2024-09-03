@@ -16,7 +16,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.FederatedSettingsOrgRoleMapping
+ * # Resource: mongodbatlas.FederatedSettingsOrgRoleMapping
  * 
  * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
  * 

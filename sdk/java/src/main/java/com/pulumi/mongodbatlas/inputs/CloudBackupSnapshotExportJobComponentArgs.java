@@ -16,14 +16,14 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
     public static final CloudBackupSnapshotExportJobComponentArgs Empty = new CloudBackupSnapshotExportJobComponentArgs();
 
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      * 
      */
     @Import(name="exportId")
     private @Nullable Output<String> exportId;
 
     /**
-     * @return _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * @return *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      * 
      */
     public Optional<Output<String>> exportId() {
@@ -31,14 +31,14 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
     }
 
     /**
-     * _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
      * 
      */
     @Import(name="replicaSetName")
     private @Nullable Output<String> replicaSetName;
 
     /**
-     * @return _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * @return *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
      * 
      */
     public Optional<Output<String>> replicaSetName() {
@@ -71,7 +71,7 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
         }
 
         /**
-         * @param exportId _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+         * @param exportId *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
         }
 
         /**
-         * @param exportId _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+         * @param exportId *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
         }
 
         /**
-         * @param replicaSetName _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+         * @param replicaSetName *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
         }
 
         /**
-         * @param replicaSetName _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+         * @param replicaSetName *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
          * 
          * @return builder
          * 

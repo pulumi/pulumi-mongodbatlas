@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.SearchIndex
+ * # Resource: mongodbatlas.SearchIndex
  *
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  *

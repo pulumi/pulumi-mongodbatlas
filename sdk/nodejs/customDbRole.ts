@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.CustomDbRole
+ * # Resource: mongodbatlas.CustomDbRole
  *
  * `mongodbatlas.CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
  *
@@ -50,7 +50,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### With Inherited Roles
+ * ### with inherited roles
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

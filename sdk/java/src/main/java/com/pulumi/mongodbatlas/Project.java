@@ -22,7 +22,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.Project
+ * # Resource: mongodbatlas.Project
  * 
  * `mongodbatlas.Project` provides a Project resource. This allows project to be created.
  * 

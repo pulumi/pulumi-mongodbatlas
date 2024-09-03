@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetFederatedDatabaseInstance
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+        /// # Data Source: mongodbatlas.FederatedDatabaseInstance
         /// 
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
         /// 
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### S With MongoDB Atlas Cluster As Storage Database
+        /// ### s with MongoDB Atlas Cluster as storage database
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -41,8 +41,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// 
-        /// ### S With Amazon S3 Bucket As Storage Database
+        /// ### s with Amazon S3 bucket as storage database
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -72,7 +71,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedDatabaseInstanceResult>("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", args ?? new GetFederatedDatabaseInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+        /// # Data Source: mongodbatlas.FederatedDatabaseInstance
         /// 
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
         /// 
@@ -82,7 +81,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### S With MongoDB Atlas Cluster As Storage Database
+        /// ### s with MongoDB Atlas Cluster as storage database
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -101,8 +100,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// 
-        /// ### S With Amazon S3 Bucket As Storage Database
+        /// ### s with Amazon S3 bucket as storage database
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getProjects
+ * # Data Source: mongodbatlas.getProjects
  *
  * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
  *
@@ -85,7 +85,7 @@ export interface GetProjectsResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: mongodbatlas.getProjects
+ * # Data Source: mongodbatlas.getProjects
  *
  * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
  *

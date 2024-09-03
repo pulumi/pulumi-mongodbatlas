@@ -30,7 +30,7 @@ public final class GetOrganizationResult {
     private Boolean isDeleted;
     private List<GetOrganizationLink> links;
     /**
-     * @return (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * @return (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/&gt;.
      * 
      */
     private Boolean multiFactorAuthRequired;
@@ -41,7 +41,7 @@ public final class GetOrganizationResult {
     private String name;
     private String orgId;
     /**
-     * @return (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * @return (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-restrict-support-access/&gt;.
      * 
      */
     private Boolean restrictEmployeeAccess;
@@ -72,7 +72,7 @@ public final class GetOrganizationResult {
         return this.links;
     }
     /**
-     * @return (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * @return (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/&gt;.
      * 
      */
     public Boolean multiFactorAuthRequired() {
@@ -89,7 +89,7 @@ public final class GetOrganizationResult {
         return this.orgId;
     }
     /**
-     * @return (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * @return (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-restrict-support-access/&gt;.
      * 
      */
     public Boolean restrictEmployeeAccess() {

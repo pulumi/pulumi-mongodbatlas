@@ -167,13 +167,22 @@ def get_online_archive(archive_id: Optional[str] = None,
                        project_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOnlineArchiveResult:
     """
-    ## # Data Source: OnlineArchive
+    # Data Source: OnlineArchive
 
     `OnlineArchive` describes an Online Archive
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_online_archive(project_id=project_id,
+        cluster_name=cluster_name,
+        archive_id="5ebad3c1fe9c0ab8d37d61e1")
+    ```
 
     ## Attributes reference
 
@@ -254,13 +263,22 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
                               project_id: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOnlineArchiveResult]:
     """
-    ## # Data Source: OnlineArchive
+    # Data Source: OnlineArchive
 
     `OnlineArchive` describes an Online Archive
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_online_archive(project_id=project_id,
+        cluster_name=cluster_name,
+        archive_id="5ebad3c1fe9c0ab8d37d61e1")
+    ```
 
     ## Attributes reference
 

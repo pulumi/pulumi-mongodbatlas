@@ -7,14 +7,27 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.X509AuthenticationDatabaseUser
+ * # Resource: mongodbatlas.X509AuthenticationDatabaseUser
  *
  * `mongodbatlas.X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The mongodbatlas.X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
- *
- * | Management  | Description  |
- * |---|---|
- * | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
- * | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
+ * <table>
+ * <thead>
+ * <tr>
+ * <th>Management</th>
+ * <th>Description</th>
+ * </tr>
+ * </thead>
+ * <tbody>
+ * <tr>
+ * <td>Atlas</td>
+ * <td>Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.</td>
+ * </tr>
+ * <tr>
+ * <td>Customer</td>
+ * <td>You must provide a Certificate Authority and generate certificates for your MongoDB users.</td>
+ * </tr>
+ * </tbody>
+ * </table>
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -22,7 +35,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ## Import
  *

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getAlertConfigurations
+// # Data Source: getAlertConfigurations
 //
 // `getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
 //

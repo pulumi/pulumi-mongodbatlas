@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.GlobalClusterConfig
+ * # Resource: mongodbatlas.GlobalClusterConfig
  * 
  * `mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.
  * 

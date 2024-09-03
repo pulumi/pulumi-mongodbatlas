@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: Project
+// # Data Source: Project
 //
 // `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 //

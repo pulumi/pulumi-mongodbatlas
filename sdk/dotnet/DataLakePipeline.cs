@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.DataLakePipeline
+    /// # Resource: mongodbatlas.DataLakePipeline
     /// 
     /// `mongodbatlas.DataLakePipeline` provides a Data Lake Pipeline resource.
     /// 

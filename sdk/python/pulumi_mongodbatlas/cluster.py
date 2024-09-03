@@ -108,7 +108,7 @@ class ClusterArgs:
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
                * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
-        :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -510,7 +510,7 @@ class ClusterArgs:
     @pulumi.getter(name="providerDiskTypeName")
     def provider_disk_type_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
         """
         return pulumi.get(self, "provider_disk_type_name")
 
@@ -736,7 +736,7 @@ class _ClusterState:
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
                * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
-        :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
@@ -1234,7 +1234,7 @@ class _ClusterState:
     @pulumi.getter(name="providerDiskTypeName")
     def provider_disk_type_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
         """
         return pulumi.get(self, "provider_disk_type_name")
 
@@ -1636,6 +1636,7 @@ class Cluster(pulumi.CustomResource):
                 },
             ])
         ```
+
         ### Example AWS Shared Tier (M2/M5) cluster
         ```python
         import pulumi
@@ -1649,6 +1650,7 @@ class Cluster(pulumi.CustomResource):
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M2")
         ```
+
         ### Example AWS Free Tier cluster
         ```python
         import pulumi
@@ -1662,6 +1664,7 @@ class Cluster(pulumi.CustomResource):
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M0")
         ```
+
         ### Example - Return a Connection String
         Standard
         ```python
@@ -1734,7 +1737,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
                * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
-        :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
@@ -1922,6 +1925,7 @@ class Cluster(pulumi.CustomResource):
                 },
             ])
         ```
+
         ### Example AWS Shared Tier (M2/M5) cluster
         ```python
         import pulumi
@@ -1935,6 +1939,7 @@ class Cluster(pulumi.CustomResource):
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M2")
         ```
+
         ### Example AWS Free Tier cluster
         ```python
         import pulumi
@@ -1948,6 +1953,7 @@ class Cluster(pulumi.CustomResource):
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M0")
         ```
+
         ### Example - Return a Connection String
         Standard
         ```python
@@ -2196,7 +2202,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
                * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
-        :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
@@ -2532,7 +2538,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="providerDiskTypeName")
     def provider_disk_type_name(self) -> pulumi.Output[str]:
         """
-        Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
         """
         return pulumi.get(self, "provider_disk_type_name")
 

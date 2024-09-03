@@ -142,7 +142,7 @@ def get_ldap_verify(project_id: Optional[str] = None,
                     request_id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLdapVerifyResult:
     """
-    ## # Data Source: LdapVerify
+    # Data Source: LdapVerify
 
     `LdapVerify` describes a LDAP Verify.
 
@@ -211,7 +211,7 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
                            request_id: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLdapVerifyResult]:
     """
-    ## # Data Source: LdapVerify
+    # Data Source: LdapVerify
 
     `LdapVerify` describes a LDAP Verify.
 

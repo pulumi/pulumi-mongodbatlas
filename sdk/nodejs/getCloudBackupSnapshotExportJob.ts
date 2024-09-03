@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+ * # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
  *
  * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
  *
@@ -76,7 +76,7 @@ export interface GetCloudBackupSnapshotExportJobArgs {
 export interface GetCloudBackupSnapshotExportJobResult {
     readonly clusterName: string;
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      */
     readonly components: outputs.GetCloudBackupSnapshotExportJobComponent[];
     /**
@@ -125,7 +125,7 @@ export interface GetCloudBackupSnapshotExportJobResult {
     readonly state: string;
 }
 /**
- * ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+ * # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
  *
  * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
  *

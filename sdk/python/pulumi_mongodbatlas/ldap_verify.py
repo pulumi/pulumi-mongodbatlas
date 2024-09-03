@@ -326,7 +326,7 @@ class LdapVerify(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: LdapVerify
+        # Resource: LdapVerify
 
         `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
 
@@ -390,7 +390,7 @@ class LdapVerify(pulumi.CustomResource):
                  args: LdapVerifyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: LdapVerify
+        # Resource: LdapVerify
 
         `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
 

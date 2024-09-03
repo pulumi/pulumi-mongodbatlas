@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.CloudBackupSnapshotExportBucket
+    /// # Resource: mongodbatlas.CloudBackupSnapshotExportBucket
     /// 
     /// `mongodbatlas.CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
     /// 

@@ -104,7 +104,7 @@ class AwaitableGetAuditingResult(GetAuditingResult):
 def get_auditing(project_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuditingResult:
     """
-    ## # Data Source: Auditing
+    # Data Source: Auditing
 
     `Auditing` describes a Auditing.
 
@@ -145,7 +145,7 @@ def get_auditing(project_id: Optional[str] = None,
 def get_auditing_output(project_id: Optional[pulumi.Input[str]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuditingResult]:
     """
-    ## # Data Source: Auditing
+    # Data Source: Auditing
 
     `Auditing` describes a Auditing.
 

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.LdapConfiguration
+    /// # Resource: mongodbatlas.LdapConfiguration
     /// 
     /// `mongodbatlas.LdapConfiguration` provides an LDAP Configuration resource. This allows an LDAP configuration for an Atlas project to be created and managed. This endpoint doesn’t verify connectivity using the provided LDAP over TLS configuration details. To verify a configuration before saving it, use the resource to verify the LDAP configuration.
     /// 
@@ -43,7 +43,7 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### LDAP With User To DN Mapping
+    /// ### LDAP with user to DN mapping
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

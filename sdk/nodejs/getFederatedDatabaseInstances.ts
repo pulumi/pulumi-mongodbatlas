@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
+ * # Data Source: mongodbatlas.getFederatedDatabaseInstances
  *
  * `mongodbatlasFederatedDatabaseInstancess` provides a Federated Database Instance data source.
  *
@@ -50,7 +50,7 @@ export interface GetFederatedDatabaseInstancesResult {
     readonly results: outputs.GetFederatedDatabaseInstancesResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
+ * # Data Source: mongodbatlas.getFederatedDatabaseInstances
  *
  * `mongodbatlasFederatedDatabaseInstancess` provides a Federated Database Instance data source.
  *

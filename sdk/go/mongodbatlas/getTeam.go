@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: Team
+// # Data Source: Team
 //
 // `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 //

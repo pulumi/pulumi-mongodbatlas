@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getNetworkContainers
+ * # Data Source: mongodbatlas.getNetworkContainers
  *
  * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
  *
@@ -75,7 +75,7 @@ export interface GetNetworkContainersResult {
     readonly results: outputs.GetNetworkContainersResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getNetworkContainers
+ * # Data Source: mongodbatlas.getNetworkContainers
  *
  * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
  *

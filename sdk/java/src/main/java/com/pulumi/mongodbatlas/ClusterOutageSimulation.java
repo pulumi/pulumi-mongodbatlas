@@ -16,9 +16,9 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.ClusterOutageSimulation
+ * # Resource: mongodbatlas.ClusterOutageSimulation
  * 
- * `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+ * `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see &lt;https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/&gt;
  * 
  * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes.
  * 
@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### S
+ * ### s
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

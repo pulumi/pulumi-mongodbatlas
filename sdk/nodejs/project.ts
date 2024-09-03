@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.Project
+ * # Resource: mongodbatlas.Project
  *
  * `mongodbatlas.Project` provides a Project resource. This allows project to be created.
  *

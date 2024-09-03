@@ -699,7 +699,7 @@ class NetworkPeering(pulumi.CustomResource):
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: NetworkPeering
+        # Resource: NetworkPeering
 
         `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
 
@@ -708,11 +708,11 @@ class NetworkPeering(pulumi.CustomResource):
         > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details
 
         > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
-            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
-            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
-            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
-            Microsoft.Network/virtualNetworks/peer/action
-        For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+        Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+        Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+        Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+        Microsoft.Network/virtualNetworks/peer/action
+        For more information see <https://docs.atlas.mongodb.com/security-vpc-peering/> and <https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/>
 
         > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
 
@@ -729,8 +729,8 @@ class NetworkPeering(pulumi.CustomResource):
         import pulumi_aws as aws
         import pulumi_mongodbatlas as mongodbatlas
 
-        # Container example provided but not always required, 
-        # see network_container documentation for details. 
+        # Container example provided but not always required,
+        # see network_container documentation for details.
         test = mongodbatlas.NetworkContainer("test",
             project_id=project_id,
             atlas_cidr_block="10.8.0.0/21",
@@ -760,8 +760,8 @@ class NetworkPeering(pulumi.CustomResource):
 
         # Ensure you have created the required Azure service principal first, see
         # see https://docs.atlas.mongodb.com/security-vpc-peering/
-        # Container example provided but not always required, 
-        # see network_container documentation for details. 
+        # Container example provided but not always required,
+        # see network_container documentation for details.
         test = mongodbatlas.NetworkContainer("test",
             project_id=project_id,
             atlas_cidr_block=atla_s__cid_r__block,
@@ -846,7 +846,7 @@ class NetworkPeering(pulumi.CustomResource):
                  args: NetworkPeeringArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: NetworkPeering
+        # Resource: NetworkPeering
 
         `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
 
@@ -855,11 +855,11 @@ class NetworkPeering(pulumi.CustomResource):
         > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details
 
         > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
-            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
-            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
-            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
-            Microsoft.Network/virtualNetworks/peer/action
-        For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+        Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+        Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+        Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+        Microsoft.Network/virtualNetworks/peer/action
+        For more information see <https://docs.atlas.mongodb.com/security-vpc-peering/> and <https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/>
 
         > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
 
@@ -876,8 +876,8 @@ class NetworkPeering(pulumi.CustomResource):
         import pulumi_aws as aws
         import pulumi_mongodbatlas as mongodbatlas
 
-        # Container example provided but not always required, 
-        # see network_container documentation for details. 
+        # Container example provided but not always required,
+        # see network_container documentation for details.
         test = mongodbatlas.NetworkContainer("test",
             project_id=project_id,
             atlas_cidr_block="10.8.0.0/21",
@@ -907,8 +907,8 @@ class NetworkPeering(pulumi.CustomResource):
 
         # Ensure you have created the required Azure service principal first, see
         # see https://docs.atlas.mongodb.com/security-vpc-peering/
-        # Container example provided but not always required, 
-        # see network_container documentation for details. 
+        # Container example provided but not always required,
+        # see network_container documentation for details.
         test = mongodbatlas.NetworkContainer("test",
             project_id=project_id,
             atlas_cidr_block=atla_s__cid_r__block,

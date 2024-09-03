@@ -5,15 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.FederatedQueryLimit
+ * # Resource: mongodbatlas.FederatedQueryLimit
  *
- * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+ * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see <https://www.mongodb.com/docs/atlas/data-federation/overview/>.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

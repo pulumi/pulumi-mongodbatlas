@@ -112,7 +112,7 @@ def get_cloud_backup_snapshot_export_jobs(cluster_name: Optional[str] = None,
                                           project_id: Optional[str] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotExportJobsResult:
     """
-    ## # Data Source: get_cloud_backup_snapshot_export_jobs
+    # Data Source: get_cloud_backup_snapshot_export_jobs
 
     `get_cloud_backup_snapshot_export_jobs` datasource allows you to retrieve all the buckets for the specified project.
 
@@ -173,7 +173,7 @@ def get_cloud_backup_snapshot_export_jobs_output(cluster_name: Optional[pulumi.I
                                                  project_id: Optional[pulumi.Input[str]] = None,
                                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportJobsResult]:
     """
-    ## # Data Source: get_cloud_backup_snapshot_export_jobs
+    # Data Source: get_cloud_backup_snapshot_export_jobs
 
     `get_cloud_backup_snapshot_export_jobs` datasource allows you to retrieve all the buckets for the specified project.
 

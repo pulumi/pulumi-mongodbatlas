@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.EventTrigger
+ * # Resource: mongodbatlas.EventTrigger
  *
  * `mongodbatlas.EventTrigger` provides a Event Trigger resource.
  *
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ### Example Usage: Database Trigger with Function
  * ```typescript
@@ -161,7 +161,7 @@ export class EventTrigger extends pulumi.CustomResource {
 
     /**
      * The ObjectID of your application.
-     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+     * * For more details on `projectId` and `appId` see: <https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs>
      */
     public readonly appId!: pulumi.Output<string>;
     /**
@@ -325,7 +325,7 @@ export class EventTrigger extends pulumi.CustomResource {
 export interface EventTriggerState {
     /**
      * The ObjectID of your application.
-     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+     * * For more details on `projectId` and `appId` see: <https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs>
      */
     appId?: pulumi.Input<string>;
     /**
@@ -416,7 +416,7 @@ export interface EventTriggerState {
 export interface EventTriggerArgs {
     /**
      * The ObjectID of your application.
-     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+     * * For more details on `projectId` and `appId` see: <https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs>
      */
     appId: pulumi.Input<string>;
     /**

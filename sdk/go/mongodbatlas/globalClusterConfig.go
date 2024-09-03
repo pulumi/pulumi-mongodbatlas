@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: GlobalClusterConfig
+// # Resource: GlobalClusterConfig
 //
 // `GlobalClusterConfig` provides a Global Cluster Configuration resource.
 //

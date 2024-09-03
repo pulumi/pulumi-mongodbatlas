@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getAdvancedClusters
+ * # Data Source: mongodbatlas.getAdvancedClusters
  *
  * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
  *
@@ -128,7 +128,7 @@ export interface GetAdvancedClustersResult {
     readonly useReplicationSpecPerShard?: boolean;
 }
 /**
- * ## # Data Source: mongodbatlas.getAdvancedClusters
+ * # Data Source: mongodbatlas.getAdvancedClusters
  *
  * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
  *

@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetPrivatelinkEndpointServiceDataFederationOnlineArchives
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives
+        /// # Data Source: mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives
         /// 
         /// `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
         /// 
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives
+        /// # Data Source: mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives
         /// 
         /// `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
         /// 

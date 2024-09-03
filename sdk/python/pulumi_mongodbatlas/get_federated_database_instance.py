@@ -177,7 +177,7 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
                                     project_id: Optional[str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedDatabaseInstanceResult:
     """
-    ## # Data Source: FederatedDatabaseInstance
+    # Data Source: FederatedDatabaseInstance
 
     `FederatedDatabaseInstance` provides a Federated Database Instance data source.
 
@@ -187,7 +187,7 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
 
     ## Example Usage
 
-    ### S With MongoDB Atlas Cluster As Storage Database
+    ### s with MongoDB Atlas Cluster as storage database
 
     ```python
     import pulumi
@@ -197,7 +197,7 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
 
-    ### S With Amazon S3 Bucket As Storage Database
+    ### s with Amazon S3 bucket as storage database
 
     ```python
     import pulumi
@@ -241,7 +241,7 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
                                            project_id: Optional[pulumi.Input[str]] = None,
                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedDatabaseInstanceResult]:
     """
-    ## # Data Source: FederatedDatabaseInstance
+    # Data Source: FederatedDatabaseInstance
 
     `FederatedDatabaseInstance` provides a Federated Database Instance data source.
 
@@ -251,7 +251,7 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
 
     ## Example Usage
 
-    ### S With MongoDB Atlas Cluster As Storage Database
+    ### s with MongoDB Atlas Cluster as storage database
 
     ```python
     import pulumi
@@ -261,7 +261,7 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
 
-    ### S With Amazon S3 Bucket As Storage Database
+    ### s with Amazon S3 bucket as storage database
 
     ```python
     import pulumi

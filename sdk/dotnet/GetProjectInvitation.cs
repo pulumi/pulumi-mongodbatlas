@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjectInvitation
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ProjectInvitation
+        /// # Data Source: mongodbatlas.ProjectInvitation
         /// 
         /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
         /// 
@@ -20,7 +20,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### S
+        /// ### s
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,7 +53,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ProjectInvitation
+        /// # Data Source: mongodbatlas.ProjectInvitation
         /// 
         /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
         /// 
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### S
+        /// ### s
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

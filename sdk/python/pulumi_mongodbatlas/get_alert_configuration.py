@@ -168,7 +168,7 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
                             project_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationResult:
     """
-    ## # Data Source: AlertConfiguration
+    # Data Source: AlertConfiguration
 
     `AlertConfiguration` describes an Alert Configuration.
 
@@ -207,7 +207,7 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
 
-    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: <https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/>
 
     ```python
     import pulumi
@@ -292,7 +292,7 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
                                    project_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlertConfigurationResult]:
     """
-    ## # Data Source: AlertConfiguration
+    # Data Source: AlertConfiguration
 
     `AlertConfiguration` describes an Alert Configuration.
 
@@ -331,7 +331,7 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
 
-    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: <https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/>
 
     ```python
     import pulumi

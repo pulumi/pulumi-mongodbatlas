@@ -635,7 +635,7 @@ class SearchIndex(pulumi.CustomResource):
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        ## # Resource: SearchIndex
+        # Resource: SearchIndex
 
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 
@@ -792,7 +792,7 @@ class SearchIndex(pulumi.CustomResource):
                  args: SearchIndexArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: SearchIndex
+        # Resource: SearchIndex
 
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 

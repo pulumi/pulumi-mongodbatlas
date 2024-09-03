@@ -449,15 +449,30 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                  storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None,
                  __props__=None):
         """
-        ## # Resource: FederatedDatabaseInstance
+        # Resource: FederatedDatabaseInstance
 
         `FederatedDatabaseInstance` provides a Federated Database Instance resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+        ## Example specifying data process region and provider
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="PROJECT ID",
+            name="NAME OF THE FEDERATED DATABASE INSTANCE",
+            data_process_region={
+                "cloud_provider": "AWS",
+                "region": "OREGON_USA",
+            })
+        ```
+
         ## Example Usage
 
-        ### S With MongoDB Atlas Cluster As Storage Database
+        ### s with MongoDB Atlas Cluster as storage database
 
         ```python
         import pulumi
@@ -488,7 +503,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
             }])
         ```
 
-        ### S With Amazon S3 Bucket As Storage Database
+        ### s with Amazon S3 bucket as storage database
 
         ```python
         import pulumi
@@ -539,21 +554,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                     "region": "AWS REGION",
                 },
             ])
-        ```
-
-        ## Example specifying data process region and provider
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.FederatedDatabaseInstance("test",
-            project_id="PROJECT ID",
-            name="NAME OF THE FEDERATED DATABASE INSTANCE",
-            data_process_region={
-                "cloud_provider": "AWS",
-                "region": "OREGON_USA",
-            })
         ```
 
         ## Import
@@ -633,15 +633,30 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                  args: FederatedDatabaseInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: FederatedDatabaseInstance
+        # Resource: FederatedDatabaseInstance
 
         `FederatedDatabaseInstance` provides a Federated Database Instance resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+        ## Example specifying data process region and provider
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="PROJECT ID",
+            name="NAME OF THE FEDERATED DATABASE INSTANCE",
+            data_process_region={
+                "cloud_provider": "AWS",
+                "region": "OREGON_USA",
+            })
+        ```
+
         ## Example Usage
 
-        ### S With MongoDB Atlas Cluster As Storage Database
+        ### s with MongoDB Atlas Cluster as storage database
 
         ```python
         import pulumi
@@ -672,7 +687,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
             }])
         ```
 
-        ### S With Amazon S3 Bucket As Storage Database
+        ### s with Amazon S3 bucket as storage database
 
         ```python
         import pulumi
@@ -723,21 +738,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                     "region": "AWS REGION",
                 },
             ])
-        ```
-
-        ## Example specifying data process region and provider
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.FederatedDatabaseInstance("test",
-            project_id="PROJECT ID",
-            name="NAME OF THE FEDERATED DATABASE INSTANCE",
-            data_process_region={
-                "cloud_provider": "AWS",
-                "region": "OREGON_USA",
-            })
         ```
 
         ## Import

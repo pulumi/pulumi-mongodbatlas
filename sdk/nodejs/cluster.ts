@@ -169,6 +169,7 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ *
  * ### Example AWS Shared Tier (M2/M5) cluster
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -183,6 +184,7 @@ import * as utilities from "./utilities";
  *     providerInstanceSizeName: "M2",
  * });
  * ```
+ *
  * ### Example AWS Free Tier cluster
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -197,6 +199,7 @@ import * as utilities from "./utilities";
  *     providerInstanceSizeName: "M0",
  * });
  * ```
+ *
  * ### Example - Return a Connection String
  * Standard
  * ```typescript
@@ -382,7 +385,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly providerDiskIops!: pulumi.Output<number>;
     /**
-     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
      */
     public readonly providerDiskTypeName!: pulumi.Output<string>;
     /**
@@ -720,7 +723,7 @@ export interface ClusterState {
      */
     providerDiskIops?: pulumi.Input<number>;
     /**
-     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
      */
     providerDiskTypeName?: pulumi.Input<string>;
     /**
@@ -911,7 +914,7 @@ export interface ClusterArgs {
      */
     providerDiskIops?: pulumi.Input<number>;
     /**
-     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at <https://docs.atlas.mongodb.com/reference/api/clusters-create-one/>.
      */
     providerDiskTypeName?: pulumi.Input<string>;
     /**

@@ -14,16 +14,42 @@ namespace Pulumi.Mongodbatlas.Inputs
     {
         /// <summary>
         /// Name of the field in the target object to match on.
-        /// 
-        /// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-        /// |:----------           |:-------------       |:------                 |
-        /// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-        /// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-        /// | `PORT`              | `CLUSTER_NAME`      |                         |
-        /// | `HOSTNAME_AND_PORT` |                     |                         |
-        /// | `REPLICA_SET_NAME`  |                     |                         |
-        /// 
-        /// 
+        /// &lt;table&gt;
+        /// &lt;thead&gt;
+        /// &lt;tr&gt;
+        /// &lt;th style="text-align:left"&gt;Host alerts&lt;/th&gt;
+        /// &lt;th style="text-align:left"&gt;Replica set alerts&lt;/th&gt;
+        /// &lt;th style="text-align:left"&gt;Sharded cluster alerts&lt;/th&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/thead&gt;
+        /// &lt;tbody&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`TYPE_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`REPLICA_SET_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`CLUSTER_NAME`&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`HOSTNAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`SHARD_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`SHARD_NAME`&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`PORT`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`CLUSTER_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`HOSTNAME_AND_PORT`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`REPLICA_SET_NAME`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/tbody&gt;
+        /// &lt;/table&gt;
         /// 
         /// All other types of alerts do not support matchers.
         /// </summary>

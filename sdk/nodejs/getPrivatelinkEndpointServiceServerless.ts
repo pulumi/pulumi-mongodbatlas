@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: privatelinkEndpointServiceServerless
+ * # Data Source: privatelinkEndpointServiceServerless
  *
  * `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
  *
@@ -140,7 +140,7 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
     readonly status: string;
 }
 /**
- * ## # Data Source: privatelinkEndpointServiceServerless
+ * # Data Source: privatelinkEndpointServiceServerless
  *
  * `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
  *

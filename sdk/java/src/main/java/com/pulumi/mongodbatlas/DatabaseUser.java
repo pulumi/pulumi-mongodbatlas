@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.DatabaseUser
+ * # Resource: mongodbatlas.DatabaseUser
  * 
  * `mongodbatlas.DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
  * 
@@ -31,9 +31,55 @@ import javax.annotation.Nullable;
  * 
  * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
  * 
+ * ## Example of how to create a OIDC federated authentication user
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.DatabaseUser;
+ * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()
+ *             .username("64d613677e1ad50839cce4db/testUserOr")
+ *             .projectId("6414908c207f4d22f4d8f232")
+ *             .authDatabaseName("admin")
+ *             .oidcAuthType("IDP_GROUP")
+ *             .roles(DatabaseUserRoleArgs.builder()
+ *                 .roleName("readWriteAnyDatabase")
+ *                 .databaseName("admin")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a &#39;/&#39;, followed by the IdP group name
+ * 
+ * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+ * 
  * ## Example Usage
  * 
- * ### S
+ * ### s
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -197,52 +243,6 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * ## Example of how to create a OIDC federated authentication user
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.DatabaseUser;
- * import com.pulumi.mongodbatlas.DatabaseUserArgs;
- * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()
- *             .username("64d613677e1ad50839cce4db/testUserOr")
- *             .projectId("6414908c207f4d22f4d8f232")
- *             .authDatabaseName("admin")
- *             .oidcAuthType("IDP_GROUP")
- *             .roles(DatabaseUserRoleArgs.builder()
- *                 .roleName("readWriteAnyDatabase")
- *                 .databaseName("admin")
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a &#39;/&#39;, followed by the IdP group name
- * 
- * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  * 
  * ## Import
  * 

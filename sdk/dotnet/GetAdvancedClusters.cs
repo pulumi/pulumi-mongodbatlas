@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetAdvancedClusters
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAdvancedClusters
+        /// # Data Source: mongodbatlas.getAdvancedClusters
         /// 
         /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
         /// 
@@ -138,7 +138,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAdvancedClusters
+        /// # Data Source: mongodbatlas.getAdvancedClusters
         /// 
         /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
         /// 

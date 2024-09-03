@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.EventTrigger
+    /// # Resource: mongodbatlas.EventTrigger
     /// 
     /// `mongodbatlas.EventTrigger` provides a Event Trigger resource.
     /// 
@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// ### S
+    /// ### s
     /// 
     /// ### Example Usage: Database Trigger with Function
     /// ```csharp
@@ -179,7 +179,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        /// * For more details on `project_id` and `app_id` see: &lt;https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs&gt;
         /// </summary>
         [Output("appId")]
         public Output<string> AppId { get; private set; } = null!;
@@ -354,7 +354,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        /// * For more details on `project_id` and `app_id` see: &lt;https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs&gt;
         /// </summary>
         [Input("appId", required: true)]
         public Input<string> AppId { get; set; } = null!;
@@ -488,7 +488,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        /// * For more details on `project_id` and `app_id` see: &lt;https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs&gt;
         /// </summary>
         [Input("appId")]
         public Input<string>? AppId { get; set; }

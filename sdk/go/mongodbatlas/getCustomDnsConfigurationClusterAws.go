@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: CustomDnsConfigurationClusterAws
+// # Data Source: CustomDnsConfigurationClusterAws
 //
 // `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
 //

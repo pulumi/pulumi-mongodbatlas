@@ -229,7 +229,7 @@ class OrgInvitation(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### S
+        ### s
 
         ```python
         import pulumi
@@ -295,7 +295,7 @@ class OrgInvitation(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### S
+        ### s
 
         ```python
         import pulumi

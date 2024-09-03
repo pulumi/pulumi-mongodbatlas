@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getCloudBackupSnapshotRestoreJobs
+ * # Data Source: mongodbatlas.getCloudBackupSnapshotRestoreJobs
  *
  * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
  *
@@ -98,7 +98,7 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: mongodbatlas.getCloudBackupSnapshotRestoreJobs
+ * # Data Source: mongodbatlas.getCloudBackupSnapshotRestoreJobs
  *
  * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
  *

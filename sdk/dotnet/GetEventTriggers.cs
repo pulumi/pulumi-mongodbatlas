@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetEventTriggers
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getEventTriggers
+        /// # Data Source: mongodbatlas.getEventTriggers
         /// 
         /// `mongodbatlas.getEventTriggers` describes all Event Triggers.
         /// </summary>
@@ -20,7 +20,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEventTriggersResult>("mongodbatlas:index/getEventTriggers:getEventTriggers", args ?? new GetEventTriggersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getEventTriggers
+        /// # Data Source: mongodbatlas.getEventTriggers
         /// 
         /// `mongodbatlas.getEventTriggers` describes all Event Triggers.
         /// </summary>
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        /// * For more details on `project_id` and `app_id` see: &lt;https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs&gt;
         /// </summary>
         [Input("appId", required: true)]
         public string AppId { get; set; } = null!;
@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        /// * For more details on `project_id` and `app_id` see: &lt;https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs&gt;
         /// </summary>
         [Input("appId", required: true)]
         public Input<string> AppId { get; set; } = null!;

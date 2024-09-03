@@ -14,8 +14,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     {
         /// <summary>
         /// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        /// *
-        /// - Set to `true` to enable BI Connector for Atlas.
+        /// * - Set to `true` to enable BI Connector for Atlas.
         /// - Set to `false` to disable BI Connector for Atlas.
         /// </summary>
         [Input("enabled")]

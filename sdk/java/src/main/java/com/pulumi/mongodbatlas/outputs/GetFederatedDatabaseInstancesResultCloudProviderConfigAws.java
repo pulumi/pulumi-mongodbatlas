@@ -30,7 +30,6 @@ public final class GetFederatedDatabaseInstancesResultCloudProviderConfigAws {
     private String iamUserArn;
     /**
      * @return Unique identifier of the role that the data lake can use to access the data stores.
-     * #### `data_process_region` - The cloud provider region to which the Federated Instance routes client connections for data processing.
      * 
      */
     private String roleId;
@@ -63,7 +62,6 @@ public final class GetFederatedDatabaseInstancesResultCloudProviderConfigAws {
     }
     /**
      * @return Unique identifier of the role that the data lake can use to access the data stores.
-     * #### `data_process_region` - The cloud provider region to which the Federated Instance routes client connections for data processing.
      * 
      */
     public String roleId() {

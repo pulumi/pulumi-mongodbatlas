@@ -582,7 +582,6 @@ class AdvancedClusterBiConnectorConfig(dict):
                  read_preference: Optional[str] = None):
         """
         :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
                - Set to `true` to enable BI Connector for Atlas.
                - Set to `false` to disable BI Connector for Atlas.
         :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
@@ -603,7 +602,6 @@ class AdvancedClusterBiConnectorConfig(dict):
     def enabled(self) -> Optional[bool]:
         """
         Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
         - Set to `true` to enable BI Connector for Atlas.
         - Set to `false` to disable BI Connector for Atlas.
         """
@@ -1678,16 +1676,42 @@ class AlertConfigurationMatcher(dict):
                  value: str):
         """
         :param str field_name: Name of the field in the target object to match on.
-               
-               | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-               |:----------           |:-------------       |:------                 |
-               | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-               | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-               | `PORT`              | `CLUSTER_NAME`      |                         |
-               | `HOSTNAME_AND_PORT` |                     |                         |
-               | `REPLICA_SET_NAME`  |                     |                         |
-               
-               
+               <table>
+               <thead>
+               <tr>
+               <th style="text-align:left">Host alerts</th>
+               <th style="text-align:left">Replica set alerts</th>
+               <th style="text-align:left">Sharded cluster alerts</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+               <td style="text-align:left">`TYPE_NAME`</td>
+               <td style="text-align:left">`REPLICA_SET_NAME`</td>
+               <td style="text-align:left">`CLUSTER_NAME`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`HOSTNAME`</td>
+               <td style="text-align:left">`SHARD_NAME`</td>
+               <td style="text-align:left">`SHARD_NAME`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`PORT`</td>
+               <td style="text-align:left">`CLUSTER_NAME`</td>
+               <td style="text-align:left"></td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+               <td style="text-align:left"></td>
+               <td style="text-align:left"></td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`REPLICA_SET_NAME`</td>
+               <td style="text-align:left"></td>
+               <td style="text-align:left"></td>
+               </tr>
+               </tbody>
+               </table>
                
                All other types of alerts do not support matchers.
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
@@ -1706,16 +1730,42 @@ class AlertConfigurationMatcher(dict):
     def field_name(self) -> str:
         """
         Name of the field in the target object to match on.
-
-        | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-        |:----------           |:-------------       |:------                 |
-        | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-        | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-        | `PORT`              | `CLUSTER_NAME`      |                         |
-        | `HOSTNAME_AND_PORT` |                     |                         |
-        | `REPLICA_SET_NAME`  |                     |                         |
-
-
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align:left">Host alerts</th>
+        <th style="text-align:left">Replica set alerts</th>
+        <th style="text-align:left">Sharded cluster alerts</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align:left">`TYPE_NAME`</td>
+        <td style="text-align:left">`REPLICA_SET_NAME`</td>
+        <td style="text-align:left">`CLUSTER_NAME`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`HOSTNAME`</td>
+        <td style="text-align:left">`SHARD_NAME`</td>
+        <td style="text-align:left">`SHARD_NAME`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`PORT`</td>
+        <td style="text-align:left">`CLUSTER_NAME`</td>
+        <td style="text-align:left"></td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"></td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`REPLICA_SET_NAME`</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"></td>
+        </tr>
+        </tbody>
+        </table>
 
         All other types of alerts do not support matchers.
         """
@@ -1932,15 +1982,40 @@ class AlertConfigurationNotification(dict):
         :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         :param Sequence[str] roles: Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
                Accepted values are:
-               
-               | Project roles                   | Organization roles  |
-               |:----------                      |:-----------         |
-               | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-               | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-               | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-               | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-               | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-               | `GROUP_READ_ONLY`               |                     |
+               <table>
+               <thead>
+               <tr>
+               <th style="text-align:left">Project roles</th>
+               <th style="text-align:left">Organization roles</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+               <td style="text-align:left">`GROUP_CLUSTER_MANAGER`</td>
+               <td style="text-align:left">`ORG_OWNER`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_DATA_ACCESS_ADMIN`</td>
+               <td style="text-align:left">`ORG_MEMBER`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_DATA_ACCESS_READ_ONLY`</td>
+               <td style="text-align:left">`ORG_GROUP_CREATOR`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_DATA_ACCESS_READ_WRITE`</td>
+               <td style="text-align:left">`ORG_BILLING_ADMIN`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_OWNER`</td>
+               <td style="text-align:left">`ORG_READ_ONLY`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`GROUP_READ_ONLY`</td>
+               <td style="text-align:left"></td>
+               </tr>
+               </tbody>
+               </table>
         :param str service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param bool sms_enabled: Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param str team_id: Unique identifier of a team.
@@ -2141,15 +2216,40 @@ class AlertConfigurationNotification(dict):
         """
         Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         Accepted values are:
-
-        | Project roles                   | Organization roles  |
-        |:----------                      |:-----------         |
-        | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-        | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-        | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-        | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-        | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-        | `GROUP_READ_ONLY`               |                     |
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align:left">Project roles</th>
+        <th style="text-align:left">Organization roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align:left">`GROUP_CLUSTER_MANAGER`</td>
+        <td style="text-align:left">`ORG_OWNER`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_DATA_ACCESS_ADMIN`</td>
+        <td style="text-align:left">`ORG_MEMBER`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_DATA_ACCESS_READ_ONLY`</td>
+        <td style="text-align:left">`ORG_GROUP_CREATOR`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_DATA_ACCESS_READ_WRITE`</td>
+        <td style="text-align:left">`ORG_BILLING_ADMIN`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_OWNER`</td>
+        <td style="text-align:left">`ORG_READ_ONLY`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`GROUP_READ_ONLY`</td>
+        <td style="text-align:left"></td>
+        </tr>
+        </tbody>
+        </table>
         """
         return pulumi.get(self, "roles")
 
@@ -2814,7 +2914,7 @@ class CloudBackupScheduleCopySetting(dict):
         """
         :param str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
-        :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
         :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
@@ -2852,7 +2952,7 @@ class CloudBackupScheduleCopySetting(dict):
     @pulumi.getter(name="regionName")
     def region_name(self) -> Optional[str]:
         """
-        Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
         """
         return pulumi.get(self, "region_name")
 
@@ -3392,8 +3492,8 @@ class CloudBackupSnapshotExportJobComponent(dict):
                  export_id: Optional[str] = None,
                  replica_set_name: Optional[str] = None):
         """
-        :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
-        :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        :param str export_id: *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
+        :param str replica_set_name: *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
         """
         if export_id is not None:
             pulumi.set(__self__, "export_id", export_id)
@@ -3404,7 +3504,7 @@ class CloudBackupSnapshotExportJobComponent(dict):
     @pulumi.getter(name="exportId")
     def export_id(self) -> Optional[str]:
         """
-        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         """
         return pulumi.get(self, "export_id")
 
@@ -3412,7 +3512,7 @@ class CloudBackupSnapshotExportJobComponent(dict):
     @pulumi.getter(name="replicaSetName")
     def replica_set_name(self) -> Optional[str]:
         """
-        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
         """
         return pulumi.get(self, "replica_set_name")
 
@@ -4029,8 +4129,7 @@ class ClusterBiConnectorConfig(dict):
                  read_preference: Optional[str] = None):
         """
         :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
-               - Set to `true` to enable BI Connector for Atlas.
+               * - Set to `true` to enable BI Connector for Atlas.
                - Set to `false` to disable BI Connector for Atlas.
         :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
                
@@ -4050,8 +4149,7 @@ class ClusterBiConnectorConfig(dict):
     def enabled(self) -> Optional[bool]:
         """
         Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
-        - Set to `true` to enable BI Connector for Atlas.
+        * - Set to `true` to enable BI Connector for Atlas.
         - Set to `false` to disable BI Connector for Atlas.
         """
         return pulumi.get(self, "enabled")
@@ -4446,7 +4544,6 @@ class ClusterReplicationSpec(dict):
         :param Sequence['ClusterReplicationSpecRegionsConfigArgs'] regions_configs: Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Name for the zone in a Global Cluster.
                
-               
                **Region Config**
         """
         pulumi.set(__self__, "num_shards", num_shards)
@@ -4486,7 +4583,6 @@ class ClusterReplicationSpec(dict):
     def zone_name(self) -> Optional[str]:
         """
         Name for the zone in a Global Cluster.
-
 
         **Region Config**
         """
@@ -7068,7 +7164,7 @@ class OnlineArchiveCriteria(dict):
         :param str date_format: Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
         :param int expire_after_days: Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
                
-               **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+               ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value***
                
                The only field required for criteria type `CUSTOM`
         :param str query: JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
@@ -7115,7 +7211,7 @@ class OnlineArchiveCriteria(dict):
         """
         Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 
-        **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+        ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value***
 
         The only field required for criteria type `CUSTOM`
         """
@@ -8854,8 +8950,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult(di
                  disk_gb_enabled: bool):
         """
         :param bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
-        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). 
-               #### Advanced Configuration
+        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
         :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
@@ -8878,8 +8973,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult(di
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> str:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). 
-        #### Advanced Configuration
+        Maximum instance size to which your cluster can automatically scale (such as M40).
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -8919,7 +9013,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
         """
         :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param str instance_size: Hardware specification for the instance sizes in this region.
@@ -8952,7 +9046,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> str:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. 
+        Type of storage you want to attach to your AWS-provisioned cluster.
         * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
         * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
@@ -8985,8 +9079,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
                  disk_gb_enabled: bool):
         """
         :param bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
-        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). 
-               #### Advanced Configuration
+        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
         :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
@@ -9009,8 +9102,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> str:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). 
-        #### Advanced Configuration
+        Maximum instance size to which your cluster can automatically scale (such as M40).
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -9050,7 +9142,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
         """
         :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param str instance_size: Hardware specification for the instance sizes in this region.
@@ -9083,7 +9175,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> str:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. 
+        Type of storage you want to attach to your AWS-provisioned cluster.
         * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
         * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
@@ -9117,7 +9209,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
         """
         :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param str instance_size: Hardware specification for the instance sizes in this region.
@@ -9150,7 +9242,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> str:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. 
+        Type of storage you want to attach to your AWS-provisioned cluster.
         * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
         * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
@@ -10310,6 +10402,42 @@ class GetAlertConfigurationMatcherResult(dict):
                  value: str):
         """
         :param str field_name: Name of the field in the target object to match on.
+               <table>
+               <thead>
+               <tr>
+               <th style="text-align:left">Host alerts</th>
+               <th style="text-align:left">Replica set alerts</th>
+               <th style="text-align:left">Sharded cluster alerts</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+               <td style="text-align:left">`TYPE_NAME`</td>
+               <td style="text-align:left">`REPLICA_SET_NAME`</td>
+               <td style="text-align:left">`CLUSTER_NAME`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`HOSTNAME`</td>
+               <td style="text-align:left">`SHARD_NAME`</td>
+               <td style="text-align:left">`SHARD_NAME`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`PORT`</td>
+               <td style="text-align:left">`CLUSTER_NAME`</td>
+               <td style="text-align:left"></td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+               <td style="text-align:left"></td>
+               <td style="text-align:left"></td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`REPLICA_SET_NAME`</td>
+               <td style="text-align:left"></td>
+               <td style="text-align:left"></td>
+               </tr>
+               </tbody>
+               </table>
         :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
                - `GREATER_THAN`
@@ -10330,6 +10458,42 @@ class GetAlertConfigurationMatcherResult(dict):
     def field_name(self) -> str:
         """
         Name of the field in the target object to match on.
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align:left">Host alerts</th>
+        <th style="text-align:left">Replica set alerts</th>
+        <th style="text-align:left">Sharded cluster alerts</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align:left">`TYPE_NAME`</td>
+        <td style="text-align:left">`REPLICA_SET_NAME`</td>
+        <td style="text-align:left">`CLUSTER_NAME`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`HOSTNAME`</td>
+        <td style="text-align:left">`SHARD_NAME`</td>
+        <td style="text-align:left">`SHARD_NAME`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`PORT`</td>
+        <td style="text-align:left">`CLUSTER_NAME`</td>
+        <td style="text-align:left"></td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"></td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`REPLICA_SET_NAME`</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"></td>
+        </tr>
+        </tbody>
+        </table>
         """
         return pulumi.get(self, "field_name")
 
@@ -10997,6 +11161,42 @@ class GetAlertConfigurationsResultMatcherResult(dict):
                  value: str):
         """
         :param str field_name: Name of the field in the target object to match on.
+               <table>
+               <thead>
+               <tr>
+               <th style="text-align:left">Host alerts</th>
+               <th style="text-align:left">Replica set alerts</th>
+               <th style="text-align:left">Sharded cluster alerts</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+               <td style="text-align:left">`TYPE_NAME`</td>
+               <td style="text-align:left">`REPLICA_SET_NAME`</td>
+               <td style="text-align:left">`CLUSTER_NAME`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`HOSTNAME`</td>
+               <td style="text-align:left">`SHARD_NAME`</td>
+               <td style="text-align:left">`SHARD_NAME`</td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`PORT`</td>
+               <td style="text-align:left">`CLUSTER_NAME`</td>
+               <td style="text-align:left"></td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+               <td style="text-align:left"></td>
+               <td style="text-align:left"></td>
+               </tr>
+               <tr>
+               <td style="text-align:left">`REPLICA_SET_NAME`</td>
+               <td style="text-align:left"></td>
+               <td style="text-align:left"></td>
+               </tr>
+               </tbody>
+               </table>
         :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
                - `GREATER_THAN`
@@ -11017,6 +11217,42 @@ class GetAlertConfigurationsResultMatcherResult(dict):
     def field_name(self) -> str:
         """
         Name of the field in the target object to match on.
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align:left">Host alerts</th>
+        <th style="text-align:left">Replica set alerts</th>
+        <th style="text-align:left">Sharded cluster alerts</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align:left">`TYPE_NAME`</td>
+        <td style="text-align:left">`REPLICA_SET_NAME`</td>
+        <td style="text-align:left">`CLUSTER_NAME`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`HOSTNAME`</td>
+        <td style="text-align:left">`SHARD_NAME`</td>
+        <td style="text-align:left">`SHARD_NAME`</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`PORT`</td>
+        <td style="text-align:left">`CLUSTER_NAME`</td>
+        <td style="text-align:left"></td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"></td>
+        </tr>
+        <tr>
+        <td style="text-align:left">`REPLICA_SET_NAME`</td>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"></td>
+        </tr>
+        </tbody>
+        </table>
         """
         return pulumi.get(self, "field_name")
 
@@ -11650,8 +11886,8 @@ class GetAtlasUsersResultResult(dict):
         :param str last_name: Last name, family name, or surname that belongs to the MongoDB Atlas user.
         :param str mobile_number: Mobile phone number that belongs to the MongoDB Atlas user.
         :param Sequence[str] team_ids: List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
-               * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
-               * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+               * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
+               * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
                * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
                * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
                * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
@@ -11748,8 +11984,8 @@ class GetAtlasUsersResultResult(dict):
     def team_ids(self) -> Sequence[str]:
         """
         List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
-        * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
-        * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+        * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
+        * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
         * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
         * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
         * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
@@ -12208,7 +12444,7 @@ class GetCloudBackupScheduleCopySettingResult(dict):
         """
         :param str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
-        :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
         :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster.
@@ -12240,7 +12476,7 @@ class GetCloudBackupScheduleCopySettingResult(dict):
     @pulumi.getter(name="regionName")
     def region_name(self) -> str:
         """
-        Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
         """
         return pulumi.get(self, "region_name")
 
@@ -12699,8 +12935,8 @@ class GetCloudBackupSnapshotExportJobComponentResult(dict):
                  export_id: str,
                  replica_set_name: str):
         """
-        :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
-        :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        :param str export_id: *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
+        :param str replica_set_name: *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
         """
         pulumi.set(__self__, "export_id", export_id)
         pulumi.set(__self__, "replica_set_name", replica_set_name)
@@ -12709,7 +12945,7 @@ class GetCloudBackupSnapshotExportJobComponentResult(dict):
     @pulumi.getter(name="exportId")
     def export_id(self) -> str:
         """
-        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         """
         return pulumi.get(self, "export_id")
 
@@ -12717,7 +12953,7 @@ class GetCloudBackupSnapshotExportJobComponentResult(dict):
     @pulumi.getter(name="replicaSetName")
     def replica_set_name(self) -> str:
         """
-        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
         """
         return pulumi.get(self, "replica_set_name")
 
@@ -12767,7 +13003,7 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
                  snapshot_id: str,
                  state: str):
         """
-        :param Sequence['GetCloudBackupSnapshotExportJobsResultComponentArgs'] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        :param Sequence['GetCloudBackupSnapshotExportJobsResultComponentArgs'] components: *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         :param str created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
         :param Sequence['GetCloudBackupSnapshotExportJobsResultCustomDataArgs'] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param str err_msg: Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
@@ -12799,7 +13035,7 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
     @pulumi.getter
     def components(self) -> Sequence['outputs.GetCloudBackupSnapshotExportJobsResultComponentResult']:
         """
-        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         """
         return pulumi.get(self, "components")
 
@@ -12895,8 +13131,8 @@ class GetCloudBackupSnapshotExportJobsResultComponentResult(dict):
                  export_id: str,
                  replica_set_name: str):
         """
-        :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
-        :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        :param str export_id: *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
+        :param str replica_set_name: *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
         """
         pulumi.set(__self__, "export_id", export_id)
         pulumi.set(__self__, "replica_set_name", replica_set_name)
@@ -12905,7 +13141,7 @@ class GetCloudBackupSnapshotExportJobsResultComponentResult(dict):
     @pulumi.getter(name="exportId")
     def export_id(self) -> str:
         """
-        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         """
         return pulumi.get(self, "export_id")
 
@@ -12913,7 +13149,7 @@ class GetCloudBackupSnapshotExportJobsResultComponentResult(dict):
     @pulumi.getter(name="replicaSetName")
     def replica_set_name(self) -> str:
         """
-        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
         """
         return pulumi.get(self, "replica_set_name")
 
@@ -17495,7 +17731,6 @@ class GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult(dict):
                * `s3:GetObjectVersion`
         :param str iam_user_arn: Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
         :param str role_id: Unique identifier of the role that the data lake can use to access the data stores.
-               #### `data_process_region` - The cloud provider region to which the Federated Instance routes client connections for data processing.
         """
         pulumi.set(__self__, "external_id", external_id)
         pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
@@ -17535,7 +17770,6 @@ class GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult(dict):
     def role_id(self) -> str:
         """
         Unique identifier of the role that the data lake can use to access the data stores.
-        #### `data_process_region` - The cloud provider region to which the Federated Instance routes client connections for data processing.
         """
         return pulumi.get(self, "role_id")
 
@@ -20273,9 +20507,9 @@ class GetOrganizationsResultResult(dict):
         :param bool api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         :param str id: Autogenerated Unique ID for this data source.
         :param bool is_deleted: Flag that indicates whether this organization has been deleted.
-        :param bool multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        :param bool multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
         :param str name: Human-readable label that identifies the organization.
-        :param bool restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        :param bool restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
                
                See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         """
@@ -20320,7 +20554,7 @@ class GetOrganizationsResultResult(dict):
     @pulumi.getter(name="multiFactorAuthRequired")
     def multi_factor_auth_required(self) -> bool:
         """
-        Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
         """
         return pulumi.get(self, "multi_factor_auth_required")
 
@@ -20336,7 +20570,7 @@ class GetOrganizationsResultResult(dict):
     @pulumi.getter(name="restrictEmployeeAccess")
     def restrict_employee_access(self) -> bool:
         """
-        Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
 
         See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         """

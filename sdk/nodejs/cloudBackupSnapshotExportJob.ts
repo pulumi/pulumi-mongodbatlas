@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.CloudBackupSnapshotExportJob
+ * # Resource: mongodbatlas.CloudBackupSnapshotExportJob
  *
  * `mongodbatlas.CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
  *
@@ -128,7 +128,7 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      */
     public /*out*/ readonly components!: pulumi.Output<outputs.CloudBackupSnapshotExportJobComponent[]>;
     /**
@@ -146,7 +146,7 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      */
     public /*out*/ readonly errMsg!: pulumi.Output<string>;
     /**
-     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */
     public readonly exportBucketId!: pulumi.Output<string>;
     /**
@@ -166,7 +166,7 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
      */
     public readonly snapshotId!: pulumi.Output<string>;
     /**
@@ -251,7 +251,7 @@ export interface CloudBackupSnapshotExportJobState {
      */
     clusterName?: pulumi.Input<string>;
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      */
     components?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobComponent>[]>;
     /**
@@ -269,7 +269,7 @@ export interface CloudBackupSnapshotExportJobState {
      */
     errMsg?: pulumi.Input<string>;
     /**
-     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */
     exportBucketId?: pulumi.Input<string>;
     /**
@@ -289,7 +289,7 @@ export interface CloudBackupSnapshotExportJobState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
      */
     snapshotId?: pulumi.Input<string>;
     /**
@@ -315,7 +315,7 @@ export interface CloudBackupSnapshotExportJobArgs {
      */
     customDatas: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[]>;
     /**
-     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */
     exportBucketId: pulumi.Input<string>;
     /**
@@ -323,7 +323,7 @@ export interface CloudBackupSnapshotExportJobArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
      */
     snapshotId: pulumi.Input<string>;
 }

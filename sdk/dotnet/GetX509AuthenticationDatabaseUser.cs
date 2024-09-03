@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetX509AuthenticationDatabaseUser
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
+        /// # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
         /// 
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
@@ -20,7 +20,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### S
+        /// ### s
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
@@ -65,7 +65,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetX509AuthenticationDatabaseUserResult>("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", args ?? new GetX509AuthenticationDatabaseUserArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
+        /// # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
         /// 
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
@@ -73,7 +73,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### S
+        /// ### s
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp

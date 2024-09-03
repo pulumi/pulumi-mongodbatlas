@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: X509AuthenticationDatabaseUser
+// # Data Source: X509AuthenticationDatabaseUser
 //
 // `X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
 //
@@ -19,7 +19,7 @@ import (
 //
 // ## Example Usage
 //
-// ### S
+// ### s
 //
 // ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
 // ```go

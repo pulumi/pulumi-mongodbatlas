@@ -69,7 +69,7 @@ class AwaitableGetFederatedDatabaseInstancesResult(GetFederatedDatabaseInstances
 def get_federated_database_instances(project_id: Optional[str] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedDatabaseInstancesResult:
     """
-    ## # Data Source: get_federated_database_instances
+    # Data Source: get_federated_database_instances
 
     `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
 
@@ -97,7 +97,7 @@ def get_federated_database_instances(project_id: Optional[str] = None,
 def get_federated_database_instances_output(project_id: Optional[pulumi.Input[str]] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedDatabaseInstancesResult]:
     """
-    ## # Data Source: get_federated_database_instances
+    # Data Source: get_federated_database_instances
 
     `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
 

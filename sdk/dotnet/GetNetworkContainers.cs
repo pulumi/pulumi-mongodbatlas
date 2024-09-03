@@ -12,12 +12,11 @@ namespace Pulumi.Mongodbatlas
     public static class GetNetworkContainers
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getNetworkContainers
+        /// # Data Source: mongodbatlas.getNetworkContainers
         /// 
         /// `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -52,12 +51,11 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkContainersResult>("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args ?? new GetNetworkContainersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getNetworkContainers
+        /// # Data Source: mongodbatlas.getNetworkContainers
         /// 
         /// `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 

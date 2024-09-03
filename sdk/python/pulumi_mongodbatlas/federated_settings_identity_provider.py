@@ -662,7 +662,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  user_claim: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: FederatedSettingsIdentityProvider
+        # Resource: FederatedSettingsIdentityProvider
 
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
 
@@ -745,7 +745,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  args: FederatedSettingsIdentityProviderArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: FederatedSettingsIdentityProvider
+        # Resource: FederatedSettingsIdentityProvider
 
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
 

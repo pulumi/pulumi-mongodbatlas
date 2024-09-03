@@ -529,7 +529,7 @@ class Project(pulumi.CustomResource):
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        ## # Resource: Project
+        # Resource: Project
 
         `Project` provides a Project resource. This allows project to be created.
 
@@ -608,7 +608,7 @@ class Project(pulumi.CustomResource):
                  args: ProjectArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: Project
+        # Resource: Project
 
         `Project` provides a Project resource. This allows project to be created.
 

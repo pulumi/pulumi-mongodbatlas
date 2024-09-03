@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.Organization
+ * # Resource: mongodbatlas.Organization
  *
  * `mongodbatlas.Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
  *
@@ -67,7 +67,7 @@ export class Organization extends pulumi.CustomResource {
      */
     public readonly federationSettingsId!: pulumi.Output<string | undefined>;
     /**
-     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
      */
     public readonly multiFactorAuthRequired!: pulumi.Output<boolean>;
     /**
@@ -88,7 +88,7 @@ export class Organization extends pulumi.CustomResource {
      */
     public /*out*/ readonly publicKey!: pulumi.Output<string>;
     /**
-     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
      */
     public readonly restrictEmployeeAccess!: pulumi.Output<boolean>;
     /**
@@ -164,7 +164,7 @@ export interface OrganizationState {
      */
     federationSettingsId?: pulumi.Input<string>;
     /**
-     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
      */
     multiFactorAuthRequired?: pulumi.Input<boolean>;
     /**
@@ -185,7 +185,7 @@ export interface OrganizationState {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
      */
     restrictEmployeeAccess?: pulumi.Input<boolean>;
     /**
@@ -208,7 +208,7 @@ export interface OrganizationArgs {
      */
     federationSettingsId?: pulumi.Input<string>;
     /**
-     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
      */
     multiFactorAuthRequired?: pulumi.Input<boolean>;
     /**
@@ -220,7 +220,7 @@ export interface OrganizationArgs {
      */
     orgOwnerId: pulumi.Input<string>;
     /**
-     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
      */
     restrictEmployeeAccess?: pulumi.Input<boolean>;
     /**

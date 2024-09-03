@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.OnlineArchive
+ * # Resource: mongodbatlas.OnlineArchive
  *
  * `mongodbatlas.OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
  *
@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -113,6 +113,12 @@ import * as utilities from "./utilities";
  * ```
  *
  * ## Import
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import mongodbatlas:index/onlineArchive:OnlineArchive users_archive <project_id>-<cluster_name>-<archive_id>
+ * ```
  *
  * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
  */

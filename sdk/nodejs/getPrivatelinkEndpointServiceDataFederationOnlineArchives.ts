@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives
+ * # Data Source: mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives
  *
  * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
  *
@@ -69,7 +69,7 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
     readonly results: outputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives
+ * # Data Source: mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives
  *
  * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
  *

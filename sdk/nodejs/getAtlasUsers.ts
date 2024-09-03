@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: atlasUsers
+ * # Data Source: atlasUsers
  *
  * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
  *
@@ -113,7 +113,7 @@ export interface GetAtlasUsersResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: atlasUsers
+ * # Data Source: atlasUsers
  *
  * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
  *

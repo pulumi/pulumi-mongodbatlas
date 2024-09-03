@@ -12,12 +12,11 @@ namespace Pulumi.Mongodbatlas
     public static class GetLdapVerify
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.LdapVerify
+        /// # Data Source: mongodbatlas.LdapVerify
         /// 
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -91,12 +90,11 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.LdapVerify
+        /// # Data Source: mongodbatlas.LdapVerify
         /// 
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 

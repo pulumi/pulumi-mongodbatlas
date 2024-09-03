@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.NetworkPeering
+ * # Data Source: mongodbatlas.NetworkPeering
  *
  * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
  *
@@ -140,7 +140,7 @@ export interface GetNetworkPeeringResult {
     readonly vpcId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.NetworkPeering
+ * # Data Source: mongodbatlas.NetworkPeering
  *
  * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
  *

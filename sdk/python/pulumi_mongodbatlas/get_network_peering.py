@@ -297,7 +297,7 @@ def get_network_peering(peering_id: Optional[str] = None,
                         project_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkPeeringResult:
     """
-    ## # Data Source: NetworkPeering
+    # Data Source: NetworkPeering
 
     `NetworkPeering` describes a Network Peering Connection.
 
@@ -364,7 +364,7 @@ def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkPeeringResult]:
     """
-    ## # Data Source: NetworkPeering
+    # Data Source: NetworkPeering
 
     `NetworkPeering` describes a Network Peering Connection.
 

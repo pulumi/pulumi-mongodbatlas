@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getNetworkPeerings
+ * # Data Source: mongodbatlas.getNetworkPeerings
  *
  * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
  *
@@ -68,7 +68,7 @@ export interface GetNetworkPeeringsResult {
     readonly results: outputs.GetNetworkPeeringsResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getNetworkPeerings
+ * # Data Source: mongodbatlas.getNetworkPeerings
  *
  * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
  *

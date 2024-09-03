@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getNetworkContainers
+// # Data Source: getNetworkContainers
 //
 // `getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
 //

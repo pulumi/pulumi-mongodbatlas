@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.SearchDeployment
+ * # Resource: mongodbatlas.SearchDeployment
  * 
  * `mongodbatlas.SearchDeployment` provides a Search Deployment resource. The resource lets you create, edit and delete dedicated search nodes in a cluster.
  * 
@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### S
+ * ### s
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

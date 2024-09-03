@@ -11,13 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getControlPlaneIpAddresses
+// # Data Source: getControlPlaneIpAddresses
 //
 // `getControlPlaneIpAddresses` returns all control plane IP addresses.
 //
 // ## Example Usage
 //
-// ### S
+// ### s
 // ```go
 // package main
 //

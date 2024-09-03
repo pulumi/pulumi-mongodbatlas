@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.ProjectInvitation
+ * # Data Source: mongodbatlas.ProjectInvitation
  *
  * `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
  *
@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -87,7 +87,7 @@ export interface GetProjectInvitationResult {
     readonly username: string;
 }
 /**
- * ## # Data Source: mongodbatlas.ProjectInvitation
+ * # Data Source: mongodbatlas.ProjectInvitation
  *
  * `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
  *
@@ -95,7 +95,7 @@ export interface GetProjectInvitationResult {
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

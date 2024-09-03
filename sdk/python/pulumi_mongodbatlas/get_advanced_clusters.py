@@ -79,7 +79,7 @@ def get_advanced_clusters(project_id: Optional[str] = None,
                           use_replication_spec_per_shard: Optional[bool] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClustersResult:
     """
-    ## # Data Source: get_advanced_clusters
+    # Data Source: get_advanced_clusters
 
     `get_advanced_clusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
 
@@ -177,7 +177,7 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
                                  use_replication_spec_per_shard: Optional[pulumi.Input[Optional[bool]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAdvancedClustersResult]:
     """
-    ## # Data Source: get_advanced_clusters
+    # Data Source: get_advanced_clusters
 
     `get_advanced_clusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
 

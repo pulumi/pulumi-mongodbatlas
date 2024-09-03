@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
         /// 
-        /// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+        /// ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value***
         /// 
         /// The only field required for criteria type `CUSTOM`
         /// </summary>

@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetMaintenanceWindow
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.MaintenanceWindow
+        /// # Data Source: mongodbatlas.MaintenanceWindow
         /// 
         /// `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
         /// 
@@ -43,7 +43,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -71,7 +70,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetMaintenanceWindowResult>("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", args ?? new GetMaintenanceWindowArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.MaintenanceWindow
+        /// # Data Source: mongodbatlas.MaintenanceWindow
         /// 
         /// `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
         /// 
@@ -102,7 +101,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

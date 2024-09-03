@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: ProjectInvitation
+// # Data Source: ProjectInvitation
 //
 // `ProjectInvitation` describes an invitation to a user to join an Atlas project.
 //
@@ -19,7 +19,7 @@ import (
 //
 // ## Example Usage
 //
-// ### S
+// ### s
 //
 // ```go
 // package main

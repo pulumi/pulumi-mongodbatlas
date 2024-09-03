@@ -16,7 +16,7 @@ import java.util.Objects;
 public final class GetCloudBackupSnapshotExportJobResult {
     private String clusterName;
     /**
-     * @return _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * @return *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      * 
      */
     private List<GetCloudBackupSnapshotExportJobComponent> components;
@@ -80,7 +80,7 @@ public final class GetCloudBackupSnapshotExportJobResult {
         return this.clusterName;
     }
     /**
-     * @return _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * @return *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      * 
      */
     public List<GetCloudBackupSnapshotExportJobComponent> components() {

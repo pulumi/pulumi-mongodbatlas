@@ -7,15 +7,31 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.FederatedDatabaseInstance
+ * # Resource: mongodbatlas.FederatedDatabaseInstance
  *
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance resource.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
+ * ## Example specifying data process region and provider
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.FederatedDatabaseInstance("test", {
+ *     projectId: "PROJECT ID",
+ *     name: "NAME OF THE FEDERATED DATABASE INSTANCE",
+ *     dataProcessRegion: {
+ *         cloudProvider: "AWS",
+ *         region: "OREGON_USA",
+ *     },
+ * });
+ * ```
+ *
  * ## Example Usage
  *
- * ### S With MongoDB Atlas Cluster As Storage Database
+ * ### s with MongoDB Atlas Cluster as storage database
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -47,7 +63,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### S With Amazon S3 Bucket As Storage Database
+ * ### s with Amazon S3 bucket as storage database
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -98,22 +114,6 @@ import * as utilities from "./utilities";
  *             region: "AWS REGION",
  *         },
  *     ],
- * });
- * ```
- *
- * ## Example specifying data process region and provider
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.FederatedDatabaseInstance("test", {
- *     projectId: "PROJECT ID",
- *     name: "NAME OF THE FEDERATED DATABASE INSTANCE",
- *     dataProcessRegion: {
- *         cloudProvider: "AWS",
- *         region: "OREGON_USA",
- *     },
  * });
  * ```
  *

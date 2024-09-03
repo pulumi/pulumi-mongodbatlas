@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * ### Create And Assign PAK Together
+ * ### Create and Assign PAK Together
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Create And Assign PAK To Multiple Projects
+ * ### Create and Assign PAK to Multiple Projects
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

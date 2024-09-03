@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetRolesOrgId
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getRolesOrgId
+        /// # Data Source: mongodbatlas.getRolesOrgId
         /// 
         /// `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
         /// 
@@ -40,7 +40,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRolesOrgIdResult>("mongodbatlas:index/getRolesOrgId:getRolesOrgId", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getRolesOrgId
+        /// # Data Source: mongodbatlas.getRolesOrgId
         /// 
         /// `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
         /// 

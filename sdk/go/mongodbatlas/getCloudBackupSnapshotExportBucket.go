@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: CloudBackupSnapshotExportBucket
+// # Data Source: CloudBackupSnapshotExportBucket
 //
 // `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
 //

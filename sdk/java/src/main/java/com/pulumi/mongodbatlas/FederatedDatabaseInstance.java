@@ -19,15 +19,56 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.FederatedDatabaseInstance
+ * # Resource: mongodbatlas.FederatedDatabaseInstance
  * 
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance resource.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
  * 
+ * ## Example specifying data process region and provider
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.FederatedDatabaseInstance;
+ * import com.pulumi.mongodbatlas.FederatedDatabaseInstanceArgs;
+ * import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceDataProcessRegionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF THE FEDERATED DATABASE INSTANCE")
+ *             .dataProcessRegion(FederatedDatabaseInstanceDataProcessRegionArgs.builder()
+ *                 .cloudProvider("AWS")
+ *                 .region("OREGON_USA")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Example Usage
  * 
- * ### S With MongoDB Atlas Cluster As Storage Database
+ * ### s with MongoDB Atlas Cluster as storage database
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -86,7 +127,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### S With Amazon S3 Bucket As Storage Database
+ * ### s with Amazon S3 bucket as storage database
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -159,47 +200,6 @@ import javax.annotation.Nullable;
  *                     .provider("s3")
  *                     .region("AWS REGION")
  *                     .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * ## Example specifying data process region and provider
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.FederatedDatabaseInstance;
- * import com.pulumi.mongodbatlas.FederatedDatabaseInstanceArgs;
- * import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceDataProcessRegionArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()
- *             .projectId("PROJECT ID")
- *             .name("NAME OF THE FEDERATED DATABASE INSTANCE")
- *             .dataProcessRegion(FederatedDatabaseInstanceDataProcessRegionArgs.builder()
- *                 .cloudProvider("AWS")
- *                 .region("OREGON_USA")
- *                 .build())
  *             .build());
  * 
  *     }

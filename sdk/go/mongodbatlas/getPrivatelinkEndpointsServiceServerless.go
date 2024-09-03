@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: privatelinkEndpointsServiceServerless
+// # Data Source: privatelinkEndpointsServiceServerless
 //
 // `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
 //

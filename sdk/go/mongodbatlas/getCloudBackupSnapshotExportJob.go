@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+// # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
 //
 // `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 //
@@ -88,7 +88,7 @@ type LookupCloudBackupSnapshotExportJobArgs struct {
 // A collection of values returned by getCloudBackupSnapshotExportJob.
 type LookupCloudBackupSnapshotExportJobResult struct {
 	ClusterName string `pulumi:"clusterName"`
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 	Components []GetCloudBackupSnapshotExportJobComponent `pulumi:"components"`
 	// Timestamp in ISO 8601 date and time format in UTC when the export job was created.
 	CreatedAt string `pulumi:"createdAt"`
@@ -166,7 +166,7 @@ func (o LookupCloudBackupSnapshotExportJobResultOutput) ClusterName() pulumi.Str
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) string { return v.ClusterName }).(pulumi.StringOutput)
 }
 
-// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 func (o LookupCloudBackupSnapshotExportJobResultOutput) Components() GetCloudBackupSnapshotExportJobComponentArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) []GetCloudBackupSnapshotExportJobComponent {
 		return v.Components

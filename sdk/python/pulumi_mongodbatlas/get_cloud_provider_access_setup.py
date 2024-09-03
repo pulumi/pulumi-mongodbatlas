@@ -139,7 +139,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
                                     role_id: Optional[str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderAccessSetupResult:
     """
-    ## # Data Source: CloudProviderAccessSetup
+    # Data Source: CloudProviderAccessSetup
 
     `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
 
@@ -147,7 +147,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
 
     ## Example Usage
 
-    ### With AWS
+    ### with AWS
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -160,7 +160,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
         role_id=test_role.role_id)
     ```
 
-    ### With AZURE
+    ### with AZURE
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -211,7 +211,7 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
                                            role_id: Optional[pulumi.Input[str]] = None,
                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderAccessSetupResult]:
     """
-    ## # Data Source: CloudProviderAccessSetup
+    # Data Source: CloudProviderAccessSetup
 
     `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
 
@@ -219,7 +219,7 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
 
     ## Example Usage
 
-    ### With AWS
+    ### with AWS
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -232,7 +232,7 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
         role_id=test_role.role_id)
     ```
 
-    ### With AZURE
+    ### with AZURE
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas

@@ -14,7 +14,7 @@ import (
 
 // ## Example Usage
 //
-// ### Create And Assign PAK Together
+// ### Create and Assign PAK Together
 //
 // ```go
 // package main
@@ -48,7 +48,7 @@ import (
 //
 // ```
 //
-// ### Create And Assign PAK To Multiple Projects
+// ### Create and Assign PAK to Multiple Projects
 //
 // ```go
 // package main

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.ThirdPartyIntegration
+    /// # Resource: mongodbatlas.ThirdPartyIntegration
     /// 
     /// `mongodbatlas.ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
     /// 
@@ -95,7 +95,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> TeamName { get; private set; } = null!;
 
         /// <summary>
-        /// Third-Party Integration Settings type 
+        /// Third-Party Integration Settings type
         /// * PAGER_DUTY
         /// * DATADOG
         /// * OPS_GENIE
@@ -103,7 +103,6 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
-        /// 
         /// 
         /// * `PAGER_DUTY`
         /// </summary>
@@ -276,7 +275,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? TeamName { get; set; }
 
         /// <summary>
-        /// Third-Party Integration Settings type 
+        /// Third-Party Integration Settings type
         /// * PAGER_DUTY
         /// * DATADOG
         /// * OPS_GENIE
@@ -284,7 +283,6 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
-        /// 
         /// 
         /// * `PAGER_DUTY`
         /// </summary>
@@ -417,7 +415,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? TeamName { get; set; }
 
         /// <summary>
-        /// Third-Party Integration Settings type 
+        /// Third-Party Integration Settings type
         /// * PAGER_DUTY
         /// * DATADOG
         /// * OPS_GENIE
@@ -425,7 +423,6 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
-        /// 
         /// 
         /// * `PAGER_DUTY`
         /// </summary>

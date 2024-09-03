@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.EventTrigger
+ * # Resource: mongodbatlas.EventTrigger
  * 
  * `mongodbatlas.EventTrigger` provides a Event Trigger resource.
  * 
@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### S
+ * ### s
  * 
  * ### Example Usage: Database Trigger with Function
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -246,7 +246,7 @@ import javax.annotation.Nullable;
 public class EventTrigger extends com.pulumi.resources.CustomResource {
     /**
      * The ObjectID of your application.
-     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+     * * For more details on `project_id` and `app_id` see: &lt;https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs&gt;
      * 
      */
     @Export(name="appId", refs={String.class}, tree="[0]")
@@ -254,7 +254,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The ObjectID of your application.
-     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+     * * For more details on `project_id` and `app_id` see: &lt;https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs&gt;
      * 
      */
     public Output<String> appId() {

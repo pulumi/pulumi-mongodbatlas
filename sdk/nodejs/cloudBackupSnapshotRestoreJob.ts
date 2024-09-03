@@ -183,7 +183,7 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
-     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
      * * `delivery_type_config.download` - Set to `true` to use the download configuration.
      * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplogTs` and `oplogInc`, or `pointInTimeUtcSeconds`.
@@ -303,7 +303,7 @@ export interface CloudBackupSnapshotRestoreJobState {
      */
     clusterName?: pulumi.Input<string>;
     /**
-     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
      * * `delivery_type_config.download` - Set to `true` to use the download configuration.
      * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplogTs` and `oplogInc`, or `pointInTimeUtcSeconds`.
@@ -371,7 +371,7 @@ export interface CloudBackupSnapshotRestoreJobArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
      * * `delivery_type_config.download` - Set to `true` to use the download configuration.
      * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplogTs` and `oplogInc`, or `pointInTimeUtcSeconds`.

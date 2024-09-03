@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetProject
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Project
+        /// # Data Source: mongodbatlas.Project
         /// 
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 
@@ -128,7 +128,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("mongodbatlas:index/getProject:getProject", args ?? new GetProjectArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Project
+        /// # Data Source: mongodbatlas.Project
         /// 
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 

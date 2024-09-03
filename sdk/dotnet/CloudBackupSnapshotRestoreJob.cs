@@ -229,7 +229,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ClusterName { get; private set; } = null!;
 
         /// <summary>
-        /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
         /// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         /// * `delivery_type_config.download` - Set to `true` to use the download configuration.
         /// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -357,7 +357,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
         /// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         /// * `delivery_type_config.download` - Set to `true` to use the download configuration.
         /// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -403,7 +403,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ClusterName { get; set; }
 
         /// <summary>
-        /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
         /// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         /// * `delivery_type_config.download` - Set to `true` to use the download configuration.
         /// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.

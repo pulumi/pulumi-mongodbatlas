@@ -12,13 +12,13 @@ namespace Pulumi.Mongodbatlas
     public static class GetPushBasedLogExport
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.PushBasedLogExport
+        /// # Data Source: mongodbatlas.PushBasedLogExport
         /// 
         /// `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
         /// 
         /// ## Example Usage
         /// 
-        /// ### S
+        /// ### s
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -75,13 +75,13 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPushBasedLogExportResult>("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", args ?? new GetPushBasedLogExportArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.PushBasedLogExport
+        /// # Data Source: mongodbatlas.PushBasedLogExport
         /// 
         /// `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
         /// 
         /// ## Example Usage
         /// 
-        /// ### S
+        /// ### s
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;

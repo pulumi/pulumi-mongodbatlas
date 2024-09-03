@@ -13,13 +13,13 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class CloudBackupSnapshotExportJobComponentGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        /// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
         /// </summary>
         [Input("exportId")]
         public Input<string>? ExportId { get; set; }
 
         /// <summary>
-        /// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        /// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
         /// </summary>
         [Input("replicaSetName")]
         public Input<string>? ReplicaSetName { get; set; }

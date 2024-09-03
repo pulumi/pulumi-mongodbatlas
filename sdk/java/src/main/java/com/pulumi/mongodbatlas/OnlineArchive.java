@@ -22,7 +22,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.OnlineArchive
+ * # Resource: mongodbatlas.OnlineArchive
  * 
  * `mongodbatlas.OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
  * 
@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### S
+ * ### s
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code
@@ -206,6 +206,12 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import mongodbatlas:index/onlineArchive:OnlineArchive users_archive &lt;project_id&gt;-&lt;cluster_name&gt;-&lt;archive_id&gt;
+ * ```
  * 
  * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
  * 

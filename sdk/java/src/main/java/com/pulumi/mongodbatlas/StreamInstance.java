@@ -17,7 +17,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.StreamInstance
+ * # Resource: mongodbatlas.StreamInstance
  * 
  * `mongodbatlas.StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
  * 

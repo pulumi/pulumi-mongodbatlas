@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getStreamConnections
+// # Data Source: getStreamConnections
 //
 // `getStreamConnections` describes all connections of a stream instance for the specified project.
 //

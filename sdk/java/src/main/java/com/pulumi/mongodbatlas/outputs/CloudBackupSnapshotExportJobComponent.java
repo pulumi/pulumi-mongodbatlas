@@ -12,26 +12,26 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CloudBackupSnapshotExportJobComponent {
     /**
-     * @return _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * @return *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      * 
      */
     private @Nullable String exportId;
     /**
-     * @return _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * @return *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
      * 
      */
     private @Nullable String replicaSetName;
 
     private CloudBackupSnapshotExportJobComponent() {}
     /**
-     * @return _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * @return *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      * 
      */
     public Optional<String> exportId() {
         return Optional.ofNullable(this.exportId);
     }
     /**
-     * @return _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * @return *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
      * 
      */
     public Optional<String> replicaSetName() {

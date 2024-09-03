@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Frequencies;
         /// <summary>
-        /// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        /// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under &lt;https://www.mongodb.com/docs/atlas/reference/cloud-providers/&gt; 'regions' link
         /// </summary>
         public readonly string RegionName;
         /// <summary>

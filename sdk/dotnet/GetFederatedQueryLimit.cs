@@ -12,9 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetFederatedQueryLimit
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedQueryLimit
+        /// # Data Source: mongodbatlas.FederatedQueryLimit
         /// 
-        /// `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/. 
+        /// `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see &lt;https://www.mongodb.com/docs/atlas/data-federation/overview/&gt;.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
@@ -42,9 +42,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedQueryLimitResult>("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", args ?? new GetFederatedQueryLimitArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedQueryLimit
+        /// # Data Source: mongodbatlas.FederatedQueryLimit
         /// 
-        /// `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/. 
+        /// `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see &lt;https://www.mongodb.com/docs/atlas/data-federation/overview/&gt;.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 

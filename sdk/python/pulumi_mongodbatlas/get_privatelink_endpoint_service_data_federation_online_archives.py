@@ -69,7 +69,7 @@ class AwaitableGetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult(G
 def get_privatelink_endpoint_service_data_federation_online_archives(project_id: Optional[str] = None,
                                                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult:
     """
-    ## # Data Source: get_privatelink_endpoint_service_data_federation_online_archives
+    # Data Source: get_privatelink_endpoint_service_data_federation_online_archives
 
     `get_privatelink_endpoint_service_data_federation_online_archives` describes Private Endpoint Service resources for Data Federation and Online Archive.
 
@@ -112,7 +112,7 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
 def get_privatelink_endpoint_service_data_federation_online_archives_output(project_id: Optional[pulumi.Input[str]] = None,
                                                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult]:
     """
-    ## # Data Source: get_privatelink_endpoint_service_data_federation_online_archives
+    # Data Source: get_privatelink_endpoint_service_data_federation_online_archives
 
     `get_privatelink_endpoint_service_data_federation_online_archives` describes Private Endpoint Service resources for Data Federation and Online Archive.
 

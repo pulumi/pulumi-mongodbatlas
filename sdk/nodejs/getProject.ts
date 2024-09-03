@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.Project
+ * # Data Source: mongodbatlas.Project
  *
  * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
  *
@@ -172,7 +172,7 @@ export interface GetProjectResult {
     readonly teams: outputs.GetProjectTeam[];
 }
 /**
- * ## # Data Source: mongodbatlas.Project
+ * # Data Source: mongodbatlas.Project
  *
  * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
  *

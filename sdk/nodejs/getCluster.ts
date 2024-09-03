@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.Cluster
+ * # Data Source: mongodbatlas.Cluster
  *
  * `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
  *
@@ -249,7 +249,7 @@ export interface GetClusterResult {
     readonly versionReleaseSystem: string;
 }
 /**
- * ## # Data Source: mongodbatlas.Cluster
+ * # Data Source: mongodbatlas.Cluster
  *
  * `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
  *

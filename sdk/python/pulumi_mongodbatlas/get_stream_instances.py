@@ -101,7 +101,7 @@ def get_stream_instances(items_per_page: Optional[int] = None,
                          project_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamInstancesResult:
     """
-    ## # Data Source: get_stream_instances
+    # Data Source: get_stream_instances
 
     `get_stream_instances` describes the stream instances defined in a project.
 
@@ -141,7 +141,7 @@ def get_stream_instances_output(items_per_page: Optional[pulumi.Input[Optional[i
                                 project_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamInstancesResult]:
     """
-    ## # Data Source: get_stream_instances
+    # Data Source: get_stream_instances
 
     `get_stream_instances` describes the stream instances defined in a project.
 

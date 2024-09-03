@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.Organization
+ * # Data Source: mongodbatlas.Organization
  *
  * `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
  *
@@ -59,7 +59,7 @@ export interface GetOrganizationResult {
     readonly isDeleted: boolean;
     readonly links: outputs.GetOrganizationLink[];
     /**
-     * (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
      */
     readonly multiFactorAuthRequired: boolean;
     /**
@@ -68,12 +68,12 @@ export interface GetOrganizationResult {
     readonly name: string;
     readonly orgId: string;
     /**
-     * (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
      */
     readonly restrictEmployeeAccess: boolean;
 }
 /**
- * ## # Data Source: mongodbatlas.Organization
+ * # Data Source: mongodbatlas.Organization
  *
  * `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
  *

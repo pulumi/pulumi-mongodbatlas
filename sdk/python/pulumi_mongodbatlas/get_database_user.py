@@ -161,7 +161,7 @@ def get_database_user(auth_database_name: Optional[str] = None,
                       username: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseUserResult:
     """
-    ## # Data Source: DatabaseUser
+    # Data Source: DatabaseUser
 
     `DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
 
@@ -257,7 +257,7 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
                              username: Optional[pulumi.Input[str]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseUserResult]:
     """
-    ## # Data Source: DatabaseUser
+    # Data Source: DatabaseUser
 
     `DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
 

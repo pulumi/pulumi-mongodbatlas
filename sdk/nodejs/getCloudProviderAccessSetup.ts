@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
+ * # Data Source: mongodbatlas.CloudProviderAccessSetup
  *
  * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
  *
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### With AWS
+ * ### with AWS
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### With AZURE
+ * ### with AZURE
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -118,7 +118,7 @@ export interface GetCloudProviderAccessSetupResult {
     readonly roleId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
+ * # Data Source: mongodbatlas.CloudProviderAccessSetup
  *
  * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
  *
@@ -126,7 +126,7 @@ export interface GetCloudProviderAccessSetupResult {
  *
  * ## Example Usage
  *
- * ### With AWS
+ * ### with AWS
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -142,7 +142,7 @@ export interface GetCloudProviderAccessSetupResult {
  * });
  * ```
  *
- * ### With AZURE
+ * ### with AZURE
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";

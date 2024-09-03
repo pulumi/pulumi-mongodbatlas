@@ -18,7 +18,6 @@ public final class AdvancedClusterBiConnectorConfigArgs extends com.pulumi.resou
 
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      * 
@@ -28,7 +27,6 @@ public final class AdvancedClusterBiConnectorConfigArgs extends com.pulumi.resou
 
     /**
      * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      * 
@@ -91,7 +89,6 @@ public final class AdvancedClusterBiConnectorConfigArgs extends com.pulumi.resou
 
         /**
          * @param enabled Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-         * *
          * - Set to `true` to enable BI Connector for Atlas.
          * - Set to `false` to disable BI Connector for Atlas.
          * 
@@ -105,7 +102,6 @@ public final class AdvancedClusterBiConnectorConfigArgs extends com.pulumi.resou
 
         /**
          * @param enabled Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-         * *
          * - Set to `true` to enable BI Connector for Atlas.
          * - Set to `false` to disable BI Connector for Atlas.
          * 

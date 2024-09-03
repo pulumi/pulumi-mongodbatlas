@@ -14,7 +14,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.NetworkPeering
+ * # Resource: mongodbatlas.NetworkPeering
  * 
  * `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
  * 
@@ -23,11 +23,11 @@ import javax.annotation.Nullable;
  * &gt; **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details
  * 
  * &gt; **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
- *     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
- *     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
- *     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
- *     Microsoft.Network/virtualNetworks/peer/action
- * For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+ * Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+ * Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+ * Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+ * Microsoft.Network/virtualNetworks/peer/action
+ * For more information see &lt;https://docs.atlas.mongodb.com/security-vpc-peering/&gt; and &lt;https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/&gt;
  * 
  * &gt; **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
  * 
@@ -66,8 +66,8 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // Container example provided but not always required, 
- *         // see network_container documentation for details. 
+ *         // Container example provided but not always required,
+ *         // see network_container documentation for details.
  *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
  *             .projectId(projectId)
  *             .atlasCidrBlock("10.8.0.0/21")
@@ -132,8 +132,8 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Ensure you have created the required Azure service principal first, see
  *         // see https://docs.atlas.mongodb.com/security-vpc-peering/
- *         // Container example provided but not always required, 
- *         // see network_container documentation for details. 
+ *         // Container example provided but not always required,
+ *         // see network_container documentation for details.
  *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
  *             .projectId(projectId)
  *             .atlasCidrBlock(ATLAS_CIDR_BLOCK)

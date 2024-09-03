@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: ThirdPartyIntegration
+// # Data Source: ThirdPartyIntegration
 //
 // `ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
 //

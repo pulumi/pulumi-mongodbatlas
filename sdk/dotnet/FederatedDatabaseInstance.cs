@@ -10,15 +10,39 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.FederatedDatabaseInstance
+    /// # Resource: mongodbatlas.FederatedDatabaseInstance
     /// 
     /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance resource.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
+    /// ## Example specifying data process region and provider
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         Name = "NAME OF THE FEDERATED DATABASE INSTANCE",
+    ///         DataProcessRegion = new Mongodbatlas.Inputs.FederatedDatabaseInstanceDataProcessRegionArgs
+    ///         {
+    ///             CloudProvider = "AWS",
+    ///             Region = "OREGON_USA",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Example Usage
     /// 
-    /// ### S With MongoDB Atlas Cluster As Storage Database
+    /// ### s with MongoDB Atlas Cluster as storage database
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -74,7 +98,7 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### S With Amazon S3 Bucket As Storage Database
+    /// ### s with Amazon S3 bucket as storage database
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -146,30 +170,6 @@ namespace Pulumi.Mongodbatlas
     ///                 Provider = "s3",
     ///                 Region = "AWS REGION",
     ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Example specifying data process region and provider
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
-    ///     {
-    ///         ProjectId = "PROJECT ID",
-    ///         Name = "NAME OF THE FEDERATED DATABASE INSTANCE",
-    ///         DataProcessRegion = new Mongodbatlas.Inputs.FederatedDatabaseInstanceDataProcessRegionArgs
-    ///         {
-    ///             CloudProvider = "AWS",
-    ///             Region = "OREGON_USA",
     ///         },
     ///     });
     /// 

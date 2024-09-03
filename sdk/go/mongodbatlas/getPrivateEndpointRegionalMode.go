@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: privateEndpointRegionalMode
+// # Data Source: privateEndpointRegionalMode
 //
 // `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
 //

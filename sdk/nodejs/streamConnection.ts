@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.StreamConnection
+ * # Resource: mongodbatlas.StreamConnection
  *
  * `mongodbatlas.StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
  *

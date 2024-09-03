@@ -12,10 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudBackupSnapshotExportJobs
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportJobs
+        /// # Data Source: mongodbatlas.getCloudBackupSnapshotExportJobs
         /// 
         /// `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
-        /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -66,10 +65,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobsResult>("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", args ?? new GetCloudBackupSnapshotExportJobsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportJobs
+        /// # Data Source: mongodbatlas.getCloudBackupSnapshotExportJobs
         /// 
         /// `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
-        /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 

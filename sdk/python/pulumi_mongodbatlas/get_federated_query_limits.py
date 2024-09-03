@@ -79,15 +79,15 @@ def get_federated_query_limits(project_id: Optional[str] = None,
                                tenant_name: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedQueryLimitsResult:
     """
-    ## # Data Source: get_federated_query_limits
+    # Data Source: get_federated_query_limits
 
-    `get_federated_query_limits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+    `get_federated_query_limits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see <https://www.mongodb.com/docs/atlas/data-federation/overview/>.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
 
-    ### S
+    ### s
 
     ```python
     import pulumi
@@ -119,15 +119,15 @@ def get_federated_query_limits_output(project_id: Optional[pulumi.Input[str]] = 
                                       tenant_name: Optional[pulumi.Input[str]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedQueryLimitsResult]:
     """
-    ## # Data Source: get_federated_query_limits
+    # Data Source: get_federated_query_limits
 
-    `get_federated_query_limits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+    `get_federated_query_limits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see <https://www.mongodb.com/docs/atlas/data-federation/overview/>.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
 
-    ### S
+    ### s
 
     ```python
     import pulumi

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.ThirdPartyIntegration
+ * # Data Source: mongodbatlas.ThirdPartyIntegration
  *
  * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
  *
@@ -140,7 +140,7 @@ export interface GetThirdPartyIntegrationResult {
     readonly userName?: string;
 }
 /**
- * ## # Data Source: mongodbatlas.ThirdPartyIntegration
+ * # Data Source: mongodbatlas.ThirdPartyIntegration
  *
  * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
  *

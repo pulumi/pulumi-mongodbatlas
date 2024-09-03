@@ -90,7 +90,7 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRole
                        role_name: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDbRoleResult:
     """
-    ## # Data Source: CustomDbRole
+    # Data Source: CustomDbRole
 
     `CustomDbRole` describes a Custom DB Role. This represents a custom db role.
 
@@ -150,7 +150,7 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
                               role_name: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDbRoleResult]:
     """
-    ## # Data Source: CustomDbRole
+    # Data Source: CustomDbRole
 
     `CustomDbRole` describes a Custom DB Role. This represents a custom db role.
 

@@ -451,7 +451,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        ## # Resource: ServerlessInstance
+        # Resource: ServerlessInstance
 
         `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
 
@@ -473,12 +473,9 @@ class ServerlessInstance(pulumi.CustomResource):
             provider_settings_region_name="US_EAST_1")
         ```
 
-        **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
-        That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
-        and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+        **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
 
-        Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\\
-        When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+        Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
 
         Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
 
@@ -512,7 +509,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  args: ServerlessInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: ServerlessInstance
+        # Resource: ServerlessInstance
 
         `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
 
@@ -534,12 +531,9 @@ class ServerlessInstance(pulumi.CustomResource):
             provider_settings_region_name="US_EAST_1")
         ```
 
-        **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
-        That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
-        and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+        **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
 
-        Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\\
-        When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+        Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
 
         Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
 

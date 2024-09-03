@@ -271,7 +271,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  start_asap: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        ## # Resource: MaintenanceWindow
+        # Resource: MaintenanceWindow
 
         `MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
 
@@ -333,7 +333,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  args: MaintenanceWindowArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: MaintenanceWindow
+        # Resource: MaintenanceWindow
 
         `MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
 

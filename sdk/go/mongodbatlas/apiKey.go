@@ -42,12 +42,6 @@ import (
 //
 // ```
 //
-// ## ## Attributes Reference
-//
-// In addition to all arguments above, the following attributes are exported:
-//
-// * `apiKeyId` - Unique identifier for this Organization API key.
-//
 // ## Import
 //
 // API Keys must be imported using org ID, API Key ID e.g.
@@ -59,6 +53,7 @@ import (
 type ApiKey struct {
 	pulumi.CustomResourceState
 
+	// Unique identifier for this Organization API key.
 	ApiKeyId pulumi.StringOutput `pulumi:"apiKeyId"`
 	// Description of this Organization API key.
 	Description pulumi.StringOutput `pulumi:"description"`
@@ -119,6 +114,7 @@ func GetApiKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApiKey resources.
 type apiKeyState struct {
+	// Unique identifier for this Organization API key.
 	ApiKeyId *string `pulumi:"apiKeyId"`
 	// Description of this Organization API key.
 	Description *string `pulumi:"description"`
@@ -137,6 +133,7 @@ type apiKeyState struct {
 }
 
 type ApiKeyState struct {
+	// Unique identifier for this Organization API key.
 	ApiKeyId pulumi.StringPtrInput
 	// Description of this Organization API key.
 	Description pulumi.StringPtrInput
@@ -276,6 +273,7 @@ func (o ApiKeyOutput) ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutpu
 	return o
 }
 
+// Unique identifier for this Organization API key.
 func (o ApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiKey) pulumi.StringOutput { return v.ApiKeyId }).(pulumi.StringOutput)
 }

@@ -5,13 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.CustomDnsConfigurationClusterAws
+ * # Resource: mongodbatlas.CustomDnsConfigurationClusterAws
  *
  * `mongodbatlas.CustomDnsConfigurationClusterAws` provides a Custom DNS Configuration for Atlas Clusters on AWS resource. This represents a Custom DNS Configuration for Atlas Clusters on AWS that can be updated in an Atlas project.
  *
  * > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
- *   * Organization Owner
- *   * Project Owner
+ * * Organization Owner
+ * * Project Owner
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *

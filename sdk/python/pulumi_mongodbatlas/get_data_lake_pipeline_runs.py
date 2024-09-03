@@ -79,7 +79,7 @@ def get_data_lake_pipeline_runs(pipeline_name: Optional[str] = None,
                                 project_id: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataLakePipelineRunsResult:
     """
-    ## # Data Source: get_data_lake_pipeline_runs
+    # Data Source: get_data_lake_pipeline_runs
 
     `get_data_lake_pipeline_run` describes Data Lake Pipeline Runs.
 
@@ -107,7 +107,7 @@ def get_data_lake_pipeline_runs_output(pipeline_name: Optional[pulumi.Input[str]
                                        project_id: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakePipelineRunsResult]:
     """
-    ## # Data Source: get_data_lake_pipeline_runs
+    # Data Source: get_data_lake_pipeline_runs
 
     `get_data_lake_pipeline_run` describes Data Lake Pipeline Runs.
 

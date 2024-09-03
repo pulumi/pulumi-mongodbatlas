@@ -12,27 +12,36 @@ namespace Pulumi.Mongodbatlas
     public static class GetOnlineArchives
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OnlineArchive
+        /// # Data Source: mongodbatlas.OnlineArchive
         /// 
         /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
-        /// 
         /// ## Example Usage
         /// 
-        /// ```terraform 
-        /// data "mongodbatlas_online_archives" "test" {
-        ///     project_id   = var.project_id
-        ///     cluster_name = var.cluster_name
-        /// }
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetOnlineArchives.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClusterName = clusterName,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// 
         /// ## Attributes reference
         /// 
         /// * `db_name` - Name of the database that contains the collection.
         /// * `coll_name` -  Name of the collection.
-        /// * `collection_type` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD". 
+        /// * `collection_type` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         /// * `criteria` - Criteria to use for archiving data. See criteria.
         /// * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
         /// * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
@@ -58,7 +67,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Schedule
         /// 
         /// * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-        /// * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
         /// * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
@@ -74,27 +83,36 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OnlineArchive
+        /// # Data Source: mongodbatlas.OnlineArchive
         /// 
         /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
-        /// 
         /// ## Example Usage
         /// 
-        /// ```terraform 
-        /// data "mongodbatlas_online_archives" "test" {
-        ///     project_id   = var.project_id
-        ///     cluster_name = var.cluster_name
-        /// }
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetOnlineArchives.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClusterName = clusterName,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// 
         /// ## Attributes reference
         /// 
         /// * `db_name` - Name of the database that contains the collection.
         /// * `coll_name` -  Name of the collection.
-        /// * `collection_type` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD". 
+        /// * `collection_type` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         /// * `criteria` - Criteria to use for archiving data. See criteria.
         /// * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
         /// * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
@@ -120,7 +138,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Schedule
         /// 
         /// * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-        /// * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
         /// * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.

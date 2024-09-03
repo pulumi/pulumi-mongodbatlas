@@ -12,6 +12,42 @@ import java.util.Objects;
 public final class GetAlertConfigurationMatcher {
     /**
      * @return Name of the field in the target object to match on.
+     * &lt;table&gt;
+     * &lt;thead&gt;
+     * &lt;tr&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Host alerts&lt;/th&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Replica set alerts&lt;/th&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Sharded cluster alerts&lt;/th&gt;
+     * &lt;/tr&gt;
+     * &lt;/thead&gt;
+     * &lt;tbody&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`TYPE_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`REPLICA_SET_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`CLUSTER_NAME`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`HOSTNAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`SHARD_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`SHARD_NAME`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`PORT`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`CLUSTER_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`HOSTNAME_AND_PORT`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`REPLICA_SET_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;/tbody&gt;
+     * &lt;/table&gt;
      * 
      */
     private String fieldName;
@@ -37,6 +73,42 @@ public final class GetAlertConfigurationMatcher {
     private GetAlertConfigurationMatcher() {}
     /**
      * @return Name of the field in the target object to match on.
+     * &lt;table&gt;
+     * &lt;thead&gt;
+     * &lt;tr&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Host alerts&lt;/th&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Replica set alerts&lt;/th&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Sharded cluster alerts&lt;/th&gt;
+     * &lt;/tr&gt;
+     * &lt;/thead&gt;
+     * &lt;tbody&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`TYPE_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`REPLICA_SET_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`CLUSTER_NAME`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`HOSTNAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`SHARD_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`SHARD_NAME`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`PORT`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`CLUSTER_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`HOSTNAME_AND_PORT`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`REPLICA_SET_NAME`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;/tbody&gt;
+     * &lt;/table&gt;
      * 
      */
     public String fieldName() {

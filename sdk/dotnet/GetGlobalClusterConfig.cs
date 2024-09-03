@@ -12,13 +12,11 @@ namespace Pulumi.Mongodbatlas
     public static class GetGlobalClusterConfig
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.GlobalClusterConfig
+        /// # Data Source: mongodbatlas.GlobalClusterConfig
         /// 
         /// `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
         /// 
-        /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -149,13 +147,11 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGlobalClusterConfigResult>("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args ?? new GetGlobalClusterConfigArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.GlobalClusterConfig
+        /// # Data Source: mongodbatlas.GlobalClusterConfig
         /// 
         /// `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
         /// 
-        /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 

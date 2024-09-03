@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.GlobalClusterConfig
+ * # Resource: mongodbatlas.GlobalClusterConfig
  *
  * `mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.
  *

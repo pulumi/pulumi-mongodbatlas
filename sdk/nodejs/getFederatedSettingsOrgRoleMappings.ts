@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getFederatedSettingsOrgRoleMappings
+ * # Data Source: mongodbatlas.getFederatedSettingsOrgRoleMappings
  *
  * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
  */
@@ -63,7 +63,7 @@ export interface GetFederatedSettingsOrgRoleMappingsResult {
     readonly results: outputs.GetFederatedSettingsOrgRoleMappingsResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getFederatedSettingsOrgRoleMappings
+ * # Data Source: mongodbatlas.getFederatedSettingsOrgRoleMappings
  *
  * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
  */

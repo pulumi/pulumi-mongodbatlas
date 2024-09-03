@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: LdapConfiguration
+// # Data Source: LdapConfiguration
 //
 // `LdapConfiguration` describes a LDAP Configuration.
 //

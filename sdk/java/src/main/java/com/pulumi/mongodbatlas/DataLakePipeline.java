@@ -21,7 +21,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.DataLakePipeline
+ * # Resource: mongodbatlas.DataLakePipeline
  * 
  * `mongodbatlas.DataLakePipeline` provides a Data Lake Pipeline resource.
  * 
@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### S
+ * ### s
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

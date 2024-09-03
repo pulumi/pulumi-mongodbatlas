@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.NetworkContainer
+ * # Data Source: mongodbatlas.NetworkContainer
  *
  * `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
  *
@@ -112,7 +112,7 @@ export interface GetNetworkContainerResult {
     readonly vpcId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.NetworkContainer
+ * # Data Source: mongodbatlas.NetworkContainer
  *
  * `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
  *

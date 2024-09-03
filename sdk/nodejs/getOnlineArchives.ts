@@ -7,13 +7,23 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.OnlineArchive
+ * # Data Source: mongodbatlas.OnlineArchive
  *
  * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getOnlineArchives({
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ * });
+ * ```
  *
  * ## Attributes reference
  *
@@ -98,13 +108,23 @@ export interface GetOnlineArchivesResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: mongodbatlas.OnlineArchive
+ * # Data Source: mongodbatlas.OnlineArchive
  *
  * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getOnlineArchives({
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ * });
+ * ```
  *
  * ## Attributes reference
  *

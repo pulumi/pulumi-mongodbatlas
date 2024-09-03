@@ -12,12 +12,11 @@ namespace Pulumi.Mongodbatlas
     public static class GetLdapConfiguration
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.LdapConfiguration
+        /// # Data Source: mongodbatlas.LdapConfiguration
         /// 
         /// `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -57,12 +56,11 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLdapConfigurationResult>("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args ?? new GetLdapConfigurationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.LdapConfiguration
+        /// # Data Source: mongodbatlas.LdapConfiguration
         /// 
         /// `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 

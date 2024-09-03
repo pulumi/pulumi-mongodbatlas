@@ -173,7 +173,7 @@ class SearchDeployment(pulumi.CustomResource):
                  timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
-        ## # Resource: SearchDeployment
+        # Resource: SearchDeployment
 
         `SearchDeployment` provides a Search Deployment resource. The resource lets you create, edit and delete dedicated search nodes in a cluster.
 
@@ -196,7 +196,7 @@ class SearchDeployment(pulumi.CustomResource):
                  args: SearchDeploymentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: SearchDeployment
+        # Resource: SearchDeployment
 
         `SearchDeployment` provides a Search Deployment resource. The resource lets you create, edit and delete dedicated search nodes in a cluster.
 

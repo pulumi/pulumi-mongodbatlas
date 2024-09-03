@@ -232,15 +232,40 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     /**
      * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
-     * 
-     * | Project roles                   | Organization roles  |
-     * |:----------                      |:-----------         |
-     * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-     * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-     * | `GROUP_READ_ONLY`               |                     |
+     * &lt;table&gt;
+     * &lt;thead&gt;
+     * &lt;tr&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Project roles&lt;/th&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Organization roles&lt;/th&gt;
+     * &lt;/tr&gt;
+     * &lt;/thead&gt;
+     * &lt;tbody&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_CLUSTER_MANAGER`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_OWNER`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_ADMIN`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_MEMBER`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_ONLY`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_GROUP_CREATOR`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_WRITE`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_BILLING_ADMIN`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_OWNER`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_READ_ONLY`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_READ_ONLY`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;/tbody&gt;
+     * &lt;/table&gt;
      * 
      */
     @Import(name="roles")
@@ -249,15 +274,40 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     /**
      * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
-     * 
-     * | Project roles                   | Organization roles  |
-     * |:----------                      |:-----------         |
-     * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-     * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-     * | `GROUP_READ_ONLY`               |                     |
+     * &lt;table&gt;
+     * &lt;thead&gt;
+     * &lt;tr&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Project roles&lt;/th&gt;
+     * &lt;th style=&#34;text-align:left&#34;&gt;Organization roles&lt;/th&gt;
+     * &lt;/tr&gt;
+     * &lt;/thead&gt;
+     * &lt;tbody&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_CLUSTER_MANAGER`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_OWNER`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_ADMIN`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_MEMBER`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_ONLY`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_GROUP_CREATOR`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_WRITE`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_BILLING_ADMIN`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_OWNER`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_READ_ONLY`&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_READ_ONLY`&lt;/td&gt;
+     * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;/tbody&gt;
+     * &lt;/table&gt;
      * 
      */
     public Optional<Output<List<String>>> roles() {
@@ -787,15 +837,40 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         /**
          * @param roles Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
          * Accepted values are:
-         * 
-         * | Project roles                   | Organization roles  |
-         * |:----------                      |:-----------         |
-         * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-         * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-         * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-         * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-         * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-         * | `GROUP_READ_ONLY`               |                     |
+         * &lt;table&gt;
+         * &lt;thead&gt;
+         * &lt;tr&gt;
+         * &lt;th style=&#34;text-align:left&#34;&gt;Project roles&lt;/th&gt;
+         * &lt;th style=&#34;text-align:left&#34;&gt;Organization roles&lt;/th&gt;
+         * &lt;/tr&gt;
+         * &lt;/thead&gt;
+         * &lt;tbody&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_CLUSTER_MANAGER`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_OWNER`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_ADMIN`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_MEMBER`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_ONLY`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_GROUP_CREATOR`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_WRITE`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_BILLING_ADMIN`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_OWNER`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_READ_ONLY`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_READ_ONLY`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;/tbody&gt;
+         * &lt;/table&gt;
          * 
          * @return builder
          * 
@@ -808,15 +883,40 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         /**
          * @param roles Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
          * Accepted values are:
-         * 
-         * | Project roles                   | Organization roles  |
-         * |:----------                      |:-----------         |
-         * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-         * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-         * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-         * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-         * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-         * | `GROUP_READ_ONLY`               |                     |
+         * &lt;table&gt;
+         * &lt;thead&gt;
+         * &lt;tr&gt;
+         * &lt;th style=&#34;text-align:left&#34;&gt;Project roles&lt;/th&gt;
+         * &lt;th style=&#34;text-align:left&#34;&gt;Organization roles&lt;/th&gt;
+         * &lt;/tr&gt;
+         * &lt;/thead&gt;
+         * &lt;tbody&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_CLUSTER_MANAGER`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_OWNER`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_ADMIN`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_MEMBER`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_ONLY`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_GROUP_CREATOR`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_WRITE`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_BILLING_ADMIN`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_OWNER`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_READ_ONLY`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_READ_ONLY`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;/tbody&gt;
+         * &lt;/table&gt;
          * 
          * @return builder
          * 
@@ -828,15 +928,40 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         /**
          * @param roles Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
          * Accepted values are:
-         * 
-         * | Project roles                   | Organization roles  |
-         * |:----------                      |:-----------         |
-         * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-         * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-         * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-         * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-         * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-         * | `GROUP_READ_ONLY`               |                     |
+         * &lt;table&gt;
+         * &lt;thead&gt;
+         * &lt;tr&gt;
+         * &lt;th style=&#34;text-align:left&#34;&gt;Project roles&lt;/th&gt;
+         * &lt;th style=&#34;text-align:left&#34;&gt;Organization roles&lt;/th&gt;
+         * &lt;/tr&gt;
+         * &lt;/thead&gt;
+         * &lt;tbody&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_CLUSTER_MANAGER`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_OWNER`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_ADMIN`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_MEMBER`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_ONLY`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_GROUP_CREATOR`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_DATA_ACCESS_READ_WRITE`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_BILLING_ADMIN`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_OWNER`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`ORG_READ_ONLY`&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;tr&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;`GROUP_READ_ONLY`&lt;/td&gt;
+         * &lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+         * &lt;/tr&gt;
+         * &lt;/tbody&gt;
+         * &lt;/table&gt;
          * 
          * @return builder
          * 

@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly bool IsDeleted;
         public readonly ImmutableArray<Outputs.GetOrganizationsResultLinkResult> Links;
         /// <summary>
-        /// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        /// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/&gt;.
         /// </summary>
         public readonly bool MultiFactorAuthRequired;
         /// <summary>
@@ -35,7 +35,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        /// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-restrict-support-access/&gt;.
         /// 
         /// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         /// </summary>

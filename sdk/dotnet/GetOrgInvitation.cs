@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetOrgInvitation
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OrgInvitation
+        /// # Data Source: mongodbatlas.OrgInvitation
         /// 
         /// `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
         /// </summary>
@@ -20,7 +20,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrgInvitationResult>("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args ?? new GetOrgInvitationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OrgInvitation
+        /// # Data Source: mongodbatlas.OrgInvitation
         /// 
         /// `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
         /// </summary>

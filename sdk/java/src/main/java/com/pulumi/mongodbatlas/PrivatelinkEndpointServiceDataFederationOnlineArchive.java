@@ -15,7 +15,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive
+ * # Resource: mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive
  * 
  * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
  * 

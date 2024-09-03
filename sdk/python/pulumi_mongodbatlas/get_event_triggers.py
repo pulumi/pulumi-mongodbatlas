@@ -79,13 +79,13 @@ def get_event_triggers(app_id: Optional[str] = None,
                        project_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEventTriggersResult:
     """
-    ## # Data Source: get_event_triggers
+    # Data Source: get_event_triggers
 
     `get_event_triggers` describes all Event Triggers.
 
 
     :param str app_id: The ObjectID of your application.
-           * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+           * For more details on `project_id` and `app_id` see: <https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs>
     :param str project_id: The unique ID for the project to get all event triggers.
     """
     __args__ = dict()
@@ -106,13 +106,13 @@ def get_event_triggers_output(app_id: Optional[pulumi.Input[str]] = None,
                               project_id: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEventTriggersResult]:
     """
-    ## # Data Source: get_event_triggers
+    # Data Source: get_event_triggers
 
     `get_event_triggers` describes all Event Triggers.
 
 
     :param str app_id: The ObjectID of your application.
-           * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+           * For more details on `project_id` and `app_id` see: <https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs>
     :param str project_id: The unique ID for the project to get all event triggers.
     """
     ...

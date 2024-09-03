@@ -72,7 +72,7 @@ class AwaitableGetDatabaseUsersResult(GetDatabaseUsersResult):
 def get_database_users(project_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseUsersResult:
     """
-    ## # Data Source: get_database_users
+    # Data Source: get_database_users
 
     `get_database_users` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
 
@@ -150,7 +150,7 @@ def get_database_users(project_id: Optional[str] = None,
 def get_database_users_output(project_id: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseUsersResult]:
     """
-    ## # Data Source: get_database_users
+    # Data Source: get_database_users
 
     `get_database_users` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
 

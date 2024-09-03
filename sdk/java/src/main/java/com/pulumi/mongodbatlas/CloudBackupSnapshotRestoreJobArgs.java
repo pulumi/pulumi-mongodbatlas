@@ -33,7 +33,7 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
     }
 
     /**
-     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
      * * `delivery_type_config.download` - Set to `true` to use the download configuration.
      * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -48,7 +48,7 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
     private @Nullable Output<CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs> deliveryTypeConfig;
 
     /**
-     * @return Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+     * @return Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
      * * `delivery_type_config.download` - Set to `true` to use the download configuration.
      * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -142,7 +142,7 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
         }
 
         /**
-         * @param deliveryTypeConfig Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+         * @param deliveryTypeConfig Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
          * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
          * * `delivery_type_config.download` - Set to `true` to use the download configuration.
          * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -161,7 +161,7 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
         }
 
         /**
-         * @param deliveryTypeConfig Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+         * @param deliveryTypeConfig Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
          * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
          * * `delivery_type_config.download` - Set to `true` to use the download configuration.
          * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.

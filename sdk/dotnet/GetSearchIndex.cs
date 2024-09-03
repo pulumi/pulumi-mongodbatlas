@@ -12,12 +12,11 @@ namespace Pulumi.Mongodbatlas
     public static class GetSearchIndex
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.SearchIndex
+        /// # Data Source: mongodbatlas.SearchIndex
         /// 
         /// `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -43,12 +42,11 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexResult>("mongodbatlas:index/getSearchIndex:getSearchIndex", args ?? new GetSearchIndexArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.SearchIndex
+        /// # Data Source: mongodbatlas.SearchIndex
         /// 
         /// `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 

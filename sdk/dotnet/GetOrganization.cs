@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetOrganization
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Organization
+        /// # Data Source: mongodbatlas.Organization
         /// 
         /// `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
         /// 
@@ -39,7 +39,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("mongodbatlas:index/getOrganization:getOrganization", args ?? new GetOrganizationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Organization
+        /// # Data Source: mongodbatlas.Organization
         /// 
         /// `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
         /// 
@@ -113,7 +113,7 @@ namespace Pulumi.Mongodbatlas
         public readonly bool IsDeleted;
         public readonly ImmutableArray<Outputs.GetOrganizationLinkResult> Links;
         /// <summary>
-        /// (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        /// (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/&gt;.
         /// </summary>
         public readonly bool MultiFactorAuthRequired;
         /// <summary>
@@ -122,7 +122,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string Name;
         public readonly string OrgId;
         /// <summary>
-        /// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        /// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: &lt;https://www.mongodb.com/docs/atlas/security-restrict-support-access/&gt;.
         /// </summary>
         public readonly bool RestrictEmployeeAccess;
 

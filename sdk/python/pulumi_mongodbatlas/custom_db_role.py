@@ -178,7 +178,7 @@ class CustomDbRole(pulumi.CustomResource):
                  role_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: CustomDbRole
+        # Resource: CustomDbRole
 
         `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
 
@@ -220,7 +220,7 @@ class CustomDbRole(pulumi.CustomResource):
             ])
         ```
 
-        ### With Inherited Roles
+        ### with inherited roles
 
         ```python
         import pulumi
@@ -304,7 +304,7 @@ class CustomDbRole(pulumi.CustomResource):
                  args: CustomDbRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: CustomDbRole
+        # Resource: CustomDbRole
 
         `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
 
@@ -346,7 +346,7 @@ class CustomDbRole(pulumi.CustomResource):
             ])
         ```
 
-        ### With Inherited Roles
+        ### with inherited roles
 
         ```python
         import pulumi

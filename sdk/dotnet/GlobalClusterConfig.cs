@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.GlobalClusterConfig
+    /// # Resource: mongodbatlas.GlobalClusterConfig
     /// 
     /// `mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.
     /// 

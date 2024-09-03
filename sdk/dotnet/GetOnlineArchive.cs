@@ -12,22 +12,30 @@ namespace Pulumi.Mongodbatlas
     public static class GetOnlineArchive
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OnlineArchive
+        /// # Data Source: mongodbatlas.OnlineArchive
         /// 
         /// `mongodbatlas.OnlineArchive` describes an Online Archive
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
-        /// 
         /// ## Example Usage
         /// 
-        /// ```terraform 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// data "mongodbatlas_online_archive" "test" {
-        ///     project_id   = var.project_id
-        ///     cluster_name = var.cluster_name
-        ///     archive_id     = "5ebad3c1fe9c0ab8d37d61e1"
-        /// }
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetOnlineArchive.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClusterName = clusterName,
+        ///         ArchiveId = "5ebad3c1fe9c0ab8d37d61e1",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// 
         /// ## Attributes reference
@@ -57,11 +65,10 @@ namespace Pulumi.Mongodbatlas
         /// * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
         /// * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
         /// 
-        /// 
         /// ### Schedule
         /// 
         /// * `type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-        /// * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
         /// * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
@@ -79,22 +86,30 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchiveResult>("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args ?? new GetOnlineArchiveArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OnlineArchive
+        /// # Data Source: mongodbatlas.OnlineArchive
         /// 
         /// `mongodbatlas.OnlineArchive` describes an Online Archive
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
-        /// 
         /// ## Example Usage
         /// 
-        /// ```terraform 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// data "mongodbatlas_online_archive" "test" {
-        ///     project_id   = var.project_id
-        ///     cluster_name = var.cluster_name
-        ///     archive_id     = "5ebad3c1fe9c0ab8d37d61e1"
-        /// }
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetOnlineArchive.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClusterName = clusterName,
+        ///         ArchiveId = "5ebad3c1fe9c0ab8d37d61e1",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// 
         /// ## Attributes reference
@@ -124,11 +139,10 @@ namespace Pulumi.Mongodbatlas
         /// * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
         /// * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
         /// 
-        /// 
         /// ### Schedule
         /// 
         /// * `type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-        /// * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
         /// * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.

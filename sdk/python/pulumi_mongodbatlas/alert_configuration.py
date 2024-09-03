@@ -29,7 +29,6 @@ class AlertConfigurationArgs:
                
                > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
                
-               
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
@@ -54,7 +53,6 @@ class AlertConfigurationArgs:
         The type of event that will trigger an alert.
 
         > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
-
 
         > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         """
@@ -147,7 +145,6 @@ class _AlertConfigurationState:
                
                > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
                
-               
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -216,7 +213,6 @@ class _AlertConfigurationState:
         The type of event that will trigger an alert.
 
         > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
-
 
         > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         """
@@ -301,7 +297,7 @@ class AlertConfiguration(pulumi.CustomResource):
                  threshold_config: Optional[pulumi.Input[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
                  __props__=None):
         """
-        ## # Resource: AlertConfiguration
+        # Resource: AlertConfiguration
 
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 
@@ -339,7 +335,7 @@ class AlertConfiguration(pulumi.CustomResource):
             })
         ```
 
-        > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+        > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: <https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/>
 
         ```python
         import pulumi
@@ -451,7 +447,6 @@ class AlertConfiguration(pulumi.CustomResource):
                
                > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
                
-               
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         """
@@ -462,7 +457,7 @@ class AlertConfiguration(pulumi.CustomResource):
                  args: AlertConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: AlertConfiguration
+        # Resource: AlertConfiguration
 
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 
@@ -500,7 +495,7 @@ class AlertConfiguration(pulumi.CustomResource):
             })
         ```
 
-        > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+        > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: <https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/>
 
         ```python
         import pulumi
@@ -684,7 +679,6 @@ class AlertConfiguration(pulumi.CustomResource):
                
                > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
                
-               
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -736,7 +730,6 @@ class AlertConfiguration(pulumi.CustomResource):
         The type of event that will trigger an alert.
 
         > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
-
 
         > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         """

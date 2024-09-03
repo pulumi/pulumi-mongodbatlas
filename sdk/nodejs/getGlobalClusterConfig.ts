@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.GlobalClusterConfig
+ * # Data Source: mongodbatlas.GlobalClusterConfig
  *
  * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
  *
@@ -140,7 +140,7 @@ export interface GetGlobalClusterConfigResult {
     readonly projectId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.GlobalClusterConfig
+ * # Data Source: mongodbatlas.GlobalClusterConfig
  *
  * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
  *

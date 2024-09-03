@@ -378,7 +378,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitS
 
 type AdvancedClusterBiConnectorConfig struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-	// *
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled *bool `pulumi:"enabled"`
@@ -405,7 +404,6 @@ type AdvancedClusterBiConnectorConfigInput interface {
 
 type AdvancedClusterBiConnectorConfigArgs struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-	// *
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
@@ -497,7 +495,6 @@ func (o AdvancedClusterBiConnectorConfigOutput) ToAdvancedClusterBiConnectorConf
 }
 
 // Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-// *
 // - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
 func (o AdvancedClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
@@ -540,7 +537,6 @@ func (o AdvancedClusterBiConnectorConfigPtrOutput) Elem() AdvancedClusterBiConne
 }
 
 // Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-// *
 // - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
 func (o AdvancedClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
@@ -2644,14 +2640,42 @@ func (o AdvancedClusterTagArrayOutput) Index(i pulumi.IntInput) AdvancedClusterT
 
 type AlertConfigurationMatcher struct {
 	// Name of the field in the target object to match on.
-	//
-	// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-	// |:----------           |:-------------       |:------                 |
-	// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-	// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-	// | `PORT`              | `CLUSTER_NAME`      |                         |
-	// | `HOSTNAME_AND_PORT` |                     |                         |
-	// | `REPLICA_SET_NAME`  |                     |                         |
+	// <table>
+	// <thead>
+	// <tr>
+	// <th style="text-align:left">Host alerts</th>
+	// <th style="text-align:left">Replica set alerts</th>
+	// <th style="text-align:left">Sharded cluster alerts</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td style="text-align:left">`TYPE_NAME`</td>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`PORT`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// </tbody>
+	// </table>
 	//
 	// All other types of alerts do not support matchers.
 	FieldName string `pulumi:"fieldName"`
@@ -2678,14 +2702,42 @@ type AlertConfigurationMatcherInput interface {
 
 type AlertConfigurationMatcherArgs struct {
 	// Name of the field in the target object to match on.
-	//
-	// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-	// |:----------           |:-------------       |:------                 |
-	// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-	// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-	// | `PORT`              | `CLUSTER_NAME`      |                         |
-	// | `HOSTNAME_AND_PORT` |                     |                         |
-	// | `REPLICA_SET_NAME`  |                     |                         |
+	// <table>
+	// <thead>
+	// <tr>
+	// <th style="text-align:left">Host alerts</th>
+	// <th style="text-align:left">Replica set alerts</th>
+	// <th style="text-align:left">Sharded cluster alerts</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td style="text-align:left">`TYPE_NAME`</td>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`PORT`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// </tbody>
+	// </table>
 	//
 	// All other types of alerts do not support matchers.
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
@@ -2751,14 +2803,42 @@ func (o AlertConfigurationMatcherOutput) ToAlertConfigurationMatcherOutputWithCo
 }
 
 // Name of the field in the target object to match on.
-//
-// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-// |:----------           |:-------------       |:------                 |
-// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-// | `PORT`              | `CLUSTER_NAME`      |                         |
-// | `HOSTNAME_AND_PORT` |                     |                         |
-// | `REPLICA_SET_NAME`  |                     |                         |
+// <table>
+// <thead>
+// <tr>
+// <th style="text-align:left">Host alerts</th>
+// <th style="text-align:left">Replica set alerts</th>
+// <th style="text-align:left">Sharded cluster alerts</th>
+// </tr>
+// </thead>
+// <tbody>
+// <tr>
+// <td style="text-align:left">`TYPE_NAME`</td>
+// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+// <td style="text-align:left">`CLUSTER_NAME`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`HOSTNAME`</td>
+// <td style="text-align:left">`SHARD_NAME`</td>
+// <td style="text-align:left">`SHARD_NAME`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`PORT`</td>
+// <td style="text-align:left">`CLUSTER_NAME`</td>
+// <td style="text-align:left"></td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+// <td style="text-align:left"></td>
+// <td style="text-align:left"></td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+// <td style="text-align:left"></td>
+// <td style="text-align:left"></td>
+// </tr>
+// </tbody>
+// </table>
 //
 // All other types of alerts do not support matchers.
 func (o AlertConfigurationMatcherOutput) FieldName() pulumi.StringOutput {
@@ -3031,15 +3111,40 @@ type AlertConfigurationNotification struct {
 	OpsGenieRegion *string `pulumi:"opsGenieRegion"`
 	// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	// Accepted values are:
-	//
-	// | Project roles                   | Organization roles  |
-	// |:----------                      |:-----------         |
-	// | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-	// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-	// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-	// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-	// | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-	// | `GROUP_READ_ONLY`               |                     |
+	// <table>
+	// <thead>
+	// <tr>
+	// <th style="text-align:left">Project roles</th>
+	// <th style="text-align:left">Organization roles</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td style="text-align:left">`GROUP_CLUSTER_MANAGER`</td>
+	// <td style="text-align:left">`ORG_OWNER`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_DATA_ACCESS_ADMIN`</td>
+	// <td style="text-align:left">`ORG_MEMBER`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_DATA_ACCESS_READ_ONLY`</td>
+	// <td style="text-align:left">`ORG_GROUP_CREATOR`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_DATA_ACCESS_READ_WRITE`</td>
+	// <td style="text-align:left">`ORG_BILLING_ADMIN`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_OWNER`</td>
+	// <td style="text-align:left">`ORG_READ_ONLY`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_READ_ONLY`</td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// </tbody>
+	// </table>
 	Roles []string `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey *string `pulumi:"serviceKey"`
@@ -3119,15 +3224,40 @@ type AlertConfigurationNotificationArgs struct {
 	OpsGenieRegion pulumi.StringPtrInput `pulumi:"opsGenieRegion"`
 	// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	// Accepted values are:
-	//
-	// | Project roles                   | Organization roles  |
-	// |:----------                      |:-----------         |
-	// | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-	// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-	// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-	// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-	// | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-	// | `GROUP_READ_ONLY`               |                     |
+	// <table>
+	// <thead>
+	// <tr>
+	// <th style="text-align:left">Project roles</th>
+	// <th style="text-align:left">Organization roles</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td style="text-align:left">`GROUP_CLUSTER_MANAGER`</td>
+	// <td style="text-align:left">`ORG_OWNER`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_DATA_ACCESS_ADMIN`</td>
+	// <td style="text-align:left">`ORG_MEMBER`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_DATA_ACCESS_READ_ONLY`</td>
+	// <td style="text-align:left">`ORG_GROUP_CREATOR`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_DATA_ACCESS_READ_WRITE`</td>
+	// <td style="text-align:left">`ORG_BILLING_ADMIN`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_OWNER`</td>
+	// <td style="text-align:left">`ORG_READ_ONLY`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`GROUP_READ_ONLY`</td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// </tbody>
+	// </table>
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey pulumi.StringPtrInput `pulumi:"serviceKey"`
@@ -3288,15 +3418,40 @@ func (o AlertConfigurationNotificationOutput) OpsGenieRegion() pulumi.StringPtrO
 
 // Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 // Accepted values are:
-//
-// | Project roles                   | Organization roles  |
-// |:----------                      |:-----------         |
-// | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-// | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-// | `GROUP_READ_ONLY`               |                     |
+// <table>
+// <thead>
+// <tr>
+// <th style="text-align:left">Project roles</th>
+// <th style="text-align:left">Organization roles</th>
+// </tr>
+// </thead>
+// <tbody>
+// <tr>
+// <td style="text-align:left">`GROUP_CLUSTER_MANAGER`</td>
+// <td style="text-align:left">`ORG_OWNER`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`GROUP_DATA_ACCESS_ADMIN`</td>
+// <td style="text-align:left">`ORG_MEMBER`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`GROUP_DATA_ACCESS_READ_ONLY`</td>
+// <td style="text-align:left">`ORG_GROUP_CREATOR`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`GROUP_DATA_ACCESS_READ_WRITE`</td>
+// <td style="text-align:left">`ORG_BILLING_ADMIN`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`GROUP_OWNER`</td>
+// <td style="text-align:left">`ORG_READ_ONLY`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`GROUP_READ_ONLY`</td>
+// <td style="text-align:left"></td>
+// </tr>
+// </tbody>
+// </table>
 func (o AlertConfigurationNotificationOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
@@ -4591,7 +4746,7 @@ type CloudBackupScheduleCopySetting struct {
 	CloudProvider *string `pulumi:"cloudProvider"`
 	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
 	Frequencies []string `pulumi:"frequencies"`
-	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
 	RegionName *string `pulumi:"regionName"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
@@ -4619,7 +4774,7 @@ type CloudBackupScheduleCopySettingArgs struct {
 	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
 	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
-	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
 	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
@@ -4692,7 +4847,7 @@ func (o CloudBackupScheduleCopySettingOutput) Frequencies() pulumi.StringArrayOu
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) []string { return v.Frequencies }).(pulumi.StringArrayOutput)
 }
 
-// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
 func (o CloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.RegionName }).(pulumi.StringPtrOutput)
 }
@@ -5716,9 +5871,9 @@ func (o CloudBackupSchedulePolicyItemYearlyArrayOutput) Index(i pulumi.IntInput)
 }
 
 type CloudBackupSnapshotExportJobComponent struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 	ExportId *string `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
 	ReplicaSetName *string `pulumi:"replicaSetName"`
 }
 
@@ -5734,9 +5889,9 @@ type CloudBackupSnapshotExportJobComponentInput interface {
 }
 
 type CloudBackupSnapshotExportJobComponentArgs struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 	ExportId pulumi.StringPtrInput `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
 	ReplicaSetName pulumi.StringPtrInput `pulumi:"replicaSetName"`
 }
 
@@ -5791,12 +5946,12 @@ func (o CloudBackupSnapshotExportJobComponentOutput) ToCloudBackupSnapshotExport
 	return o
 }
 
-// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 func (o CloudBackupSnapshotExportJobComponentOutput) ExportId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotExportJobComponent) *string { return v.ExportId }).(pulumi.StringPtrOutput)
 }
 
-// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
 func (o CloudBackupSnapshotExportJobComponentOutput) ReplicaSetName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotExportJobComponent) *string { return v.ReplicaSetName }).(pulumi.StringPtrOutput)
 }
@@ -7255,8 +7410,7 @@ func (o ClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitSeconds()
 
 type ClusterBiConnectorConfig struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-	// *
-	// - Set to `true` to enable BI Connector for Atlas.
+	// * - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled *bool `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
@@ -7282,8 +7436,7 @@ type ClusterBiConnectorConfigInput interface {
 
 type ClusterBiConnectorConfigArgs struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-	// *
-	// - Set to `true` to enable BI Connector for Atlas.
+	// * - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
@@ -7374,8 +7527,7 @@ func (o ClusterBiConnectorConfigOutput) ToClusterBiConnectorConfigPtrOutputWithC
 }
 
 // Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-// *
-// - Set to `true` to enable BI Connector for Atlas.
+// * - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
 func (o ClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterBiConnectorConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
@@ -7417,8 +7569,7 @@ func (o ClusterBiConnectorConfigPtrOutput) Elem() ClusterBiConnectorConfigOutput
 }
 
 // Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-// *
-// - Set to `true` to enable BI Connector for Atlas.
+// * - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
 func (o ClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClusterBiConnectorConfig) *bool {
@@ -13812,7 +13963,7 @@ type OnlineArchiveCriteria struct {
 	DateFormat *string `pulumi:"dateFormat"`
 	// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 	//
-	// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+	// ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value***
 	//
 	// The only field required for criteria type `CUSTOM`
 	ExpireAfterDays *int `pulumi:"expireAfterDays"`
@@ -13842,7 +13993,7 @@ type OnlineArchiveCriteriaArgs struct {
 	DateFormat pulumi.StringPtrInput `pulumi:"dateFormat"`
 	// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 	//
-	// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+	// ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value***
 	//
 	// The only field required for criteria type `CUSTOM`
 	ExpireAfterDays pulumi.IntPtrInput `pulumi:"expireAfterDays"`
@@ -13943,7 +14094,7 @@ func (o OnlineArchiveCriteriaOutput) DateFormat() pulumi.StringPtrOutput {
 
 // Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 //
-// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+// ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value***
 //
 // The only field required for criteria type `CUSTOM`
 func (o OnlineArchiveCriteriaOutput) ExpireAfterDays() pulumi.IntPtrOutput {
@@ -14008,7 +14159,7 @@ func (o OnlineArchiveCriteriaPtrOutput) DateFormat() pulumi.StringPtrOutput {
 
 // Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 //
-// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+// ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value***
 //
 // The only field required for criteria type `CUSTOM`
 func (o OnlineArchiveCriteriaPtrOutput) ExpireAfterDays() pulumi.IntPtrOutput {
@@ -19044,7 +19195,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling struct {
 	// Flag that indicates whether instance size auto-scaling is enabled.
 	ComputeEnabled bool `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40).
-	// #### Advanced Configuration
 	ComputeMaxInstanceSize string `pulumi:"computeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (such as M10).
 	ComputeMinInstanceSize string `pulumi:"computeMinInstanceSize"`
@@ -19069,7 +19219,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs struc
 	// Flag that indicates whether instance size auto-scaling is enabled.
 	ComputeEnabled pulumi.BoolInput `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40).
-	// #### Advanced Configuration
 	ComputeMaxInstanceSize pulumi.StringInput `pulumi:"computeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (such as M10).
 	ComputeMinInstanceSize pulumi.StringInput `pulumi:"computeMinInstanceSize"`
@@ -19138,7 +19287,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput)
 }
 
 // Maximum instance size to which your cluster can automatically scale (such as M40).
-// #### Advanced Configuration
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) ComputeMaxInstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling) string {
 		return v.ComputeMaxInstanceSize
@@ -19282,7 +19430,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 	// Flag that indicates whether instance size auto-scaling is enabled.
 	ComputeEnabled bool `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40).
-	// #### Advanced Configuration
 	ComputeMaxInstanceSize string `pulumi:"computeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (such as M10).
 	ComputeMinInstanceSize string `pulumi:"computeMinInstanceSize"`
@@ -19307,7 +19454,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
 	// Flag that indicates whether instance size auto-scaling is enabled.
 	ComputeEnabled pulumi.BoolInput `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40).
-	// #### Advanced Configuration
 	ComputeMaxInstanceSize pulumi.StringInput `pulumi:"computeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (such as M10).
 	ComputeMinInstanceSize pulumi.StringInput `pulumi:"computeMinInstanceSize"`
@@ -19374,7 +19520,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeE
 }
 
 // Maximum instance size to which your cluster can automatically scale (such as M40).
-// #### Advanced Configuration
 func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeMaxInstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAutoScaling) string {
 		return v.ComputeMaxInstanceSize
@@ -21823,6 +21968,42 @@ func (o GetAdvancedClustersResultTagArrayOutput) Index(i pulumi.IntInput) GetAdv
 
 type GetAlertConfigurationMatcher struct {
 	// Name of the field in the target object to match on.
+	// <table>
+	// <thead>
+	// <tr>
+	// <th style="text-align:left">Host alerts</th>
+	// <th style="text-align:left">Replica set alerts</th>
+	// <th style="text-align:left">Sharded cluster alerts</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td style="text-align:left">`TYPE_NAME`</td>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`PORT`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// </tbody>
+	// </table>
 	FieldName string `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
@@ -21851,6 +22032,42 @@ type GetAlertConfigurationMatcherInput interface {
 
 type GetAlertConfigurationMatcherArgs struct {
 	// Name of the field in the target object to match on.
+	// <table>
+	// <thead>
+	// <tr>
+	// <th style="text-align:left">Host alerts</th>
+	// <th style="text-align:left">Replica set alerts</th>
+	// <th style="text-align:left">Sharded cluster alerts</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td style="text-align:left">`TYPE_NAME`</td>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`PORT`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// </tbody>
+	// </table>
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
@@ -21918,6 +22135,42 @@ func (o GetAlertConfigurationMatcherOutput) ToGetAlertConfigurationMatcherOutput
 }
 
 // Name of the field in the target object to match on.
+// <table>
+// <thead>
+// <tr>
+// <th style="text-align:left">Host alerts</th>
+// <th style="text-align:left">Replica set alerts</th>
+// <th style="text-align:left">Sharded cluster alerts</th>
+// </tr>
+// </thead>
+// <tbody>
+// <tr>
+// <td style="text-align:left">`TYPE_NAME`</td>
+// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+// <td style="text-align:left">`CLUSTER_NAME`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`HOSTNAME`</td>
+// <td style="text-align:left">`SHARD_NAME`</td>
+// <td style="text-align:left">`SHARD_NAME`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`PORT`</td>
+// <td style="text-align:left">`CLUSTER_NAME`</td>
+// <td style="text-align:left"></td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+// <td style="text-align:left"></td>
+// <td style="text-align:left"></td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+// <td style="text-align:left"></td>
+// <td style="text-align:left"></td>
+// </tr>
+// </tbody>
+// </table>
 func (o GetAlertConfigurationMatcherOutput) FieldName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMatcher) string { return v.FieldName }).(pulumi.StringOutput)
 }
@@ -23015,6 +23268,42 @@ func (o GetAlertConfigurationsResultArrayOutput) Index(i pulumi.IntInput) GetAle
 
 type GetAlertConfigurationsResultMatcher struct {
 	// Name of the field in the target object to match on.
+	// <table>
+	// <thead>
+	// <tr>
+	// <th style="text-align:left">Host alerts</th>
+	// <th style="text-align:left">Replica set alerts</th>
+	// <th style="text-align:left">Sharded cluster alerts</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td style="text-align:left">`TYPE_NAME`</td>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`PORT`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// </tbody>
+	// </table>
 	FieldName string `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
@@ -23043,6 +23332,42 @@ type GetAlertConfigurationsResultMatcherInput interface {
 
 type GetAlertConfigurationsResultMatcherArgs struct {
 	// Name of the field in the target object to match on.
+	// <table>
+	// <thead>
+	// <tr>
+	// <th style="text-align:left">Host alerts</th>
+	// <th style="text-align:left">Replica set alerts</th>
+	// <th style="text-align:left">Sharded cluster alerts</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td style="text-align:left">`TYPE_NAME`</td>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// <td style="text-align:left">`SHARD_NAME`</td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`PORT`</td>
+	// <td style="text-align:left">`CLUSTER_NAME`</td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// <tr>
+	// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+	// <td style="text-align:left"></td>
+	// <td style="text-align:left"></td>
+	// </tr>
+	// </tbody>
+	// </table>
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
@@ -23110,6 +23435,42 @@ func (o GetAlertConfigurationsResultMatcherOutput) ToGetAlertConfigurationsResul
 }
 
 // Name of the field in the target object to match on.
+// <table>
+// <thead>
+// <tr>
+// <th style="text-align:left">Host alerts</th>
+// <th style="text-align:left">Replica set alerts</th>
+// <th style="text-align:left">Sharded cluster alerts</th>
+// </tr>
+// </thead>
+// <tbody>
+// <tr>
+// <td style="text-align:left">`TYPE_NAME`</td>
+// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+// <td style="text-align:left">`CLUSTER_NAME`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`HOSTNAME`</td>
+// <td style="text-align:left">`SHARD_NAME`</td>
+// <td style="text-align:left">`SHARD_NAME`</td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`PORT`</td>
+// <td style="text-align:left">`CLUSTER_NAME`</td>
+// <td style="text-align:left"></td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+// <td style="text-align:left"></td>
+// <td style="text-align:left"></td>
+// </tr>
+// <tr>
+// <td style="text-align:left">`REPLICA_SET_NAME`</td>
+// <td style="text-align:left"></td>
+// <td style="text-align:left"></td>
+// </tr>
+// </tbody>
+// </table>
 func (o GetAlertConfigurationsResultMatcherOutput) FieldName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultMatcher) string { return v.FieldName }).(pulumi.StringOutput)
 }
@@ -24276,8 +24637,8 @@ type GetAtlasUsersResult struct {
 	MobileNumber string                    `pulumi:"mobileNumber"`
 	Roles        []GetAtlasUsersResultRole `pulumi:"roles"`
 	// List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
-	// * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
-	// * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+	// * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
+	// * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
 	// * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
 	// * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
 	// * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
@@ -24318,8 +24679,8 @@ type GetAtlasUsersResultArgs struct {
 	MobileNumber pulumi.StringInput                `pulumi:"mobileNumber"`
 	Roles        GetAtlasUsersResultRoleArrayInput `pulumi:"roles"`
 	// List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
-	// * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
-	// * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+	// * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
+	// * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
 	// * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
 	// * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
 	// * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
@@ -24429,8 +24790,8 @@ func (o GetAtlasUsersResultOutput) Roles() GetAtlasUsersResultRoleArrayOutput {
 }
 
 // List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
-// * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
-// * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+// * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
+// * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
 // * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
 // * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
 // * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
@@ -25345,7 +25706,7 @@ type GetCloudBackupScheduleCopySetting struct {
 	CloudProvider string `pulumi:"cloudProvider"`
 	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
 	Frequencies []string `pulumi:"frequencies"`
-	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
 	RegionName string `pulumi:"regionName"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
@@ -25373,7 +25734,7 @@ type GetCloudBackupScheduleCopySettingArgs struct {
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
-	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
@@ -25446,7 +25807,7 @@ func (o GetCloudBackupScheduleCopySettingOutput) Frequencies() pulumi.StringArra
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) []string { return v.Frequencies }).(pulumi.StringArrayOutput)
 }
 
-// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
 func (o GetCloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.RegionName }).(pulumi.StringOutput)
 }
@@ -26411,9 +26772,9 @@ func (o GetCloudBackupSnapshotExportBucketsResultArrayOutput) Index(i pulumi.Int
 }
 
 type GetCloudBackupSnapshotExportJobComponent struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 	ExportId string `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
 	ReplicaSetName string `pulumi:"replicaSetName"`
 }
 
@@ -26429,9 +26790,9 @@ type GetCloudBackupSnapshotExportJobComponentInput interface {
 }
 
 type GetCloudBackupSnapshotExportJobComponentArgs struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 	ExportId pulumi.StringInput `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
 	ReplicaSetName pulumi.StringInput `pulumi:"replicaSetName"`
 }
 
@@ -26486,12 +26847,12 @@ func (o GetCloudBackupSnapshotExportJobComponentOutput) ToGetCloudBackupSnapshot
 	return o
 }
 
-// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 func (o GetCloudBackupSnapshotExportJobComponentOutput) ExportId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobComponent) string { return v.ExportId }).(pulumi.StringOutput)
 }
 
-// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
 func (o GetCloudBackupSnapshotExportJobComponentOutput) ReplicaSetName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobComponent) string { return v.ReplicaSetName }).(pulumi.StringOutput)
 }
@@ -26623,7 +26984,7 @@ func (o GetCloudBackupSnapshotExportJobCustomDataArrayOutput) Index(i pulumi.Int
 }
 
 type GetCloudBackupSnapshotExportJobsResult struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 	Components []GetCloudBackupSnapshotExportJobsResultComponent `pulumi:"components"`
 	// Timestamp in ISO 8601 date and time format in UTC when the export job was created.
 	CreatedAt string `pulumi:"createdAt"`
@@ -26665,7 +27026,7 @@ type GetCloudBackupSnapshotExportJobsResultInput interface {
 }
 
 type GetCloudBackupSnapshotExportJobsResultArgs struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 	Components GetCloudBackupSnapshotExportJobsResultComponentArrayInput `pulumi:"components"`
 	// Timestamp in ISO 8601 date and time format in UTC when the export job was created.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
@@ -26746,7 +27107,7 @@ func (o GetCloudBackupSnapshotExportJobsResultOutput) ToGetCloudBackupSnapshotEx
 	return o
 }
 
-// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 func (o GetCloudBackupSnapshotExportJobsResultOutput) Components() GetCloudBackupSnapshotExportJobsResultComponentArrayOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) []GetCloudBackupSnapshotExportJobsResultComponent {
 		return v.Components
@@ -26835,9 +27196,9 @@ func (o GetCloudBackupSnapshotExportJobsResultArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetCloudBackupSnapshotExportJobsResultComponent struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 	ExportId string `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
 	ReplicaSetName string `pulumi:"replicaSetName"`
 }
 
@@ -26853,9 +27214,9 @@ type GetCloudBackupSnapshotExportJobsResultComponentInput interface {
 }
 
 type GetCloudBackupSnapshotExportJobsResultComponentArgs struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 	ExportId pulumi.StringInput `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
 	ReplicaSetName pulumi.StringInput `pulumi:"replicaSetName"`
 }
 
@@ -26910,12 +27271,12 @@ func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ToGetCloudBackupS
 	return o
 }
 
-// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+// *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
 func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ExportId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResultComponent) string { return v.ExportId }).(pulumi.StringOutput)
 }
 
-// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+// *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
 func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ReplicaSetName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResultComponent) string { return v.ReplicaSetName }).(pulumi.StringOutput)
 }
@@ -37587,7 +37948,6 @@ type GetFederatedDatabaseInstancesResultCloudProviderConfigAws struct {
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
 	IamUserArn string `pulumi:"iamUserArn"`
 	// Unique identifier of the role that the data lake can use to access the data stores.
-	// #### `dataProcessRegion` - The cloud provider region to which the Federated Instance routes client connections for data processing.
 	RoleId       string `pulumi:"roleId"`
 	TestS3Bucket string `pulumi:"testS3Bucket"`
 }
@@ -37614,7 +37974,6 @@ type GetFederatedDatabaseInstancesResultCloudProviderConfigAwsArgs struct {
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
 	IamUserArn pulumi.StringInput `pulumi:"iamUserArn"`
 	// Unique identifier of the role that the data lake can use to access the data stores.
-	// #### `dataProcessRegion` - The cloud provider region to which the Federated Instance routes client connections for data processing.
 	RoleId       pulumi.StringInput `pulumi:"roleId"`
 	TestS3Bucket pulumi.StringInput `pulumi:"testS3Bucket"`
 }
@@ -37664,7 +38023,6 @@ func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAwsOutput) IamUser
 }
 
 // Unique identifier of the role that the data lake can use to access the data stores.
-// #### `dataProcessRegion` - The cloud provider region to which the Federated Instance routes client connections for data processing.
 func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAwsOutput) RoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAws) string { return v.RoleId }).(pulumi.StringOutput)
 }
@@ -44265,11 +44623,11 @@ type GetOrganizationsResult struct {
 	// Flag that indicates whether this organization has been deleted.
 	IsDeleted bool                         `pulumi:"isDeleted"`
 	Links     []GetOrganizationsResultLink `pulumi:"links"`
-	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
 	MultiFactorAuthRequired bool `pulumi:"multiFactorAuthRequired"`
 	// Human-readable label that identifies the organization.
 	Name string `pulumi:"name"`
-	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
 	//
 	// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
 	RestrictEmployeeAccess bool `pulumi:"restrictEmployeeAccess"`
@@ -44294,11 +44652,11 @@ type GetOrganizationsResultArgs struct {
 	// Flag that indicates whether this organization has been deleted.
 	IsDeleted pulumi.BoolInput                     `pulumi:"isDeleted"`
 	Links     GetOrganizationsResultLinkArrayInput `pulumi:"links"`
-	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
 	MultiFactorAuthRequired pulumi.BoolInput `pulumi:"multiFactorAuthRequired"`
 	// Human-readable label that identifies the organization.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
 	//
 	// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
 	RestrictEmployeeAccess pulumi.BoolInput `pulumi:"restrictEmployeeAccess"`
@@ -44374,7 +44732,7 @@ func (o GetOrganizationsResultOutput) Links() GetOrganizationsResultLinkArrayOut
 	return o.ApplyT(func(v GetOrganizationsResult) []GetOrganizationsResultLink { return v.Links }).(GetOrganizationsResultLinkArrayOutput)
 }
 
-// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
 func (o GetOrganizationsResultOutput) MultiFactorAuthRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.MultiFactorAuthRequired }).(pulumi.BoolOutput)
 }
@@ -44384,7 +44742,7 @@ func (o GetOrganizationsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
 //
 // See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
 func (o GetOrganizationsResultOutput) RestrictEmployeeAccess() pulumi.BoolOutput {

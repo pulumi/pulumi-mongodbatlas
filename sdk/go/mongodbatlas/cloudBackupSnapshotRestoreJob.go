@@ -241,7 +241,7 @@ type CloudBackupSnapshotRestoreJob struct {
 	Cancelled pulumi.BoolOutput `pulumi:"cancelled"`
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
-	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
 	// * `delivery_type_config.download` - Set to `true` to use the download configuration.
 	// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplogTs` and `oplogInc`, or `pointInTimeUtcSeconds`.
@@ -323,7 +323,7 @@ type cloudBackupSnapshotRestoreJobState struct {
 	Cancelled *bool `pulumi:"cancelled"`
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName *string `pulumi:"clusterName"`
-	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
 	// * `delivery_type_config.download` - Set to `true` to use the download configuration.
 	// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplogTs` and `oplogInc`, or `pointInTimeUtcSeconds`.
@@ -370,7 +370,7 @@ type CloudBackupSnapshotRestoreJobState struct {
 	Cancelled pulumi.BoolPtrInput
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName pulumi.StringPtrInput
-	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
 	// * `delivery_type_config.download` - Set to `true` to use the download configuration.
 	// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplogTs` and `oplogInc`, or `pointInTimeUtcSeconds`.
@@ -419,7 +419,7 @@ func (CloudBackupSnapshotRestoreJobState) ElementType() reflect.Type {
 type cloudBackupSnapshotRestoreJobArgs struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName string `pulumi:"clusterName"`
-	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
 	// * `delivery_type_config.download` - Set to `true` to use the download configuration.
 	// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplogTs` and `oplogInc`, or `pointInTimeUtcSeconds`.
@@ -439,7 +439,7 @@ type cloudBackupSnapshotRestoreJobArgs struct {
 type CloudBackupSnapshotRestoreJobArgs struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName pulumi.StringInput
-	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
 	// * `delivery_type_config.download` - Set to `true` to use the download configuration.
 	// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplogTs` and `oplogInc`, or `pointInTimeUtcSeconds`.
@@ -552,7 +552,7 @@ func (o CloudBackupSnapshotRestoreJobOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
-// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in “true“.
+// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in `true`.
 // * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
 // * `delivery_type_config.download` - Set to `true` to use the download configuration.
 // * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplogTs` and `oplogInc`, or `pointInTimeUtcSeconds`.

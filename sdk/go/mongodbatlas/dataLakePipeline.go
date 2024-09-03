@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: DataLakePipeline
+// # Resource: DataLakePipeline
 //
 // `DataLakePipeline` provides a Data Lake Pipeline resource.
 //

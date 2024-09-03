@@ -48,14 +48,14 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
     }
 
     /**
-     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
+     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under &lt;https://www.mongodb.com/docs/atlas/reference/cloud-providers/&gt; &#39;regions&#39; link
      * 
      */
     @Import(name="regionName")
     private @Nullable Output<String> regionName;
 
     /**
-     * @return Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
+     * @return Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under &lt;https://www.mongodb.com/docs/atlas/reference/cloud-providers/&gt; &#39;regions&#39; link
      * 
      */
     public Optional<Output<String>> regionName() {
@@ -197,7 +197,7 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param regionName Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
+         * @param regionName Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under &lt;https://www.mongodb.com/docs/atlas/reference/cloud-providers/&gt; &#39;regions&#39; link
          * 
          * @return builder
          * 
@@ -208,7 +208,7 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param regionName Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
+         * @param regionName Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under &lt;https://www.mongodb.com/docs/atlas/reference/cloud-providers/&gt; &#39;regions&#39; link
          * 
          * @return builder
          * 

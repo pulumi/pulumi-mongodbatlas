@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: StreamConnection
+// # Resource: StreamConnection
 //
 // `StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
 //

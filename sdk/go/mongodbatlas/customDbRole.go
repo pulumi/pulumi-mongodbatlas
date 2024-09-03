@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: CustomDbRole
+// # Resource: CustomDbRole
 //
 // `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
 //
@@ -76,7 +76,7 @@ import (
 //
 // ```
 //
-// ### With Inherited Roles
+// ### with inherited roles
 //
 // ```go
 // package main

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: DatabaseUser
+// # Resource: DatabaseUser
 //
 // `DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
 //
@@ -24,9 +24,47 @@ import (
 //
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 //
+// ## Example of how to create a OIDC federated authentication user
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.String("64d613677e1ad50839cce4db/testUserOr"),
+//				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
+//				AuthDatabaseName: pulumi.String("admin"),
+//				OidcAuthType:     pulumi.String("IDP_GROUP"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readWriteAnyDatabase"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
+//
+// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+//
 // ## Example Usage
 //
-// ### S
+// ### s
 //
 // ```go
 // package main
@@ -170,44 +208,6 @@ import (
 //	}
 //
 // ```
-//
-// ## Example of how to create a OIDC federated authentication user
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
-//				Username:         pulumi.String("64d613677e1ad50839cce4db/testUserOr"),
-//				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
-//				AuthDatabaseName: pulumi.String("admin"),
-//				OidcAuthType:     pulumi.String("IDP_GROUP"),
-//				Roles: mongodbatlas.DatabaseUserRoleArray{
-//					&mongodbatlas.DatabaseUserRoleArgs{
-//						RoleName:     pulumi.String("readWriteAnyDatabase"),
-//						DatabaseName: pulumi.String("admin"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
-//
-// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 //
 // ## Import
 //

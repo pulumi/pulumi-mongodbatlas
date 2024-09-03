@@ -64,7 +64,6 @@ export interface AdvancedClusterAdvancedConfiguration {
 export interface AdvancedClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      */
@@ -351,16 +350,42 @@ export interface AdvancedClusterTag {
 export interface AlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
-     *
-     * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-     * |:----------           |:-------------       |:------                 |
-     * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-     * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-     * | `PORT`              | `CLUSTER_NAME`      |                         |
-     * | `HOSTNAME_AND_PORT` |                     |                         |
-     * | `REPLICA_SET_NAME`  |                     |                         |
-     *
-     *
+     * <table>
+     * <thead>
+     * <tr>
+     * <th style="text-align:left">Host alerts</th>
+     * <th style="text-align:left">Replica set alerts</th>
+     * <th style="text-align:left">Sharded cluster alerts</th>
+     * </tr>
+     * </thead>
+     * <tbody>
+     * <tr>
+     * <td style="text-align:left">`TYPE_NAME`</td>
+     * <td style="text-align:left">`REPLICA_SET_NAME`</td>
+     * <td style="text-align:left">`CLUSTER_NAME`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`HOSTNAME`</td>
+     * <td style="text-align:left">`SHARD_NAME`</td>
+     * <td style="text-align:left">`SHARD_NAME`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`PORT`</td>
+     * <td style="text-align:left">`CLUSTER_NAME`</td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+     * <td style="text-align:left"></td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`REPLICA_SET_NAME`</td>
+     * <td style="text-align:left"></td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * </tbody>
+     * </table>
      *
      * All other types of alerts do not support matchers.
      */
@@ -451,15 +476,40 @@ export interface AlertConfigurationNotification {
     /**
      * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
-     *
-     * | Project roles                   | Organization roles  |
-     * |:----------                      |:-----------         |
-     * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-     * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-     * | `GROUP_READ_ONLY`               |                     |
+     * <table>
+     * <thead>
+     * <tr>
+     * <th style="text-align:left">Project roles</th>
+     * <th style="text-align:left">Organization roles</th>
+     * </tr>
+     * </thead>
+     * <tbody>
+     * <tr>
+     * <td style="text-align:left">`GROUP_CLUSTER_MANAGER`</td>
+     * <td style="text-align:left">`ORG_OWNER`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_DATA_ACCESS_ADMIN`</td>
+     * <td style="text-align:left">`ORG_MEMBER`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_DATA_ACCESS_READ_ONLY`</td>
+     * <td style="text-align:left">`ORG_GROUP_CREATOR`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_DATA_ACCESS_READ_WRITE`</td>
+     * <td style="text-align:left">`ORG_BILLING_ADMIN`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_OWNER`</td>
+     * <td style="text-align:left">`ORG_READ_ONLY`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`GROUP_READ_ONLY`</td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * </tbody>
+     * </table>
      */
     roles?: string[];
     /**
@@ -672,7 +722,7 @@ export interface CloudBackupScheduleCopySetting {
      */
     frequencies: string[];
     /**
-     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
      */
     regionName: string;
     /**
@@ -819,11 +869,11 @@ export interface CloudBackupSchedulePolicyItemYearly {
 
 export interface CloudBackupSnapshotExportJobComponent {
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      */
     exportId: string;
     /**
-     * _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
      */
     replicaSetName: string;
 }
@@ -956,8 +1006,7 @@ export interface ClusterAdvancedConfiguration {
 export interface ClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
-     * - Set to `true` to enable BI Connector for Atlas.
+     * * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      */
     enabled: boolean;
@@ -1075,7 +1124,6 @@ export interface ClusterReplicationSpec {
     regionsConfigs: outputs.ClusterReplicationSpecRegionsConfig[];
     /**
      * Name for the zone in a Global Cluster.
-     *
      *
      * **Region Config**
      */
@@ -1798,8 +1846,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScali
      */
     computeEnabled: boolean;
     /**
-     * Maximum instance size to which your cluster can automatically scale (such as M40). 
-     * #### Advanced Configuration
+     * Maximum instance size to which your cluster can automatically scale (such as M40).
      */
     computeMaxInstanceSize: string;
     /**
@@ -1826,7 +1873,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
+     * Type of storage you want to attach to your AWS-provisioned cluster.
      * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
      * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
@@ -1847,8 +1894,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
      */
     computeEnabled: boolean;
     /**
-     * Maximum instance size to which your cluster can automatically scale (such as M40). 
-     * #### Advanced Configuration
+     * Maximum instance size to which your cluster can automatically scale (such as M40).
      */
     computeMaxInstanceSize: string;
     /**
@@ -1875,7 +1921,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
+     * Type of storage you want to attach to your AWS-provisioned cluster.
      * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
      * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
@@ -1900,7 +1946,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
+     * Type of storage you want to attach to your AWS-provisioned cluster.
      * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
      * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
@@ -2330,6 +2376,42 @@ export interface GetAdvancedClustersResultTag {
 export interface GetAlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
+     * <table>
+     * <thead>
+     * <tr>
+     * <th style="text-align:left">Host alerts</th>
+     * <th style="text-align:left">Replica set alerts</th>
+     * <th style="text-align:left">Sharded cluster alerts</th>
+     * </tr>
+     * </thead>
+     * <tbody>
+     * <tr>
+     * <td style="text-align:left">`TYPE_NAME`</td>
+     * <td style="text-align:left">`REPLICA_SET_NAME`</td>
+     * <td style="text-align:left">`CLUSTER_NAME`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`HOSTNAME`</td>
+     * <td style="text-align:left">`SHARD_NAME`</td>
+     * <td style="text-align:left">`SHARD_NAME`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`PORT`</td>
+     * <td style="text-align:left">`CLUSTER_NAME`</td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+     * <td style="text-align:left"></td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`REPLICA_SET_NAME`</td>
+     * <td style="text-align:left"></td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * </tbody>
+     * </table>
      */
     fieldName: string;
     /**
@@ -2581,6 +2663,42 @@ export interface GetAlertConfigurationsResult {
 export interface GetAlertConfigurationsResultMatcher {
     /**
      * Name of the field in the target object to match on.
+     * <table>
+     * <thead>
+     * <tr>
+     * <th style="text-align:left">Host alerts</th>
+     * <th style="text-align:left">Replica set alerts</th>
+     * <th style="text-align:left">Sharded cluster alerts</th>
+     * </tr>
+     * </thead>
+     * <tbody>
+     * <tr>
+     * <td style="text-align:left">`TYPE_NAME`</td>
+     * <td style="text-align:left">`REPLICA_SET_NAME`</td>
+     * <td style="text-align:left">`CLUSTER_NAME`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`HOSTNAME`</td>
+     * <td style="text-align:left">`SHARD_NAME`</td>
+     * <td style="text-align:left">`SHARD_NAME`</td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`PORT`</td>
+     * <td style="text-align:left">`CLUSTER_NAME`</td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`HOSTNAME_AND_PORT`</td>
+     * <td style="text-align:left"></td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * <tr>
+     * <td style="text-align:left">`REPLICA_SET_NAME`</td>
+     * <td style="text-align:left"></td>
+     * <td style="text-align:left"></td>
+     * </tr>
+     * </tbody>
+     * </table>
      */
     fieldName: string;
     /**
@@ -2848,8 +2966,8 @@ export interface GetAtlasUsersResult {
     roles: outputs.GetAtlasUsersResultRole[];
     /**
      * List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
-     * * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
-     * * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+     * * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
+     * * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with <https://cloud.mongodb.com/api/atlas>.
      * * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
      * * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
      * * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
@@ -3027,7 +3145,7 @@ export interface GetCloudBackupScheduleCopySetting {
      */
     frequencies: string[];
     /**
-     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under <https://www.mongodb.com/docs/atlas/reference/cloud-providers/> 'regions' link
      */
     regionName: string;
     /**
@@ -3205,11 +3323,11 @@ export interface GetCloudBackupSnapshotExportBucketsResult {
 
 export interface GetCloudBackupSnapshotExportJobComponent {
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      */
     exportId: string;
     /**
-     * _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
      */
     replicaSetName: string;
 }
@@ -3227,7 +3345,7 @@ export interface GetCloudBackupSnapshotExportJobCustomData {
 
 export interface GetCloudBackupSnapshotExportJobsResult {
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      */
     components: outputs.GetCloudBackupSnapshotExportJobsResultComponent[];
     /**
@@ -3276,11 +3394,11 @@ export interface GetCloudBackupSnapshotExportJobsResult {
 
 export interface GetCloudBackupSnapshotExportJobsResultComponent {
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * *Returned for sharded clusters only.* Export job details for each replica set in the sharded cluster.
      */
     exportId: string;
     /**
-     * _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * *Returned for sharded clusters only.* Unique identifier of the export job for the replica set.
      */
     replicaSetName: string;
 }
@@ -4844,7 +4962,6 @@ export interface GetFederatedDatabaseInstancesResultCloudProviderConfigAws {
     iamUserArn: string;
     /**
      * Unique identifier of the role that the data lake can use to access the data stores.
-     * #### `dataProcessRegion` - The cloud provider region to which the Federated Instance routes client connections for data processing.
      */
     roleId: string;
     testS3Bucket: string;
@@ -5728,7 +5845,7 @@ export interface GetOrganizationsResult {
     isDeleted: boolean;
     links: outputs.GetOrganizationsResultLink[];
     /**
-     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: <https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/>.
      */
     multiFactorAuthRequired: boolean;
     /**
@@ -5736,7 +5853,7 @@ export interface GetOrganizationsResult {
      */
     name: string;
     /**
-     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: <https://www.mongodb.com/docs/atlas/security-restrict-support-access/>.
      *
      * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
      */
@@ -6548,7 +6665,7 @@ export interface OnlineArchiveCriteria {
     /**
      * Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
      *
-     * **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+     * ***NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value***
      *
      * The only field required for criteria type `CUSTOM`
      */

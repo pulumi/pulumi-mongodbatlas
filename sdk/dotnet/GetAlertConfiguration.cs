@@ -12,12 +12,11 @@ namespace Pulumi.Mongodbatlas
     public static class GetAlertConfiguration
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.AlertConfiguration
+        /// # Data Source: mongodbatlas.AlertConfiguration
         /// 
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -73,7 +72,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+        /// &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: &lt;https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/&gt;
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -164,12 +163,11 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.AlertConfiguration
+        /// # Data Source: mongodbatlas.AlertConfiguration
         /// 
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -225,7 +223,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+        /// &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: &lt;https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/&gt;
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

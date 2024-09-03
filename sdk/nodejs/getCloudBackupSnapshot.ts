@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.CloudBackupSnapshot
+ * # Data Source: mongodbatlas.CloudBackupSnapshot
  *
  * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *
@@ -125,7 +125,7 @@ export interface GetCloudBackupSnapshotResult {
     readonly type: string;
 }
 /**
- * ## # Data Source: mongodbatlas.CloudBackupSnapshot
+ * # Data Source: mongodbatlas.CloudBackupSnapshot
  *
  * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *

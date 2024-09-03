@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getDataLakePipelineRuns
+ * # Data Source: mongodbatlas.getDataLakePipelineRuns
  *
  * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
  *
@@ -52,7 +52,7 @@ export interface GetDataLakePipelineRunsResult {
     readonly results: outputs.GetDataLakePipelineRunsResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getDataLakePipelineRuns
+ * # Data Source: mongodbatlas.getDataLakePipelineRuns
  *
  * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
  *

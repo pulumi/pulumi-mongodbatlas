@@ -12,15 +12,46 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: FederatedDatabaseInstance
+// # Resource: FederatedDatabaseInstance
 //
 // `FederatedDatabaseInstance` provides a Federated Database Instance resource.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
+// ## Example specifying data process region and provider
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				Name:      pulumi.String("NAME OF THE FEDERATED DATABASE INSTANCE"),
+//				DataProcessRegion: &mongodbatlas.FederatedDatabaseInstanceDataProcessRegionArgs{
+//					CloudProvider: pulumi.String("AWS"),
+//					Region:        pulumi.String("OREGON_USA"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Example Usage
 //
-// ### S With MongoDB Atlas Cluster As Storage Database
+// ### s with MongoDB Atlas Cluster as storage database
 //
 // ```go
 // package main
@@ -75,7 +106,7 @@ import (
 //
 // ```
 //
-// ### S With Amazon S3 Bucket As Storage Database
+// ### s with Amazon S3 bucket as storage database
 //
 // ```go
 // package main
@@ -137,37 +168,6 @@ import (
 //						Provider:  pulumi.String("s3"),
 //						Region:    pulumi.String("AWS REGION"),
 //					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Example specifying data process region and provider
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
-//				ProjectId: pulumi.String("PROJECT ID"),
-//				Name:      pulumi.String("NAME OF THE FEDERATED DATABASE INSTANCE"),
-//				DataProcessRegion: &mongodbatlas.FederatedDatabaseInstanceDataProcessRegionArgs{
-//					CloudProvider: pulumi.String("AWS"),
-//					Region:        pulumi.String("OREGON_USA"),
 //				},
 //			})
 //			if err != nil {

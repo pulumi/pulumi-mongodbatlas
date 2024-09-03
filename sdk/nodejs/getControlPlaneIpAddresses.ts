@@ -7,13 +7,13 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getControlPlaneIpAddresses
+ * # Data Source: mongodbatlas.getControlPlaneIpAddresses
  *
  * `mongodbatlas.getControlPlaneIpAddresses` returns all control plane IP addresses.
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -51,13 +51,13 @@ export interface GetControlPlaneIpAddressesResult {
     readonly outbound: outputs.GetControlPlaneIpAddressesOutbound;
 }
 /**
- * ## # Data Source: mongodbatlas.getControlPlaneIpAddresses
+ * # Data Source: mongodbatlas.getControlPlaneIpAddresses
  *
  * `mongodbatlas.getControlPlaneIpAddresses` returns all control plane IP addresses.
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";

@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ### S
+    /// ### s
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

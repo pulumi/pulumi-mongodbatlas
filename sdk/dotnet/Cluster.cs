@@ -250,6 +250,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
     /// ### Example AWS Shared Tier (M2/M5) cluster
     /// ```csharp
     /// using System.Collections.Generic;
@@ -271,6 +272,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
     /// ### Example AWS Free Tier cluster
     /// ```csharp
     /// using System.Collections.Generic;
@@ -292,6 +294,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
     /// ### Example - Return a Connection String
     /// Standard
     /// ```csharp
@@ -524,7 +527,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> ProviderDiskIops { get; private set; } = null!;
 
         /// <summary>
-        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at &lt;https://docs.atlas.mongodb.com/reference/api/clusters-create-one/&gt;.
         /// </summary>
         [Output("providerDiskTypeName")]
         public Output<string> ProviderDiskTypeName { get; private set; } = null!;
@@ -834,7 +837,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? ProviderDiskIops { get; set; }
 
         /// <summary>
-        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at &lt;https://docs.atlas.mongodb.com/reference/api/clusters-create-one/&gt;.
         /// </summary>
         [Input("providerDiskTypeName")]
         public Input<string>? ProviderDiskTypeName { get; set; }
@@ -1139,7 +1142,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? ProviderDiskIops { get; set; }
 
         /// <summary>
-        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at &lt;https://docs.atlas.mongodb.com/reference/api/clusters-create-one/&gt;.
         /// </summary>
         [Input("providerDiskTypeName")]
         public Input<string>? ProviderDiskTypeName { get; set; }

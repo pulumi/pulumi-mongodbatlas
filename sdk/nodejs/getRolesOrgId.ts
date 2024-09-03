@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getRolesOrgId
+ * # Data Source: mongodbatlas.getRolesOrgId
  *
  * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
  *
@@ -41,7 +41,7 @@ export interface GetRolesOrgIdResult {
     readonly orgId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.getRolesOrgId
+ * # Data Source: mongodbatlas.getRolesOrgId
  *
  * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
  *

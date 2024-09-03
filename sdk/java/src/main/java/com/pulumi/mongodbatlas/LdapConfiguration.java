@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.LdapConfiguration
+ * # Resource: mongodbatlas.LdapConfiguration
  * 
  * `mongodbatlas.LdapConfiguration` provides an LDAP Configuration resource. This allows an LDAP configuration for an Atlas project to be created and managed. This endpoint doesn’t verify connectivity using the provided LDAP over TLS configuration details. To verify a configuration before saving it, use the resource to verify the LDAP configuration.
  * 
@@ -70,7 +70,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### LDAP With User To DN Mapping
+ * ### LDAP with user to DN mapping
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.CloudBackupSchedule
+ * # Data Source: mongodbatlas.CloudBackupSchedule
  *
  * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
  *
@@ -116,7 +116,7 @@ export interface GetCloudBackupScheduleResult {
     readonly useZoneIdForCopySettings?: boolean;
 }
 /**
- * ## # Data Source: mongodbatlas.CloudBackupSchedule
+ * # Data Source: mongodbatlas.CloudBackupSchedule
  *
  * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
  *

@@ -5,13 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.PushBasedLogExport
+ * # Data Source: mongodbatlas.PushBasedLogExport
  *
  * `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -86,13 +86,13 @@ export interface GetPushBasedLogExportResult {
     readonly state: string;
 }
 /**
- * ## # Data Source: mongodbatlas.PushBasedLogExport
+ * # Data Source: mongodbatlas.PushBasedLogExport
  *
  * `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
  *
  * ## Example Usage
  *
- * ### S
+ * ### s
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";

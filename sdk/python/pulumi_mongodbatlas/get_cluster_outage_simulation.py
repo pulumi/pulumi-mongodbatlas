@@ -123,7 +123,7 @@ def get_cluster_outage_simulation(cluster_name: Optional[str] = None,
     """
     ## Example Usage
 
-    ### S
+    ### s
 
     ```python
     import pulumi
@@ -160,7 +160,7 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[str
     """
     ## Example Usage
 
-    ### S
+    ### s
 
     ```python
     import pulumi

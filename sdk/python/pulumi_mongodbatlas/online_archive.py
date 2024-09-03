@@ -451,7 +451,7 @@ class OnlineArchive(pulumi.CustomResource):
                  sync_creation: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        ## # Resource: OnlineArchive
+        # Resource: OnlineArchive
 
         `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
 
@@ -463,7 +463,7 @@ class OnlineArchive(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### S
+        ### s
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -554,6 +554,12 @@ class OnlineArchive(pulumi.CustomResource):
         ```
 
         ## Import
+
+        bash
+
+        ```sh
+        $ pulumi import mongodbatlas:index/onlineArchive:OnlineArchive users_archive <project_id>-<cluster_name>-<archive_id>
+        ```
 
         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
 
@@ -578,7 +584,7 @@ class OnlineArchive(pulumi.CustomResource):
                  args: OnlineArchiveArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: OnlineArchive
+        # Resource: OnlineArchive
 
         `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
 
@@ -590,7 +596,7 @@ class OnlineArchive(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### S
+        ### s
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -681,6 +687,12 @@ class OnlineArchive(pulumi.CustomResource):
         ```
 
         ## Import
+
+        bash
+
+        ```sh
+        $ pulumi import mongodbatlas:index/onlineArchive:OnlineArchive users_archive <project_id>-<cluster_name>-<archive_id>
+        ```
 
         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
 

@@ -142,15 +142,40 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         /// Accepted values are:
-        /// 
-        /// | Project roles                   | Organization roles  |
-        /// |:----------                      |:-----------         |
-        /// | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
-        /// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
-        /// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
-        /// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
-        /// | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
-        /// | `GROUP_READ_ONLY`               |                     |
+        /// &lt;table&gt;
+        /// &lt;thead&gt;
+        /// &lt;tr&gt;
+        /// &lt;th style="text-align:left"&gt;Project roles&lt;/th&gt;
+        /// &lt;th style="text-align:left"&gt;Organization roles&lt;/th&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/thead&gt;
+        /// &lt;tbody&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`GROUP_CLUSTER_MANAGER`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`ORG_OWNER`&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`GROUP_DATA_ACCESS_ADMIN`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`ORG_MEMBER`&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`GROUP_DATA_ACCESS_READ_ONLY`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`ORG_GROUP_CREATOR`&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`GROUP_DATA_ACCESS_READ_WRITE`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`ORG_BILLING_ADMIN`&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`GROUP_OWNER`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;`ORG_READ_ONLY`&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td style="text-align:left"&gt;`GROUP_READ_ONLY`&lt;/td&gt;
+        /// &lt;td style="text-align:left"&gt;&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/tbody&gt;
+        /// &lt;/table&gt;
         /// </summary>
         public InputList<string> Roles
         {

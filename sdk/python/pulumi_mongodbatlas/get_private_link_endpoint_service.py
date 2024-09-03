@@ -224,7 +224,7 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[str] = None,
                                       provider_name: Optional[str] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivateLinkEndpointServiceResult:
     """
-    ## # Data Source: PrivateLinkEndpointService
+    # Data Source: PrivateLinkEndpointService
 
     `PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
 
@@ -269,7 +269,7 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
                                              provider_name: Optional[pulumi.Input[str]] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateLinkEndpointServiceResult]:
     """
-    ## # Data Source: PrivateLinkEndpointService
+    # Data Source: PrivateLinkEndpointService
 
     `PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
 

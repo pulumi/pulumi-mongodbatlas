@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.ServerlessInstance
+    /// # Resource: mongodbatlas.ServerlessInstance
     /// 
     /// `mongodbatlas.ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
     /// 
@@ -40,12 +40,9 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
-    /// That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
-    /// and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+    /// **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
     /// 
-    /// Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
-    /// When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+    /// Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
     /// 
     /// Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
     /// 

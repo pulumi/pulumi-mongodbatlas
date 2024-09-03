@@ -182,7 +182,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: GlobalClusterConfig
+        # Resource: GlobalClusterConfig
 
         `GlobalClusterConfig` provides a Global Cluster Configuration resource.
 
@@ -270,7 +270,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
                  args: GlobalClusterConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: GlobalClusterConfig
+        # Resource: GlobalClusterConfig
 
         `GlobalClusterConfig` provides a Global Cluster Configuration resource.
 
