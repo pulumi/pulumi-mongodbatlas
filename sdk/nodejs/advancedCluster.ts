@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
  *
  * > **IMPORTANT:**
- * <br> &#8226; The primary difference between `mongodbatlas.Cluster` is that `mongodbatlas.AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `mongodbatlas.AdvancedCluster` resource.
+ * <br> &#8226; The primary difference between `mongodbatlas.Cluster` and `mongodbatlas.AdvancedCluster` is that `mongodbatlas.AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `mongodbatlas.AdvancedCluster` resource.
  *
  * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
  *
