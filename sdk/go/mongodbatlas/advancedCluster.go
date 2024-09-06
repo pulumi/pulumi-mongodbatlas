@@ -19,7 +19,7 @@ import (
 // More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
 //
 // > **IMPORTANT:**
-// <br> &#8226; The primary difference between `Cluster` is that `AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `AdvancedCluster` resource.
+// <br> &#8226; The primary difference between `Cluster` and `AdvancedCluster` is that `AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `AdvancedCluster` resource.
 //
 // > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 //
