@@ -13,6 +13,12 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class ClusterAdvancedConfigurationGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+        /// </summary>
+        [Input("changeStreamOptionsPreAndPostImagesExpireAfterSeconds")]
+        public Input<int>? ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds { get; set; }
+
+        /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         /// </summary>
         [Input("defaultReadConcern")]

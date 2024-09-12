@@ -195,7 +195,8 @@ type OnlineArchive struct {
 	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule OnlineArchiveSchedulePtrOutput `pulumi:"schedule"`
 	// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
-	State        pulumi.StringOutput  `pulumi:"state"`
+	State pulumi.StringOutput `pulumi:"state"`
+	// Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
 	SyncCreation pulumi.BoolPtrOutput `pulumi:"syncCreation"`
 }
 
@@ -269,8 +270,9 @@ type onlineArchiveState struct {
 	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule *OnlineArchiveSchedule `pulumi:"schedule"`
 	// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
-	State        *string `pulumi:"state"`
-	SyncCreation *bool   `pulumi:"syncCreation"`
+	State *string `pulumi:"state"`
+	// Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+	SyncCreation *bool `pulumi:"syncCreation"`
 }
 
 type OnlineArchiveState struct {
@@ -299,7 +301,8 @@ type OnlineArchiveState struct {
 	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule OnlineArchiveSchedulePtrInput
 	// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
-	State        pulumi.StringPtrInput
+	State pulumi.StringPtrInput
+	// Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
 	SyncCreation pulumi.BoolPtrInput
 }
 
@@ -329,8 +332,9 @@ type onlineArchiveArgs struct {
 	// The unique ID for the project
 	ProjectId string `pulumi:"projectId"`
 	// Regular frequency and duration when archiving process occurs. See schedule.
-	Schedule     *OnlineArchiveSchedule `pulumi:"schedule"`
-	SyncCreation *bool                  `pulumi:"syncCreation"`
+	Schedule *OnlineArchiveSchedule `pulumi:"schedule"`
+	// Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+	SyncCreation *bool `pulumi:"syncCreation"`
 }
 
 // The set of arguments for constructing a OnlineArchive resource.
@@ -356,7 +360,8 @@ type OnlineArchiveArgs struct {
 	// The unique ID for the project
 	ProjectId pulumi.StringInput
 	// Regular frequency and duration when archiving process occurs. See schedule.
-	Schedule     OnlineArchiveSchedulePtrInput
+	Schedule OnlineArchiveSchedulePtrInput
+	// Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
 	SyncCreation pulumi.BoolPtrInput
 }
 
@@ -512,6 +517,7 @@ func (o OnlineArchiveOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
+// Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
 func (o OnlineArchiveOutput) SyncCreation() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.BoolPtrOutput { return v.SyncCreation }).(pulumi.BoolPtrOutput)
 }

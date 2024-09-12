@@ -31,6 +31,7 @@ class AdvancedClusterArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
+                 replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
@@ -63,6 +64,7 @@ class AdvancedClusterArgs:
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
+        :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -92,8 +94,8 @@ class AdvancedClusterArgs:
         if global_cluster_self_managed_sharding is not None:
             pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
         if labels is not None:
-            warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+            warnings.warn("""This parameter is deprecated and will be removed in the future. Please transition to tags""", DeprecationWarning)
+            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags""")
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
@@ -104,6 +106,8 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "paused", paused)
         if pit_enabled is not None:
             pulumi.set(__self__, "pit_enabled", pit_enabled)
+        if replica_set_scaling_strategy is not None:
+            pulumi.set(__self__, "replica_set_scaling_strategy", replica_set_scaling_strategy)
         if retain_backups_enabled is not None:
             pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
         if root_cert_type is not None:
@@ -247,7 +251,7 @@ class AdvancedClusterArgs:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -302,6 +306,18 @@ class AdvancedClusterArgs:
     @pit_enabled.setter
     def pit_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "pit_enabled", value)
+
+    @property
+    @pulumi.getter(name="replicaSetScalingStrategy")
+    def replica_set_scaling_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+        """
+        return pulumi.get(self, "replica_set_scaling_strategy")
+
+    @replica_set_scaling_strategy.setter
+    def replica_set_scaling_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "replica_set_scaling_strategy", value)
 
     @property
     @pulumi.getter(name="retainBackupsEnabled")
@@ -387,6 +403,7 @@ class _AdvancedClusterState:
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
@@ -423,6 +440,7 @@ class _AdvancedClusterState:
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
+        :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
@@ -466,8 +484,8 @@ class _AdvancedClusterState:
         if global_cluster_self_managed_sharding is not None:
             pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
         if labels is not None:
-            warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+            warnings.warn("""This parameter is deprecated and will be removed in the future. Please transition to tags""", DeprecationWarning)
+            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags""")
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
@@ -482,6 +500,8 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "pit_enabled", pit_enabled)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if replica_set_scaling_strategy is not None:
+            pulumi.set(__self__, "replica_set_scaling_strategy", replica_set_scaling_strategy)
         if replication_specs is not None:
             pulumi.set(__self__, "replication_specs", replication_specs)
         if retain_backups_enabled is not None:
@@ -638,7 +658,7 @@ class _AdvancedClusterState:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -717,6 +737,18 @@ class _AdvancedClusterState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="replicaSetScalingStrategy")
+    def replica_set_scaling_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+        """
+        return pulumi.get(self, "replica_set_scaling_strategy")
+
+    @replica_set_scaling_strategy.setter
+    def replica_set_scaling_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "replica_set_scaling_strategy", value)
 
     @property
     @pulumi.getter(name="replicationSpecs")
@@ -831,6 +863,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
@@ -1198,6 +1231,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
+        :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
@@ -1576,6 +1610,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
@@ -1609,6 +1644,7 @@ class AdvancedCluster(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["replica_set_scaling_strategy"] = replica_set_scaling_strategy
             if replication_specs is None and not opts.urn:
                 raise TypeError("Missing required property 'replication_specs'")
             __props__.__dict__["replication_specs"] = replication_specs
@@ -1650,6 +1686,7 @@ class AdvancedCluster(pulumi.CustomResource):
             paused: Optional[pulumi.Input[bool]] = None,
             pit_enabled: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
             root_cert_type: Optional[pulumi.Input[str]] = None,
@@ -1691,6 +1728,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
+        :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
@@ -1730,6 +1768,7 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["paused"] = paused
         __props__.__dict__["pit_enabled"] = pit_enabled
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["replica_set_scaling_strategy"] = replica_set_scaling_strategy
         __props__.__dict__["replication_specs"] = replication_specs
         __props__.__dict__["retain_backups_enabled"] = retain_backups_enabled
         __props__.__dict__["root_cert_type"] = root_cert_type
@@ -1836,7 +1875,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> pulumi.Output[Optional[Sequence['outputs.AdvancedClusterLabel']]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -1887,6 +1926,14 @@ class AdvancedCluster(pulumi.CustomResource):
         Unique ID for the project to create the database user.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="replicaSetScalingStrategy")
+    def replica_set_scaling_strategy(self) -> pulumi.Output[str]:
+        """
+        Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+        """
+        return pulumi.get(self, "replica_set_scaling_strategy")
 
     @property
     @pulumi.getter(name="replicationSpecs")

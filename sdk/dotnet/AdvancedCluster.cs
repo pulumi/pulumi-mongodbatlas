@@ -600,6 +600,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+        /// </summary>
+        [Output("replicaSetScalingStrategy")]
+        public Output<string> ReplicaSetScalingStrategy { get; private set; } = null!;
+
+        /// <summary>
         /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         /// </summary>
         [Output("replicationSpecs")]
@@ -759,7 +765,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
-        [Obsolete(@"This parameter is deprecated and will be removed by September 2024. Please transition to tags.")]
+        [Obsolete(@"This parameter is deprecated and will be removed in the future. Please transition to tags")]
         public InputList<Inputs.AdvancedClusterLabelArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.AdvancedClusterLabelArgs>());
@@ -792,6 +798,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+        /// </summary>
+        [Input("replicaSetScalingStrategy")]
+        public Input<string>? ReplicaSetScalingStrategy { get; set; }
 
         [Input("replicationSpecs", required: true)]
         private InputList<Inputs.AdvancedClusterReplicationSpecArgs>? _replicationSpecs;
@@ -935,7 +947,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
-        [Obsolete(@"This parameter is deprecated and will be removed by September 2024. Please transition to tags.")]
+        [Obsolete(@"This parameter is deprecated and will be removed in the future. Please transition to tags")]
         public InputList<Inputs.AdvancedClusterLabelGetArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.AdvancedClusterLabelGetArgs>());
@@ -974,6 +986,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+        /// </summary>
+        [Input("replicaSetScalingStrategy")]
+        public Input<string>? ReplicaSetScalingStrategy { get; set; }
 
         [Input("replicationSpecs")]
         private InputList<Inputs.AdvancedClusterReplicationSpecGetArgs>? _replicationSpecs;

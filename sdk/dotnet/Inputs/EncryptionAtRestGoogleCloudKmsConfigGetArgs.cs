@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class EncryptionAtRestGoogleCloudKmsConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        /// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         private Input<string>? _keyVersionResourceId;
 
         /// <summary>
-        /// The Key Version Resource ID from your GCP account.
+        /// Resource path that displays the key version resource ID for your Google Cloud KMS.
         /// </summary>
         public Input<string>? KeyVersionResourceId
         {
@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         private Input<string>? _serviceAccountKey;
 
         /// <summary>
-        /// String-formatted JSON object containing GCP KMS credentials from your GCP account.
+        /// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
         /// </summary>
         public Input<string>? ServiceAccountKey
         {
@@ -49,6 +49,12 @@ namespace Pulumi.Mongodbatlas.Inputs
                 _serviceAccountKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+        /// </summary>
+        [Input("valid")]
+        public Input<bool>? Valid { get; set; }
 
         public EncryptionAtRestGoogleCloudKmsConfigGetArgs()
         {

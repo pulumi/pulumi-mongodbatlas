@@ -18,6 +18,21 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
     public static final ClusterAdvancedConfigurationArgs Empty = new ClusterAdvancedConfigurationArgs();
 
     /**
+     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     * 
+     */
+    @Import(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
+    private @Nullable Output<Integer> changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+
+    /**
+     * @return The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     * 
+     */
+    public Optional<Output<Integer>> changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
+        return Optional.ofNullable(this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds);
+    }
+
+    /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      * 
      * @deprecated
@@ -211,6 +226,7 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
     private ClusterAdvancedConfigurationArgs() {}
 
     private ClusterAdvancedConfigurationArgs(ClusterAdvancedConfigurationArgs $) {
+        this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = $.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         this.defaultReadConcern = $.defaultReadConcern;
         this.defaultWriteConcern = $.defaultWriteConcern;
         this.failIndexKeyTooLong = $.failIndexKeyTooLong;
@@ -240,6 +256,27 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
 
         public Builder(ClusterAdvancedConfigurationArgs defaults) {
             $ = new ClusterAdvancedConfigurationArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param changeStreamOptionsPreAndPostImagesExpireAfterSeconds The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder changeStreamOptionsPreAndPostImagesExpireAfterSeconds(@Nullable Output<Integer> changeStreamOptionsPreAndPostImagesExpireAfterSeconds) {
+            $.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            return this;
+        }
+
+        /**
+         * @param changeStreamOptionsPreAndPostImagesExpireAfterSeconds The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder changeStreamOptionsPreAndPostImagesExpireAfterSeconds(Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds) {
+            return changeStreamOptionsPreAndPostImagesExpireAfterSeconds(Output.of(changeStreamOptionsPreAndPostImagesExpireAfterSeconds));
         }
 
         /**

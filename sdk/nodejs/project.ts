@@ -102,7 +102,9 @@ export class Project extends pulumi.CustomResource {
      */
     public /*out*/ readonly created!: pulumi.Output<string>;
     /**
-     * IP addresses in a project categorized by services. See IP Addresses.
+     * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+     *
+     * @deprecated This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
      */
     public /*out*/ readonly ipAddresses!: pulumi.Output<outputs.ProjectIpAddresses>;
     /**
@@ -227,7 +229,9 @@ export interface ProjectState {
      */
     created?: pulumi.Input<string>;
     /**
-     * IP addresses in a project categorized by services. See IP Addresses.
+     * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+     *
+     * @deprecated This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
      */
     ipAddresses?: pulumi.Input<inputs.ProjectIpAddresses>;
     /**

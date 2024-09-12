@@ -13,6 +13,11 @@ import java.util.Objects;
 @CustomType
 public final class GetAdvancedClusterAdvancedConfiguration {
     /**
+     * @return (Optional) The minimum pre- and post-image retention time in seconds.
+     * 
+     */
+    private Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+    /**
      * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      * 
      * @deprecated
@@ -77,6 +82,13 @@ public final class GetAdvancedClusterAdvancedConfiguration {
     private Integer transactionLifetimeLimitSeconds;
 
     private GetAdvancedClusterAdvancedConfiguration() {}
+    /**
+     * @return (Optional) The minimum pre- and post-image retention time in seconds.
+     * 
+     */
+    public Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
+        return this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+    }
     /**
      * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      * 
@@ -172,6 +184,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         private String defaultReadConcern;
         private String defaultWriteConcern;
         private Boolean failIndexKeyTooLong;
@@ -186,6 +199,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
         public Builder() {}
         public Builder(GetAdvancedClusterAdvancedConfiguration defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = defaults.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
     	      this.defaultReadConcern = defaults.defaultReadConcern;
     	      this.defaultWriteConcern = defaults.defaultWriteConcern;
     	      this.failIndexKeyTooLong = defaults.failIndexKeyTooLong;
@@ -199,6 +213,14 @@ public final class GetAdvancedClusterAdvancedConfiguration {
     	      this.transactionLifetimeLimitSeconds = defaults.transactionLifetimeLimitSeconds;
         }
 
+        @CustomType.Setter
+        public Builder changeStreamOptionsPreAndPostImagesExpireAfterSeconds(Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds) {
+            if (changeStreamOptionsPreAndPostImagesExpireAfterSeconds == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterAdvancedConfiguration", "changeStreamOptionsPreAndPostImagesExpireAfterSeconds");
+            }
+            this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            return this;
+        }
         @CustomType.Setter
         public Builder defaultReadConcern(String defaultReadConcern) {
             if (defaultReadConcern == null) {
@@ -289,6 +311,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
         }
         public GetAdvancedClusterAdvancedConfiguration build() {
             final var _resultValue = new GetAdvancedClusterAdvancedConfiguration();
+            _resultValue.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
             _resultValue.defaultReadConcern = defaultReadConcern;
             _resultValue.defaultWriteConcern = defaultWriteConcern;
             _resultValue.failIndexKeyTooLong = failIndexKeyTooLong;

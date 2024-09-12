@@ -14,17 +14,21 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class EncryptionAtRestGoogleCloudKmsConfig
     {
         /// <summary>
-        /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        /// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// The Key Version Resource ID from your GCP account.
+        /// Resource path that displays the key version resource ID for your Google Cloud KMS.
         /// </summary>
         public readonly string? KeyVersionResourceId;
         /// <summary>
-        /// String-formatted JSON object containing GCP KMS credentials from your GCP account.
+        /// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
         /// </summary>
         public readonly string? ServiceAccountKey;
+        /// <summary>
+        /// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+        /// </summary>
+        public readonly bool? Valid;
 
         [OutputConstructor]
         private EncryptionAtRestGoogleCloudKmsConfig(
@@ -32,11 +36,14 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? keyVersionResourceId,
 
-            string? serviceAccountKey)
+            string? serviceAccountKey,
+
+            bool? valid)
         {
             Enabled = enabled;
             KeyVersionResourceId = keyVersionResourceId;
             ServiceAccountKey = serviceAccountKey;
+            Valid = valid;
         }
     }
 }

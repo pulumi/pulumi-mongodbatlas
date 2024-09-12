@@ -429,7 +429,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *
-     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     public readonly labels!: pulumi.Output<outputs.AdvancedClusterLabel[] | undefined>;
     /**
@@ -453,6 +453,10 @@ export class AdvancedCluster extends pulumi.CustomResource {
      * Unique ID for the project to create the database user.
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+     */
+    public readonly replicaSetScalingStrategy!: pulumi.Output<string>;
     /**
      * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
      */
@@ -522,6 +526,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["paused"] = state ? state.paused : undefined;
             resourceInputs["pitEnabled"] = state ? state.pitEnabled : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["replicaSetScalingStrategy"] = state ? state.replicaSetScalingStrategy : undefined;
             resourceInputs["replicationSpecs"] = state ? state.replicationSpecs : undefined;
             resourceInputs["retainBackupsEnabled"] = state ? state.retainBackupsEnabled : undefined;
             resourceInputs["rootCertType"] = state ? state.rootCertType : undefined;
@@ -554,6 +559,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["paused"] = args ? args.paused : undefined;
             resourceInputs["pitEnabled"] = args ? args.pitEnabled : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["replicaSetScalingStrategy"] = args ? args.replicaSetScalingStrategy : undefined;
             resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
             resourceInputs["retainBackupsEnabled"] = args ? args.retainBackupsEnabled : undefined;
             resourceInputs["rootCertType"] = args ? args.rootCertType : undefined;
@@ -630,7 +636,7 @@ export interface AdvancedClusterState {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *
-     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterLabel>[]>;
     /**
@@ -654,6 +660,10 @@ export interface AdvancedClusterState {
      * Unique ID for the project to create the database user.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+     */
+    replicaSetScalingStrategy?: pulumi.Input<string>;
     /**
      * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
      */
@@ -743,7 +753,7 @@ export interface AdvancedClusterArgs {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *
-     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterLabel>[]>;
     /**
@@ -763,6 +773,10 @@ export interface AdvancedClusterArgs {
      * Unique ID for the project to create the database user.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+     */
+    replicaSetScalingStrategy?: pulumi.Input<string>;
     /**
      * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
      */

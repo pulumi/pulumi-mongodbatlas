@@ -12,21 +12,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
-//
-// Encryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.
-//
-// ```sh
-// $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
-// ```
-// For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
 type EncryptionAtRest struct {
 	pulumi.CustomResourceState
 
-	AwsKmsConfig         EncryptionAtRestAwsKmsConfigPtrOutput         `pulumi:"awsKmsConfig"`
-	AzureKeyVaultConfig  EncryptionAtRestAzureKeyVaultConfigPtrOutput  `pulumi:"azureKeyVaultConfig"`
+	// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+	AwsKmsConfig EncryptionAtRestAwsKmsConfigPtrOutput `pulumi:"awsKmsConfig"`
+	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+	AzureKeyVaultConfig EncryptionAtRestAzureKeyVaultConfigPtrOutput `pulumi:"azureKeyVaultConfig"`
+	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrOutput `pulumi:"googleCloudKmsConfig"`
-	// The unique identifier for the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 }
 
@@ -63,18 +58,24 @@ func GetEncryptionAtRest(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EncryptionAtRest resources.
 type encryptionAtRestState struct {
-	AwsKmsConfig         *EncryptionAtRestAwsKmsConfig         `pulumi:"awsKmsConfig"`
-	AzureKeyVaultConfig  *EncryptionAtRestAzureKeyVaultConfig  `pulumi:"azureKeyVaultConfig"`
+	// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+	AwsKmsConfig *EncryptionAtRestAwsKmsConfig `pulumi:"awsKmsConfig"`
+	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+	AzureKeyVaultConfig *EncryptionAtRestAzureKeyVaultConfig `pulumi:"azureKeyVaultConfig"`
+	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig *EncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
-	// The unique identifier for the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 type EncryptionAtRestState struct {
-	AwsKmsConfig         EncryptionAtRestAwsKmsConfigPtrInput
-	AzureKeyVaultConfig  EncryptionAtRestAzureKeyVaultConfigPtrInput
+	// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+	AwsKmsConfig EncryptionAtRestAwsKmsConfigPtrInput
+	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+	AzureKeyVaultConfig EncryptionAtRestAzureKeyVaultConfigPtrInput
+	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrInput
-	// The unique identifier for the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 }
 
@@ -83,19 +84,25 @@ func (EncryptionAtRestState) ElementType() reflect.Type {
 }
 
 type encryptionAtRestArgs struct {
-	AwsKmsConfig         *EncryptionAtRestAwsKmsConfig         `pulumi:"awsKmsConfig"`
-	AzureKeyVaultConfig  *EncryptionAtRestAzureKeyVaultConfig  `pulumi:"azureKeyVaultConfig"`
+	// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+	AwsKmsConfig *EncryptionAtRestAwsKmsConfig `pulumi:"awsKmsConfig"`
+	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+	AzureKeyVaultConfig *EncryptionAtRestAzureKeyVaultConfig `pulumi:"azureKeyVaultConfig"`
+	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig *EncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
-	// The unique identifier for the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // The set of arguments for constructing a EncryptionAtRest resource.
 type EncryptionAtRestArgs struct {
-	AwsKmsConfig         EncryptionAtRestAwsKmsConfigPtrInput
-	AzureKeyVaultConfig  EncryptionAtRestAzureKeyVaultConfigPtrInput
+	// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+	AwsKmsConfig EncryptionAtRestAwsKmsConfigPtrInput
+	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+	AzureKeyVaultConfig EncryptionAtRestAzureKeyVaultConfigPtrInput
+	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrInput
-	// The unique identifier for the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 }
 
@@ -186,19 +193,22 @@ func (o EncryptionAtRestOutput) ToEncryptionAtRestOutputWithContext(ctx context.
 	return o
 }
 
+// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
 func (o EncryptionAtRestOutput) AwsKmsConfig() EncryptionAtRestAwsKmsConfigPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestAwsKmsConfigPtrOutput { return v.AwsKmsConfig }).(EncryptionAtRestAwsKmsConfigPtrOutput)
 }
 
+// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
 func (o EncryptionAtRestOutput) AzureKeyVaultConfig() EncryptionAtRestAzureKeyVaultConfigPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestAzureKeyVaultConfigPtrOutput { return v.AzureKeyVaultConfig }).(EncryptionAtRestAzureKeyVaultConfigPtrOutput)
 }
 
+// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 func (o EncryptionAtRestOutput) GoogleCloudKmsConfig() EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestGoogleCloudKmsConfigPtrOutput { return v.GoogleCloudKmsConfig }).(EncryptionAtRestGoogleCloudKmsConfigPtrOutput)
 }
 
-// The unique identifier for the project.
+// Unique 24-hexadecimal digit string that identifies your project.
 func (o EncryptionAtRestOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EncryptionAtRest) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

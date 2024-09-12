@@ -177,7 +177,7 @@ type LookupAdvancedClusterResult struct {
 	Id string `pulumi:"id"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
 	//
-	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []GetAdvancedClusterLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -189,6 +189,8 @@ type LookupAdvancedClusterResult struct {
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
+	// (Optional) Replica set scaling mode for your cluster.
+	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
 	ReplicationSpecs []GetAdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
 	// Certificate Authority that MongoDB Atlas clusters use.
@@ -302,7 +304,7 @@ func (o LookupAdvancedClusterResultOutput) Id() pulumi.StringOutput {
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
 //
-// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 func (o LookupAdvancedClusterResultOutput) Labels() GetAdvancedClusterLabelArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterLabel { return v.Labels }).(GetAdvancedClusterLabelArrayOutput)
 }
@@ -333,6 +335,11 @@ func (o LookupAdvancedClusterResultOutput) PitEnabled() pulumi.BoolOutput {
 
 func (o LookupAdvancedClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// (Optional) Replica set scaling mode for your cluster.
+func (o LookupAdvancedClusterResultOutput) ReplicaSetScalingStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ReplicaSetScalingStrategy }).(pulumi.StringOutput)
 }
 
 // List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.

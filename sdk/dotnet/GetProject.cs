@@ -303,7 +303,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string Created;
         public readonly string Id;
         /// <summary>
-        /// IP addresses in a project categorized by services. See IP Addresses.
+        /// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
         /// </summary>
         public readonly Outputs.GetProjectIpAddressesResult IpAddresses;
         /// <summary>

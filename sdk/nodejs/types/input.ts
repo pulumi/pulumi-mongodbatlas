@@ -7,6 +7,10 @@ import * as outputs from "../types/output";
 
 export interface AdvancedClusterAdvancedConfiguration {
     /**
+     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     */
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: pulumi.Input<number>;
+    /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -899,6 +903,10 @@ export interface CloudProviderAccessSetupAzureConfig {
 
 export interface ClusterAdvancedConfiguration {
     /**
+     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     */
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: pulumi.Input<number>;
+    /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -1338,78 +1346,100 @@ export interface DatabaseUserScope {
 }
 
 export interface EncryptionAtRestAwsKmsConfig {
+    /**
+     * Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+     */
     accessKeyId?: pulumi.Input<string>;
     /**
-     * The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+     * Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
      */
     customerMasterKeyId?: pulumi.Input<string>;
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+     * Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
      */
     region?: pulumi.Input<string>;
     /**
-     * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlasCloudProviderAccess` resource.
+     * Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      */
     roleId?: pulumi.Input<string>;
+    /**
+     * Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+     */
     secretAccessKey?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     */
+    valid?: pulumi.Input<boolean>;
 }
 
 export interface EncryptionAtRestAzureKeyVaultConfig {
     /**
-     * The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+     * Azure environment in which your account credentials reside.
      */
     azureEnvironment?: pulumi.Input<string>;
     /**
-     * The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+     * Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
      */
     clientId?: pulumi.Input<string>;
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The unique identifier of a key in an Azure Key Vault.
+     * Web address with a unique key that identifies for your Azure Key Vault.
      */
     keyIdentifier?: pulumi.Input<string>;
     /**
-     * The name of an Azure Key Vault containing your key.
+     * Unique string that identifies the Azure Key Vault that contains your key.
      */
     keyVaultName?: pulumi.Input<string>;
     /**
-     * The name of the Azure Resource group that contains an Azure Key Vault.
+     * Enable connection to your Azure Key Vault over private networking.
+     */
+    requirePrivateNetworking?: pulumi.Input<boolean>;
+    /**
+     * Name of the Azure resource group that contains your Azure Key Vault.
      */
     resourceGroupName?: pulumi.Input<string>;
     /**
-     * The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+     * Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      */
     secret?: pulumi.Input<string>;
     /**
-     * The unique identifier associated with an Azure subscription.
+     * Unique 36-hexadecimal character string that identifies your Azure subscription.
      */
     subscriptionId?: pulumi.Input<string>;
     /**
-     * The unique identifier for an Azure AD tenant within an Azure subscription.
+     * Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
      */
     tenantId?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+     */
+    valid?: pulumi.Input<boolean>;
 }
 
 export interface EncryptionAtRestGoogleCloudKmsConfig {
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The Key Version Resource ID from your GCP account.
+     * Resource path that displays the key version resource ID for your Google Cloud KMS.
      */
     keyVersionResourceId?: pulumi.Input<string>;
     /**
-     * String-formatted JSON object containing GCP KMS credentials from your GCP account.
+     * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      */
     serviceAccountKey?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     */
+    valid?: pulumi.Input<boolean>;
 }
 
 export interface EventTriggerEventProcessors {
@@ -2171,6 +2201,28 @@ export interface StreamInstanceStreamConfig {
      * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      */
     tier?: pulumi.Input<string>;
+}
+
+export interface StreamProcessorOptions {
+    /**
+     * Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+     */
+    dlq: pulumi.Input<inputs.StreamProcessorOptionsDlq>;
+}
+
+export interface StreamProcessorOptionsDlq {
+    /**
+     * Name of the collection to use for the DLQ.
+     */
+    coll: pulumi.Input<string>;
+    /**
+     * Name of the connection to write DLQ messages to. Must be an Atlas connection.
+     */
+    connectionName: pulumi.Input<string>;
+    /**
+     * Name of the database to use for the DLQ.
+     */
+    db: pulumi.Input<string>;
 }
 
 export interface X509AuthenticationDatabaseUserCertificate {

@@ -14,6 +14,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AdvancedClusterAdvancedConfiguration {
     /**
+     * @return The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     * 
+     */
+    private @Nullable Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+    /**
      * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      * 
      * @deprecated
@@ -83,6 +88,13 @@ public final class AdvancedClusterAdvancedConfiguration {
     private @Nullable Integer transactionLifetimeLimitSeconds;
 
     private AdvancedClusterAdvancedConfiguration() {}
+    /**
+     * @return The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     * 
+     */
+    public Optional<Integer> changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
+        return Optional.ofNullable(this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds);
+    }
     /**
      * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      * 
@@ -183,6 +195,7 @@ public final class AdvancedClusterAdvancedConfiguration {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         private @Nullable String defaultReadConcern;
         private @Nullable String defaultWriteConcern;
         private @Nullable Boolean failIndexKeyTooLong;
@@ -197,6 +210,7 @@ public final class AdvancedClusterAdvancedConfiguration {
         public Builder() {}
         public Builder(AdvancedClusterAdvancedConfiguration defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = defaults.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
     	      this.defaultReadConcern = defaults.defaultReadConcern;
     	      this.defaultWriteConcern = defaults.defaultWriteConcern;
     	      this.failIndexKeyTooLong = defaults.failIndexKeyTooLong;
@@ -210,6 +224,12 @@ public final class AdvancedClusterAdvancedConfiguration {
     	      this.transactionLifetimeLimitSeconds = defaults.transactionLifetimeLimitSeconds;
         }
 
+        @CustomType.Setter
+        public Builder changeStreamOptionsPreAndPostImagesExpireAfterSeconds(@Nullable Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds) {
+
+            this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            return this;
+        }
         @CustomType.Setter
         public Builder defaultReadConcern(@Nullable String defaultReadConcern) {
 
@@ -278,6 +298,7 @@ public final class AdvancedClusterAdvancedConfiguration {
         }
         public AdvancedClusterAdvancedConfiguration build() {
             final var _resultValue = new AdvancedClusterAdvancedConfiguration();
+            _resultValue.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
             _resultValue.defaultReadConcern = defaultReadConcern;
             _resultValue.defaultWriteConcern = defaultWriteConcern;
             _resultValue.failIndexKeyTooLong = failIndexKeyTooLong;

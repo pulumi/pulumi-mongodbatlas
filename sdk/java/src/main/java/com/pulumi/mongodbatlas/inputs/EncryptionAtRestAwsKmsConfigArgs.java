@@ -16,22 +16,30 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
 
     public static final EncryptionAtRestAwsKmsConfigArgs Empty = new EncryptionAtRestAwsKmsConfigArgs();
 
+    /**
+     * Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+     * 
+     */
     @Import(name="accessKeyId")
     private @Nullable Output<String> accessKeyId;
 
+    /**
+     * @return Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+     * 
+     */
     public Optional<Output<String>> accessKeyId() {
         return Optional.ofNullable(this.accessKeyId);
     }
 
     /**
-     * The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+     * Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
      * 
      */
     @Import(name="customerMasterKeyId")
     private @Nullable Output<String> customerMasterKeyId;
 
     /**
-     * @return The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+     * @return Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
      * 
      */
     public Optional<Output<String>> customerMasterKeyId() {
@@ -39,14 +47,14 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
     }
 
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -54,14 +62,14 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
     }
 
     /**
-     * The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+     * Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+     * @return Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
      * 
      */
     public Optional<Output<String>> region() {
@@ -69,25 +77,48 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
     }
 
     /**
-     * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
+     * Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      * 
      */
     @Import(name="roleId")
     private @Nullable Output<String> roleId;
 
     /**
-     * @return ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
+     * @return Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      * 
      */
     public Optional<Output<String>> roleId() {
         return Optional.ofNullable(this.roleId);
     }
 
+    /**
+     * Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+     * 
+     */
     @Import(name="secretAccessKey")
     private @Nullable Output<String> secretAccessKey;
 
+    /**
+     * @return Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+     * 
+     */
     public Optional<Output<String>> secretAccessKey() {
         return Optional.ofNullable(this.secretAccessKey);
+    }
+
+    /**
+     * Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     * 
+     */
+    @Import(name="valid")
+    private @Nullable Output<Boolean> valid;
+
+    /**
+     * @return Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     * 
+     */
+    public Optional<Output<Boolean>> valid() {
+        return Optional.ofNullable(this.valid);
     }
 
     private EncryptionAtRestAwsKmsConfigArgs() {}
@@ -99,6 +130,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         this.region = $.region;
         this.roleId = $.roleId;
         this.secretAccessKey = $.secretAccessKey;
+        this.valid = $.valid;
     }
 
     public static Builder builder() {
@@ -119,17 +151,29 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
             $ = new EncryptionAtRestAwsKmsConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param accessKeyId Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+         * 
+         * @return builder
+         * 
+         */
         public Builder accessKeyId(@Nullable Output<String> accessKeyId) {
             $.accessKeyId = accessKeyId;
             return this;
         }
 
+        /**
+         * @param accessKeyId Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+         * 
+         * @return builder
+         * 
+         */
         public Builder accessKeyId(String accessKeyId) {
             return accessKeyId(Output.of(accessKeyId));
         }
 
         /**
-         * @param customerMasterKeyId The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+         * @param customerMasterKeyId Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
          * 
          * @return builder
          * 
@@ -140,7 +184,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         }
 
         /**
-         * @param customerMasterKeyId The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+         * @param customerMasterKeyId Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
          * 
          * @return builder
          * 
@@ -150,7 +194,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         }
 
         /**
-         * @param enabled Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
          * 
          * @return builder
          * 
@@ -161,7 +205,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         }
 
         /**
-         * @param enabled Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
          * 
          * @return builder
          * 
@@ -171,7 +215,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         }
 
         /**
-         * @param region The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+         * @param region Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
          * 
          * @return builder
          * 
@@ -182,7 +226,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         }
 
         /**
-         * @param region The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+         * @param region Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
          * 
          * @return builder
          * 
@@ -192,7 +236,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         }
 
         /**
-         * @param roleId ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
+         * @param roleId Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
          * 
          * @return builder
          * 
@@ -203,7 +247,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         }
 
         /**
-         * @param roleId ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
+         * @param roleId Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
          * 
          * @return builder
          * 
@@ -212,13 +256,46 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
             return roleId(Output.of(roleId));
         }
 
+        /**
+         * @param secretAccessKey Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder secretAccessKey(@Nullable Output<String> secretAccessKey) {
             $.secretAccessKey = secretAccessKey;
             return this;
         }
 
+        /**
+         * @param secretAccessKey Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder secretAccessKey(String secretAccessKey) {
             return secretAccessKey(Output.of(secretAccessKey));
+        }
+
+        /**
+         * @param valid Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valid(@Nullable Output<Boolean> valid) {
+            $.valid = valid;
+            return this;
+        }
+
+        /**
+         * @param valid Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valid(Boolean valid) {
+            return valid(Output.of(valid));
         }
 
         public EncryptionAtRestAwsKmsConfigArgs build() {

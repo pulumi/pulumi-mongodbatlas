@@ -123,6 +123,8 @@ __all__ = [
     'StreamConnectionSecurity',
     'StreamInstanceDataProcessRegion',
     'StreamInstanceStreamConfig',
+    'StreamProcessorOptions',
+    'StreamProcessorOptionsDlq',
     'X509AuthenticationDatabaseUserCertificate',
     'Get509AuthenticationDatabaseUserCertificateResult',
     'GetAccessListApiKeysResultResult',
@@ -254,6 +256,10 @@ __all__ = [
     'GetDatabaseUsersResultLabelResult',
     'GetDatabaseUsersResultRoleResult',
     'GetDatabaseUsersResultScopeResult',
+    'GetEncryptionAtRestAwsKmsConfigResult',
+    'GetEncryptionAtRestAzureKeyVaultConfigResult',
+    'GetEncryptionAtRestGoogleCloudKmsConfigResult',
+    'GetEncryptionAtRestPrivateEndpointsResultResult',
     'GetEventTriggerEventProcessorResult',
     'GetEventTriggerEventProcessorAwsEventbridgeResult',
     'GetEventTriggersResultResult',
@@ -366,6 +372,11 @@ __all__ = [
     'GetStreamInstancesResultResult',
     'GetStreamInstancesResultDataProcessRegionResult',
     'GetStreamInstancesResultStreamConfigResult',
+    'GetStreamProcessorOptionsResult',
+    'GetStreamProcessorOptionsDlqResult',
+    'GetStreamProcessorsResultResult',
+    'GetStreamProcessorsResultOptionsResult',
+    'GetStreamProcessorsResultOptionsDlqResult',
     'GetThirdPartyIntegrationsResultResult',
     'GetX509AuthenticationDatabaseUserCertificateResult',
 ]
@@ -375,7 +386,9 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "defaultReadConcern":
+        if key == "changeStreamOptionsPreAndPostImagesExpireAfterSeconds":
+            suggest = "change_stream_options_pre_and_post_images_expire_after_seconds"
+        elif key == "defaultReadConcern":
             suggest = "default_read_concern"
         elif key == "defaultWriteConcern":
             suggest = "default_write_concern"
@@ -410,6 +423,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 change_stream_options_pre_and_post_images_expire_after_seconds: Optional[int] = None,
                  default_read_concern: Optional[str] = None,
                  default_write_concern: Optional[str] = None,
                  fail_index_key_too_long: Optional[bool] = None,
@@ -422,6 +436,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
                  sample_size_bi_connector: Optional[int] = None,
                  transaction_lifetime_limit_seconds: Optional[int] = None):
         """
+        :param int change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
@@ -439,6 +454,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
+        if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
+            pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         if default_read_concern is not None:
             pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
@@ -461,6 +478,14 @@ class AdvancedClusterAdvancedConfiguration(dict):
             pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
         if transaction_lifetime_limit_seconds is not None:
             pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+
+    @property
+    @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> Optional[int]:
+        """
+        The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+        """
+        return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -3822,7 +3847,9 @@ class ClusterAdvancedConfiguration(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "defaultReadConcern":
+        if key == "changeStreamOptionsPreAndPostImagesExpireAfterSeconds":
+            suggest = "change_stream_options_pre_and_post_images_expire_after_seconds"
+        elif key == "defaultReadConcern":
             suggest = "default_read_concern"
         elif key == "defaultWriteConcern":
             suggest = "default_write_concern"
@@ -3857,6 +3884,7 @@ class ClusterAdvancedConfiguration(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 change_stream_options_pre_and_post_images_expire_after_seconds: Optional[int] = None,
                  default_read_concern: Optional[str] = None,
                  default_write_concern: Optional[str] = None,
                  fail_index_key_too_long: Optional[bool] = None,
@@ -3869,6 +3897,7 @@ class ClusterAdvancedConfiguration(dict):
                  sample_size_bi_connector: Optional[int] = None,
                  transaction_lifetime_limit_seconds: Optional[int] = None):
         """
+        :param int change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -3886,6 +3915,8 @@ class ClusterAdvancedConfiguration(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
+        if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
+            pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         if default_read_concern is not None:
             pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
@@ -3908,6 +3939,14 @@ class ClusterAdvancedConfiguration(dict):
             pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
         if transaction_lifetime_limit_seconds is not None:
             pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+
+    @property
+    @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> Optional[int]:
+        """
+        The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+        """
+        return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -5644,12 +5683,16 @@ class EncryptionAtRestAwsKmsConfig(dict):
                  enabled: Optional[bool] = None,
                  region: Optional[str] = None,
                  role_id: Optional[str] = None,
-                 secret_access_key: Optional[str] = None):
+                 secret_access_key: Optional[str] = None,
+                 valid: Optional[bool] = None):
         """
-        :param str customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
-        :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
-        :param str region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-        :param str role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
+        :param str access_key_id: Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+        :param str customer_master_key_id: Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
+        :param bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param str region: Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+        :param str role_id: Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
+        :param str secret_access_key: Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+        :param bool valid: Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
         """
         if access_key_id is not None:
             pulumi.set(__self__, "access_key_id", access_key_id)
@@ -5663,17 +5706,22 @@ class EncryptionAtRestAwsKmsConfig(dict):
             pulumi.set(__self__, "role_id", role_id)
         if secret_access_key is not None:
             pulumi.set(__self__, "secret_access_key", secret_access_key)
+        if valid is not None:
+            pulumi.set(__self__, "valid", valid)
 
     @property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> Optional[str]:
+        """
+        Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+        """
         return pulumi.get(self, "access_key_id")
 
     @property
     @pulumi.getter(name="customerMasterKeyId")
     def customer_master_key_id(self) -> Optional[str]:
         """
-        The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+        Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
         """
         return pulumi.get(self, "customer_master_key_id")
 
@@ -5681,7 +5729,7 @@ class EncryptionAtRestAwsKmsConfig(dict):
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
         """
-        Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+        Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         """
         return pulumi.get(self, "enabled")
 
@@ -5689,7 +5737,7 @@ class EncryptionAtRestAwsKmsConfig(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+        Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
         """
         return pulumi.get(self, "region")
 
@@ -5697,14 +5745,25 @@ class EncryptionAtRestAwsKmsConfig(dict):
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[str]:
         """
-        ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
+        Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
         """
         return pulumi.get(self, "role_id")
 
     @property
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> Optional[str]:
+        """
+        Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+        """
         return pulumi.get(self, "secret_access_key")
+
+    @property
+    @pulumi.getter
+    def valid(self) -> Optional[bool]:
+        """
+        Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+        """
+        return pulumi.get(self, "valid")
 
 
 @pulumi.output_type
@@ -5720,6 +5779,8 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
             suggest = "key_identifier"
         elif key == "keyVaultName":
             suggest = "key_vault_name"
+        elif key == "requirePrivateNetworking":
+            suggest = "require_private_networking"
         elif key == "resourceGroupName":
             suggest = "resource_group_name"
         elif key == "subscriptionId":
@@ -5744,20 +5805,24 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
                  enabled: Optional[bool] = None,
                  key_identifier: Optional[str] = None,
                  key_vault_name: Optional[str] = None,
+                 require_private_networking: Optional[bool] = None,
                  resource_group_name: Optional[str] = None,
                  secret: Optional[str] = None,
                  subscription_id: Optional[str] = None,
-                 tenant_id: Optional[str] = None):
+                 tenant_id: Optional[str] = None,
+                 valid: Optional[bool] = None):
         """
-        :param str azure_environment: The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
-        :param str client_id: The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-        :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-        :param str key_identifier: The unique identifier of a key in an Azure Key Vault.
-        :param str key_vault_name: The name of an Azure Key Vault containing your key.
-        :param str resource_group_name: The name of the Azure Resource group that contains an Azure Key Vault.
-        :param str secret: The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
-        :param str subscription_id: The unique identifier associated with an Azure subscription.
-        :param str tenant_id: The unique identifier for an Azure AD tenant within an Azure subscription.
+        :param str azure_environment: Azure environment in which your account credentials reside.
+        :param str client_id: Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
+        :param bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param str key_identifier: Web address with a unique key that identifies for your Azure Key Vault.
+        :param str key_vault_name: Unique string that identifies the Azure Key Vault that contains your key.
+        :param bool require_private_networking: Enable connection to your Azure Key Vault over private networking.
+        :param str resource_group_name: Name of the Azure resource group that contains your Azure Key Vault.
+        :param str secret: Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
+        :param str subscription_id: Unique 36-hexadecimal character string that identifies your Azure subscription.
+        :param str tenant_id: Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
+        :param bool valid: Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
         """
         if azure_environment is not None:
             pulumi.set(__self__, "azure_environment", azure_environment)
@@ -5769,6 +5834,8 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
             pulumi.set(__self__, "key_identifier", key_identifier)
         if key_vault_name is not None:
             pulumi.set(__self__, "key_vault_name", key_vault_name)
+        if require_private_networking is not None:
+            pulumi.set(__self__, "require_private_networking", require_private_networking)
         if resource_group_name is not None:
             pulumi.set(__self__, "resource_group_name", resource_group_name)
         if secret is not None:
@@ -5777,12 +5844,14 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
             pulumi.set(__self__, "subscription_id", subscription_id)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if valid is not None:
+            pulumi.set(__self__, "valid", valid)
 
     @property
     @pulumi.getter(name="azureEnvironment")
     def azure_environment(self) -> Optional[str]:
         """
-        The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+        Azure environment in which your account credentials reside.
         """
         return pulumi.get(self, "azure_environment")
 
@@ -5790,7 +5859,7 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[str]:
         """
-        The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+        Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
         """
         return pulumi.get(self, "client_id")
 
@@ -5798,7 +5867,7 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
         """
-        Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         """
         return pulumi.get(self, "enabled")
 
@@ -5806,7 +5875,7 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
     @pulumi.getter(name="keyIdentifier")
     def key_identifier(self) -> Optional[str]:
         """
-        The unique identifier of a key in an Azure Key Vault.
+        Web address with a unique key that identifies for your Azure Key Vault.
         """
         return pulumi.get(self, "key_identifier")
 
@@ -5814,15 +5883,23 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
     @pulumi.getter(name="keyVaultName")
     def key_vault_name(self) -> Optional[str]:
         """
-        The name of an Azure Key Vault containing your key.
+        Unique string that identifies the Azure Key Vault that contains your key.
         """
         return pulumi.get(self, "key_vault_name")
+
+    @property
+    @pulumi.getter(name="requirePrivateNetworking")
+    def require_private_networking(self) -> Optional[bool]:
+        """
+        Enable connection to your Azure Key Vault over private networking.
+        """
+        return pulumi.get(self, "require_private_networking")
 
     @property
     @pulumi.getter(name="resourceGroupName")
     def resource_group_name(self) -> Optional[str]:
         """
-        The name of the Azure Resource group that contains an Azure Key Vault.
+        Name of the Azure resource group that contains your Azure Key Vault.
         """
         return pulumi.get(self, "resource_group_name")
 
@@ -5830,7 +5907,7 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
     @pulumi.getter
     def secret(self) -> Optional[str]:
         """
-        The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+        Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
         """
         return pulumi.get(self, "secret")
 
@@ -5838,7 +5915,7 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
     @pulumi.getter(name="subscriptionId")
     def subscription_id(self) -> Optional[str]:
         """
-        The unique identifier associated with an Azure subscription.
+        Unique 36-hexadecimal character string that identifies your Azure subscription.
         """
         return pulumi.get(self, "subscription_id")
 
@@ -5846,9 +5923,17 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> Optional[str]:
         """
-        The unique identifier for an Azure AD tenant within an Azure subscription.
+        Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
         """
         return pulumi.get(self, "tenant_id")
+
+    @property
+    @pulumi.getter
+    def valid(self) -> Optional[bool]:
+        """
+        Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+        """
+        return pulumi.get(self, "valid")
 
 
 @pulumi.output_type
@@ -5875,11 +5960,13 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
     def __init__(__self__, *,
                  enabled: Optional[bool] = None,
                  key_version_resource_id: Optional[str] = None,
-                 service_account_key: Optional[str] = None):
+                 service_account_key: Optional[str] = None,
+                 valid: Optional[bool] = None):
         """
-        :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-        :param str key_version_resource_id: The Key Version Resource ID from your GCP account.
-        :param str service_account_key: String-formatted JSON object containing GCP KMS credentials from your GCP account.
+        :param bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param str key_version_resource_id: Resource path that displays the key version resource ID for your Google Cloud KMS.
+        :param str service_account_key: JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
+        :param bool valid: Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -5887,12 +5974,14 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
             pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
         if service_account_key is not None:
             pulumi.set(__self__, "service_account_key", service_account_key)
+        if valid is not None:
+            pulumi.set(__self__, "valid", valid)
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
         """
-        Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         """
         return pulumi.get(self, "enabled")
 
@@ -5900,7 +5989,7 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
     @pulumi.getter(name="keyVersionResourceId")
     def key_version_resource_id(self) -> Optional[str]:
         """
-        The Key Version Resource ID from your GCP account.
+        Resource path that displays the key version resource ID for your Google Cloud KMS.
         """
         return pulumi.get(self, "key_version_resource_id")
 
@@ -5908,9 +5997,17 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
     @pulumi.getter(name="serviceAccountKey")
     def service_account_key(self) -> Optional[str]:
         """
-        String-formatted JSON object containing GCP KMS credentials from your GCP account.
+        JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
         """
         return pulumi.get(self, "service_account_key")
+
+    @property
+    @pulumi.getter
+    def valid(self) -> Optional[bool]:
+        """
+        Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+        """
+        return pulumi.get(self, "valid")
 
 
 @pulumi.output_type
@@ -8160,6 +8257,81 @@ class StreamInstanceStreamConfig(dict):
 
 
 @pulumi.output_type
+class StreamProcessorOptions(dict):
+    def __init__(__self__, *,
+                 dlq: 'outputs.StreamProcessorOptionsDlq'):
+        """
+        :param 'StreamProcessorOptionsDlqArgs' dlq: Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+        """
+        pulumi.set(__self__, "dlq", dlq)
+
+    @property
+    @pulumi.getter
+    def dlq(self) -> 'outputs.StreamProcessorOptionsDlq':
+        """
+        Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+        """
+        return pulumi.get(self, "dlq")
+
+
+@pulumi.output_type
+class StreamProcessorOptionsDlq(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionName":
+            suggest = "connection_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamProcessorOptionsDlq. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamProcessorOptionsDlq.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamProcessorOptionsDlq.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 coll: str,
+                 connection_name: str,
+                 db: str):
+        """
+        :param str coll: Name of the collection to use for the DLQ.
+        :param str connection_name: Name of the connection to write DLQ messages to. Must be an Atlas connection.
+        :param str db: Name of the database to use for the DLQ.
+        """
+        pulumi.set(__self__, "coll", coll)
+        pulumi.set(__self__, "connection_name", connection_name)
+        pulumi.set(__self__, "db", db)
+
+    @property
+    @pulumi.getter
+    def coll(self) -> str:
+        """
+        Name of the collection to use for the DLQ.
+        """
+        return pulumi.get(self, "coll")
+
+    @property
+    @pulumi.getter(name="connectionName")
+    def connection_name(self) -> str:
+        """
+        Name of the connection to write DLQ messages to. Must be an Atlas connection.
+        """
+        return pulumi.get(self, "connection_name")
+
+    @property
+    @pulumi.getter
+    def db(self) -> str:
+        """
+        Name of the database to use for the DLQ.
+        """
+        return pulumi.get(self, "db")
+
+
+@pulumi.output_type
 class X509AuthenticationDatabaseUserCertificate(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -8325,6 +8497,7 @@ class GetAccessListApiKeysResultResult(dict):
 @pulumi.output_type
 class GetAdvancedClusterAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
+                 change_stream_options_pre_and_post_images_expire_after_seconds: int,
                  default_read_concern: str,
                  default_write_concern: str,
                  fail_index_key_too_long: bool,
@@ -8337,6 +8510,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
                  sample_size_bi_connector: int,
                  transaction_lifetime_limit_seconds: int):
         """
+        :param int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
@@ -8349,6 +8523,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
+        pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
         pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
@@ -8360,6 +8535,14 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
         pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+
+    @property
+    @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> int:
+        """
+        (Optional) The minimum pre- and post-image retention time in seconds.
+        """
+        return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -9220,6 +9403,7 @@ class GetAdvancedClustersResultResult(dict):
                  name: str,
                  paused: bool,
                  pit_enabled: bool,
+                 replica_set_scaling_strategy: str,
                  replication_specs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult'],
                  root_cert_type: str,
                  state_name: str,
@@ -9239,6 +9423,7 @@ class GetAdvancedClustersResultResult(dict):
         :param str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param bool paused: Flag that indicates whether the cluster is paused or not.
         :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
+        :param str replica_set_scaling_strategy: (Optional) Replica set scaling mode for your cluster.
         :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         :param str root_cert_type: Certificate Authority that MongoDB Atlas clusters use.
         :param str state_name: Current state of the cluster. The possible states are:
@@ -9261,6 +9446,7 @@ class GetAdvancedClustersResultResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "paused", paused)
         pulumi.set(__self__, "pit_enabled", pit_enabled)
+        pulumi.set(__self__, "replica_set_scaling_strategy", replica_set_scaling_strategy)
         pulumi.set(__self__, "replication_specs", replication_specs)
         pulumi.set(__self__, "root_cert_type", root_cert_type)
         pulumi.set(__self__, "state_name", state_name)
@@ -9337,7 +9523,7 @@ class GetAdvancedClustersResultResult(dict):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Sequence['outputs.GetAdvancedClustersResultLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -9380,6 +9566,14 @@ class GetAdvancedClustersResultResult(dict):
         Flag that indicates if the cluster uses Continuous Cloud Backup.
         """
         return pulumi.get(self, "pit_enabled")
+
+    @property
+    @pulumi.getter(name="replicaSetScalingStrategy")
+    def replica_set_scaling_strategy(self) -> str:
+        """
+        (Optional) Replica set scaling mode for your cluster.
+        """
+        return pulumi.get(self, "replica_set_scaling_strategy")
 
     @property
     @pulumi.getter(name="replicationSpecs")
@@ -9433,6 +9627,7 @@ class GetAdvancedClustersResultResult(dict):
 @pulumi.output_type
 class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
+                 change_stream_options_pre_and_post_images_expire_after_seconds: int,
                  default_read_concern: str,
                  default_write_concern: str,
                  fail_index_key_too_long: bool,
@@ -9445,6 +9640,7 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
                  sample_size_bi_connector: int,
                  transaction_lifetime_limit_seconds: int):
         """
+        :param int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
@@ -9455,7 +9651,9 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int transaction_lifetime_limit_seconds: (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
+        pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
         pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
@@ -9467,6 +9665,14 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
         pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+
+    @property
+    @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> int:
+        """
+        (Optional) The minimum pre- and post-image retention time in seconds.
+        """
+        return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -9553,6 +9759,9 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
     def transaction_lifetime_limit_seconds(self) -> int:
+        """
+        (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        """
         return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
 
@@ -13415,6 +13624,7 @@ class GetCloudProviderAccessSetupAzureConfigResult(dict):
 @pulumi.output_type
 class GetClusterAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
+                 change_stream_options_pre_and_post_images_expire_after_seconds: int,
                  default_read_concern: str,
                  default_write_concern: str,
                  fail_index_key_too_long: bool,
@@ -13427,6 +13637,7 @@ class GetClusterAdvancedConfigurationResult(dict):
                  sample_size_bi_connector: int,
                  transaction_lifetime_limit_seconds: int):
         """
+        :param int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -13439,6 +13650,7 @@ class GetClusterAdvancedConfigurationResult(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
+        pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
         pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
@@ -13450,6 +13662,14 @@ class GetClusterAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
         pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+
+    @property
+    @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> int:
+        """
+        (Optional) The minimum pre- and post-image retention time in seconds.
+        """
+        return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -14313,7 +14533,7 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Sequence['outputs.GetClustersResultLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -14547,6 +14767,7 @@ class GetClustersResultResult(dict):
 @pulumi.output_type
 class GetClustersResultAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
+                 change_stream_options_pre_and_post_images_expire_after_seconds: int,
                  default_read_concern: str,
                  default_write_concern: str,
                  fail_index_key_too_long: bool,
@@ -14559,6 +14780,7 @@ class GetClustersResultAdvancedConfigurationResult(dict):
                  sample_size_bi_connector: int,
                  transaction_lifetime_limit_seconds: int):
         """
+        :param int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -14570,6 +14792,7 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
+        pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
         pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
@@ -14581,6 +14804,14 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
         pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+
+    @property
+    @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> int:
+        """
+        (Optional) The minimum pre- and post-image retention time in seconds.
+        """
+        return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -16523,6 +16754,353 @@ class GetDatabaseUsersResultScopeResult(dict):
         Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetEncryptionAtRestAwsKmsConfigResult(dict):
+    def __init__(__self__, *,
+                 access_key_id: str,
+                 customer_master_key_id: str,
+                 enabled: bool,
+                 region: str,
+                 role_id: str,
+                 secret_access_key: str,
+                 valid: bool):
+        """
+        :param str access_key_id: Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+        :param str customer_master_key_id: Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
+        :param bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param str region: Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+        :param str role_id: Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
+        :param str secret_access_key: Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+        :param bool valid: Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+        """
+        pulumi.set(__self__, "access_key_id", access_key_id)
+        pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "secret_access_key", secret_access_key)
+        pulumi.set(__self__, "valid", valid)
+
+    @property
+    @pulumi.getter(name="accessKeyId")
+    def access_key_id(self) -> str:
+        """
+        Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+        """
+        return pulumi.get(self, "access_key_id")
+
+    @property
+    @pulumi.getter(name="customerMasterKeyId")
+    def customer_master_key_id(self) -> str:
+        """
+        Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
+        """
+        return pulumi.get(self, "customer_master_key_id")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
+        """
+        return pulumi.get(self, "role_id")
+
+    @property
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> str:
+        """
+        Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+        """
+        return pulumi.get(self, "secret_access_key")
+
+    @property
+    @pulumi.getter
+    def valid(self) -> bool:
+        """
+        Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+        """
+        return pulumi.get(self, "valid")
+
+
+@pulumi.output_type
+class GetEncryptionAtRestAzureKeyVaultConfigResult(dict):
+    def __init__(__self__, *,
+                 azure_environment: str,
+                 client_id: str,
+                 enabled: bool,
+                 key_identifier: str,
+                 key_vault_name: str,
+                 require_private_networking: bool,
+                 resource_group_name: str,
+                 secret: str,
+                 subscription_id: str,
+                 tenant_id: str,
+                 valid: bool):
+        """
+        :param str azure_environment: Azure environment in which your account credentials reside.
+        :param str client_id: Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
+        :param bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param str key_identifier: Web address with a unique key that identifies for your Azure Key Vault.
+        :param str key_vault_name: Unique string that identifies the Azure Key Vault that contains your key.
+        :param bool require_private_networking: Enable connection to your Azure Key Vault over private networking.
+        :param str resource_group_name: Name of the Azure resource group that contains your Azure Key Vault.
+        :param str secret: Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
+        :param str subscription_id: Unique 36-hexadecimal character string that identifies your Azure subscription.
+        :param str tenant_id: Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
+        :param bool valid: Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+        """
+        pulumi.set(__self__, "azure_environment", azure_environment)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "key_identifier", key_identifier)
+        pulumi.set(__self__, "key_vault_name", key_vault_name)
+        pulumi.set(__self__, "require_private_networking", require_private_networking)
+        pulumi.set(__self__, "resource_group_name", resource_group_name)
+        pulumi.set(__self__, "secret", secret)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
+        pulumi.set(__self__, "valid", valid)
+
+    @property
+    @pulumi.getter(name="azureEnvironment")
+    def azure_environment(self) -> str:
+        """
+        Azure environment in which your account credentials reside.
+        """
+        return pulumi.get(self, "azure_environment")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="keyIdentifier")
+    def key_identifier(self) -> str:
+        """
+        Web address with a unique key that identifies for your Azure Key Vault.
+        """
+        return pulumi.get(self, "key_identifier")
+
+    @property
+    @pulumi.getter(name="keyVaultName")
+    def key_vault_name(self) -> str:
+        """
+        Unique string that identifies the Azure Key Vault that contains your key.
+        """
+        return pulumi.get(self, "key_vault_name")
+
+    @property
+    @pulumi.getter(name="requirePrivateNetworking")
+    def require_private_networking(self) -> bool:
+        """
+        Enable connection to your Azure Key Vault over private networking.
+        """
+        return pulumi.get(self, "require_private_networking")
+
+    @property
+    @pulumi.getter(name="resourceGroupName")
+    def resource_group_name(self) -> str:
+        """
+        Name of the Azure resource group that contains your Azure Key Vault.
+        """
+        return pulumi.get(self, "resource_group_name")
+
+    @property
+    @pulumi.getter
+    def secret(self) -> str:
+        """
+        Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
+        """
+        return pulumi.get(self, "secret")
+
+    @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> str:
+        """
+        Unique 36-hexadecimal character string that identifies your Azure subscription.
+        """
+        return pulumi.get(self, "subscription_id")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> str:
+        """
+        Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
+        """
+        return pulumi.get(self, "tenant_id")
+
+    @property
+    @pulumi.getter
+    def valid(self) -> bool:
+        """
+        Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+        """
+        return pulumi.get(self, "valid")
+
+
+@pulumi.output_type
+class GetEncryptionAtRestGoogleCloudKmsConfigResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 key_version_resource_id: str,
+                 service_account_key: str,
+                 valid: bool):
+        """
+        :param bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param str key_version_resource_id: Resource path that displays the key version resource ID for your Google Cloud KMS.
+        :param str service_account_key: JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
+        :param bool valid: Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
+        pulumi.set(__self__, "service_account_key", service_account_key)
+        pulumi.set(__self__, "valid", valid)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="keyVersionResourceId")
+    def key_version_resource_id(self) -> str:
+        """
+        Resource path that displays the key version resource ID for your Google Cloud KMS.
+        """
+        return pulumi.get(self, "key_version_resource_id")
+
+    @property
+    @pulumi.getter(name="serviceAccountKey")
+    def service_account_key(self) -> str:
+        """
+        JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
+        """
+        return pulumi.get(self, "service_account_key")
+
+    @property
+    @pulumi.getter
+    def valid(self) -> bool:
+        """
+        Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+        """
+        return pulumi.get(self, "valid")
+
+
+@pulumi.output_type
+class GetEncryptionAtRestPrivateEndpointsResultResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 error_message: str,
+                 id: str,
+                 private_endpoint_connection_name: str,
+                 project_id: str,
+                 region_name: str,
+                 status: str):
+        """
+        :param str cloud_provider: Label that identifies the cloud provider of the private endpoint.
+        :param str error_message: Error message for failures associated with the Encryption At Rest private endpoint.
+        :param str id: Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
+        :param str private_endpoint_connection_name: Connection name of the Azure Private Endpoint.
+        :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param str region_name: Cloud provider region in which the Encryption At Rest private endpoint is located.
+        :param str status: State of the Encryption At Rest private endpoint.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "private_endpoint_connection_name", private_endpoint_connection_name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        """
+        Label that identifies the cloud provider of the private endpoint.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> str:
+        """
+        Error message for failures associated with the Encryption At Rest private endpoint.
+        """
+        return pulumi.get(self, "error_message")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="privateEndpointConnectionName")
+    def private_endpoint_connection_name(self) -> str:
+        """
+        Connection name of the Azure Private Endpoint.
+        """
+        return pulumi.get(self, "private_endpoint_connection_name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        Cloud provider region in which the Encryption At Rest private endpoint is located.
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        State of the Encryption At Rest private endpoint.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -20691,11 +21269,17 @@ class GetProjectIpAddressesResult(dict):
 class GetProjectIpAddressesServicesResult(dict):
     def __init__(__self__, *,
                  clusters: Sequence['outputs.GetProjectIpAddressesServicesClusterResult']):
+        """
+        :param Sequence['GetProjectIpAddressesServicesClusterArgs'] clusters: IP addresses of clusters.
+        """
         pulumi.set(__self__, "clusters", clusters)
 
     @property
     @pulumi.getter
     def clusters(self) -> Sequence['outputs.GetProjectIpAddressesServicesClusterResult']:
+        """
+        IP addresses of clusters.
+        """
         return pulumi.get(self, "clusters")
 
 
@@ -20705,6 +21289,11 @@ class GetProjectIpAddressesServicesClusterResult(dict):
                  cluster_name: str,
                  inbounds: Sequence[str],
                  outbounds: Sequence[str]):
+        """
+        :param str cluster_name: Human-readable label that identifies the cluster.
+        :param Sequence[str] inbounds: List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+        :param Sequence[str] outbounds: List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+        """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "inbounds", inbounds)
         pulumi.set(__self__, "outbounds", outbounds)
@@ -20712,16 +21301,25 @@ class GetProjectIpAddressesServicesClusterResult(dict):
     @property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> str:
+        """
+        Human-readable label that identifies the cluster.
+        """
         return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter
     def inbounds(self) -> Sequence[str]:
+        """
+        List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+        """
         return pulumi.get(self, "inbounds")
 
     @property
     @pulumi.getter
     def outbounds(self) -> Sequence[str]:
+        """
+        List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+        """
         return pulumi.get(self, "outbounds")
 
 
@@ -20844,7 +21442,7 @@ class GetProjectsResultResult(dict):
         :param int cluster_count: The number of Atlas clusters deployed in the project.
         :param str created: The ISO-8601-formatted timestamp of when Atlas created the project.
         :param str id: Autogenerated Unique ID for this data source.
-        :param 'GetProjectsResultIpAddressesArgs' ip_addresses: IP addresses in a project categorized by services. See IP Addresses.
+        :param 'GetProjectsResultIpAddressesArgs' ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
         :param bool is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
         :param bool is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project.
@@ -20901,9 +21499,10 @@ class GetProjectsResultResult(dict):
 
     @property
     @pulumi.getter(name="ipAddresses")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> 'outputs.GetProjectsResultIpAddressesResult':
         """
-        IP addresses in a project categorized by services. See IP Addresses.
+        IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
 
@@ -22313,6 +22912,217 @@ class GetStreamInstancesResultStreamConfigResult(dict):
         Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
         """
         return pulumi.get(self, "tier")
+
+
+@pulumi.output_type
+class GetStreamProcessorOptionsResult(dict):
+    def __init__(__self__, *,
+                 dlq: 'outputs.GetStreamProcessorOptionsDlqResult'):
+        """
+        :param 'GetStreamProcessorOptionsDlqArgs' dlq: Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+        """
+        pulumi.set(__self__, "dlq", dlq)
+
+    @property
+    @pulumi.getter
+    def dlq(self) -> 'outputs.GetStreamProcessorOptionsDlqResult':
+        """
+        Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+        """
+        return pulumi.get(self, "dlq")
+
+
+@pulumi.output_type
+class GetStreamProcessorOptionsDlqResult(dict):
+    def __init__(__self__, *,
+                 coll: str,
+                 connection_name: str,
+                 db: str):
+        """
+        :param str coll: Name of the collection to use for the DLQ.
+        :param str connection_name: Name of the connection to write DLQ messages to. Must be an Atlas connection.
+        :param str db: Name of the database to use for the DLQ.
+        """
+        pulumi.set(__self__, "coll", coll)
+        pulumi.set(__self__, "connection_name", connection_name)
+        pulumi.set(__self__, "db", db)
+
+    @property
+    @pulumi.getter
+    def coll(self) -> str:
+        """
+        Name of the collection to use for the DLQ.
+        """
+        return pulumi.get(self, "coll")
+
+    @property
+    @pulumi.getter(name="connectionName")
+    def connection_name(self) -> str:
+        """
+        Name of the connection to write DLQ messages to. Must be an Atlas connection.
+        """
+        return pulumi.get(self, "connection_name")
+
+    @property
+    @pulumi.getter
+    def db(self) -> str:
+        """
+        Name of the database to use for the DLQ.
+        """
+        return pulumi.get(self, "db")
+
+
+@pulumi.output_type
+class GetStreamProcessorsResultResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 instance_name: str,
+                 options: 'outputs.GetStreamProcessorsResultOptionsResult',
+                 pipeline: str,
+                 processor_name: str,
+                 project_id: str,
+                 state: str,
+                 stats: str):
+        """
+        :param str id: Unique 24-hexadecimal character string that identifies the stream processor.
+        :param str instance_name: Human-readable label that identifies the stream instance.
+        :param 'GetStreamProcessorsResultOptionsArgs' options: Optional configuration for the stream processor.
+        :param str pipeline: Stream aggregation pipeline you want to apply to your streaming data.
+        :param str processor_name: Human-readable label that identifies the stream processor.
+        :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param str state: The state of the stream processor.
+        :param str stats: The stats associated with the stream processor.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "options", options)
+        pulumi.set(__self__, "pipeline", pipeline)
+        pulumi.set(__self__, "processor_name", processor_name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "stats", stats)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique 24-hexadecimal character string that identifies the stream processor.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        Human-readable label that identifies the stream instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter
+    def options(self) -> 'outputs.GetStreamProcessorsResultOptionsResult':
+        """
+        Optional configuration for the stream processor.
+        """
+        return pulumi.get(self, "options")
+
+    @property
+    @pulumi.getter
+    def pipeline(self) -> str:
+        """
+        Stream aggregation pipeline you want to apply to your streaming data.
+        """
+        return pulumi.get(self, "pipeline")
+
+    @property
+    @pulumi.getter(name="processorName")
+    def processor_name(self) -> str:
+        """
+        Human-readable label that identifies the stream processor.
+        """
+        return pulumi.get(self, "processor_name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        The state of the stream processor.
+        """
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def stats(self) -> str:
+        """
+        The stats associated with the stream processor.
+        """
+        return pulumi.get(self, "stats")
+
+
+@pulumi.output_type
+class GetStreamProcessorsResultOptionsResult(dict):
+    def __init__(__self__, *,
+                 dlq: 'outputs.GetStreamProcessorsResultOptionsDlqResult'):
+        """
+        :param 'GetStreamProcessorsResultOptionsDlqArgs' dlq: Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+        """
+        pulumi.set(__self__, "dlq", dlq)
+
+    @property
+    @pulumi.getter
+    def dlq(self) -> 'outputs.GetStreamProcessorsResultOptionsDlqResult':
+        """
+        Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+        """
+        return pulumi.get(self, "dlq")
+
+
+@pulumi.output_type
+class GetStreamProcessorsResultOptionsDlqResult(dict):
+    def __init__(__self__, *,
+                 coll: str,
+                 connection_name: str,
+                 db: str):
+        """
+        :param str coll: Name of the collection to use for the DLQ.
+        :param str connection_name: Name of the connection to write DLQ messages to. Must be an Atlas connection.
+        :param str db: Name of the database to use for the DLQ.
+        """
+        pulumi.set(__self__, "coll", coll)
+        pulumi.set(__self__, "connection_name", connection_name)
+        pulumi.set(__self__, "db", db)
+
+    @property
+    @pulumi.getter
+    def coll(self) -> str:
+        """
+        Name of the collection to use for the DLQ.
+        """
+        return pulumi.get(self, "coll")
+
+    @property
+    @pulumi.getter(name="connectionName")
+    def connection_name(self) -> str:
+        """
+        Name of the connection to write DLQ messages to. Must be an Atlas connection.
+        """
+        return pulumi.get(self, "connection_name")
+
+    @property
+    @pulumi.getter
+    def db(self) -> str:
+        """
+        Name of the database to use for the DLQ.
+        """
+        return pulumi.get(self, "db")
 
 
 @pulumi.output_type

@@ -196,6 +196,9 @@ export class OnlineArchive extends pulumi.CustomResource {
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
+    /**
+     * Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+     */
     public readonly syncCreation!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -318,6 +321,9 @@ export interface OnlineArchiveState {
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      */
     state?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+     */
     syncCreation?: pulumi.Input<boolean>;
 }
 
@@ -369,5 +375,8 @@ export interface OnlineArchiveArgs {
      * Regular frequency and duration when archiving process occurs. See schedule.
      */
     schedule?: pulumi.Input<inputs.OnlineArchiveSchedule>;
+    /**
+     * Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+     */
     syncCreation?: pulumi.Input<boolean>;
 }

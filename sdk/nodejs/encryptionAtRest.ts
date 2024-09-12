@@ -6,16 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * ## Import
- *
- * Encryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.
- *
- * ```sh
- * $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
- * ```
- * For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
- */
 export class EncryptionAtRest extends pulumi.CustomResource {
     /**
      * Get an existing EncryptionAtRest resource's state with the given name, ID, and optional extra
@@ -44,11 +34,20 @@ export class EncryptionAtRest extends pulumi.CustomResource {
         return obj['__pulumiType'] === EncryptionAtRest.__pulumiType;
     }
 
+    /**
+     * Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+     */
     public readonly awsKmsConfig!: pulumi.Output<outputs.EncryptionAtRestAwsKmsConfig | undefined>;
+    /**
+     * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+     */
     public readonly azureKeyVaultConfig!: pulumi.Output<outputs.EncryptionAtRestAzureKeyVaultConfig | undefined>;
+    /**
+     * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+     */
     public readonly googleCloudKmsConfig!: pulumi.Output<outputs.EncryptionAtRestGoogleCloudKmsConfig | undefined>;
     /**
-     * The unique identifier for the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     public readonly projectId!: pulumi.Output<string>;
 
@@ -88,11 +87,20 @@ export class EncryptionAtRest extends pulumi.CustomResource {
  * Input properties used for looking up and filtering EncryptionAtRest resources.
  */
 export interface EncryptionAtRestState {
+    /**
+     * Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+     */
     awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
+    /**
+     * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+     */
     azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
+    /**
+     * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+     */
     googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
     /**
-     * The unique identifier for the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId?: pulumi.Input<string>;
 }
@@ -101,11 +109,20 @@ export interface EncryptionAtRestState {
  * The set of arguments for constructing a EncryptionAtRest resource.
  */
 export interface EncryptionAtRestArgs {
+    /**
+     * Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+     */
     awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
+    /**
+     * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+     */
     azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
+    /**
+     * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+     */
     googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
     /**
-     * The unique identifier for the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
 }

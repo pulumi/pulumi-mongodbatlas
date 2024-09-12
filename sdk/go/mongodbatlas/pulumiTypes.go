@@ -14,6 +14,8 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type AdvancedClusterAdvancedConfiguration struct {
+	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -59,6 +61,8 @@ type AdvancedClusterAdvancedConfigurationInput interface {
 }
 
 type AdvancedClusterAdvancedConfigurationArgs struct {
+	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntPtrInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -169,6 +173,13 @@ func (o AdvancedClusterAdvancedConfigurationOutput) ToAdvancedClusterAdvancedCon
 	}).(AdvancedClusterAdvancedConfigurationPtrOutput)
 }
 
+// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+func (o AdvancedClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int {
+		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -255,6 +266,16 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) Elem() AdvancedClusterAdv
 		var ret AdvancedClusterAdvancedConfiguration
 		return ret
 	}).(AdvancedClusterAdvancedConfigurationOutput)
+}
+
+// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -6891,6 +6912,8 @@ func (o CloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInput)
 }
 
 type ClusterAdvancedConfiguration struct {
+	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -6936,6 +6959,8 @@ type ClusterAdvancedConfigurationInput interface {
 }
 
 type ClusterAdvancedConfigurationArgs struct {
+	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntPtrInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -7046,6 +7071,13 @@ func (o ClusterAdvancedConfigurationOutput) ToClusterAdvancedConfigurationPtrOut
 	}).(ClusterAdvancedConfigurationPtrOutput)
 }
 
+// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+func (o ClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int {
+		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -7132,6 +7164,16 @@ func (o ClusterAdvancedConfigurationPtrOutput) Elem() ClusterAdvancedConfigurati
 		var ret ClusterAdvancedConfiguration
 		return ret
 	}).(ClusterAdvancedConfigurationOutput)
+}
+
+// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+func (o ClusterAdvancedConfigurationPtrOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -10484,16 +10526,20 @@ func (o DatabaseUserScopeArrayOutput) Index(i pulumi.IntInput) DatabaseUserScope
 }
 
 type EncryptionAtRestAwsKmsConfig struct {
+	// Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
 	AccessKeyId *string `pulumi:"accessKeyId"`
-	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+	// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId *string `pulumi:"customerMasterKeyId"`
-	// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 	Enabled *bool `pulumi:"enabled"`
-	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+	// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
 	Region *string `pulumi:"region"`
-	// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlasCloudProviderAccess` resource.
-	RoleId          *string `pulumi:"roleId"`
+	// Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
+	RoleId *string `pulumi:"roleId"`
+	// Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
+	// Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+	Valid *bool `pulumi:"valid"`
 }
 
 // EncryptionAtRestAwsKmsConfigInput is an input type that accepts EncryptionAtRestAwsKmsConfigArgs and EncryptionAtRestAwsKmsConfigOutput values.
@@ -10508,16 +10554,20 @@ type EncryptionAtRestAwsKmsConfigInput interface {
 }
 
 type EncryptionAtRestAwsKmsConfigArgs struct {
+	// Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
 	AccessKeyId pulumi.StringPtrInput `pulumi:"accessKeyId"`
-	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+	// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId pulumi.StringPtrInput `pulumi:"customerMasterKeyId"`
-	// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+	// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlasCloudProviderAccess` resource.
-	RoleId          pulumi.StringPtrInput `pulumi:"roleId"`
+	// Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
+	RoleId pulumi.StringPtrInput `pulumi:"roleId"`
+	// Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
 	SecretAccessKey pulumi.StringPtrInput `pulumi:"secretAccessKey"`
+	// Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+	Valid pulumi.BoolPtrInput `pulumi:"valid"`
 }
 
 func (EncryptionAtRestAwsKmsConfigArgs) ElementType() reflect.Type {
@@ -10597,32 +10647,39 @@ func (o EncryptionAtRestAwsKmsConfigOutput) ToEncryptionAtRestAwsKmsConfigPtrOut
 	}).(EncryptionAtRestAwsKmsConfigPtrOutput)
 }
 
+// Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
 func (o EncryptionAtRestAwsKmsConfigOutput) AccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.AccessKeyId }).(pulumi.StringPtrOutput)
 }
 
-// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
 func (o EncryptionAtRestAwsKmsConfigOutput) CustomerMasterKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.CustomerMasterKeyId }).(pulumi.StringPtrOutput)
 }
 
-// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 func (o EncryptionAtRestAwsKmsConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
 func (o EncryptionAtRestAwsKmsConfigOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlasCloudProviderAccess` resource.
+// Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
 func (o EncryptionAtRestAwsKmsConfigOutput) RoleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.RoleId }).(pulumi.StringPtrOutput)
 }
 
+// Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
 func (o EncryptionAtRestAwsKmsConfigOutput) SecretAccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.SecretAccessKey }).(pulumi.StringPtrOutput)
+}
+
+// Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+func (o EncryptionAtRestAwsKmsConfigOutput) Valid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *bool { return v.Valid }).(pulumi.BoolPtrOutput)
 }
 
 type EncryptionAtRestAwsKmsConfigPtrOutput struct{ *pulumi.OutputState }
@@ -10649,6 +10706,7 @@ func (o EncryptionAtRestAwsKmsConfigPtrOutput) Elem() EncryptionAtRestAwsKmsConf
 	}).(EncryptionAtRestAwsKmsConfigOutput)
 }
 
+// Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
 func (o EncryptionAtRestAwsKmsConfigPtrOutput) AccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
@@ -10658,7 +10716,7 @@ func (o EncryptionAtRestAwsKmsConfigPtrOutput) AccessKeyId() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
 func (o EncryptionAtRestAwsKmsConfigPtrOutput) CustomerMasterKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
@@ -10668,7 +10726,7 @@ func (o EncryptionAtRestAwsKmsConfigPtrOutput) CustomerMasterKeyId() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 func (o EncryptionAtRestAwsKmsConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *bool {
 		if v == nil {
@@ -10678,7 +10736,7 @@ func (o EncryptionAtRestAwsKmsConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
 func (o EncryptionAtRestAwsKmsConfigPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
@@ -10688,7 +10746,7 @@ func (o EncryptionAtRestAwsKmsConfigPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlasCloudProviderAccess` resource.
+// Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
 func (o EncryptionAtRestAwsKmsConfigPtrOutput) RoleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
@@ -10698,6 +10756,7 @@ func (o EncryptionAtRestAwsKmsConfigPtrOutput) RoleId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
 func (o EncryptionAtRestAwsKmsConfigPtrOutput) SecretAccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
@@ -10707,25 +10766,39 @@ func (o EncryptionAtRestAwsKmsConfigPtrOutput) SecretAccessKey() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) Valid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Valid
+	}).(pulumi.BoolPtrOutput)
+}
+
 type EncryptionAtRestAzureKeyVaultConfig struct {
-	// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+	// Azure environment in which your account credentials reside.
 	AzureEnvironment *string `pulumi:"azureEnvironment"`
-	// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+	// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
 	ClientId *string `pulumi:"clientId"`
-	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 	Enabled *bool `pulumi:"enabled"`
-	// The unique identifier of a key in an Azure Key Vault.
+	// Web address with a unique key that identifies for your Azure Key Vault.
 	KeyIdentifier *string `pulumi:"keyIdentifier"`
-	// The name of an Azure Key Vault containing your key.
+	// Unique string that identifies the Azure Key Vault that contains your key.
 	KeyVaultName *string `pulumi:"keyVaultName"`
-	// The name of the Azure Resource group that contains an Azure Key Vault.
+	// Enable connection to your Azure Key Vault over private networking.
+	RequirePrivateNetworking *bool `pulumi:"requirePrivateNetworking"`
+	// Name of the Azure resource group that contains your Azure Key Vault.
 	ResourceGroupName *string `pulumi:"resourceGroupName"`
-	// The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+	// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 	Secret *string `pulumi:"secret"`
-	// The unique identifier associated with an Azure subscription.
+	// Unique 36-hexadecimal character string that identifies your Azure subscription.
 	SubscriptionId *string `pulumi:"subscriptionId"`
-	// The unique identifier for an Azure AD tenant within an Azure subscription.
+	// Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
 	TenantId *string `pulumi:"tenantId"`
+	// Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+	Valid *bool `pulumi:"valid"`
 }
 
 // EncryptionAtRestAzureKeyVaultConfigInput is an input type that accepts EncryptionAtRestAzureKeyVaultConfigArgs and EncryptionAtRestAzureKeyVaultConfigOutput values.
@@ -10740,24 +10813,28 @@ type EncryptionAtRestAzureKeyVaultConfigInput interface {
 }
 
 type EncryptionAtRestAzureKeyVaultConfigArgs struct {
-	// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+	// Azure environment in which your account credentials reside.
 	AzureEnvironment pulumi.StringPtrInput `pulumi:"azureEnvironment"`
-	// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+	// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
 	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
-	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// The unique identifier of a key in an Azure Key Vault.
+	// Web address with a unique key that identifies for your Azure Key Vault.
 	KeyIdentifier pulumi.StringPtrInput `pulumi:"keyIdentifier"`
-	// The name of an Azure Key Vault containing your key.
+	// Unique string that identifies the Azure Key Vault that contains your key.
 	KeyVaultName pulumi.StringPtrInput `pulumi:"keyVaultName"`
-	// The name of the Azure Resource group that contains an Azure Key Vault.
+	// Enable connection to your Azure Key Vault over private networking.
+	RequirePrivateNetworking pulumi.BoolPtrInput `pulumi:"requirePrivateNetworking"`
+	// Name of the Azure resource group that contains your Azure Key Vault.
 	ResourceGroupName pulumi.StringPtrInput `pulumi:"resourceGroupName"`
-	// The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+	// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 	Secret pulumi.StringPtrInput `pulumi:"secret"`
-	// The unique identifier associated with an Azure subscription.
+	// Unique 36-hexadecimal character string that identifies your Azure subscription.
 	SubscriptionId pulumi.StringPtrInput `pulumi:"subscriptionId"`
-	// The unique identifier for an Azure AD tenant within an Azure subscription.
+	// Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
 	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
+	// Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+	Valid pulumi.BoolPtrInput `pulumi:"valid"`
 }
 
 func (EncryptionAtRestAzureKeyVaultConfigArgs) ElementType() reflect.Type {
@@ -10837,49 +10914,59 @@ func (o EncryptionAtRestAzureKeyVaultConfigOutput) ToEncryptionAtRestAzureKeyVau
 	}).(EncryptionAtRestAzureKeyVaultConfigPtrOutput)
 }
 
-// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+// Azure environment in which your account credentials reside.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) AzureEnvironment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.AzureEnvironment }).(pulumi.StringPtrOutput)
 }
 
-// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
-// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// The unique identifier of a key in an Azure Key Vault.
+// Web address with a unique key that identifies for your Azure Key Vault.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) KeyIdentifier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.KeyIdentifier }).(pulumi.StringPtrOutput)
 }
 
-// The name of an Azure Key Vault containing your key.
+// Unique string that identifies the Azure Key Vault that contains your key.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) KeyVaultName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.KeyVaultName }).(pulumi.StringPtrOutput)
 }
 
-// The name of the Azure Resource group that contains an Azure Key Vault.
+// Enable connection to your Azure Key Vault over private networking.
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) RequirePrivateNetworking() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *bool { return v.RequirePrivateNetworking }).(pulumi.BoolPtrOutput)
+}
+
+// Name of the Azure resource group that contains your Azure Key Vault.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) ResourceGroupName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.ResourceGroupName }).(pulumi.StringPtrOutput)
 }
 
-// The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) Secret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.Secret }).(pulumi.StringPtrOutput)
 }
 
-// The unique identifier associated with an Azure subscription.
+// Unique 36-hexadecimal character string that identifies your Azure subscription.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) SubscriptionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.SubscriptionId }).(pulumi.StringPtrOutput)
 }
 
-// The unique identifier for an Azure AD tenant within an Azure subscription.
+// Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) TenantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.TenantId }).(pulumi.StringPtrOutput)
+}
+
+// Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) Valid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *bool { return v.Valid }).(pulumi.BoolPtrOutput)
 }
 
 type EncryptionAtRestAzureKeyVaultConfigPtrOutput struct{ *pulumi.OutputState }
@@ -10906,7 +10993,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Elem() EncryptionAtRestAzu
 	}).(EncryptionAtRestAzureKeyVaultConfigOutput)
 }
 
-// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+// Azure environment in which your account credentials reside.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) AzureEnvironment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
@@ -10916,7 +11003,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) AzureEnvironment() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
@@ -10926,7 +11013,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ClientId() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *bool {
 		if v == nil {
@@ -10936,7 +11023,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Enabled() pulumi.BoolPtrOu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The unique identifier of a key in an Azure Key Vault.
+// Web address with a unique key that identifies for your Azure Key Vault.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) KeyIdentifier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
@@ -10946,7 +11033,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) KeyIdentifier() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of an Azure Key Vault containing your key.
+// Unique string that identifies the Azure Key Vault that contains your key.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) KeyVaultName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
@@ -10956,7 +11043,17 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) KeyVaultName() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of the Azure Resource group that contains an Azure Key Vault.
+// Enable connection to your Azure Key Vault over private networking.
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) RequirePrivateNetworking() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.RequirePrivateNetworking
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Name of the Azure resource group that contains your Azure Key Vault.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ResourceGroupName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
@@ -10966,7 +11063,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ResourceGroupName() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
-// The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Secret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
@@ -10976,7 +11073,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Secret() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// The unique identifier associated with an Azure subscription.
+// Unique 36-hexadecimal character string that identifies your Azure subscription.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) SubscriptionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
@@ -10986,7 +11083,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) SubscriptionId() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
-// The unique identifier for an Azure AD tenant within an Azure subscription.
+// Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) TenantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
@@ -10996,13 +11093,25 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) TenantId() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Valid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Valid
+	}).(pulumi.BoolPtrOutput)
+}
+
 type EncryptionAtRestGoogleCloudKmsConfig struct {
-	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 	Enabled *bool `pulumi:"enabled"`
-	// The Key Version Resource ID from your GCP account.
+	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId *string `pulumi:"keyVersionResourceId"`
-	// String-formatted JSON object containing GCP KMS credentials from your GCP account.
+	// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
 	ServiceAccountKey *string `pulumi:"serviceAccountKey"`
+	// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+	Valid *bool `pulumi:"valid"`
 }
 
 // EncryptionAtRestGoogleCloudKmsConfigInput is an input type that accepts EncryptionAtRestGoogleCloudKmsConfigArgs and EncryptionAtRestGoogleCloudKmsConfigOutput values.
@@ -11017,12 +11126,14 @@ type EncryptionAtRestGoogleCloudKmsConfigInput interface {
 }
 
 type EncryptionAtRestGoogleCloudKmsConfigArgs struct {
-	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// The Key Version Resource ID from your GCP account.
+	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId pulumi.StringPtrInput `pulumi:"keyVersionResourceId"`
-	// String-formatted JSON object containing GCP KMS credentials from your GCP account.
+	// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
 	ServiceAccountKey pulumi.StringPtrInput `pulumi:"serviceAccountKey"`
+	// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+	Valid pulumi.BoolPtrInput `pulumi:"valid"`
 }
 
 func (EncryptionAtRestGoogleCloudKmsConfigArgs) ElementType() reflect.Type {
@@ -11102,19 +11213,24 @@ func (o EncryptionAtRestGoogleCloudKmsConfigOutput) ToEncryptionAtRestGoogleClou
 	}).(EncryptionAtRestGoogleCloudKmsConfigPtrOutput)
 }
 
-// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 func (o EncryptionAtRestGoogleCloudKmsConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// The Key Version Resource ID from your GCP account.
+// Resource path that displays the key version resource ID for your Google Cloud KMS.
 func (o EncryptionAtRestGoogleCloudKmsConfigOutput) KeyVersionResourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *string { return v.KeyVersionResourceId }).(pulumi.StringPtrOutput)
 }
 
-// String-formatted JSON object containing GCP KMS credentials from your GCP account.
+// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
 func (o EncryptionAtRestGoogleCloudKmsConfigOutput) ServiceAccountKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *string { return v.ServiceAccountKey }).(pulumi.StringPtrOutput)
+}
+
+// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+func (o EncryptionAtRestGoogleCloudKmsConfigOutput) Valid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *bool { return v.Valid }).(pulumi.BoolPtrOutput)
 }
 
 type EncryptionAtRestGoogleCloudKmsConfigPtrOutput struct{ *pulumi.OutputState }
@@ -11141,7 +11257,7 @@ func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) Elem() EncryptionAtRestGo
 	}).(EncryptionAtRestGoogleCloudKmsConfigOutput)
 }
 
-// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
 func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) *bool {
 		if v == nil {
@@ -11151,7 +11267,7 @@ func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) Enabled() pulumi.BoolPtrO
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The Key Version Resource ID from your GCP account.
+// Resource path that displays the key version resource ID for your Google Cloud KMS.
 func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) KeyVersionResourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) *string {
 		if v == nil {
@@ -11161,7 +11277,7 @@ func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) KeyVersionResourceId() pu
 	}).(pulumi.StringPtrOutput)
 }
 
-// String-formatted JSON object containing GCP KMS credentials from your GCP account.
+// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
 func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) ServiceAccountKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) *string {
 		if v == nil {
@@ -11169,6 +11285,16 @@ func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) ServiceAccountKey() pulum
 		}
 		return v.ServiceAccountKey
 	}).(pulumi.StringPtrOutput)
+}
+
+// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) Valid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Valid
+	}).(pulumi.BoolPtrOutput)
 }
 
 type EventTriggerEventProcessors struct {
@@ -17538,6 +17664,318 @@ func (o StreamInstanceStreamConfigPtrOutput) Tier() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type StreamProcessorOptions struct {
+	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+	Dlq StreamProcessorOptionsDlq `pulumi:"dlq"`
+}
+
+// StreamProcessorOptionsInput is an input type that accepts StreamProcessorOptionsArgs and StreamProcessorOptionsOutput values.
+// You can construct a concrete instance of `StreamProcessorOptionsInput` via:
+//
+//	StreamProcessorOptionsArgs{...}
+type StreamProcessorOptionsInput interface {
+	pulumi.Input
+
+	ToStreamProcessorOptionsOutput() StreamProcessorOptionsOutput
+	ToStreamProcessorOptionsOutputWithContext(context.Context) StreamProcessorOptionsOutput
+}
+
+type StreamProcessorOptionsArgs struct {
+	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+	Dlq StreamProcessorOptionsDlqInput `pulumi:"dlq"`
+}
+
+func (StreamProcessorOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamProcessorOptions)(nil)).Elem()
+}
+
+func (i StreamProcessorOptionsArgs) ToStreamProcessorOptionsOutput() StreamProcessorOptionsOutput {
+	return i.ToStreamProcessorOptionsOutputWithContext(context.Background())
+}
+
+func (i StreamProcessorOptionsArgs) ToStreamProcessorOptionsOutputWithContext(ctx context.Context) StreamProcessorOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamProcessorOptionsOutput)
+}
+
+func (i StreamProcessorOptionsArgs) ToStreamProcessorOptionsPtrOutput() StreamProcessorOptionsPtrOutput {
+	return i.ToStreamProcessorOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i StreamProcessorOptionsArgs) ToStreamProcessorOptionsPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamProcessorOptionsOutput).ToStreamProcessorOptionsPtrOutputWithContext(ctx)
+}
+
+// StreamProcessorOptionsPtrInput is an input type that accepts StreamProcessorOptionsArgs, StreamProcessorOptionsPtr and StreamProcessorOptionsPtrOutput values.
+// You can construct a concrete instance of `StreamProcessorOptionsPtrInput` via:
+//
+//	        StreamProcessorOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamProcessorOptionsPtrInput interface {
+	pulumi.Input
+
+	ToStreamProcessorOptionsPtrOutput() StreamProcessorOptionsPtrOutput
+	ToStreamProcessorOptionsPtrOutputWithContext(context.Context) StreamProcessorOptionsPtrOutput
+}
+
+type streamProcessorOptionsPtrType StreamProcessorOptionsArgs
+
+func StreamProcessorOptionsPtr(v *StreamProcessorOptionsArgs) StreamProcessorOptionsPtrInput {
+	return (*streamProcessorOptionsPtrType)(v)
+}
+
+func (*streamProcessorOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamProcessorOptions)(nil)).Elem()
+}
+
+func (i *streamProcessorOptionsPtrType) ToStreamProcessorOptionsPtrOutput() StreamProcessorOptionsPtrOutput {
+	return i.ToStreamProcessorOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *streamProcessorOptionsPtrType) ToStreamProcessorOptionsPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamProcessorOptionsPtrOutput)
+}
+
+type StreamProcessorOptionsOutput struct{ *pulumi.OutputState }
+
+func (StreamProcessorOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamProcessorOptions)(nil)).Elem()
+}
+
+func (o StreamProcessorOptionsOutput) ToStreamProcessorOptionsOutput() StreamProcessorOptionsOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsOutput) ToStreamProcessorOptionsOutputWithContext(ctx context.Context) StreamProcessorOptionsOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsOutput) ToStreamProcessorOptionsPtrOutput() StreamProcessorOptionsPtrOutput {
+	return o.ToStreamProcessorOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o StreamProcessorOptionsOutput) ToStreamProcessorOptionsPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamProcessorOptions) *StreamProcessorOptions {
+		return &v
+	}).(StreamProcessorOptionsPtrOutput)
+}
+
+// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+func (o StreamProcessorOptionsOutput) Dlq() StreamProcessorOptionsDlqOutput {
+	return o.ApplyT(func(v StreamProcessorOptions) StreamProcessorOptionsDlq { return v.Dlq }).(StreamProcessorOptionsDlqOutput)
+}
+
+type StreamProcessorOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamProcessorOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamProcessorOptions)(nil)).Elem()
+}
+
+func (o StreamProcessorOptionsPtrOutput) ToStreamProcessorOptionsPtrOutput() StreamProcessorOptionsPtrOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsPtrOutput) ToStreamProcessorOptionsPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsPtrOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsPtrOutput) Elem() StreamProcessorOptionsOutput {
+	return o.ApplyT(func(v *StreamProcessorOptions) StreamProcessorOptions {
+		if v != nil {
+			return *v
+		}
+		var ret StreamProcessorOptions
+		return ret
+	}).(StreamProcessorOptionsOutput)
+}
+
+// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+func (o StreamProcessorOptionsPtrOutput) Dlq() StreamProcessorOptionsDlqPtrOutput {
+	return o.ApplyT(func(v *StreamProcessorOptions) *StreamProcessorOptionsDlq {
+		if v == nil {
+			return nil
+		}
+		return &v.Dlq
+	}).(StreamProcessorOptionsDlqPtrOutput)
+}
+
+type StreamProcessorOptionsDlq struct {
+	// Name of the collection to use for the DLQ.
+	Coll string `pulumi:"coll"`
+	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+	ConnectionName string `pulumi:"connectionName"`
+	// Name of the database to use for the DLQ.
+	Db string `pulumi:"db"`
+}
+
+// StreamProcessorOptionsDlqInput is an input type that accepts StreamProcessorOptionsDlqArgs and StreamProcessorOptionsDlqOutput values.
+// You can construct a concrete instance of `StreamProcessorOptionsDlqInput` via:
+//
+//	StreamProcessorOptionsDlqArgs{...}
+type StreamProcessorOptionsDlqInput interface {
+	pulumi.Input
+
+	ToStreamProcessorOptionsDlqOutput() StreamProcessorOptionsDlqOutput
+	ToStreamProcessorOptionsDlqOutputWithContext(context.Context) StreamProcessorOptionsDlqOutput
+}
+
+type StreamProcessorOptionsDlqArgs struct {
+	// Name of the collection to use for the DLQ.
+	Coll pulumi.StringInput `pulumi:"coll"`
+	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
+	// Name of the database to use for the DLQ.
+	Db pulumi.StringInput `pulumi:"db"`
+}
+
+func (StreamProcessorOptionsDlqArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamProcessorOptionsDlq)(nil)).Elem()
+}
+
+func (i StreamProcessorOptionsDlqArgs) ToStreamProcessorOptionsDlqOutput() StreamProcessorOptionsDlqOutput {
+	return i.ToStreamProcessorOptionsDlqOutputWithContext(context.Background())
+}
+
+func (i StreamProcessorOptionsDlqArgs) ToStreamProcessorOptionsDlqOutputWithContext(ctx context.Context) StreamProcessorOptionsDlqOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamProcessorOptionsDlqOutput)
+}
+
+func (i StreamProcessorOptionsDlqArgs) ToStreamProcessorOptionsDlqPtrOutput() StreamProcessorOptionsDlqPtrOutput {
+	return i.ToStreamProcessorOptionsDlqPtrOutputWithContext(context.Background())
+}
+
+func (i StreamProcessorOptionsDlqArgs) ToStreamProcessorOptionsDlqPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsDlqPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamProcessorOptionsDlqOutput).ToStreamProcessorOptionsDlqPtrOutputWithContext(ctx)
+}
+
+// StreamProcessorOptionsDlqPtrInput is an input type that accepts StreamProcessorOptionsDlqArgs, StreamProcessorOptionsDlqPtr and StreamProcessorOptionsDlqPtrOutput values.
+// You can construct a concrete instance of `StreamProcessorOptionsDlqPtrInput` via:
+//
+//	        StreamProcessorOptionsDlqArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamProcessorOptionsDlqPtrInput interface {
+	pulumi.Input
+
+	ToStreamProcessorOptionsDlqPtrOutput() StreamProcessorOptionsDlqPtrOutput
+	ToStreamProcessorOptionsDlqPtrOutputWithContext(context.Context) StreamProcessorOptionsDlqPtrOutput
+}
+
+type streamProcessorOptionsDlqPtrType StreamProcessorOptionsDlqArgs
+
+func StreamProcessorOptionsDlqPtr(v *StreamProcessorOptionsDlqArgs) StreamProcessorOptionsDlqPtrInput {
+	return (*streamProcessorOptionsDlqPtrType)(v)
+}
+
+func (*streamProcessorOptionsDlqPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamProcessorOptionsDlq)(nil)).Elem()
+}
+
+func (i *streamProcessorOptionsDlqPtrType) ToStreamProcessorOptionsDlqPtrOutput() StreamProcessorOptionsDlqPtrOutput {
+	return i.ToStreamProcessorOptionsDlqPtrOutputWithContext(context.Background())
+}
+
+func (i *streamProcessorOptionsDlqPtrType) ToStreamProcessorOptionsDlqPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsDlqPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamProcessorOptionsDlqPtrOutput)
+}
+
+type StreamProcessorOptionsDlqOutput struct{ *pulumi.OutputState }
+
+func (StreamProcessorOptionsDlqOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamProcessorOptionsDlq)(nil)).Elem()
+}
+
+func (o StreamProcessorOptionsDlqOutput) ToStreamProcessorOptionsDlqOutput() StreamProcessorOptionsDlqOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsDlqOutput) ToStreamProcessorOptionsDlqOutputWithContext(ctx context.Context) StreamProcessorOptionsDlqOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsDlqOutput) ToStreamProcessorOptionsDlqPtrOutput() StreamProcessorOptionsDlqPtrOutput {
+	return o.ToStreamProcessorOptionsDlqPtrOutputWithContext(context.Background())
+}
+
+func (o StreamProcessorOptionsDlqOutput) ToStreamProcessorOptionsDlqPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsDlqPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamProcessorOptionsDlq) *StreamProcessorOptionsDlq {
+		return &v
+	}).(StreamProcessorOptionsDlqPtrOutput)
+}
+
+// Name of the collection to use for the DLQ.
+func (o StreamProcessorOptionsDlqOutput) Coll() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamProcessorOptionsDlq) string { return v.Coll }).(pulumi.StringOutput)
+}
+
+// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+func (o StreamProcessorOptionsDlqOutput) ConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamProcessorOptionsDlq) string { return v.ConnectionName }).(pulumi.StringOutput)
+}
+
+// Name of the database to use for the DLQ.
+func (o StreamProcessorOptionsDlqOutput) Db() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamProcessorOptionsDlq) string { return v.Db }).(pulumi.StringOutput)
+}
+
+type StreamProcessorOptionsDlqPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamProcessorOptionsDlqPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamProcessorOptionsDlq)(nil)).Elem()
+}
+
+func (o StreamProcessorOptionsDlqPtrOutput) ToStreamProcessorOptionsDlqPtrOutput() StreamProcessorOptionsDlqPtrOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsDlqPtrOutput) ToStreamProcessorOptionsDlqPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsDlqPtrOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsDlqPtrOutput) Elem() StreamProcessorOptionsDlqOutput {
+	return o.ApplyT(func(v *StreamProcessorOptionsDlq) StreamProcessorOptionsDlq {
+		if v != nil {
+			return *v
+		}
+		var ret StreamProcessorOptionsDlq
+		return ret
+	}).(StreamProcessorOptionsDlqOutput)
+}
+
+// Name of the collection to use for the DLQ.
+func (o StreamProcessorOptionsDlqPtrOutput) Coll() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamProcessorOptionsDlq) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Coll
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+func (o StreamProcessorOptionsDlqPtrOutput) ConnectionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamProcessorOptionsDlq) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ConnectionName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the database to use for the DLQ.
+func (o StreamProcessorOptionsDlqPtrOutput) Db() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamProcessorOptionsDlq) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Db
+	}).(pulumi.StringPtrOutput)
+}
+
 type X509AuthenticationDatabaseUserCertificate struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	GroupId   *string `pulumi:"groupId"`
@@ -17905,6 +18343,8 @@ func (o GetAccessListApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetAcces
 }
 
 type GetAdvancedClusterAdvancedConfiguration struct {
+	// (Optional) The minimum pre- and post-image retention time in seconds.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -17945,6 +18385,8 @@ type GetAdvancedClusterAdvancedConfigurationInput interface {
 }
 
 type GetAdvancedClusterAdvancedConfigurationArgs struct {
+	// (Optional) The minimum pre- and post-image retention time in seconds.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -18022,6 +18464,13 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) ToGetAdvancedClusterAdvan
 
 func (o GetAdvancedClusterAdvancedConfigurationOutput) ToGetAdvancedClusterAdvancedConfigurationOutputWithContext(ctx context.Context) GetAdvancedClusterAdvancedConfigurationOutput {
 	return o
+}
+
+// (Optional) The minimum pre- and post-image retention time in seconds.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int {
+		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -19735,7 +20184,7 @@ type GetAdvancedClustersResult struct {
 	GlobalClusterSelfManagedSharding bool `pulumi:"globalClusterSelfManagedSharding"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	//
-	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []GetAdvancedClustersResultLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -19746,6 +20195,8 @@ type GetAdvancedClustersResult struct {
 	Paused bool `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
+	// (Optional) Replica set scaling mode for your cluster.
+	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
 	ReplicationSpecs []GetAdvancedClustersResultReplicationSpec `pulumi:"replicationSpecs"`
 	// Certificate Authority that MongoDB Atlas clusters use.
@@ -19792,7 +20243,7 @@ type GetAdvancedClustersResultArgs struct {
 	GlobalClusterSelfManagedSharding pulumi.BoolInput `pulumi:"globalClusterSelfManagedSharding"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	//
-	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels GetAdvancedClustersResultLabelArrayInput `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -19803,6 +20254,8 @@ type GetAdvancedClustersResultArgs struct {
 	Paused pulumi.BoolInput `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
+	// (Optional) Replica set scaling mode for your cluster.
+	ReplicaSetScalingStrategy pulumi.StringInput `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
 	ReplicationSpecs GetAdvancedClustersResultReplicationSpecArrayInput `pulumi:"replicationSpecs"`
 	// Certificate Authority that MongoDB Atlas clusters use.
@@ -19921,7 +20374,7 @@ func (o GetAdvancedClustersResultOutput) GlobalClusterSelfManagedSharding() pulu
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 //
-// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 func (o GetAdvancedClustersResultOutput) Labels() GetAdvancedClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultLabel { return v.Labels }).(GetAdvancedClustersResultLabelArrayOutput)
 }
@@ -19948,6 +20401,11 @@ func (o GetAdvancedClustersResultOutput) Paused() pulumi.BoolOutput {
 // Flag that indicates if the cluster uses Continuous Cloud Backup.
 func (o GetAdvancedClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
+}
+
+// (Optional) Replica set scaling mode for your cluster.
+func (o GetAdvancedClustersResultOutput) ReplicaSetScalingStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ReplicaSetScalingStrategy }).(pulumi.StringOutput)
 }
 
 // List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
@@ -20003,6 +20461,8 @@ func (o GetAdvancedClustersResultArrayOutput) Index(i pulumi.IntInput) GetAdvanc
 }
 
 type GetAdvancedClustersResultAdvancedConfiguration struct {
+	// (Optional) The minimum pre- and post-image retention time in seconds.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -20026,7 +20486,8 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector           int `pulumi:"sampleSizeBiConnector"`
+	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+	// (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds int `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
@@ -20042,6 +20503,8 @@ type GetAdvancedClustersResultAdvancedConfigurationInput interface {
 }
 
 type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
+	// (Optional) The minimum pre- and post-image retention time in seconds.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -20065,7 +20528,8 @@ type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector           pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	// (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds pulumi.IntInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
@@ -20118,6 +20582,13 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ToGetAdvancedClust
 
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ToGetAdvancedClustersResultAdvancedConfigurationOutputWithContext(ctx context.Context) GetAdvancedClustersResultAdvancedConfigurationOutput {
 	return o
+}
+
+// (Optional) The minimum pre- and post-image retention time in seconds.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int {
+		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -20174,6 +20645,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) SampleSizeBiConnec
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
 }
 
+// (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntOutput)
 }
@@ -27926,6 +28398,8 @@ func (o GetCloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetClusterAdvancedConfiguration struct {
+	// (Optional) The minimum pre- and post-image retention time in seconds.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -27966,6 +28440,8 @@ type GetClusterAdvancedConfigurationInput interface {
 }
 
 type GetClusterAdvancedConfigurationArgs struct {
+	// (Optional) The minimum pre- and post-image retention time in seconds.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -28043,6 +28519,13 @@ func (o GetClusterAdvancedConfigurationOutput) ToGetClusterAdvancedConfiguration
 
 func (o GetClusterAdvancedConfigurationOutput) ToGetClusterAdvancedConfigurationOutputWithContext(ctx context.Context) GetClusterAdvancedConfigurationOutput {
 	return o
+}
+
+// (Optional) The minimum pre- and post-image retention time in seconds.
+func (o GetClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int {
+		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -29612,7 +30095,7 @@ type GetClustersResult struct {
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 	//
-	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []GetClustersResultLabel `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -29715,7 +30198,7 @@ type GetClustersResultArgs struct {
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 	//
-	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels GetClustersResultLabelArrayInput `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -29893,7 +30376,7 @@ func (o GetClustersResultOutput) EncryptionAtRestProvider() pulumi.StringOutput 
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 //
-// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 func (o GetClustersResultOutput) Labels() GetClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersResultLabel { return v.Labels }).(GetClustersResultLabelArrayOutput)
 }
@@ -30061,6 +30544,8 @@ func (o GetClustersResultArrayOutput) Index(i pulumi.IntInput) GetClustersResult
 }
 
 type GetClustersResultAdvancedConfiguration struct {
+	// (Optional) The minimum pre- and post-image retention time in seconds.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -30100,6 +30585,8 @@ type GetClustersResultAdvancedConfigurationInput interface {
 }
 
 type GetClustersResultAdvancedConfigurationArgs struct {
+	// (Optional) The minimum pre- and post-image retention time in seconds.
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -30176,6 +30663,13 @@ func (o GetClustersResultAdvancedConfigurationOutput) ToGetClustersResultAdvance
 
 func (o GetClustersResultAdvancedConfigurationOutput) ToGetClustersResultAdvancedConfigurationOutputWithContext(ctx context.Context) GetClustersResultAdvancedConfigurationOutput {
 	return o
+}
+
+// (Optional) The minimum pre- and post-image retention time in seconds.
+func (o GetClustersResultAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int {
+		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -35117,6 +35611,484 @@ func (o GetDatabaseUsersResultScopeArrayOutput) Index(i pulumi.IntInput) GetData
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseUsersResultScope {
 		return vs[0].([]GetDatabaseUsersResultScope)[vs[1].(int)]
 	}).(GetDatabaseUsersResultScopeOutput)
+}
+
+type GetEncryptionAtRestAwsKmsConfig struct {
+	// Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+	AccessKeyId string `pulumi:"accessKeyId"`
+	// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
+	CustomerMasterKeyId string `pulumi:"customerMasterKeyId"`
+	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	Enabled bool `pulumi:"enabled"`
+	// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+	Region string `pulumi:"region"`
+	// Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
+	RoleId string `pulumi:"roleId"`
+	// Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+	SecretAccessKey string `pulumi:"secretAccessKey"`
+	// Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+	Valid bool `pulumi:"valid"`
+}
+
+// GetEncryptionAtRestAwsKmsConfigInput is an input type that accepts GetEncryptionAtRestAwsKmsConfigArgs and GetEncryptionAtRestAwsKmsConfigOutput values.
+// You can construct a concrete instance of `GetEncryptionAtRestAwsKmsConfigInput` via:
+//
+//	GetEncryptionAtRestAwsKmsConfigArgs{...}
+type GetEncryptionAtRestAwsKmsConfigInput interface {
+	pulumi.Input
+
+	ToGetEncryptionAtRestAwsKmsConfigOutput() GetEncryptionAtRestAwsKmsConfigOutput
+	ToGetEncryptionAtRestAwsKmsConfigOutputWithContext(context.Context) GetEncryptionAtRestAwsKmsConfigOutput
+}
+
+type GetEncryptionAtRestAwsKmsConfigArgs struct {
+	// Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+	AccessKeyId pulumi.StringInput `pulumi:"accessKeyId"`
+	// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
+	CustomerMasterKeyId pulumi.StringInput `pulumi:"customerMasterKeyId"`
+	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+	Region pulumi.StringInput `pulumi:"region"`
+	// Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
+	// Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+	SecretAccessKey pulumi.StringInput `pulumi:"secretAccessKey"`
+	// Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+	Valid pulumi.BoolInput `pulumi:"valid"`
+}
+
+func (GetEncryptionAtRestAwsKmsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptionAtRestAwsKmsConfig)(nil)).Elem()
+}
+
+func (i GetEncryptionAtRestAwsKmsConfigArgs) ToGetEncryptionAtRestAwsKmsConfigOutput() GetEncryptionAtRestAwsKmsConfigOutput {
+	return i.ToGetEncryptionAtRestAwsKmsConfigOutputWithContext(context.Background())
+}
+
+func (i GetEncryptionAtRestAwsKmsConfigArgs) ToGetEncryptionAtRestAwsKmsConfigOutputWithContext(ctx context.Context) GetEncryptionAtRestAwsKmsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEncryptionAtRestAwsKmsConfigOutput)
+}
+
+type GetEncryptionAtRestAwsKmsConfigOutput struct{ *pulumi.OutputState }
+
+func (GetEncryptionAtRestAwsKmsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptionAtRestAwsKmsConfig)(nil)).Elem()
+}
+
+func (o GetEncryptionAtRestAwsKmsConfigOutput) ToGetEncryptionAtRestAwsKmsConfigOutput() GetEncryptionAtRestAwsKmsConfigOutput {
+	return o
+}
+
+func (o GetEncryptionAtRestAwsKmsConfigOutput) ToGetEncryptionAtRestAwsKmsConfigOutputWithContext(ctx context.Context) GetEncryptionAtRestAwsKmsConfigOutput {
+	return o
+}
+
+// Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+func (o GetEncryptionAtRestAwsKmsConfigOutput) AccessKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAwsKmsConfig) string { return v.AccessKeyId }).(pulumi.StringOutput)
+}
+
+// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
+func (o GetEncryptionAtRestAwsKmsConfigOutput) CustomerMasterKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAwsKmsConfig) string { return v.CustomerMasterKeyId }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+func (o GetEncryptionAtRestAwsKmsConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAwsKmsConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+func (o GetEncryptionAtRestAwsKmsConfigOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAwsKmsConfig) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
+func (o GetEncryptionAtRestAwsKmsConfigOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAwsKmsConfig) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+// Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+func (o GetEncryptionAtRestAwsKmsConfigOutput) SecretAccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAwsKmsConfig) string { return v.SecretAccessKey }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+func (o GetEncryptionAtRestAwsKmsConfigOutput) Valid() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAwsKmsConfig) bool { return v.Valid }).(pulumi.BoolOutput)
+}
+
+type GetEncryptionAtRestAzureKeyVaultConfig struct {
+	// Azure environment in which your account credentials reside.
+	AzureEnvironment string `pulumi:"azureEnvironment"`
+	// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
+	ClientId string `pulumi:"clientId"`
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	Enabled bool `pulumi:"enabled"`
+	// Web address with a unique key that identifies for your Azure Key Vault.
+	KeyIdentifier string `pulumi:"keyIdentifier"`
+	// Unique string that identifies the Azure Key Vault that contains your key.
+	KeyVaultName string `pulumi:"keyVaultName"`
+	// Enable connection to your Azure Key Vault over private networking.
+	RequirePrivateNetworking bool `pulumi:"requirePrivateNetworking"`
+	// Name of the Azure resource group that contains your Azure Key Vault.
+	ResourceGroupName string `pulumi:"resourceGroupName"`
+	// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
+	Secret string `pulumi:"secret"`
+	// Unique 36-hexadecimal character string that identifies your Azure subscription.
+	SubscriptionId string `pulumi:"subscriptionId"`
+	// Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
+	TenantId string `pulumi:"tenantId"`
+	// Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+	Valid bool `pulumi:"valid"`
+}
+
+// GetEncryptionAtRestAzureKeyVaultConfigInput is an input type that accepts GetEncryptionAtRestAzureKeyVaultConfigArgs and GetEncryptionAtRestAzureKeyVaultConfigOutput values.
+// You can construct a concrete instance of `GetEncryptionAtRestAzureKeyVaultConfigInput` via:
+//
+//	GetEncryptionAtRestAzureKeyVaultConfigArgs{...}
+type GetEncryptionAtRestAzureKeyVaultConfigInput interface {
+	pulumi.Input
+
+	ToGetEncryptionAtRestAzureKeyVaultConfigOutput() GetEncryptionAtRestAzureKeyVaultConfigOutput
+	ToGetEncryptionAtRestAzureKeyVaultConfigOutputWithContext(context.Context) GetEncryptionAtRestAzureKeyVaultConfigOutput
+}
+
+type GetEncryptionAtRestAzureKeyVaultConfigArgs struct {
+	// Azure environment in which your account credentials reside.
+	AzureEnvironment pulumi.StringInput `pulumi:"azureEnvironment"`
+	// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Web address with a unique key that identifies for your Azure Key Vault.
+	KeyIdentifier pulumi.StringInput `pulumi:"keyIdentifier"`
+	// Unique string that identifies the Azure Key Vault that contains your key.
+	KeyVaultName pulumi.StringInput `pulumi:"keyVaultName"`
+	// Enable connection to your Azure Key Vault over private networking.
+	RequirePrivateNetworking pulumi.BoolInput `pulumi:"requirePrivateNetworking"`
+	// Name of the Azure resource group that contains your Azure Key Vault.
+	ResourceGroupName pulumi.StringInput `pulumi:"resourceGroupName"`
+	// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
+	Secret pulumi.StringInput `pulumi:"secret"`
+	// Unique 36-hexadecimal character string that identifies your Azure subscription.
+	SubscriptionId pulumi.StringInput `pulumi:"subscriptionId"`
+	// Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
+	TenantId pulumi.StringInput `pulumi:"tenantId"`
+	// Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+	Valid pulumi.BoolInput `pulumi:"valid"`
+}
+
+func (GetEncryptionAtRestAzureKeyVaultConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptionAtRestAzureKeyVaultConfig)(nil)).Elem()
+}
+
+func (i GetEncryptionAtRestAzureKeyVaultConfigArgs) ToGetEncryptionAtRestAzureKeyVaultConfigOutput() GetEncryptionAtRestAzureKeyVaultConfigOutput {
+	return i.ToGetEncryptionAtRestAzureKeyVaultConfigOutputWithContext(context.Background())
+}
+
+func (i GetEncryptionAtRestAzureKeyVaultConfigArgs) ToGetEncryptionAtRestAzureKeyVaultConfigOutputWithContext(ctx context.Context) GetEncryptionAtRestAzureKeyVaultConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEncryptionAtRestAzureKeyVaultConfigOutput)
+}
+
+type GetEncryptionAtRestAzureKeyVaultConfigOutput struct{ *pulumi.OutputState }
+
+func (GetEncryptionAtRestAzureKeyVaultConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptionAtRestAzureKeyVaultConfig)(nil)).Elem()
+}
+
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) ToGetEncryptionAtRestAzureKeyVaultConfigOutput() GetEncryptionAtRestAzureKeyVaultConfigOutput {
+	return o
+}
+
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) ToGetEncryptionAtRestAzureKeyVaultConfigOutputWithContext(ctx context.Context) GetEncryptionAtRestAzureKeyVaultConfigOutput {
+	return o
+}
+
+// Azure environment in which your account credentials reside.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) AzureEnvironment() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.AzureEnvironment }).(pulumi.StringOutput)
+}
+
+// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Web address with a unique key that identifies for your Azure Key Vault.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) KeyIdentifier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.KeyIdentifier }).(pulumi.StringOutput)
+}
+
+// Unique string that identifies the Azure Key Vault that contains your key.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) KeyVaultName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.KeyVaultName }).(pulumi.StringOutput)
+}
+
+// Enable connection to your Azure Key Vault over private networking.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) RequirePrivateNetworking() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) bool { return v.RequirePrivateNetworking }).(pulumi.BoolOutput)
+}
+
+// Name of the Azure resource group that contains your Azure Key Vault.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) ResourceGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.ResourceGroupName }).(pulumi.StringOutput)
+}
+
+// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) Secret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+// Unique 36-hexadecimal character string that identifies your Azure subscription.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) SubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.SubscriptionId }).(pulumi.StringOutput)
+}
+
+// Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.TenantId }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) Valid() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) bool { return v.Valid }).(pulumi.BoolOutput)
+}
+
+type GetEncryptionAtRestGoogleCloudKmsConfig struct {
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	Enabled bool `pulumi:"enabled"`
+	// Resource path that displays the key version resource ID for your Google Cloud KMS.
+	KeyVersionResourceId string `pulumi:"keyVersionResourceId"`
+	// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
+	ServiceAccountKey string `pulumi:"serviceAccountKey"`
+	// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+	Valid bool `pulumi:"valid"`
+}
+
+// GetEncryptionAtRestGoogleCloudKmsConfigInput is an input type that accepts GetEncryptionAtRestGoogleCloudKmsConfigArgs and GetEncryptionAtRestGoogleCloudKmsConfigOutput values.
+// You can construct a concrete instance of `GetEncryptionAtRestGoogleCloudKmsConfigInput` via:
+//
+//	GetEncryptionAtRestGoogleCloudKmsConfigArgs{...}
+type GetEncryptionAtRestGoogleCloudKmsConfigInput interface {
+	pulumi.Input
+
+	ToGetEncryptionAtRestGoogleCloudKmsConfigOutput() GetEncryptionAtRestGoogleCloudKmsConfigOutput
+	ToGetEncryptionAtRestGoogleCloudKmsConfigOutputWithContext(context.Context) GetEncryptionAtRestGoogleCloudKmsConfigOutput
+}
+
+type GetEncryptionAtRestGoogleCloudKmsConfigArgs struct {
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Resource path that displays the key version resource ID for your Google Cloud KMS.
+	KeyVersionResourceId pulumi.StringInput `pulumi:"keyVersionResourceId"`
+	// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
+	ServiceAccountKey pulumi.StringInput `pulumi:"serviceAccountKey"`
+	// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+	Valid pulumi.BoolInput `pulumi:"valid"`
+}
+
+func (GetEncryptionAtRestGoogleCloudKmsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptionAtRestGoogleCloudKmsConfig)(nil)).Elem()
+}
+
+func (i GetEncryptionAtRestGoogleCloudKmsConfigArgs) ToGetEncryptionAtRestGoogleCloudKmsConfigOutput() GetEncryptionAtRestGoogleCloudKmsConfigOutput {
+	return i.ToGetEncryptionAtRestGoogleCloudKmsConfigOutputWithContext(context.Background())
+}
+
+func (i GetEncryptionAtRestGoogleCloudKmsConfigArgs) ToGetEncryptionAtRestGoogleCloudKmsConfigOutputWithContext(ctx context.Context) GetEncryptionAtRestGoogleCloudKmsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEncryptionAtRestGoogleCloudKmsConfigOutput)
+}
+
+type GetEncryptionAtRestGoogleCloudKmsConfigOutput struct{ *pulumi.OutputState }
+
+func (GetEncryptionAtRestGoogleCloudKmsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptionAtRestGoogleCloudKmsConfig)(nil)).Elem()
+}
+
+func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) ToGetEncryptionAtRestGoogleCloudKmsConfigOutput() GetEncryptionAtRestGoogleCloudKmsConfigOutput {
+	return o
+}
+
+func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) ToGetEncryptionAtRestGoogleCloudKmsConfigOutputWithContext(ctx context.Context) GetEncryptionAtRestGoogleCloudKmsConfigOutput {
+	return o
+}
+
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestGoogleCloudKmsConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Resource path that displays the key version resource ID for your Google Cloud KMS.
+func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) KeyVersionResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestGoogleCloudKmsConfig) string { return v.KeyVersionResourceId }).(pulumi.StringOutput)
+}
+
+// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
+func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) ServiceAccountKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestGoogleCloudKmsConfig) string { return v.ServiceAccountKey }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) Valid() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestGoogleCloudKmsConfig) bool { return v.Valid }).(pulumi.BoolOutput)
+}
+
+type GetEncryptionAtRestPrivateEndpointsResult struct {
+	// Label that identifies the cloud provider of the private endpoint.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Error message for failures associated with the Encryption At Rest private endpoint.
+	ErrorMessage string `pulumi:"errorMessage"`
+	// Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
+	Id string `pulumi:"id"`
+	// Connection name of the Azure Private Endpoint.
+	PrivateEndpointConnectionName string `pulumi:"privateEndpointConnectionName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId string `pulumi:"projectId"`
+	// Cloud provider region in which the Encryption At Rest private endpoint is located.
+	RegionName string `pulumi:"regionName"`
+	// State of the Encryption At Rest private endpoint.
+	Status string `pulumi:"status"`
+}
+
+// GetEncryptionAtRestPrivateEndpointsResultInput is an input type that accepts GetEncryptionAtRestPrivateEndpointsResultArgs and GetEncryptionAtRestPrivateEndpointsResultOutput values.
+// You can construct a concrete instance of `GetEncryptionAtRestPrivateEndpointsResultInput` via:
+//
+//	GetEncryptionAtRestPrivateEndpointsResultArgs{...}
+type GetEncryptionAtRestPrivateEndpointsResultInput interface {
+	pulumi.Input
+
+	ToGetEncryptionAtRestPrivateEndpointsResultOutput() GetEncryptionAtRestPrivateEndpointsResultOutput
+	ToGetEncryptionAtRestPrivateEndpointsResultOutputWithContext(context.Context) GetEncryptionAtRestPrivateEndpointsResultOutput
+}
+
+type GetEncryptionAtRestPrivateEndpointsResultArgs struct {
+	// Label that identifies the cloud provider of the private endpoint.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Error message for failures associated with the Encryption At Rest private endpoint.
+	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
+	// Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Connection name of the Azure Private Endpoint.
+	PrivateEndpointConnectionName pulumi.StringInput `pulumi:"privateEndpointConnectionName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Cloud provider region in which the Encryption At Rest private endpoint is located.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+	// State of the Encryption At Rest private endpoint.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetEncryptionAtRestPrivateEndpointsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptionAtRestPrivateEndpointsResult)(nil)).Elem()
+}
+
+func (i GetEncryptionAtRestPrivateEndpointsResultArgs) ToGetEncryptionAtRestPrivateEndpointsResultOutput() GetEncryptionAtRestPrivateEndpointsResultOutput {
+	return i.ToGetEncryptionAtRestPrivateEndpointsResultOutputWithContext(context.Background())
+}
+
+func (i GetEncryptionAtRestPrivateEndpointsResultArgs) ToGetEncryptionAtRestPrivateEndpointsResultOutputWithContext(ctx context.Context) GetEncryptionAtRestPrivateEndpointsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEncryptionAtRestPrivateEndpointsResultOutput)
+}
+
+// GetEncryptionAtRestPrivateEndpointsResultArrayInput is an input type that accepts GetEncryptionAtRestPrivateEndpointsResultArray and GetEncryptionAtRestPrivateEndpointsResultArrayOutput values.
+// You can construct a concrete instance of `GetEncryptionAtRestPrivateEndpointsResultArrayInput` via:
+//
+//	GetEncryptionAtRestPrivateEndpointsResultArray{ GetEncryptionAtRestPrivateEndpointsResultArgs{...} }
+type GetEncryptionAtRestPrivateEndpointsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetEncryptionAtRestPrivateEndpointsResultArrayOutput() GetEncryptionAtRestPrivateEndpointsResultArrayOutput
+	ToGetEncryptionAtRestPrivateEndpointsResultArrayOutputWithContext(context.Context) GetEncryptionAtRestPrivateEndpointsResultArrayOutput
+}
+
+type GetEncryptionAtRestPrivateEndpointsResultArray []GetEncryptionAtRestPrivateEndpointsResultInput
+
+func (GetEncryptionAtRestPrivateEndpointsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEncryptionAtRestPrivateEndpointsResult)(nil)).Elem()
+}
+
+func (i GetEncryptionAtRestPrivateEndpointsResultArray) ToGetEncryptionAtRestPrivateEndpointsResultArrayOutput() GetEncryptionAtRestPrivateEndpointsResultArrayOutput {
+	return i.ToGetEncryptionAtRestPrivateEndpointsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetEncryptionAtRestPrivateEndpointsResultArray) ToGetEncryptionAtRestPrivateEndpointsResultArrayOutputWithContext(ctx context.Context) GetEncryptionAtRestPrivateEndpointsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEncryptionAtRestPrivateEndpointsResultArrayOutput)
+}
+
+type GetEncryptionAtRestPrivateEndpointsResultOutput struct{ *pulumi.OutputState }
+
+func (GetEncryptionAtRestPrivateEndpointsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptionAtRestPrivateEndpointsResult)(nil)).Elem()
+}
+
+func (o GetEncryptionAtRestPrivateEndpointsResultOutput) ToGetEncryptionAtRestPrivateEndpointsResultOutput() GetEncryptionAtRestPrivateEndpointsResultOutput {
+	return o
+}
+
+func (o GetEncryptionAtRestPrivateEndpointsResultOutput) ToGetEncryptionAtRestPrivateEndpointsResultOutputWithContext(ctx context.Context) GetEncryptionAtRestPrivateEndpointsResultOutput {
+	return o
+}
+
+// Label that identifies the cloud provider of the private endpoint.
+func (o GetEncryptionAtRestPrivateEndpointsResultOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestPrivateEndpointsResult) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Error message for failures associated with the Encryption At Rest private endpoint.
+func (o GetEncryptionAtRestPrivateEndpointsResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestPrivateEndpointsResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
+func (o GetEncryptionAtRestPrivateEndpointsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestPrivateEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Connection name of the Azure Private Endpoint.
+func (o GetEncryptionAtRestPrivateEndpointsResultOutput) PrivateEndpointConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestPrivateEndpointsResult) string { return v.PrivateEndpointConnectionName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project.
+func (o GetEncryptionAtRestPrivateEndpointsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestPrivateEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Cloud provider region in which the Encryption At Rest private endpoint is located.
+func (o GetEncryptionAtRestPrivateEndpointsResultOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestPrivateEndpointsResult) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// State of the Encryption At Rest private endpoint.
+func (o GetEncryptionAtRestPrivateEndpointsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestPrivateEndpointsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetEncryptionAtRestPrivateEndpointsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEncryptionAtRestPrivateEndpointsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEncryptionAtRestPrivateEndpointsResult)(nil)).Elem()
+}
+
+func (o GetEncryptionAtRestPrivateEndpointsResultArrayOutput) ToGetEncryptionAtRestPrivateEndpointsResultArrayOutput() GetEncryptionAtRestPrivateEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetEncryptionAtRestPrivateEndpointsResultArrayOutput) ToGetEncryptionAtRestPrivateEndpointsResultArrayOutputWithContext(ctx context.Context) GetEncryptionAtRestPrivateEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetEncryptionAtRestPrivateEndpointsResultArrayOutput) Index(i pulumi.IntInput) GetEncryptionAtRestPrivateEndpointsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEncryptionAtRestPrivateEndpointsResult {
+		return vs[0].([]GetEncryptionAtRestPrivateEndpointsResult)[vs[1].(int)]
+	}).(GetEncryptionAtRestPrivateEndpointsResultOutput)
 }
 
 type GetEventTriggerEventProcessor struct {
@@ -45315,6 +46287,7 @@ func (o GetProjectIpAddressesOutput) Services() GetProjectIpAddressesServicesOut
 }
 
 type GetProjectIpAddressesServices struct {
+	// IP addresses of clusters.
 	Clusters []GetProjectIpAddressesServicesCluster `pulumi:"clusters"`
 }
 
@@ -45330,6 +46303,7 @@ type GetProjectIpAddressesServicesInput interface {
 }
 
 type GetProjectIpAddressesServicesArgs struct {
+	// IP addresses of clusters.
 	Clusters GetProjectIpAddressesServicesClusterArrayInput `pulumi:"clusters"`
 }
 
@@ -45359,14 +46333,18 @@ func (o GetProjectIpAddressesServicesOutput) ToGetProjectIpAddressesServicesOutp
 	return o
 }
 
+// IP addresses of clusters.
 func (o GetProjectIpAddressesServicesOutput) Clusters() GetProjectIpAddressesServicesClusterArrayOutput {
 	return o.ApplyT(func(v GetProjectIpAddressesServices) []GetProjectIpAddressesServicesCluster { return v.Clusters }).(GetProjectIpAddressesServicesClusterArrayOutput)
 }
 
 type GetProjectIpAddressesServicesCluster struct {
-	ClusterName string   `pulumi:"clusterName"`
-	Inbounds    []string `pulumi:"inbounds"`
-	Outbounds   []string `pulumi:"outbounds"`
+	// Human-readable label that identifies the cluster.
+	ClusterName string `pulumi:"clusterName"`
+	// List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+	Inbounds []string `pulumi:"inbounds"`
+	// List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+	Outbounds []string `pulumi:"outbounds"`
 }
 
 // GetProjectIpAddressesServicesClusterInput is an input type that accepts GetProjectIpAddressesServicesClusterArgs and GetProjectIpAddressesServicesClusterOutput values.
@@ -45381,9 +46359,12 @@ type GetProjectIpAddressesServicesClusterInput interface {
 }
 
 type GetProjectIpAddressesServicesClusterArgs struct {
-	ClusterName pulumi.StringInput      `pulumi:"clusterName"`
-	Inbounds    pulumi.StringArrayInput `pulumi:"inbounds"`
-	Outbounds   pulumi.StringArrayInput `pulumi:"outbounds"`
+	// Human-readable label that identifies the cluster.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+	Inbounds pulumi.StringArrayInput `pulumi:"inbounds"`
+	// List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+	Outbounds pulumi.StringArrayInput `pulumi:"outbounds"`
 }
 
 func (GetProjectIpAddressesServicesClusterArgs) ElementType() reflect.Type {
@@ -45437,14 +46418,17 @@ func (o GetProjectIpAddressesServicesClusterOutput) ToGetProjectIpAddressesServi
 	return o
 }
 
+// Human-readable label that identifies the cluster.
 func (o GetProjectIpAddressesServicesClusterOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectIpAddressesServicesCluster) string { return v.ClusterName }).(pulumi.StringOutput)
 }
 
+// List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
 func (o GetProjectIpAddressesServicesClusterOutput) Inbounds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetProjectIpAddressesServicesCluster) []string { return v.Inbounds }).(pulumi.StringArrayOutput)
 }
 
+// List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
 func (o GetProjectIpAddressesServicesClusterOutput) Outbounds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetProjectIpAddressesServicesCluster) []string { return v.Outbounds }).(pulumi.StringArrayOutput)
 }
@@ -45721,7 +46705,9 @@ type GetProjectsResult struct {
 	Created string `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id string `pulumi:"id"`
-	// IP addresses in a project categorized by services. See IP Addresses.
+	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+	//
+	// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddresses `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
@@ -45767,7 +46753,9 @@ type GetProjectsResultArgs struct {
 	Created pulumi.StringInput `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id pulumi.StringInput `pulumi:"id"`
-	// IP addresses in a project categorized by services. See IP Addresses.
+	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+	//
+	// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddressesInput `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolInput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
@@ -45861,7 +46849,9 @@ func (o GetProjectsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IP addresses in a project categorized by services. See IP Addresses.
+// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+//
+// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
 func (o GetProjectsResultOutput) IpAddresses() GetProjectsResultIpAddressesOutput {
 	return o.ApplyT(func(v GetProjectsResult) GetProjectsResultIpAddresses { return v.IpAddresses }).(GetProjectsResultIpAddressesOutput)
 }
@@ -48811,6 +49801,410 @@ func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamInstancesResultStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
 }
 
+type GetStreamProcessorOptions struct {
+	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+	Dlq GetStreamProcessorOptionsDlq `pulumi:"dlq"`
+}
+
+// GetStreamProcessorOptionsInput is an input type that accepts GetStreamProcessorOptionsArgs and GetStreamProcessorOptionsOutput values.
+// You can construct a concrete instance of `GetStreamProcessorOptionsInput` via:
+//
+//	GetStreamProcessorOptionsArgs{...}
+type GetStreamProcessorOptionsInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorOptionsOutput() GetStreamProcessorOptionsOutput
+	ToGetStreamProcessorOptionsOutputWithContext(context.Context) GetStreamProcessorOptionsOutput
+}
+
+type GetStreamProcessorOptionsArgs struct {
+	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+	Dlq GetStreamProcessorOptionsDlqInput `pulumi:"dlq"`
+}
+
+func (GetStreamProcessorOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptions)(nil)).Elem()
+}
+
+func (i GetStreamProcessorOptionsArgs) ToGetStreamProcessorOptionsOutput() GetStreamProcessorOptionsOutput {
+	return i.ToGetStreamProcessorOptionsOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorOptionsArgs) ToGetStreamProcessorOptionsOutputWithContext(ctx context.Context) GetStreamProcessorOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorOptionsOutput)
+}
+
+type GetStreamProcessorOptionsOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptions)(nil)).Elem()
+}
+
+func (o GetStreamProcessorOptionsOutput) ToGetStreamProcessorOptionsOutput() GetStreamProcessorOptionsOutput {
+	return o
+}
+
+func (o GetStreamProcessorOptionsOutput) ToGetStreamProcessorOptionsOutputWithContext(ctx context.Context) GetStreamProcessorOptionsOutput {
+	return o
+}
+
+// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+func (o GetStreamProcessorOptionsOutput) Dlq() GetStreamProcessorOptionsDlqOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptions) GetStreamProcessorOptionsDlq { return v.Dlq }).(GetStreamProcessorOptionsDlqOutput)
+}
+
+type GetStreamProcessorOptionsDlq struct {
+	// Name of the collection to use for the DLQ.
+	Coll string `pulumi:"coll"`
+	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+	ConnectionName string `pulumi:"connectionName"`
+	// Name of the database to use for the DLQ.
+	Db string `pulumi:"db"`
+}
+
+// GetStreamProcessorOptionsDlqInput is an input type that accepts GetStreamProcessorOptionsDlqArgs and GetStreamProcessorOptionsDlqOutput values.
+// You can construct a concrete instance of `GetStreamProcessorOptionsDlqInput` via:
+//
+//	GetStreamProcessorOptionsDlqArgs{...}
+type GetStreamProcessorOptionsDlqInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorOptionsDlqOutput() GetStreamProcessorOptionsDlqOutput
+	ToGetStreamProcessorOptionsDlqOutputWithContext(context.Context) GetStreamProcessorOptionsDlqOutput
+}
+
+type GetStreamProcessorOptionsDlqArgs struct {
+	// Name of the collection to use for the DLQ.
+	Coll pulumi.StringInput `pulumi:"coll"`
+	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
+	// Name of the database to use for the DLQ.
+	Db pulumi.StringInput `pulumi:"db"`
+}
+
+func (GetStreamProcessorOptionsDlqArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptionsDlq)(nil)).Elem()
+}
+
+func (i GetStreamProcessorOptionsDlqArgs) ToGetStreamProcessorOptionsDlqOutput() GetStreamProcessorOptionsDlqOutput {
+	return i.ToGetStreamProcessorOptionsDlqOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorOptionsDlqArgs) ToGetStreamProcessorOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorOptionsDlqOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorOptionsDlqOutput)
+}
+
+type GetStreamProcessorOptionsDlqOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorOptionsDlqOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptionsDlq)(nil)).Elem()
+}
+
+func (o GetStreamProcessorOptionsDlqOutput) ToGetStreamProcessorOptionsDlqOutput() GetStreamProcessorOptionsDlqOutput {
+	return o
+}
+
+func (o GetStreamProcessorOptionsDlqOutput) ToGetStreamProcessorOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorOptionsDlqOutput {
+	return o
+}
+
+// Name of the collection to use for the DLQ.
+func (o GetStreamProcessorOptionsDlqOutput) Coll() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsDlq) string { return v.Coll }).(pulumi.StringOutput)
+}
+
+// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+func (o GetStreamProcessorOptionsDlqOutput) ConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsDlq) string { return v.ConnectionName }).(pulumi.StringOutput)
+}
+
+// Name of the database to use for the DLQ.
+func (o GetStreamProcessorOptionsDlqOutput) Db() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsDlq) string { return v.Db }).(pulumi.StringOutput)
+}
+
+type GetStreamProcessorsResult struct {
+	// Unique 24-hexadecimal character string that identifies the stream processor.
+	Id string `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName string `pulumi:"instanceName"`
+	// Optional configuration for the stream processor.
+	Options GetStreamProcessorsResultOptions `pulumi:"options"`
+	// Stream aggregation pipeline you want to apply to your streaming data.
+	Pipeline string `pulumi:"pipeline"`
+	// Human-readable label that identifies the stream processor.
+	ProcessorName string `pulumi:"processorName"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId string `pulumi:"projectId"`
+	// The state of the stream processor.
+	State string `pulumi:"state"`
+	// The stats associated with the stream processor.
+	Stats string `pulumi:"stats"`
+}
+
+// GetStreamProcessorsResultInput is an input type that accepts GetStreamProcessorsResultArgs and GetStreamProcessorsResultOutput values.
+// You can construct a concrete instance of `GetStreamProcessorsResultInput` via:
+//
+//	GetStreamProcessorsResultArgs{...}
+type GetStreamProcessorsResultInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorsResultOutput() GetStreamProcessorsResultOutput
+	ToGetStreamProcessorsResultOutputWithContext(context.Context) GetStreamProcessorsResultOutput
+}
+
+type GetStreamProcessorsResultArgs struct {
+	// Unique 24-hexadecimal character string that identifies the stream processor.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Optional configuration for the stream processor.
+	Options GetStreamProcessorsResultOptionsInput `pulumi:"options"`
+	// Stream aggregation pipeline you want to apply to your streaming data.
+	Pipeline pulumi.StringInput `pulumi:"pipeline"`
+	// Human-readable label that identifies the stream processor.
+	ProcessorName pulumi.StringInput `pulumi:"processorName"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The state of the stream processor.
+	State pulumi.StringInput `pulumi:"state"`
+	// The stats associated with the stream processor.
+	Stats pulumi.StringInput `pulumi:"stats"`
+}
+
+func (GetStreamProcessorsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorsResult)(nil)).Elem()
+}
+
+func (i GetStreamProcessorsResultArgs) ToGetStreamProcessorsResultOutput() GetStreamProcessorsResultOutput {
+	return i.ToGetStreamProcessorsResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorsResultArgs) ToGetStreamProcessorsResultOutputWithContext(ctx context.Context) GetStreamProcessorsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultOutput)
+}
+
+// GetStreamProcessorsResultArrayInput is an input type that accepts GetStreamProcessorsResultArray and GetStreamProcessorsResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamProcessorsResultArrayInput` via:
+//
+//	GetStreamProcessorsResultArray{ GetStreamProcessorsResultArgs{...} }
+type GetStreamProcessorsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorsResultArrayOutput() GetStreamProcessorsResultArrayOutput
+	ToGetStreamProcessorsResultArrayOutputWithContext(context.Context) GetStreamProcessorsResultArrayOutput
+}
+
+type GetStreamProcessorsResultArray []GetStreamProcessorsResultInput
+
+func (GetStreamProcessorsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamProcessorsResult)(nil)).Elem()
+}
+
+func (i GetStreamProcessorsResultArray) ToGetStreamProcessorsResultArrayOutput() GetStreamProcessorsResultArrayOutput {
+	return i.ToGetStreamProcessorsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorsResultArray) ToGetStreamProcessorsResultArrayOutputWithContext(ctx context.Context) GetStreamProcessorsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultArrayOutput)
+}
+
+type GetStreamProcessorsResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorsResult)(nil)).Elem()
+}
+
+func (o GetStreamProcessorsResultOutput) ToGetStreamProcessorsResultOutput() GetStreamProcessorsResultOutput {
+	return o
+}
+
+func (o GetStreamProcessorsResultOutput) ToGetStreamProcessorsResultOutputWithContext(ctx context.Context) GetStreamProcessorsResultOutput {
+	return o
+}
+
+// Unique 24-hexadecimal character string that identifies the stream processor.
+func (o GetStreamProcessorsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the stream instance.
+func (o GetStreamProcessorsResultOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// Optional configuration for the stream processor.
+func (o GetStreamProcessorsResultOutput) Options() GetStreamProcessorsResultOptionsOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) GetStreamProcessorsResultOptions { return v.Options }).(GetStreamProcessorsResultOptionsOutput)
+}
+
+// Stream aggregation pipeline you want to apply to your streaming data.
+func (o GetStreamProcessorsResultOutput) Pipeline() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Pipeline }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the stream processor.
+func (o GetStreamProcessorsResultOutput) ProcessorName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.ProcessorName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+func (o GetStreamProcessorsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The state of the stream processor.
+func (o GetStreamProcessorsResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+// The stats associated with the stream processor.
+func (o GetStreamProcessorsResultOutput) Stats() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Stats }).(pulumi.StringOutput)
+}
+
+type GetStreamProcessorsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamProcessorsResult)(nil)).Elem()
+}
+
+func (o GetStreamProcessorsResultArrayOutput) ToGetStreamProcessorsResultArrayOutput() GetStreamProcessorsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamProcessorsResultArrayOutput) ToGetStreamProcessorsResultArrayOutputWithContext(ctx context.Context) GetStreamProcessorsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamProcessorsResultArrayOutput) Index(i pulumi.IntInput) GetStreamProcessorsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamProcessorsResult {
+		return vs[0].([]GetStreamProcessorsResult)[vs[1].(int)]
+	}).(GetStreamProcessorsResultOutput)
+}
+
+type GetStreamProcessorsResultOptions struct {
+	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+	Dlq GetStreamProcessorsResultOptionsDlq `pulumi:"dlq"`
+}
+
+// GetStreamProcessorsResultOptionsInput is an input type that accepts GetStreamProcessorsResultOptionsArgs and GetStreamProcessorsResultOptionsOutput values.
+// You can construct a concrete instance of `GetStreamProcessorsResultOptionsInput` via:
+//
+//	GetStreamProcessorsResultOptionsArgs{...}
+type GetStreamProcessorsResultOptionsInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorsResultOptionsOutput() GetStreamProcessorsResultOptionsOutput
+	ToGetStreamProcessorsResultOptionsOutputWithContext(context.Context) GetStreamProcessorsResultOptionsOutput
+}
+
+type GetStreamProcessorsResultOptionsArgs struct {
+	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+	Dlq GetStreamProcessorsResultOptionsDlqInput `pulumi:"dlq"`
+}
+
+func (GetStreamProcessorsResultOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorsResultOptions)(nil)).Elem()
+}
+
+func (i GetStreamProcessorsResultOptionsArgs) ToGetStreamProcessorsResultOptionsOutput() GetStreamProcessorsResultOptionsOutput {
+	return i.ToGetStreamProcessorsResultOptionsOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorsResultOptionsArgs) ToGetStreamProcessorsResultOptionsOutputWithContext(ctx context.Context) GetStreamProcessorsResultOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultOptionsOutput)
+}
+
+type GetStreamProcessorsResultOptionsOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorsResultOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorsResultOptions)(nil)).Elem()
+}
+
+func (o GetStreamProcessorsResultOptionsOutput) ToGetStreamProcessorsResultOptionsOutput() GetStreamProcessorsResultOptionsOutput {
+	return o
+}
+
+func (o GetStreamProcessorsResultOptionsOutput) ToGetStreamProcessorsResultOptionsOutputWithContext(ctx context.Context) GetStreamProcessorsResultOptionsOutput {
+	return o
+}
+
+// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+func (o GetStreamProcessorsResultOptionsOutput) Dlq() GetStreamProcessorsResultOptionsDlqOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResultOptions) GetStreamProcessorsResultOptionsDlq { return v.Dlq }).(GetStreamProcessorsResultOptionsDlqOutput)
+}
+
+type GetStreamProcessorsResultOptionsDlq struct {
+	// Name of the collection to use for the DLQ.
+	Coll string `pulumi:"coll"`
+	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+	ConnectionName string `pulumi:"connectionName"`
+	// Name of the database to use for the DLQ.
+	Db string `pulumi:"db"`
+}
+
+// GetStreamProcessorsResultOptionsDlqInput is an input type that accepts GetStreamProcessorsResultOptionsDlqArgs and GetStreamProcessorsResultOptionsDlqOutput values.
+// You can construct a concrete instance of `GetStreamProcessorsResultOptionsDlqInput` via:
+//
+//	GetStreamProcessorsResultOptionsDlqArgs{...}
+type GetStreamProcessorsResultOptionsDlqInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorsResultOptionsDlqOutput() GetStreamProcessorsResultOptionsDlqOutput
+	ToGetStreamProcessorsResultOptionsDlqOutputWithContext(context.Context) GetStreamProcessorsResultOptionsDlqOutput
+}
+
+type GetStreamProcessorsResultOptionsDlqArgs struct {
+	// Name of the collection to use for the DLQ.
+	Coll pulumi.StringInput `pulumi:"coll"`
+	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
+	// Name of the database to use for the DLQ.
+	Db pulumi.StringInput `pulumi:"db"`
+}
+
+func (GetStreamProcessorsResultOptionsDlqArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorsResultOptionsDlq)(nil)).Elem()
+}
+
+func (i GetStreamProcessorsResultOptionsDlqArgs) ToGetStreamProcessorsResultOptionsDlqOutput() GetStreamProcessorsResultOptionsDlqOutput {
+	return i.ToGetStreamProcessorsResultOptionsDlqOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorsResultOptionsDlqArgs) ToGetStreamProcessorsResultOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorsResultOptionsDlqOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultOptionsDlqOutput)
+}
+
+type GetStreamProcessorsResultOptionsDlqOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorsResultOptionsDlqOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorsResultOptionsDlq)(nil)).Elem()
+}
+
+func (o GetStreamProcessorsResultOptionsDlqOutput) ToGetStreamProcessorsResultOptionsDlqOutput() GetStreamProcessorsResultOptionsDlqOutput {
+	return o
+}
+
+func (o GetStreamProcessorsResultOptionsDlqOutput) ToGetStreamProcessorsResultOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorsResultOptionsDlqOutput {
+	return o
+}
+
+// Name of the collection to use for the DLQ.
+func (o GetStreamProcessorsResultOptionsDlqOutput) Coll() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResultOptionsDlq) string { return v.Coll }).(pulumi.StringOutput)
+}
+
+// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+func (o GetStreamProcessorsResultOptionsDlqOutput) ConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResultOptionsDlq) string { return v.ConnectionName }).(pulumi.StringOutput)
+}
+
+// Name of the database to use for the DLQ.
+func (o GetStreamProcessorsResultOptionsDlqOutput) Db() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResultOptionsDlq) string { return v.Db }).(pulumi.StringOutput)
+}
+
 type GetThirdPartyIntegrationsResult struct {
 	AccountId string `pulumi:"accountId"`
 	// Your API Key.
@@ -49394,6 +50788,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceDataProcessRegionPtrInput)(nil)).Elem(), StreamInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceStreamConfigInput)(nil)).Elem(), StreamInstanceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceStreamConfigPtrInput)(nil)).Elem(), StreamInstanceStreamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsInput)(nil)).Elem(), StreamProcessorOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsPtrInput)(nil)).Elem(), StreamProcessorOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsDlqInput)(nil)).Elem(), StreamProcessorOptionsDlqArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsDlqPtrInput)(nil)).Elem(), StreamProcessorOptionsDlqArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Get509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), Get509AuthenticationDatabaseUserCertificateArgs{})
@@ -49645,6 +51043,11 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseUsersResultRoleArrayInput)(nil)).Elem(), GetDatabaseUsersResultRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseUsersResultScopeInput)(nil)).Elem(), GetDatabaseUsersResultScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseUsersResultScopeArrayInput)(nil)).Elem(), GetDatabaseUsersResultScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEncryptionAtRestAwsKmsConfigInput)(nil)).Elem(), GetEncryptionAtRestAwsKmsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEncryptionAtRestAzureKeyVaultConfigInput)(nil)).Elem(), GetEncryptionAtRestAzureKeyVaultConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEncryptionAtRestGoogleCloudKmsConfigInput)(nil)).Elem(), GetEncryptionAtRestGoogleCloudKmsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEncryptionAtRestPrivateEndpointsResultInput)(nil)).Elem(), GetEncryptionAtRestPrivateEndpointsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEncryptionAtRestPrivateEndpointsResultArrayInput)(nil)).Elem(), GetEncryptionAtRestPrivateEndpointsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEventTriggerEventProcessorInput)(nil)).Elem(), GetEventTriggerEventProcessorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEventTriggerEventProcessorArrayInput)(nil)).Elem(), GetEventTriggerEventProcessorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEventTriggerEventProcessorAwsEventbridgeInput)(nil)).Elem(), GetEventTriggerEventProcessorAwsEventbridgeArgs{})
@@ -49853,6 +51256,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultArrayInput)(nil)).Elem(), GetStreamInstancesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultDataProcessRegionInput)(nil)).Elem(), GetStreamInstancesResultDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultStreamConfigInput)(nil)).Elem(), GetStreamInstancesResultStreamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsInput)(nil)).Elem(), GetStreamProcessorOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsDlqInput)(nil)).Elem(), GetStreamProcessorOptionsDlqArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultInput)(nil)).Elem(), GetStreamProcessorsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultArrayInput)(nil)).Elem(), GetStreamProcessorsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultOptionsInput)(nil)).Elem(), GetStreamProcessorsResultOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultOptionsDlqInput)(nil)).Elem(), GetStreamProcessorsResultOptionsDlqArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArgs{})
@@ -50083,6 +51492,10 @@ func init() {
 	pulumi.RegisterOutputType(StreamInstanceDataProcessRegionPtrOutput{})
 	pulumi.RegisterOutputType(StreamInstanceStreamConfigOutput{})
 	pulumi.RegisterOutputType(StreamInstanceStreamConfigPtrOutput{})
+	pulumi.RegisterOutputType(StreamProcessorOptionsOutput{})
+	pulumi.RegisterOutputType(StreamProcessorOptionsPtrOutput{})
+	pulumi.RegisterOutputType(StreamProcessorOptionsDlqOutput{})
+	pulumi.RegisterOutputType(StreamProcessorOptionsDlqPtrOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateArrayOutput{})
 	pulumi.RegisterOutputType(Get509AuthenticationDatabaseUserCertificateOutput{})
@@ -50334,6 +51747,11 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseUsersResultRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultScopeOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultScopeArrayOutput{})
+	pulumi.RegisterOutputType(GetEncryptionAtRestAwsKmsConfigOutput{})
+	pulumi.RegisterOutputType(GetEncryptionAtRestAzureKeyVaultConfigOutput{})
+	pulumi.RegisterOutputType(GetEncryptionAtRestGoogleCloudKmsConfigOutput{})
+	pulumi.RegisterOutputType(GetEncryptionAtRestPrivateEndpointsResultOutput{})
+	pulumi.RegisterOutputType(GetEncryptionAtRestPrivateEndpointsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetEventTriggerEventProcessorOutput{})
 	pulumi.RegisterOutputType(GetEventTriggerEventProcessorArrayOutput{})
 	pulumi.RegisterOutputType(GetEventTriggerEventProcessorAwsEventbridgeOutput{})
@@ -50542,6 +51960,12 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamInstancesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamInstancesResultDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetStreamInstancesResultStreamConfigOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorOptionsOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorOptionsDlqOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorsResultOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorsResultOptionsOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorsResultOptionsDlqOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetX509AuthenticationDatabaseUserCertificateOutput{})

@@ -774,7 +774,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
-        [Obsolete(@"This parameter is deprecated and will be removed by September 2024. Please transition to tags.")]
+        [Obsolete(@"This parameter is deprecated and will be removed in the future. Please transition to tags")]
         public InputList<Inputs.ClusterLabelArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.ClusterLabelArgs>());
@@ -1055,7 +1055,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
-        [Obsolete(@"This parameter is deprecated and will be removed by September 2024. Please transition to tags.")]
+        [Obsolete(@"This parameter is deprecated and will be removed in the future. Please transition to tags")]
         public InputList<Inputs.ClusterLabelGetArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.ClusterLabelGetArgs>());

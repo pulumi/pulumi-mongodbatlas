@@ -17,14 +17,14 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     public static final EncryptionAtRestAzureKeyVaultConfigArgs Empty = new EncryptionAtRestAzureKeyVaultConfigArgs();
 
     /**
-     * The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+     * Azure environment in which your account credentials reside.
      * 
      */
     @Import(name="azureEnvironment")
     private @Nullable Output<String> azureEnvironment;
 
     /**
-     * @return The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+     * @return Azure environment in which your account credentials reside.
      * 
      */
     public Optional<Output<String>> azureEnvironment() {
@@ -32,14 +32,14 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     }
 
     /**
-     * The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+     * Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+     * @return Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -47,14 +47,14 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -62,14 +62,14 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     }
 
     /**
-     * The unique identifier of a key in an Azure Key Vault.
+     * Web address with a unique key that identifies for your Azure Key Vault.
      * 
      */
     @Import(name="keyIdentifier")
     private @Nullable Output<String> keyIdentifier;
 
     /**
-     * @return The unique identifier of a key in an Azure Key Vault.
+     * @return Web address with a unique key that identifies for your Azure Key Vault.
      * 
      */
     public Optional<Output<String>> keyIdentifier() {
@@ -77,14 +77,14 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     }
 
     /**
-     * The name of an Azure Key Vault containing your key.
+     * Unique string that identifies the Azure Key Vault that contains your key.
      * 
      */
     @Import(name="keyVaultName")
     private @Nullable Output<String> keyVaultName;
 
     /**
-     * @return The name of an Azure Key Vault containing your key.
+     * @return Unique string that identifies the Azure Key Vault that contains your key.
      * 
      */
     public Optional<Output<String>> keyVaultName() {
@@ -92,14 +92,29 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     }
 
     /**
-     * The name of the Azure Resource group that contains an Azure Key Vault.
+     * Enable connection to your Azure Key Vault over private networking.
+     * 
+     */
+    @Import(name="requirePrivateNetworking")
+    private @Nullable Output<Boolean> requirePrivateNetworking;
+
+    /**
+     * @return Enable connection to your Azure Key Vault over private networking.
+     * 
+     */
+    public Optional<Output<Boolean>> requirePrivateNetworking() {
+        return Optional.ofNullable(this.requirePrivateNetworking);
+    }
+
+    /**
+     * Name of the Azure resource group that contains your Azure Key Vault.
      * 
      */
     @Import(name="resourceGroupName")
     private @Nullable Output<String> resourceGroupName;
 
     /**
-     * @return The name of the Azure Resource group that contains an Azure Key Vault.
+     * @return Name of the Azure resource group that contains your Azure Key Vault.
      * 
      */
     public Optional<Output<String>> resourceGroupName() {
@@ -107,14 +122,14 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     }
 
     /**
-     * The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+     * Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      * 
      */
     @Import(name="secret")
     private @Nullable Output<String> secret;
 
     /**
-     * @return The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+     * @return Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      * 
      */
     public Optional<Output<String>> secret() {
@@ -122,14 +137,14 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     }
 
     /**
-     * The unique identifier associated with an Azure subscription.
+     * Unique 36-hexadecimal character string that identifies your Azure subscription.
      * 
      */
     @Import(name="subscriptionId")
     private @Nullable Output<String> subscriptionId;
 
     /**
-     * @return The unique identifier associated with an Azure subscription.
+     * @return Unique 36-hexadecimal character string that identifies your Azure subscription.
      * 
      */
     public Optional<Output<String>> subscriptionId() {
@@ -137,18 +152,33 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     }
 
     /**
-     * The unique identifier for an Azure AD tenant within an Azure subscription.
+     * Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
      * 
      */
     @Import(name="tenantId")
     private @Nullable Output<String> tenantId;
 
     /**
-     * @return The unique identifier for an Azure AD tenant within an Azure subscription.
+     * @return Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
      * 
      */
     public Optional<Output<String>> tenantId() {
         return Optional.ofNullable(this.tenantId);
+    }
+
+    /**
+     * Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+     * 
+     */
+    @Import(name="valid")
+    private @Nullable Output<Boolean> valid;
+
+    /**
+     * @return Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+     * 
+     */
+    public Optional<Output<Boolean>> valid() {
+        return Optional.ofNullable(this.valid);
     }
 
     private EncryptionAtRestAzureKeyVaultConfigArgs() {}
@@ -159,10 +189,12 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         this.enabled = $.enabled;
         this.keyIdentifier = $.keyIdentifier;
         this.keyVaultName = $.keyVaultName;
+        this.requirePrivateNetworking = $.requirePrivateNetworking;
         this.resourceGroupName = $.resourceGroupName;
         this.secret = $.secret;
         this.subscriptionId = $.subscriptionId;
         this.tenantId = $.tenantId;
+        this.valid = $.valid;
     }
 
     public static Builder builder() {
@@ -184,7 +216,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param azureEnvironment The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+         * @param azureEnvironment Azure environment in which your account credentials reside.
          * 
          * @return builder
          * 
@@ -195,7 +227,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param azureEnvironment The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+         * @param azureEnvironment Azure environment in which your account credentials reside.
          * 
          * @return builder
          * 
@@ -205,7 +237,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param clientId The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+         * @param clientId Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
          * 
          * @return builder
          * 
@@ -216,7 +248,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param clientId The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+         * @param clientId Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
          * 
          * @return builder
          * 
@@ -226,7 +258,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param enabled Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
          * 
          * @return builder
          * 
@@ -237,7 +269,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param enabled Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
          * 
          * @return builder
          * 
@@ -247,7 +279,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param keyIdentifier The unique identifier of a key in an Azure Key Vault.
+         * @param keyIdentifier Web address with a unique key that identifies for your Azure Key Vault.
          * 
          * @return builder
          * 
@@ -258,7 +290,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param keyIdentifier The unique identifier of a key in an Azure Key Vault.
+         * @param keyIdentifier Web address with a unique key that identifies for your Azure Key Vault.
          * 
          * @return builder
          * 
@@ -268,7 +300,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param keyVaultName The name of an Azure Key Vault containing your key.
+         * @param keyVaultName Unique string that identifies the Azure Key Vault that contains your key.
          * 
          * @return builder
          * 
@@ -279,7 +311,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param keyVaultName The name of an Azure Key Vault containing your key.
+         * @param keyVaultName Unique string that identifies the Azure Key Vault that contains your key.
          * 
          * @return builder
          * 
@@ -289,7 +321,28 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param resourceGroupName The name of the Azure Resource group that contains an Azure Key Vault.
+         * @param requirePrivateNetworking Enable connection to your Azure Key Vault over private networking.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requirePrivateNetworking(@Nullable Output<Boolean> requirePrivateNetworking) {
+            $.requirePrivateNetworking = requirePrivateNetworking;
+            return this;
+        }
+
+        /**
+         * @param requirePrivateNetworking Enable connection to your Azure Key Vault over private networking.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requirePrivateNetworking(Boolean requirePrivateNetworking) {
+            return requirePrivateNetworking(Output.of(requirePrivateNetworking));
+        }
+
+        /**
+         * @param resourceGroupName Name of the Azure resource group that contains your Azure Key Vault.
          * 
          * @return builder
          * 
@@ -300,7 +353,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param resourceGroupName The name of the Azure Resource group that contains an Azure Key Vault.
+         * @param resourceGroupName Name of the Azure resource group that contains your Azure Key Vault.
          * 
          * @return builder
          * 
@@ -310,7 +363,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param secret The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+         * @param secret Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
          * 
          * @return builder
          * 
@@ -321,7 +374,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param secret The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+         * @param secret Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
          * 
          * @return builder
          * 
@@ -331,7 +384,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param subscriptionId The unique identifier associated with an Azure subscription.
+         * @param subscriptionId Unique 36-hexadecimal character string that identifies your Azure subscription.
          * 
          * @return builder
          * 
@@ -342,7 +395,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param subscriptionId The unique identifier associated with an Azure subscription.
+         * @param subscriptionId Unique 36-hexadecimal character string that identifies your Azure subscription.
          * 
          * @return builder
          * 
@@ -352,7 +405,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param tenantId The unique identifier for an Azure AD tenant within an Azure subscription.
+         * @param tenantId Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
          * 
          * @return builder
          * 
@@ -363,13 +416,34 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param tenantId The unique identifier for an Azure AD tenant within an Azure subscription.
+         * @param tenantId Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
          * 
          * @return builder
          * 
          */
         public Builder tenantId(String tenantId) {
             return tenantId(Output.of(tenantId));
+        }
+
+        /**
+         * @param valid Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valid(@Nullable Output<Boolean> valid) {
+            $.valid = valid;
+            return this;
+        }
+
+        /**
+         * @param valid Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valid(Boolean valid) {
+            return valid(Output.of(valid));
         }
 
         public EncryptionAtRestAzureKeyVaultConfigArgs build() {

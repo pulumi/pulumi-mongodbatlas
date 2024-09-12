@@ -105,6 +105,11 @@ export type EncryptionAtRest = import("./encryptionAtRest").EncryptionAtRest;
 export const EncryptionAtRest: typeof import("./encryptionAtRest").EncryptionAtRest = null as any;
 utilities.lazyLoad(exports, ["EncryptionAtRest"], () => require("./encryptionAtRest"));
 
+export { EncryptionAtRestPrivateEndpointArgs, EncryptionAtRestPrivateEndpointState } from "./encryptionAtRestPrivateEndpoint";
+export type EncryptionAtRestPrivateEndpoint = import("./encryptionAtRestPrivateEndpoint").EncryptionAtRestPrivateEndpoint;
+export const EncryptionAtRestPrivateEndpoint: typeof import("./encryptionAtRestPrivateEndpoint").EncryptionAtRestPrivateEndpoint = null as any;
+utilities.lazyLoad(exports, ["EncryptionAtRestPrivateEndpoint"], () => require("./encryptionAtRestPrivateEndpoint"));
+
 export { EventTriggerArgs, EventTriggerState } from "./eventTrigger";
 export type EventTrigger = import("./eventTrigger").EventTrigger;
 export const EventTrigger: typeof import("./eventTrigger").EventTrigger = null as any;
@@ -315,6 +320,21 @@ export const getDatabaseUsers: typeof import("./getDatabaseUsers").getDatabaseUs
 export const getDatabaseUsersOutput: typeof import("./getDatabaseUsers").getDatabaseUsersOutput = null as any;
 utilities.lazyLoad(exports, ["getDatabaseUsers","getDatabaseUsersOutput"], () => require("./getDatabaseUsers"));
 
+export { GetEncryptionAtRestArgs, GetEncryptionAtRestResult, GetEncryptionAtRestOutputArgs } from "./getEncryptionAtRest";
+export const getEncryptionAtRest: typeof import("./getEncryptionAtRest").getEncryptionAtRest = null as any;
+export const getEncryptionAtRestOutput: typeof import("./getEncryptionAtRest").getEncryptionAtRestOutput = null as any;
+utilities.lazyLoad(exports, ["getEncryptionAtRest","getEncryptionAtRestOutput"], () => require("./getEncryptionAtRest"));
+
+export { GetEncryptionAtRestPrivateEndpointArgs, GetEncryptionAtRestPrivateEndpointResult, GetEncryptionAtRestPrivateEndpointOutputArgs } from "./getEncryptionAtRestPrivateEndpoint";
+export const getEncryptionAtRestPrivateEndpoint: typeof import("./getEncryptionAtRestPrivateEndpoint").getEncryptionAtRestPrivateEndpoint = null as any;
+export const getEncryptionAtRestPrivateEndpointOutput: typeof import("./getEncryptionAtRestPrivateEndpoint").getEncryptionAtRestPrivateEndpointOutput = null as any;
+utilities.lazyLoad(exports, ["getEncryptionAtRestPrivateEndpoint","getEncryptionAtRestPrivateEndpointOutput"], () => require("./getEncryptionAtRestPrivateEndpoint"));
+
+export { GetEncryptionAtRestPrivateEndpointsArgs, GetEncryptionAtRestPrivateEndpointsResult, GetEncryptionAtRestPrivateEndpointsOutputArgs } from "./getEncryptionAtRestPrivateEndpoints";
+export const getEncryptionAtRestPrivateEndpoints: typeof import("./getEncryptionAtRestPrivateEndpoints").getEncryptionAtRestPrivateEndpoints = null as any;
+export const getEncryptionAtRestPrivateEndpointsOutput: typeof import("./getEncryptionAtRestPrivateEndpoints").getEncryptionAtRestPrivateEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getEncryptionAtRestPrivateEndpoints","getEncryptionAtRestPrivateEndpointsOutput"], () => require("./getEncryptionAtRestPrivateEndpoints"));
+
 export { GetEventTriggerArgs, GetEventTriggerResult, GetEventTriggerOutputArgs } from "./getEventTrigger";
 export const getEventTrigger: typeof import("./getEventTrigger").getEventTrigger = null as any;
 export const getEventTriggerOutput: typeof import("./getEventTrigger").getEventTriggerOutput = null as any;
@@ -505,6 +525,11 @@ export const getProjectIpAccessList: typeof import("./getProjectIpAccessList").g
 export const getProjectIpAccessListOutput: typeof import("./getProjectIpAccessList").getProjectIpAccessListOutput = null as any;
 utilities.lazyLoad(exports, ["getProjectIpAccessList","getProjectIpAccessListOutput"], () => require("./getProjectIpAccessList"));
 
+export { GetProjectIpAddressesArgs, GetProjectIpAddressesResult, GetProjectIpAddressesOutputArgs } from "./getProjectIpAddresses";
+export const getProjectIpAddresses: typeof import("./getProjectIpAddresses").getProjectIpAddresses = null as any;
+export const getProjectIpAddressesOutput: typeof import("./getProjectIpAddresses").getProjectIpAddressesOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectIpAddresses","getProjectIpAddressesOutput"], () => require("./getProjectIpAddresses"));
+
 export { GetProjectsArgs, GetProjectsResult, GetProjectsOutputArgs } from "./getProjects";
 export const getProjects: typeof import("./getProjects").getProjects = null as any;
 export const getProjectsOutput: typeof import("./getProjects").getProjectsOutput = null as any;
@@ -584,6 +609,16 @@ export { GetStreamInstancesArgs, GetStreamInstancesResult, GetStreamInstancesOut
 export const getStreamInstances: typeof import("./getStreamInstances").getStreamInstances = null as any;
 export const getStreamInstancesOutput: typeof import("./getStreamInstances").getStreamInstancesOutput = null as any;
 utilities.lazyLoad(exports, ["getStreamInstances","getStreamInstancesOutput"], () => require("./getStreamInstances"));
+
+export { GetStreamProcessorArgs, GetStreamProcessorResult, GetStreamProcessorOutputArgs } from "./getStreamProcessor";
+export const getStreamProcessor: typeof import("./getStreamProcessor").getStreamProcessor = null as any;
+export const getStreamProcessorOutput: typeof import("./getStreamProcessor").getStreamProcessorOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamProcessor","getStreamProcessorOutput"], () => require("./getStreamProcessor"));
+
+export { GetStreamProcessorsArgs, GetStreamProcessorsResult, GetStreamProcessorsOutputArgs } from "./getStreamProcessors";
+export const getStreamProcessors: typeof import("./getStreamProcessors").getStreamProcessors = null as any;
+export const getStreamProcessorsOutput: typeof import("./getStreamProcessors").getStreamProcessorsOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamProcessors","getStreamProcessorsOutput"], () => require("./getStreamProcessors"));
 
 export { GetTeamArgs, GetTeamResult, GetTeamOutputArgs } from "./getTeam";
 export const getTeam: typeof import("./getTeam").getTeam = null as any;
@@ -740,6 +775,11 @@ export type StreamInstance = import("./streamInstance").StreamInstance;
 export const StreamInstance: typeof import("./streamInstance").StreamInstance = null as any;
 utilities.lazyLoad(exports, ["StreamInstance"], () => require("./streamInstance"));
 
+export { StreamProcessorArgs, StreamProcessorState } from "./streamProcessor";
+export type StreamProcessor = import("./streamProcessor").StreamProcessor;
+export const StreamProcessor: typeof import("./streamProcessor").StreamProcessor = null as any;
+utilities.lazyLoad(exports, ["StreamProcessor"], () => require("./streamProcessor"));
+
 export { TeamArgs, TeamState } from "./team";
 export type Team = import("./team").Team;
 export const Team: typeof import("./team").Team = null as any;
@@ -814,6 +854,8 @@ const _module = {
                 return new DatabaseUser(name, <any>undefined, { urn })
             case "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
                 return new EncryptionAtRest(name, <any>undefined, { urn })
+            case "mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint":
+                return new EncryptionAtRestPrivateEndpoint(name, <any>undefined, { urn })
             case "mongodbatlas:index/eventTrigger:EventTrigger":
                 return new EventTrigger(name, <any>undefined, { urn })
             case "mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance":
@@ -876,6 +918,8 @@ const _module = {
                 return new StreamConnection(name, <any>undefined, { urn })
             case "mongodbatlas:index/streamInstance:StreamInstance":
                 return new StreamInstance(name, <any>undefined, { urn })
+            case "mongodbatlas:index/streamProcessor:StreamProcessor":
+                return new StreamProcessor(name, <any>undefined, { urn })
             case "mongodbatlas:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
             case "mongodbatlas:index/teams:Teams":
@@ -909,6 +953,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDnsConfigurat
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/dataLakePipeline", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/databaseUser", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/encryptionAtRest", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/encryptionAtRestPrivateEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/eventTrigger", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedDatabaseInstance", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedQueryLimit", _module)
@@ -940,6 +985,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _modu
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/serverlessInstance", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamConnection", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamInstance", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamProcessor", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/teams", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/thirdPartyIntegration", _module)

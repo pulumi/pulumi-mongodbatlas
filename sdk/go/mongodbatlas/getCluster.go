@@ -118,7 +118,7 @@ type LookupClusterResult struct {
 	Id string `pulumi:"id"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 	//
-	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []GetClusterLabel `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -291,7 +291,7 @@ func (o LookupClusterResultOutput) Id() pulumi.StringOutput {
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 //
-// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 func (o LookupClusterResultOutput) Labels() GetClusterLabelArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []GetClusterLabel { return v.Labels }).(GetClusterLabelArrayOutput)
 }

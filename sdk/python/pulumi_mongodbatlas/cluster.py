@@ -151,8 +151,8 @@ class ClusterArgs:
         if encryption_at_rest_provider is not None:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
-            warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+            warnings.warn("""This parameter is deprecated and will be removed in the future. Please transition to tags""", DeprecationWarning)
+            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags""")
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
@@ -401,7 +401,7 @@ class ClusterArgs:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -800,8 +800,8 @@ class _ClusterState:
         if encryption_at_rest_provider is not None:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
-            warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+            warnings.warn("""This parameter is deprecated and will be removed in the future. Please transition to tags""", DeprecationWarning)
+            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags""")
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
@@ -1065,7 +1065,7 @@ class _ClusterState:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -2419,7 +2419,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> pulumi.Output[Optional[Sequence['outputs.ClusterLabel']]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.

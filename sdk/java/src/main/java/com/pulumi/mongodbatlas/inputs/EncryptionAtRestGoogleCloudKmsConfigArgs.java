@@ -17,14 +17,14 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
     public static final EncryptionAtRestGoogleCloudKmsConfigArgs Empty = new EncryptionAtRestGoogleCloudKmsConfigArgs();
 
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -32,14 +32,14 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
     }
 
     /**
-     * The Key Version Resource ID from your GCP account.
+     * Resource path that displays the key version resource ID for your Google Cloud KMS.
      * 
      */
     @Import(name="keyVersionResourceId")
     private @Nullable Output<String> keyVersionResourceId;
 
     /**
-     * @return The Key Version Resource ID from your GCP account.
+     * @return Resource path that displays the key version resource ID for your Google Cloud KMS.
      * 
      */
     public Optional<Output<String>> keyVersionResourceId() {
@@ -47,18 +47,33 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
     }
 
     /**
-     * String-formatted JSON object containing GCP KMS credentials from your GCP account.
+     * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      * 
      */
     @Import(name="serviceAccountKey")
     private @Nullable Output<String> serviceAccountKey;
 
     /**
-     * @return String-formatted JSON object containing GCP KMS credentials from your GCP account.
+     * @return JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      * 
      */
     public Optional<Output<String>> serviceAccountKey() {
         return Optional.ofNullable(this.serviceAccountKey);
+    }
+
+    /**
+     * Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     * 
+     */
+    @Import(name="valid")
+    private @Nullable Output<Boolean> valid;
+
+    /**
+     * @return Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     * 
+     */
+    public Optional<Output<Boolean>> valid() {
+        return Optional.ofNullable(this.valid);
     }
 
     private EncryptionAtRestGoogleCloudKmsConfigArgs() {}
@@ -67,6 +82,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
         this.enabled = $.enabled;
         this.keyVersionResourceId = $.keyVersionResourceId;
         this.serviceAccountKey = $.serviceAccountKey;
+        this.valid = $.valid;
     }
 
     public static Builder builder() {
@@ -88,7 +104,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
         }
 
         /**
-         * @param enabled Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
          * 
          * @return builder
          * 
@@ -99,7 +115,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
         }
 
         /**
-         * @param enabled Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
          * 
          * @return builder
          * 
@@ -109,7 +125,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
         }
 
         /**
-         * @param keyVersionResourceId The Key Version Resource ID from your GCP account.
+         * @param keyVersionResourceId Resource path that displays the key version resource ID for your Google Cloud KMS.
          * 
          * @return builder
          * 
@@ -120,7 +136,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
         }
 
         /**
-         * @param keyVersionResourceId The Key Version Resource ID from your GCP account.
+         * @param keyVersionResourceId Resource path that displays the key version resource ID for your Google Cloud KMS.
          * 
          * @return builder
          * 
@@ -130,7 +146,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
         }
 
         /**
-         * @param serviceAccountKey String-formatted JSON object containing GCP KMS credentials from your GCP account.
+         * @param serviceAccountKey JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
          * 
          * @return builder
          * 
@@ -141,13 +157,34 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
         }
 
         /**
-         * @param serviceAccountKey String-formatted JSON object containing GCP KMS credentials from your GCP account.
+         * @param serviceAccountKey JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
          * 
          * @return builder
          * 
          */
         public Builder serviceAccountKey(String serviceAccountKey) {
             return serviceAccountKey(Output.of(serviceAccountKey));
+        }
+
+        /**
+         * @param valid Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valid(@Nullable Output<Boolean> valid) {
+            $.valid = valid;
+            return this;
+        }
+
+        /**
+         * @param valid Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valid(Boolean valid) {
+            return valid(Output.of(valid));
         }
 
         public EncryptionAtRestGoogleCloudKmsConfigArgs build() {
