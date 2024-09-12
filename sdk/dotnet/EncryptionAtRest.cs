@@ -9,30 +9,29 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
-    /// <summary>
-    /// ## Import
-    /// 
-    /// Encryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
-    /// ```
-    /// For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
-    /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/encryptionAtRest:EncryptionAtRest")]
     public partial class EncryptionAtRest : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        /// </summary>
         [Output("awsKmsConfig")]
         public Output<Outputs.EncryptionAtRestAwsKmsConfig?> AwsKmsConfig { get; private set; } = null!;
 
+        /// <summary>
+        /// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        /// </summary>
         [Output("azureKeyVaultConfig")]
         public Output<Outputs.EncryptionAtRestAzureKeyVaultConfig?> AzureKeyVaultConfig { get; private set; } = null!;
 
+        /// <summary>
+        /// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+        /// </summary>
         [Output("googleCloudKmsConfig")]
         public Output<Outputs.EncryptionAtRestGoogleCloudKmsConfig?> GoogleCloudKmsConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The unique identifier for the project.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -83,17 +82,26 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class EncryptionAtRestArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        /// </summary>
         [Input("awsKmsConfig")]
         public Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>? AwsKmsConfig { get; set; }
 
+        /// <summary>
+        /// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        /// </summary>
         [Input("azureKeyVaultConfig")]
         public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>? AzureKeyVaultConfig { get; set; }
 
+        /// <summary>
+        /// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+        /// </summary>
         [Input("googleCloudKmsConfig")]
         public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>? GoogleCloudKmsConfig { get; set; }
 
         /// <summary>
-        /// The unique identifier for the project.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -106,17 +114,26 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class EncryptionAtRestState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        /// </summary>
         [Input("awsKmsConfig")]
         public Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>? AwsKmsConfig { get; set; }
 
+        /// <summary>
+        /// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        /// </summary>
         [Input("azureKeyVaultConfig")]
         public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>? AzureKeyVaultConfig { get; set; }
 
+        /// <summary>
+        /// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+        /// </summary>
         [Input("googleCloudKmsConfig")]
         public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>? GoogleCloudKmsConfig { get; set; }
 
         /// <summary>
-        /// The unique identifier for the project.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

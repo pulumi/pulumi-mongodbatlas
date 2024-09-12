@@ -11,9 +11,17 @@ import java.util.Objects;
 
 @CustomType
 public final class GetProjectIpAddressesServices {
+    /**
+     * @return IP addresses of clusters.
+     * 
+     */
     private List<GetProjectIpAddressesServicesCluster> clusters;
 
     private GetProjectIpAddressesServices() {}
+    /**
+     * @return IP addresses of clusters.
+     * 
+     */
     public List<GetProjectIpAddressesServicesCluster> clusters() {
         return this.clusters;
     }

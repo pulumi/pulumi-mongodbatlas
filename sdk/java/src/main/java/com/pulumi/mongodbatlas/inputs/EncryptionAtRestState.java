@@ -18,36 +18,60 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
 
     public static final EncryptionAtRestState Empty = new EncryptionAtRestState();
 
+    /**
+     * Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+     * 
+     */
     @Import(name="awsKmsConfig")
     private @Nullable Output<EncryptionAtRestAwsKmsConfigArgs> awsKmsConfig;
 
+    /**
+     * @return Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+     * 
+     */
     public Optional<Output<EncryptionAtRestAwsKmsConfigArgs>> awsKmsConfig() {
         return Optional.ofNullable(this.awsKmsConfig);
     }
 
+    /**
+     * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+     * 
+     */
     @Import(name="azureKeyVaultConfig")
     private @Nullable Output<EncryptionAtRestAzureKeyVaultConfigArgs> azureKeyVaultConfig;
 
+    /**
+     * @return Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+     * 
+     */
     public Optional<Output<EncryptionAtRestAzureKeyVaultConfigArgs>> azureKeyVaultConfig() {
         return Optional.ofNullable(this.azureKeyVaultConfig);
     }
 
+    /**
+     * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+     * 
+     */
     @Import(name="googleCloudKmsConfig")
     private @Nullable Output<EncryptionAtRestGoogleCloudKmsConfigArgs> googleCloudKmsConfig;
 
+    /**
+     * @return Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+     * 
+     */
     public Optional<Output<EncryptionAtRestGoogleCloudKmsConfigArgs>> googleCloudKmsConfig() {
         return Optional.ofNullable(this.googleCloudKmsConfig);
     }
 
     /**
-     * The unique identifier for the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique identifier for the project.
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -81,35 +105,71 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
             $ = new EncryptionAtRestState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param awsKmsConfig Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsKmsConfig(@Nullable Output<EncryptionAtRestAwsKmsConfigArgs> awsKmsConfig) {
             $.awsKmsConfig = awsKmsConfig;
             return this;
         }
 
+        /**
+         * @param awsKmsConfig Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs awsKmsConfig) {
             return awsKmsConfig(Output.of(awsKmsConfig));
         }
 
+        /**
+         * @param azureKeyVaultConfig Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+         * 
+         * @return builder
+         * 
+         */
         public Builder azureKeyVaultConfig(@Nullable Output<EncryptionAtRestAzureKeyVaultConfigArgs> azureKeyVaultConfig) {
             $.azureKeyVaultConfig = azureKeyVaultConfig;
             return this;
         }
 
+        /**
+         * @param azureKeyVaultConfig Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+         * 
+         * @return builder
+         * 
+         */
         public Builder azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs azureKeyVaultConfig) {
             return azureKeyVaultConfig(Output.of(azureKeyVaultConfig));
         }
 
+        /**
+         * @param googleCloudKmsConfig Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+         * 
+         * @return builder
+         * 
+         */
         public Builder googleCloudKmsConfig(@Nullable Output<EncryptionAtRestGoogleCloudKmsConfigArgs> googleCloudKmsConfig) {
             $.googleCloudKmsConfig = googleCloudKmsConfig;
             return this;
         }
 
+        /**
+         * @param googleCloudKmsConfig Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+         * 
+         * @return builder
+         * 
+         */
         public Builder googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs googleCloudKmsConfig) {
             return googleCloudKmsConfig(Output.of(googleCloudKmsConfig));
         }
 
         /**
-         * @param projectId The unique identifier for the project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 
@@ -120,7 +180,7 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId The unique identifier for the project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 

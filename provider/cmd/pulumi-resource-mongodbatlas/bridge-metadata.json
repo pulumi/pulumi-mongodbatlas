@@ -391,6 +391,10 @@
                     }
                 }
             },
+            "mongodbatlas_encryption_at_rest_private_endpoint": {
+                "current": "mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint",
+                "majorVersion": 3
+            },
             "mongodbatlas_event_trigger": {
                 "current": "mongodbatlas:index/eventTrigger:EventTrigger",
                 "majorVersion": 3,
@@ -795,6 +799,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "mongodbatlas_stream_processor": {
+                "current": "mongodbatlas:index/streamProcessor:StreamProcessor",
+                "majorVersion": 3
             },
             "mongodbatlas_team": {
                 "current": "mongodbatlas:index/team:Team",
@@ -1641,6 +1649,23 @@
                     }
                 }
             },
+            "mongodbatlas_encryption_at_rest": {
+                "current": "mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest",
+                "majorVersion": 3
+            },
+            "mongodbatlas_encryption_at_rest_private_endpoint": {
+                "current": "mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint",
+                "majorVersion": 3
+            },
+            "mongodbatlas_encryption_at_rest_private_endpoints": {
+                "current": "mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_event_trigger": {
                 "current": "mongodbatlas:index/getEventTrigger:getEventTrigger",
                 "majorVersion": 3,
@@ -2383,6 +2408,29 @@
                 "current": "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList",
                 "majorVersion": 3
             },
+            "mongodbatlas_project_ip_addresses": {
+                "current": "mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses",
+                "majorVersion": 3,
+                "fields": {
+                    "services": {
+                        "fields": {
+                            "clusters": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "inbound": {
+                                            "maxItemsOne": false
+                                        },
+                                        "outbound": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "mongodbatlas_projects": {
                 "current": "mongodbatlas:index/getProjects:getProjects",
                 "majorVersion": 3,
@@ -2573,6 +2621,19 @@
                     }
                 }
             },
+            "mongodbatlas_stream_processor": {
+                "current": "mongodbatlas:index/getStreamProcessor:getStreamProcessor",
+                "majorVersion": 3
+            },
+            "mongodbatlas_stream_processors": {
+                "current": "mongodbatlas:index/getStreamProcessors:getStreamProcessors",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_team": {
                 "current": "mongodbatlas:index/getTeam:getTeam",
                 "majorVersion": 3,
@@ -2660,6 +2721,7 @@
             "mongodbatlas:index/dataLakePipeline:DataLakePipeline": 0,
             "mongodbatlas:index/databaseUser:DatabaseUser": 1,
             "mongodbatlas:index/encryptionAtRest:EncryptionAtRest": 1,
+            "mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint": 1,
             "mongodbatlas:index/eventTrigger:EventTrigger": 0,
             "mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance": 0,
             "mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit": 0,
@@ -2691,6 +2753,7 @@
             "mongodbatlas:index/serverlessInstance:ServerlessInstance": 0,
             "mongodbatlas:index/streamConnection:StreamConnection": 1,
             "mongodbatlas:index/streamInstance:StreamInstance": 1,
+            "mongodbatlas:index/streamProcessor:StreamProcessor": 1,
             "mongodbatlas:index/team:Team": 0,
             "mongodbatlas:index/teams:Teams": 0,
             "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration": 0,
@@ -2733,6 +2796,9 @@
             "mongodbatlas:index/getDataLakePipelines:getDataLakePipelines": 0,
             "mongodbatlas:index/getDatabaseUser:getDatabaseUser": 1,
             "mongodbatlas:index/getDatabaseUsers:getDatabaseUsers": 1,
+            "mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest": 1,
+            "mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint": 1,
+            "mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints": 1,
             "mongodbatlas:index/getEventTrigger:getEventTrigger": 0,
             "mongodbatlas:index/getEventTriggers:getEventTriggers": 0,
             "mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance": 0,
@@ -2771,6 +2837,7 @@
             "mongodbatlas:index/getProjectApiKeys:getProjectApiKeys": 0,
             "mongodbatlas:index/getProjectInvitation:getProjectInvitation": 0,
             "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList": 1,
+            "mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses": 1,
             "mongodbatlas:index/getProjects:getProjects": 1,
             "mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport": 1,
             "mongodbatlas:index/getRolesOrgId:getRolesOrgId": 0,
@@ -2787,6 +2854,8 @@
             "mongodbatlas:index/getStreamConnections:getStreamConnections": 1,
             "mongodbatlas:index/getStreamInstance:getStreamInstance": 1,
             "mongodbatlas:index/getStreamInstances:getStreamInstances": 1,
+            "mongodbatlas:index/getStreamProcessor:getStreamProcessor": 1,
+            "mongodbatlas:index/getStreamProcessors:getStreamProcessors": 1,
             "mongodbatlas:index/getTeam:getTeam": 0,
             "mongodbatlas:index/getTeams:getTeams": 0,
             "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration": 0,

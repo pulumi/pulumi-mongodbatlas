@@ -227,10 +227,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * This parameter is deprecated and will be removed in the future. Please transition to tags
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     @Import(name="labels")
     private @Nullable Output<List<ClusterLabelArgs>> labels;
 
@@ -238,10 +238,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * This parameter is deprecated and will be removed in the future. Please transition to tags
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     public Optional<Output<List<ClusterLabelArgs>>> labels() {
         return Optional.ofNullable(this.labels);
     }
@@ -902,10 +902,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+         * This parameter is deprecated and will be removed in the future. Please transition to tags
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(@Nullable Output<List<ClusterLabelArgs>> labels) {
             $.labels = labels;
             return this;
@@ -917,10 +917,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+         * This parameter is deprecated and will be removed in the future. Please transition to tags
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(List<ClusterLabelArgs> labels) {
             return labels(Output.of(labels));
         }
@@ -931,10 +931,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+         * This parameter is deprecated and will be removed in the future. Please transition to tags
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(ClusterLabelArgs... labels) {
             return labels(List.of(labels));
         }

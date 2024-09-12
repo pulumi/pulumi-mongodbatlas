@@ -237,6 +237,9 @@ namespace Pulumi.Mongodbatlas
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
 
+        /// <summary>
+        /// Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+        /// </summary>
         [Output("syncCreation")]
         public Output<bool?> SyncCreation { get; private set; } = null!;
 
@@ -358,6 +361,9 @@ namespace Pulumi.Mongodbatlas
         [Input("schedule")]
         public Input<Inputs.OnlineArchiveScheduleArgs>? Schedule { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+        /// </summary>
         [Input("syncCreation")]
         public Input<bool>? SyncCreation { get; set; }
 
@@ -453,6 +459,9 @@ namespace Pulumi.Mongodbatlas
         [Input("state")]
         public Input<string>? State { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+        /// </summary>
         [Input("syncCreation")]
         public Input<bool>? SyncCreation { get; set; }
 

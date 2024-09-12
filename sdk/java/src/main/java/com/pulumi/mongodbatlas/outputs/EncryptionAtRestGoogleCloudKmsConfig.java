@@ -13,42 +13,54 @@ import javax.annotation.Nullable;
 @CustomType
 public final class EncryptionAtRestGoogleCloudKmsConfig {
     /**
-     * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     private @Nullable Boolean enabled;
     /**
-     * @return The Key Version Resource ID from your GCP account.
+     * @return Resource path that displays the key version resource ID for your Google Cloud KMS.
      * 
      */
     private @Nullable String keyVersionResourceId;
     /**
-     * @return String-formatted JSON object containing GCP KMS credentials from your GCP account.
+     * @return JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      * 
      */
     private @Nullable String serviceAccountKey;
+    /**
+     * @return Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     * 
+     */
+    private @Nullable Boolean valid;
 
     private EncryptionAtRestGoogleCloudKmsConfig() {}
     /**
-     * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     public Optional<Boolean> enabled() {
         return Optional.ofNullable(this.enabled);
     }
     /**
-     * @return The Key Version Resource ID from your GCP account.
+     * @return Resource path that displays the key version resource ID for your Google Cloud KMS.
      * 
      */
     public Optional<String> keyVersionResourceId() {
         return Optional.ofNullable(this.keyVersionResourceId);
     }
     /**
-     * @return String-formatted JSON object containing GCP KMS credentials from your GCP account.
+     * @return JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      * 
      */
     public Optional<String> serviceAccountKey() {
         return Optional.ofNullable(this.serviceAccountKey);
+    }
+    /**
+     * @return Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     * 
+     */
+    public Optional<Boolean> valid() {
+        return Optional.ofNullable(this.valid);
     }
 
     public static Builder builder() {
@@ -63,12 +75,14 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
         private @Nullable Boolean enabled;
         private @Nullable String keyVersionResourceId;
         private @Nullable String serviceAccountKey;
+        private @Nullable Boolean valid;
         public Builder() {}
         public Builder(EncryptionAtRestGoogleCloudKmsConfig defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.enabled = defaults.enabled;
     	      this.keyVersionResourceId = defaults.keyVersionResourceId;
     	      this.serviceAccountKey = defaults.serviceAccountKey;
+    	      this.valid = defaults.valid;
         }
 
         @CustomType.Setter
@@ -89,11 +103,18 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
             this.serviceAccountKey = serviceAccountKey;
             return this;
         }
+        @CustomType.Setter
+        public Builder valid(@Nullable Boolean valid) {
+
+            this.valid = valid;
+            return this;
+        }
         public EncryptionAtRestGoogleCloudKmsConfig build() {
             final var _resultValue = new EncryptionAtRestGoogleCloudKmsConfig();
             _resultValue.enabled = enabled;
             _resultValue.keyVersionResourceId = keyVersionResourceId;
             _resultValue.serviceAccountKey = serviceAccountKey;
+            _resultValue.valid = valid;
             return _resultValue;
         }
     }

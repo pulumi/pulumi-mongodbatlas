@@ -25,6 +25,7 @@ from .custom_dns_configuration_cluster_aws import *
 from .data_lake_pipeline import *
 from .database_user import *
 from .encryption_at_rest import *
+from .encryption_at_rest_private_endpoint import *
 from .event_trigger import *
 from .federated_database_instance import *
 from .federated_query_limit import *
@@ -67,6 +68,9 @@ from .get_data_lake_pipeline_runs import *
 from .get_data_lake_pipelines import *
 from .get_database_user import *
 from .get_database_users import *
+from .get_encryption_at_rest import *
+from .get_encryption_at_rest_private_endpoint import *
+from .get_encryption_at_rest_private_endpoints import *
 from .get_event_trigger import *
 from .get_event_triggers import *
 from .get_federated_database_instance import *
@@ -105,6 +109,7 @@ from .get_project_api_key import *
 from .get_project_api_keys import *
 from .get_project_invitation import *
 from .get_project_ip_access_list import *
+from .get_project_ip_addresses import *
 from .get_projects import *
 from .get_push_based_log_export import *
 from .get_roles_org_id import *
@@ -121,6 +126,8 @@ from .get_stream_connection import *
 from .get_stream_connections import *
 from .get_stream_instance import *
 from .get_stream_instances import *
+from .get_stream_processor import *
+from .get_stream_processors import *
 from .get_team import *
 from .get_teams import *
 from .get_third_party_integration import *
@@ -152,6 +159,7 @@ from .search_index import *
 from .serverless_instance import *
 from .stream_connection import *
 from .stream_instance import *
+from .stream_processor import *
 from .team import *
 from .teams import *
 from .third_party_integration import *
@@ -327,6 +335,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/encryptionAtRest:EncryptionAtRest": "EncryptionAtRest"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/encryptionAtRestPrivateEndpoint",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint": "EncryptionAtRestPrivateEndpoint"
   }
  },
  {
@@ -575,6 +591,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/streamInstance:StreamInstance": "StreamInstance"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/streamProcessor",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/streamProcessor:StreamProcessor": "StreamProcessor"
   }
  },
  {

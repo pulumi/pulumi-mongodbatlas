@@ -22,7 +22,10 @@ class EncryptionAtRestArgs:
                  google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None):
         """
         The set of arguments for constructing a EncryptionAtRest resource.
-        :param pulumi.Input[str] project_id: The unique identifier for the project.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input['EncryptionAtRestAwsKmsConfigArgs'] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        :param pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs'] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        :param pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs'] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         """
         pulumi.set(__self__, "project_id", project_id)
         if aws_kms_config is not None:
@@ -36,7 +39,7 @@ class EncryptionAtRestArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        The unique identifier for the project.
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
@@ -47,6 +50,9 @@ class EncryptionAtRestArgs:
     @property
     @pulumi.getter(name="awsKmsConfig")
     def aws_kms_config(self) -> Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']]:
+        """
+        Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        """
         return pulumi.get(self, "aws_kms_config")
 
     @aws_kms_config.setter
@@ -56,6 +62,9 @@ class EncryptionAtRestArgs:
     @property
     @pulumi.getter(name="azureKeyVaultConfig")
     def azure_key_vault_config(self) -> Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']]:
+        """
+        Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        """
         return pulumi.get(self, "azure_key_vault_config")
 
     @azure_key_vault_config.setter
@@ -65,6 +74,9 @@ class EncryptionAtRestArgs:
     @property
     @pulumi.getter(name="googleCloudKmsConfig")
     def google_cloud_kms_config(self) -> Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']]:
+        """
+        Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+        """
         return pulumi.get(self, "google_cloud_kms_config")
 
     @google_cloud_kms_config.setter
@@ -81,7 +93,10 @@ class _EncryptionAtRestState:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering EncryptionAtRest resources.
-        :param pulumi.Input[str] project_id: The unique identifier for the project.
+        :param pulumi.Input['EncryptionAtRestAwsKmsConfigArgs'] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        :param pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs'] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        :param pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs'] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         if aws_kms_config is not None:
             pulumi.set(__self__, "aws_kms_config", aws_kms_config)
@@ -95,6 +110,9 @@ class _EncryptionAtRestState:
     @property
     @pulumi.getter(name="awsKmsConfig")
     def aws_kms_config(self) -> Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']]:
+        """
+        Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        """
         return pulumi.get(self, "aws_kms_config")
 
     @aws_kms_config.setter
@@ -104,6 +122,9 @@ class _EncryptionAtRestState:
     @property
     @pulumi.getter(name="azureKeyVaultConfig")
     def azure_key_vault_config(self) -> Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']]:
+        """
+        Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        """
         return pulumi.get(self, "azure_key_vault_config")
 
     @azure_key_vault_config.setter
@@ -113,6 +134,9 @@ class _EncryptionAtRestState:
     @property
     @pulumi.getter(name="googleCloudKmsConfig")
     def google_cloud_kms_config(self) -> Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']]:
+        """
+        Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+        """
         return pulumi.get(self, "google_cloud_kms_config")
 
     @google_cloud_kms_config.setter
@@ -123,7 +147,7 @@ class _EncryptionAtRestState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique identifier for the project.
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
@@ -143,18 +167,13 @@ class EncryptionAtRest(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Import
-
-        Encryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.
-
-        ```sh
-        $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
-        ```
-        For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
-
+        Create a EncryptionAtRest resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] project_id: The unique identifier for the project.
+        :param pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        :param pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        :param pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         ...
     @overload
@@ -163,15 +182,7 @@ class EncryptionAtRest(pulumi.CustomResource):
                  args: EncryptionAtRestArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
-
-        Encryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.
-
-        ```sh
-        $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
-        ```
-        For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
-
+        Create a EncryptionAtRest resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param EncryptionAtRestArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -227,7 +238,10 @@ class EncryptionAtRest(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] project_id: The unique identifier for the project.
+        :param pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        :param pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        :param pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -242,23 +256,32 @@ class EncryptionAtRest(pulumi.CustomResource):
     @property
     @pulumi.getter(name="awsKmsConfig")
     def aws_kms_config(self) -> pulumi.Output[Optional['outputs.EncryptionAtRestAwsKmsConfig']]:
+        """
+        Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+        """
         return pulumi.get(self, "aws_kms_config")
 
     @property
     @pulumi.getter(name="azureKeyVaultConfig")
     def azure_key_vault_config(self) -> pulumi.Output[Optional['outputs.EncryptionAtRestAzureKeyVaultConfig']]:
+        """
+        Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        """
         return pulumi.get(self, "azure_key_vault_config")
 
     @property
     @pulumi.getter(name="googleCloudKmsConfig")
     def google_cloud_kms_config(self) -> pulumi.Output[Optional['outputs.EncryptionAtRestGoogleCloudKmsConfig']]:
+        """
+        Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+        """
         return pulumi.get(self, "google_cloud_kms_config")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The unique identifier for the project.
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 

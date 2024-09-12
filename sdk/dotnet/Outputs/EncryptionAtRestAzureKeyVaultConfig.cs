@@ -14,41 +14,49 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class EncryptionAtRestAzureKeyVaultConfig
     {
         /// <summary>
-        /// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+        /// Azure environment in which your account credentials reside.
         /// </summary>
         public readonly string? AzureEnvironment;
         /// <summary>
-        /// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+        /// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
         /// </summary>
         public readonly string? ClientId;
         /// <summary>
-        /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        /// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// The unique identifier of a key in an Azure Key Vault.
+        /// Web address with a unique key that identifies for your Azure Key Vault.
         /// </summary>
         public readonly string? KeyIdentifier;
         /// <summary>
-        /// The name of an Azure Key Vault containing your key.
+        /// Unique string that identifies the Azure Key Vault that contains your key.
         /// </summary>
         public readonly string? KeyVaultName;
         /// <summary>
-        /// The name of the Azure Resource group that contains an Azure Key Vault.
+        /// Enable connection to your Azure Key Vault over private networking.
+        /// </summary>
+        public readonly bool? RequirePrivateNetworking;
+        /// <summary>
+        /// Name of the Azure resource group that contains your Azure Key Vault.
         /// </summary>
         public readonly string? ResourceGroupName;
         /// <summary>
-        /// The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+        /// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
         /// </summary>
         public readonly string? Secret;
         /// <summary>
-        /// The unique identifier associated with an Azure subscription.
+        /// Unique 36-hexadecimal character string that identifies your Azure subscription.
         /// </summary>
         public readonly string? SubscriptionId;
         /// <summary>
-        /// The unique identifier for an Azure AD tenant within an Azure subscription.
+        /// Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
         /// </summary>
         public readonly string? TenantId;
+        /// <summary>
+        /// Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+        /// </summary>
+        public readonly bool? Valid;
 
         [OutputConstructor]
         private EncryptionAtRestAzureKeyVaultConfig(
@@ -62,23 +70,29 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? keyVaultName,
 
+            bool? requirePrivateNetworking,
+
             string? resourceGroupName,
 
             string? secret,
 
             string? subscriptionId,
 
-            string? tenantId)
+            string? tenantId,
+
+            bool? valid)
         {
             AzureEnvironment = azureEnvironment;
             ClientId = clientId;
             Enabled = enabled;
             KeyIdentifier = keyIdentifier;
             KeyVaultName = keyVaultName;
+            RequirePrivateNetworking = requirePrivateNetworking;
             ResourceGroupName = resourceGroupName;
             Secret = secret;
             SubscriptionId = subscriptionId;
             TenantId = tenantId;
+            Valid = valid;
         }
     }
 }

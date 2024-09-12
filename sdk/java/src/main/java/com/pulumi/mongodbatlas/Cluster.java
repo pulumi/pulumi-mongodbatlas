@@ -689,10 +689,10 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * This parameter is deprecated and will be removed in the future. Please transition to tags
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     @Export(name="labels", refs={List.class,ClusterLabel.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ClusterLabel>> labels;
 

@@ -22,7 +22,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -74,6 +74,9 @@ class GetAdvancedClusterResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if replica_set_scaling_strategy and not isinstance(replica_set_scaling_strategy, str):
+            raise TypeError("Expected argument 'replica_set_scaling_strategy' to be a str")
+        pulumi.set(__self__, "replica_set_scaling_strategy", replica_set_scaling_strategy)
         if replication_specs and not isinstance(replication_specs, list):
             raise TypeError("Expected argument 'replication_specs' to be a list")
         pulumi.set(__self__, "replication_specs", replication_specs)
@@ -173,7 +176,7 @@ class GetAdvancedClusterResult:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Sequence['outputs.GetAdvancedClusterLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
@@ -221,6 +224,14 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="replicaSetScalingStrategy")
+    def replica_set_scaling_strategy(self) -> str:
+        """
+        (Optional) Replica set scaling mode for your cluster.
+        """
+        return pulumi.get(self, "replica_set_scaling_strategy")
 
     @property
     @pulumi.getter(name="replicationSpecs")
@@ -299,6 +310,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             paused=self.paused,
             pit_enabled=self.pit_enabled,
             project_id=self.project_id,
+            replica_set_scaling_strategy=self.replica_set_scaling_strategy,
             replication_specs=self.replication_specs,
             root_cert_type=self.root_cert_type,
             state_name=self.state_name,
@@ -423,6 +435,7 @@ def get_advanced_cluster(name: Optional[str] = None,
         paused=pulumi.get(__ret__, 'paused'),
         pit_enabled=pulumi.get(__ret__, 'pit_enabled'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        replica_set_scaling_strategy=pulumi.get(__ret__, 'replica_set_scaling_strategy'),
         replication_specs=pulumi.get(__ret__, 'replication_specs'),
         root_cert_type=pulumi.get(__ret__, 'root_cert_type'),
         state_name=pulumi.get(__ret__, 'state_name'),

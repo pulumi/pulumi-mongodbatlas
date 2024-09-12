@@ -96,7 +96,9 @@ type Project struct {
 	ClusterCount pulumi.IntOutput `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	Created pulumi.StringOutput `pulumi:"created"`
-	// IP addresses in a project categorized by services. See IP Addresses.
+	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+	//
+	// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
 	IpAddresses ProjectIpAddressesOutput `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolOutput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
@@ -163,7 +165,9 @@ type projectState struct {
 	ClusterCount *int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	Created *string `pulumi:"created"`
-	// IP addresses in a project categorized by services. See IP Addresses.
+	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+	//
+	// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
 	IpAddresses *ProjectIpAddresses `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
 	IsCollectDatabaseSpecificsStatisticsEnabled *bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
@@ -198,7 +202,9 @@ type ProjectState struct {
 	ClusterCount pulumi.IntPtrInput
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	Created pulumi.StringPtrInput
-	// IP addresses in a project categorized by services. See IP Addresses.
+	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+	//
+	// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
 	IpAddresses ProjectIpAddressesPtrInput
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolPtrInput
@@ -388,7 +394,9 @@ func (o ProjectOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Created }).(pulumi.StringOutput)
 }
 
-// IP addresses in a project categorized by services. See IP Addresses.
+// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+//
+// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
 func (o ProjectOutput) IpAddresses() ProjectIpAddressesOutput {
 	return o.ApplyT(func(v *Project) ProjectIpAddressesOutput { return v.IpAddresses }).(ProjectIpAddressesOutput)
 }

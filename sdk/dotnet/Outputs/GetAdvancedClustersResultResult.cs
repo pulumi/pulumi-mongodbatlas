@@ -65,6 +65,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool PitEnabled;
         /// <summary>
+        /// (Optional) Replica set scaling mode for your cluster.
+        /// </summary>
+        public readonly string ReplicaSetScalingStrategy;
+        /// <summary>
         /// List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecResult> ReplicationSpecs;
@@ -121,6 +125,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool pitEnabled,
 
+            string replicaSetScalingStrategy,
+
             ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecResult> replicationSpecs,
 
             string rootCertType,
@@ -148,6 +154,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Name = name;
             Paused = paused;
             PitEnabled = pitEnabled;
+            ReplicaSetScalingStrategy = replicaSetScalingStrategy;
             ReplicationSpecs = replicationSpecs;
             RootCertType = rootCertType;
             StateName = stateName;

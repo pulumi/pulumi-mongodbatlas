@@ -17,46 +17,59 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
-/**
- * ## Import
- * 
- * Encryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.
- * 
- * ```sh
- * $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
- * ```
- * For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
- * 
- */
 @ResourceType(type="mongodbatlas:index/encryptionAtRest:EncryptionAtRest")
 public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
+    /**
+     * Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+     * 
+     */
     @Export(name="awsKmsConfig", refs={EncryptionAtRestAwsKmsConfig.class}, tree="[0]")
     private Output</* @Nullable */ EncryptionAtRestAwsKmsConfig> awsKmsConfig;
 
+    /**
+     * @return Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
+     * 
+     */
     public Output<Optional<EncryptionAtRestAwsKmsConfig>> awsKmsConfig() {
         return Codegen.optional(this.awsKmsConfig);
     }
+    /**
+     * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+     * 
+     */
     @Export(name="azureKeyVaultConfig", refs={EncryptionAtRestAzureKeyVaultConfig.class}, tree="[0]")
     private Output</* @Nullable */ EncryptionAtRestAzureKeyVaultConfig> azureKeyVaultConfig;
 
+    /**
+     * @return Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+     * 
+     */
     public Output<Optional<EncryptionAtRestAzureKeyVaultConfig>> azureKeyVaultConfig() {
         return Codegen.optional(this.azureKeyVaultConfig);
     }
+    /**
+     * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+     * 
+     */
     @Export(name="googleCloudKmsConfig", refs={EncryptionAtRestGoogleCloudKmsConfig.class}, tree="[0]")
     private Output</* @Nullable */ EncryptionAtRestGoogleCloudKmsConfig> googleCloudKmsConfig;
 
+    /**
+     * @return Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
+     * 
+     */
     public Output<Optional<EncryptionAtRestGoogleCloudKmsConfig>> googleCloudKmsConfig() {
         return Codegen.optional(this.googleCloudKmsConfig);
     }
     /**
-     * The unique identifier for the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique identifier for the project.
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Output<String> projectId() {

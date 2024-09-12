@@ -7,6 +7,10 @@ import * as outputs from "../types/output";
 
 export interface AdvancedClusterAdvancedConfiguration {
     /**
+     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     */
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: number;
+    /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -899,6 +903,10 @@ export interface CloudProviderAccessSetupAzureConfig {
 
 export interface ClusterAdvancedConfiguration {
     /**
+     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     */
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: number;
+    /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -1338,78 +1346,100 @@ export interface DatabaseUserScope {
 }
 
 export interface EncryptionAtRestAwsKmsConfig {
+    /**
+     * Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+     */
     accessKeyId?: string;
     /**
-     * The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+     * Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
      */
     customerMasterKeyId?: string;
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      */
     enabled: boolean;
     /**
-     * The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+     * Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
      */
     region?: string;
     /**
-     * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlasCloudProviderAccess` resource.
+     * Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      */
     roleId?: string;
+    /**
+     * Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+     */
     secretAccessKey?: string;
+    /**
+     * Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     */
+    valid: boolean;
 }
 
 export interface EncryptionAtRestAzureKeyVaultConfig {
     /**
-     * The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+     * Azure environment in which your account credentials reside.
      */
     azureEnvironment?: string;
     /**
-     * The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+     * Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
      */
     clientId?: string;
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      */
     enabled: boolean;
     /**
-     * The unique identifier of a key in an Azure Key Vault.
+     * Web address with a unique key that identifies for your Azure Key Vault.
      */
     keyIdentifier?: string;
     /**
-     * The name of an Azure Key Vault containing your key.
+     * Unique string that identifies the Azure Key Vault that contains your key.
      */
     keyVaultName?: string;
     /**
-     * The name of the Azure Resource group that contains an Azure Key Vault.
+     * Enable connection to your Azure Key Vault over private networking.
+     */
+    requirePrivateNetworking: boolean;
+    /**
+     * Name of the Azure resource group that contains your Azure Key Vault.
      */
     resourceGroupName?: string;
     /**
-     * The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+     * Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      */
     secret?: string;
     /**
-     * The unique identifier associated with an Azure subscription.
+     * Unique 36-hexadecimal character string that identifies your Azure subscription.
      */
     subscriptionId?: string;
     /**
-     * The unique identifier for an Azure AD tenant within an Azure subscription.
+     * Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
      */
     tenantId?: string;
+    /**
+     * Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+     */
+    valid: boolean;
 }
 
 export interface EncryptionAtRestGoogleCloudKmsConfig {
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      */
     enabled: boolean;
     /**
-     * The Key Version Resource ID from your GCP account.
+     * Resource path that displays the key version resource ID for your Google Cloud KMS.
      */
     keyVersionResourceId?: string;
     /**
-     * String-formatted JSON object containing GCP KMS credentials from your GCP account.
+     * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      */
     serviceAccountKey?: string;
+    /**
+     * Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     */
+    valid: boolean;
 }
 
 export interface EventTriggerEventProcessors {
@@ -1603,6 +1633,10 @@ export interface GetAccessListApiKeysResult {
 }
 
 export interface GetAdvancedClusterAdvancedConfiguration {
+    /**
+     * (Optional) The minimum pre- and post-image retention time in seconds.
+     */
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
@@ -1962,7 +1996,7 @@ export interface GetAdvancedClustersResult {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      *
-     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels: outputs.GetAdvancedClustersResultLabel[];
     /**
@@ -1982,6 +2016,10 @@ export interface GetAdvancedClustersResult {
      * Flag that indicates if the cluster uses Continuous Cloud Backup.
      */
     pitEnabled: boolean;
+    /**
+     * (Optional) Replica set scaling mode for your cluster.
+     */
+    replicaSetScalingStrategy: string;
     /**
      * List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
      */
@@ -2009,6 +2047,10 @@ export interface GetAdvancedClustersResult {
 }
 
 export interface GetAdvancedClustersResultAdvancedConfiguration {
+    /**
+     * (Optional) The minimum pre- and post-image retention time in seconds.
+     */
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
@@ -2053,6 +2095,9 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
     sampleSizeBiConnector: number;
+    /**
+     * (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     */
     transactionLifetimeLimitSeconds: number;
 }
 
@@ -3466,6 +3511,10 @@ export interface GetCloudProviderAccessSetupAzureConfig {
 
 export interface GetClusterAdvancedConfiguration {
     /**
+     * (Optional) The minimum pre- and post-image retention time in seconds.
+     */
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
+    /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -3738,7 +3787,7 @@ export interface GetClustersResult {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *
-     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels: outputs.GetClustersResultLabel[];
     /**
@@ -3859,6 +3908,10 @@ export interface GetClustersResult {
 }
 
 export interface GetClustersResultAdvancedConfiguration {
+    /**
+     * (Optional) The minimum pre- and post-image retention time in seconds.
+     */
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      *
@@ -4520,6 +4573,134 @@ export interface GetDatabaseUsersResultScope {
      * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
      */
     type: string;
+}
+
+export interface GetEncryptionAtRestAwsKmsConfig {
+    /**
+     * Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+     */
+    accessKeyId: string;
+    /**
+     * Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
+     */
+    customerMasterKeyId: string;
+    /**
+     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     */
+    enabled: boolean;
+    /**
+     * Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+     */
+    region: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
+     */
+    roleId: string;
+    /**
+     * Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+     */
+    secretAccessKey: string;
+    /**
+     * Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     */
+    valid: boolean;
+}
+
+export interface GetEncryptionAtRestAzureKeyVaultConfig {
+    /**
+     * Azure environment in which your account credentials reside.
+     */
+    azureEnvironment: string;
+    /**
+     * Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
+     */
+    clientId: string;
+    /**
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     */
+    enabled: boolean;
+    /**
+     * Web address with a unique key that identifies for your Azure Key Vault.
+     */
+    keyIdentifier: string;
+    /**
+     * Unique string that identifies the Azure Key Vault that contains your key.
+     */
+    keyVaultName: string;
+    /**
+     * Enable connection to your Azure Key Vault over private networking.
+     */
+    requirePrivateNetworking: boolean;
+    /**
+     * Name of the Azure resource group that contains your Azure Key Vault.
+     */
+    resourceGroupName: string;
+    /**
+     * Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
+     */
+    secret: string;
+    /**
+     * Unique 36-hexadecimal character string that identifies your Azure subscription.
+     */
+    subscriptionId: string;
+    /**
+     * Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
+     */
+    tenantId: string;
+    /**
+     * Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+     */
+    valid: boolean;
+}
+
+export interface GetEncryptionAtRestGoogleCloudKmsConfig {
+    /**
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     */
+    enabled: boolean;
+    /**
+     * Resource path that displays the key version resource ID for your Google Cloud KMS.
+     */
+    keyVersionResourceId: string;
+    /**
+     * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
+     */
+    serviceAccountKey: string;
+    /**
+     * Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
+     */
+    valid: boolean;
+}
+
+export interface GetEncryptionAtRestPrivateEndpointsResult {
+    /**
+     * Label that identifies the cloud provider of the private endpoint.
+     */
+    cloudProvider: string;
+    /**
+     * Error message for failures associated with the Encryption At Rest private endpoint.
+     */
+    errorMessage: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
+     */
+    id: string;
+    /**
+     * Connection name of the Azure Private Endpoint.
+     */
+    privateEndpointConnectionName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project.
+     */
+    projectId: string;
+    /**
+     * Cloud provider region in which the Encryption At Rest private endpoint is located.
+     */
+    regionName: string;
+    /**
+     * State of the Encryption At Rest private endpoint.
+     */
+    status: string;
 }
 
 export interface GetEventTriggerEventProcessor {
@@ -5863,12 +6044,24 @@ export interface GetProjectIpAddresses {
 }
 
 export interface GetProjectIpAddressesServices {
+    /**
+     * IP addresses of clusters.
+     */
     clusters: outputs.GetProjectIpAddressesServicesCluster[];
 }
 
 export interface GetProjectIpAddressesServicesCluster {
+    /**
+     * Human-readable label that identifies the cluster.
+     */
     clusterName: string;
+    /**
+     * List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+     */
     inbounds: string[];
+    /**
+     * List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+     */
     outbounds: string[];
 }
 
@@ -5922,7 +6115,9 @@ export interface GetProjectsResult {
      */
     id: string;
     /**
-     * IP addresses in a project categorized by services. See IP Addresses.
+     * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+     *
+     * @deprecated This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
      */
     ipAddresses: outputs.GetProjectsResultIpAddresses;
     /**
@@ -6412,6 +6607,85 @@ export interface GetStreamInstancesResultStreamConfig {
     tier: string;
 }
 
+export interface GetStreamProcessorOptions {
+    /**
+     * Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+     */
+    dlq: outputs.GetStreamProcessorOptionsDlq;
+}
+
+export interface GetStreamProcessorOptionsDlq {
+    /**
+     * Name of the collection to use for the DLQ.
+     */
+    coll: string;
+    /**
+     * Name of the connection to write DLQ messages to. Must be an Atlas connection.
+     */
+    connectionName: string;
+    /**
+     * Name of the database to use for the DLQ.
+     */
+    db: string;
+}
+
+export interface GetStreamProcessorsResult {
+    /**
+     * Unique 24-hexadecimal character string that identifies the stream processor.
+     */
+    id: string;
+    /**
+     * Human-readable label that identifies the stream instance.
+     */
+    instanceName: string;
+    /**
+     * Optional configuration for the stream processor.
+     */
+    options: outputs.GetStreamProcessorsResultOptions;
+    /**
+     * Stream aggregation pipeline you want to apply to your streaming data.
+     */
+    pipeline: string;
+    /**
+     * Human-readable label that identifies the stream processor.
+     */
+    processorName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     */
+    projectId: string;
+    /**
+     * The state of the stream processor.
+     */
+    state: string;
+    /**
+     * The stats associated with the stream processor.
+     */
+    stats: string;
+}
+
+export interface GetStreamProcessorsResultOptions {
+    /**
+     * Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+     */
+    dlq: outputs.GetStreamProcessorsResultOptionsDlq;
+}
+
+export interface GetStreamProcessorsResultOptionsDlq {
+    /**
+     * Name of the collection to use for the DLQ.
+     */
+    coll: string;
+    /**
+     * Name of the connection to write DLQ messages to. Must be an Atlas connection.
+     */
+    connectionName: string;
+    /**
+     * Name of the database to use for the DLQ.
+     */
+    db: string;
+}
+
 export interface GetThirdPartyIntegrationsResult {
     accountId: string;
     /**
@@ -6834,6 +7108,28 @@ export interface StreamInstanceStreamConfig {
      * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      */
     tier: string;
+}
+
+export interface StreamProcessorOptions {
+    /**
+     * Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+     */
+    dlq: outputs.StreamProcessorOptionsDlq;
+}
+
+export interface StreamProcessorOptionsDlq {
+    /**
+     * Name of the collection to use for the DLQ.
+     */
+    coll: string;
+    /**
+     * Name of the connection to write DLQ messages to. Must be an Atlas connection.
+     */
+    connectionName: string;
+    /**
+     * Name of the database to use for the DLQ.
+     */
+    db: string;
 }
 
 export interface X509AuthenticationDatabaseUserCertificate {

@@ -209,10 +209,10 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * This parameter is deprecated and will be removed in the future. Please transition to tags
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     @Import(name="labels")
     private @Nullable Output<List<AdvancedClusterLabelArgs>> labels;
 
@@ -220,10 +220,10 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * This parameter is deprecated and will be removed in the future. Please transition to tags
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     public Optional<Output<List<AdvancedClusterLabelArgs>>> labels() {
         return Optional.ofNullable(this.labels);
     }
@@ -308,6 +308,21 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<String>> projectId() {
         return Optional.ofNullable(this.projectId);
+    }
+
+    /**
+     * Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+     * 
+     */
+    @Import(name="replicaSetScalingStrategy")
+    private @Nullable Output<String> replicaSetScalingStrategy;
+
+    /**
+     * @return Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+     * 
+     */
+    public Optional<Output<String>> replicaSetScalingStrategy() {
+        return Optional.ofNullable(this.replicaSetScalingStrategy);
     }
 
     /**
@@ -454,6 +469,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         this.paused = $.paused;
         this.pitEnabled = $.pitEnabled;
         this.projectId = $.projectId;
+        this.replicaSetScalingStrategy = $.replicaSetScalingStrategy;
         this.replicationSpecs = $.replicationSpecs;
         this.retainBackupsEnabled = $.retainBackupsEnabled;
         this.rootCertType = $.rootCertType;
@@ -736,10 +752,10 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+         * This parameter is deprecated and will be removed in the future. Please transition to tags
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(@Nullable Output<List<AdvancedClusterLabelArgs>> labels) {
             $.labels = labels;
             return this;
@@ -751,10 +767,10 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+         * This parameter is deprecated and will be removed in the future. Please transition to tags
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(List<AdvancedClusterLabelArgs> labels) {
             return labels(Output.of(labels));
         }
@@ -765,10 +781,10 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+         * This parameter is deprecated and will be removed in the future. Please transition to tags
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(AdvancedClusterLabelArgs... labels) {
             return labels(List.of(labels));
         }
@@ -885,6 +901,27 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param replicaSetScalingStrategy Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicaSetScalingStrategy(@Nullable Output<String> replicaSetScalingStrategy) {
+            $.replicaSetScalingStrategy = replicaSetScalingStrategy;
+            return this;
+        }
+
+        /**
+         * @param replicaSetScalingStrategy Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicaSetScalingStrategy(String replicaSetScalingStrategy) {
+            return replicaSetScalingStrategy(Output.of(replicaSetScalingStrategy));
         }
 
         /**

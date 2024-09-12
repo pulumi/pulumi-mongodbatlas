@@ -13,114 +13,138 @@ import javax.annotation.Nullable;
 @CustomType
 public final class EncryptionAtRestAzureKeyVaultConfig {
     /**
-     * @return The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+     * @return Azure environment in which your account credentials reside.
      * 
      */
     private @Nullable String azureEnvironment;
     /**
-     * @return The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+     * @return Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
      * 
      */
     private @Nullable String clientId;
     /**
-     * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     private @Nullable Boolean enabled;
     /**
-     * @return The unique identifier of a key in an Azure Key Vault.
+     * @return Web address with a unique key that identifies for your Azure Key Vault.
      * 
      */
     private @Nullable String keyIdentifier;
     /**
-     * @return The name of an Azure Key Vault containing your key.
+     * @return Unique string that identifies the Azure Key Vault that contains your key.
      * 
      */
     private @Nullable String keyVaultName;
     /**
-     * @return The name of the Azure Resource group that contains an Azure Key Vault.
+     * @return Enable connection to your Azure Key Vault over private networking.
+     * 
+     */
+    private @Nullable Boolean requirePrivateNetworking;
+    /**
+     * @return Name of the Azure resource group that contains your Azure Key Vault.
      * 
      */
     private @Nullable String resourceGroupName;
     /**
-     * @return The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+     * @return Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      * 
      */
     private @Nullable String secret;
     /**
-     * @return The unique identifier associated with an Azure subscription.
+     * @return Unique 36-hexadecimal character string that identifies your Azure subscription.
      * 
      */
     private @Nullable String subscriptionId;
     /**
-     * @return The unique identifier for an Azure AD tenant within an Azure subscription.
+     * @return Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
      * 
      */
     private @Nullable String tenantId;
+    /**
+     * @return Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+     * 
+     */
+    private @Nullable Boolean valid;
 
     private EncryptionAtRestAzureKeyVaultConfig() {}
     /**
-     * @return The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+     * @return Azure environment in which your account credentials reside.
      * 
      */
     public Optional<String> azureEnvironment() {
         return Optional.ofNullable(this.azureEnvironment);
     }
     /**
-     * @return The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+     * @return Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
      * 
      */
     public Optional<String> clientId() {
         return Optional.ofNullable(this.clientId);
     }
     /**
-     * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
      * 
      */
     public Optional<Boolean> enabled() {
         return Optional.ofNullable(this.enabled);
     }
     /**
-     * @return The unique identifier of a key in an Azure Key Vault.
+     * @return Web address with a unique key that identifies for your Azure Key Vault.
      * 
      */
     public Optional<String> keyIdentifier() {
         return Optional.ofNullable(this.keyIdentifier);
     }
     /**
-     * @return The name of an Azure Key Vault containing your key.
+     * @return Unique string that identifies the Azure Key Vault that contains your key.
      * 
      */
     public Optional<String> keyVaultName() {
         return Optional.ofNullable(this.keyVaultName);
     }
     /**
-     * @return The name of the Azure Resource group that contains an Azure Key Vault.
+     * @return Enable connection to your Azure Key Vault over private networking.
+     * 
+     */
+    public Optional<Boolean> requirePrivateNetworking() {
+        return Optional.ofNullable(this.requirePrivateNetworking);
+    }
+    /**
+     * @return Name of the Azure resource group that contains your Azure Key Vault.
      * 
      */
     public Optional<String> resourceGroupName() {
         return Optional.ofNullable(this.resourceGroupName);
     }
     /**
-     * @return The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
+     * @return Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      * 
      */
     public Optional<String> secret() {
         return Optional.ofNullable(this.secret);
     }
     /**
-     * @return The unique identifier associated with an Azure subscription.
+     * @return Unique 36-hexadecimal character string that identifies your Azure subscription.
      * 
      */
     public Optional<String> subscriptionId() {
         return Optional.ofNullable(this.subscriptionId);
     }
     /**
-     * @return The unique identifier for an Azure AD tenant within an Azure subscription.
+     * @return Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
      * 
      */
     public Optional<String> tenantId() {
         return Optional.ofNullable(this.tenantId);
+    }
+    /**
+     * @return Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
+     * 
+     */
+    public Optional<Boolean> valid() {
+        return Optional.ofNullable(this.valid);
     }
 
     public static Builder builder() {
@@ -137,10 +161,12 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
         private @Nullable Boolean enabled;
         private @Nullable String keyIdentifier;
         private @Nullable String keyVaultName;
+        private @Nullable Boolean requirePrivateNetworking;
         private @Nullable String resourceGroupName;
         private @Nullable String secret;
         private @Nullable String subscriptionId;
         private @Nullable String tenantId;
+        private @Nullable Boolean valid;
         public Builder() {}
         public Builder(EncryptionAtRestAzureKeyVaultConfig defaults) {
     	      Objects.requireNonNull(defaults);
@@ -149,10 +175,12 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
     	      this.enabled = defaults.enabled;
     	      this.keyIdentifier = defaults.keyIdentifier;
     	      this.keyVaultName = defaults.keyVaultName;
+    	      this.requirePrivateNetworking = defaults.requirePrivateNetworking;
     	      this.resourceGroupName = defaults.resourceGroupName;
     	      this.secret = defaults.secret;
     	      this.subscriptionId = defaults.subscriptionId;
     	      this.tenantId = defaults.tenantId;
+    	      this.valid = defaults.valid;
         }
 
         @CustomType.Setter
@@ -186,6 +214,12 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
             return this;
         }
         @CustomType.Setter
+        public Builder requirePrivateNetworking(@Nullable Boolean requirePrivateNetworking) {
+
+            this.requirePrivateNetworking = requirePrivateNetworking;
+            return this;
+        }
+        @CustomType.Setter
         public Builder resourceGroupName(@Nullable String resourceGroupName) {
 
             this.resourceGroupName = resourceGroupName;
@@ -209,6 +243,12 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
             this.tenantId = tenantId;
             return this;
         }
+        @CustomType.Setter
+        public Builder valid(@Nullable Boolean valid) {
+
+            this.valid = valid;
+            return this;
+        }
         public EncryptionAtRestAzureKeyVaultConfig build() {
             final var _resultValue = new EncryptionAtRestAzureKeyVaultConfig();
             _resultValue.azureEnvironment = azureEnvironment;
@@ -216,10 +256,12 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
             _resultValue.enabled = enabled;
             _resultValue.keyIdentifier = keyIdentifier;
             _resultValue.keyVaultName = keyVaultName;
+            _resultValue.requirePrivateNetworking = requirePrivateNetworking;
             _resultValue.resourceGroupName = resourceGroupName;
             _resultValue.secret = secret;
             _resultValue.subscriptionId = subscriptionId;
             _resultValue.tenantId = tenantId;
+            _resultValue.valid = valid;
             return _resultValue;
         }
     }

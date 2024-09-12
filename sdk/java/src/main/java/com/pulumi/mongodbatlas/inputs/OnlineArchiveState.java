@@ -217,9 +217,17 @@ public final class OnlineArchiveState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.state);
     }
 
+    /**
+     * Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+     * 
+     */
     @Import(name="syncCreation")
     private @Nullable Output<Boolean> syncCreation;
 
+    /**
+     * @return Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> syncCreation() {
         return Optional.ofNullable(this.syncCreation);
     }
@@ -544,11 +552,23 @@ public final class OnlineArchiveState extends com.pulumi.resources.ResourceArgs 
             return state(Output.of(state));
         }
 
+        /**
+         * @param syncCreation Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder syncCreation(@Nullable Output<Boolean> syncCreation) {
             $.syncCreation = syncCreation;
             return this;
         }
 
+        /**
+         * @param syncCreation Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder syncCreation(Boolean syncCreation) {
             return syncCreation(Output.of(syncCreation));
         }

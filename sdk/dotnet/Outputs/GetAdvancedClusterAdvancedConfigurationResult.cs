@@ -14,6 +14,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAdvancedClusterAdvancedConfigurationResult
     {
         /// <summary>
+        /// (Optional) The minimum pre- and post-image retention time in seconds.
+        /// </summary>
+        public readonly int ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         /// </summary>
         public readonly string DefaultReadConcern;
@@ -60,6 +64,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetAdvancedClusterAdvancedConfigurationResult(
+            int changeStreamOptionsPreAndPostImagesExpireAfterSeconds,
+
             string defaultReadConcern,
 
             string defaultWriteConcern,
@@ -82,6 +88,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             int transactionLifetimeLimitSeconds)
         {
+            ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
             DefaultReadConcern = defaultReadConcern;
             DefaultWriteConcern = defaultWriteConcern;
             FailIndexKeyTooLong = failIndexKeyTooLong;

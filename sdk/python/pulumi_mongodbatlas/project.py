@@ -260,7 +260,7 @@ class _ProjectState:
         Input properties used for looking up and filtering Project resources.
         :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
-        :param pulumi.Input['ProjectIpAddressesArgs'] ip_addresses: IP addresses in a project categorized by services. See IP Addresses.
+        :param pulumi.Input['ProjectIpAddressesArgs'] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
         :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         :param pulumi.Input[bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
@@ -278,6 +278,9 @@ class _ProjectState:
             pulumi.set(__self__, "cluster_count", cluster_count)
         if created is not None:
             pulumi.set(__self__, "created", created)
+        if ip_addresses is not None:
+            warnings.warn("""This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""", DeprecationWarning)
+            pulumi.log.warn("""ip_addresses is deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""")
         if ip_addresses is not None:
             pulumi.set(__self__, "ip_addresses", ip_addresses)
         if is_collect_database_specifics_statistics_enabled is not None:
@@ -335,9 +338,10 @@ class _ProjectState:
 
     @property
     @pulumi.getter(name="ipAddresses")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> Optional[pulumi.Input['ProjectIpAddressesArgs']]:
         """
-        IP addresses in a project categorized by services. See IP Addresses.
+        IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
 
@@ -758,7 +762,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
-        :param pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses.
+        :param pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
         :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         :param pulumi.Input[bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
@@ -813,9 +817,10 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipAddresses")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> pulumi.Output['outputs.ProjectIpAddresses']:
         """
-        IP addresses in a project categorized by services. See IP Addresses.
+        IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
 

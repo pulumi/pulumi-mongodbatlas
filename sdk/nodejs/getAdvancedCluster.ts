@@ -166,7 +166,7 @@ export interface GetAdvancedClusterResult {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
      *
-     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     readonly labels: outputs.GetAdvancedClusterLabel[];
     /**
@@ -187,6 +187,10 @@ export interface GetAdvancedClusterResult {
      */
     readonly pitEnabled: boolean;
     readonly projectId: string;
+    /**
+     * (Optional) Replica set scaling mode for your cluster.
+     */
+    readonly replicaSetScalingStrategy: string;
     /**
      * List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
      */

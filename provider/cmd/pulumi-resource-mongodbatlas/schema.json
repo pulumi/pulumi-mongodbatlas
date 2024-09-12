@@ -157,6 +157,10 @@
         },
         "mongodbatlas:index/AdvancedClusterAdvancedConfiguration:AdvancedClusterAdvancedConfiguration": {
             "properties": {
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds": {
+                    "type": "integer",
+                    "description": "The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.\n"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.\n",
@@ -1587,6 +1591,10 @@
         },
         "mongodbatlas:index/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration": {
             "properties": {
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds": {
+                    "type": "integer",
+                    "description": "The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.\n"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).\n",
@@ -2313,35 +2321,42 @@
             "properties": {
                 "accessKeyId": {
                     "type": "string",
+                    "description": "Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).\n",
                     "secret": true
                 },
                 "customerMasterKeyId": {
                     "type": "string",
-                    "description": "The AWS customer master key used to encrypt and decrypt the MongoDB master keys.\n",
+                    "description": "Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.\n",
                     "secret": true
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.\n"
+                    "description": "Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1\n"
+                    "description": "Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.\n"
                 },
                 "roleId": {
                     "type": "string",
-                    "description": "ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.\n"
+                    "description": "Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.\n"
                 },
                 "secretAccessKey": {
                     "type": "string",
+                    "description": "Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.\n",
                     "secret": true
+                },
+                "valid": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.\n"
                 }
             },
             "type": "object",
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "enabled"
+                        "enabled",
+                        "valid"
                     ]
                 }
             }
@@ -2350,51 +2365,61 @@
             "properties": {
                 "azureEnvironment": {
                     "type": "string",
-                    "description": "The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY\n"
+                    "description": "Azure environment in which your account credentials reside.\n"
                 },
                 "clientId": {
                     "type": "string",
-                    "description": "The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.\n",
+                    "description": "Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.\n",
                     "secret": true
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.\n"
+                    "description": "Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.\n"
                 },
                 "keyIdentifier": {
                     "type": "string",
-                    "description": "The unique identifier of a key in an Azure Key Vault.\n",
+                    "description": "Web address with a unique key that identifies for your Azure Key Vault.\n",
                     "secret": true
                 },
                 "keyVaultName": {
                     "type": "string",
-                    "description": "The name of an Azure Key Vault containing your key.\n"
+                    "description": "Unique string that identifies the Azure Key Vault that contains your key.\n"
+                },
+                "requirePrivateNetworking": {
+                    "type": "boolean",
+                    "description": "Enable connection to your Azure Key Vault over private networking.\n"
                 },
                 "resourceGroupName": {
                     "type": "string",
-                    "description": "The name of the Azure Resource group that contains an Azure Key Vault.\n"
+                    "description": "Name of the Azure resource group that contains your Azure Key Vault.\n"
                 },
                 "secret": {
                     "type": "string",
-                    "description": "The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.\n",
+                    "description": "Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.\n",
                     "secret": true
                 },
                 "subscriptionId": {
                     "type": "string",
-                    "description": "The unique identifier associated with an Azure subscription.\n",
+                    "description": "Unique 36-hexadecimal character string that identifies your Azure subscription.\n",
                     "secret": true
                 },
                 "tenantId": {
                     "type": "string",
-                    "description": "The unique identifier for an Azure AD tenant within an Azure subscription.\n",
+                    "description": "Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.\n",
                     "secret": true
+                },
+                "valid": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether the Azure encryption key can encrypt and decrypt data.\n"
                 }
             },
             "type": "object",
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "enabled"
+                        "enabled",
+                        "requirePrivateNetworking",
+                        "valid"
                     ]
                 }
             }
@@ -2403,24 +2428,29 @@
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.\n"
+                    "description": "Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.\n"
                 },
                 "keyVersionResourceId": {
                     "type": "string",
-                    "description": "The Key Version Resource ID from your GCP account.\n",
+                    "description": "Resource path that displays the key version resource ID for your Google Cloud KMS.\n",
                     "secret": true
                 },
                 "serviceAccountKey": {
                     "type": "string",
-                    "description": "String-formatted JSON object containing GCP KMS credentials from your GCP account.\n",
+                    "description": "JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.\n",
                     "secret": true
+                },
+                "valid": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.\n"
                 }
             },
             "type": "object",
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "enabled"
+                        "enabled",
+                        "valid"
                     ]
                 }
             }
@@ -3522,6 +3552,40 @@
                 }
             }
         },
+        "mongodbatlas:index/StreamProcessorOptions:StreamProcessorOptions": {
+            "properties": {
+                "dlq": {
+                    "$ref": "#/types/mongodbatlas:index/StreamProcessorOptionsDlq:StreamProcessorOptionsDlq",
+                    "description": "Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dlq"
+            ]
+        },
+        "mongodbatlas:index/StreamProcessorOptionsDlq:StreamProcessorOptionsDlq": {
+            "properties": {
+                "coll": {
+                    "type": "string",
+                    "description": "Name of the collection to use for the DLQ.\n"
+                },
+                "connectionName": {
+                    "type": "string",
+                    "description": "Name of the connection to write DLQ messages to. Must be an Atlas connection.\n"
+                },
+                "db": {
+                    "type": "string",
+                    "description": "Name of the database to use for the DLQ.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "coll",
+                "connectionName",
+                "db"
+            ]
+        },
         "mongodbatlas:index/X509AuthenticationDatabaseUserCertificate:X509AuthenticationDatabaseUserCertificate": {
             "properties": {
                 "createdAt": {
@@ -3625,6 +3689,10 @@
         },
         "mongodbatlas:index/getAdvancedClusterAdvancedConfiguration:getAdvancedClusterAdvancedConfiguration": {
             "properties": {
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds": {
+                    "type": "integer",
+                    "description": "(Optional) The minimum pre- and post-image retention time in seconds.\n"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.\n",
@@ -3674,6 +3742,7 @@
             },
             "type": "object",
             "required": [
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds",
                 "defaultReadConcern",
                 "defaultWriteConcern",
                 "failIndexKeyTooLong",
@@ -4208,7 +4277,7 @@
                         "$ref": "#/types/mongodbatlas:index/getAdvancedClustersResultLabel:getAdvancedClustersResultLabel"
                     },
                     "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.\n",
-                    "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags."
+                    "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags"
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
@@ -4228,6 +4297,10 @@
                 "pitEnabled": {
                     "type": "boolean",
                     "description": "Flag that indicates if the cluster uses Continuous Cloud Backup.\n"
+                },
+                "replicaSetScalingStrategy": {
+                    "type": "string",
+                    "description": "(Optional) Replica set scaling mode for your cluster.\n"
                 },
                 "replicationSpecs": {
                     "type": "array",
@@ -4277,6 +4350,7 @@
                 "name",
                 "paused",
                 "pitEnabled",
+                "replicaSetScalingStrategy",
                 "replicationSpecs",
                 "rootCertType",
                 "stateName",
@@ -4292,6 +4366,10 @@
         },
         "mongodbatlas:index/getAdvancedClustersResultAdvancedConfiguration:getAdvancedClustersResultAdvancedConfiguration": {
             "properties": {
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds": {
+                    "type": "integer",
+                    "description": "(Optional) The minimum pre- and post-image retention time in seconds.\n"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.\n",
@@ -4335,11 +4413,13 @@
                     "description": "Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.\n"
                 },
                 "transactionLifetimeLimitSeconds": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "(Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.\n"
                 }
             },
             "type": "object",
             "required": [
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds",
                 "defaultReadConcern",
                 "defaultWriteConcern",
                 "failIndexKeyTooLong",
@@ -6619,6 +6699,10 @@
         },
         "mongodbatlas:index/getClusterAdvancedConfiguration:getClusterAdvancedConfiguration": {
             "properties": {
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds": {
+                    "type": "integer",
+                    "description": "(Optional) The minimum pre- and post-image retention time in seconds.\n"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).\n",
@@ -6668,6 +6752,7 @@
             },
             "type": "object",
             "required": [
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds",
                 "defaultReadConcern",
                 "defaultWriteConcern",
                 "failIndexKeyTooLong",
@@ -7133,7 +7218,7 @@
                         "$ref": "#/types/mongodbatlas:index/getClustersResultLabel:getClustersResultLabel"
                     },
                     "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.\n",
-                    "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags."
+                    "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags"
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
@@ -7304,6 +7389,10 @@
         },
         "mongodbatlas:index/getClustersResultAdvancedConfiguration:getClustersResultAdvancedConfiguration": {
             "properties": {
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds": {
+                    "type": "integer",
+                    "description": "(Optional) The minimum pre- and post-image retention time in seconds.\n"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).\n",
@@ -7352,6 +7441,7 @@
             },
             "type": "object",
             "required": [
+                "changeStreamOptionsPreAndPostImagesExpireAfterSeconds",
                 "defaultReadConcern",
                 "defaultWriteConcern",
                 "failIndexKeyTooLong",
@@ -8699,6 +8789,209 @@
             "required": [
                 "name",
                 "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getEncryptionAtRestAwsKmsConfig:getEncryptionAtRestAwsKmsConfig": {
+            "properties": {
+                "accessKeyId": {
+                    "type": "string",
+                    "description": "Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).\n",
+                    "secret": true
+                },
+                "customerMasterKeyId": {
+                    "type": "string",
+                    "description": "Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.\n",
+                    "secret": true
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.\n"
+                },
+                "roleId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.\n"
+                },
+                "secretAccessKey": {
+                    "type": "string",
+                    "description": "Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.\n",
+                    "secret": true
+                },
+                "valid": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessKeyId",
+                "customerMasterKeyId",
+                "enabled",
+                "region",
+                "roleId",
+                "secretAccessKey",
+                "valid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getEncryptionAtRestAzureKeyVaultConfig:getEncryptionAtRestAzureKeyVaultConfig": {
+            "properties": {
+                "azureEnvironment": {
+                    "type": "string",
+                    "description": "Azure environment in which your account credentials reside.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.\n",
+                    "secret": true
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.\n"
+                },
+                "keyIdentifier": {
+                    "type": "string",
+                    "description": "Web address with a unique key that identifies for your Azure Key Vault.\n",
+                    "secret": true
+                },
+                "keyVaultName": {
+                    "type": "string",
+                    "description": "Unique string that identifies the Azure Key Vault that contains your key.\n"
+                },
+                "requirePrivateNetworking": {
+                    "type": "boolean",
+                    "description": "Enable connection to your Azure Key Vault over private networking.\n"
+                },
+                "resourceGroupName": {
+                    "type": "string",
+                    "description": "Name of the Azure resource group that contains your Azure Key Vault.\n"
+                },
+                "secret": {
+                    "type": "string",
+                    "description": "Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.\n",
+                    "secret": true
+                },
+                "subscriptionId": {
+                    "type": "string",
+                    "description": "Unique 36-hexadecimal character string that identifies your Azure subscription.\n",
+                    "secret": true
+                },
+                "tenantId": {
+                    "type": "string",
+                    "description": "Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.\n",
+                    "secret": true
+                },
+                "valid": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether the Azure encryption key can encrypt and decrypt data.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "azureEnvironment",
+                "clientId",
+                "enabled",
+                "keyIdentifier",
+                "keyVaultName",
+                "requirePrivateNetworking",
+                "resourceGroupName",
+                "secret",
+                "subscriptionId",
+                "tenantId",
+                "valid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getEncryptionAtRestGoogleCloudKmsConfig:getEncryptionAtRestGoogleCloudKmsConfig": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.\n"
+                },
+                "keyVersionResourceId": {
+                    "type": "string",
+                    "description": "Resource path that displays the key version resource ID for your Google Cloud KMS.\n",
+                    "secret": true
+                },
+                "serviceAccountKey": {
+                    "type": "string",
+                    "description": "JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.\n",
+                    "secret": true
+                },
+                "valid": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "keyVersionResourceId",
+                "serviceAccountKey",
+                "valid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getEncryptionAtRestPrivateEndpointsResult:getEncryptionAtRestPrivateEndpointsResult": {
+            "properties": {
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "Label that identifies the cloud provider of the private endpoint.\n"
+                },
+                "errorMessage": {
+                    "type": "string",
+                    "description": "Error message for failures associated with the Encryption At Rest private endpoint.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.\n"
+                },
+                "privateEndpointConnectionName": {
+                    "type": "string",
+                    "description": "Connection name of the Azure Private Endpoint.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
+                },
+                "regionName": {
+                    "type": "string",
+                    "description": "Cloud provider region in which the Encryption At Rest private endpoint is located.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "State of the Encryption At Rest private endpoint.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cloudProvider",
+                "errorMessage",
+                "id",
+                "privateEndpointConnectionName",
+                "projectId",
+                "regionName",
+                "status"
             ],
             "language": {
                 "nodejs": {
@@ -11582,7 +11875,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/getProjectIpAddressesServicesCluster:getProjectIpAddressesServicesCluster"
-                    }
+                    },
+                    "description": "IP addresses of clusters.\n"
                 }
             },
             "type": "object",
@@ -11598,19 +11892,22 @@
         "mongodbatlas:index/getProjectIpAddressesServicesCluster:getProjectIpAddressesServicesCluster": {
             "properties": {
                 "clusterName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Human-readable label that identifies the cluster.\n"
                 },
                 "inbounds": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.\n"
                 },
                 "outbounds": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.\n"
                 }
             },
             "type": "object",
@@ -11703,7 +12000,8 @@
                 },
                 "ipAddresses": {
                     "$ref": "#/types/mongodbatlas:index/getProjectsResultIpAddresses:getProjectsResultIpAddresses",
-                    "description": "IP addresses in a project categorized by services. See IP Addresses.\n"
+                    "description": "IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.\n",
+                    "deprecationMessage": "This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source."
                 },
                 "isCollectDatabaseSpecificsStatisticsEnabled": {
                     "type": "boolean",
@@ -12698,6 +12996,146 @@
                 }
             }
         },
+        "mongodbatlas:index/getStreamProcessorOptions:getStreamProcessorOptions": {
+            "properties": {
+                "dlq": {
+                    "$ref": "#/types/mongodbatlas:index/getStreamProcessorOptionsDlq:getStreamProcessorOptionsDlq",
+                    "description": "Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dlq"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getStreamProcessorOptionsDlq:getStreamProcessorOptionsDlq": {
+            "properties": {
+                "coll": {
+                    "type": "string",
+                    "description": "Name of the collection to use for the DLQ.\n"
+                },
+                "connectionName": {
+                    "type": "string",
+                    "description": "Name of the connection to write DLQ messages to. Must be an Atlas connection.\n"
+                },
+                "db": {
+                    "type": "string",
+                    "description": "Name of the database to use for the DLQ.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "coll",
+                "connectionName",
+                "db"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getStreamProcessorsResult:getStreamProcessorsResult": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal character string that identifies the stream processor.\n"
+                },
+                "instanceName": {
+                    "type": "string",
+                    "description": "Human-readable label that identifies the stream instance.\n"
+                },
+                "options": {
+                    "$ref": "#/types/mongodbatlas:index/getStreamProcessorsResultOptions:getStreamProcessorsResultOptions",
+                    "description": "Optional configuration for the stream processor.\n"
+                },
+                "pipeline": {
+                    "type": "string",
+                    "description": "Stream aggregation pipeline you want to apply to your streaming data.\n"
+                },
+                "processorName": {
+                    "type": "string",
+                    "description": "Human-readable label that identifies the stream processor.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the stream processor.\n"
+                },
+                "stats": {
+                    "type": "string",
+                    "description": "The stats associated with the stream processor.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "instanceName",
+                "options",
+                "pipeline",
+                "processorName",
+                "projectId",
+                "state",
+                "stats"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getStreamProcessorsResultOptions:getStreamProcessorsResultOptions": {
+            "properties": {
+                "dlq": {
+                    "$ref": "#/types/mongodbatlas:index/getStreamProcessorsResultOptionsDlq:getStreamProcessorsResultOptionsDlq",
+                    "description": "Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dlq"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getStreamProcessorsResultOptionsDlq:getStreamProcessorsResultOptionsDlq": {
+            "properties": {
+                "coll": {
+                    "type": "string",
+                    "description": "Name of the collection to use for the DLQ.\n"
+                },
+                "connectionName": {
+                    "type": "string",
+                    "description": "Name of the connection to write DLQ messages to. Must be an Atlas connection.\n"
+                },
+                "db": {
+                    "type": "string",
+                    "description": "Name of the database to use for the DLQ.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "coll",
+                "connectionName",
+                "db"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "mongodbatlas:index/getThirdPartyIntegrationsResult:getThirdPartyIntegrationsResult": {
             "properties": {
                 "accountId": {
@@ -13057,7 +13495,7 @@
                         "$ref": "#/types/mongodbatlas:index/AdvancedClusterLabel:AdvancedClusterLabel"
                     },
                     "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.\n",
-                    "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags."
+                    "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags"
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
@@ -13081,6 +13519,10 @@
                 "projectId": {
                     "type": "string",
                     "description": "Unique ID for the project to create the database user.\n"
+                },
+                "replicaSetScalingStrategy": {
+                    "type": "string",
+                    "description": "Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)\n"
                 },
                 "replicationSpecs": {
                     "type": "array",
@@ -13134,6 +13576,7 @@
                 "paused",
                 "pitEnabled",
                 "projectId",
+                "replicaSetScalingStrategy",
                 "replicationSpecs",
                 "rootCertType",
                 "stateName",
@@ -13179,7 +13622,7 @@
                         "$ref": "#/types/mongodbatlas:index/AdvancedClusterLabel:AdvancedClusterLabel"
                     },
                     "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.\n",
-                    "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags."
+                    "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags"
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
@@ -13201,6 +13644,10 @@
                     "type": "string",
                     "description": "Unique ID for the project to create the database user.\n",
                     "willReplaceOnChanges": true
+                },
+                "replicaSetScalingStrategy": {
+                    "type": "string",
+                    "description": "Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)\n"
                 },
                 "replicationSpecs": {
                     "type": "array",
@@ -13293,7 +13740,7 @@
                             "$ref": "#/types/mongodbatlas:index/AdvancedClusterLabel:AdvancedClusterLabel"
                         },
                         "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.\n",
-                        "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags."
+                        "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags"
                     },
                     "mongoDbMajorVersion": {
                         "type": "string",
@@ -13319,6 +13766,10 @@
                         "type": "string",
                         "description": "Unique ID for the project to create the database user.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "replicaSetScalingStrategy": {
+                        "type": "string",
+                        "description": "Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)\n"
                     },
                     "replicationSpecs": {
                         "type": "array",
@@ -15082,7 +15533,7 @@
                         "$ref": "#/types/mongodbatlas:index/ClusterLabel:ClusterLabel"
                     },
                     "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.\n",
-                    "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags."
+                    "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags"
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
@@ -15304,7 +15755,7 @@
                         "$ref": "#/types/mongodbatlas:index/ClusterLabel:ClusterLabel"
                     },
                     "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.\n",
-                    "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags."
+                    "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags"
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
@@ -15472,7 +15923,7 @@
                             "$ref": "#/types/mongodbatlas:index/ClusterLabel:ClusterLabel"
                         },
                         "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.\n",
-                        "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags."
+                        "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags"
                     },
                     "mongoDbMajorVersion": {
                         "type": "string",
@@ -16152,20 +16603,22 @@
             }
         },
         "mongodbatlas:index/encryptionAtRest:EncryptionAtRest": {
-            "description": "\n\n## Import\n\nEncryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.\n\n```sh\n$ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934\n```\nFor more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)\n\n",
             "properties": {
                 "awsKmsConfig": {
-                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAwsKmsConfig:EncryptionAtRestAwsKmsConfig"
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAwsKmsConfig:EncryptionAtRestAwsKmsConfig",
+                    "description": "Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.\n"
                 },
                 "azureKeyVaultConfig": {
-                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAzureKeyVaultConfig:EncryptionAtRestAzureKeyVaultConfig"
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAzureKeyVaultConfig:EncryptionAtRestAzureKeyVaultConfig",
+                    "description": "Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).\n"
                 },
                 "googleCloudKmsConfig": {
-                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestGoogleCloudKmsConfig:EncryptionAtRestGoogleCloudKmsConfig"
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestGoogleCloudKmsConfig:EncryptionAtRestGoogleCloudKmsConfig",
+                    "description": "Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).\n"
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "The unique identifier for the project.\n"
+                    "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
                 }
             },
             "required": [
@@ -16173,17 +16626,20 @@
             ],
             "inputProperties": {
                 "awsKmsConfig": {
-                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAwsKmsConfig:EncryptionAtRestAwsKmsConfig"
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAwsKmsConfig:EncryptionAtRestAwsKmsConfig",
+                    "description": "Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.\n"
                 },
                 "azureKeyVaultConfig": {
-                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAzureKeyVaultConfig:EncryptionAtRestAzureKeyVaultConfig"
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAzureKeyVaultConfig:EncryptionAtRestAzureKeyVaultConfig",
+                    "description": "Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).\n"
                 },
                 "googleCloudKmsConfig": {
-                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestGoogleCloudKmsConfig:EncryptionAtRestGoogleCloudKmsConfig"
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestGoogleCloudKmsConfig:EncryptionAtRestGoogleCloudKmsConfig",
+                    "description": "Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).\n"
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "The unique identifier for the project.\n"
+                    "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
                 }
             },
             "requiredInputs": [
@@ -16193,17 +16649,106 @@
                 "description": "Input properties used for looking up and filtering EncryptionAtRest resources.\n",
                 "properties": {
                     "awsKmsConfig": {
-                        "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAwsKmsConfig:EncryptionAtRestAwsKmsConfig"
+                        "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAwsKmsConfig:EncryptionAtRestAwsKmsConfig",
+                        "description": "Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.\n"
                     },
                     "azureKeyVaultConfig": {
-                        "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAzureKeyVaultConfig:EncryptionAtRestAzureKeyVaultConfig"
+                        "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAzureKeyVaultConfig:EncryptionAtRestAzureKeyVaultConfig",
+                        "description": "Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).\n"
                     },
                     "googleCloudKmsConfig": {
-                        "$ref": "#/types/mongodbatlas:index/EncryptionAtRestGoogleCloudKmsConfig:EncryptionAtRestGoogleCloudKmsConfig"
+                        "$ref": "#/types/mongodbatlas:index/EncryptionAtRestGoogleCloudKmsConfig:EncryptionAtRestGoogleCloudKmsConfig",
+                        "description": "Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).\n"
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "The unique identifier for the project.\n"
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint": {
+            "description": "## # Resource: mongodbatlas.EncryptionAtRestPrivateEndpoint\n\n`mongodbatlas.EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.\n\n\u003e **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager. \nTo learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).\n\n\u003e **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjust by configuring `azure_key_vault_config.require_private_networking` to true. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.\n\n\u003e **NOTE:** This resource does not support update operations. To modify values of a private endpoint the existing resource must be deleted and a new one can be created with the modified values.\n\n## Example Usage\n\n### S\n\n\u003e **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.\n\n### Configuring Atlas Encryption at Rest using Azure Key Vault with Azure Private Link\n\nMake sure to reference the complete example section for detailed steps and considerations.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as azapi from \"@pulumi/azapi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst ear = new mongodbatlas.EncryptionAtRest(\"ear\", {\n    projectId: atlasProjectId,\n    azureKeyVaultConfig: {\n        requirePrivateNetworking: true,\n        enabled: true,\n        azureEnvironment: \"AZURE\",\n        tenantId: azureTenantId,\n        subscriptionId: azureSubscriptionId,\n        clientId: azureClientId,\n        secret: azureClientSecret,\n        resourceGroupName: azureResourceGroupName,\n        keyVaultName: azureKeyVaultName,\n        keyIdentifier: azureKeyIdentifier,\n    },\n});\n// Creates private endpoint\nconst endpoint = new mongodbatlas.EncryptionAtRestPrivateEndpoint(\"endpoint\", {\n    projectId: ear.projectId,\n    cloudProvider: \"AZURE\",\n    regionName: azureRegionName,\n});\nconst keyVaultResourceId = `/subscriptions/${azureSubscriptionId}/resourceGroups/${azureResourceGroupName}/providers/Microsoft.KeyVault/vaults/${azureKeyVaultName}`;\n// Approves private endpoint connection from Azure Key Vault\nconst approval = new azapi.index.UpdateResource(\"approval\", {\n    type: \"Microsoft.KeyVault/Vaults/PrivateEndpointConnections@2023-07-01\",\n    name: endpoint.privateEndpointConnectionName,\n    parentId: keyVaultResourceId,\n    body: JSON.stringify({\n        properties: {\n            privateLinkServiceConnectionState: {\n                description: \"Approved via Terraform\",\n                status: \"Approved\",\n            },\n        },\n    }),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_azapi as azapi\nimport pulumi_mongodbatlas as mongodbatlas\n\near = mongodbatlas.EncryptionAtRest(\"ear\",\n    project_id=atlas_project_id,\n    azure_key_vault_config={\n        \"require_private_networking\": True,\n        \"enabled\": True,\n        \"azure_environment\": \"AZURE\",\n        \"tenant_id\": azure_tenant_id,\n        \"subscription_id\": azure_subscription_id,\n        \"client_id\": azure_client_id,\n        \"secret\": azure_client_secret,\n        \"resource_group_name\": azure_resource_group_name,\n        \"key_vault_name\": azure_key_vault_name,\n        \"key_identifier\": azure_key_identifier,\n    })\n# Creates private endpoint\nendpoint = mongodbatlas.EncryptionAtRestPrivateEndpoint(\"endpoint\",\n    project_id=ear.project_id,\n    cloud_provider=\"AZURE\",\n    region_name=azure_region_name)\nkey_vault_resource_id = f\"/subscriptions/{azure_subscription_id}/resourceGroups/{azure_resource_group_name}/providers/Microsoft.KeyVault/vaults/{azure_key_vault_name}\"\n# Approves private endpoint connection from Azure Key Vault\napproval = azapi.index.UpdateResource(\"approval\",\n    type=Microsoft.KeyVault/Vaults/PrivateEndpointConnections@2023-07-01,\n    name=endpoint.private_endpoint_connection_name,\n    parent_id=key_vault_resource_id,\n    body=json.dumps({\n        properties: {\n            privateLinkServiceConnectionState: {\n                description: Approved via Terraform,\n                status: Approved,\n            },\n        },\n    }))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Azapi = Pulumi.Azapi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ear = new Mongodbatlas.EncryptionAtRest(\"ear\", new()\n    {\n        ProjectId = atlasProjectId,\n        AzureKeyVaultConfig = new Mongodbatlas.Inputs.EncryptionAtRestAzureKeyVaultConfigArgs\n        {\n            RequirePrivateNetworking = true,\n            Enabled = true,\n            AzureEnvironment = \"AZURE\",\n            TenantId = azureTenantId,\n            SubscriptionId = azureSubscriptionId,\n            ClientId = azureClientId,\n            Secret = azureClientSecret,\n            ResourceGroupName = azureResourceGroupName,\n            KeyVaultName = azureKeyVaultName,\n            KeyIdentifier = azureKeyIdentifier,\n        },\n    });\n\n    // Creates private endpoint\n    var endpoint = new Mongodbatlas.EncryptionAtRestPrivateEndpoint(\"endpoint\", new()\n    {\n        ProjectId = ear.ProjectId,\n        CloudProvider = \"AZURE\",\n        RegionName = azureRegionName,\n    });\n\n    var keyVaultResourceId = $\"/subscriptions/{azureSubscriptionId}/resourceGroups/{azureResourceGroupName}/providers/Microsoft.KeyVault/vaults/{azureKeyVaultName}\";\n\n    // Approves private endpoint connection from Azure Key Vault\n    var approval = new Azapi.Index.UpdateResource(\"approval\", new()\n    {\n        Type = \"Microsoft.KeyVault/Vaults/PrivateEndpointConnections@2023-07-01\",\n        Name = endpoint.PrivateEndpointConnectionName,\n        ParentId = keyVaultResourceId,\n        Body = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"properties\"] = new Dictionary\u003cstring, object?\u003e\n            {\n                [\"privateLinkServiceConnectionState\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"description\"] = \"Approved via Terraform\",\n                    [\"status\"] = \"Approved\",\n                },\n            },\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-azapi/sdk/go/azapi\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\nfunc main() {\npulumi.Run(func(ctx *pulumi.Context) error {\near, err := mongodbatlas.NewEncryptionAtRest(ctx, \"ear\", \u0026mongodbatlas.EncryptionAtRestArgs{\nProjectId: pulumi.Any(atlasProjectId),\nAzureKeyVaultConfig: \u0026mongodbatlas.EncryptionAtRestAzureKeyVaultConfigArgs{\nRequirePrivateNetworking: pulumi.Bool(true),\nEnabled: pulumi.Bool(true),\nAzureEnvironment: pulumi.String(\"AZURE\"),\nTenantId: pulumi.Any(azureTenantId),\nSubscriptionId: pulumi.Any(azureSubscriptionId),\nClientId: pulumi.Any(azureClientId),\nSecret: pulumi.Any(azureClientSecret),\nResourceGroupName: pulumi.Any(azureResourceGroupName),\nKeyVaultName: pulumi.Any(azureKeyVaultName),\nKeyIdentifier: pulumi.Any(azureKeyIdentifier),\n},\n})\nif err != nil {\nreturn err\n}\n// Creates private endpoint\nendpoint, err := mongodbatlas.NewEncryptionAtRestPrivateEndpoint(ctx, \"endpoint\", \u0026mongodbatlas.EncryptionAtRestPrivateEndpointArgs{\nProjectId: ear.ProjectId,\nCloudProvider: pulumi.String(\"AZURE\"),\nRegionName: pulumi.Any(azureRegionName),\n})\nif err != nil {\nreturn err\n}\nkeyVaultResourceId := fmt.Sprintf(\"/subscriptions/%v/resourceGroups/%v/providers/Microsoft.KeyVault/vaults/%v\", azureSubscriptionId, azureResourceGroupName, azureKeyVaultName);\n// Approves private endpoint connection from Azure Key Vault\n_, err = azapi.NewUpdateResource(ctx, \"approval\", \u0026azapi.UpdateResourceArgs{\nType: \"Microsoft.KeyVault/Vaults/PrivateEndpointConnections@2023-07-01\",\nName: endpoint.PrivateEndpointConnectionName,\nParentId: keyVaultResourceId,\nBody: %!v(PANIC=Format method: fatal: An assertion has failed: unlowered function toJSON),\n})\nif err != nil {\nreturn err\n}\nreturn nil\n})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.EncryptionAtRest;\nimport com.pulumi.mongodbatlas.EncryptionAtRestArgs;\nimport com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;\nimport com.pulumi.mongodbatlas.EncryptionAtRestPrivateEndpoint;\nimport com.pulumi.mongodbatlas.EncryptionAtRestPrivateEndpointArgs;\nimport com.pulumi.azapi.updateResource;\nimport com.pulumi.azapi.UpdateResourceArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ear = new EncryptionAtRest(\"ear\", EncryptionAtRestArgs.builder()\n            .projectId(atlasProjectId)\n            .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()\n                .requirePrivateNetworking(true)\n                .enabled(true)\n                .azureEnvironment(\"AZURE\")\n                .tenantId(azureTenantId)\n                .subscriptionId(azureSubscriptionId)\n                .clientId(azureClientId)\n                .secret(azureClientSecret)\n                .resourceGroupName(azureResourceGroupName)\n                .keyVaultName(azureKeyVaultName)\n                .keyIdentifier(azureKeyIdentifier)\n                .build())\n            .build());\n\n        // Creates private endpoint\n        var endpoint = new EncryptionAtRestPrivateEndpoint(\"endpoint\", EncryptionAtRestPrivateEndpointArgs.builder()\n            .projectId(ear.projectId())\n            .cloudProvider(\"AZURE\")\n            .regionName(azureRegionName)\n            .build());\n\n        final var keyVaultResourceId = String.format(\"/subscriptions/%s/resourceGroups/%s/providers/Microsoft.KeyVault/vaults/%s\", azureSubscriptionId,azureResourceGroupName,azureKeyVaultName);\n\n        // Approves private endpoint connection from Azure Key Vault\n        var approval = new UpdateResource(\"approval\", UpdateResourceArgs.builder()\n            .type(\"Microsoft.KeyVault/Vaults/PrivateEndpointConnections@2023-07-01\")\n            .name(endpoint.privateEndpointConnectionName())\n            .parentId(keyVaultResourceId)\n            .body(serializeJson(\n                jsonObject(\n                    jsonProperty(\"properties\", jsonObject(\n                        jsonProperty(\"privateLinkServiceConnectionState\", jsonObject(\n                            jsonProperty(\"description\", \"Approved via Terraform\"),\n                            jsonProperty(\"status\", \"Approved\")\n                        ))\n                    ))\n                )))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ear:\n    type: mongodbatlas:EncryptionAtRest\n    properties:\n      projectId: ${atlasProjectId}\n      azureKeyVaultConfig:\n        requirePrivateNetworking: true\n        enabled: true\n        azureEnvironment: AZURE\n        tenantId: ${azureTenantId}\n        subscriptionId: ${azureSubscriptionId}\n        clientId: ${azureClientId}\n        secret: ${azureClientSecret}\n        resourceGroupName: ${azureResourceGroupName}\n        keyVaultName: ${azureKeyVaultName}\n        keyIdentifier: ${azureKeyIdentifier}\n  # Creates private endpoint\n  endpoint:\n    type: mongodbatlas:EncryptionAtRestPrivateEndpoint\n    properties:\n      projectId: ${ear.projectId}\n      cloudProvider: AZURE\n      regionName: ${azureRegionName}\n  # Approves private endpoint connection from Azure Key Vault\n  approval:\n    type: azapi:updateResource\n    properties:\n      type: Microsoft.KeyVault/Vaults/PrivateEndpointConnections@2023-07-01\n      name: ${endpoint.privateEndpointConnectionName}\n      parentId: ${keyVaultResourceId}\n      body:\n        fn::toJSON:\n          properties:\n            privateLinkServiceConnectionState:\n              description: Approved via Terraform\n              status: Approved\nvariables:\n  keyVaultResourceId: /subscriptions/${azureSubscriptionId}/resourceGroups/${azureResourceGroupName}/providers/Microsoft.KeyVault/vaults/${azureKeyVaultName}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "Label that identifies the cloud provider for the Encryption At Rest private endpoint.\n"
+                },
+                "errorMessage": {
+                    "type": "string",
+                    "description": "Error message for failures associated with the Encryption At Rest private endpoint.\n"
+                },
+                "privateEndpointConnectionName": {
+                    "type": "string",
+                    "description": "Connection name of the Azure Private Endpoint.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
+                },
+                "regionName": {
+                    "type": "string",
+                    "description": "Cloud provider region in which the Encryption At Rest private endpoint is located.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "State of the Encryption At Rest private endpoint.\n"
+                }
+            },
+            "required": [
+                "cloudProvider",
+                "errorMessage",
+                "privateEndpointConnectionName",
+                "projectId",
+                "regionName",
+                "status"
+            ],
+            "inputProperties": {
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "Label that identifies the cloud provider for the Encryption At Rest private endpoint.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
+                },
+                "regionName": {
+                    "type": "string",
+                    "description": "Cloud provider region in which the Encryption At Rest private endpoint is located.\n"
+                }
+            },
+            "requiredInputs": [
+                "cloudProvider",
+                "projectId",
+                "regionName"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering EncryptionAtRestPrivateEndpoint resources.\n",
+                "properties": {
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "Label that identifies the cloud provider for the Encryption At Rest private endpoint.\n"
+                    },
+                    "errorMessage": {
+                        "type": "string",
+                        "description": "Error message for failures associated with the Encryption At Rest private endpoint.\n"
+                    },
+                    "privateEndpointConnectionName": {
+                        "type": "string",
+                        "description": "Connection name of the Azure Private Endpoint.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
+                    },
+                    "regionName": {
+                        "type": "string",
+                        "description": "Cloud provider region in which the Encryption At Rest private endpoint is located.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "State of the Encryption At Rest private endpoint.\n"
                     }
                 },
                 "type": "object"
@@ -18398,7 +18943,8 @@
                     "description": "Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted\n"
                 },
                 "syncCreation": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.\n"
                 }
             },
             "required": [
@@ -18465,7 +19011,8 @@
                     "description": "Regular frequency and duration when archiving process occurs. See schedule.\n"
                 },
                 "syncCreation": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.\n"
                 }
             },
             "requiredInputs": [
@@ -18536,7 +19083,8 @@
                         "description": "Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted\n"
                     },
                     "syncCreation": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.\n"
                     }
                 },
                 "type": "object"
@@ -19642,7 +20190,8 @@
                 },
                 "ipAddresses": {
                     "$ref": "#/types/mongodbatlas:index/ProjectIpAddresses:ProjectIpAddresses",
-                    "description": "IP addresses in a project categorized by services. See IP Addresses.\n"
+                    "description": "IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.\n",
+                    "deprecationMessage": "This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source."
                 },
                 "isCollectDatabaseSpecificsStatisticsEnabled": {
                     "type": "boolean",
@@ -19804,7 +20353,8 @@
                     },
                     "ipAddresses": {
                         "$ref": "#/types/mongodbatlas:index/ProjectIpAddresses:ProjectIpAddresses",
-                        "description": "IP addresses in a project categorized by services. See IP Addresses.\n"
+                        "description": "IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.\n",
+                        "deprecationMessage": "This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source."
                     },
                     "isCollectDatabaseSpecificsStatisticsEnabled": {
                         "type": "boolean",
@@ -21011,6 +21561,113 @@
                 "type": "object"
             }
         },
+        "mongodbatlas:index/streamProcessor:StreamProcessor": {
+            "description": "## Example Usage\n\n### S\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamInstance;\nimport com.pulumi.mongodbatlas.StreamInstanceArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;\nimport com.pulumi.mongodbatlas.StreamProcessor;\nimport com.pulumi.mongodbatlas.StreamProcessorArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;\nimport com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new StreamInstance(\"example\", StreamInstanceArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"InstanceName\")\n            .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()\n                .region(\"VIRGINIA_USA\")\n                .cloud_provider(\"AWS\")\n                .build())\n            .build());\n\n        var example_sample = new StreamConnection(\"example-sample\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"sample_stream_solar\")\n            .type(\"Sample\")\n            .build());\n\n        var example_cluster = new StreamConnection(\"example-cluster\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"ClusterConnection\")\n            .type(\"Cluster\")\n            .clusterName(clusterName)\n            .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()\n                .role(\"atlasAdmin\")\n                .type(\"BUILT_IN\")\n                .build())\n            .build());\n\n        var example_kafka = new StreamConnection(\"example-kafka\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"KafkaPlaintextConnection\")\n            .type(\"Kafka\")\n            .authentication(StreamConnectionAuthenticationArgs.builder()\n                .mechanism(\"PLAIN\")\n                .username(kafkaUsername)\n                .password(kafkaPassword)\n                .build())\n            .bootstrapServers(\"localhost:9092,localhost:9092\")\n            .config(Map.of(\"auto.offset.reset\", \"earliest\"))\n            .security(StreamConnectionSecurityArgs.builder()\n                .protocol(\"PLAINTEXT\")\n                .build())\n            .build());\n\n        var stream_processor_sample_example = new StreamProcessor(\"stream-processor-sample-example\", StreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(\"sampleProcessorName\")\n            .pipeline(serializeJson(\n                jsonArray(\n                    jsonObject(\n                        jsonProperty(\"$source\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-sample().connectionName())\n                        ))\n                    ), \n                    jsonObject(\n                        jsonProperty(\"$emit\", jsonObject(\n                            jsonProperty(\"connectionName\", \"__testLog\")\n                        ))\n                    )\n                )))\n            .state(\"CREATED\")\n            .build());\n\n        var stream_processor_cluster_example = new StreamProcessor(\"stream-processor-cluster-example\", StreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(\"clusterProcessorName\")\n            .pipeline(serializeJson(\n                jsonArray(\n                    jsonObject(\n                        jsonProperty(\"$source\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-cluster().connectionName())\n                        ))\n                    ), \n                    jsonObject(\n                        jsonProperty(\"$emit\", jsonObject(\n                            jsonProperty(\"connectionName\", \"__testLog\")\n                        ))\n                    )\n                )))\n            .state(\"STARTED\")\n            .build());\n\n        var stream_processor_kafka_example = new StreamProcessor(\"stream-processor-kafka-example\", StreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(\"kafkaProcessorName\")\n            .pipeline(serializeJson(\n                jsonArray(\n                    jsonObject(\n                        jsonProperty(\"$source\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-cluster().connectionName())\n                        ))\n                    ), \n                    jsonObject(\n                        jsonProperty(\"$emit\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-kafka().connectionName()),\n                            jsonProperty(\"topic\", \"example_topic\")\n                        ))\n                    )\n                )))\n            .state(\"CREATED\")\n            .options(StreamProcessorOptionsArgs.builder()\n                .dlq(StreamProcessorOptionsDlqArgs.builder()\n                    .coll(\"exampleColumn\")\n                    .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())\n                    .db(\"exampleDb\")\n                    .build())\n                .build())\n            .build());\n\n        final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .build());\n\n        final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(stream_processor_sample_example.processorName())\n            .build());\n\n        ctx.export(\"streamProcessorsState\", example_stream_processor.applyValue(example_stream_processor -\u003e example_stream_processor.state()));\n        ctx.export(\"streamProcessorsResults\", example_stream_processors.applyValue(example_stream_processors -\u003e example_stream_processors.results()));\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: mongodbatlas:StreamInstance\n    properties:\n      projectId: ${projectId}\n      instanceName: InstanceName\n      dataProcessRegion:\n        region: VIRGINIA_USA\n        cloud_provider: AWS\n  example-sample:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: sample_stream_solar\n      type: Sample\n  example-cluster:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: ClusterConnection\n      type: Cluster\n      clusterName: ${clusterName}\n      dbRoleToExecute:\n        role: atlasAdmin\n        type: BUILT_IN\n  example-kafka:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: KafkaPlaintextConnection\n      type: Kafka\n      authentication:\n        mechanism: PLAIN\n        username: ${kafkaUsername}\n        password: ${kafkaPassword}\n      bootstrapServers: localhost:9092,localhost:9092\n      config:\n        auto.offset.reset: earliest\n      security:\n        protocol: PLAINTEXT\n  stream-processor-sample-example:\n    type: mongodbatlas:StreamProcessor\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      processorName: sampleProcessorName\n      pipeline:\n        fn::toJSON:\n          - $source:\n              connectionName: ${mongodbatlasStreamConnection\"example-sample\"[%!s(MISSING)].connectionName}\n          - $emit:\n              connectionName: __testLog\n      state: CREATED\n  stream-processor-cluster-example:\n    type: mongodbatlas:StreamProcessor\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      processorName: clusterProcessorName\n      pipeline:\n        fn::toJSON:\n          - $source:\n              connectionName: ${mongodbatlasStreamConnection\"example-cluster\"[%!s(MISSING)].connectionName}\n          - $emit:\n              connectionName: __testLog\n      state: STARTED\n  stream-processor-kafka-example:\n    type: mongodbatlas:StreamProcessor\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      processorName: kafkaProcessorName\n      pipeline:\n        fn::toJSON:\n          - $source:\n              connectionName: ${mongodbatlasStreamConnection\"example-cluster\"[%!s(MISSING)].connectionName}\n          - $emit:\n              connectionName: ${mongodbatlasStreamConnection\"example-kafka\"[%!s(MISSING)].connectionName}\n              topic: example_topic\n      state: CREATED\n      options:\n        dlq:\n          coll: exampleColumn\n          connectionName: ${mongodbatlasStreamConnection\"example-cluster\"[%!s(MISSING)].connectionName}\n          db: exampleDb\nvariables:\n  example-stream-processors:\n    fn::invoke:\n      Function: mongodbatlas:getStreamProcessors\n      Arguments:\n        projectId: ${projectId}\n        instanceName: ${example.instanceName}\n  example-stream-processor:\n    fn::invoke:\n      Function: mongodbatlas:getStreamProcessor\n      Arguments:\n        projectId: ${projectId}\n        instanceName: ${example.instanceName}\n        processorName: ${[\"stream-processor-sample-example\"].processorName}\noutputs:\n  # example making use of data sources\n  streamProcessorsState: ${[\"example-stream-processor\"].state}\n  streamProcessorsResults: ${[\"example-stream-processors\"].results}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "instanceName": {
+                    "type": "string",
+                    "description": "Human-readable label that identifies the stream instance.\n"
+                },
+                "options": {
+                    "$ref": "#/types/mongodbatlas:index/StreamProcessorOptions:StreamProcessorOptions",
+                    "description": "Optional configuration for the stream processor.\n"
+                },
+                "pipeline": {
+                    "type": "string",
+                    "description": "Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)\n"
+                },
+                "processorName": {
+                    "type": "string",
+                    "description": "Human-readable label that identifies the stream processor.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to\nstart or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is\ncreated without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,\nthe only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the\nstate is set to STARTED.\n"
+                },
+                "stats": {
+                    "type": "string",
+                    "description": "The stats associated with the stream processor. Refer to the [MongoDB Atlas\nDocs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)\nfor more information.\n"
+                }
+            },
+            "required": [
+                "instanceName",
+                "pipeline",
+                "processorName",
+                "projectId",
+                "state",
+                "stats"
+            ],
+            "inputProperties": {
+                "instanceName": {
+                    "type": "string",
+                    "description": "Human-readable label that identifies the stream instance.\n"
+                },
+                "options": {
+                    "$ref": "#/types/mongodbatlas:index/StreamProcessorOptions:StreamProcessorOptions",
+                    "description": "Optional configuration for the stream processor.\n"
+                },
+                "pipeline": {
+                    "type": "string",
+                    "description": "Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)\n"
+                },
+                "processorName": {
+                    "type": "string",
+                    "description": "Human-readable label that identifies the stream processor.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to\nstart or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is\ncreated without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,\nthe only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the\nstate is set to STARTED.\n"
+                }
+            },
+            "requiredInputs": [
+                "instanceName",
+                "pipeline",
+                "processorName",
+                "projectId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering StreamProcessor resources.\n",
+                "properties": {
+                    "instanceName": {
+                        "type": "string",
+                        "description": "Human-readable label that identifies the stream instance.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/mongodbatlas:index/StreamProcessorOptions:StreamProcessorOptions",
+                        "description": "Optional configuration for the stream processor.\n"
+                    },
+                    "pipeline": {
+                        "type": "string",
+                        "description": "Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)\n"
+                    },
+                    "processorName": {
+                        "type": "string",
+                        "description": "Human-readable label that identifies the stream processor.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to\nstart or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is\ncreated without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,\nthe only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the\nstate is set to STARTED.\n"
+                    },
+                    "stats": {
+                        "type": "string",
+                        "description": "The stats associated with the stream processor. Refer to the [MongoDB Atlas\nDocs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)\nfor more information.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "mongodbatlas:index/team:Team": {
             "description": "## # Resource: mongodbatlas.Team\n\n`mongodbatlas.Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.\n\n\u003e **IMPORTANT:** MongoDB Atlas Team are limited to a maximum of 250 teams in an organization and 100 teams per project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Team(\"test\", {\n    orgId: \"\u003cORGANIZATION-ID\u003e\",\n    name: \"myNewTeam\",\n    usernames: [\n        \"user1@email.com\",\n        \"user2@email.com\",\n        \"user3@email.com\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Team(\"test\",\n    org_id=\"\u003cORGANIZATION-ID\u003e\",\n    name=\"myNewTeam\",\n    usernames=[\n        \"user1@email.com\",\n        \"user2@email.com\",\n        \"user3@email.com\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Mongodbatlas.Team(\"test\", new()\n    {\n        OrgId = \"\u003cORGANIZATION-ID\u003e\",\n        Name = \"myNewTeam\",\n        Usernames = new[]\n        {\n            \"user1@email.com\",\n            \"user2@email.com\",\n            \"user3@email.com\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewTeam(ctx, \"test\", \u0026mongodbatlas.TeamArgs{\n\t\t\tOrgId: pulumi.String(\"\u003cORGANIZATION-ID\u003e\"),\n\t\t\tName:  pulumi.String(\"myNewTeam\"),\n\t\t\tUsernames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"user1@email.com\"),\n\t\t\t\tpulumi.String(\"user2@email.com\"),\n\t\t\t\tpulumi.String(\"user3@email.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.Team;\nimport com.pulumi.mongodbatlas.TeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Team(\"test\", TeamArgs.builder()\n            .orgId(\"\u003cORGANIZATION-ID\u003e\")\n            .name(\"myNewTeam\")\n            .usernames(            \n                \"user1@email.com\",\n                \"user2@email.com\",\n                \"user3@email.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:Team\n    properties:\n      orgId: \u003cORGANIZATION-ID\u003e\n      name: myNewTeam\n      usernames:\n        - user1@email.com\n        - user2@email.com\n        - user3@email.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nTeams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g.\n\n```sh\n$ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935\n```\nSee detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)\n\n",
             "properties": {
@@ -21732,7 +22389,7 @@
                         "type": "string"
                     },
                     "labels": {
-                        "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags.",
+                        "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags",
                         "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getAdvancedClusterLabel:getAdvancedClusterLabel"
@@ -21759,6 +22416,10 @@
                         "type": "boolean"
                     },
                     "projectId": {
+                        "type": "string"
+                    },
+                    "replicaSetScalingStrategy": {
+                        "description": "(Optional) Replica set scaling mode for your cluster.\n",
                         "type": "string"
                     },
                     "replicationSpecs": {
@@ -21812,6 +22473,7 @@
                     "paused",
                     "pitEnabled",
                     "projectId",
+                    "replicaSetScalingStrategy",
                     "replicationSpecs",
                     "rootCertType",
                     "stateName",
@@ -23500,7 +24162,7 @@
                         "type": "string"
                     },
                     "labels": {
-                        "deprecationMessage": "This parameter is deprecated and will be removed by September 2024. Please transition to tags.",
+                        "deprecationMessage": "This parameter is deprecated and will be removed in the future. Please transition to tags",
                         "description": "Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getClusterLabel:getClusterLabel"
@@ -24370,6 +25032,176 @@
                     "id",
                     "projectId",
                     "results"
+                ],
+                "type": "object"
+            }
+        },
+        "mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest": {
+            "description": "## # Data Source: mongodbatlas.EncryptionAtRest\n\n`mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:\n\n[Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)\n[Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)\n[Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)\n\n\n\u003e **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.\n\n\u003e **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n\n## Example Usage\n\n### S\n\n### Configuring encryption at rest using customer key management in AWS\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst setupOnly = new mongodbatlas.CloudProviderAccessSetup(\"setup_only\", {\n    projectId: atlasProjectId,\n    providerName: \"AWS\",\n});\nconst authRole = new mongodbatlas.CloudProviderAccessAuthorization(\"auth_role\", {\n    projectId: atlasProjectId,\n    roleId: setupOnly.roleId,\n    aws: {\n        iamAssumedRoleArn: testRole.arn,\n    },\n});\nconst testEncryptionAtRest = new mongodbatlas.EncryptionAtRest(\"test\", {\n    projectId: atlasProjectId,\n    awsKmsConfig: {\n        enabled: true,\n        customerMasterKeyId: kmsKey.id,\n        region: atlasRegion,\n        roleId: authRole.roleId,\n    },\n});\nconst cluster = new mongodbatlas.AdvancedCluster(\"cluster\", {\n    projectId: testEncryptionAtRest.projectId,\n    name: \"MyCluster\",\n    clusterType: \"REPLICASET\",\n    backupEnabled: true,\n    encryptionAtRestProvider: \"AWS\",\n    replicationSpecs: [{\n        regionConfigs: [{\n            priority: 7,\n            providerName: \"AWS\",\n            regionName: \"US_EAST_1\",\n            electableSpecs: {\n                instanceSize: \"M10\",\n                nodeCount: 3,\n            },\n        }],\n    }],\n});\nconst test = mongodbatlas.getEncryptionAtRestOutput({\n    projectId: testEncryptionAtRest.projectId,\n});\nexport const isAwsKmsEncryptionAtRestValid = test.apply(test =\u003e test.awsKmsConfig?.valid);\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nsetup_only = mongodbatlas.CloudProviderAccessSetup(\"setup_only\",\n    project_id=atlas_project_id,\n    provider_name=\"AWS\")\nauth_role = mongodbatlas.CloudProviderAccessAuthorization(\"auth_role\",\n    project_id=atlas_project_id,\n    role_id=setup_only.role_id,\n    aws={\n        \"iam_assumed_role_arn\": test_role[\"arn\"],\n    })\ntest_encryption_at_rest = mongodbatlas.EncryptionAtRest(\"test\",\n    project_id=atlas_project_id,\n    aws_kms_config={\n        \"enabled\": True,\n        \"customer_master_key_id\": kms_key[\"id\"],\n        \"region\": atlas_region,\n        \"role_id\": auth_role.role_id,\n    })\ncluster = mongodbatlas.AdvancedCluster(\"cluster\",\n    project_id=test_encryption_at_rest.project_id,\n    name=\"MyCluster\",\n    cluster_type=\"REPLICASET\",\n    backup_enabled=True,\n    encryption_at_rest_provider=\"AWS\",\n    replication_specs=[{\n        \"region_configs\": [{\n            \"priority\": 7,\n            \"provider_name\": \"AWS\",\n            \"region_name\": \"US_EAST_1\",\n            \"electable_specs\": {\n                \"instance_size\": \"M10\",\n                \"node_count\": 3,\n            },\n        }],\n    }])\ntest = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)\npulumi.export(\"isAwsKmsEncryptionAtRestValid\", test.aws_kms_config.valid)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var setupOnly = new Mongodbatlas.CloudProviderAccessSetup(\"setup_only\", new()\n    {\n        ProjectId = atlasProjectId,\n        ProviderName = \"AWS\",\n    });\n\n    var authRole = new Mongodbatlas.CloudProviderAccessAuthorization(\"auth_role\", new()\n    {\n        ProjectId = atlasProjectId,\n        RoleId = setupOnly.RoleId,\n        Aws = new Mongodbatlas.Inputs.CloudProviderAccessAuthorizationAwsArgs\n        {\n            IamAssumedRoleArn = testRole.Arn,\n        },\n    });\n\n    var testEncryptionAtRest = new Mongodbatlas.EncryptionAtRest(\"test\", new()\n    {\n        ProjectId = atlasProjectId,\n        AwsKmsConfig = new Mongodbatlas.Inputs.EncryptionAtRestAwsKmsConfigArgs\n        {\n            Enabled = true,\n            CustomerMasterKeyId = kmsKey.Id,\n            Region = atlasRegion,\n            RoleId = authRole.RoleId,\n        },\n    });\n\n    var cluster = new Mongodbatlas.AdvancedCluster(\"cluster\", new()\n    {\n        ProjectId = testEncryptionAtRest.ProjectId,\n        Name = \"MyCluster\",\n        ClusterType = \"REPLICASET\",\n        BackupEnabled = true,\n        EncryptionAtRestProvider = \"AWS\",\n        ReplicationSpecs = new[]\n        {\n            new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs\n            {\n                RegionConfigs = new[]\n                {\n                    new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs\n                    {\n                        Priority = 7,\n                        ProviderName = \"AWS\",\n                        RegionName = \"US_EAST_1\",\n                        ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs\n                        {\n                            InstanceSize = \"M10\",\n                            NodeCount = 3,\n                        },\n                    },\n                },\n            },\n        },\n    });\n\n    var test = Mongodbatlas.GetEncryptionAtRest.Invoke(new()\n    {\n        ProjectId = testEncryptionAtRest.ProjectId,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"isAwsKmsEncryptionAtRestValid\"] = test.Apply(getEncryptionAtRestResult =\u003e getEncryptionAtRestResult.AwsKmsConfig?.Valid),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsetupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, \"setup_only\", \u0026mongodbatlas.CloudProviderAccessSetupArgs{\n\t\t\tProjectId:    pulumi.Any(atlasProjectId),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tauthRole, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, \"auth_role\", \u0026mongodbatlas.CloudProviderAccessAuthorizationArgs{\n\t\t\tProjectId: pulumi.Any(atlasProjectId),\n\t\t\tRoleId:    setupOnly.RoleId,\n\t\t\tAws: \u0026mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{\n\t\t\t\tIamAssumedRoleArn: pulumi.Any(testRole.Arn),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestEncryptionAtRest, err := mongodbatlas.NewEncryptionAtRest(ctx, \"test\", \u0026mongodbatlas.EncryptionAtRestArgs{\n\t\t\tProjectId: pulumi.Any(atlasProjectId),\n\t\t\tAwsKmsConfig: \u0026mongodbatlas.EncryptionAtRestAwsKmsConfigArgs{\n\t\t\t\tEnabled:             pulumi.Bool(true),\n\t\t\t\tCustomerMasterKeyId: pulumi.Any(kmsKey.Id),\n\t\t\t\tRegion:              pulumi.Any(atlasRegion),\n\t\t\t\tRoleId:              authRole.RoleId,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewAdvancedCluster(ctx, \"cluster\", \u0026mongodbatlas.AdvancedClusterArgs{\n\t\t\tProjectId:                testEncryptionAtRest.ProjectId,\n\t\t\tName:                     pulumi.String(\"MyCluster\"),\n\t\t\tClusterType:              pulumi.String(\"REPLICASET\"),\n\t\t\tBackupEnabled:            pulumi.Bool(true),\n\t\t\tEncryptionAtRestProvider: pulumi.String(\"AWS\"),\n\t\t\tReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{\n\t\t\t\t\u0026mongodbatlas.AdvancedClusterReplicationSpecArgs{\n\t\t\t\t\tRegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{\n\t\t\t\t\t\t\tPriority:     pulumi.Int(7),\n\t\t\t\t\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\t\t\t\t\tRegionName:   pulumi.String(\"US_EAST_1\"),\n\t\t\t\t\t\t\tElectableSpecs: \u0026mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{\n\t\t\t\t\t\t\t\tInstanceSize: pulumi.String(\"M10\"),\n\t\t\t\t\t\t\t\tNodeCount:    pulumi.Int(3),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest := mongodbatlas.LookupEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{\n\t\t\tProjectId: testEncryptionAtRest.ProjectId,\n\t\t}, nil)\n\t\tctx.Export(\"isAwsKmsEncryptionAtRestValid\", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {\n\t\t\treturn \u0026test.AwsKmsConfig.Valid, nil\n\t\t}).(pulumi.BoolPtrOutput))\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.CloudProviderAccessSetup;\nimport com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;\nimport com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;\nimport com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;\nimport com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;\nimport com.pulumi.mongodbatlas.EncryptionAtRest;\nimport com.pulumi.mongodbatlas.EncryptionAtRestArgs;\nimport com.pulumi.mongodbatlas.inputs.EncryptionAtRestAwsKmsConfigArgs;\nimport com.pulumi.mongodbatlas.AdvancedCluster;\nimport com.pulumi.mongodbatlas.AdvancedClusterArgs;\nimport com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var setupOnly = new CloudProviderAccessSetup(\"setupOnly\", CloudProviderAccessSetupArgs.builder()\n            .projectId(atlasProjectId)\n            .providerName(\"AWS\")\n            .build());\n\n        var authRole = new CloudProviderAccessAuthorization(\"authRole\", CloudProviderAccessAuthorizationArgs.builder()\n            .projectId(atlasProjectId)\n            .roleId(setupOnly.roleId())\n            .aws(CloudProviderAccessAuthorizationAwsArgs.builder()\n                .iamAssumedRoleArn(testRole.arn())\n                .build())\n            .build());\n\n        var testEncryptionAtRest = new EncryptionAtRest(\"testEncryptionAtRest\", EncryptionAtRestArgs.builder()\n            .projectId(atlasProjectId)\n            .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()\n                .enabled(true)\n                .customerMasterKeyId(kmsKey.id())\n                .region(atlasRegion)\n                .roleId(authRole.roleId())\n                .build())\n            .build());\n\n        var cluster = new AdvancedCluster(\"cluster\", AdvancedClusterArgs.builder()\n            .projectId(testEncryptionAtRest.projectId())\n            .name(\"MyCluster\")\n            .clusterType(\"REPLICASET\")\n            .backupEnabled(true)\n            .encryptionAtRestProvider(\"AWS\")\n            .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()\n                .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()\n                    .priority(7)\n                    .providerName(\"AWS\")\n                    .regionName(\"US_EAST_1\")\n                    .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()\n                        .instanceSize(\"M10\")\n                        .nodeCount(3)\n                        .build())\n                    .build())\n                .build())\n            .build());\n\n        final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()\n            .projectId(testEncryptionAtRest.projectId())\n            .build());\n\n        ctx.export(\"isAwsKmsEncryptionAtRestValid\", test.applyValue(getEncryptionAtRestResult -\u003e getEncryptionAtRestResult).applyValue(test -\u003e test.applyValue(getEncryptionAtRestResult -\u003e getEncryptionAtRestResult.awsKmsConfig().valid())));\n    }\n}\n```\n```yaml\nresources:\n  setupOnly:\n    type: mongodbatlas:CloudProviderAccessSetup\n    name: setup_only\n    properties:\n      projectId: ${atlasProjectId}\n      providerName: AWS\n  authRole:\n    type: mongodbatlas:CloudProviderAccessAuthorization\n    name: auth_role\n    properties:\n      projectId: ${atlasProjectId}\n      roleId: ${setupOnly.roleId}\n      aws:\n        iamAssumedRoleArn: ${testRole.arn}\n  testEncryptionAtRest:\n    type: mongodbatlas:EncryptionAtRest\n    name: test\n    properties:\n      projectId: ${atlasProjectId}\n      awsKmsConfig:\n        enabled: true\n        customerMasterKeyId: ${kmsKey.id}\n        region: ${atlasRegion}\n        roleId: ${authRole.roleId}\n  cluster:\n    type: mongodbatlas:AdvancedCluster\n    properties:\n      projectId: ${testEncryptionAtRest.projectId}\n      name: MyCluster\n      clusterType: REPLICASET\n      backupEnabled: true\n      encryptionAtRestProvider: AWS\n      replicationSpecs:\n        - regionConfigs:\n            - priority: 7\n              providerName: AWS\n              regionName: US_EAST_1\n              electableSpecs:\n                instanceSize: M10\n                nodeCount: 3\nvariables:\n  test:\n    fn::invoke:\n      Function: mongodbatlas:getEncryptionAtRest\n      Arguments:\n        projectId: ${testEncryptionAtRest.projectId}\noutputs:\n  isAwsKmsEncryptionAtRestValid: ${test.awsKmsConfig.valid}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Configuring encryption at rest using customer key management in Azure\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testEncryptionAtRest = new mongodbatlas.EncryptionAtRest(\"test\", {\n    projectId: atlasProjectId,\n    azureKeyVaultConfig: {\n        enabled: true,\n        azureEnvironment: \"AZURE\",\n        tenantId: azureTenantId,\n        subscriptionId: azureSubscriptionId,\n        clientId: azureClientId,\n        secret: azureClientSecret,\n        resourceGroupName: azureResourceGroupName,\n        keyVaultName: azureKeyVaultName,\n        keyIdentifier: azureKeyIdentifier,\n    },\n});\nconst test = mongodbatlas.getEncryptionAtRestOutput({\n    projectId: testEncryptionAtRest.projectId,\n});\nexport const isAzureEncryptionAtRestValid = test.apply(test =\u003e test.azureKeyVaultConfig?.valid);\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_encryption_at_rest = mongodbatlas.EncryptionAtRest(\"test\",\n    project_id=atlas_project_id,\n    azure_key_vault_config={\n        \"enabled\": True,\n        \"azure_environment\": \"AZURE\",\n        \"tenant_id\": azure_tenant_id,\n        \"subscription_id\": azure_subscription_id,\n        \"client_id\": azure_client_id,\n        \"secret\": azure_client_secret,\n        \"resource_group_name\": azure_resource_group_name,\n        \"key_vault_name\": azure_key_vault_name,\n        \"key_identifier\": azure_key_identifier,\n    })\ntest = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)\npulumi.export(\"isAzureEncryptionAtRestValid\", test.azure_key_vault_config.valid)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testEncryptionAtRest = new Mongodbatlas.EncryptionAtRest(\"test\", new()\n    {\n        ProjectId = atlasProjectId,\n        AzureKeyVaultConfig = new Mongodbatlas.Inputs.EncryptionAtRestAzureKeyVaultConfigArgs\n        {\n            Enabled = true,\n            AzureEnvironment = \"AZURE\",\n            TenantId = azureTenantId,\n            SubscriptionId = azureSubscriptionId,\n            ClientId = azureClientId,\n            Secret = azureClientSecret,\n            ResourceGroupName = azureResourceGroupName,\n            KeyVaultName = azureKeyVaultName,\n            KeyIdentifier = azureKeyIdentifier,\n        },\n    });\n\n    var test = Mongodbatlas.GetEncryptionAtRest.Invoke(new()\n    {\n        ProjectId = testEncryptionAtRest.ProjectId,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"isAzureEncryptionAtRestValid\"] = test.Apply(getEncryptionAtRestResult =\u003e getEncryptionAtRestResult.AzureKeyVaultConfig?.Valid),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestEncryptionAtRest, err := mongodbatlas.NewEncryptionAtRest(ctx, \"test\", \u0026mongodbatlas.EncryptionAtRestArgs{\n\t\t\tProjectId: pulumi.Any(atlasProjectId),\n\t\t\tAzureKeyVaultConfig: \u0026mongodbatlas.EncryptionAtRestAzureKeyVaultConfigArgs{\n\t\t\t\tEnabled:           pulumi.Bool(true),\n\t\t\t\tAzureEnvironment:  pulumi.String(\"AZURE\"),\n\t\t\t\tTenantId:          pulumi.Any(azureTenantId),\n\t\t\t\tSubscriptionId:    pulumi.Any(azureSubscriptionId),\n\t\t\t\tClientId:          pulumi.Any(azureClientId),\n\t\t\t\tSecret:            pulumi.Any(azureClientSecret),\n\t\t\t\tResourceGroupName: pulumi.Any(azureResourceGroupName),\n\t\t\t\tKeyVaultName:      pulumi.Any(azureKeyVaultName),\n\t\t\t\tKeyIdentifier:     pulumi.Any(azureKeyIdentifier),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest := mongodbatlas.LookupEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{\n\t\t\tProjectId: testEncryptionAtRest.ProjectId,\n\t\t}, nil)\n\t\tctx.Export(\"isAzureEncryptionAtRestValid\", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {\n\t\t\treturn \u0026test.AzureKeyVaultConfig.Valid, nil\n\t\t}).(pulumi.BoolPtrOutput))\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.EncryptionAtRest;\nimport com.pulumi.mongodbatlas.EncryptionAtRestArgs;\nimport com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testEncryptionAtRest = new EncryptionAtRest(\"testEncryptionAtRest\", EncryptionAtRestArgs.builder()\n            .projectId(atlasProjectId)\n            .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()\n                .enabled(true)\n                .azureEnvironment(\"AZURE\")\n                .tenantId(azureTenantId)\n                .subscriptionId(azureSubscriptionId)\n                .clientId(azureClientId)\n                .secret(azureClientSecret)\n                .resourceGroupName(azureResourceGroupName)\n                .keyVaultName(azureKeyVaultName)\n                .keyIdentifier(azureKeyIdentifier)\n                .build())\n            .build());\n\n        final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()\n            .projectId(testEncryptionAtRest.projectId())\n            .build());\n\n        ctx.export(\"isAzureEncryptionAtRestValid\", test.applyValue(getEncryptionAtRestResult -\u003e getEncryptionAtRestResult).applyValue(test -\u003e test.applyValue(getEncryptionAtRestResult -\u003e getEncryptionAtRestResult.azureKeyVaultConfig().valid())));\n    }\n}\n```\n```yaml\nresources:\n  testEncryptionAtRest:\n    type: mongodbatlas:EncryptionAtRest\n    name: test\n    properties:\n      projectId: ${atlasProjectId}\n      azureKeyVaultConfig:\n        enabled: true\n        azureEnvironment: AZURE\n        tenantId: ${azureTenantId}\n        subscriptionId: ${azureSubscriptionId}\n        clientId: ${azureClientId}\n        secret: ${azureClientSecret}\n        resourceGroupName: ${azureResourceGroupName}\n        keyVaultName: ${azureKeyVaultName}\n        keyIdentifier: ${azureKeyIdentifier}\nvariables:\n  test:\n    fn::invoke:\n      Function: mongodbatlas:getEncryptionAtRest\n      Arguments:\n        projectId: ${testEncryptionAtRest.projectId}\noutputs:\n  isAzureEncryptionAtRestValid: ${test.azureKeyVaultConfig.valid}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003e **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Azure Key Vault using Azure Private Link, ensuring that all traffic between Atlas and Key Vault takes place over Azure’s private network interfaces. Please review `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.\n\n### Configuring encryption at rest using customer key management in GCP\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testEncryptionAtRest = new mongodbatlas.EncryptionAtRest(\"test\", {\n    projectId: atlasProjectId,\n    googleCloudKmsConfig: {\n        enabled: true,\n        serviceAccountKey: \"{\\\"type\\\": \\\"service_account\\\",\\\"project_id\\\": \\\"my-project-common-0\\\",\\\"private_key_id\\\": \\\"e120598ea4f88249469fcdd75a9a785c1bb3\\\",\\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\\"client_email\\\": \\\"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\\\",\\\"client_id\\\": \\\"10180967717292066\\\",\\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\\"token_uri\\\": \\\"https://accounts.google.com/o/oauth2/token\\\",\\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\\\"}\",\n        keyVersionResourceId: \"projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\",\n    },\n});\nconst test = mongodbatlas.getEncryptionAtRestOutput({\n    projectId: testEncryptionAtRest.projectId,\n});\nexport const isGcpEncryptionAtRestValid = test.apply(test =\u003e test.googleCloudKmsConfig?.valid);\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_encryption_at_rest = mongodbatlas.EncryptionAtRest(\"test\",\n    project_id=atlas_project_id,\n    google_cloud_kms_config={\n        \"enabled\": True,\n        \"service_account_key\": \"{\\\"type\\\": \\\"service_account\\\",\\\"project_id\\\": \\\"my-project-common-0\\\",\\\"private_key_id\\\": \\\"e120598ea4f88249469fcdd75a9a785c1bb3\\\",\\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\\"client_email\\\": \\\"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\\\",\\\"client_id\\\": \\\"10180967717292066\\\",\\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\\"token_uri\\\": \\\"https://accounts.google.com/o/oauth2/token\\\",\\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\\\"}\",\n        \"key_version_resource_id\": \"projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\",\n    })\ntest = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)\npulumi.export(\"isGcpEncryptionAtRestValid\", test.google_cloud_kms_config.valid)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testEncryptionAtRest = new Mongodbatlas.EncryptionAtRest(\"test\", new()\n    {\n        ProjectId = atlasProjectId,\n        GoogleCloudKmsConfig = new Mongodbatlas.Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs\n        {\n            Enabled = true,\n            ServiceAccountKey = \"{\\\"type\\\": \\\"service_account\\\",\\\"project_id\\\": \\\"my-project-common-0\\\",\\\"private_key_id\\\": \\\"e120598ea4f88249469fcdd75a9a785c1bb3\\\",\\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\\"client_email\\\": \\\"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\\\",\\\"client_id\\\": \\\"10180967717292066\\\",\\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\\"token_uri\\\": \\\"https://accounts.google.com/o/oauth2/token\\\",\\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\\\"}\",\n            KeyVersionResourceId = \"projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\",\n        },\n    });\n\n    var test = Mongodbatlas.GetEncryptionAtRest.Invoke(new()\n    {\n        ProjectId = testEncryptionAtRest.ProjectId,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"isGcpEncryptionAtRestValid\"] = test.Apply(getEncryptionAtRestResult =\u003e getEncryptionAtRestResult.GoogleCloudKmsConfig?.Valid),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestEncryptionAtRest, err := mongodbatlas.NewEncryptionAtRest(ctx, \"test\", \u0026mongodbatlas.EncryptionAtRestArgs{\n\t\t\tProjectId: pulumi.Any(atlasProjectId),\n\t\t\tGoogleCloudKmsConfig: \u0026mongodbatlas.EncryptionAtRestGoogleCloudKmsConfigArgs{\n\t\t\t\tEnabled:              pulumi.Bool(true),\n\t\t\t\tServiceAccountKey:    pulumi.String(\"{\\\"type\\\": \\\"service_account\\\",\\\"project_id\\\": \\\"my-project-common-0\\\",\\\"private_key_id\\\": \\\"e120598ea4f88249469fcdd75a9a785c1bb3\\\",\\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\\"client_email\\\": \\\"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\\\",\\\"client_id\\\": \\\"10180967717292066\\\",\\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\\"token_uri\\\": \\\"https://accounts.google.com/o/oauth2/token\\\",\\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\\\"}\"),\n\t\t\t\tKeyVersionResourceId: pulumi.String(\"projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest := mongodbatlas.LookupEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{\n\t\t\tProjectId: testEncryptionAtRest.ProjectId,\n\t\t}, nil)\n\t\tctx.Export(\"isGcpEncryptionAtRestValid\", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {\n\t\t\treturn \u0026test.GoogleCloudKmsConfig.Valid, nil\n\t\t}).(pulumi.BoolPtrOutput))\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.EncryptionAtRest;\nimport com.pulumi.mongodbatlas.EncryptionAtRestArgs;\nimport com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testEncryptionAtRest = new EncryptionAtRest(\"testEncryptionAtRest\", EncryptionAtRestArgs.builder()\n            .projectId(atlasProjectId)\n            .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()\n                .enabled(true)\n                .serviceAccountKey(\"{\\\"type\\\": \\\"service_account\\\",\\\"project_id\\\": \\\"my-project-common-0\\\",\\\"private_key_id\\\": \\\"e120598ea4f88249469fcdd75a9a785c1bb3\\\",\\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\\"client_email\\\": \\\"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\\\",\\\"client_id\\\": \\\"10180967717292066\\\",\\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\\"token_uri\\\": \\\"https://accounts.google.com/o/oauth2/token\\\",\\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\\\"}\")\n                .keyVersionResourceId(\"projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\")\n                .build())\n            .build());\n\n        final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()\n            .projectId(testEncryptionAtRest.projectId())\n            .build());\n\n        ctx.export(\"isGcpEncryptionAtRestValid\", test.applyValue(getEncryptionAtRestResult -\u003e getEncryptionAtRestResult).applyValue(test -\u003e test.applyValue(getEncryptionAtRestResult -\u003e getEncryptionAtRestResult.googleCloudKmsConfig().valid())));\n    }\n}\n```\n```yaml\nresources:\n  testEncryptionAtRest:\n    type: mongodbatlas:EncryptionAtRest\n    name: test\n    properties:\n      projectId: ${atlasProjectId}\n      googleCloudKmsConfig:\n        enabled: true\n        serviceAccountKey: '{\"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}'\n        keyVersionResourceId: projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\nvariables:\n  test:\n    fn::invoke:\n      Function: mongodbatlas:getEncryptionAtRest\n      Arguments:\n        projectId: ${testEncryptionAtRest.projectId}\noutputs:\n  isGcpEncryptionAtRestValid: ${test.googleCloudKmsConfig.valid}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getEncryptionAtRest.\n",
+                "properties": {
+                    "projectId": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getEncryptionAtRest.\n",
+                "properties": {
+                    "awsKmsConfig": {
+                        "$ref": "#/types/mongodbatlas:index/getEncryptionAtRestAwsKmsConfig:getEncryptionAtRestAwsKmsConfig",
+                        "description": "Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.\n"
+                    },
+                    "azureKeyVaultConfig": {
+                        "$ref": "#/types/mongodbatlas:index/getEncryptionAtRestAzureKeyVaultConfig:getEncryptionAtRestAzureKeyVaultConfig",
+                        "description": "Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).\n"
+                    },
+                    "googleCloudKmsConfig": {
+                        "$ref": "#/types/mongodbatlas:index/getEncryptionAtRestGoogleCloudKmsConfig:getEncryptionAtRestGoogleCloudKmsConfig",
+                        "description": "Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).\n"
+                    },
+                    "id": {
+                        "description": "The ID of this resource.\n",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "awsKmsConfig",
+                    "azureKeyVaultConfig",
+                    "googleCloudKmsConfig",
+                    "id",
+                    "projectId"
+                ],
+                "type": "object"
+            }
+        },
+        "mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint": {
+            "description": "## # Data Source: mongodbatlas.EncryptionAtRestPrivateEndpoint\n\n`mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.\n\n\u003e **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager. \nTo learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).\n\n## Example Usage\n\n### S\n\n\u003e **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst single = mongodbatlas.getEncryptionAtRestPrivateEndpoint({\n    projectId: atlasProjectId,\n    cloudProvider: \"AZURE\",\n    id: endpoint.id,\n});\nexport const endpointConnectionName = single.then(single =\u003e single.privateEndpointConnectionName);\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nsingle = mongodbatlas.get_encryption_at_rest_private_endpoint(project_id=atlas_project_id,\n    cloud_provider=\"AZURE\",\n    id=endpoint[\"id\"])\npulumi.export(\"endpointConnectionName\", single.private_endpoint_connection_name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()\n    {\n        ProjectId = atlasProjectId,\n        CloudProvider = \"AZURE\",\n        Id = endpoint.Id,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"endpointConnectionName\"] = single.Apply(getEncryptionAtRestPrivateEndpointResult =\u003e getEncryptionAtRestPrivateEndpointResult.PrivateEndpointConnectionName),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsingle, err := mongodbatlas.LookupEncryptionAtRestPrivateEndpoint(ctx, \u0026mongodbatlas.LookupEncryptionAtRestPrivateEndpointArgs{\n\t\t\tProjectId:     atlasProjectId,\n\t\t\tCloudProvider: \"AZURE\",\n\t\t\tId:            endpoint.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"endpointConnectionName\", single.PrivateEndpointConnectionName)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()\n            .projectId(atlasProjectId)\n            .cloudProvider(\"AZURE\")\n            .id(endpoint.id())\n            .build());\n\n        ctx.export(\"endpointConnectionName\", single.applyValue(getEncryptionAtRestPrivateEndpointResult -\u003e getEncryptionAtRestPrivateEndpointResult.privateEndpointConnectionName()));\n    }\n}\n```\n```yaml\nvariables:\n  single:\n    fn::invoke:\n      Function: mongodbatlas:getEncryptionAtRestPrivateEndpoint\n      Arguments:\n        projectId: ${atlasProjectId}\n        cloudProvider: AZURE\n        id: ${endpoint.id}\noutputs:\n  endpointConnectionName: ${single.privateEndpointConnectionName}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getEncryptionAtRestPrivateEndpoint.\n",
+                "properties": {
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "Label that identifies the cloud provider of the private endpoint.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cloudProvider",
+                    "id",
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getEncryptionAtRestPrivateEndpoint.\n",
+                "properties": {
+                    "cloudProvider": {
+                        "description": "Label that identifies the cloud provider of the private endpoint.\n",
+                        "type": "string"
+                    },
+                    "errorMessage": {
+                        "description": "Error message for failures associated with the Encryption At Rest private endpoint.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.\n",
+                        "type": "string"
+                    },
+                    "privateEndpointConnectionName": {
+                        "description": "Connection name of the Azure Private Endpoint.\n",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n",
+                        "type": "string"
+                    },
+                    "regionName": {
+                        "description": "Cloud provider region in which the Encryption At Rest private endpoint is located.\n",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "State of the Encryption At Rest private endpoint.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "cloudProvider",
+                    "errorMessage",
+                    "id",
+                    "privateEndpointConnectionName",
+                    "projectId",
+                    "regionName",
+                    "status"
+                ],
+                "type": "object"
+            }
+        },
+        "mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints": {
+            "description": "## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints\n\n`mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.\n\n\u003e **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager. \nTo learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).\n\n## Example Usage\n\n### S\n\n\u003e **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst plural = mongodbatlas.getEncryptionAtRestPrivateEndpoints({\n    projectId: atlasProjectId,\n    cloudProvider: \"AZURE\",\n});\nexport const numberOfEndpoints = plural.then(plural =\u003e plural.results).length;\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nplural = mongodbatlas.get_encryption_at_rest_private_endpoints(project_id=atlas_project_id,\n    cloud_provider=\"AZURE\")\npulumi.export(\"numberOfEndpoints\", len(plural.results))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var plural = Mongodbatlas.GetEncryptionAtRestPrivateEndpoints.Invoke(new()\n    {\n        ProjectId = atlasProjectId,\n        CloudProvider = \"AZURE\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"numberOfEndpoints\"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =\u003e getEncryptionAtRestPrivateEndpointsResult.Results).Length,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tplural, err := mongodbatlas.LookupEncryptionAtRestPrivateEndpoints(ctx, \u0026mongodbatlas.LookupEncryptionAtRestPrivateEndpointsArgs{\n\t\t\tProjectId:     atlasProjectId,\n\t\t\tCloudProvider: \"AZURE\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"numberOfEndpoints\", pulumi.Int(len(plural.Results)))\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var plural = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoints(GetEncryptionAtRestPrivateEndpointsArgs.builder()\n            .projectId(atlasProjectId)\n            .cloudProvider(\"AZURE\")\n            .build());\n\n        ctx.export(\"numberOfEndpoints\", plural.applyValue(getEncryptionAtRestPrivateEndpointsResult -\u003e getEncryptionAtRestPrivateEndpointsResult.results()).length());\n    }\n}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getEncryptionAtRestPrivateEndpoints.\n",
+                "properties": {
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "Human-readable label that identifies the cloud provider for the private endpoints to return.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cloudProvider",
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getEncryptionAtRestPrivateEndpoints.\n",
+                "properties": {
+                    "cloudProvider": {
+                        "description": "Human-readable label that identifies the cloud provider for the private endpoints to return.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n",
+                        "type": "string"
+                    },
+                    "results": {
+                        "description": "List of returned documents that MongoDB Cloud providers when completing this request.\n",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/getEncryptionAtRestPrivateEndpointsResult:getEncryptionAtRestPrivateEndpointsResult"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "cloudProvider",
+                    "projectId",
+                    "results",
+                    "id"
                 ],
                 "type": "object"
             }
@@ -26921,7 +27753,8 @@
                     },
                     "ipAddresses": {
                         "$ref": "#/types/mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses",
-                        "description": "IP addresses in a project categorized by services. See IP Addresses.\n"
+                        "deprecationMessage": "This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.",
+                        "description": "IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.\n"
                     },
                     "isCollectDatabaseSpecificsStatisticsEnabled": {
                         "description": "Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.\n",
@@ -27256,6 +28089,45 @@
                     "id",
                     "ipAddress",
                     "projectId"
+                ],
+                "type": "object"
+            }
+        },
+        "mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses": {
+            "description": "## # Data Source: mongodbatlas.getProjectIpAddresses\n\n`mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.\n\n## Example Usage\n\n### S\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = mongodbatlas.getProjectIpAddresses({\n    projectId: projectId,\n});\nexport const projectServices = test.then(test =\u003e test.services);\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.get_project_ip_addresses(project_id=project_id)\npulumi.export(\"projectServices\", test.services)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Mongodbatlas.GetProjectIpAddresses.Invoke(new()\n    {\n        ProjectId = projectId,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"projectServices\"] = test.Apply(getProjectIpAddressesResult =\u003e getProjectIpAddressesResult.Services),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := mongodbatlas.LookupProjectIpAddresses(ctx, \u0026mongodbatlas.LookupProjectIpAddressesArgs{\n\t\t\tProjectId: projectId,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"projectServices\", test.Services)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = MongodbatlasFunctions.getProjectIpAddresses(GetProjectIpAddressesArgs.builder()\n            .projectId(projectId)\n            .build());\n\n        ctx.export(\"projectServices\", test.applyValue(getProjectIpAddressesResult -\u003e getProjectIpAddressesResult.services()));\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      Function: mongodbatlas:getProjectIpAddresses\n      Arguments:\n        projectId: ${projectId}\noutputs:\n  projectServices: ${test.services}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getProjectIpAddresses.\n",
+                "properties": {
+                    "projectId": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProjectIpAddresses.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "description": "Unique 24-hexadecimal digit string that identifies your project.\n",
+                        "type": "string"
+                    },
+                    "services": {
+                        "$ref": "#/types/mongodbatlas:index/getProjectIpAddressesServices:getProjectIpAddressesServices",
+                        "description": "List of IP addresses in a project categorized by services.\n"
+                    }
+                },
+                "required": [
+                    "projectId",
+                    "services",
+                    "id"
                 ],
                 "type": "object"
             }
@@ -28335,6 +29207,126 @@
                     "projectId",
                     "results",
                     "totalCount"
+                ],
+                "type": "object"
+            }
+        },
+        "mongodbatlas:index/getStreamProcessor:getStreamProcessor": {
+            "description": "## # Data Source: mongodbatlas.StreamProcessor\n\n`mongodbatlas.StreamProcessor` describes a stream processor.\n\n## Example Usage\n\n### S\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamInstance;\nimport com.pulumi.mongodbatlas.StreamInstanceArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;\nimport com.pulumi.mongodbatlas.StreamProcessor;\nimport com.pulumi.mongodbatlas.StreamProcessorArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;\nimport com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new StreamInstance(\"example\", StreamInstanceArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"InstanceName\")\n            .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()\n                .region(\"VIRGINIA_USA\")\n                .cloud_provider(\"AWS\")\n                .build())\n            .build());\n\n        var example_sample = new StreamConnection(\"example-sample\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"sample_stream_solar\")\n            .type(\"Sample\")\n            .build());\n\n        var example_cluster = new StreamConnection(\"example-cluster\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"ClusterConnection\")\n            .type(\"Cluster\")\n            .clusterName(clusterName)\n            .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()\n                .role(\"atlasAdmin\")\n                .type(\"BUILT_IN\")\n                .build())\n            .build());\n\n        var example_kafka = new StreamConnection(\"example-kafka\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"KafkaPlaintextConnection\")\n            .type(\"Kafka\")\n            .authentication(StreamConnectionAuthenticationArgs.builder()\n                .mechanism(\"PLAIN\")\n                .username(kafkaUsername)\n                .password(kafkaPassword)\n                .build())\n            .bootstrapServers(\"localhost:9092,localhost:9092\")\n            .config(Map.of(\"auto.offset.reset\", \"earliest\"))\n            .security(StreamConnectionSecurityArgs.builder()\n                .protocol(\"PLAINTEXT\")\n                .build())\n            .build());\n\n        var stream_processor_sample_example = new StreamProcessor(\"stream-processor-sample-example\", StreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(\"sampleProcessorName\")\n            .pipeline(serializeJson(\n                jsonArray(\n                    jsonObject(\n                        jsonProperty(\"$source\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-sample().connectionName())\n                        ))\n                    ), \n                    jsonObject(\n                        jsonProperty(\"$emit\", jsonObject(\n                            jsonProperty(\"connectionName\", \"__testLog\")\n                        ))\n                    )\n                )))\n            .state(\"CREATED\")\n            .build());\n\n        var stream_processor_cluster_example = new StreamProcessor(\"stream-processor-cluster-example\", StreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(\"clusterProcessorName\")\n            .pipeline(serializeJson(\n                jsonArray(\n                    jsonObject(\n                        jsonProperty(\"$source\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-cluster().connectionName())\n                        ))\n                    ), \n                    jsonObject(\n                        jsonProperty(\"$emit\", jsonObject(\n                            jsonProperty(\"connectionName\", \"__testLog\")\n                        ))\n                    )\n                )))\n            .state(\"STARTED\")\n            .build());\n\n        var stream_processor_kafka_example = new StreamProcessor(\"stream-processor-kafka-example\", StreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(\"kafkaProcessorName\")\n            .pipeline(serializeJson(\n                jsonArray(\n                    jsonObject(\n                        jsonProperty(\"$source\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-cluster().connectionName())\n                        ))\n                    ), \n                    jsonObject(\n                        jsonProperty(\"$emit\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-kafka().connectionName()),\n                            jsonProperty(\"topic\", \"example_topic\")\n                        ))\n                    )\n                )))\n            .state(\"CREATED\")\n            .options(StreamProcessorOptionsArgs.builder()\n                .dlq(StreamProcessorOptionsDlqArgs.builder()\n                    .coll(\"exampleColumn\")\n                    .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())\n                    .db(\"exampleDb\")\n                    .build())\n                .build())\n            .build());\n\n        final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .build());\n\n        final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(stream_processor_sample_example.processorName())\n            .build());\n\n        ctx.export(\"streamProcessorsState\", example_stream_processor.applyValue(example_stream_processor -\u003e example_stream_processor.state()));\n        ctx.export(\"streamProcessorsResults\", example_stream_processors.applyValue(example_stream_processors -\u003e example_stream_processors.results()));\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: mongodbatlas:StreamInstance\n    properties:\n      projectId: ${projectId}\n      instanceName: InstanceName\n      dataProcessRegion:\n        region: VIRGINIA_USA\n        cloud_provider: AWS\n  example-sample:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: sample_stream_solar\n      type: Sample\n  example-cluster:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: ClusterConnection\n      type: Cluster\n      clusterName: ${clusterName}\n      dbRoleToExecute:\n        role: atlasAdmin\n        type: BUILT_IN\n  example-kafka:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: KafkaPlaintextConnection\n      type: Kafka\n      authentication:\n        mechanism: PLAIN\n        username: ${kafkaUsername}\n        password: ${kafkaPassword}\n      bootstrapServers: localhost:9092,localhost:9092\n      config:\n        auto.offset.reset: earliest\n      security:\n        protocol: PLAINTEXT\n  stream-processor-sample-example:\n    type: mongodbatlas:StreamProcessor\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      processorName: sampleProcessorName\n      pipeline:\n        fn::toJSON:\n          - $source:\n              connectionName: ${mongodbatlasStreamConnection\"example-sample\"[%!s(MISSING)].connectionName}\n          - $emit:\n              connectionName: __testLog\n      state: CREATED\n  stream-processor-cluster-example:\n    type: mongodbatlas:StreamProcessor\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      processorName: clusterProcessorName\n      pipeline:\n        fn::toJSON:\n          - $source:\n              connectionName: ${mongodbatlasStreamConnection\"example-cluster\"[%!s(MISSING)].connectionName}\n          - $emit:\n              connectionName: __testLog\n      state: STARTED\n  stream-processor-kafka-example:\n    type: mongodbatlas:StreamProcessor\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      processorName: kafkaProcessorName\n      pipeline:\n        fn::toJSON:\n          - $source:\n              connectionName: ${mongodbatlasStreamConnection\"example-cluster\"[%!s(MISSING)].connectionName}\n          - $emit:\n              connectionName: ${mongodbatlasStreamConnection\"example-kafka\"[%!s(MISSING)].connectionName}\n              topic: example_topic\n      state: CREATED\n      options:\n        dlq:\n          coll: exampleColumn\n          connectionName: ${mongodbatlasStreamConnection\"example-cluster\"[%!s(MISSING)].connectionName}\n          db: exampleDb\nvariables:\n  example-stream-processors:\n    fn::invoke:\n      Function: mongodbatlas:getStreamProcessors\n      Arguments:\n        projectId: ${projectId}\n        instanceName: ${example.instanceName}\n  example-stream-processor:\n    fn::invoke:\n      Function: mongodbatlas:getStreamProcessor\n      Arguments:\n        projectId: ${projectId}\n        instanceName: ${example.instanceName}\n        processorName: ${[\"stream-processor-sample-example\"].processorName}\noutputs:\n  # example making use of data sources\n  streamProcessorsState: ${[\"example-stream-processor\"].state}\n  streamProcessorsResults: ${[\"example-stream-processors\"].results}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getStreamProcessor.\n",
+                "properties": {
+                    "instanceName": {
+                        "type": "string",
+                        "description": "Human-readable label that identifies the stream instance.\n"
+                    },
+                    "processorName": {
+                        "type": "string",
+                        "description": "Human-readable label that identifies the stream processor.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instanceName",
+                    "processorName",
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getStreamProcessor.\n",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "instanceName": {
+                        "description": "Human-readable label that identifies the stream instance.\n",
+                        "type": "string"
+                    },
+                    "options": {
+                        "$ref": "#/types/mongodbatlas:index/getStreamProcessorOptions:getStreamProcessorOptions"
+                    },
+                    "pipeline": {
+                        "type": "string"
+                    },
+                    "processorName": {
+                        "description": "Human-readable label that identifies the stream processor.\n",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n",
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "stats": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "instanceName",
+                    "options",
+                    "pipeline",
+                    "processorName",
+                    "projectId",
+                    "state",
+                    "stats"
+                ],
+                "type": "object"
+            }
+        },
+        "mongodbatlas:index/getStreamProcessors:getStreamProcessors": {
+            "description": "## # Data Source: mongodbatlas.getStreamProcessors\n\n`mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.\n\n## Example Usage\n\n### S\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamInstance;\nimport com.pulumi.mongodbatlas.StreamInstanceArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;\nimport com.pulumi.mongodbatlas.StreamProcessor;\nimport com.pulumi.mongodbatlas.StreamProcessorArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;\nimport com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new StreamInstance(\"example\", StreamInstanceArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"InstanceName\")\n            .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()\n                .region(\"VIRGINIA_USA\")\n                .cloud_provider(\"AWS\")\n                .build())\n            .build());\n\n        var example_sample = new StreamConnection(\"example-sample\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"sample_stream_solar\")\n            .type(\"Sample\")\n            .build());\n\n        var example_cluster = new StreamConnection(\"example-cluster\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"ClusterConnection\")\n            .type(\"Cluster\")\n            .clusterName(clusterName)\n            .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()\n                .role(\"atlasAdmin\")\n                .type(\"BUILT_IN\")\n                .build())\n            .build());\n\n        var example_kafka = new StreamConnection(\"example-kafka\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"KafkaPlaintextConnection\")\n            .type(\"Kafka\")\n            .authentication(StreamConnectionAuthenticationArgs.builder()\n                .mechanism(\"PLAIN\")\n                .username(kafkaUsername)\n                .password(kafkaPassword)\n                .build())\n            .bootstrapServers(\"localhost:9092,localhost:9092\")\n            .config(Map.of(\"auto.offset.reset\", \"earliest\"))\n            .security(StreamConnectionSecurityArgs.builder()\n                .protocol(\"PLAINTEXT\")\n                .build())\n            .build());\n\n        var stream_processor_sample_example = new StreamProcessor(\"stream-processor-sample-example\", StreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(\"sampleProcessorName\")\n            .pipeline(serializeJson(\n                jsonArray(\n                    jsonObject(\n                        jsonProperty(\"$source\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-sample().connectionName())\n                        ))\n                    ), \n                    jsonObject(\n                        jsonProperty(\"$emit\", jsonObject(\n                            jsonProperty(\"connectionName\", \"__testLog\")\n                        ))\n                    )\n                )))\n            .state(\"CREATED\")\n            .build());\n\n        var stream_processor_cluster_example = new StreamProcessor(\"stream-processor-cluster-example\", StreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(\"clusterProcessorName\")\n            .pipeline(serializeJson(\n                jsonArray(\n                    jsonObject(\n                        jsonProperty(\"$source\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-cluster().connectionName())\n                        ))\n                    ), \n                    jsonObject(\n                        jsonProperty(\"$emit\", jsonObject(\n                            jsonProperty(\"connectionName\", \"__testLog\")\n                        ))\n                    )\n                )))\n            .state(\"STARTED\")\n            .build());\n\n        var stream_processor_kafka_example = new StreamProcessor(\"stream-processor-kafka-example\", StreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(\"kafkaProcessorName\")\n            .pipeline(serializeJson(\n                jsonArray(\n                    jsonObject(\n                        jsonProperty(\"$source\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-cluster().connectionName())\n                        ))\n                    ), \n                    jsonObject(\n                        jsonProperty(\"$emit\", jsonObject(\n                            jsonProperty(\"connectionName\", mongodbatlasStreamConnection.example-kafka().connectionName()),\n                            jsonProperty(\"topic\", \"example_topic\")\n                        ))\n                    )\n                )))\n            .state(\"CREATED\")\n            .options(StreamProcessorOptionsArgs.builder()\n                .dlq(StreamProcessorOptionsDlqArgs.builder()\n                    .coll(\"exampleColumn\")\n                    .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())\n                    .db(\"exampleDb\")\n                    .build())\n                .build())\n            .build());\n\n        final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .build());\n\n        final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .processorName(stream_processor_sample_example.processorName())\n            .build());\n\n        ctx.export(\"streamProcessorsState\", example_stream_processor.applyValue(example_stream_processor -\u003e example_stream_processor.state()));\n        ctx.export(\"streamProcessorsResults\", example_stream_processors.applyValue(example_stream_processors -\u003e example_stream_processors.results()));\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: mongodbatlas:StreamInstance\n    properties:\n      projectId: ${projectId}\n      instanceName: InstanceName\n      dataProcessRegion:\n        region: VIRGINIA_USA\n        cloud_provider: AWS\n  example-sample:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: sample_stream_solar\n      type: Sample\n  example-cluster:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: ClusterConnection\n      type: Cluster\n      clusterName: ${clusterName}\n      dbRoleToExecute:\n        role: atlasAdmin\n        type: BUILT_IN\n  example-kafka:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: KafkaPlaintextConnection\n      type: Kafka\n      authentication:\n        mechanism: PLAIN\n        username: ${kafkaUsername}\n        password: ${kafkaPassword}\n      bootstrapServers: localhost:9092,localhost:9092\n      config:\n        auto.offset.reset: earliest\n      security:\n        protocol: PLAINTEXT\n  stream-processor-sample-example:\n    type: mongodbatlas:StreamProcessor\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      processorName: sampleProcessorName\n      pipeline:\n        fn::toJSON:\n          - $source:\n              connectionName: ${mongodbatlasStreamConnection\"example-sample\"[%!s(MISSING)].connectionName}\n          - $emit:\n              connectionName: __testLog\n      state: CREATED\n  stream-processor-cluster-example:\n    type: mongodbatlas:StreamProcessor\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      processorName: clusterProcessorName\n      pipeline:\n        fn::toJSON:\n          - $source:\n              connectionName: ${mongodbatlasStreamConnection\"example-cluster\"[%!s(MISSING)].connectionName}\n          - $emit:\n              connectionName: __testLog\n      state: STARTED\n  stream-processor-kafka-example:\n    type: mongodbatlas:StreamProcessor\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      processorName: kafkaProcessorName\n      pipeline:\n        fn::toJSON:\n          - $source:\n              connectionName: ${mongodbatlasStreamConnection\"example-cluster\"[%!s(MISSING)].connectionName}\n          - $emit:\n              connectionName: ${mongodbatlasStreamConnection\"example-kafka\"[%!s(MISSING)].connectionName}\n              topic: example_topic\n      state: CREATED\n      options:\n        dlq:\n          coll: exampleColumn\n          connectionName: ${mongodbatlasStreamConnection\"example-cluster\"[%!s(MISSING)].connectionName}\n          db: exampleDb\nvariables:\n  example-stream-processors:\n    fn::invoke:\n      Function: mongodbatlas:getStreamProcessors\n      Arguments:\n        projectId: ${projectId}\n        instanceName: ${example.instanceName}\n  example-stream-processor:\n    fn::invoke:\n      Function: mongodbatlas:getStreamProcessor\n      Arguments:\n        projectId: ${projectId}\n        instanceName: ${example.instanceName}\n        processorName: ${[\"stream-processor-sample-example\"].processorName}\noutputs:\n  # example making use of data sources\n  streamProcessorsState: ${[\"example-stream-processor\"].state}\n  streamProcessorsResults: ${[\"example-stream-processors\"].results}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getStreamProcessors.\n",
+                "properties": {
+                    "instanceName": {
+                        "type": "string",
+                        "description": "Human-readable label that identifies the stream instance.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instanceName",
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getStreamProcessors.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "instanceName": {
+                        "description": "Human-readable label that identifies the stream instance.\n",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n",
+                        "type": "string"
+                    },
+                    "results": {
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/getStreamProcessorsResult:getStreamProcessorsResult"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "instanceName",
+                    "projectId",
+                    "results",
+                    "id"
                 ],
                 "type": "object"
             }

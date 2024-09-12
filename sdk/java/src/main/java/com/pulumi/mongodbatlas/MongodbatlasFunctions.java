@@ -78,6 +78,12 @@ import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
 import com.pulumi.mongodbatlas.inputs.GetDatabaseUserPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
 import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
+import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
+import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetEventTriggerArgs;
 import com.pulumi.mongodbatlas.inputs.GetEventTriggerPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetEventTriggersArgs;
@@ -153,6 +159,8 @@ import com.pulumi.mongodbatlas.inputs.GetProjectInvitationArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectInvitationPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectsPlainArgs;
@@ -184,6 +192,10 @@ import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamInstancePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamInstancesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamProcessorPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamsArgs;
@@ -230,6 +242,9 @@ import com.pulumi.mongodbatlas.outputs.GetDataLakePipelineRunsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelinesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetDatabaseUserResult;
 import com.pulumi.mongodbatlas.outputs.GetDatabaseUsersInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetEncryptionAtRestPrivateEndpointResult;
+import com.pulumi.mongodbatlas.outputs.GetEncryptionAtRestPrivateEndpointsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetEncryptionAtRestResult;
 import com.pulumi.mongodbatlas.outputs.GetEventTriggerResult;
 import com.pulumi.mongodbatlas.outputs.GetEventTriggersInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceResult;
@@ -267,6 +282,7 @@ import com.pulumi.mongodbatlas.outputs.GetProjectApiKeyResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectApiKeysInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectInvitationResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAccessListResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectIpAddressesResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetPushBasedLogExportResult;
@@ -284,6 +300,8 @@ import com.pulumi.mongodbatlas.outputs.GetStreamConnectionResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamInstanceResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamInstancesInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamProcessorResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamProcessorsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamsResult;
 import com.pulumi.mongodbatlas.outputs.GetThirdPartyIntegrationResult;
@@ -10812,6 +10830,1286 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", TypeShape.of(GetDatabaseUsersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRest
+     * 
+     * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
+     * 
+     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * 
+     * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
+     * 
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * ### Configuring encryption at rest using customer key management in AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAwsKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .region(atlasRegion)
+     *                 .roleId(authRole.roleId())
+     *                 .build())
+     *             .build());
+     * 
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .name("MyCluster")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .encryptionAtRestProvider("AWS")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAwsKmsEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.awsKmsConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Configuring encryption at rest using customer key management in Azure
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .azureEnvironment("AZURE")
+     *                 .tenantId(azureTenantId)
+     *                 .subscriptionId(azureSubscriptionId)
+     *                 .clientId(azureClientId)
+     *                 .secret(azureClientSecret)
+     *                 .resourceGroupName(azureResourceGroupName)
+     *                 .keyVaultName(azureKeyVaultName)
+     *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAzureEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.azureKeyVaultConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Azure Key Vault using Azure Private Link, ensuring that all traffic between Atlas and Key Vault takes place over Azure’s private network interfaces. Please review `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
+     * 
+     * ### Configuring encryption at rest using customer key management in GCP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isGcpEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.googleCloudKmsConfig().valid())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetEncryptionAtRestResult> getEncryptionAtRest(GetEncryptionAtRestArgs args) {
+        return getEncryptionAtRest(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRest
+     * 
+     * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
+     * 
+     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * 
+     * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
+     * 
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * ### Configuring encryption at rest using customer key management in AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAwsKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .region(atlasRegion)
+     *                 .roleId(authRole.roleId())
+     *                 .build())
+     *             .build());
+     * 
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .name("MyCluster")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .encryptionAtRestProvider("AWS")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAwsKmsEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.awsKmsConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Configuring encryption at rest using customer key management in Azure
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .azureEnvironment("AZURE")
+     *                 .tenantId(azureTenantId)
+     *                 .subscriptionId(azureSubscriptionId)
+     *                 .clientId(azureClientId)
+     *                 .secret(azureClientSecret)
+     *                 .resourceGroupName(azureResourceGroupName)
+     *                 .keyVaultName(azureKeyVaultName)
+     *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAzureEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.azureKeyVaultConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Azure Key Vault using Azure Private Link, ensuring that all traffic between Atlas and Key Vault takes place over Azure’s private network interfaces. Please review `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
+     * 
+     * ### Configuring encryption at rest using customer key management in GCP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isGcpEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.googleCloudKmsConfig().valid())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetEncryptionAtRestResult> getEncryptionAtRestPlain(GetEncryptionAtRestPlainArgs args) {
+        return getEncryptionAtRestPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRest
+     * 
+     * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
+     * 
+     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * 
+     * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
+     * 
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * ### Configuring encryption at rest using customer key management in AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAwsKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .region(atlasRegion)
+     *                 .roleId(authRole.roleId())
+     *                 .build())
+     *             .build());
+     * 
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .name("MyCluster")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .encryptionAtRestProvider("AWS")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAwsKmsEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.awsKmsConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Configuring encryption at rest using customer key management in Azure
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .azureEnvironment("AZURE")
+     *                 .tenantId(azureTenantId)
+     *                 .subscriptionId(azureSubscriptionId)
+     *                 .clientId(azureClientId)
+     *                 .secret(azureClientSecret)
+     *                 .resourceGroupName(azureResourceGroupName)
+     *                 .keyVaultName(azureKeyVaultName)
+     *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAzureEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.azureKeyVaultConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Azure Key Vault using Azure Private Link, ensuring that all traffic between Atlas and Key Vault takes place over Azure’s private network interfaces. Please review `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
+     * 
+     * ### Configuring encryption at rest using customer key management in GCP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isGcpEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.googleCloudKmsConfig().valid())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetEncryptionAtRestResult> getEncryptionAtRest(GetEncryptionAtRestArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", TypeShape.of(GetEncryptionAtRestResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRest
+     * 
+     * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
+     * 
+     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * 
+     * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
+     * 
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * ### Configuring encryption at rest using customer key management in AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAwsKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .region(atlasRegion)
+     *                 .roleId(authRole.roleId())
+     *                 .build())
+     *             .build());
+     * 
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .name("MyCluster")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .encryptionAtRestProvider("AWS")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAwsKmsEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.awsKmsConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Configuring encryption at rest using customer key management in Azure
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .azureEnvironment("AZURE")
+     *                 .tenantId(azureTenantId)
+     *                 .subscriptionId(azureSubscriptionId)
+     *                 .clientId(azureClientId)
+     *                 .secret(azureClientSecret)
+     *                 .resourceGroupName(azureResourceGroupName)
+     *                 .keyVaultName(azureKeyVaultName)
+     *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAzureEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.azureKeyVaultConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Azure Key Vault using Azure Private Link, ensuring that all traffic between Atlas and Key Vault takes place over Azure’s private network interfaces. Please review `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
+     * 
+     * ### Configuring encryption at rest using customer key management in GCP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isGcpEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.googleCloudKmsConfig().valid())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetEncryptionAtRestResult> getEncryptionAtRestPlain(GetEncryptionAtRestPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", TypeShape.of(GetEncryptionAtRestResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRestPrivateEndpoint
+     * 
+     * `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .id(endpoint.id())
+     *             .build());
+     * 
+     *         ctx.export("endpointConnectionName", single.applyValue(getEncryptionAtRestPrivateEndpointResult -> getEncryptionAtRestPrivateEndpointResult.privateEndpointConnectionName()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetEncryptionAtRestPrivateEndpointResult> getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs args) {
+        return getEncryptionAtRestPrivateEndpoint(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRestPrivateEndpoint
+     * 
+     * `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .id(endpoint.id())
+     *             .build());
+     * 
+     *         ctx.export("endpointConnectionName", single.applyValue(getEncryptionAtRestPrivateEndpointResult -> getEncryptionAtRestPrivateEndpointResult.privateEndpointConnectionName()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetEncryptionAtRestPrivateEndpointResult> getEncryptionAtRestPrivateEndpointPlain(GetEncryptionAtRestPrivateEndpointPlainArgs args) {
+        return getEncryptionAtRestPrivateEndpointPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRestPrivateEndpoint
+     * 
+     * `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .id(endpoint.id())
+     *             .build());
+     * 
+     *         ctx.export("endpointConnectionName", single.applyValue(getEncryptionAtRestPrivateEndpointResult -> getEncryptionAtRestPrivateEndpointResult.privateEndpointConnectionName()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetEncryptionAtRestPrivateEndpointResult> getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", TypeShape.of(GetEncryptionAtRestPrivateEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRestPrivateEndpoint
+     * 
+     * `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .id(endpoint.id())
+     *             .build());
+     * 
+     *         ctx.export("endpointConnectionName", single.applyValue(getEncryptionAtRestPrivateEndpointResult -> getEncryptionAtRestPrivateEndpointResult.privateEndpointConnectionName()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetEncryptionAtRestPrivateEndpointResult> getEncryptionAtRestPrivateEndpointPlain(GetEncryptionAtRestPrivateEndpointPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", TypeShape.of(GetEncryptionAtRestPrivateEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
+     * 
+     * `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var plural = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoints(GetEncryptionAtRestPrivateEndpointsArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .build());
+     * 
+     *         ctx.export("numberOfEndpoints", plural.applyValue(getEncryptionAtRestPrivateEndpointsResult -> getEncryptionAtRestPrivateEndpointsResult.results()).length());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetEncryptionAtRestPrivateEndpointsInvokeResult> getEncryptionAtRestPrivateEndpoints(GetEncryptionAtRestPrivateEndpointsArgs args) {
+        return getEncryptionAtRestPrivateEndpoints(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
+     * 
+     * `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var plural = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoints(GetEncryptionAtRestPrivateEndpointsArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .build());
+     * 
+     *         ctx.export("numberOfEndpoints", plural.applyValue(getEncryptionAtRestPrivateEndpointsResult -> getEncryptionAtRestPrivateEndpointsResult.results()).length());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetEncryptionAtRestPrivateEndpointsInvokeResult> getEncryptionAtRestPrivateEndpointsPlain(GetEncryptionAtRestPrivateEndpointsPlainArgs args) {
+        return getEncryptionAtRestPrivateEndpointsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
+     * 
+     * `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var plural = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoints(GetEncryptionAtRestPrivateEndpointsArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .build());
+     * 
+     *         ctx.export("numberOfEndpoints", plural.applyValue(getEncryptionAtRestPrivateEndpointsResult -> getEncryptionAtRestPrivateEndpointsResult.results()).length());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetEncryptionAtRestPrivateEndpointsInvokeResult> getEncryptionAtRestPrivateEndpoints(GetEncryptionAtRestPrivateEndpointsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", TypeShape.of(GetEncryptionAtRestPrivateEndpointsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
+     * 
+     * `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var plural = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoints(GetEncryptionAtRestPrivateEndpointsArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .build());
+     * 
+     *         ctx.export("numberOfEndpoints", plural.applyValue(getEncryptionAtRestPrivateEndpointsResult -> getEncryptionAtRestPrivateEndpointsResult.results()).length());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetEncryptionAtRestPrivateEndpointsInvokeResult> getEncryptionAtRestPrivateEndpointsPlain(GetEncryptionAtRestPrivateEndpointsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", TypeShape.of(GetEncryptionAtRestPrivateEndpointsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * ## # Data Source: mongodbatlas.EventTrigger
      * 
      * `mongodbatlas.EventTrigger` describes an Event Trigger.
@@ -21292,6 +22590,190 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", TypeShape.of(GetProjectIpAccessListResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.getProjectIpAddresses
+     * 
+     * `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getProjectIpAddresses(GetProjectIpAddressesArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("projectServices", test.applyValue(getProjectIpAddressesResult -> getProjectIpAddressesResult.services()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetProjectIpAddressesResult> getProjectIpAddresses(GetProjectIpAddressesArgs args) {
+        return getProjectIpAddresses(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getProjectIpAddresses
+     * 
+     * `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getProjectIpAddresses(GetProjectIpAddressesArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("projectServices", test.applyValue(getProjectIpAddressesResult -> getProjectIpAddressesResult.services()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetProjectIpAddressesResult> getProjectIpAddressesPlain(GetProjectIpAddressesPlainArgs args) {
+        return getProjectIpAddressesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getProjectIpAddresses
+     * 
+     * `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getProjectIpAddresses(GetProjectIpAddressesArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("projectServices", test.applyValue(getProjectIpAddressesResult -> getProjectIpAddressesResult.services()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetProjectIpAddressesResult> getProjectIpAddresses(GetProjectIpAddressesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", TypeShape.of(GetProjectIpAddressesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getProjectIpAddresses
+     * 
+     * `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getProjectIpAddresses(GetProjectIpAddressesArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("projectServices", test.applyValue(getProjectIpAddressesResult -> getProjectIpAddressesResult.services()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetProjectIpAddressesResult> getProjectIpAddressesPlain(GetProjectIpAddressesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", TypeShape.of(GetProjectIpAddressesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * ## # Data Source: mongodbatlas.getProjects
      * 
      * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
@@ -24246,6 +25728,1454 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetStreamInstancesInvokeResult> getStreamInstancesPlain(GetStreamInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamInstances:getStreamInstances", TypeShape.of(GetStreamInstancesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamProcessor
+     * 
+     * `mongodbatlas.StreamProcessor` describes a stream processor.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "example_topic")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamProcessorResult> getStreamProcessor(GetStreamProcessorArgs args) {
+        return getStreamProcessor(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamProcessor
+     * 
+     * `mongodbatlas.StreamProcessor` describes a stream processor.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "example_topic")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamProcessorResult> getStreamProcessorPlain(GetStreamProcessorPlainArgs args) {
+        return getStreamProcessorPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamProcessor
+     * 
+     * `mongodbatlas.StreamProcessor` describes a stream processor.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "example_topic")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamProcessorResult> getStreamProcessor(GetStreamProcessorArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamProcessor:getStreamProcessor", TypeShape.of(GetStreamProcessorResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamProcessor
+     * 
+     * `mongodbatlas.StreamProcessor` describes a stream processor.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "example_topic")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamProcessorResult> getStreamProcessorPlain(GetStreamProcessorPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamProcessor:getStreamProcessor", TypeShape.of(GetStreamProcessorResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamProcessors
+     * 
+     * `mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "example_topic")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamProcessorsInvokeResult> getStreamProcessors(GetStreamProcessorsArgs args) {
+        return getStreamProcessors(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamProcessors
+     * 
+     * `mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "example_topic")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamProcessorsInvokeResult> getStreamProcessorsPlain(GetStreamProcessorsPlainArgs args) {
+        return getStreamProcessorsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamProcessors
+     * 
+     * `mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "example_topic")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamProcessorsInvokeResult> getStreamProcessors(GetStreamProcessorsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamProcessors:getStreamProcessors", TypeShape.of(GetStreamProcessorsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamProcessors
+     * 
+     * `mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", "__testLog")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "example_topic")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamProcessorsInvokeResult> getStreamProcessorsPlain(GetStreamProcessorsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamProcessors:getStreamProcessors", TypeShape.of(GetStreamProcessorsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## # Data Source: mongodbatlas.Team

@@ -41,6 +41,7 @@ class OnlineArchiveArgs:
         :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
+        :param pulumi.Input[bool] sync_creation: Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "coll_name", coll_name)
@@ -197,6 +198,9 @@ class OnlineArchiveArgs:
     @property
     @pulumi.getter(name="syncCreation")
     def sync_creation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+        """
         return pulumi.get(self, "sync_creation")
 
     @sync_creation.setter
@@ -236,6 +240,7 @@ class _OnlineArchiveState:
         :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[str] state: Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+        :param pulumi.Input[bool] sync_creation: Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
         """
         if archive_id is not None:
             pulumi.set(__self__, "archive_id", archive_id)
@@ -425,6 +430,9 @@ class _OnlineArchiveState:
     @property
     @pulumi.getter(name="syncCreation")
     def sync_creation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+        """
         return pulumi.get(self, "sync_creation")
 
     @sync_creation.setter
@@ -570,6 +578,7 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
+        :param pulumi.Input[bool] sync_creation: Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
         """
         ...
     @overload
@@ -788,6 +797,7 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[str] state: Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+        :param pulumi.Input[bool] sync_creation: Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -916,5 +926,8 @@ class OnlineArchive(pulumi.CustomResource):
     @property
     @pulumi.getter(name="syncCreation")
     def sync_creation(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+        """
         return pulumi.get(self, "sync_creation")
 

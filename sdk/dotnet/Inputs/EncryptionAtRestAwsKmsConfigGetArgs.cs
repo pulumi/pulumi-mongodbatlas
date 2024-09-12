@@ -14,6 +14,10 @@ namespace Pulumi.Mongodbatlas.Inputs
     {
         [Input("accessKeyId")]
         private Input<string>? _accessKeyId;
+
+        /// <summary>
+        /// Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
+        /// </summary>
         public Input<string>? AccessKeyId
         {
             get => _accessKeyId;
@@ -28,7 +32,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         private Input<string>? _customerMasterKeyId;
 
         /// <summary>
-        /// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
+        /// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
         /// </summary>
         public Input<string>? CustomerMasterKeyId
         {
@@ -41,25 +45,29 @@ namespace Pulumi.Mongodbatlas.Inputs
         }
 
         /// <summary>
-        /// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
+        /// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
+        /// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
+        /// Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
         /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 
         [Input("secretAccessKey")]
         private Input<string>? _secretAccessKey;
+
+        /// <summary>
+        /// Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
+        /// </summary>
         public Input<string>? SecretAccessKey
         {
             get => _secretAccessKey;
@@ -69,6 +77,12 @@ namespace Pulumi.Mongodbatlas.Inputs
                 _secretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
+        /// </summary>
+        [Input("valid")]
+        public Input<bool>? Valid { get; set; }
 
         public EncryptionAtRestAwsKmsConfigGetArgs()
         {

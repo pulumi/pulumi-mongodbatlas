@@ -13,6 +13,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetProjectIpAddressesServicesResult
     {
+        /// <summary>
+        /// IP addresses of clusters.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetProjectIpAddressesServicesClusterResult> Clusters;
 
         [OutputConstructor]

@@ -14,6 +14,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAdvancedClustersResultAdvancedConfigurationResult
     {
         /// <summary>
+        /// (Optional) The minimum pre- and post-image retention time in seconds.
+        /// </summary>
+        public readonly int ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         /// </summary>
         public readonly string DefaultReadConcern;
@@ -53,10 +57,15 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         /// </summary>
         public readonly int SampleSizeBiConnector;
+        /// <summary>
+        /// (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        /// </summary>
         public readonly int TransactionLifetimeLimitSeconds;
 
         [OutputConstructor]
         private GetAdvancedClustersResultAdvancedConfigurationResult(
+            int changeStreamOptionsPreAndPostImagesExpireAfterSeconds,
+
             string defaultReadConcern,
 
             string defaultWriteConcern,
@@ -79,6 +88,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             int transactionLifetimeLimitSeconds)
         {
+            ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
             DefaultReadConcern = defaultReadConcern;
             DefaultWriteConcern = defaultWriteConcern;
             FailIndexKeyTooLong = failIndexKeyTooLong;

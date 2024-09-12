@@ -11,17 +11,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetProjectIpAddressesServicesCluster {
+    /**
+     * @return Human-readable label that identifies the cluster.
+     * 
+     */
     private String clusterName;
+    /**
+     * @return List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+     * 
+     */
     private List<String> inbounds;
+    /**
+     * @return List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+     * 
+     */
     private List<String> outbounds;
 
     private GetProjectIpAddressesServicesCluster() {}
+    /**
+     * @return Human-readable label that identifies the cluster.
+     * 
+     */
     public String clusterName() {
         return this.clusterName;
     }
+    /**
+     * @return List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+     * 
+     */
     public List<String> inbounds() {
         return this.inbounds;
     }
+    /**
+     * @return List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+     * 
+     */
     public List<String> outbounds() {
         return this.outbounds;
     }

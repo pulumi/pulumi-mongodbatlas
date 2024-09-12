@@ -71,10 +71,10 @@ public final class GetAdvancedClusterResult {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * This parameter is deprecated and will be removed in the future. Please transition to tags
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     private List<GetAdvancedClusterLabel> labels;
     /**
      * @return Version of the cluster to deploy.
@@ -98,6 +98,11 @@ public final class GetAdvancedClusterResult {
      */
     private Boolean pitEnabled;
     private String projectId;
+    /**
+     * @return (Optional) Replica set scaling mode for your cluster.
+     * 
+     */
+    private String replicaSetScalingStrategy;
     /**
      * @return List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
      * 
@@ -201,10 +206,10 @@ public final class GetAdvancedClusterResult {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
+     * This parameter is deprecated and will be removed in the future. Please transition to tags
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
+    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     public List<GetAdvancedClusterLabel> labels() {
         return this.labels;
     }
@@ -241,6 +246,13 @@ public final class GetAdvancedClusterResult {
     }
     public String projectId() {
         return this.projectId;
+    }
+    /**
+     * @return (Optional) Replica set scaling mode for your cluster.
+     * 
+     */
+    public String replicaSetScalingStrategy() {
+        return this.replicaSetScalingStrategy;
     }
     /**
      * @return List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
@@ -314,6 +326,7 @@ public final class GetAdvancedClusterResult {
         private Boolean paused;
         private Boolean pitEnabled;
         private String projectId;
+        private String replicaSetScalingStrategy;
         private List<GetAdvancedClusterReplicationSpec> replicationSpecs;
         private String rootCertType;
         private String stateName;
@@ -341,6 +354,7 @@ public final class GetAdvancedClusterResult {
     	      this.paused = defaults.paused;
     	      this.pitEnabled = defaults.pitEnabled;
     	      this.projectId = defaults.projectId;
+    	      this.replicaSetScalingStrategy = defaults.replicaSetScalingStrategy;
     	      this.replicationSpecs = defaults.replicationSpecs;
     	      this.rootCertType = defaults.rootCertType;
     	      this.stateName = defaults.stateName;
@@ -499,6 +513,14 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder replicaSetScalingStrategy(String replicaSetScalingStrategy) {
+            if (replicaSetScalingStrategy == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "replicaSetScalingStrategy");
+            }
+            this.replicaSetScalingStrategy = replicaSetScalingStrategy;
+            return this;
+        }
+        @CustomType.Setter
         public Builder replicationSpecs(List<GetAdvancedClusterReplicationSpec> replicationSpecs) {
             if (replicationSpecs == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "replicationSpecs");
@@ -577,6 +599,7 @@ public final class GetAdvancedClusterResult {
             _resultValue.paused = paused;
             _resultValue.pitEnabled = pitEnabled;
             _resultValue.projectId = projectId;
+            _resultValue.replicaSetScalingStrategy = replicaSetScalingStrategy;
             _resultValue.replicationSpecs = replicationSpecs;
             _resultValue.rootCertType = rootCertType;
             _resultValue.stateName = stateName;

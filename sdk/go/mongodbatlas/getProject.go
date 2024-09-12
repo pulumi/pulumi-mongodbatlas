@@ -149,7 +149,9 @@ type LookupProjectResult struct {
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	Created string `pulumi:"created"`
 	Id      string `pulumi:"id"`
-	// IP addresses in a project categorized by services. See IP Addresses.
+	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+	//
+	// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectIpAddresses `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
@@ -234,7 +236,9 @@ func (o LookupProjectResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IP addresses in a project categorized by services. See IP Addresses.
+// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+//
+// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
 func (o LookupProjectResultOutput) IpAddresses() GetProjectIpAddressesOutput {
 	return o.ApplyT(func(v LookupProjectResult) GetProjectIpAddresses { return v.IpAddresses }).(GetProjectIpAddressesOutput)
 }

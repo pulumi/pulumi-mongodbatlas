@@ -394,9 +394,17 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
     public Output<String> state() {
         return this.state;
     }
+    /**
+     * Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+     * 
+     */
     @Export(name="syncCreation", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> syncCreation;
 
+    /**
+     * @return Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
+     * 
+     */
     public Output<Optional<Boolean>> syncCreation() {
         return Codegen.optional(this.syncCreation);
     }
