@@ -18,6 +18,7 @@ import (
 	"context"
 	"fmt"
 	"path/filepath"
+	"regexp"
 	"unicode"
 
 	// Enable embedding metadata
@@ -28,6 +29,7 @@ import (
 	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
@@ -89,6 +91,7 @@ func Provider() tfbridge.ProviderInfo {
 			"public_key":  {MarkAsOptional: tfbridge.True()},
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
+		DocRules:     &tfbridge.DocRuleInfo{EditRules: docEditRules},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"mongodbatlas_privatelink_endpoint":         {Tok: makeResource(mainMod, "PrivateLinkEndpoint")},
 			"mongodbatlas_privatelink_endpoint_service": {Tok: makeResource(mainMod, "PrivateLinkEndpointService")},
@@ -159,6 +162,36 @@ func Provider() tfbridge.ProviderInfo {
 	prov.MustApplyAutoAliases()
 
 	return prov
+}
+
+func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	return append(
+		defaults,
+		skipSections(),
+	)
+}
+
+// Removes a set of sections not applicable to Pulumi
+func skipSections() tfbridge.DocsEdit {
+	headersRegexps := []*regexp.Regexp{
+		regexp.MustCompile("Compatibility Matrix"),
+		regexp.MustCompile("Supported OS and Architectures"),
+		regexp.MustCompile("Helpful Links/Information"),
+		regexp.MustCompile("Examples from MongoDB and the Community"),
+		regexp.MustCompile("MongoDB Atlas Modules"),
+	}
+	return tfbridge.DocsEdit{Path: "index.md",
+		Edit: func(_ string, content []byte) ([]byte, error) {
+			return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
+				for _, header := range headersRegexps {
+					if header.Match([]byte(headerText)) {
+						return true
+					}
+				}
+				return false
+			})
+		},
+	}
 }
 
 var noUpstreamDocs = &tfbridge.DocInfo{AllowMissing: true}
