@@ -100,14 +100,20 @@ type Get509AuthenticationDatabaseUserResult struct {
 
 func Get509AuthenticationDatabaseUserOutput(ctx *pulumi.Context, args Get509AuthenticationDatabaseUserOutputArgs, opts ...pulumi.InvokeOption) Get509AuthenticationDatabaseUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (Get509AuthenticationDatabaseUserResult, error) {
+		ApplyT(func(v interface{}) (Get509AuthenticationDatabaseUserResultOutput, error) {
 			args := v.(Get509AuthenticationDatabaseUserArgs)
-			r, err := Get509AuthenticationDatabaseUser(ctx, &args, opts...)
-			var s Get509AuthenticationDatabaseUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv Get509AuthenticationDatabaseUserResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args, &rv, "", opts...)
+			if err != nil {
+				return Get509AuthenticationDatabaseUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(Get509AuthenticationDatabaseUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(Get509AuthenticationDatabaseUserResultOutput), nil
+			}
+			return output, nil
 		}).(Get509AuthenticationDatabaseUserResultOutput)
 }
 

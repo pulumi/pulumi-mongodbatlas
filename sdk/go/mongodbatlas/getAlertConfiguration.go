@@ -209,14 +209,20 @@ type LookupAlertConfigurationResult struct {
 
 func LookupAlertConfigurationOutput(ctx *pulumi.Context, args LookupAlertConfigurationOutputArgs, opts ...pulumi.InvokeOption) LookupAlertConfigurationResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAlertConfigurationResult, error) {
+		ApplyT(func(v interface{}) (LookupAlertConfigurationResultOutput, error) {
 			args := v.(LookupAlertConfigurationArgs)
-			r, err := LookupAlertConfiguration(ctx, &args, opts...)
-			var s LookupAlertConfigurationResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAlertConfigurationResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAlertConfigurationResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAlertConfigurationResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAlertConfigurationResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAlertConfigurationResultOutput)
 }
 

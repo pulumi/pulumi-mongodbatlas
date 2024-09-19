@@ -202,14 +202,20 @@ type LookupBackupCompliancePolicyResult struct {
 
 func LookupBackupCompliancePolicyOutput(ctx *pulumi.Context, args LookupBackupCompliancePolicyOutputArgs, opts ...pulumi.InvokeOption) LookupBackupCompliancePolicyResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupBackupCompliancePolicyResult, error) {
+		ApplyT(func(v interface{}) (LookupBackupCompliancePolicyResultOutput, error) {
 			args := v.(LookupBackupCompliancePolicyArgs)
-			r, err := LookupBackupCompliancePolicy(ctx, &args, opts...)
-			var s LookupBackupCompliancePolicyResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupBackupCompliancePolicyResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", args, &rv, "", opts...)
+			if err != nil {
+				return LookupBackupCompliancePolicyResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupBackupCompliancePolicyResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupBackupCompliancePolicyResultOutput), nil
+			}
+			return output, nil
 		}).(LookupBackupCompliancePolicyResultOutput)
 }
 

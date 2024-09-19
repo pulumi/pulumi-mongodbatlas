@@ -73,14 +73,20 @@ type GetFederatedSettingsResult struct {
 
 func GetFederatedSettingsOutput(ctx *pulumi.Context, args GetFederatedSettingsOutputArgs, opts ...pulumi.InvokeOption) GetFederatedSettingsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetFederatedSettingsResult, error) {
+		ApplyT(func(v interface{}) (GetFederatedSettingsResultOutput, error) {
 			args := v.(GetFederatedSettingsArgs)
-			r, err := GetFederatedSettings(ctx, &args, opts...)
-			var s GetFederatedSettingsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetFederatedSettingsResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getFederatedSettings:getFederatedSettings", args, &rv, "", opts...)
+			if err != nil {
+				return GetFederatedSettingsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetFederatedSettingsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetFederatedSettingsResultOutput), nil
+			}
+			return output, nil
 		}).(GetFederatedSettingsResultOutput)
 }
 

@@ -37,7 +37,6 @@ import * as utilities from "./utilities";
  */
 export function getAtlasUser(args?: GetAtlasUserArgs, opts?: pulumi.InvokeOptions): Promise<GetAtlasUserResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAtlasUser:getAtlasUser", {
         "userId": args.userId,
@@ -141,7 +140,12 @@ export interface GetAtlasUserResult {
  * ```
  */
 export function getAtlasUserOutput(args?: GetAtlasUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAtlasUserResult> {
-    return pulumi.output(args).apply((a: any) => getAtlasUser(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getAtlasUser:getAtlasUser", {
+        "userId": args.userId,
+        "username": args.username,
+    }, opts);
 }
 
 /**

@@ -99,14 +99,20 @@ type LookupCustomDbRoleResult struct {
 
 func LookupCustomDbRoleOutput(ctx *pulumi.Context, args LookupCustomDbRoleOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDbRoleResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupCustomDbRoleResult, error) {
+		ApplyT(func(v interface{}) (LookupCustomDbRoleResultOutput, error) {
 			args := v.(LookupCustomDbRoleArgs)
-			r, err := LookupCustomDbRole(ctx, &args, opts...)
-			var s LookupCustomDbRoleResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupCustomDbRoleResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args, &rv, "", opts...)
+			if err != nil {
+				return LookupCustomDbRoleResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupCustomDbRoleResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupCustomDbRoleResultOutput), nil
+			}
+			return output, nil
 		}).(LookupCustomDbRoleResultOutput)
 }
 

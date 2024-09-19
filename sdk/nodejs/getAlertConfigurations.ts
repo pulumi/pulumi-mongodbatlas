@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
 export function getAlertConfigurations(args: GetAlertConfigurationsArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", {
         "listOptions": args.listOptions,
@@ -72,7 +71,12 @@ export interface GetAlertConfigurationsResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
 export function getAlertConfigurationsOutput(args: GetAlertConfigurationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlertConfigurationsResult> {
-    return pulumi.output(args).apply((a: any) => getAlertConfigurations(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", {
+        "listOptions": args.listOptions,
+        "outputTypes": args.outputTypes,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

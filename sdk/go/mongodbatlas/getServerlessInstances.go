@@ -72,14 +72,20 @@ type LookupServerlessInstancesResult struct {
 
 func LookupServerlessInstancesOutput(ctx *pulumi.Context, args LookupServerlessInstancesOutputArgs, opts ...pulumi.InvokeOption) LookupServerlessInstancesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupServerlessInstancesResult, error) {
+		ApplyT(func(v interface{}) (LookupServerlessInstancesResultOutput, error) {
 			args := v.(LookupServerlessInstancesArgs)
-			r, err := LookupServerlessInstances(ctx, &args, opts...)
-			var s LookupServerlessInstancesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupServerlessInstancesResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getServerlessInstances:getServerlessInstances", args, &rv, "", opts...)
+			if err != nil {
+				return LookupServerlessInstancesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupServerlessInstancesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupServerlessInstancesResultOutput), nil
+			}
+			return output, nil
 		}).(LookupServerlessInstancesResultOutput)
 }
 

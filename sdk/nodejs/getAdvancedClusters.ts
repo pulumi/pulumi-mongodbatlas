@@ -90,7 +90,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getAdvancedClusters(args: GetAdvancedClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetAdvancedClustersResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", {
         "projectId": args.projectId,
@@ -211,7 +210,11 @@ export interface GetAdvancedClustersResult {
  * ```
  */
 export function getAdvancedClustersOutput(args: GetAdvancedClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAdvancedClustersResult> {
-    return pulumi.output(args).apply((a: any) => getAdvancedClusters(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", {
+        "projectId": args.projectId,
+        "useReplicationSpecPerShard": args.useReplicationSpecPerShard,
+    }, opts);
 }
 
 /**

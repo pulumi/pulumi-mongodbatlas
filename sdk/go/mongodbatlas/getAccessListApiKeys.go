@@ -45,14 +45,20 @@ type LookupAccessListApiKeysResult struct {
 
 func LookupAccessListApiKeysOutput(ctx *pulumi.Context, args LookupAccessListApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupAccessListApiKeysResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAccessListApiKeysResult, error) {
+		ApplyT(func(v interface{}) (LookupAccessListApiKeysResultOutput, error) {
 			args := v.(LookupAccessListApiKeysArgs)
-			r, err := LookupAccessListApiKeys(ctx, &args, opts...)
-			var s LookupAccessListApiKeysResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAccessListApiKeysResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAccessListApiKeysResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAccessListApiKeysResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAccessListApiKeysResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAccessListApiKeysResultOutput)
 }
 

@@ -56,7 +56,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getLdapVerify(args: GetLdapVerifyArgs, opts?: pulumi.InvokeOptions): Promise<GetLdapVerifyResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getLdapVerify:getLdapVerify", {
         "projectId": args.projectId,
@@ -166,7 +165,11 @@ export interface GetLdapVerifyResult {
  * ```
  */
 export function getLdapVerifyOutput(args: GetLdapVerifyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapVerifyResult> {
-    return pulumi.output(args).apply((a: any) => getLdapVerify(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getLdapVerify:getLdapVerify", {
+        "projectId": args.projectId,
+        "requestId": args.requestId,
+    }, opts);
 }
 
 /**

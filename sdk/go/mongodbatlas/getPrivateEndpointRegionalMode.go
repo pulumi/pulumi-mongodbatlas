@@ -44,14 +44,20 @@ type LookupPrivateEndpointRegionalModeResult struct {
 
 func LookupPrivateEndpointRegionalModeOutput(ctx *pulumi.Context, args LookupPrivateEndpointRegionalModeOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateEndpointRegionalModeResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupPrivateEndpointRegionalModeResult, error) {
+		ApplyT(func(v interface{}) (LookupPrivateEndpointRegionalModeResultOutput, error) {
 			args := v.(LookupPrivateEndpointRegionalModeArgs)
-			r, err := LookupPrivateEndpointRegionalMode(ctx, &args, opts...)
-			var s LookupPrivateEndpointRegionalModeResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupPrivateEndpointRegionalModeResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", args, &rv, "", opts...)
+			if err != nil {
+				return LookupPrivateEndpointRegionalModeResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupPrivateEndpointRegionalModeResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupPrivateEndpointRegionalModeResultOutput), nil
+			}
+			return output, nil
 		}).(LookupPrivateEndpointRegionalModeResultOutput)
 }
 

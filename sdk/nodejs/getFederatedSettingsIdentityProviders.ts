@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * Note: This implementation returns a maximum of 100 results.
  */
 export function getFederatedSettingsIdentityProviders(args: GetFederatedSettingsIdentityProvidersArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProvidersResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", {
         "federationSettingsId": args.federationSettingsId,
@@ -69,7 +68,12 @@ export interface GetFederatedSettingsIdentityProvidersResult {
  * Note: This implementation returns a maximum of 100 results.
  */
 export function getFederatedSettingsIdentityProvidersOutput(args: GetFederatedSettingsIdentityProvidersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProvidersResult> {
-    return pulumi.output(args).apply((a: any) => getFederatedSettingsIdentityProviders(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", {
+        "federationSettingsId": args.federationSettingsId,
+        "idpTypes": args.idpTypes,
+        "protocols": args.protocols,
+    }, opts);
 }
 
 /**

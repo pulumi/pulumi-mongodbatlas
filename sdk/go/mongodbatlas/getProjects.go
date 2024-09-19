@@ -105,14 +105,20 @@ type LookupProjectsResult struct {
 
 func LookupProjectsOutput(ctx *pulumi.Context, args LookupProjectsOutputArgs, opts ...pulumi.InvokeOption) LookupProjectsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupProjectsResult, error) {
+		ApplyT(func(v interface{}) (LookupProjectsResultOutput, error) {
 			args := v.(LookupProjectsArgs)
-			r, err := LookupProjects(ctx, &args, opts...)
-			var s LookupProjectsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupProjectsResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getProjects:getProjects", args, &rv, "", opts...)
+			if err != nil {
+				return LookupProjectsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupProjectsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupProjectsResultOutput), nil
+			}
+			return output, nil
 		}).(LookupProjectsResultOutput)
 }
 

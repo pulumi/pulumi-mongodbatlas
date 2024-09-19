@@ -24,7 +24,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getOrganization(args: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getOrganization:getOrganization", {
         "orgId": args.orgId,
@@ -90,7 +89,10 @@ export interface GetOrganizationResult {
  * ```
  */
 export function getOrganizationOutput(args: GetOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
-    return pulumi.output(args).apply((a: any) => getOrganization(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getOrganization:getOrganization", {
+        "orgId": args.orgId,
+    }, opts);
 }
 
 /**

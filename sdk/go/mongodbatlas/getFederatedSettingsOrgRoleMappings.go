@@ -51,14 +51,20 @@ type LookupFederatedSettingsOrgRoleMappingsResult struct {
 
 func LookupFederatedSettingsOrgRoleMappingsOutput(ctx *pulumi.Context, args LookupFederatedSettingsOrgRoleMappingsOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedSettingsOrgRoleMappingsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupFederatedSettingsOrgRoleMappingsResult, error) {
+		ApplyT(func(v interface{}) (LookupFederatedSettingsOrgRoleMappingsResultOutput, error) {
 			args := v.(LookupFederatedSettingsOrgRoleMappingsArgs)
-			r, err := LookupFederatedSettingsOrgRoleMappings(ctx, &args, opts...)
-			var s LookupFederatedSettingsOrgRoleMappingsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupFederatedSettingsOrgRoleMappingsResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", args, &rv, "", opts...)
+			if err != nil {
+				return LookupFederatedSettingsOrgRoleMappingsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupFederatedSettingsOrgRoleMappingsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupFederatedSettingsOrgRoleMappingsResultOutput), nil
+			}
+			return output, nil
 		}).(LookupFederatedSettingsOrgRoleMappingsResultOutput)
 }
 

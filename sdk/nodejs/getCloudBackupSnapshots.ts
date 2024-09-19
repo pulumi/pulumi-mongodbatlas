@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupSnapshots(args: GetCloudBackupSnapshotsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", {
         "clusterName": args.clusterName,
@@ -70,7 +69,13 @@ export interface GetCloudBackupSnapshotsResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupSnapshotsOutput(args: GetCloudBackupSnapshotsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotsResult> {
-    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshots(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", {
+        "clusterName": args.clusterName,
+        "itemsPerPage": args.itemsPerPage,
+        "pageNum": args.pageNum,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

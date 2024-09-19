@@ -34,7 +34,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainersResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getNetworkContainers:getNetworkContainers", {
         "projectId": args.projectId,
@@ -102,7 +101,11 @@ export interface GetNetworkContainersResult {
  * ```
  */
 export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainersResult> {
-    return pulumi.output(args).apply((a: any) => getNetworkContainers(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getNetworkContainers:getNetworkContainers", {
+        "projectId": args.projectId,
+        "providerName": args.providerName,
+    }, opts);
 }
 
 /**

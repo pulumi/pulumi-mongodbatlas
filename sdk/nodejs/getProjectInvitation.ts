@@ -31,7 +31,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getProjectInvitation(args: GetProjectInvitationArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectInvitationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProjectInvitation:getProjectInvitation", {
         "invitationId": args.invitationId,
@@ -113,7 +112,12 @@ export interface GetProjectInvitationResult {
  * ```
  */
 export function getProjectInvitationOutput(args: GetProjectInvitationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectInvitationResult> {
-    return pulumi.output(args).apply((a: any) => getProjectInvitation(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectInvitation:getProjectInvitation", {
+        "invitationId": args.invitationId,
+        "projectId": args.projectId,
+        "username": args.username,
+    }, opts);
 }
 
 /**

@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getSearchIndex(args: GetSearchIndexArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchIndexResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getSearchIndex:getSearchIndex", {
         "clusterName": args.clusterName,
@@ -136,7 +135,12 @@ export interface GetSearchIndexResult {
  * ```
  */
 export function getSearchIndexOutput(args: GetSearchIndexOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchIndexResult> {
-    return pulumi.output(args).apply((a: any) => getSearchIndex(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getSearchIndex:getSearchIndex", {
+        "clusterName": args.clusterName,
+        "indexId": args.indexId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

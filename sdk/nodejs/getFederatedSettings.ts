@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedSettings(args: GetFederatedSettingsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettings:getFederatedSettings", {
         "orgId": args.orgId,
@@ -81,7 +80,10 @@ export interface GetFederatedSettingsResult {
  * ```
  */
 export function getFederatedSettingsOutput(args: GetFederatedSettingsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsResult> {
-    return pulumi.output(args).apply((a: any) => getFederatedSettings(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettings:getFederatedSettings", {
+        "orgId": args.orgId,
+    }, opts);
 }
 
 /**

@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
 export function getPrivateLinkEndpointService(args: GetPrivateLinkEndpointServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointServiceResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", {
         "endpointServiceId": args.endpointServiceId,
@@ -124,7 +123,13 @@ export interface GetPrivateLinkEndpointServiceResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
 export function getPrivateLinkEndpointServiceOutput(args: GetPrivateLinkEndpointServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateLinkEndpointServiceResult> {
-    return pulumi.output(args).apply((a: any) => getPrivateLinkEndpointService(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", {
+        "endpointServiceId": args.endpointServiceId,
+        "privateLinkId": args.privateLinkId,
+        "projectId": args.projectId,
+        "providerName": args.providerName,
+    }, opts);
 }
 
 /**

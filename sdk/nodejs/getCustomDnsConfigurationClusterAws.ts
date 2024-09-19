@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCustomDnsConfigurationClusterAws(args: GetCustomDnsConfigurationClusterAwsArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDnsConfigurationClusterAwsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", {
         "projectId": args.projectId,
@@ -81,7 +80,10 @@ export interface GetCustomDnsConfigurationClusterAwsResult {
  * ```
  */
 export function getCustomDnsConfigurationClusterAwsOutput(args: GetCustomDnsConfigurationClusterAwsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDnsConfigurationClusterAwsResult> {
-    return pulumi.output(args).apply((a: any) => getCustomDnsConfigurationClusterAws(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

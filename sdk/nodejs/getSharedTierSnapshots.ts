@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getSharedTierSnapshots(args: GetSharedTierSnapshotsArgs, opts?: pulumi.InvokeOptions): Promise<GetSharedTierSnapshotsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", {
         "clusterName": args.clusterName,
@@ -37,7 +36,11 @@ export interface GetSharedTierSnapshotsResult {
     readonly totalCount: number;
 }
 export function getSharedTierSnapshotsOutput(args: GetSharedTierSnapshotsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSharedTierSnapshotsResult> {
-    return pulumi.output(args).apply((a: any) => getSharedTierSnapshots(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", {
+        "clusterName": args.clusterName,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

@@ -35,7 +35,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getNetworkPeering(args: GetNetworkPeeringArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getNetworkPeering:getNetworkPeering", {
         "peeringId": args.peeringId,
@@ -170,7 +169,11 @@ export interface GetNetworkPeeringResult {
  * ```
  */
 export function getNetworkPeeringOutput(args: GetNetworkPeeringOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkPeeringResult> {
-    return pulumi.output(args).apply((a: any) => getNetworkPeering(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getNetworkPeering:getNetworkPeering", {
+        "peeringId": args.peeringId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

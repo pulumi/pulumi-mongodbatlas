@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getAccessListApiKeys(args: GetAccessListApiKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessListApiKeysResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", {
         "apiKeyId": args.apiKeyId,
@@ -54,7 +53,13 @@ export interface GetAccessListApiKeysResult {
  * ## Example Usage
  */
 export function getAccessListApiKeysOutput(args: GetAccessListApiKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessListApiKeysResult> {
-    return pulumi.output(args).apply((a: any) => getAccessListApiKeys(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", {
+        "apiKeyId": args.apiKeyId,
+        "itemsPerPage": args.itemsPerPage,
+        "orgId": args.orgId,
+        "pageNum": args.pageNum,
+    }, opts);
 }
 
 /**

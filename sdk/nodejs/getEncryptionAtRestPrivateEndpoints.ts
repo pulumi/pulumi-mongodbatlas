@@ -32,7 +32,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getEncryptionAtRestPrivateEndpoints(args: GetEncryptionAtRestPrivateEndpointsArgs, opts?: pulumi.InvokeOptions): Promise<GetEncryptionAtRestPrivateEndpointsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", {
         "cloudProvider": args.cloudProvider,
@@ -101,7 +100,11 @@ export interface GetEncryptionAtRestPrivateEndpointsResult {
  * ```
  */
 export function getEncryptionAtRestPrivateEndpointsOutput(args: GetEncryptionAtRestPrivateEndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncryptionAtRestPrivateEndpointsResult> {
-    return pulumi.output(args).apply((a: any) => getEncryptionAtRestPrivateEndpoints(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", {
+        "cloudProvider": args.cloudProvider,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

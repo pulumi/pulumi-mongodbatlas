@@ -33,7 +33,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCloudBackupSnapshot(args: GetCloudBackupSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot", {
         "clusterName": args.clusterName,
@@ -151,7 +150,12 @@ export interface GetCloudBackupSnapshotResult {
  * ```
  */
 export function getCloudBackupSnapshotOutput(args: GetCloudBackupSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotResult> {
-    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshot(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot", {
+        "clusterName": args.clusterName,
+        "projectId": args.projectId,
+        "snapshotId": args.snapshotId,
+    }, opts);
 }
 
 /**

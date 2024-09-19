@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCloudBackupSnapshotExportBucket(args: GetCloudBackupSnapshotExportBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportBucketResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", {
         "exportBucketId": args.exportBucketId,
@@ -110,7 +109,11 @@ export interface GetCloudBackupSnapshotExportBucketResult {
  * ```
  */
 export function getCloudBackupSnapshotExportBucketOutput(args: GetCloudBackupSnapshotExportBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketResult> {
-    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportBucket(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", {
+        "exportBucketId": args.exportBucketId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

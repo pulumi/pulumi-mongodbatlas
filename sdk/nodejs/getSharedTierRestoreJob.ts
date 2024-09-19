@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getSharedTierRestoreJob(args: GetSharedTierRestoreJobArgs, opts?: pulumi.InvokeOptions): Promise<GetSharedTierRestoreJobResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", {
         "clusterName": args.clusterName,
@@ -46,7 +45,12 @@ export interface GetSharedTierRestoreJobResult {
     readonly targetProjectId: string;
 }
 export function getSharedTierRestoreJobOutput(args: GetSharedTierRestoreJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSharedTierRestoreJobResult> {
-    return pulumi.output(args).apply((a: any) => getSharedTierRestoreJob(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", {
+        "clusterName": args.clusterName,
+        "jobId": args.jobId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

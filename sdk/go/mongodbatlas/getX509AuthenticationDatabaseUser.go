@@ -98,14 +98,20 @@ type LookupX509AuthenticationDatabaseUserResult struct {
 
 func LookupX509AuthenticationDatabaseUserOutput(ctx *pulumi.Context, args LookupX509AuthenticationDatabaseUserOutputArgs, opts ...pulumi.InvokeOption) LookupX509AuthenticationDatabaseUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupX509AuthenticationDatabaseUserResult, error) {
+		ApplyT(func(v interface{}) (LookupX509AuthenticationDatabaseUserResultOutput, error) {
 			args := v.(LookupX509AuthenticationDatabaseUserArgs)
-			r, err := LookupX509AuthenticationDatabaseUser(ctx, &args, opts...)
-			var s LookupX509AuthenticationDatabaseUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupX509AuthenticationDatabaseUserResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", args, &rv, "", opts...)
+			if err != nil {
+				return LookupX509AuthenticationDatabaseUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupX509AuthenticationDatabaseUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupX509AuthenticationDatabaseUserResultOutput), nil
+			}
+			return output, nil
 		}).(LookupX509AuthenticationDatabaseUserResultOutput)
 }
 

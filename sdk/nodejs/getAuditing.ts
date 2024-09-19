@@ -29,7 +29,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getAuditing(args: GetAuditingArgs, opts?: pulumi.InvokeOptions): Promise<GetAuditingResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAuditing:getAuditing", {
         "projectId": args.projectId,
@@ -97,7 +96,10 @@ export interface GetAuditingResult {
  * ```
  */
 export function getAuditingOutput(args: GetAuditingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuditingResult> {
-    return pulumi.output(args).apply((a: any) => getAuditing(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getAuditing:getAuditing", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

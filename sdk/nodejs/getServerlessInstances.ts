@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getServerlessInstances(args: GetServerlessInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetServerlessInstancesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getServerlessInstances:getServerlessInstances", {
         "projectId": args.projectId,
@@ -81,7 +80,10 @@ export interface GetServerlessInstancesResult {
  * ```
  */
 export function getServerlessInstancesOutput(args: GetServerlessInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerlessInstancesResult> {
-    return pulumi.output(args).apply((a: any) => getServerlessInstances(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getServerlessInstances:getServerlessInstances", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

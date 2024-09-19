@@ -86,14 +86,20 @@ type LookupStreamConnectionResult struct {
 
 func LookupStreamConnectionOutput(ctx *pulumi.Context, args LookupStreamConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupStreamConnectionResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupStreamConnectionResult, error) {
+		ApplyT(func(v interface{}) (LookupStreamConnectionResultOutput, error) {
 			args := v.(LookupStreamConnectionArgs)
-			r, err := LookupStreamConnection(ctx, &args, opts...)
-			var s LookupStreamConnectionResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupStreamConnectionResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getStreamConnection:getStreamConnection", args, &rv, "", opts...)
+			if err != nil {
+				return LookupStreamConnectionResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupStreamConnectionResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupStreamConnectionResultOutput), nil
+			}
+			return output, nil
 		}).(LookupStreamConnectionResultOutput)
 }
 

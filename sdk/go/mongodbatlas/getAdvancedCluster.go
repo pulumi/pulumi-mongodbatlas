@@ -208,14 +208,20 @@ type LookupAdvancedClusterResult struct {
 
 func LookupAdvancedClusterOutput(ctx *pulumi.Context, args LookupAdvancedClusterOutputArgs, opts ...pulumi.InvokeOption) LookupAdvancedClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAdvancedClusterResult, error) {
+		ApplyT(func(v interface{}) (LookupAdvancedClusterResultOutput, error) {
 			args := v.(LookupAdvancedClusterArgs)
-			r, err := LookupAdvancedCluster(ctx, &args, opts...)
-			var s LookupAdvancedClusterResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAdvancedClusterResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAdvancedClusterResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAdvancedClusterResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAdvancedClusterResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAdvancedClusterResultOutput)
 }
 

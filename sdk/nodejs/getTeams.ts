@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * In the future this data source will define a new implementation capable of fetching all teams in one organization.
  */
 export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getTeams:getTeams", {
         "name": args.name,
@@ -51,7 +50,12 @@ export interface GetTeamsResult {
  * In the future this data source will define a new implementation capable of fetching all teams in one organization.
  */
 export function getTeamsOutput(args: GetTeamsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamsResult> {
-    return pulumi.output(args).apply((a: any) => getTeams(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getTeams:getTeams", {
+        "name": args.name,
+        "orgId": args.orgId,
+        "teamId": args.teamId,
+    }, opts);
 }
 
 /**

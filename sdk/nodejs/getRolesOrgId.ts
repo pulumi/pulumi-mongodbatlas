@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getRolesOrgId(opts?: pulumi.InvokeOptions): Promise<GetRolesOrgIdResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getRolesOrgId:getRolesOrgId", {
     }, opts);
@@ -57,5 +56,7 @@ export interface GetRolesOrgIdResult {
  * ```
  */
 export function getRolesOrgIdOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRolesOrgIdResult> {
-    return pulumi.output(getRolesOrgId(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getRolesOrgId:getRolesOrgId", {
+    }, opts);
 }

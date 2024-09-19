@@ -50,7 +50,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getPushBasedLogExport(args: GetPushBasedLogExportArgs, opts?: pulumi.InvokeOptions): Promise<GetPushBasedLogExportResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", {
         "projectId": args.projectId,
@@ -131,7 +130,10 @@ export interface GetPushBasedLogExportResult {
  * ```
  */
 export function getPushBasedLogExportOutput(args: GetPushBasedLogExportOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPushBasedLogExportResult> {
-    return pulumi.output(args).apply((a: any) => getPushBasedLogExport(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**
