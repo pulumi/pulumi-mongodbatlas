@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupSchedule(args: GetCloudBackupScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupScheduleResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", {
         "clusterName": args.clusterName,
@@ -123,7 +122,12 @@ export interface GetCloudBackupScheduleResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupScheduleOutput(args: GetCloudBackupScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupScheduleResult> {
-    return pulumi.output(args).apply((a: any) => getCloudBackupSchedule(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", {
+        "clusterName": args.clusterName,
+        "projectId": args.projectId,
+        "useZoneIdForCopySettings": args.useZoneIdForCopySettings,
+    }, opts);
 }
 
 /**

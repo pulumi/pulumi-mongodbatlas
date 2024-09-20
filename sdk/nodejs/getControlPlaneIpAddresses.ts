@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getControlPlaneIpAddresses(opts?: pulumi.InvokeOptions): Promise<GetControlPlaneIpAddressesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", {
     }, opts);
@@ -71,5 +70,7 @@ export interface GetControlPlaneIpAddressesResult {
  * ```
  */
 export function getControlPlaneIpAddressesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetControlPlaneIpAddressesResult> {
-    return pulumi.output(getControlPlaneIpAddresses(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", {
+    }, opts);
 }

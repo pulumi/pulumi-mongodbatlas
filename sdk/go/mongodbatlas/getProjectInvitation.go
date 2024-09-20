@@ -91,14 +91,20 @@ type LookupProjectInvitationResult struct {
 
 func LookupProjectInvitationOutput(ctx *pulumi.Context, args LookupProjectInvitationOutputArgs, opts ...pulumi.InvokeOption) LookupProjectInvitationResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupProjectInvitationResult, error) {
+		ApplyT(func(v interface{}) (LookupProjectInvitationResultOutput, error) {
 			args := v.(LookupProjectInvitationArgs)
-			r, err := LookupProjectInvitation(ctx, &args, opts...)
-			var s LookupProjectInvitationResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupProjectInvitationResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args, &rv, "", opts...)
+			if err != nil {
+				return LookupProjectInvitationResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupProjectInvitationResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupProjectInvitationResultOutput), nil
+			}
+			return output, nil
 		}).(LookupProjectInvitationResultOutput)
 }
 

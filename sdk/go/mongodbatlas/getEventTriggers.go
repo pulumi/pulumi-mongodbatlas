@@ -45,14 +45,20 @@ type LookupEventTriggersResult struct {
 
 func LookupEventTriggersOutput(ctx *pulumi.Context, args LookupEventTriggersOutputArgs, opts ...pulumi.InvokeOption) LookupEventTriggersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupEventTriggersResult, error) {
+		ApplyT(func(v interface{}) (LookupEventTriggersResultOutput, error) {
 			args := v.(LookupEventTriggersArgs)
-			r, err := LookupEventTriggers(ctx, &args, opts...)
-			var s LookupEventTriggersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupEventTriggersResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getEventTriggers:getEventTriggers", args, &rv, "", opts...)
+			if err != nil {
+				return LookupEventTriggersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupEventTriggersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupEventTriggersResultOutput), nil
+			}
+			return output, nil
 		}).(LookupEventTriggersResultOutput)
 }
 

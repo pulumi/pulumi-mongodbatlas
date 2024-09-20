@@ -45,14 +45,20 @@ type LookupTeamsResult struct {
 
 func LookupTeamsOutput(ctx *pulumi.Context, args LookupTeamsOutputArgs, opts ...pulumi.InvokeOption) LookupTeamsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupTeamsResult, error) {
+		ApplyT(func(v interface{}) (LookupTeamsResultOutput, error) {
 			args := v.(LookupTeamsArgs)
-			r, err := LookupTeams(ctx, &args, opts...)
-			var s LookupTeamsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupTeamsResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getTeams:getTeams", args, &rv, "", opts...)
+			if err != nil {
+				return LookupTeamsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupTeamsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupTeamsResultOutput), nil
+			}
+			return output, nil
 		}).(LookupTeamsResultOutput)
 }
 

@@ -95,7 +95,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getGlobalClusterConfig(args: GetGlobalClusterConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalClusterConfigResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", {
         "clusterName": args.clusterName,
@@ -228,7 +227,12 @@ export interface GetGlobalClusterConfigResult {
  * ```
  */
 export function getGlobalClusterConfigOutput(args: GetGlobalClusterConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalClusterConfigResult> {
-    return pulumi.output(args).apply((a: any) => getGlobalClusterConfig(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", {
+        "clusterName": args.clusterName,
+        "managedNamespaces": args.managedNamespaces,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

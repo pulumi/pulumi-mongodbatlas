@@ -47,14 +47,20 @@ type LookupDataLakePipelinesResult struct {
 
 func LookupDataLakePipelinesOutput(ctx *pulumi.Context, args LookupDataLakePipelinesOutputArgs, opts ...pulumi.InvokeOption) LookupDataLakePipelinesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDataLakePipelinesResult, error) {
+		ApplyT(func(v interface{}) (LookupDataLakePipelinesResultOutput, error) {
 			args := v.(LookupDataLakePipelinesArgs)
-			r, err := LookupDataLakePipelines(ctx, &args, opts...)
-			var s LookupDataLakePipelinesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupDataLakePipelinesResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getDataLakePipelines:getDataLakePipelines", args, &rv, "", opts...)
+			if err != nil {
+				return LookupDataLakePipelinesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupDataLakePipelinesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupDataLakePipelinesResultOutput), nil
+			}
+			return output, nil
 		}).(LookupDataLakePipelinesResultOutput)
 }
 

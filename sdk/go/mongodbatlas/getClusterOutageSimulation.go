@@ -81,14 +81,20 @@ type LookupClusterOutageSimulationResult struct {
 
 func LookupClusterOutageSimulationOutput(ctx *pulumi.Context, args LookupClusterOutageSimulationOutputArgs, opts ...pulumi.InvokeOption) LookupClusterOutageSimulationResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupClusterOutageSimulationResult, error) {
+		ApplyT(func(v interface{}) (LookupClusterOutageSimulationResultOutput, error) {
 			args := v.(LookupClusterOutageSimulationArgs)
-			r, err := LookupClusterOutageSimulation(ctx, &args, opts...)
-			var s LookupClusterOutageSimulationResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupClusterOutageSimulationResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args, &rv, "", opts...)
+			if err != nil {
+				return LookupClusterOutageSimulationResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupClusterOutageSimulationResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupClusterOutageSimulationResultOutput), nil
+			}
+			return output, nil
 		}).(LookupClusterOutageSimulationResultOutput)
 }
 

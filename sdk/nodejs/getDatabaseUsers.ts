@@ -74,7 +74,6 @@ import * as utilities from "./utilities";
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  */
 export function getDatabaseUsers(args: GetDatabaseUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseUsersResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", {
         "projectId": args.projectId,
@@ -176,7 +175,10 @@ export interface GetDatabaseUsersResult {
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  */
 export function getDatabaseUsersOutput(args: GetDatabaseUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseUsersResult> {
-    return pulumi.output(args).apply((a: any) => getDatabaseUsers(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

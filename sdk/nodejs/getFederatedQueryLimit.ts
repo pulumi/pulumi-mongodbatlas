@@ -25,7 +25,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedQueryLimit(args: GetFederatedQueryLimitArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedQueryLimitResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", {
         "limitName": args.limitName,
@@ -103,7 +102,12 @@ export interface GetFederatedQueryLimitResult {
  * ```
  */
 export function getFederatedQueryLimitOutput(args: GetFederatedQueryLimitOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedQueryLimitResult> {
-    return pulumi.output(args).apply((a: any) => getFederatedQueryLimit(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", {
+        "limitName": args.limitName,
+        "projectId": args.projectId,
+        "tenantName": args.tenantName,
+    }, opts);
 }
 
 /**

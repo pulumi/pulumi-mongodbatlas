@@ -39,14 +39,20 @@ type LookupSharedTierSnapshotsResult struct {
 
 func LookupSharedTierSnapshotsOutput(ctx *pulumi.Context, args LookupSharedTierSnapshotsOutputArgs, opts ...pulumi.InvokeOption) LookupSharedTierSnapshotsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupSharedTierSnapshotsResult, error) {
+		ApplyT(func(v interface{}) (LookupSharedTierSnapshotsResultOutput, error) {
 			args := v.(LookupSharedTierSnapshotsArgs)
-			r, err := LookupSharedTierSnapshots(ctx, &args, opts...)
-			var s LookupSharedTierSnapshotsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupSharedTierSnapshotsResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", args, &rv, "", opts...)
+			if err != nil {
+				return LookupSharedTierSnapshotsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupSharedTierSnapshotsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupSharedTierSnapshotsResultOutput), nil
+			}
+			return output, nil
 		}).(LookupSharedTierSnapshotsResultOutput)
 }
 

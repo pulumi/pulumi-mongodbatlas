@@ -35,7 +35,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedSettingsIdentityProvider(args: GetFederatedSettingsIdentityProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProviderResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", {
         "federationSettingsId": args.federationSettingsId,
@@ -193,7 +192,11 @@ export interface GetFederatedSettingsIdentityProviderResult {
  * ```
  */
 export function getFederatedSettingsIdentityProviderOutput(args: GetFederatedSettingsIdentityProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProviderResult> {
-    return pulumi.output(args).apply((a: any) => getFederatedSettingsIdentityProvider(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", {
+        "federationSettingsId": args.federationSettingsId,
+        "identityProviderId": args.identityProviderId,
+    }, opts);
 }
 
 /**

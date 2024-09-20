@@ -46,7 +46,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCustomDbRole(args: GetCustomDbRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRoleResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCustomDbRole:getCustomDbRole", {
         "inheritedRoles": args.inheritedRoles,
@@ -126,7 +125,12 @@ export interface GetCustomDbRoleResult {
  * ```
  */
 export function getCustomDbRoleOutput(args: GetCustomDbRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDbRoleResult> {
-    return pulumi.output(args).apply((a: any) => getCustomDbRole(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getCustomDbRole:getCustomDbRole", {
+        "inheritedRoles": args.inheritedRoles,
+        "projectId": args.projectId,
+        "roleName": args.roleName,
+    }, opts);
 }
 
 /**

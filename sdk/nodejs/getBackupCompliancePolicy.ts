@@ -112,7 +112,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getBackupCompliancePolicy(args: GetBackupCompliancePolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetBackupCompliancePolicyResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", {
         "projectId": args.projectId,
@@ -291,7 +290,10 @@ export interface GetBackupCompliancePolicyResult {
  * ```
  */
 export function getBackupCompliancePolicyOutput(args: GetBackupCompliancePolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackupCompliancePolicyResult> {
-    return pulumi.output(args).apply((a: any) => getBackupCompliancePolicy(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

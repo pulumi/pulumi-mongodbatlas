@@ -55,14 +55,20 @@ type LookupOrgInvitationResult struct {
 
 func LookupOrgInvitationOutput(ctx *pulumi.Context, args LookupOrgInvitationOutputArgs, opts ...pulumi.InvokeOption) LookupOrgInvitationResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupOrgInvitationResult, error) {
+		ApplyT(func(v interface{}) (LookupOrgInvitationResultOutput, error) {
 			args := v.(LookupOrgInvitationArgs)
-			r, err := LookupOrgInvitation(ctx, &args, opts...)
-			var s LookupOrgInvitationResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupOrgInvitationResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args, &rv, "", opts...)
+			if err != nil {
+				return LookupOrgInvitationResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupOrgInvitationResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupOrgInvitationResultOutput), nil
+			}
+			return output, nil
 		}).(LookupOrgInvitationResultOutput)
 }
 

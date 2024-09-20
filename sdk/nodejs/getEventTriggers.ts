@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getEventTriggers` describes all Event Triggers.
  */
 export function getEventTriggers(args: GetEventTriggersArgs, opts?: pulumi.InvokeOptions): Promise<GetEventTriggersResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getEventTriggers:getEventTriggers", {
         "appId": args.appId,
@@ -56,7 +55,11 @@ export interface GetEventTriggersResult {
  * `mongodbatlas.getEventTriggers` describes all Event Triggers.
  */
 export function getEventTriggersOutput(args: GetEventTriggersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEventTriggersResult> {
-    return pulumi.output(args).apply((a: any) => getEventTriggers(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getEventTriggers:getEventTriggers", {
+        "appId": args.appId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

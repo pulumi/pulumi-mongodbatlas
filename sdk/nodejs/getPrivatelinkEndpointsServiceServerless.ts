@@ -78,7 +78,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getPrivatelinkEndpointsServiceServerless(args: GetPrivatelinkEndpointsServiceServerlessArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointsServiceServerlessResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", {
         "instanceName": args.instanceName,
@@ -187,7 +186,11 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
  * ```
  */
 export function getPrivatelinkEndpointsServiceServerlessOutput(args: GetPrivatelinkEndpointsServiceServerlessOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointsServiceServerlessResult> {
-    return pulumi.output(args).apply((a: any) => getPrivatelinkEndpointsServiceServerless(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", {
+        "instanceName": args.instanceName,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

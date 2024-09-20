@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getProjectApiKey(args: GetProjectApiKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectApiKeyResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProjectApiKey:getProjectApiKey", {
         "apiKeyId": args.apiKeyId,
@@ -99,7 +98,11 @@ export interface GetProjectApiKeyResult {
  * ```
  */
 export function getProjectApiKeyOutput(args: GetProjectApiKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectApiKeyResult> {
-    return pulumi.output(args).apply((a: any) => getProjectApiKey(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectApiKey:getProjectApiKey", {
+        "apiKeyId": args.apiKeyId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

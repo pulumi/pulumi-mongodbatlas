@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getProjectApiKeys(args: GetProjectApiKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectApiKeysResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", {
         "itemsPerPage": args.itemsPerPage,
@@ -82,7 +81,12 @@ export interface GetProjectApiKeysResult {
  * ```
  */
 export function getProjectApiKeysOutput(args: GetProjectApiKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectApiKeysResult> {
-    return pulumi.output(args).apply((a: any) => getProjectApiKeys(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", {
+        "itemsPerPage": args.itemsPerPage,
+        "pageNum": args.pageNum,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

@@ -112,14 +112,20 @@ type LookupMaintenanceWindowResult struct {
 
 func LookupMaintenanceWindowOutput(ctx *pulumi.Context, args LookupMaintenanceWindowOutputArgs, opts ...pulumi.InvokeOption) LookupMaintenanceWindowResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupMaintenanceWindowResult, error) {
+		ApplyT(func(v interface{}) (LookupMaintenanceWindowResultOutput, error) {
 			args := v.(LookupMaintenanceWindowArgs)
-			r, err := LookupMaintenanceWindow(ctx, &args, opts...)
-			var s LookupMaintenanceWindowResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupMaintenanceWindowResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", args, &rv, "", opts...)
+			if err != nil {
+				return LookupMaintenanceWindowResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupMaintenanceWindowResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupMaintenanceWindowResultOutput), nil
+			}
+			return output, nil
 		}).(LookupMaintenanceWindowResultOutput)
 }
 

@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getStreamProcessors(args: GetStreamProcessorsArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamProcessorsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getStreamProcessors:getStreamProcessors", {
         "instanceName": args.instanceName,
@@ -62,7 +61,11 @@ export interface GetStreamProcessorsResult {
  * ## Example Usage
  */
 export function getStreamProcessorsOutput(args: GetStreamProcessorsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStreamProcessorsResult> {
-    return pulumi.output(args).apply((a: any) => getStreamProcessors(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getStreamProcessors:getStreamProcessors", {
+        "instanceName": args.instanceName,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

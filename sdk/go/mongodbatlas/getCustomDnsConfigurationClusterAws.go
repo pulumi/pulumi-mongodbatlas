@@ -73,14 +73,20 @@ type LookupCustomDnsConfigurationClusterAwsResult struct {
 
 func LookupCustomDnsConfigurationClusterAwsOutput(ctx *pulumi.Context, args LookupCustomDnsConfigurationClusterAwsOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDnsConfigurationClusterAwsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupCustomDnsConfigurationClusterAwsResult, error) {
+		ApplyT(func(v interface{}) (LookupCustomDnsConfigurationClusterAwsResultOutput, error) {
 			args := v.(LookupCustomDnsConfigurationClusterAwsArgs)
-			r, err := LookupCustomDnsConfigurationClusterAws(ctx, &args, opts...)
-			var s LookupCustomDnsConfigurationClusterAwsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupCustomDnsConfigurationClusterAwsResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args, &rv, "", opts...)
+			if err != nil {
+				return LookupCustomDnsConfigurationClusterAwsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupCustomDnsConfigurationClusterAwsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupCustomDnsConfigurationClusterAwsResultOutput), nil
+			}
+			return output, nil
 		}).(LookupCustomDnsConfigurationClusterAwsResultOutput)
 }
 

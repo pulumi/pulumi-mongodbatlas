@@ -53,7 +53,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCloudProviderAccessSetup(args: GetCloudProviderAccessSetupArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderAccessSetupResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", {
         "azureConfigs": args.azureConfigs,
@@ -164,7 +163,13 @@ export interface GetCloudProviderAccessSetupResult {
  * ```
  */
 export function getCloudProviderAccessSetupOutput(args: GetCloudProviderAccessSetupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderAccessSetupResult> {
-    return pulumi.output(args).apply((a: any) => getCloudProviderAccessSetup(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", {
+        "azureConfigs": args.azureConfigs,
+        "projectId": args.projectId,
+        "providerName": args.providerName,
+        "roleId": args.roleId,
+    }, opts);
 }
 
 /**

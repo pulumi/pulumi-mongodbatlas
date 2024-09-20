@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupSnapshotRestoreJob(args: GetCloudBackupSnapshotRestoreJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotRestoreJobResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", {
         "clusterName": args.clusterName,
@@ -105,7 +104,12 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupSnapshotRestoreJobOutput(args: GetCloudBackupSnapshotRestoreJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotRestoreJobResult> {
-    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotRestoreJob(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", {
+        "clusterName": args.clusterName,
+        "projectId": args.projectId,
+        "snapshotRestoreJobId": args.snapshotRestoreJobId,
+    }, opts);
 }
 
 /**

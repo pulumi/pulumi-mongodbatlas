@@ -58,7 +58,6 @@ import * as utilities from "./utilities";
  * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
  */
 export function getOnlineArchives(args: GetOnlineArchivesArgs, opts?: pulumi.InvokeOptions): Promise<GetOnlineArchivesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getOnlineArchives:getOnlineArchives", {
         "clusterName": args.clusterName,
@@ -149,7 +148,11 @@ export interface GetOnlineArchivesResult {
  * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
  */
 export function getOnlineArchivesOutput(args: GetOnlineArchivesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnlineArchivesResult> {
-    return pulumi.output(args).apply((a: any) => getOnlineArchives(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getOnlineArchives:getOnlineArchives", {
+        "clusterName": args.clusterName,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

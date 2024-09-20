@@ -25,7 +25,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getProjectIpAddresses(args: GetProjectIpAddressesArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectIpAddressesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", {
         "projectId": args.projectId,
@@ -78,7 +77,10 @@ export interface GetProjectIpAddressesResult {
  * ```
  */
 export function getProjectIpAddressesOutput(args: GetProjectIpAddressesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectIpAddressesResult> {
-    return pulumi.output(args).apply((a: any) => getProjectIpAddresses(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

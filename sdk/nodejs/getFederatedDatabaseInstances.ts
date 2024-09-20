@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getFederatedDatabaseInstances(args: GetFederatedDatabaseInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedDatabaseInstancesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", {
         "projectId": args.projectId,
@@ -61,7 +60,10 @@ export interface GetFederatedDatabaseInstancesResult {
  * ## Example Usage
  */
 export function getFederatedDatabaseInstancesOutput(args: GetFederatedDatabaseInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedDatabaseInstancesResult> {
-    return pulumi.output(args).apply((a: any) => getFederatedDatabaseInstances(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

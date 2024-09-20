@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getStreamInstances(args: GetStreamInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamInstancesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getStreamInstances:getStreamInstances", {
         "itemsPerPage": args.itemsPerPage,
@@ -87,7 +86,12 @@ export interface GetStreamInstancesResult {
  * ```
  */
 export function getStreamInstancesOutput(args: GetStreamInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStreamInstancesResult> {
-    return pulumi.output(args).apply((a: any) => getStreamInstances(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getStreamInstances:getStreamInstances", {
+        "itemsPerPage": args.itemsPerPage,
+        "pageNum": args.pageNum,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

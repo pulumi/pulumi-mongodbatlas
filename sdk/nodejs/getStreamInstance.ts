@@ -24,7 +24,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getStreamInstance(args: GetStreamInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamInstanceResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getStreamInstance:getStreamInstance", {
         "instanceName": args.instanceName,
@@ -84,7 +83,11 @@ export interface GetStreamInstanceResult {
  * ```
  */
 export function getStreamInstanceOutput(args: GetStreamInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStreamInstanceResult> {
-    return pulumi.output(args).apply((a: any) => getStreamInstance(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getStreamInstance:getStreamInstance", {
+        "instanceName": args.instanceName,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

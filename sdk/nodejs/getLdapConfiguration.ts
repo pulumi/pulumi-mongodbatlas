@@ -37,7 +37,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getLdapConfiguration(args: GetLdapConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetLdapConfigurationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", {
         "projectId": args.projectId,
@@ -131,7 +130,10 @@ export interface GetLdapConfigurationResult {
  * ```
  */
 export function getLdapConfigurationOutput(args: GetLdapConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapConfigurationResult> {
-    return pulumi.output(args).apply((a: any) => getLdapConfiguration(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

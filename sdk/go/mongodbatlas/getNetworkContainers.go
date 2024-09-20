@@ -86,14 +86,20 @@ type LookupNetworkContainersResult struct {
 
 func LookupNetworkContainersOutput(ctx *pulumi.Context, args LookupNetworkContainersOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkContainersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNetworkContainersResult, error) {
+		ApplyT(func(v interface{}) (LookupNetworkContainersResultOutput, error) {
 			args := v.(LookupNetworkContainersArgs)
-			r, err := LookupNetworkContainers(ctx, &args, opts...)
-			var s LookupNetworkContainersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupNetworkContainersResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args, &rv, "", opts...)
+			if err != nil {
+				return LookupNetworkContainersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupNetworkContainersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupNetworkContainersResultOutput), nil
+			}
+			return output, nil
 		}).(LookupNetworkContainersResultOutput)
 }
 

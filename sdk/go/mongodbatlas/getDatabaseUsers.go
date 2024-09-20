@@ -139,14 +139,20 @@ type LookupDatabaseUsersResult struct {
 
 func LookupDatabaseUsersOutput(ctx *pulumi.Context, args LookupDatabaseUsersOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseUsersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDatabaseUsersResult, error) {
+		ApplyT(func(v interface{}) (LookupDatabaseUsersResultOutput, error) {
 			args := v.(LookupDatabaseUsersArgs)
-			r, err := LookupDatabaseUsers(ctx, &args, opts...)
-			var s LookupDatabaseUsersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupDatabaseUsersResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args, &rv, "", opts...)
+			if err != nil {
+				return LookupDatabaseUsersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupDatabaseUsersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupDatabaseUsersResultOutput), nil
+			}
+			return output, nil
 		}).(LookupDatabaseUsersResultOutput)
 }
 

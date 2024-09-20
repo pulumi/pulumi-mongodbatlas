@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getAccessListApiKey(args: GetAccessListApiKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessListApiKeyResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", {
         "apiKeyId": args.apiKeyId,
@@ -58,7 +57,12 @@ export interface GetAccessListApiKeyResult {
  * ## Example Usage
  */
 export function getAccessListApiKeyOutput(args: GetAccessListApiKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessListApiKeyResult> {
-    return pulumi.output(args).apply((a: any) => getAccessListApiKey(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", {
+        "apiKeyId": args.apiKeyId,
+        "ipAddress": args.ipAddress,
+        "orgId": args.orgId,
+    }, opts);
 }
 
 /**

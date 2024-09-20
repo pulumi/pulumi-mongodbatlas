@@ -37,7 +37,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getThirdPartyIntegrations(args: GetThirdPartyIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", {
         "projectId": args.projectId,
@@ -102,7 +101,10 @@ export interface GetThirdPartyIntegrationsResult {
  * ```
  */
 export function getThirdPartyIntegrationsOutput(args: GetThirdPartyIntegrationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationsResult> {
-    return pulumi.output(args).apply((a: any) => getThirdPartyIntegrations(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

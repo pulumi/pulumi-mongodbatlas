@@ -72,14 +72,20 @@ type LookupProjectApiKeysResult struct {
 
 func LookupProjectApiKeysOutput(ctx *pulumi.Context, args LookupProjectApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupProjectApiKeysResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupProjectApiKeysResult, error) {
+		ApplyT(func(v interface{}) (LookupProjectApiKeysResultOutput, error) {
 			args := v.(LookupProjectApiKeysArgs)
-			r, err := LookupProjectApiKeys(ctx, &args, opts...)
-			var s LookupProjectApiKeysResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupProjectApiKeysResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", args, &rv, "", opts...)
+			if err != nil {
+				return LookupProjectApiKeysResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupProjectApiKeysResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupProjectApiKeysResultOutput), nil
+			}
+			return output, nil
 		}).(LookupProjectApiKeysResultOutput)
 }
 

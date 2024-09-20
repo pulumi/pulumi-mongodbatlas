@@ -121,7 +121,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getEncryptionAtRest(args: GetEncryptionAtRestArgs, opts?: pulumi.InvokeOptions): Promise<GetEncryptionAtRestResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", {
         "projectId": args.projectId,
@@ -278,7 +277,10 @@ export interface GetEncryptionAtRestResult {
  * ```
  */
 export function getEncryptionAtRestOutput(args: GetEncryptionAtRestOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncryptionAtRestResult> {
-    return pulumi.output(args).apply((a: any) => getEncryptionAtRest(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

@@ -84,7 +84,6 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
  */
 export function getProjectIpAccessList(args: GetProjectIpAccessListArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectIpAccessListResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", {
         "awsSecurityGroup": args.awsSecurityGroup,
@@ -212,7 +211,13 @@ export interface GetProjectIpAccessListResult {
  * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
  */
 export function getProjectIpAccessListOutput(args: GetProjectIpAccessListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectIpAccessListResult> {
-    return pulumi.output(args).apply((a: any) => getProjectIpAccessList(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", {
+        "awsSecurityGroup": args.awsSecurityGroup,
+        "cidrBlock": args.cidrBlock,
+        "ipAddress": args.ipAddress,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

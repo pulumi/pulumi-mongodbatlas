@@ -121,14 +121,20 @@ type GetAtlasUserResult struct {
 
 func GetAtlasUserOutput(ctx *pulumi.Context, args GetAtlasUserOutputArgs, opts ...pulumi.InvokeOption) GetAtlasUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetAtlasUserResult, error) {
+		ApplyT(func(v interface{}) (GetAtlasUserResultOutput, error) {
 			args := v.(GetAtlasUserArgs)
-			r, err := GetAtlasUser(ctx, &args, opts...)
-			var s GetAtlasUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetAtlasUserResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getAtlasUser:getAtlasUser", args, &rv, "", opts...)
+			if err != nil {
+				return GetAtlasUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetAtlasUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetAtlasUserResultOutput), nil
+			}
+			return output, nil
 		}).(GetAtlasUserResultOutput)
 }
 

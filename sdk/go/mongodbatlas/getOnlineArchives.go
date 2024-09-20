@@ -94,14 +94,20 @@ type LookupOnlineArchivesResult struct {
 
 func LookupOnlineArchivesOutput(ctx *pulumi.Context, args LookupOnlineArchivesOutputArgs, opts ...pulumi.InvokeOption) LookupOnlineArchivesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupOnlineArchivesResult, error) {
+		ApplyT(func(v interface{}) (LookupOnlineArchivesResultOutput, error) {
 			args := v.(LookupOnlineArchivesArgs)
-			r, err := LookupOnlineArchives(ctx, &args, opts...)
-			var s LookupOnlineArchivesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupOnlineArchivesResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args, &rv, "", opts...)
+			if err != nil {
+				return LookupOnlineArchivesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupOnlineArchivesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupOnlineArchivesResultOutput), nil
+			}
+			return output, nil
 		}).(LookupOnlineArchivesResultOutput)
 }
 
