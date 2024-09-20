@@ -51,7 +51,6 @@ import * as utilities from "./utilities";
  */
 export function getAtlasUsers(args?: GetAtlasUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetAtlasUsersResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAtlasUsers:getAtlasUsers", {
         "itemsPerPage": args.itemsPerPage,
@@ -156,7 +155,15 @@ export interface GetAtlasUsersResult {
  * ```
  */
 export function getAtlasUsersOutput(args?: GetAtlasUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAtlasUsersResult> {
-    return pulumi.output(args).apply((a: any) => getAtlasUsers(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getAtlasUsers:getAtlasUsers", {
+        "itemsPerPage": args.itemsPerPage,
+        "orgId": args.orgId,
+        "pageNum": args.pageNum,
+        "projectId": args.projectId,
+        "teamId": args.teamId,
+    }, opts);
 }
 
 /**

@@ -50,14 +50,20 @@ type LookupSearchDeploymentResult struct {
 
 func LookupSearchDeploymentOutput(ctx *pulumi.Context, args LookupSearchDeploymentOutputArgs, opts ...pulumi.InvokeOption) LookupSearchDeploymentResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupSearchDeploymentResult, error) {
+		ApplyT(func(v interface{}) (LookupSearchDeploymentResultOutput, error) {
 			args := v.(LookupSearchDeploymentArgs)
-			r, err := LookupSearchDeployment(ctx, &args, opts...)
-			var s LookupSearchDeploymentResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupSearchDeploymentResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getSearchDeployment:getSearchDeployment", args, &rv, "", opts...)
+			if err != nil {
+				return LookupSearchDeploymentResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupSearchDeploymentResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupSearchDeploymentResultOutput), nil
+			}
+			return output, nil
 		}).(LookupSearchDeploymentResultOutput)
 }
 

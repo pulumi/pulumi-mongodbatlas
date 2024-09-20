@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getSharedTierSnapshot(args: GetSharedTierSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetSharedTierSnapshotResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", {
         "clusterName": args.clusterName,
@@ -42,7 +41,12 @@ export interface GetSharedTierSnapshotResult {
     readonly status: string;
 }
 export function getSharedTierSnapshotOutput(args: GetSharedTierSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSharedTierSnapshotResult> {
-    return pulumi.output(args).apply((a: any) => getSharedTierSnapshot(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", {
+        "clusterName": args.clusterName,
+        "projectId": args.projectId,
+        "snapshotId": args.snapshotId,
+    }, opts);
 }
 
 /**

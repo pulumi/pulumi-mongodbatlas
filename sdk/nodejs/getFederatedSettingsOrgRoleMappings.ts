@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
  */
 export function getFederatedSettingsOrgRoleMappings(args: GetFederatedSettingsOrgRoleMappingsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgRoleMappingsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", {
         "federationSettingsId": args.federationSettingsId,
@@ -68,7 +67,13 @@ export interface GetFederatedSettingsOrgRoleMappingsResult {
  * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
  */
 export function getFederatedSettingsOrgRoleMappingsOutput(args: GetFederatedSettingsOrgRoleMappingsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingsResult> {
-    return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgRoleMappings(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", {
+        "federationSettingsId": args.federationSettingsId,
+        "itemsPerPage": args.itemsPerPage,
+        "orgId": args.orgId,
+        "pageNum": args.pageNum,
+    }, opts);
 }
 
 /**

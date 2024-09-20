@@ -52,7 +52,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getTeam:getTeam", {
         "name": args.name,
@@ -151,7 +150,12 @@ export interface GetTeamResult {
  * ```
  */
 export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
-    return pulumi.output(args).apply((a: any) => getTeam(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getTeam:getTeam", {
+        "name": args.name,
+        "orgId": args.orgId,
+        "teamId": args.teamId,
+    }, opts);
 }
 
 /**

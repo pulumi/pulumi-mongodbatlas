@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getDataLakePipeline(args: GetDataLakePipelineArgs, opts?: pulumi.InvokeOptions): Promise<GetDataLakePipelineResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", {
         "name": args.name,
@@ -110,7 +109,11 @@ export interface GetDataLakePipelineResult {
  * ## Example Usage
  */
 export function getDataLakePipelineOutput(args: GetDataLakePipelineOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataLakePipelineResult> {
-    return pulumi.output(args).apply((a: any) => getDataLakePipeline(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", {
+        "name": args.name,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

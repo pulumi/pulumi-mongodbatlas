@@ -59,7 +59,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedSettingsOrgRoleMapping(args: GetFederatedSettingsOrgRoleMappingArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgRoleMappingResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", {
         "federationSettingsId": args.federationSettingsId,
@@ -156,7 +155,12 @@ export interface GetFederatedSettingsOrgRoleMappingResult {
  * ```
  */
 export function getFederatedSettingsOrgRoleMappingOutput(args: GetFederatedSettingsOrgRoleMappingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingResult> {
-    return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgRoleMapping(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", {
+        "federationSettingsId": args.federationSettingsId,
+        "orgId": args.orgId,
+        "roleMappingId": args.roleMappingId,
+    }, opts);
 }
 
 /**

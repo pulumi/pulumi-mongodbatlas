@@ -37,7 +37,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getPrivatelinkEndpointServiceDataFederationOnlineArchives(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", {
         "projectId": args.projectId,
@@ -99,7 +98,10 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
  * ```
  */
 export function getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchivesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult> {
-    return pulumi.output(args).apply((a: any) => getPrivatelinkEndpointServiceDataFederationOnlineArchives(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

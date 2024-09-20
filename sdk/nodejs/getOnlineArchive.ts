@@ -60,7 +60,6 @@ import * as utilities from "./utilities";
  * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
  */
 export function getOnlineArchive(args: GetOnlineArchiveArgs, opts?: pulumi.InvokeOptions): Promise<GetOnlineArchiveResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getOnlineArchive:getOnlineArchive", {
         "archiveId": args.archiveId,
@@ -163,7 +162,12 @@ export interface GetOnlineArchiveResult {
  * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
  */
 export function getOnlineArchiveOutput(args: GetOnlineArchiveOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnlineArchiveResult> {
-    return pulumi.output(args).apply((a: any) => getOnlineArchive(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getOnlineArchive:getOnlineArchive", {
+        "archiveId": args.archiveId,
+        "clusterName": args.clusterName,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

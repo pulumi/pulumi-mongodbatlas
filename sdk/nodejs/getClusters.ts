@@ -48,7 +48,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getClusters(args: GetClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetClustersResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getClusters:getClusters", {
         "projectId": args.projectId,
@@ -121,7 +120,10 @@ export interface GetClustersResult {
  * ```
  */
 export function getClustersOutput(args: GetClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClustersResult> {
-    return pulumi.output(args).apply((a: any) => getClusters(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getClusters:getClusters", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

@@ -121,14 +121,20 @@ type LookupThirdPartyIntegrationResult struct {
 
 func LookupThirdPartyIntegrationOutput(ctx *pulumi.Context, args LookupThirdPartyIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupThirdPartyIntegrationResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupThirdPartyIntegrationResult, error) {
+		ApplyT(func(v interface{}) (LookupThirdPartyIntegrationResultOutput, error) {
 			args := v.(LookupThirdPartyIntegrationArgs)
-			r, err := LookupThirdPartyIntegration(ctx, &args, opts...)
-			var s LookupThirdPartyIntegrationResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupThirdPartyIntegrationResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args, &rv, "", opts...)
+			if err != nil {
+				return LookupThirdPartyIntegrationResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupThirdPartyIntegrationResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupThirdPartyIntegrationResultOutput), nil
+			}
+			return output, nil
 		}).(LookupThirdPartyIntegrationResultOutput)
 }
 

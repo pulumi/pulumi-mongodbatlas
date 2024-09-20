@@ -51,14 +51,20 @@ type LookupFederatedSettingsIdentityProvidersResult struct {
 
 func LookupFederatedSettingsIdentityProvidersOutput(ctx *pulumi.Context, args LookupFederatedSettingsIdentityProvidersOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedSettingsIdentityProvidersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupFederatedSettingsIdentityProvidersResult, error) {
+		ApplyT(func(v interface{}) (LookupFederatedSettingsIdentityProvidersResultOutput, error) {
 			args := v.(LookupFederatedSettingsIdentityProvidersArgs)
-			r, err := LookupFederatedSettingsIdentityProviders(ctx, &args, opts...)
-			var s LookupFederatedSettingsIdentityProvidersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupFederatedSettingsIdentityProvidersResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args, &rv, "", opts...)
+			if err != nil {
+				return LookupFederatedSettingsIdentityProvidersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupFederatedSettingsIdentityProvidersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupFederatedSettingsIdentityProvidersResultOutput), nil
+			}
+			return output, nil
 		}).(LookupFederatedSettingsIdentityProvidersResultOutput)
 }
 

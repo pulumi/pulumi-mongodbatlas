@@ -140,14 +140,20 @@ type LookupAtlasUsersResult struct {
 
 func LookupAtlasUsersOutput(ctx *pulumi.Context, args LookupAtlasUsersOutputArgs, opts ...pulumi.InvokeOption) LookupAtlasUsersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAtlasUsersResult, error) {
+		ApplyT(func(v interface{}) (LookupAtlasUsersResultOutput, error) {
 			args := v.(LookupAtlasUsersArgs)
-			r, err := LookupAtlasUsers(ctx, &args, opts...)
-			var s LookupAtlasUsersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAtlasUsersResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAtlasUsersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAtlasUsersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAtlasUsersResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAtlasUsersResultOutput)
 }
 

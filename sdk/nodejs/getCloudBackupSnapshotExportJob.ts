@@ -43,7 +43,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCloudBackupSnapshotExportJob(args: GetCloudBackupSnapshotExportJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportJobResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", {
         "clusterName": args.clusterName,
@@ -161,7 +160,12 @@ export interface GetCloudBackupSnapshotExportJobResult {
  * ```
  */
 export function getCloudBackupSnapshotExportJobOutput(args: GetCloudBackupSnapshotExportJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportJobResult> {
-    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportJob(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", {
+        "clusterName": args.clusterName,
+        "exportJobId": args.exportJobId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

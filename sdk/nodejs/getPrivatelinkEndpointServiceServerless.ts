@@ -81,7 +81,6 @@ import * as utilities from "./utilities";
  * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
  */
 export function getPrivatelinkEndpointServiceServerless(args: GetPrivatelinkEndpointServiceServerlessArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointServiceServerlessResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", {
         "endpointId": args.endpointId,
@@ -216,7 +215,12 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
  * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
  */
 export function getPrivatelinkEndpointServiceServerlessOutput(args: GetPrivatelinkEndpointServiceServerlessOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointServiceServerlessResult> {
-    return pulumi.output(args).apply((a: any) => getPrivatelinkEndpointServiceServerless(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", {
+        "endpointId": args.endpointId,
+        "instanceName": args.instanceName,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

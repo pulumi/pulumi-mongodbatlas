@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getClusterOutageSimulation(args: GetClusterOutageSimulationArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterOutageSimulationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", {
         "clusterName": args.clusterName,
@@ -93,7 +92,11 @@ export interface GetClusterOutageSimulationResult {
  * ```
  */
 export function getClusterOutageSimulationOutput(args: GetClusterOutageSimulationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterOutageSimulationResult> {
-    return pulumi.output(args).apply((a: any) => getClusterOutageSimulation(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", {
+        "clusterName": args.clusterName,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

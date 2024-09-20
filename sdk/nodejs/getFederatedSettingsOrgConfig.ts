@@ -33,7 +33,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedSettingsOrgConfig(args: GetFederatedSettingsOrgConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgConfigResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", {
         "federationSettingsId": args.federationSettingsId,
@@ -126,7 +125,11 @@ export interface GetFederatedSettingsOrgConfigResult {
  * ```
  */
 export function getFederatedSettingsOrgConfigOutput(args: GetFederatedSettingsOrgConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgConfigResult> {
-    return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgConfig(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", {
+        "federationSettingsId": args.federationSettingsId,
+        "orgId": args.orgId,
+    }, opts);
 }
 
 /**

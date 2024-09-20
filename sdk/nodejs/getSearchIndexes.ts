@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getSearchIndexes(args: GetSearchIndexesArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchIndexesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", {
         "clusterName": args.clusterName,
@@ -81,7 +80,13 @@ export interface GetSearchIndexesResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getSearchIndexesOutput(args: GetSearchIndexesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchIndexesResult> {
-    return pulumi.output(args).apply((a: any) => getSearchIndexes(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getSearchIndexes:getSearchIndexes", {
+        "clusterName": args.clusterName,
+        "collectionName": args.collectionName,
+        "database": args.database,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

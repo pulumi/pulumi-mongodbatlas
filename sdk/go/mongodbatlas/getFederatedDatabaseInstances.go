@@ -47,14 +47,20 @@ type LookupFederatedDatabaseInstancesResult struct {
 
 func LookupFederatedDatabaseInstancesOutput(ctx *pulumi.Context, args LookupFederatedDatabaseInstancesOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedDatabaseInstancesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupFederatedDatabaseInstancesResult, error) {
+		ApplyT(func(v interface{}) (LookupFederatedDatabaseInstancesResultOutput, error) {
 			args := v.(LookupFederatedDatabaseInstancesArgs)
-			r, err := LookupFederatedDatabaseInstances(ctx, &args, opts...)
-			var s LookupFederatedDatabaseInstancesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupFederatedDatabaseInstancesResult
+			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args, &rv, "", opts...)
+			if err != nil {
+				return LookupFederatedDatabaseInstancesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupFederatedDatabaseInstancesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupFederatedDatabaseInstancesResultOutput), nil
+			}
+			return output, nil
 		}).(LookupFederatedDatabaseInstancesResultOutput)
 }
 

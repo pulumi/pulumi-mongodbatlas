@@ -48,7 +48,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getX509AuthenticationDatabaseUser(args: GetX509AuthenticationDatabaseUserArgs, opts?: pulumi.InvokeOptions): Promise<GetX509AuthenticationDatabaseUserResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", {
         "projectId": args.projectId,
@@ -128,7 +127,11 @@ export interface GetX509AuthenticationDatabaseUserResult {
  * ```
  */
 export function getX509AuthenticationDatabaseUserOutput(args: GetX509AuthenticationDatabaseUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetX509AuthenticationDatabaseUserResult> {
-    return pulumi.output(args).apply((a: any) => getX509AuthenticationDatabaseUser(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", {
+        "projectId": args.projectId,
+        "username": args.username,
+    }, opts);
 }
 
 /**

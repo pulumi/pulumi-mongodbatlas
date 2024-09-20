@@ -38,7 +38,6 @@ import * as utilities from "./utilities";
  * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
  */
 export function getServerlessInstance(args: GetServerlessInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetServerlessInstanceResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getServerlessInstance:getServerlessInstance", {
         "autoIndexing": args.autoIndexing,
@@ -166,7 +165,15 @@ export interface GetServerlessInstanceResult {
  * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
  */
 export function getServerlessInstanceOutput(args: GetServerlessInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerlessInstanceResult> {
-    return pulumi.output(args).apply((a: any) => getServerlessInstance(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getServerlessInstance:getServerlessInstance", {
+        "autoIndexing": args.autoIndexing,
+        "continuousBackupEnabled": args.continuousBackupEnabled,
+        "links": args.links,
+        "name": args.name,
+        "projectId": args.projectId,
+        "stateName": args.stateName,
+    }, opts);
 }
 
 /**

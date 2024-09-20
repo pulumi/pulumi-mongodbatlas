@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", {
         "enabled": args.enabled,
@@ -165,7 +164,15 @@ export interface GetThirdPartyIntegrationResult {
  * ```
  */
 export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
-    return pulumi.output(args).apply((a: any) => getThirdPartyIntegration(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", {
+        "enabled": args.enabled,
+        "microsoftTeamsWebhookUrl": args.microsoftTeamsWebhookUrl,
+        "projectId": args.projectId,
+        "serviceDiscovery": args.serviceDiscovery,
+        "type": args.type,
+        "userName": args.userName,
+    }, opts);
 }
 
 /**

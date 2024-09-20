@@ -106,7 +106,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getAlertConfiguration(args: GetAlertConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", {
         "alertConfigurationId": args.alertConfigurationId,
@@ -272,7 +271,12 @@ export interface GetAlertConfigurationResult {
  * ```
  */
 export function getAlertConfigurationOutput(args: GetAlertConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlertConfigurationResult> {
-    return pulumi.output(args).apply((a: any) => getAlertConfiguration(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", {
+        "alertConfigurationId": args.alertConfigurationId,
+        "outputs": args.outputs,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

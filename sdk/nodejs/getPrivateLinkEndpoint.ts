@@ -33,7 +33,6 @@ import * as utilities from "./utilities";
  * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
  */
 export function getPrivateLinkEndpoint(args: GetPrivateLinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", {
         "privateLinkId": args.privateLinkId,
@@ -147,7 +146,12 @@ export interface GetPrivateLinkEndpointResult {
  * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
  */
 export function getPrivateLinkEndpointOutput(args: GetPrivateLinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateLinkEndpointResult> {
-    return pulumi.output(args).apply((a: any) => getPrivateLinkEndpoint(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", {
+        "privateLinkId": args.privateLinkId,
+        "projectId": args.projectId,
+        "providerName": args.providerName,
+    }, opts);
 }
 
 /**

@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getSearchDeployment(args: GetSearchDeploymentArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchDeploymentResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getSearchDeployment:getSearchDeployment", {
         "clusterName": args.clusterName,
@@ -69,7 +68,11 @@ export interface GetSearchDeploymentResult {
  * ## Example Usage
  */
 export function getSearchDeploymentOutput(args: GetSearchDeploymentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchDeploymentResult> {
-    return pulumi.output(args).apply((a: any) => getSearchDeployment(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getSearchDeployment:getSearchDeployment", {
+        "clusterName": args.clusterName,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

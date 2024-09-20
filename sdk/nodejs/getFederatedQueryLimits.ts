@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedQueryLimits(args: GetFederatedQueryLimitsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedQueryLimitsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", {
         "projectId": args.projectId,
@@ -87,7 +86,11 @@ export interface GetFederatedQueryLimitsResult {
  * ```
  */
 export function getFederatedQueryLimitsOutput(args: GetFederatedQueryLimitsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedQueryLimitsResult> {
-    return pulumi.output(args).apply((a: any) => getFederatedQueryLimits(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", {
+        "projectId": args.projectId,
+        "tenantName": args.tenantName,
+    }, opts);
 }
 
 /**
