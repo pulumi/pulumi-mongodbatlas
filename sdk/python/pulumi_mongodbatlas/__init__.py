@@ -88,6 +88,7 @@ from .get_global_cluster_config import *
 from .get_ldap_configuration import *
 from .get_ldap_verify import *
 from .get_maintenance_window import *
+from .get_mongodb_employee_access_grant import *
 from .get_network_container import *
 from .get_network_containers import *
 from .get_network_peering import *
@@ -137,6 +138,7 @@ from .global_cluster_config import *
 from .ldap_configuration import *
 from .ldap_verify import *
 from .maintenance_window import *
+from .mongodb_employee_access_grant import *
 from .network_container import *
 from .network_peering import *
 from .online_archive import *
@@ -423,6 +425,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/maintenanceWindow:MaintenanceWindow": "MaintenanceWindow"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/mongodbEmployeeAccessGrant",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant": "MongodbEmployeeAccessGrant"
   }
  },
  {

@@ -185,7 +185,7 @@ def get_data_lake_pipeline_run(pipeline_name: Optional[str] = None,
                                project_id: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataLakePipelineRunResult:
     """
-    ## # Data Source: get_data_lake_pipeline_run
+    **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
 
     `get_data_lake_pipeline_run` describes a Data Lake Pipeline Run.
 
@@ -225,7 +225,7 @@ def get_data_lake_pipeline_run_output(pipeline_name: Optional[pulumi.Input[str]]
                                       project_id: Optional[pulumi.Input[str]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakePipelineRunResult]:
     """
-    ## # Data Source: get_data_lake_pipeline_run
+    **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
 
     `get_data_lake_pipeline_run` describes a Data Lake Pipeline Run.
 

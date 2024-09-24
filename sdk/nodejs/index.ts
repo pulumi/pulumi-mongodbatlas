@@ -420,6 +420,11 @@ export const getMaintenanceWindow: typeof import("./getMaintenanceWindow").getMa
 export const getMaintenanceWindowOutput: typeof import("./getMaintenanceWindow").getMaintenanceWindowOutput = null as any;
 utilities.lazyLoad(exports, ["getMaintenanceWindow","getMaintenanceWindowOutput"], () => require("./getMaintenanceWindow"));
 
+export { GetMongodbEmployeeAccessGrantArgs, GetMongodbEmployeeAccessGrantResult, GetMongodbEmployeeAccessGrantOutputArgs } from "./getMongodbEmployeeAccessGrant";
+export const getMongodbEmployeeAccessGrant: typeof import("./getMongodbEmployeeAccessGrant").getMongodbEmployeeAccessGrant = null as any;
+export const getMongodbEmployeeAccessGrantOutput: typeof import("./getMongodbEmployeeAccessGrant").getMongodbEmployeeAccessGrantOutput = null as any;
+utilities.lazyLoad(exports, ["getMongodbEmployeeAccessGrant","getMongodbEmployeeAccessGrantOutput"], () => require("./getMongodbEmployeeAccessGrant"));
+
 export { GetNetworkContainerArgs, GetNetworkContainerResult, GetNetworkContainerOutputArgs } from "./getNetworkContainer";
 export const getNetworkContainer: typeof import("./getNetworkContainer").getNetworkContainer = null as any;
 export const getNetworkContainerOutput: typeof import("./getNetworkContainer").getNetworkContainerOutput = null as any;
@@ -665,6 +670,11 @@ export type MaintenanceWindow = import("./maintenanceWindow").MaintenanceWindow;
 export const MaintenanceWindow: typeof import("./maintenanceWindow").MaintenanceWindow = null as any;
 utilities.lazyLoad(exports, ["MaintenanceWindow"], () => require("./maintenanceWindow"));
 
+export { MongodbEmployeeAccessGrantArgs, MongodbEmployeeAccessGrantState } from "./mongodbEmployeeAccessGrant";
+export type MongodbEmployeeAccessGrant = import("./mongodbEmployeeAccessGrant").MongodbEmployeeAccessGrant;
+export const MongodbEmployeeAccessGrant: typeof import("./mongodbEmployeeAccessGrant").MongodbEmployeeAccessGrant = null as any;
+utilities.lazyLoad(exports, ["MongodbEmployeeAccessGrant"], () => require("./mongodbEmployeeAccessGrant"));
+
 export { NetworkContainerArgs, NetworkContainerState } from "./networkContainer";
 export type NetworkContainer = import("./networkContainer").NetworkContainer;
 export const NetworkContainer: typeof import("./networkContainer").NetworkContainer = null as any;
@@ -876,6 +886,8 @@ const _module = {
                 return new LdapVerify(name, <any>undefined, { urn })
             case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
                 return new MaintenanceWindow(name, <any>undefined, { urn })
+            case "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant":
+                return new MongodbEmployeeAccessGrant(name, <any>undefined, { urn })
             case "mongodbatlas:index/networkContainer:NetworkContainer":
                 return new NetworkContainer(name, <any>undefined, { urn })
             case "mongodbatlas:index/networkPeering:NetworkPeering":
@@ -964,6 +976,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/globalClusterConfig
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapVerify", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/maintenanceWindow", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/mongodbEmployeeAccessGrant", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkContainer", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkPeering", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/onlineArchive", _module)

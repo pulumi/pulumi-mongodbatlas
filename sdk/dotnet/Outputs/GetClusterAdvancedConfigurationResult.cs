@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetClusterAdvancedConfigurationResult
     {
         /// <summary>
-        /// (Optional) The minimum pre- and post-image retention time in seconds.
+        /// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         /// </summary>
         public readonly int ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         /// <summary>
@@ -44,7 +44,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         /// </summary>
-        public readonly int OplogMinRetentionHours;
+        public readonly double OplogMinRetentionHours;
         /// <summary>
         /// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         /// </summary>
@@ -78,7 +78,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool noTableScan,
 
-            int oplogMinRetentionHours,
+            double oplogMinRetentionHours,
 
             int oplogSizeMb,
 

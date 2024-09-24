@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetDataLakePipelineRuns
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getDataLakePipelineRuns
+        /// **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
         /// 
         /// `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
         /// 
@@ -23,7 +23,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataLakePipelineRunsResult>("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", args ?? new GetDataLakePipelineRunsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getDataLakePipelineRuns
+        /// **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
         /// 
         /// `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
         /// 

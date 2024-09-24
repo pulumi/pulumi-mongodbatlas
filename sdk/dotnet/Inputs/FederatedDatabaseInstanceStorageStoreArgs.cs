@@ -26,9 +26,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
 
-        [Input("clusterId")]
-        public Input<string>? ClusterId { get; set; }
-
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
 

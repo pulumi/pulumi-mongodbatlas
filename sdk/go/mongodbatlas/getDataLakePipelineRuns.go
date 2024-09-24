@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getDataLakePipelineRuns
+// **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
 //
 // `getDataLakePipelineRun` describes Data Lake Pipeline Runs.
 //

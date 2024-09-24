@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -13,7 +14,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAdvancedClusterAdvancedConfiguration {
     /**
-     * @return (Optional) The minimum pre- and post-image retention time in seconds.
+     * @return (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
      * 
      */
     private Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
@@ -59,7 +60,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
      * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
      * 
      */
-    private Integer oplogMinRetentionHours;
+    private Double oplogMinRetentionHours;
     /**
      * @return The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      * 
@@ -83,7 +84,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
 
     private GetAdvancedClusterAdvancedConfiguration() {}
     /**
-     * @return (Optional) The minimum pre- and post-image retention time in seconds.
+     * @return (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
      * 
      */
     public Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
@@ -143,7 +144,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
      * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
      * 
      */
-    public Integer oplogMinRetentionHours() {
+    public Double oplogMinRetentionHours() {
         return this.oplogMinRetentionHours;
     }
     /**
@@ -191,7 +192,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
         private Boolean javascriptEnabled;
         private String minimumEnabledTlsProtocol;
         private Boolean noTableScan;
-        private Integer oplogMinRetentionHours;
+        private Double oplogMinRetentionHours;
         private Integer oplogSizeMb;
         private Integer sampleRefreshIntervalBiConnector;
         private Integer sampleSizeBiConnector;
@@ -270,7 +271,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
             return this;
         }
         @CustomType.Setter
-        public Builder oplogMinRetentionHours(Integer oplogMinRetentionHours) {
+        public Builder oplogMinRetentionHours(Double oplogMinRetentionHours) {
             if (oplogMinRetentionHours == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClusterAdvancedConfiguration", "oplogMinRetentionHours");
             }

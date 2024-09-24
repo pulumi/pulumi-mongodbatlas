@@ -115,14 +115,19 @@ import javax.annotation.Nullable;
  *                     ), 
  *                     jsonObject(
  *                         jsonProperty("$emit", jsonObject(
- *                             jsonProperty("connectionName", "__testLog")
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+ *                             jsonProperty("db", "sample"),
+ *                             jsonProperty("coll", "solar"),
+ *                             jsonProperty("timeseries", jsonObject(
+ *                                 jsonProperty("timeField", "_ts")
+ *                             ))
  *                         ))
  *                     )
  *                 )))
- *             .state("CREATED")
+ *             .state("STARTED")
  *             .build());
  * 
- *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+ *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
  *             .projectId(projectId)
  *             .instanceName(example.instanceName())
  *             .processorName("clusterProcessorName")
@@ -135,14 +140,15 @@ import javax.annotation.Nullable;
  *                     ), 
  *                     jsonObject(
  *                         jsonProperty("$emit", jsonObject(
- *                             jsonProperty("connectionName", "__testLog")
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+ *                             jsonProperty("topic", "topic_from_cluster")
  *                         ))
  *                     )
  *                 )))
- *             .state("STARTED")
+ *             .state("CREATED")
  *             .build());
  * 
- *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+ *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
  *             .projectId(projectId)
  *             .instanceName(example.instanceName())
  *             .processorName("kafkaProcessorName")
@@ -150,13 +156,18 @@ import javax.annotation.Nullable;
  *                 jsonArray(
  *                     jsonObject(
  *                         jsonProperty("$source", jsonObject(
- *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+ *                             jsonProperty("topic", "topic_source")
  *                         ))
  *                     ), 
  *                     jsonObject(
  *                         jsonProperty("$emit", jsonObject(
- *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
- *                             jsonProperty("topic", "example_topic")
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+ *                             jsonProperty("db", "kafka"),
+ *                             jsonProperty("coll", "topic_source"),
+ *                             jsonProperty("timeseries", jsonObject(
+ *                                 jsonProperty("timeField", "ts")
+ *                             ))
  *                         ))
  *                     )
  *                 )))

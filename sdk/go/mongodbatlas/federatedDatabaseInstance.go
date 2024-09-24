@@ -247,7 +247,6 @@ type FederatedDatabaseInstance struct {
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-	// * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
 	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
@@ -345,7 +344,6 @@ type federatedDatabaseInstanceState struct {
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-	// * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
 	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
@@ -411,7 +409,6 @@ type FederatedDatabaseInstanceState struct {
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-	// * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
 	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
@@ -475,7 +472,6 @@ type federatedDatabaseInstanceArgs struct {
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-	// * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
 	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
@@ -536,7 +532,6 @@ type FederatedDatabaseInstanceArgs struct {
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-	// * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
 	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
@@ -715,7 +710,6 @@ func (o FederatedDatabaseInstanceOutput) StorageDatabases() FederatedDatabaseIns
 // * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 // * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
 // * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-// * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
 // * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 // * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
 // * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.

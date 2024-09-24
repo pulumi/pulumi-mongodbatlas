@@ -16,13 +16,6 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
     private List<String> additionalStorageClasses;
     private Boolean allowInsecure;
     private String bucket;
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed by September 2024.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. */
-    private String clusterId;
     private String clusterName;
     private String defaultFormat;
     private String delimiter;
@@ -53,15 +46,6 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
     }
     public String bucket() {
         return this.bucket;
-    }
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed by September 2024.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. */
-    public String clusterId() {
-        return this.clusterId;
     }
     public String clusterName() {
         return this.clusterName;
@@ -120,7 +104,6 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
         private List<String> additionalStorageClasses;
         private Boolean allowInsecure;
         private String bucket;
-        private String clusterId;
         private String clusterName;
         private String defaultFormat;
         private String delimiter;
@@ -139,7 +122,6 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
     	      this.additionalStorageClasses = defaults.additionalStorageClasses;
     	      this.allowInsecure = defaults.allowInsecure;
     	      this.bucket = defaults.bucket;
-    	      this.clusterId = defaults.clusterId;
     	      this.clusterName = defaults.clusterName;
     	      this.defaultFormat = defaults.defaultFormat;
     	      this.delimiter = defaults.delimiter;
@@ -179,14 +161,6 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
               throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResultStorageStore", "bucket");
             }
             this.bucket = bucket;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder clusterId(String clusterId) {
-            if (clusterId == null) {
-              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResultStorageStore", "clusterId");
-            }
-            this.clusterId = clusterId;
             return this;
         }
         @CustomType.Setter
@@ -296,7 +270,6 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
             _resultValue.additionalStorageClasses = additionalStorageClasses;
             _resultValue.allowInsecure = allowInsecure;
             _resultValue.bucket = bucket;
-            _resultValue.clusterId = clusterId;
             _resultValue.clusterName = clusterName;
             _resultValue.defaultFormat = defaultFormat;
             _resultValue.delimiter = delimiter;

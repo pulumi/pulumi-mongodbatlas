@@ -30,20 +30,17 @@ import javax.annotation.Nullable;
  * 
  * More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
  * 
- * &gt; **IMPORTANT:**
- * &lt;br&gt; &amp;#8226; The primary difference between `mongodbatlas.Cluster` and `mongodbatlas.AdvancedCluster` is that `mongodbatlas.AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `mongodbatlas.AdvancedCluster` resource.
+ * &gt; **IMPORTANT:** The primary difference between `mongodbatlas.Cluster` and `mongodbatlas.AdvancedCluster` is that `mongodbatlas.AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `mongodbatlas.AdvancedCluster` resource.
  * 
  * &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
- * 
- * &lt;br&gt; &amp;#8226; Upgrading the shared tier is supported. Any change from a shared tier cluster (a tenant) to a different instance size will be considered a tenant upgrade. When upgrading from the shared tier, change the `provider_name` from &#34;TENANT&#34; to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below.   Note you can upgrade a shared tier cluster only to a single provider on an M10-tier cluster or greater.\
- * &lt;br&gt; &amp;#8226; **IMPORTANT NOTE** When upgrading from the shared tier, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
- * &gt; **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
  * 
  * &gt; **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs.#.container_id` attribute in the Attributes Reference for more information.
  * 
  * &gt; **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the mongodbatlas.Project resource.
  * 
  * &gt; **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
  * 
  * ## Example Usage
  * 
@@ -148,6 +145,10 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * **NOTE**: Upgrading the shared tier is supported. Any change from a shared tier cluster (a tenant) to a different instance size will be considered a tenant upgrade. When upgrading from the shared tier, change the `provider_name` from &#34;TENANT&#34; to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below. You can upgrade a shared tier cluster only to a single provider on an M10-tier cluster or greater.
+ * 
+ * When upgrading from the shared tier, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
  * 
  * ### Example Tenant Cluster Upgrade
  * 
@@ -295,7 +296,7 @@ import javax.annotation.Nullable;
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(3)
  *                                 .build())
  *                             .providerName("AWS")
@@ -304,7 +305,7 @@ import javax.annotation.Nullable;
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .providerName("AZURE")
@@ -316,7 +317,7 @@ import javax.annotation.Nullable;
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(3)
  *                                 .build())
  *                             .providerName("AWS")
@@ -325,7 +326,7 @@ import javax.annotation.Nullable;
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .providerName("AZURE")
@@ -383,7 +384,7 @@ import javax.annotation.Nullable;
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(3)
  *                                 .build())
  *                             .providerName("AWS")
@@ -392,7 +393,7 @@ import javax.annotation.Nullable;
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .providerName("AZURE")
@@ -405,7 +406,7 @@ import javax.annotation.Nullable;
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(3)
  *                                 .build())
  *                             .providerName("AWS")
@@ -414,7 +415,7 @@ import javax.annotation.Nullable;
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .providerName("AZURE")
@@ -427,7 +428,7 @@ import javax.annotation.Nullable;
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(3)
  *                                 .build())
  *                             .providerName("AWS")
@@ -436,7 +437,7 @@ import javax.annotation.Nullable;
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .providerName("AZURE")
@@ -449,7 +450,7 @@ import javax.annotation.Nullable;
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(3)
  *                                 .build())
  *                             .providerName("AWS")
@@ -458,7 +459,7 @@ import javax.annotation.Nullable;
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
+ *                                 .instanceSize("M30")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .providerName("AZURE")

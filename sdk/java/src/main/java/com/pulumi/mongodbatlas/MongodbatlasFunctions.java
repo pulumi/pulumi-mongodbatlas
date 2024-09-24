@@ -118,6 +118,8 @@ import com.pulumi.mongodbatlas.inputs.GetLdapVerifyArgs;
 import com.pulumi.mongodbatlas.inputs.GetLdapVerifyPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
 import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
+import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetNetworkContainerArgs;
 import com.pulumi.mongodbatlas.inputs.GetNetworkContainerPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetNetworkContainersArgs;
@@ -262,6 +264,7 @@ import com.pulumi.mongodbatlas.outputs.GetGlobalClusterConfigResult;
 import com.pulumi.mongodbatlas.outputs.GetLdapConfigurationResult;
 import com.pulumi.mongodbatlas.outputs.GetLdapVerifyResult;
 import com.pulumi.mongodbatlas.outputs.GetMaintenanceWindowResult;
+import com.pulumi.mongodbatlas.outputs.GetMongodbEmployeeAccessGrantResult;
 import com.pulumi.mongodbatlas.outputs.GetNetworkContainerResult;
 import com.pulumi.mongodbatlas.outputs.GetNetworkContainersInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetNetworkPeeringResult;
@@ -8658,7 +8661,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", TypeShape.of(GetCustomDnsConfigurationClusterAwsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.DataLakePipeline
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
@@ -8767,7 +8770,7 @@ public final class MongodbatlasFunctions {
         return getDataLakePipeline(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.DataLakePipeline
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
@@ -8876,7 +8879,7 @@ public final class MongodbatlasFunctions {
         return getDataLakePipelinePlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.DataLakePipeline
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
@@ -8985,7 +8988,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", TypeShape.of(GetDataLakePipelineResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.DataLakePipeline
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
@@ -9094,7 +9097,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", TypeShape.of(GetDataLakePipelineResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelineRun
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelineRun` describes a Data Lake Pipeline Run.
      * 
@@ -9180,7 +9183,7 @@ public final class MongodbatlasFunctions {
         return getDataLakePipelineRun(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelineRun
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelineRun` describes a Data Lake Pipeline Run.
      * 
@@ -9266,7 +9269,7 @@ public final class MongodbatlasFunctions {
         return getDataLakePipelineRunPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelineRun
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelineRun` describes a Data Lake Pipeline Run.
      * 
@@ -9352,7 +9355,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun", TypeShape.of(GetDataLakePipelineRunResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelineRun
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelineRun` describes a Data Lake Pipeline Run.
      * 
@@ -9438,7 +9441,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun", TypeShape.of(GetDataLakePipelineRunResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelineRuns
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
      * 
@@ -9517,7 +9520,7 @@ public final class MongodbatlasFunctions {
         return getDataLakePipelineRuns(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelineRuns
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
      * 
@@ -9596,7 +9599,7 @@ public final class MongodbatlasFunctions {
         return getDataLakePipelineRunsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelineRuns
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
      * 
@@ -9675,7 +9678,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", TypeShape.of(GetDataLakePipelineRunsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelineRuns
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
      * 
@@ -9754,7 +9757,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", TypeShape.of(GetDataLakePipelineRunsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelines
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
      * 
@@ -9767,7 +9770,7 @@ public final class MongodbatlasFunctions {
         return getDataLakePipelines(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelines
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
      * 
@@ -9780,7 +9783,7 @@ public final class MongodbatlasFunctions {
         return getDataLakePipelinesPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelines
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
      * 
@@ -9793,7 +9796,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelines:getDataLakePipelines", TypeShape.of(GetDataLakePipelinesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.getDataLakePipelines
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
      * 
      * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
      * 
@@ -16104,6 +16107,234 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetMaintenanceWindowResult> getMaintenanceWindowPlain(GetMaintenanceWindowPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", TypeShape.of(GetMaintenanceWindowResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
+     * 
+     * `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrant;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new MongodbEmployeeAccessGrant("example", MongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .grantType("CLUSTER_INFRASTRUCTURE_AND_APP_SERVICES_SYNC_DATA")
+     *             .expirationTime("2025-01-01T12:00:00Z")
+     *             .build());
+     * 
+     *         final var dsExample = MongodbatlasFunctions.getMongodbEmployeeAccessGrant(GetMongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .build());
+     * 
+     *         ctx.export("grantType", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.grantType()));
+     *         ctx.export("expirationTime", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.expirationTime()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMongodbEmployeeAccessGrantResult> getMongodbEmployeeAccessGrant(GetMongodbEmployeeAccessGrantArgs args) {
+        return getMongodbEmployeeAccessGrant(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
+     * 
+     * `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrant;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new MongodbEmployeeAccessGrant("example", MongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .grantType("CLUSTER_INFRASTRUCTURE_AND_APP_SERVICES_SYNC_DATA")
+     *             .expirationTime("2025-01-01T12:00:00Z")
+     *             .build());
+     * 
+     *         final var dsExample = MongodbatlasFunctions.getMongodbEmployeeAccessGrant(GetMongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .build());
+     * 
+     *         ctx.export("grantType", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.grantType()));
+     *         ctx.export("expirationTime", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.expirationTime()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMongodbEmployeeAccessGrantResult> getMongodbEmployeeAccessGrantPlain(GetMongodbEmployeeAccessGrantPlainArgs args) {
+        return getMongodbEmployeeAccessGrantPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
+     * 
+     * `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrant;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new MongodbEmployeeAccessGrant("example", MongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .grantType("CLUSTER_INFRASTRUCTURE_AND_APP_SERVICES_SYNC_DATA")
+     *             .expirationTime("2025-01-01T12:00:00Z")
+     *             .build());
+     * 
+     *         final var dsExample = MongodbatlasFunctions.getMongodbEmployeeAccessGrant(GetMongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .build());
+     * 
+     *         ctx.export("grantType", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.grantType()));
+     *         ctx.export("expirationTime", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.expirationTime()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMongodbEmployeeAccessGrantResult> getMongodbEmployeeAccessGrant(GetMongodbEmployeeAccessGrantArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", TypeShape.of(GetMongodbEmployeeAccessGrantResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
+     * 
+     * `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrant;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new MongodbEmployeeAccessGrant("example", MongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .grantType("CLUSTER_INFRASTRUCTURE_AND_APP_SERVICES_SYNC_DATA")
+     *             .expirationTime("2025-01-01T12:00:00Z")
+     *             .build());
+     * 
+     *         final var dsExample = MongodbatlasFunctions.getMongodbEmployeeAccessGrant(GetMongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .build());
+     * 
+     *         ctx.export("grantType", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.grantType()));
+     *         ctx.export("expirationTime", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.expirationTime()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMongodbEmployeeAccessGrantResult> getMongodbEmployeeAccessGrantPlain(GetMongodbEmployeeAccessGrantPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", TypeShape.of(GetMongodbEmployeeAccessGrantResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## # Data Source: mongodbatlas.NetworkContainer
@@ -25832,14 +26063,19 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
-     *             .state("CREATED")
+     *             .state("STARTED")
      *             .build());
      * 
-     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("clusterProcessorName")
@@ -25852,14 +26088,15 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
      *                         ))
      *                     )
      *                 )))
-     *             .state("STARTED")
+     *             .state("CREATED")
      *             .build());
      * 
-     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
@@ -25867,13 +26104,18 @@ public final class MongodbatlasFunctions {
      *                 jsonArray(
      *                     jsonObject(
      *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
      *                         ))
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "example_topic")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
@@ -26013,14 +26255,19 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
-     *             .state("CREATED")
+     *             .state("STARTED")
      *             .build());
      * 
-     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("clusterProcessorName")
@@ -26033,14 +26280,15 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
      *                         ))
      *                     )
      *                 )))
-     *             .state("STARTED")
+     *             .state("CREATED")
      *             .build());
      * 
-     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
@@ -26048,13 +26296,18 @@ public final class MongodbatlasFunctions {
      *                 jsonArray(
      *                     jsonObject(
      *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
      *                         ))
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "example_topic")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
@@ -26194,14 +26447,19 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
-     *             .state("CREATED")
+     *             .state("STARTED")
      *             .build());
      * 
-     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("clusterProcessorName")
@@ -26214,14 +26472,15 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
      *                         ))
      *                     )
      *                 )))
-     *             .state("STARTED")
+     *             .state("CREATED")
      *             .build());
      * 
-     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
@@ -26229,13 +26488,18 @@ public final class MongodbatlasFunctions {
      *                 jsonArray(
      *                     jsonObject(
      *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
      *                         ))
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "example_topic")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
@@ -26375,14 +26639,19 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
-     *             .state("CREATED")
+     *             .state("STARTED")
      *             .build());
      * 
-     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("clusterProcessorName")
@@ -26395,14 +26664,15 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
      *                         ))
      *                     )
      *                 )))
-     *             .state("STARTED")
+     *             .state("CREATED")
      *             .build());
      * 
-     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
@@ -26410,13 +26680,18 @@ public final class MongodbatlasFunctions {
      *                 jsonArray(
      *                     jsonObject(
      *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
      *                         ))
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "example_topic")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
@@ -26556,14 +26831,19 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
-     *             .state("CREATED")
+     *             .state("STARTED")
      *             .build());
      * 
-     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("clusterProcessorName")
@@ -26576,14 +26856,15 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
      *                         ))
      *                     )
      *                 )))
-     *             .state("STARTED")
+     *             .state("CREATED")
      *             .build());
      * 
-     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
@@ -26591,13 +26872,18 @@ public final class MongodbatlasFunctions {
      *                 jsonArray(
      *                     jsonObject(
      *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
      *                         ))
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "example_topic")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
@@ -26737,14 +27023,19 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
-     *             .state("CREATED")
+     *             .state("STARTED")
      *             .build());
      * 
-     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("clusterProcessorName")
@@ -26757,14 +27048,15 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
      *                         ))
      *                     )
      *                 )))
-     *             .state("STARTED")
+     *             .state("CREATED")
      *             .build());
      * 
-     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
@@ -26772,13 +27064,18 @@ public final class MongodbatlasFunctions {
      *                 jsonArray(
      *                     jsonObject(
      *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
      *                         ))
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "example_topic")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
@@ -26918,14 +27215,19 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
-     *             .state("CREATED")
+     *             .state("STARTED")
      *             .build());
      * 
-     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("clusterProcessorName")
@@ -26938,14 +27240,15 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
      *                         ))
      *                     )
      *                 )))
-     *             .state("STARTED")
+     *             .state("CREATED")
      *             .build());
      * 
-     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
@@ -26953,13 +27256,18 @@ public final class MongodbatlasFunctions {
      *                 jsonArray(
      *                     jsonObject(
      *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
      *                         ))
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "example_topic")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
@@ -27099,14 +27407,19 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))
-     *             .state("CREATED")
+     *             .state("STARTED")
      *             .build());
      * 
-     *         var stream_processor_cluster_example = new StreamProcessor("stream-processor-cluster-example", StreamProcessorArgs.builder()
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("clusterProcessorName")
@@ -27119,14 +27432,15 @@ public final class MongodbatlasFunctions {
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", "__testLog")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
      *                         ))
      *                     )
      *                 )))
-     *             .state("STARTED")
+     *             .state("CREATED")
      *             .build());
      * 
-     *         var stream_processor_kafka_example = new StreamProcessor("stream-processor-kafka-example", StreamProcessorArgs.builder()
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
      *             .projectId(projectId)
      *             .instanceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
@@ -27134,13 +27448,18 @@ public final class MongodbatlasFunctions {
      *                 jsonArray(
      *                     jsonObject(
      *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
      *                         ))
      *                     ), 
      *                     jsonObject(
      *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "example_topic")
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
      *                         ))
      *                     )
      *                 )))

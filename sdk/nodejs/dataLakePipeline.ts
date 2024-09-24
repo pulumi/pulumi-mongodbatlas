@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.DataLakePipeline
+ * **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
  *
  * `mongodbatlas.DataLakePipeline` provides a Data Lake Pipeline resource.
  *
@@ -22,6 +22,7 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import mongodbatlas:index/dataLakePipeline:DataLakePipeline example 1112222b3bf99403840e8934--test-data-lake-pipeline-test
  * ```
+ *
  * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines) Documentation for more information.
  */
 export class DataLakePipeline extends pulumi.CustomResource {

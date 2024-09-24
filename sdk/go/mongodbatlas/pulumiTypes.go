@@ -14,7 +14,7 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type AdvancedClusterAdvancedConfiguration struct {
-	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
@@ -38,7 +38,7 @@ type AdvancedClusterAdvancedConfiguration struct {
 	NoTableScan *bool `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
 	// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-	OplogMinRetentionHours *int `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours *float64 `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb *int `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -61,7 +61,7 @@ type AdvancedClusterAdvancedConfigurationInput interface {
 }
 
 type AdvancedClusterAdvancedConfigurationArgs struct {
-	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntPtrInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
@@ -85,7 +85,7 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	NoTableScan pulumi.BoolPtrInput `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
 	// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-	OplogMinRetentionHours pulumi.IntPtrInput `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours pulumi.Float64PtrInput `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb pulumi.IntPtrInput `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -173,7 +173,7 @@ func (o AdvancedClusterAdvancedConfigurationOutput) ToAdvancedClusterAdvancedCon
 	}).(AdvancedClusterAdvancedConfigurationPtrOutput)
 }
 
-// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 func (o AdvancedClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
@@ -220,8 +220,8 @@ func (o AdvancedClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolPtr
 
 // Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
 // * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-func (o AdvancedClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.OplogMinRetentionHours }).(pulumi.IntPtrOutput)
+func (o AdvancedClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *float64 { return v.OplogMinRetentionHours }).(pulumi.Float64PtrOutput)
 }
 
 // The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -268,7 +268,7 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) Elem() AdvancedClusterAdv
 	}).(AdvancedClusterAdvancedConfigurationOutput)
 }
 
-// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -348,13 +348,13 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.Bool
 
 // Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
 // * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-func (o AdvancedClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *float64 {
 		if v == nil {
 			return nil
 		}
 		return v.OplogMinRetentionHours
-	}).(pulumi.IntPtrOutput)
+	}).(pulumi.Float64PtrOutput)
 }
 
 // The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -6912,7 +6912,7 @@ func (o CloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInput)
 }
 
 type ClusterAdvancedConfiguration struct {
-	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
@@ -6936,7 +6936,7 @@ type ClusterAdvancedConfiguration struct {
 	NoTableScan *bool `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
 	// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-	OplogMinRetentionHours *int `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours *float64 `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb *int `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -6959,7 +6959,7 @@ type ClusterAdvancedConfigurationInput interface {
 }
 
 type ClusterAdvancedConfigurationArgs struct {
-	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntPtrInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
@@ -6983,7 +6983,7 @@ type ClusterAdvancedConfigurationArgs struct {
 	NoTableScan pulumi.BoolPtrInput `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
 	// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-	OplogMinRetentionHours pulumi.IntPtrInput `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours pulumi.Float64PtrInput `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb pulumi.IntPtrInput `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -7071,7 +7071,7 @@ func (o ClusterAdvancedConfigurationOutput) ToClusterAdvancedConfigurationPtrOut
 	}).(ClusterAdvancedConfigurationPtrOutput)
 }
 
-// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 func (o ClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
@@ -7118,8 +7118,8 @@ func (o ClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolPtrOutput {
 
 // Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
 // * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-func (o ClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.OplogMinRetentionHours }).(pulumi.IntPtrOutput)
+func (o ClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ClusterAdvancedConfiguration) *float64 { return v.OplogMinRetentionHours }).(pulumi.Float64PtrOutput)
 }
 
 // The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -7166,7 +7166,7 @@ func (o ClusterAdvancedConfigurationPtrOutput) Elem() ClusterAdvancedConfigurati
 	}).(ClusterAdvancedConfigurationOutput)
 }
 
-// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 func (o ClusterAdvancedConfigurationPtrOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -7246,13 +7246,13 @@ func (o ClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.BoolPtrOutpu
 
 // Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
 // * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-func (o ClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
+func (o ClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *float64 {
 		if v == nil {
 			return nil
 		}
 		return v.OplogMinRetentionHours
-	}).(pulumi.IntPtrOutput)
+	}).(pulumi.Float64PtrOutput)
 }
 
 // The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -12577,12 +12577,10 @@ type FederatedDatabaseInstanceStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            *bool    `pulumi:"allowInsecure"`
 	Bucket                   *string  `pulumi:"bucket"`
-	// Deprecated: This parameter is deprecated and will be removed by September 2024.
-	ClusterId     *string `pulumi:"clusterId"`
-	ClusterName   *string `pulumi:"clusterName"`
-	DefaultFormat *string `pulumi:"defaultFormat"`
-	Delimiter     *string `pulumi:"delimiter"`
-	IncludeTags   *bool   `pulumi:"includeTags"`
+	ClusterName              *string  `pulumi:"clusterName"`
+	DefaultFormat            *string  `pulumi:"defaultFormat"`
+	Delimiter                *string  `pulumi:"delimiter"`
+	IncludeTags              *bool    `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
 	Name   *string `pulumi:"name"`
 	Prefix *string `pulumi:"prefix"`
@@ -12610,12 +12608,10 @@ type FederatedDatabaseInstanceStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolPtrInput     `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringPtrInput   `pulumi:"bucket"`
-	// Deprecated: This parameter is deprecated and will be removed by September 2024.
-	ClusterId     pulumi.StringPtrInput `pulumi:"clusterId"`
-	ClusterName   pulumi.StringPtrInput `pulumi:"clusterName"`
-	DefaultFormat pulumi.StringPtrInput `pulumi:"defaultFormat"`
-	Delimiter     pulumi.StringPtrInput `pulumi:"delimiter"`
-	IncludeTags   pulumi.BoolPtrInput   `pulumi:"includeTags"`
+	ClusterName              pulumi.StringPtrInput   `pulumi:"clusterName"`
+	DefaultFormat            pulumi.StringPtrInput   `pulumi:"defaultFormat"`
+	Delimiter                pulumi.StringPtrInput   `pulumi:"delimiter"`
+	IncludeTags              pulumi.BoolPtrInput     `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
 	Name   pulumi.StringPtrInput `pulumi:"name"`
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
@@ -12689,11 +12685,6 @@ func (o FederatedDatabaseInstanceStorageStoreOutput) AllowInsecure() pulumi.Bool
 
 func (o FederatedDatabaseInstanceStorageStoreOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.Bucket }).(pulumi.StringPtrOutput)
-}
-
-// Deprecated: This parameter is deprecated and will be removed by September 2024.
-func (o FederatedDatabaseInstanceStorageStoreOutput) ClusterId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
 }
 
 func (o FederatedDatabaseInstanceStorageStoreOutput) ClusterName() pulumi.StringPtrOutput {
@@ -18343,7 +18334,7 @@ func (o GetAccessListApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetAcces
 }
 
 type GetAdvancedClusterAdvancedConfiguration struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds.
+	// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
@@ -18362,7 +18353,7 @@ type GetAdvancedClusterAdvancedConfiguration struct {
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	OplogMinRetentionHours int `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours float64 `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb int `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -18385,7 +18376,7 @@ type GetAdvancedClusterAdvancedConfigurationInput interface {
 }
 
 type GetAdvancedClusterAdvancedConfigurationArgs struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds.
+	// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
@@ -18404,7 +18395,7 @@ type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	OplogMinRetentionHours pulumi.IntInput `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours pulumi.Float64Input `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -18466,7 +18457,7 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) ToGetAdvancedClusterAdvan
 	return o
 }
 
-// (Optional) The minimum pre- and post-image retention time in seconds.
+// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 func (o GetAdvancedClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
@@ -18508,8 +18499,8 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) NoTableScan() pulumi.Bool
 }
 
 // Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-func (o GetAdvancedClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.IntOutput {
-	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.OplogMinRetentionHours }).(pulumi.IntOutput)
+func (o GetAdvancedClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) float64 { return v.OplogMinRetentionHours }).(pulumi.Float64Output)
 }
 
 // The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -20461,7 +20452,7 @@ func (o GetAdvancedClustersResultArrayOutput) Index(i pulumi.IntInput) GetAdvanc
 }
 
 type GetAdvancedClustersResultAdvancedConfiguration struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds.
+	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
@@ -20480,7 +20471,7 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	OplogMinRetentionHours int `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours float64 `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb int `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -20503,7 +20494,7 @@ type GetAdvancedClustersResultAdvancedConfigurationInput interface {
 }
 
 type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds.
+	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
@@ -20522,7 +20513,7 @@ type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	OplogMinRetentionHours pulumi.IntInput `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours pulumi.Float64Input `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -20584,7 +20575,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ToGetAdvancedClust
 	return o
 }
 
-// (Optional) The minimum pre- and post-image retention time in seconds.
+// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
@@ -20626,8 +20617,8 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) NoTableScan() pulu
 }
 
 // Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-func (o GetAdvancedClustersResultAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.IntOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.OplogMinRetentionHours }).(pulumi.IntOutput)
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) float64 { return v.OplogMinRetentionHours }).(pulumi.Float64Output)
 }
 
 // The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -27101,10 +27092,6 @@ type GetCloudBackupSnapshotExportJobsResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas []GetCloudBackupSnapshotExportJobsResultCustomData `pulumi:"customDatas"`
-	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
-	ErrMsg string `pulumi:"errMsg"`
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
 	ExportBucketId string `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
@@ -27143,10 +27130,6 @@ type GetCloudBackupSnapshotExportJobsResultArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput `pulumi:"customDatas"`
-	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
-	ErrMsg pulumi.StringInput `pulumi:"errMsg"`
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
@@ -27235,13 +27218,6 @@ func (o GetCloudBackupSnapshotExportJobsResultOutput) CustomDatas() GetCloudBack
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) []GetCloudBackupSnapshotExportJobsResultCustomData {
 		return v.CustomDatas
 	}).(GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput)
-}
-
-// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-//
-// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
-func (o GetCloudBackupSnapshotExportJobsResultOutput) ErrMsg() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.ErrMsg }).(pulumi.StringOutput)
 }
 
 // Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
@@ -28398,7 +28374,7 @@ func (o GetCloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetClusterAdvancedConfiguration struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds.
+	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
@@ -28417,7 +28393,7 @@ type GetClusterAdvancedConfiguration struct {
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	OplogMinRetentionHours int `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours float64 `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb int `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -28440,7 +28416,7 @@ type GetClusterAdvancedConfigurationInput interface {
 }
 
 type GetClusterAdvancedConfigurationArgs struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds.
+	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
@@ -28459,7 +28435,7 @@ type GetClusterAdvancedConfigurationArgs struct {
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	OplogMinRetentionHours pulumi.IntInput `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours pulumi.Float64Input `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -28521,7 +28497,7 @@ func (o GetClusterAdvancedConfigurationOutput) ToGetClusterAdvancedConfiguration
 	return o
 }
 
-// (Optional) The minimum pre- and post-image retention time in seconds.
+// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 func (o GetClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
@@ -28563,8 +28539,8 @@ func (o GetClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolOutput {
 }
 
 // Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-func (o GetClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.IntOutput {
-	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.OplogMinRetentionHours }).(pulumi.IntOutput)
+func (o GetClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64Output {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) float64 { return v.OplogMinRetentionHours }).(pulumi.Float64Output)
 }
 
 // The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -30544,7 +30520,7 @@ func (o GetClustersResultArrayOutput) Index(i pulumi.IntInput) GetClustersResult
 }
 
 type GetClustersResultAdvancedConfiguration struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds.
+	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
@@ -30563,7 +30539,7 @@ type GetClustersResultAdvancedConfiguration struct {
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	OplogMinRetentionHours int `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours float64 `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb int `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -30585,7 +30561,7 @@ type GetClustersResultAdvancedConfigurationInput interface {
 }
 
 type GetClustersResultAdvancedConfigurationArgs struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds.
+	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
@@ -30604,7 +30580,7 @@ type GetClustersResultAdvancedConfigurationArgs struct {
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
 	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	OplogMinRetentionHours pulumi.IntInput `pulumi:"oplogMinRetentionHours"`
+	OplogMinRetentionHours pulumi.Float64Input `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -30665,7 +30641,7 @@ func (o GetClustersResultAdvancedConfigurationOutput) ToGetClustersResultAdvance
 	return o
 }
 
-// (Optional) The minimum pre- and post-image retention time in seconds.
+// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 func (o GetClustersResultAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
@@ -30707,8 +30683,8 @@ func (o GetClustersResultAdvancedConfigurationOutput) NoTableScan() pulumi.BoolO
 }
 
 // Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-func (o GetClustersResultAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.IntOutput {
-	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.OplogMinRetentionHours }).(pulumi.IntOutput)
+func (o GetClustersResultAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64Output {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) float64 { return v.OplogMinRetentionHours }).(pulumi.Float64Output)
 }
 
 // The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -37711,12 +37687,10 @@ type GetFederatedDatabaseInstanceStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            bool     `pulumi:"allowInsecure"`
 	Bucket                   string   `pulumi:"bucket"`
-	// Deprecated: This parameter is deprecated and will be removed by September 2024.
-	ClusterId     string `pulumi:"clusterId"`
-	ClusterName   string `pulumi:"clusterName"`
-	DefaultFormat string `pulumi:"defaultFormat"`
-	Delimiter     string `pulumi:"delimiter"`
-	IncludeTags   bool   `pulumi:"includeTags"`
+	ClusterName              string   `pulumi:"clusterName"`
+	DefaultFormat            string   `pulumi:"defaultFormat"`
+	Delimiter                string   `pulumi:"delimiter"`
+	IncludeTags              bool     `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
 	Name   string `pulumi:"name"`
 	Prefix string `pulumi:"prefix"`
@@ -37745,12 +37719,10 @@ type GetFederatedDatabaseInstanceStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolInput        `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
-	// Deprecated: This parameter is deprecated and will be removed by September 2024.
-	ClusterId     pulumi.StringInput `pulumi:"clusterId"`
-	ClusterName   pulumi.StringInput `pulumi:"clusterName"`
-	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
-	Delimiter     pulumi.StringInput `pulumi:"delimiter"`
-	IncludeTags   pulumi.BoolInput   `pulumi:"includeTags"`
+	ClusterName              pulumi.StringInput      `pulumi:"clusterName"`
+	DefaultFormat            pulumi.StringInput      `pulumi:"defaultFormat"`
+	Delimiter                pulumi.StringInput      `pulumi:"delimiter"`
+	IncludeTags              pulumi.BoolInput        `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
 	Name   pulumi.StringInput `pulumi:"name"`
 	Prefix pulumi.StringInput `pulumi:"prefix"`
@@ -37825,11 +37797,6 @@ func (o GetFederatedDatabaseInstanceStorageStoreOutput) AllowInsecure() pulumi.B
 
 func (o GetFederatedDatabaseInstanceStorageStoreOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
-}
-
-// Deprecated: This parameter is deprecated and will be removed by September 2024.
-func (o GetFederatedDatabaseInstanceStorageStoreOutput) ClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
 func (o GetFederatedDatabaseInstanceStorageStoreOutput) ClusterName() pulumi.StringOutput {
@@ -38255,7 +38222,6 @@ type GetFederatedDatabaseInstancesResult struct {
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-	// * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
 	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
@@ -38324,7 +38290,6 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-	// * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
 	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
@@ -38459,7 +38424,6 @@ func (o GetFederatedDatabaseInstancesResultOutput) StorageDatabases() GetFederat
 // * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 // * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
 // * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-// * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
 // * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 // * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
 // * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
@@ -39251,14 +39215,12 @@ type GetFederatedDatabaseInstancesResultStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            bool     `pulumi:"allowInsecure"`
 	Bucket                   string   `pulumi:"bucket"`
-	// Deprecated: This parameter is deprecated and will be removed by September 2024.
-	ClusterId     string `pulumi:"clusterId"`
-	ClusterName   string `pulumi:"clusterName"`
-	DefaultFormat string `pulumi:"defaultFormat"`
-	Delimiter     string `pulumi:"delimiter"`
-	IncludeTags   bool   `pulumi:"includeTags"`
-	Name          string `pulumi:"name"`
-	Prefix        string `pulumi:"prefix"`
+	ClusterName              string   `pulumi:"clusterName"`
+	DefaultFormat            string   `pulumi:"defaultFormat"`
+	Delimiter                string   `pulumi:"delimiter"`
+	IncludeTags              bool     `pulumi:"includeTags"`
+	Name                     string   `pulumi:"name"`
+	Prefix                   string   `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId       string                                                          `pulumi:"projectId"`
 	Provider        string                                                          `pulumi:"provider"`
@@ -39284,14 +39246,12 @@ type GetFederatedDatabaseInstancesResultStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolInput        `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
-	// Deprecated: This parameter is deprecated and will be removed by September 2024.
-	ClusterId     pulumi.StringInput `pulumi:"clusterId"`
-	ClusterName   pulumi.StringInput `pulumi:"clusterName"`
-	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
-	Delimiter     pulumi.StringInput `pulumi:"delimiter"`
-	IncludeTags   pulumi.BoolInput   `pulumi:"includeTags"`
-	Name          pulumi.StringInput `pulumi:"name"`
-	Prefix        pulumi.StringInput `pulumi:"prefix"`
+	ClusterName              pulumi.StringInput      `pulumi:"clusterName"`
+	DefaultFormat            pulumi.StringInput      `pulumi:"defaultFormat"`
+	Delimiter                pulumi.StringInput      `pulumi:"delimiter"`
+	IncludeTags              pulumi.BoolInput        `pulumi:"includeTags"`
+	Name                     pulumi.StringInput      `pulumi:"name"`
+	Prefix                   pulumi.StringInput      `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId       pulumi.StringInput                                                      `pulumi:"projectId"`
 	Provider        pulumi.StringInput                                                      `pulumi:"provider"`
@@ -39363,11 +39323,6 @@ func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) AllowInsecure() p
 
 func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
-}
-
-// Deprecated: This parameter is deprecated and will be removed by September 2024.
-func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) ClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
 func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) ClusterName() pulumi.StringOutput {

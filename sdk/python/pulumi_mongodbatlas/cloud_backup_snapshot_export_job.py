@@ -103,7 +103,6 @@ class _CloudBackupSnapshotExportJobState:
                  components: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None,
-                 err_msg: Optional[pulumi.Input[str]] = None,
                  export_bucket_id: Optional[pulumi.Input[str]] = None,
                  export_job_id: Optional[pulumi.Input[str]] = None,
                  export_status_exported_collections: Optional[pulumi.Input[int]] = None,
@@ -119,7 +118,6 @@ class _CloudBackupSnapshotExportJobState:
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param pulumi.Input[str] created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
-        :param pulumi.Input[str] err_msg: Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
         :param pulumi.Input[str] export_job_id: Unique identifier of the export job.
                * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
@@ -140,11 +138,6 @@ class _CloudBackupSnapshotExportJobState:
             pulumi.set(__self__, "created_at", created_at)
         if custom_datas is not None:
             pulumi.set(__self__, "custom_datas", custom_datas)
-        if err_msg is not None:
-            warnings.warn("""This parameter is deprecated and will be removed in version 1.20.0.""", DeprecationWarning)
-            pulumi.log.warn("""err_msg is deprecated: This parameter is deprecated and will be removed in version 1.20.0.""")
-        if err_msg is not None:
-            pulumi.set(__self__, "err_msg", err_msg)
         if export_bucket_id is not None:
             pulumi.set(__self__, "export_bucket_id", export_bucket_id)
         if export_job_id is not None:
@@ -211,19 +204,6 @@ class _CloudBackupSnapshotExportJobState:
     @custom_datas.setter
     def custom_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]):
         pulumi.set(self, "custom_datas", value)
-
-    @property
-    @pulumi.getter(name="errMsg")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.20.0.""")
-    def err_msg(self) -> Optional[pulumi.Input[str]]:
-        """
-        Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-        """
-        return pulumi.get(self, "err_msg")
-
-    @err_msg.setter
-    def err_msg(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "err_msg", value)
 
     @property
     @pulumi.getter(name="exportBucketId")
@@ -571,7 +551,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             __props__.__dict__["snapshot_id"] = snapshot_id
             __props__.__dict__["components"] = None
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["err_msg"] = None
             __props__.__dict__["export_job_id"] = None
             __props__.__dict__["export_status_exported_collections"] = None
             __props__.__dict__["export_status_total_collections"] = None
@@ -592,7 +571,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobComponentArgs', 'CloudBackupSnapshotExportJobComponentArgsDict']]]]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
-            err_msg: Optional[pulumi.Input[str]] = None,
             export_bucket_id: Optional[pulumi.Input[str]] = None,
             export_job_id: Optional[pulumi.Input[str]] = None,
             export_status_exported_collections: Optional[pulumi.Input[int]] = None,
@@ -613,7 +591,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobComponentArgs', 'CloudBackupSnapshotExportJobComponentArgsDict']]]] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param pulumi.Input[str] created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
-        :param pulumi.Input[str] err_msg: Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
         :param pulumi.Input[str] export_job_id: Unique identifier of the export job.
                * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
@@ -634,7 +611,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         __props__.__dict__["components"] = components
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["custom_datas"] = custom_datas
-        __props__.__dict__["err_msg"] = err_msg
         __props__.__dict__["export_bucket_id"] = export_bucket_id
         __props__.__dict__["export_job_id"] = export_job_id
         __props__.__dict__["export_status_exported_collections"] = export_status_exported_collections
@@ -677,15 +653,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         """
         return pulumi.get(self, "custom_datas")
-
-    @property
-    @pulumi.getter(name="errMsg")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.20.0.""")
-    def err_msg(self) -> pulumi.Output[str]:
-        """
-        Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-        """
-        return pulumi.get(self, "err_msg")
 
     @property
     @pulumi.getter(name="exportBucketId")
