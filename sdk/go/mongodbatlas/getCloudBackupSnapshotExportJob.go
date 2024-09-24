@@ -94,10 +94,6 @@ type LookupCloudBackupSnapshotExportJobResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas []GetCloudBackupSnapshotExportJobCustomData `pulumi:"customDatas"`
-	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
-	ErrMsg string `pulumi:"errMsg"`
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
 	ExportBucketId string `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
@@ -189,13 +185,6 @@ func (o LookupCloudBackupSnapshotExportJobResultOutput) CustomDatas() GetCloudBa
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) []GetCloudBackupSnapshotExportJobCustomData {
 		return v.CustomDatas
 	}).(GetCloudBackupSnapshotExportJobCustomDataArrayOutput)
-}
-
-// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-//
-// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
-func (o LookupCloudBackupSnapshotExportJobResultOutput) ErrMsg() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) string { return v.ErrMsg }).(pulumi.StringOutput)
 }
 
 // Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.

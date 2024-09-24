@@ -140,12 +140,6 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      */
     public readonly customDatas!: pulumi.Output<outputs.CloudBackupSnapshotExportJobCustomData[]>;
     /**
-     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.20.0.
-     */
-    public /*out*/ readonly errMsg!: pulumi.Output<string>;
-    /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */
     public readonly exportBucketId!: pulumi.Output<string>;
@@ -195,7 +189,6 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
             resourceInputs["components"] = state ? state.components : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["customDatas"] = state ? state.customDatas : undefined;
-            resourceInputs["errMsg"] = state ? state.errMsg : undefined;
             resourceInputs["exportBucketId"] = state ? state.exportBucketId : undefined;
             resourceInputs["exportJobId"] = state ? state.exportJobId : undefined;
             resourceInputs["exportStatusExportedCollections"] = state ? state.exportStatusExportedCollections : undefined;
@@ -229,7 +222,6 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
             resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
             resourceInputs["components"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["errMsg"] = undefined /*out*/;
             resourceInputs["exportJobId"] = undefined /*out*/;
             resourceInputs["exportStatusExportedCollections"] = undefined /*out*/;
             resourceInputs["exportStatusTotalCollections"] = undefined /*out*/;
@@ -262,12 +254,6 @@ export interface CloudBackupSnapshotExportJobState {
      * Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      */
     customDatas?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[]>;
-    /**
-     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.20.0.
-     */
-    errMsg?: pulumi.Input<string>;
     /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */

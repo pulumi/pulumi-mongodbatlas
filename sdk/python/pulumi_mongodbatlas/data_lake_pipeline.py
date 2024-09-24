@@ -310,7 +310,7 @@ class DataLakePipeline(pulumi.CustomResource):
                  transformations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineTransformationArgs', 'DataLakePipelineTransformationArgsDict']]]]] = None,
                  __props__=None):
         """
-        ## # Resource: DataLakePipeline
+        **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
 
         `DataLakePipeline` provides a Data Lake Pipeline resource.
 
@@ -325,6 +325,7 @@ class DataLakePipeline(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/dataLakePipeline:DataLakePipeline example 1112222b3bf99403840e8934--test-data-lake-pipeline-test
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines) Documentation for more information.
 
         :param str resource_name: The name of the resource.
@@ -342,7 +343,7 @@ class DataLakePipeline(pulumi.CustomResource):
                  args: DataLakePipelineArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: DataLakePipeline
+        **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
 
         `DataLakePipeline` provides a Data Lake Pipeline resource.
 
@@ -357,6 +358,7 @@ class DataLakePipeline(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/dataLakePipeline:DataLakePipeline example 1112222b3bf99403840e8934--test-data-lake-pipeline-test
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines) Documentation for more information.
 
         :param str resource_name: The name of the resource.

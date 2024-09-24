@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getDataLakePipelines
+ * **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
  *
  * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
  *
@@ -51,7 +51,7 @@ export interface GetDataLakePipelinesResult {
     readonly results: outputs.GetDataLakePipelinesResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getDataLakePipelines
+ * **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
  *
  * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
  *

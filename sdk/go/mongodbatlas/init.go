@@ -83,6 +83,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LdapVerify{}
 	case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
 		r = &MaintenanceWindow{}
+	case "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant":
+		r = &MongodbEmployeeAccessGrant{}
 	case "mongodbatlas:index/networkContainer:NetworkContainer":
 		r = &NetworkContainer{}
 	case "mongodbatlas:index/networkPeering:NetworkPeering":
@@ -319,6 +321,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/maintenanceWindow",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/mongodbEmployeeAccessGrant",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -22,7 +22,7 @@ class GetCloudBackupSnapshotExportJobResult:
     """
     A collection of values returned by getCloudBackupSnapshotExportJob.
     """
-    def __init__(__self__, cluster_name=None, components=None, created_at=None, custom_datas=None, err_msg=None, export_bucket_id=None, export_job_id=None, export_status_exported_collections=None, export_status_total_collections=None, finished_at=None, id=None, prefix=None, project_id=None, snapshot_id=None, state=None):
+    def __init__(__self__, cluster_name=None, components=None, created_at=None, custom_datas=None, export_bucket_id=None, export_job_id=None, export_status_exported_collections=None, export_status_total_collections=None, finished_at=None, id=None, prefix=None, project_id=None, snapshot_id=None, state=None):
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -35,9 +35,6 @@ class GetCloudBackupSnapshotExportJobResult:
         if custom_datas and not isinstance(custom_datas, list):
             raise TypeError("Expected argument 'custom_datas' to be a list")
         pulumi.set(__self__, "custom_datas", custom_datas)
-        if err_msg and not isinstance(err_msg, str):
-            raise TypeError("Expected argument 'err_msg' to be a str")
-        pulumi.set(__self__, "err_msg", err_msg)
         if export_bucket_id and not isinstance(export_bucket_id, str):
             raise TypeError("Expected argument 'export_bucket_id' to be a str")
         pulumi.set(__self__, "export_bucket_id", export_bucket_id)
@@ -97,15 +94,6 @@ class GetCloudBackupSnapshotExportJobResult:
         Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         """
         return pulumi.get(self, "custom_datas")
-
-    @property
-    @pulumi.getter(name="errMsg")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.20.0.""")
-    def err_msg(self) -> str:
-        """
-        Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-        """
-        return pulumi.get(self, "err_msg")
 
     @property
     @pulumi.getter(name="exportBucketId")
@@ -188,7 +176,6 @@ class AwaitableGetCloudBackupSnapshotExportJobResult(GetCloudBackupSnapshotExpor
             components=self.components,
             created_at=self.created_at,
             custom_datas=self.custom_datas,
-            err_msg=self.err_msg,
             export_bucket_id=self.export_bucket_id,
             export_job_id=self.export_job_id,
             export_status_exported_collections=self.export_status_exported_collections,
@@ -254,7 +241,6 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
         components=pulumi.get(__ret__, 'components'),
         created_at=pulumi.get(__ret__, 'created_at'),
         custom_datas=pulumi.get(__ret__, 'custom_datas'),
-        err_msg=pulumi.get(__ret__, 'err_msg'),
         export_bucket_id=pulumi.get(__ret__, 'export_bucket_id'),
         export_job_id=pulumi.get(__ret__, 'export_job_id'),
         export_status_exported_collections=pulumi.get(__ret__, 'export_status_exported_collections'),

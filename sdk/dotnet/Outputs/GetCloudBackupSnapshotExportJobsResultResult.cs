@@ -26,10 +26,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSnapshotExportJobsResultCustomDataResult> CustomDatas;
         /// <summary>
-        /// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-        /// </summary>
-        public readonly string ErrMsg;
-        /// <summary>
         /// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
         /// </summary>
         public readonly string ExportBucketId;
@@ -66,8 +62,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetCloudBackupSnapshotExportJobsResultCustomDataResult> customDatas,
 
-            string errMsg,
-
             string exportBucketId,
 
             string exportJobId,
@@ -87,7 +81,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             Components = components;
             CreatedAt = createdAt;
             CustomDatas = customDatas;
-            ErrMsg = errMsg;
             ExportBucketId = exportBucketId;
             ExportJobId = exportJobId;
             ExportStatusExportedCollections = exportStatusExportedCollections;

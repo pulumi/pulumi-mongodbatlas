@@ -159,12 +159,6 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.CloudBackupSnapshotExportJobCustomData>> CustomDatas { get; private set; } = null!;
 
         /// <summary>
-        /// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-        /// </summary>
-        [Output("errMsg")]
-        public Output<string> ErrMsg { get; private set; } = null!;
-
-        /// <summary>
         /// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
         /// </summary>
         [Output("exportBucketId")]
@@ -339,12 +333,6 @@ namespace Pulumi.Mongodbatlas
             get => _customDatas ?? (_customDatas = new InputList<Inputs.CloudBackupSnapshotExportJobCustomDataGetArgs>());
             set => _customDatas = value;
         }
-
-        /// <summary>
-        /// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-        /// </summary>
-        [Input("errMsg")]
-        public Input<string>? ErrMsg { get; set; }
 
         /// <summary>
         /// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets

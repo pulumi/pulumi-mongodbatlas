@@ -16,7 +16,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly ImmutableArray<string> AdditionalStorageClasses;
         public readonly bool AllowInsecure;
         public readonly string Bucket;
-        public readonly string ClusterId;
         public readonly string ClusterName;
         public readonly string DefaultFormat;
         public readonly string Delimiter;
@@ -43,8 +42,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             bool allowInsecure,
 
             string bucket,
-
-            string clusterId,
 
             string clusterName,
 
@@ -73,7 +70,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             AdditionalStorageClasses = additionalStorageClasses;
             AllowInsecure = allowInsecure;
             Bucket = bucket;
-            ClusterId = clusterId;
             ClusterName = clusterName;
             DefaultFormat = defaultFormat;
             Delimiter = delimiter;

@@ -146,13 +146,13 @@ class AdvancedClusterAdvancedConfigurationArgs:
                  javascript_enabled: Optional[pulumi.Input[bool]] = None,
                  minimum_enabled_tls_protocol: Optional[pulumi.Input[str]] = None,
                  no_table_scan: Optional[pulumi.Input[bool]] = None,
-                 oplog_min_retention_hours: Optional[pulumi.Input[int]] = None,
+                 oplog_min_retention_hours: Optional[pulumi.Input[float]] = None,
                  oplog_size_mb: Optional[pulumi.Input[int]] = None,
                  sample_refresh_interval_bi_connector: Optional[pulumi.Input[int]] = None,
                  sample_size_bi_connector: Optional[pulumi.Input[int]] = None,
                  transaction_lifetime_limit_seconds: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+        :param pulumi.Input[int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         :param pulumi.Input[str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param pulumi.Input[str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param pulumi.Input[bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
@@ -163,7 +163,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
                - TLS1_1
                - TLS1_2
         :param pulumi.Input[bool] no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-        :param pulumi.Input[int] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        :param pulumi.Input[float] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
                * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
         :param pulumi.Input[int] oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param pulumi.Input[int] sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -205,7 +205,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
     def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> Optional[pulumi.Input[int]]:
         """
-        The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+        The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
@@ -293,7 +293,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
 
     @property
     @pulumi.getter(name="oplogMinRetentionHours")
-    def oplog_min_retention_hours(self) -> Optional[pulumi.Input[int]]:
+    def oplog_min_retention_hours(self) -> Optional[pulumi.Input[float]]:
         """
         Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
@@ -301,7 +301,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
         return pulumi.get(self, "oplog_min_retention_hours")
 
     @oplog_min_retention_hours.setter
-    def oplog_min_retention_hours(self, value: Optional[pulumi.Input[int]]):
+    def oplog_min_retention_hours(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "oplog_min_retention_hours", value)
 
     @property
@@ -3556,13 +3556,13 @@ class ClusterAdvancedConfigurationArgs:
                  javascript_enabled: Optional[pulumi.Input[bool]] = None,
                  minimum_enabled_tls_protocol: Optional[pulumi.Input[str]] = None,
                  no_table_scan: Optional[pulumi.Input[bool]] = None,
-                 oplog_min_retention_hours: Optional[pulumi.Input[int]] = None,
+                 oplog_min_retention_hours: Optional[pulumi.Input[float]] = None,
                  oplog_size_mb: Optional[pulumi.Input[int]] = None,
                  sample_refresh_interval_bi_connector: Optional[pulumi.Input[int]] = None,
                  sample_size_bi_connector: Optional[pulumi.Input[int]] = None,
                  transaction_lifetime_limit_seconds: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+        :param pulumi.Input[int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         :param pulumi.Input[str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param pulumi.Input[str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param pulumi.Input[bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -3573,7 +3573,7 @@ class ClusterAdvancedConfigurationArgs:
                - TLS1_1
                - TLS1_2
         :param pulumi.Input[bool] no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-        :param pulumi.Input[int] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        :param pulumi.Input[float] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
                * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
         :param pulumi.Input[int] oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param pulumi.Input[int] sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -3615,7 +3615,7 @@ class ClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
     def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> Optional[pulumi.Input[int]]:
         """
-        The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+        The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
@@ -3703,7 +3703,7 @@ class ClusterAdvancedConfigurationArgs:
 
     @property
     @pulumi.getter(name="oplogMinRetentionHours")
-    def oplog_min_retention_hours(self) -> Optional[pulumi.Input[int]]:
+    def oplog_min_retention_hours(self) -> Optional[pulumi.Input[float]]:
         """
         Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
@@ -3711,7 +3711,7 @@ class ClusterAdvancedConfigurationArgs:
         return pulumi.get(self, "oplog_min_retention_hours")
 
     @oplog_min_retention_hours.setter
-    def oplog_min_retention_hours(self, value: Optional[pulumi.Input[int]]):
+    def oplog_min_retention_hours(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "oplog_min_retention_hours", value)
 
     @property
@@ -6196,7 +6196,6 @@ class FederatedDatabaseInstanceStorageStoreArgs:
                  additional_storage_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allow_insecure: Optional[pulumi.Input[bool]] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
-                 cluster_id: Optional[pulumi.Input[str]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  default_format: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
@@ -6219,11 +6218,6 @@ class FederatedDatabaseInstanceStorageStoreArgs:
             pulumi.set(__self__, "allow_insecure", allow_insecure)
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
-        if cluster_id is not None:
-            warnings.warn("""This parameter is deprecated and will be removed by September 2024.""", DeprecationWarning)
-            pulumi.log.warn("""cluster_id is deprecated: This parameter is deprecated and will be removed by September 2024.""")
-        if cluster_id is not None:
-            pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
         if default_format is not None:
@@ -6275,16 +6269,6 @@ class FederatedDatabaseInstanceStorageStoreArgs:
     @bucket.setter
     def bucket(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bucket", value)
-
-    @property
-    @pulumi.getter(name="clusterId")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024.""")
-    def cluster_id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "cluster_id")
-
-    @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cluster_id", value)
 
     @property
     @pulumi.getter(name="clusterName")

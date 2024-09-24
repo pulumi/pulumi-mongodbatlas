@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.DataLakePipeline
+    /// **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
     /// 
     /// `mongodbatlas.DataLakePipeline` provides a Data Lake Pipeline resource.
     /// 
@@ -25,6 +25,7 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     /// $ pulumi import mongodbatlas:index/dataLakePipeline:DataLakePipeline example 1112222b3bf99403840e8934--test-data-lake-pipeline-test
     /// ```
+    /// 
     /// See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/dataLakePipeline:DataLakePipeline")]

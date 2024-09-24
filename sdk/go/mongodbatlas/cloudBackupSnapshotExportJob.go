@@ -152,10 +152,6 @@ type CloudBackupSnapshotExportJob struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas CloudBackupSnapshotExportJobCustomDataArrayOutput `pulumi:"customDatas"`
-	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
-	ErrMsg pulumi.StringOutput `pulumi:"errMsg"`
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
 	ExportBucketId pulumi.StringOutput `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
@@ -231,10 +227,6 @@ type cloudBackupSnapshotExportJobState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas []CloudBackupSnapshotExportJobCustomData `pulumi:"customDatas"`
-	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
-	ErrMsg *string `pulumi:"errMsg"`
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
 	ExportBucketId *string `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
@@ -266,10 +258,6 @@ type CloudBackupSnapshotExportJobState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas CloudBackupSnapshotExportJobCustomDataArrayInput
-	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
-	ErrMsg pulumi.StringPtrInput
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
 	ExportBucketId pulumi.StringPtrInput
 	// Unique identifier of the export job.
@@ -432,13 +420,6 @@ func (o CloudBackupSnapshotExportJobOutput) CustomDatas() CloudBackupSnapshotExp
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) CloudBackupSnapshotExportJobCustomDataArrayOutput {
 		return v.CustomDatas
 	}).(CloudBackupSnapshotExportJobCustomDataArrayOutput)
-}
-
-// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-//
-// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
-func (o CloudBackupSnapshotExportJobOutput) ErrMsg() pulumi.StringOutput {
-	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ErrMsg }).(pulumi.StringOutput)
 }
 
 // Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets

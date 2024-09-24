@@ -17,13 +17,6 @@ public final class FederatedDatabaseInstanceStorageStore {
     private @Nullable List<String> additionalStorageClasses;
     private @Nullable Boolean allowInsecure;
     private @Nullable String bucket;
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed by September 2024.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. */
-    private @Nullable String clusterId;
     private @Nullable String clusterName;
     private @Nullable String defaultFormat;
     private @Nullable String delimiter;
@@ -54,15 +47,6 @@ public final class FederatedDatabaseInstanceStorageStore {
     }
     public Optional<String> bucket() {
         return Optional.ofNullable(this.bucket);
-    }
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed by September 2024.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed by September 2024. */
-    public Optional<String> clusterId() {
-        return Optional.ofNullable(this.clusterId);
     }
     public Optional<String> clusterName() {
         return Optional.ofNullable(this.clusterName);
@@ -121,7 +105,6 @@ public final class FederatedDatabaseInstanceStorageStore {
         private @Nullable List<String> additionalStorageClasses;
         private @Nullable Boolean allowInsecure;
         private @Nullable String bucket;
-        private @Nullable String clusterId;
         private @Nullable String clusterName;
         private @Nullable String defaultFormat;
         private @Nullable String delimiter;
@@ -140,7 +123,6 @@ public final class FederatedDatabaseInstanceStorageStore {
     	      this.additionalStorageClasses = defaults.additionalStorageClasses;
     	      this.allowInsecure = defaults.allowInsecure;
     	      this.bucket = defaults.bucket;
-    	      this.clusterId = defaults.clusterId;
     	      this.clusterName = defaults.clusterName;
     	      this.defaultFormat = defaults.defaultFormat;
     	      this.delimiter = defaults.delimiter;
@@ -174,12 +156,6 @@ public final class FederatedDatabaseInstanceStorageStore {
         public Builder bucket(@Nullable String bucket) {
 
             this.bucket = bucket;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder clusterId(@Nullable String clusterId) {
-
-            this.clusterId = clusterId;
             return this;
         }
         @CustomType.Setter
@@ -262,7 +238,6 @@ public final class FederatedDatabaseInstanceStorageStore {
             _resultValue.additionalStorageClasses = additionalStorageClasses;
             _resultValue.allowInsecure = allowInsecure;
             _resultValue.bucket = bucket;
-            _resultValue.clusterId = clusterId;
             _resultValue.clusterName = clusterName;
             _resultValue.defaultFormat = defaultFormat;
             _resultValue.delimiter = delimiter;

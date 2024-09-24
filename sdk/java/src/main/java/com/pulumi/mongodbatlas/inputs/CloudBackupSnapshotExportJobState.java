@@ -80,29 +80,6 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
     }
 
     /**
-     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.20.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
-    @Import(name="errMsg")
-    private @Nullable Output<String> errMsg;
-
-    /**
-     * @return Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.20.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
-    public Optional<Output<String>> errMsg() {
-        return Optional.ofNullable(this.errMsg);
-    }
-
-    /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      * 
      */
@@ -230,7 +207,6 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
         this.components = $.components;
         this.createdAt = $.createdAt;
         this.customDatas = $.customDatas;
-        this.errMsg = $.errMsg;
         this.exportBucketId = $.exportBucketId;
         this.exportJobId = $.exportJobId;
         this.exportStatusExportedCollections = $.exportStatusExportedCollections;
@@ -362,35 +338,6 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
          */
         public Builder customDatas(CloudBackupSnapshotExportJobCustomDataArgs... customDatas) {
             return customDatas(List.of(customDatas));
-        }
-
-        /**
-         * @param errMsg Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.20.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
-        public Builder errMsg(@Nullable Output<String> errMsg) {
-            $.errMsg = errMsg;
-            return this;
-        }
-
-        /**
-         * @param errMsg Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.20.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
-        public Builder errMsg(String errMsg) {
-            return errMsg(Output.of(errMsg));
         }
 
         /**

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 
 export interface AdvancedClusterAdvancedConfiguration {
     /**
-     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: number;
     /**
@@ -427,7 +427,7 @@ export interface AlertConfigurationNotification {
     /**
      * The ID of the associated integration, the credentials of which to use for requests.
      */
-    integrationId?: string;
+    integrationId: string;
     /**
      * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      */
@@ -903,7 +903,7 @@ export interface CloudProviderAccessSetupAzureConfig {
 
 export interface ClusterAdvancedConfiguration {
     /**
-     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing.
+     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: number;
     /**
@@ -1528,10 +1528,6 @@ export interface FederatedDatabaseInstanceStorageStore {
     additionalStorageClasses: string[];
     allowInsecure: boolean;
     bucket: string;
-    /**
-     * @deprecated This parameter is deprecated and will be removed by September 2024.
-     */
-    clusterId: string;
     clusterName: string;
     defaultFormat: string;
     delimiter: string;
@@ -1634,7 +1630,7 @@ export interface GetAccessListApiKeysResult {
 
 export interface GetAdvancedClusterAdvancedConfiguration {
     /**
-     * (Optional) The minimum pre- and post-image retention time in seconds.
+     * (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
@@ -2048,7 +2044,7 @@ export interface GetAdvancedClustersResult {
 
 export interface GetAdvancedClustersResultAdvancedConfiguration {
     /**
-     * (Optional) The minimum pre- and post-image retention time in seconds.
+     * (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
@@ -3284,12 +3280,6 @@ export interface GetCloudBackupSnapshotExportJobsResult {
      */
     customDatas: outputs.GetCloudBackupSnapshotExportJobsResultCustomData[];
     /**
-     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.20.0.
-     */
-    errMsg: string;
-    /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
      */
     exportBucketId: string;
@@ -3511,7 +3501,7 @@ export interface GetCloudProviderAccessSetupAzureConfig {
 
 export interface GetClusterAdvancedConfiguration {
     /**
-     * (Optional) The minimum pre- and post-image retention time in seconds.
+     * (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
@@ -3909,7 +3899,7 @@ export interface GetClustersResult {
 
 export interface GetClustersResultAdvancedConfiguration {
     /**
-     * (Optional) The minimum pre- and post-image retention time in seconds.
+     * (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
@@ -4890,10 +4880,6 @@ export interface GetFederatedDatabaseInstanceStorageStore {
     additionalStorageClasses: string[];
     allowInsecure: boolean;
     bucket: string;
-    /**
-     * @deprecated This parameter is deprecated and will be removed by September 2024.
-     */
-    clusterId: string;
     clusterName: string;
     defaultFormat: string;
     delimiter: string;
@@ -4987,7 +4973,6 @@ export interface GetFederatedDatabaseInstancesResult {
      * * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
      * * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
      * * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
-     * * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
      * * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
      * * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
      * * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
@@ -5078,10 +5063,6 @@ export interface GetFederatedDatabaseInstancesResultStorageStore {
     additionalStorageClasses: string[];
     allowInsecure: boolean;
     bucket: string;
-    /**
-     * @deprecated This parameter is deprecated and will be removed by September 2024.
-     */
-    clusterId: string;
     clusterName: string;
     defaultFormat: string;
     delimiter: string;

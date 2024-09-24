@@ -30,15 +30,6 @@ public final class GetCloudBackupSnapshotExportJobsResult {
      */
     private List<GetCloudBackupSnapshotExportJobsResultCustomData> customDatas;
     /**
-     * @return Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.20.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
-    private String errMsg;
-    /**
      * @return Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
      * 
      */
@@ -93,17 +84,6 @@ public final class GetCloudBackupSnapshotExportJobsResult {
      */
     public List<GetCloudBackupSnapshotExportJobsResultCustomData> customDatas() {
         return this.customDatas;
-    }
-    /**
-     * @return Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.20.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
-    public String errMsg() {
-        return this.errMsg;
     }
     /**
      * @return Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
@@ -167,7 +147,6 @@ public final class GetCloudBackupSnapshotExportJobsResult {
         private List<GetCloudBackupSnapshotExportJobsResultComponent> components;
         private String createdAt;
         private List<GetCloudBackupSnapshotExportJobsResultCustomData> customDatas;
-        private String errMsg;
         private String exportBucketId;
         private String exportJobId;
         private Integer exportStatusExportedCollections;
@@ -182,7 +161,6 @@ public final class GetCloudBackupSnapshotExportJobsResult {
     	      this.components = defaults.components;
     	      this.createdAt = defaults.createdAt;
     	      this.customDatas = defaults.customDatas;
-    	      this.errMsg = defaults.errMsg;
     	      this.exportBucketId = defaults.exportBucketId;
     	      this.exportJobId = defaults.exportJobId;
     	      this.exportStatusExportedCollections = defaults.exportStatusExportedCollections;
@@ -222,14 +200,6 @@ public final class GetCloudBackupSnapshotExportJobsResult {
         }
         public Builder customDatas(GetCloudBackupSnapshotExportJobsResultCustomData... customDatas) {
             return customDatas(List.of(customDatas));
-        }
-        @CustomType.Setter
-        public Builder errMsg(String errMsg) {
-            if (errMsg == null) {
-              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "errMsg");
-            }
-            this.errMsg = errMsg;
-            return this;
         }
         @CustomType.Setter
         public Builder exportBucketId(String exportBucketId) {
@@ -300,7 +270,6 @@ public final class GetCloudBackupSnapshotExportJobsResult {
             _resultValue.components = components;
             _resultValue.createdAt = createdAt;
             _resultValue.customDatas = customDatas;
-            _resultValue.errMsg = errMsg;
             _resultValue.exportBucketId = exportBucketId;
             _resultValue.exportJobId = exportJobId;
             _resultValue.exportStatusExportedCollections = exportStatusExportedCollections;
