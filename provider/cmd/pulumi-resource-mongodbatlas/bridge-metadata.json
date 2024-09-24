@@ -583,6 +583,10 @@
                 "current": "mongodbatlas:index/maintenanceWindow:MaintenanceWindow",
                 "majorVersion": 3
             },
+            "mongodbatlas_mongodb_employee_access_grant": {
+                "current": "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant",
+                "majorVersion": 3
+            },
             "mongodbatlas_network_container": {
                 "current": "mongodbatlas:index/networkContainer:NetworkContainer",
                 "majorVersion": 3,
@@ -2135,6 +2139,10 @@
                 "current": "mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow",
                 "majorVersion": 3
             },
+            "mongodbatlas_mongodb_employee_access_grant": {
+                "current": "mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant",
+                "majorVersion": 3
+            },
             "mongodbatlas_network_container": {
                 "current": "mongodbatlas:index/getNetworkContainer:getNetworkContainer",
                 "majorVersion": 3,
@@ -2732,6 +2740,7 @@
             "mongodbatlas:index/ldapConfiguration:LdapConfiguration": 0,
             "mongodbatlas:index/ldapVerify:LdapVerify": 0,
             "mongodbatlas:index/maintenanceWindow:MaintenanceWindow": 0,
+            "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant": 1,
             "mongodbatlas:index/networkContainer:NetworkContainer": 0,
             "mongodbatlas:index/networkPeering:NetworkPeering": 0,
             "mongodbatlas:index/onlineArchive:OnlineArchive": 0,
@@ -2816,6 +2825,7 @@
             "mongodbatlas:index/getLdapConfiguration:getLdapConfiguration": 0,
             "mongodbatlas:index/getLdapVerify:getLdapVerify": 0,
             "mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow": 0,
+            "mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant": 1,
             "mongodbatlas:index/getNetworkContainer:getNetworkContainer": 0,
             "mongodbatlas:index/getNetworkContainers:getNetworkContainers": 0,
             "mongodbatlas:index/getNetworkPeering:getNetworkPeering": 0,
