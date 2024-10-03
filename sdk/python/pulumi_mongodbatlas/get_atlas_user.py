@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -234,9 +239,6 @@ def get_atlas_user(user_id: Optional[str] = None,
         team_ids=pulumi.get(__ret__, 'team_ids'),
         user_id=pulumi.get(__ret__, 'user_id'),
         username=pulumi.get(__ret__, 'username'))
-
-
-@_utilities.lift_output_func(get_atlas_user)
 def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[str]]] = None,
                           username: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAtlasUserResult]:
@@ -271,4 +273,22 @@ def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[str]]] = None,
            
            > **IMPORTANT:** Either `user_id` or `username` must be configurated.
     """
-    ...
+    __args__ = dict()
+    __args__['userId'] = user_id
+    __args__['username'] = username
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAtlasUser:getAtlasUser', __args__, opts=opts, typ=GetAtlasUserResult)
+    return __ret__.apply(lambda __response__: GetAtlasUserResult(
+        country=pulumi.get(__response__, 'country'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        email_address=pulumi.get(__response__, 'email_address'),
+        first_name=pulumi.get(__response__, 'first_name'),
+        id=pulumi.get(__response__, 'id'),
+        last_auth=pulumi.get(__response__, 'last_auth'),
+        last_name=pulumi.get(__response__, 'last_name'),
+        links=pulumi.get(__response__, 'links'),
+        mobile_number=pulumi.get(__response__, 'mobile_number'),
+        roles=pulumi.get(__response__, 'roles'),
+        team_ids=pulumi.get(__response__, 'team_ids'),
+        user_id=pulumi.get(__response__, 'user_id'),
+        username=pulumi.get(__response__, 'username')))

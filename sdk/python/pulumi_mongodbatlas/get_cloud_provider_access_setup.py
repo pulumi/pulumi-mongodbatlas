@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -202,9 +207,6 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
         project_id=pulumi.get(__ret__, 'project_id'),
         provider_name=pulumi.get(__ret__, 'provider_name'),
         role_id=pulumi.get(__ret__, 'role_id'))
-
-
-@_utilities.lift_output_func(get_cloud_provider_access_setup)
 def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[Optional[Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
                                            project_id: Optional[pulumi.Input[str]] = None,
                                            provider_name: Optional[pulumi.Input[str]] = None,
@@ -256,4 +258,20 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
     :param str provider_name: cloud provider name, currently only AWS is supported
     :param str role_id: unique role id among all the aws roles provided by mongodb atlas
     """
-    ...
+    __args__ = dict()
+    __args__['azureConfigs'] = azure_configs
+    __args__['projectId'] = project_id
+    __args__['providerName'] = provider_name
+    __args__['roleId'] = role_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup', __args__, opts=opts, typ=GetCloudProviderAccessSetupResult)
+    return __ret__.apply(lambda __response__: GetCloudProviderAccessSetupResult(
+        aws=pulumi.get(__response__, 'aws'),
+        aws_configs=pulumi.get(__response__, 'aws_configs'),
+        azure_configs=pulumi.get(__response__, 'azure_configs'),
+        created_date=pulumi.get(__response__, 'created_date'),
+        id=pulumi.get(__response__, 'id'),
+        last_updated_date=pulumi.get(__response__, 'last_updated_date'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        provider_name=pulumi.get(__response__, 'provider_name'),
+        role_id=pulumi.get(__response__, 'role_id')))

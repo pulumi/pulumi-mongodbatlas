@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -131,9 +136,6 @@ def get_stream_instance(instance_name: Optional[str] = None,
         instance_name=pulumi.get(__ret__, 'instance_name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         stream_config=pulumi.get(__ret__, 'stream_config'))
-
-
-@_utilities.lift_output_func(get_stream_instance)
 def get_stream_instance_output(instance_name: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamInstanceResult]:
@@ -156,4 +158,15 @@ def get_stream_instance_output(instance_name: Optional[pulumi.Input[str]] = None
     :param str instance_name: Human-readable label that identifies the stream instance.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceName'] = instance_name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamInstance:getStreamInstance', __args__, opts=opts, typ=GetStreamInstanceResult)
+    return __ret__.apply(lambda __response__: GetStreamInstanceResult(
+        data_process_region=pulumi.get(__response__, 'data_process_region'),
+        hostnames=pulumi.get(__response__, 'hostnames'),
+        id=pulumi.get(__response__, 'id'),
+        instance_name=pulumi.get(__response__, 'instance_name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        stream_config=pulumi.get(__response__, 'stream_config')))

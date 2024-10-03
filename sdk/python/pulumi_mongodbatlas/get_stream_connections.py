@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -150,9 +155,6 @@ def get_stream_connections(instance_name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-
-
-@_utilities.lift_output_func(get_stream_connections)
 def get_stream_connections_output(instance_name: Optional[pulumi.Input[str]] = None,
                                   items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                   page_num: Optional[pulumi.Input[Optional[int]]] = None,
@@ -179,4 +181,18 @@ def get_stream_connections_output(instance_name: Optional[pulumi.Input[str]] = N
     :param int page_num: Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceName'] = instance_name
+    __args__['itemsPerPage'] = items_per_page
+    __args__['pageNum'] = page_num
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamConnections:getStreamConnections', __args__, opts=opts, typ=GetStreamConnectionsResult)
+    return __ret__.apply(lambda __response__: GetStreamConnectionsResult(
+        id=pulumi.get(__response__, 'id'),
+        instance_name=pulumi.get(__response__, 'instance_name'),
+        items_per_page=pulumi.get(__response__, 'items_per_page'),
+        page_num=pulumi.get(__response__, 'page_num'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results'),
+        total_count=pulumi.get(__response__, 'total_count')))

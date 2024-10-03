@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -253,9 +258,6 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
         region_name=pulumi.get(__ret__, 'region_name'),
         service_attachment_names=pulumi.get(__ret__, 'service_attachment_names'),
         status=pulumi.get(__ret__, 'status'))
-
-
-@_utilities.lift_output_func(get_private_link_endpoint)
 def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
                                      provider_name: Optional[pulumi.Input[str]] = None,
@@ -290,4 +292,24 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]
     :param str project_id: Unique identifier for the project.
     :param str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
     """
-    ...
+    __args__ = dict()
+    __args__['privateLinkId'] = private_link_id
+    __args__['projectId'] = project_id
+    __args__['providerName'] = provider_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint', __args__, opts=opts, typ=GetPrivateLinkEndpointResult)
+    return __ret__.apply(lambda __response__: GetPrivateLinkEndpointResult(
+        endpoint_group_names=pulumi.get(__response__, 'endpoint_group_names'),
+        endpoint_service_name=pulumi.get(__response__, 'endpoint_service_name'),
+        error_message=pulumi.get(__response__, 'error_message'),
+        id=pulumi.get(__response__, 'id'),
+        interface_endpoints=pulumi.get(__response__, 'interface_endpoints'),
+        private_endpoints=pulumi.get(__response__, 'private_endpoints'),
+        private_link_id=pulumi.get(__response__, 'private_link_id'),
+        private_link_service_name=pulumi.get(__response__, 'private_link_service_name'),
+        private_link_service_resource_id=pulumi.get(__response__, 'private_link_service_resource_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        provider_name=pulumi.get(__response__, 'provider_name'),
+        region_name=pulumi.get(__response__, 'region_name'),
+        service_attachment_names=pulumi.get(__response__, 'service_attachment_names'),
+        status=pulumi.get(__response__, 'status')))

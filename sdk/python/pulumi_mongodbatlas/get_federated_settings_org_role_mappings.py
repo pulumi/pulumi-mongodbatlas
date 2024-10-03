@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -125,9 +130,6 @@ def get_federated_settings_org_role_mappings(federation_settings_id: Optional[st
         org_id=pulumi.get(__ret__, 'org_id'),
         page_num=pulumi.get(__ret__, 'page_num'),
         results=pulumi.get(__ret__, 'results'))
-
-
-@_utilities.lift_output_func(get_federated_settings_org_role_mappings)
 def get_federated_settings_org_role_mappings_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
                                                     items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                                     org_id: Optional[pulumi.Input[str]] = None,
@@ -144,4 +146,17 @@ def get_federated_settings_org_role_mappings_output(federation_settings_id: Opti
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     :param int page_num: The page to return. Defaults to `1`.
     """
-    ...
+    __args__ = dict()
+    __args__['federationSettingsId'] = federation_settings_id
+    __args__['itemsPerPage'] = items_per_page
+    __args__['orgId'] = org_id
+    __args__['pageNum'] = page_num
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings', __args__, opts=opts, typ=GetFederatedSettingsOrgRoleMappingsResult)
+    return __ret__.apply(lambda __response__: GetFederatedSettingsOrgRoleMappingsResult(
+        federation_settings_id=pulumi.get(__response__, 'federation_settings_id'),
+        id=pulumi.get(__response__, 'id'),
+        items_per_page=pulumi.get(__response__, 'items_per_page'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        page_num=pulumi.get(__response__, 'page_num'),
+        results=pulumi.get(__response__, 'results')))

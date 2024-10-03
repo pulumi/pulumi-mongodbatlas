@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -167,9 +172,6 @@ def get_federated_settings_org_role_mapping(federation_settings_id: Optional[str
         org_id=pulumi.get(__ret__, 'org_id'),
         role_assignments=pulumi.get(__ret__, 'role_assignments'),
         role_mapping_id=pulumi.get(__ret__, 'role_mapping_id'))
-
-
-@_utilities.lift_output_func(get_federated_settings_org_role_mapping)
 def get_federated_settings_org_role_mapping_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
                                                    org_id: Optional[pulumi.Input[str]] = None,
                                                    role_mapping_id: Optional[pulumi.Input[str]] = None,
@@ -227,4 +229,16 @@ def get_federated_settings_org_role_mapping_output(federation_settings_id: Optio
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """
-    ...
+    __args__ = dict()
+    __args__['federationSettingsId'] = federation_settings_id
+    __args__['orgId'] = org_id
+    __args__['roleMappingId'] = role_mapping_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping', __args__, opts=opts, typ=GetFederatedSettingsOrgRoleMappingResult)
+    return __ret__.apply(lambda __response__: GetFederatedSettingsOrgRoleMappingResult(
+        external_group_name=pulumi.get(__response__, 'external_group_name'),
+        federation_settings_id=pulumi.get(__response__, 'federation_settings_id'),
+        id=pulumi.get(__response__, 'id'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        role_assignments=pulumi.get(__response__, 'role_assignments'),
+        role_mapping_id=pulumi.get(__response__, 'role_mapping_id')))

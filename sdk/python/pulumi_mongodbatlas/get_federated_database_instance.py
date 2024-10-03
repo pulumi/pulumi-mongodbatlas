@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -232,9 +237,6 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
         state=pulumi.get(__ret__, 'state'),
         storage_databases=pulumi.get(__ret__, 'storage_databases'),
         storage_stores=pulumi.get(__ret__, 'storage_stores'))
-
-
-@_utilities.lift_output_func(get_federated_database_instance)
 def get_federated_database_instance_output(cloud_provider_config: Optional[pulumi.Input[Optional[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']]]] = None,
                                            name: Optional[pulumi.Input[str]] = None,
                                            project_id: Optional[pulumi.Input[str]] = None,
@@ -279,4 +281,19 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     :param str name: Name of the Atlas Federated Database Instance.
     :param str project_id: The unique ID for the project to create a Federated Database Instance.
     """
-    ...
+    __args__ = dict()
+    __args__['cloudProviderConfig'] = cloud_provider_config
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance', __args__, opts=opts, typ=GetFederatedDatabaseInstanceResult)
+    return __ret__.apply(lambda __response__: GetFederatedDatabaseInstanceResult(
+        cloud_provider_config=pulumi.get(__response__, 'cloud_provider_config'),
+        data_process_regions=pulumi.get(__response__, 'data_process_regions'),
+        hostnames=pulumi.get(__response__, 'hostnames'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        state=pulumi.get(__response__, 'state'),
+        storage_databases=pulumi.get(__response__, 'storage_databases'),
+        storage_stores=pulumi.get(__response__, 'storage_stores')))

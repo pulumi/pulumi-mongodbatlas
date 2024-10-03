@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -331,9 +336,6 @@ def get_project(name: Optional[str] = None,
         region_usage_restrictions=pulumi.get(__ret__, 'region_usage_restrictions'),
         tags=pulumi.get(__ret__, 'tags'),
         teams=pulumi.get(__ret__, 'teams'))
-
-
-@_utilities.lift_output_func(get_project)
 def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectResult]:
@@ -409,4 +411,26 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
            > **IMPORTANT:** Either `project_id` or `name` must be configurated.
     :param str project_id: The unique ID for the project.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult)
+    return __ret__.apply(lambda __response__: GetProjectResult(
+        cluster_count=pulumi.get(__response__, 'cluster_count'),
+        created=pulumi.get(__response__, 'created'),
+        id=pulumi.get(__response__, 'id'),
+        ip_addresses=pulumi.get(__response__, 'ip_addresses'),
+        is_collect_database_specifics_statistics_enabled=pulumi.get(__response__, 'is_collect_database_specifics_statistics_enabled'),
+        is_data_explorer_enabled=pulumi.get(__response__, 'is_data_explorer_enabled'),
+        is_extended_storage_sizes_enabled=pulumi.get(__response__, 'is_extended_storage_sizes_enabled'),
+        is_performance_advisor_enabled=pulumi.get(__response__, 'is_performance_advisor_enabled'),
+        is_realtime_performance_panel_enabled=pulumi.get(__response__, 'is_realtime_performance_panel_enabled'),
+        is_schema_advisor_enabled=pulumi.get(__response__, 'is_schema_advisor_enabled'),
+        limits=pulumi.get(__response__, 'limits'),
+        name=pulumi.get(__response__, 'name'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region_usage_restrictions=pulumi.get(__response__, 'region_usage_restrictions'),
+        tags=pulumi.get(__response__, 'tags'),
+        teams=pulumi.get(__response__, 'teams')))

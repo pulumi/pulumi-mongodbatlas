@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -157,9 +162,6 @@ def get_organization(org_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         org_id=pulumi.get(__ret__, 'org_id'),
         restrict_employee_access=pulumi.get(__ret__, 'restrict_employee_access'))
-
-
-@_utilities.lift_output_func(get_organization)
 def get_organization_output(org_id: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
     """
@@ -180,4 +182,16 @@ def get_organization_output(org_id: Optional[pulumi.Input[str]] = None,
 
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization.
     """
-    ...
+    __args__ = dict()
+    __args__['orgId'] = org_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
+    return __ret__.apply(lambda __response__: GetOrganizationResult(
+        api_access_list_required=pulumi.get(__response__, 'api_access_list_required'),
+        id=pulumi.get(__response__, 'id'),
+        is_deleted=pulumi.get(__response__, 'is_deleted'),
+        links=pulumi.get(__response__, 'links'),
+        multi_factor_auth_required=pulumi.get(__response__, 'multi_factor_auth_required'),
+        name=pulumi.get(__response__, 'name'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        restrict_employee_access=pulumi.get(__response__, 'restrict_employee_access')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -182,9 +187,6 @@ def get_federated_query_limit(limit_name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         tenant_name=pulumi.get(__ret__, 'tenant_name'),
         value=pulumi.get(__ret__, 'value'))
-
-
-@_utilities.lift_output_func(get_federated_query_limit)
 def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[str]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
                                      tenant_name: Optional[pulumi.Input[str]] = None,
@@ -216,4 +218,20 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[str]] = N
     :param str project_id: The unique ID for the project to create a Federated Database Instance.
     :param str tenant_name: Name of the Atlas Federated Database Instance.
     """
-    ...
+    __args__ = dict()
+    __args__['limitName'] = limit_name
+    __args__['projectId'] = project_id
+    __args__['tenantName'] = tenant_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit', __args__, opts=opts, typ=GetFederatedQueryLimitResult)
+    return __ret__.apply(lambda __response__: GetFederatedQueryLimitResult(
+        current_usage=pulumi.get(__response__, 'current_usage'),
+        default_limit=pulumi.get(__response__, 'default_limit'),
+        id=pulumi.get(__response__, 'id'),
+        last_modified_date=pulumi.get(__response__, 'last_modified_date'),
+        limit_name=pulumi.get(__response__, 'limit_name'),
+        maximum_limit=pulumi.get(__response__, 'maximum_limit'),
+        overrun_policy=pulumi.get(__response__, 'overrun_policy'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        tenant_name=pulumi.get(__response__, 'tenant_name'),
+        value=pulumi.get(__response__, 'value')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -150,9 +155,6 @@ def get_project_api_key(api_key_id: Optional[str] = None,
         project_assignments=pulumi.get(__ret__, 'project_assignments'),
         project_id=pulumi.get(__ret__, 'project_id'),
         public_key=pulumi.get(__ret__, 'public_key'))
-
-
-@_utilities.lift_output_func(get_project_api_key)
 def get_project_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectApiKeyResult]:
@@ -178,4 +180,16 @@ def get_project_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
     :param str api_key_id: Unique identifier for this Project API key.
     :param str project_id: The unique ID for the project.
     """
-    ...
+    __args__ = dict()
+    __args__['apiKeyId'] = api_key_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjectApiKey:getProjectApiKey', __args__, opts=opts, typ=GetProjectApiKeyResult)
+    return __ret__.apply(lambda __response__: GetProjectApiKeyResult(
+        api_key_id=pulumi.get(__response__, 'api_key_id'),
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        private_key=pulumi.get(__response__, 'private_key'),
+        project_assignments=pulumi.get(__response__, 'project_assignments'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        public_key=pulumi.get(__response__, 'public_key')))

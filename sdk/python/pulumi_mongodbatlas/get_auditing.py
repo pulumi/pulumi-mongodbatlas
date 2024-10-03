@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -139,9 +144,6 @@ def get_auditing(project_id: Optional[str] = None,
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-
-
-@_utilities.lift_output_func(get_auditing)
 def get_auditing_output(project_id: Optional[pulumi.Input[str]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuditingResult]:
     """
@@ -168,4 +170,14 @@ def get_auditing_output(project_id: Optional[pulumi.Input[str]] = None,
 
     :param str project_id: The unique ID for the project to create the database user.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAuditing:getAuditing', __args__, opts=opts, typ=GetAuditingResult)
+    return __ret__.apply(lambda __response__: GetAuditingResult(
+        audit_authorization_success=pulumi.get(__response__, 'audit_authorization_success'),
+        audit_filter=pulumi.get(__response__, 'audit_filter'),
+        configuration_type=pulumi.get(__response__, 'configuration_type'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id')))

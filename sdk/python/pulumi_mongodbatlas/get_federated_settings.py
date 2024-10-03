@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -132,9 +137,6 @@ def get_federated_settings(org_id: Optional[str] = None,
         identity_provider_id=pulumi.get(__ret__, 'identity_provider_id'),
         identity_provider_status=pulumi.get(__ret__, 'identity_provider_status'),
         org_id=pulumi.get(__ret__, 'org_id'))
-
-
-@_utilities.lift_output_func(get_federated_settings)
 def get_federated_settings_output(org_id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsResult]:
     """
@@ -154,4 +156,14 @@ def get_federated_settings_output(org_id: Optional[pulumi.Input[str]] = None,
 
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """
-    ...
+    __args__ = dict()
+    __args__['orgId'] = org_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettings:getFederatedSettings', __args__, opts=opts, typ=GetFederatedSettingsResult)
+    return __ret__.apply(lambda __response__: GetFederatedSettingsResult(
+        federated_domains=pulumi.get(__response__, 'federated_domains'),
+        has_role_mappings=pulumi.get(__response__, 'has_role_mappings'),
+        id=pulumi.get(__response__, 'id'),
+        identity_provider_id=pulumi.get(__response__, 'identity_provider_id'),
+        identity_provider_status=pulumi.get(__response__, 'identity_provider_status'),
+        org_id=pulumi.get(__response__, 'org_id')))

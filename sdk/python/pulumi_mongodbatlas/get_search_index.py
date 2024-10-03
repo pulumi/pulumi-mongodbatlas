@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -277,9 +282,6 @@ def get_search_index(cluster_name: Optional[str] = None,
         stored_source=pulumi.get(__ret__, 'stored_source'),
         synonyms=pulumi.get(__ret__, 'synonyms'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_search_index)
 def get_search_index_output(cluster_name: Optional[pulumi.Input[str]] = None,
                             index_id: Optional[pulumi.Input[str]] = None,
                             project_id: Optional[pulumi.Input[str]] = None,
@@ -307,4 +309,27 @@ def get_search_index_output(cluster_name: Optional[pulumi.Input[str]] = None,
     :param str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
     :param str project_id: The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['indexId'] = index_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getSearchIndex:getSearchIndex', __args__, opts=opts, typ=GetSearchIndexResult)
+    return __ret__.apply(lambda __response__: GetSearchIndexResult(
+        analyzer=pulumi.get(__response__, 'analyzer'),
+        analyzers=pulumi.get(__response__, 'analyzers'),
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        collection_name=pulumi.get(__response__, 'collection_name'),
+        database=pulumi.get(__response__, 'database'),
+        fields=pulumi.get(__response__, 'fields'),
+        id=pulumi.get(__response__, 'id'),
+        index_id=pulumi.get(__response__, 'index_id'),
+        mappings_dynamic=pulumi.get(__response__, 'mappings_dynamic'),
+        mappings_fields=pulumi.get(__response__, 'mappings_fields'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        search_analyzer=pulumi.get(__response__, 'search_analyzer'),
+        status=pulumi.get(__response__, 'status'),
+        stored_source=pulumi.get(__response__, 'stored_source'),
+        synonyms=pulumi.get(__response__, 'synonyms'),
+        type=pulumi.get(__response__, 'type')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -154,9 +159,6 @@ def get_push_based_log_export(project_id: Optional[str] = None,
         prefix_path=pulumi.get(__ret__, 'prefix_path'),
         project_id=pulumi.get(__ret__, 'project_id'),
         state=pulumi.get(__ret__, 'state'))
-
-
-@_utilities.lift_output_func(get_push_based_log_export)
 def get_push_based_log_export_output(project_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPushBasedLogExportResult]:
     """
@@ -197,4 +199,15 @@ def get_push_based_log_export_output(project_id: Optional[pulumi.Input[str]] = N
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport', __args__, opts=opts, typ=GetPushBasedLogExportResult)
+    return __ret__.apply(lambda __response__: GetPushBasedLogExportResult(
+        bucket_name=pulumi.get(__response__, 'bucket_name'),
+        create_date=pulumi.get(__response__, 'create_date'),
+        iam_role_id=pulumi.get(__response__, 'iam_role_id'),
+        id=pulumi.get(__response__, 'id'),
+        prefix_path=pulumi.get(__response__, 'prefix_path'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        state=pulumi.get(__response__, 'state')))

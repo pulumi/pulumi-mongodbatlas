@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -408,9 +413,6 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
         sso_url=pulumi.get(__ret__, 'sso_url'),
         status=pulumi.get(__ret__, 'status'),
         user_claim=pulumi.get(__ret__, 'user_claim'))
-
-
-@_utilities.lift_output_func(get_federated_settings_identity_provider)
 def get_federated_settings_identity_provider_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
                                                     identity_provider_id: Optional[pulumi.Input[str]] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsIdentityProviderResult]:
@@ -443,4 +445,35 @@ def get_federated_settings_identity_provider_output(federation_settings_id: Opti
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param str identity_provider_id: Unique 24-hexadecimal digit string that identifies the IdP.
     """
-    ...
+    __args__ = dict()
+    __args__['federationSettingsId'] = federation_settings_id
+    __args__['identityProviderId'] = identity_provider_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider', __args__, opts=opts, typ=GetFederatedSettingsIdentityProviderResult)
+    return __ret__.apply(lambda __response__: GetFederatedSettingsIdentityProviderResult(
+        acs_url=pulumi.get(__response__, 'acs_url'),
+        associated_domains=pulumi.get(__response__, 'associated_domains'),
+        associated_orgs=pulumi.get(__response__, 'associated_orgs'),
+        audience=pulumi.get(__response__, 'audience'),
+        audience_uri=pulumi.get(__response__, 'audience_uri'),
+        authorization_type=pulumi.get(__response__, 'authorization_type'),
+        client_id=pulumi.get(__response__, 'client_id'),
+        description=pulumi.get(__response__, 'description'),
+        display_name=pulumi.get(__response__, 'display_name'),
+        federation_settings_id=pulumi.get(__response__, 'federation_settings_id'),
+        groups_claim=pulumi.get(__response__, 'groups_claim'),
+        id=pulumi.get(__response__, 'id'),
+        identity_provider_id=pulumi.get(__response__, 'identity_provider_id'),
+        idp_id=pulumi.get(__response__, 'idp_id'),
+        idp_type=pulumi.get(__response__, 'idp_type'),
+        issuer_uri=pulumi.get(__response__, 'issuer_uri'),
+        okta_idp_id=pulumi.get(__response__, 'okta_idp_id'),
+        pem_file_infos=pulumi.get(__response__, 'pem_file_infos'),
+        protocol=pulumi.get(__response__, 'protocol'),
+        request_binding=pulumi.get(__response__, 'request_binding'),
+        requested_scopes=pulumi.get(__response__, 'requested_scopes'),
+        response_signature_algorithm=pulumi.get(__response__, 'response_signature_algorithm'),
+        sso_debug_enabled=pulumi.get(__response__, 'sso_debug_enabled'),
+        sso_url=pulumi.get(__response__, 'sso_url'),
+        status=pulumi.get(__response__, 'status'),
+        user_claim=pulumi.get(__response__, 'user_claim')))

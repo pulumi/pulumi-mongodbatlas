@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -194,9 +199,6 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         managed_namespaces=pulumi.get(__ret__, 'managed_namespaces'),
         project_id=pulumi.get(__ret__, 'project_id'))
-
-
-@_utilities.lift_output_func(get_global_cluster_config)
 def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                      managed_namespaces: Optional[pulumi.Input[Optional[Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
@@ -290,4 +292,15 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] =
     :param str project_id: The unique ID for the project to create the database user.
            * `cluster_name - (Required) The name of the Global Cluster.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['managedNamespaces'] = managed_namespaces
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig', __args__, opts=opts, typ=GetGlobalClusterConfigResult)
+    return __ret__.apply(lambda __response__: GetGlobalClusterConfigResult(
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        custom_zone_mapping=pulumi.get(__response__, 'custom_zone_mapping'),
+        id=pulumi.get(__response__, 'id'),
+        managed_namespaces=pulumi.get(__response__, 'managed_namespaces'),
+        project_id=pulumi.get(__response__, 'project_id')))

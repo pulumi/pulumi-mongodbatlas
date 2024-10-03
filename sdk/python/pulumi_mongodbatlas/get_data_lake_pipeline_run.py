@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -217,9 +222,6 @@ def get_data_lake_pipeline_run(pipeline_name: Optional[str] = None,
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
         state=pulumi.get(__ret__, 'state'),
         stats=pulumi.get(__ret__, 'stats'))
-
-
-@_utilities.lift_output_func(get_data_lake_pipeline_run)
 def get_data_lake_pipeline_run_output(pipeline_name: Optional[pulumi.Input[str]] = None,
                                       pipeline_run_id: Optional[pulumi.Input[str]] = None,
                                       project_id: Optional[pulumi.Input[str]] = None,
@@ -236,4 +238,23 @@ def get_data_lake_pipeline_run_output(pipeline_name: Optional[pulumi.Input[str]]
     :param str pipeline_run_id: Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
-    ...
+    __args__ = dict()
+    __args__['pipelineName'] = pipeline_name
+    __args__['pipelineRunId'] = pipeline_run_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun', __args__, opts=opts, typ=GetDataLakePipelineRunResult)
+    return __ret__.apply(lambda __response__: GetDataLakePipelineRunResult(
+        backup_frequency_type=pulumi.get(__response__, 'backup_frequency_type'),
+        created_date=pulumi.get(__response__, 'created_date'),
+        dataset_name=pulumi.get(__response__, 'dataset_name'),
+        id=pulumi.get(__response__, 'id'),
+        last_updated_date=pulumi.get(__response__, 'last_updated_date'),
+        phase=pulumi.get(__response__, 'phase'),
+        pipeline_id=pulumi.get(__response__, 'pipeline_id'),
+        pipeline_name=pulumi.get(__response__, 'pipeline_name'),
+        pipeline_run_id=pulumi.get(__response__, 'pipeline_run_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        snapshot_id=pulumi.get(__response__, 'snapshot_id'),
+        state=pulumi.get(__response__, 'state'),
+        stats=pulumi.get(__response__, 'stats')))

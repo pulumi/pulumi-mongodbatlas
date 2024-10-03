@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -443,9 +448,6 @@ def get_advanced_cluster(name: Optional[str] = None,
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'),
         use_replication_spec_per_shard=pulumi.get(__ret__, 'use_replication_spec_per_shard'),
         version_release_system=pulumi.get(__ret__, 'version_release_system'))
-
-
-@_utilities.lift_output_func(get_advanced_cluster)
 def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
                                 pit_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                 project_id: Optional[pulumi.Input[str]] = None,
@@ -535,4 +537,36 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
     :param str project_id: The unique ID for the project to create the database user.
     :param bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['pitEnabled'] = pit_enabled
+    __args__['projectId'] = project_id
+    __args__['useReplicationSpecPerShard'] = use_replication_spec_per_shard
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAdvancedCluster:getAdvancedCluster', __args__, opts=opts, typ=GetAdvancedClusterResult)
+    return __ret__.apply(lambda __response__: GetAdvancedClusterResult(
+        advanced_configurations=pulumi.get(__response__, 'advanced_configurations'),
+        backup_enabled=pulumi.get(__response__, 'backup_enabled'),
+        bi_connector_configs=pulumi.get(__response__, 'bi_connector_configs'),
+        cluster_type=pulumi.get(__response__, 'cluster_type'),
+        connection_strings=pulumi.get(__response__, 'connection_strings'),
+        create_date=pulumi.get(__response__, 'create_date'),
+        disk_size_gb=pulumi.get(__response__, 'disk_size_gb'),
+        encryption_at_rest_provider=pulumi.get(__response__, 'encryption_at_rest_provider'),
+        global_cluster_self_managed_sharding=pulumi.get(__response__, 'global_cluster_self_managed_sharding'),
+        id=pulumi.get(__response__, 'id'),
+        labels=pulumi.get(__response__, 'labels'),
+        mongo_db_major_version=pulumi.get(__response__, 'mongo_db_major_version'),
+        mongo_db_version=pulumi.get(__response__, 'mongo_db_version'),
+        name=pulumi.get(__response__, 'name'),
+        paused=pulumi.get(__response__, 'paused'),
+        pit_enabled=pulumi.get(__response__, 'pit_enabled'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        replica_set_scaling_strategy=pulumi.get(__response__, 'replica_set_scaling_strategy'),
+        replication_specs=pulumi.get(__response__, 'replication_specs'),
+        root_cert_type=pulumi.get(__response__, 'root_cert_type'),
+        state_name=pulumi.get(__response__, 'state_name'),
+        tags=pulumi.get(__response__, 'tags'),
+        termination_protection_enabled=pulumi.get(__response__, 'termination_protection_enabled'),
+        use_replication_spec_per_shard=pulumi.get(__response__, 'use_replication_spec_per_shard'),
+        version_release_system=pulumi.get(__response__, 'version_release_system')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -167,9 +172,6 @@ def get_project_invitation(invitation_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'),
         username=pulumi.get(__ret__, 'username'))
-
-
-@_utilities.lift_output_func(get_project_invitation)
 def get_project_invitation_output(invitation_id: Optional[pulumi.Input[str]] = None,
                                   project_id: Optional[pulumi.Input[str]] = None,
                                   username: Optional[pulumi.Input[str]] = None,
@@ -202,4 +204,18 @@ def get_project_invitation_output(invitation_id: Optional[pulumi.Input[str]] = N
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
     :param str username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
     """
-    ...
+    __args__ = dict()
+    __args__['invitationId'] = invitation_id
+    __args__['projectId'] = project_id
+    __args__['username'] = username
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjectInvitation:getProjectInvitation', __args__, opts=opts, typ=GetProjectInvitationResult)
+    return __ret__.apply(lambda __response__: GetProjectInvitationResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        expires_at=pulumi.get(__response__, 'expires_at'),
+        id=pulumi.get(__response__, 'id'),
+        invitation_id=pulumi.get(__response__, 'invitation_id'),
+        inviter_username=pulumi.get(__response__, 'inviter_username'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        roles=pulumi.get(__response__, 'roles'),
+        username=pulumi.get(__response__, 'username')))
