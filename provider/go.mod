@@ -1,8 +1,6 @@
 module github.com/pulumi/pulumi-mongodbatlas/provider/v3
 
-go 1.23
-
-toolchain go1.23.1
+go 1.23.1
 
 replace github.com/mongodb/terraform-provider-mongodbatlas/shim => ./shim
 
@@ -158,7 +156,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/mongodb-forks/digest v1.1.0 // indirect
-	github.com/mongodb/terraform-provider-mongodbatlas v1.20.0 // indirect
+	github.com/mongodb/terraform-provider-mongodbatlas v1.21.0 // indirect
 	github.com/muesli/ansi v0.0.0-20230316100256-276c6243b2f6 // indirect
 	github.com/muesli/cancelreader v0.2.2 // indirect
 	github.com/muesli/reflow v0.3.0 // indirect
@@ -217,7 +215,7 @@ require (
 	github.com/zclconf/go-cty-yaml v1.0.2 // indirect
 	go.mongodb.org/atlas v0.37.0 // indirect
 	go.mongodb.org/atlas-sdk/v20240530005 v20240530005.0.0 // indirect
-	go.mongodb.org/atlas-sdk/v20240805004 v20240805004.1.0 // indirect
+	go.mongodb.org/atlas-sdk/v20240805004 v20240805004.5.0 // indirect
 	go.mongodb.org/realm v0.1.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.49.0 // indirect

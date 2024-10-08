@@ -332,7 +332,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly labels!: pulumi.Output<outputs.ClusterLabel[] | undefined>;
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+     * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      */
     public readonly mongoDbMajorVersion!: pulumi.Output<string>;
     /**
@@ -417,6 +417,10 @@ export class Cluster extends pulumi.CustomResource {
      * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
     public readonly providerVolumeType!: pulumi.Output<string>;
+    /**
+     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+     */
+    public readonly redactClientLogData!: pulumi.Output<boolean>;
     /**
      * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
@@ -511,6 +515,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["providerName"] = state ? state.providerName : undefined;
             resourceInputs["providerRegionName"] = state ? state.providerRegionName : undefined;
             resourceInputs["providerVolumeType"] = state ? state.providerVolumeType : undefined;
+            resourceInputs["redactClientLogData"] = state ? state.redactClientLogData : undefined;
             resourceInputs["replicationFactor"] = state ? state.replicationFactor : undefined;
             resourceInputs["replicationSpecs"] = state ? state.replicationSpecs : undefined;
             resourceInputs["retainBackupsEnabled"] = state ? state.retainBackupsEnabled : undefined;
@@ -559,6 +564,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["providerName"] = args ? args.providerName : undefined;
             resourceInputs["providerRegionName"] = args ? args.providerRegionName : undefined;
             resourceInputs["providerVolumeType"] = args ? args.providerVolumeType : undefined;
+            resourceInputs["redactClientLogData"] = args ? args.redactClientLogData : undefined;
             resourceInputs["replicationFactor"] = args ? args.replicationFactor : undefined;
             resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
             resourceInputs["retainBackupsEnabled"] = args ? args.retainBackupsEnabled : undefined;
@@ -670,7 +676,7 @@ export interface ClusterState {
      */
     labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[]>;
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+     * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      */
     mongoDbMajorVersion?: pulumi.Input<string>;
     /**
@@ -755,6 +761,10 @@ export interface ClusterState {
      * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
     providerVolumeType?: pulumi.Input<string>;
+    /**
+     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+     */
+    redactClientLogData?: pulumi.Input<boolean>;
     /**
      * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
@@ -877,7 +887,7 @@ export interface ClusterArgs {
      */
     labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[]>;
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+     * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      */
     mongoDbMajorVersion?: pulumi.Input<string>;
     /**
@@ -945,6 +955,10 @@ export interface ClusterArgs {
      * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
     providerVolumeType?: pulumi.Input<string>;
+    /**
+     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+     */
+    redactClientLogData?: pulumi.Input<boolean>;
     /**
      * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */

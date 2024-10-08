@@ -279,8 +279,8 @@ class _ProjectState:
         if created is not None:
             pulumi.set(__self__, "created", created)
         if ip_addresses is not None:
-            warnings.warn("""This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""", DeprecationWarning)
-            pulumi.log.warn("""ip_addresses is deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""")
+            warnings.warn("""This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""", DeprecationWarning)
+            pulumi.log.warn("""ip_addresses is deprecated: This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""")
         if ip_addresses is not None:
             pulumi.set(__self__, "ip_addresses", ip_addresses)
         if is_collect_database_specifics_statistics_enabled is not None:
@@ -338,7 +338,7 @@ class _ProjectState:
 
     @property
     @pulumi.getter(name="ipAddresses")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> Optional[pulumi.Input['ProjectIpAddressesArgs']]:
         """
         IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
@@ -817,7 +817,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipAddresses")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> pulumi.Output['outputs.ProjectIpAddresses']:
         """
         IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.

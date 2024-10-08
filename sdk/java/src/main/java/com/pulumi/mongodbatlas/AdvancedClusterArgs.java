@@ -192,14 +192,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+     * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
      * 
      */
     @Import(name="mongoDbMajorVersion")
     private @Nullable Output<String> mongoDbMajorVersion;
 
     /**
-     * @return Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+     * @return Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
      * 
      */
     public Optional<Output<String>> mongoDbMajorVersion() {
@@ -256,6 +256,21 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
      */
     public Output<String> projectId() {
         return this.projectId;
+    }
+
+    /**
+     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * 
+     */
+    @Import(name="redactClientLogData")
+    private @Nullable Output<Boolean> redactClientLogData;
+
+    /**
+     * @return Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * 
+     */
+    public Optional<Output<Boolean>> redactClientLogData() {
+        return Optional.ofNullable(this.redactClientLogData);
     }
 
     /**
@@ -384,6 +399,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         this.paused = $.paused;
         this.pitEnabled = $.pitEnabled;
         this.projectId = $.projectId;
+        this.redactClientLogData = $.redactClientLogData;
         this.replicaSetScalingStrategy = $.replicaSetScalingStrategy;
         this.replicationSpecs = $.replicationSpecs;
         this.retainBackupsEnabled = $.retainBackupsEnabled;
@@ -643,7 +659,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
          * 
          * @return builder
          * 
@@ -654,7 +670,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
          * 
          * @return builder
          * 
@@ -733,6 +749,27 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param redactClientLogData Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redactClientLogData(@Nullable Output<Boolean> redactClientLogData) {
+            $.redactClientLogData = redactClientLogData;
+            return this;
+        }
+
+        /**
+         * @param redactClientLogData Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redactClientLogData(Boolean redactClientLogData) {
+            return redactClientLogData(Output.of(redactClientLogData));
         }
 
         /**

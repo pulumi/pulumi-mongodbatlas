@@ -9392,6 +9392,7 @@ class GetAdvancedClustersResultResult(dict):
                  name: str,
                  paused: bool,
                  pit_enabled: bool,
+                 redact_client_log_data: bool,
                  replica_set_scaling_strategy: str,
                  replication_specs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult'],
                  root_cert_type: str,
@@ -9412,6 +9413,7 @@ class GetAdvancedClustersResultResult(dict):
         :param str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param bool paused: Flag that indicates whether the cluster is paused or not.
         :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
+        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
         :param str replica_set_scaling_strategy: (Optional) Replica set scaling mode for your cluster.
         :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         :param str root_cert_type: Certificate Authority that MongoDB Atlas clusters use.
@@ -9435,6 +9437,7 @@ class GetAdvancedClustersResultResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "paused", paused)
         pulumi.set(__self__, "pit_enabled", pit_enabled)
+        pulumi.set(__self__, "redact_client_log_data", redact_client_log_data)
         pulumi.set(__self__, "replica_set_scaling_strategy", replica_set_scaling_strategy)
         pulumi.set(__self__, "replication_specs", replication_specs)
         pulumi.set(__self__, "root_cert_type", root_cert_type)
@@ -9555,6 +9558,14 @@ class GetAdvancedClustersResultResult(dict):
         Flag that indicates if the cluster uses Continuous Cloud Backup.
         """
         return pulumi.get(self, "pit_enabled")
+
+    @property
+    @pulumi.getter(name="redactClientLogData")
+    def redact_client_log_data(self) -> bool:
+        """
+        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        """
+        return pulumi.get(self, "redact_client_log_data")
 
     @property
     @pulumi.getter(name="replicaSetScalingStrategy")
@@ -14314,6 +14325,7 @@ class GetClustersResultResult(dict):
                  provider_name: str,
                  provider_region_name: str,
                  provider_volume_type: str,
+                 redact_client_log_data: bool,
                  replication_factor: int,
                  replication_specs: Sequence['outputs.GetClustersResultReplicationSpecResult'],
                  snapshot_backup_policies: Sequence['outputs.GetClustersResultSnapshotBackupPolicyResult'],
@@ -14356,6 +14368,7 @@ class GetClustersResultResult(dict):
         :param str provider_region_name: Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param str provider_volume_type: Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
                > **NOTE:** `STANDARD` is not available for NVME clusters.
+        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
         :param int replication_factor: (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param Sequence['GetClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param Sequence['GetClustersResultSnapshotBackupPolicyArgs'] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
@@ -14403,6 +14416,7 @@ class GetClustersResultResult(dict):
         pulumi.set(__self__, "provider_name", provider_name)
         pulumi.set(__self__, "provider_region_name", provider_region_name)
         pulumi.set(__self__, "provider_volume_type", provider_volume_type)
+        pulumi.set(__self__, "redact_client_log_data", redact_client_log_data)
         pulumi.set(__self__, "replication_factor", replication_factor)
         pulumi.set(__self__, "replication_specs", replication_specs)
         pulumi.set(__self__, "snapshot_backup_policies", snapshot_backup_policies)
@@ -14669,6 +14683,14 @@ class GetClustersResultResult(dict):
         > **NOTE:** `STANDARD` is not available for NVME clusters.
         """
         return pulumi.get(self, "provider_volume_type")
+
+    @property
+    @pulumi.getter(name="redactClientLogData")
+    def redact_client_log_data(self) -> bool:
+        """
+        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        """
+        return pulumi.get(self, "redact_client_log_data")
 
     @property
     @pulumi.getter(name="replicationFactor")
@@ -21458,7 +21480,7 @@ class GetProjectsResultResult(dict):
 
     @property
     @pulumi.getter(name="ipAddresses")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> 'outputs.GetProjectsResultIpAddressesResult':
         """
         IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.

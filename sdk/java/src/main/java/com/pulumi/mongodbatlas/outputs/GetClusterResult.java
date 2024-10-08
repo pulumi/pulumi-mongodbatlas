@@ -190,6 +190,11 @@ public final class GetClusterResult {
      */
     private String providerVolumeType;
     /**
+     * @return (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * 
+     */
+    private Boolean redactClientLogData;
+    /**
      * @return (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      * 
      */
@@ -476,6 +481,13 @@ public final class GetClusterResult {
         return this.providerVolumeType;
     }
     /**
+     * @return (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * 
+     */
+    public Boolean redactClientLogData() {
+        return this.redactClientLogData;
+    }
+    /**
      * @return (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      * 
      */
@@ -582,6 +594,7 @@ public final class GetClusterResult {
         private String providerName;
         private String providerRegionName;
         private String providerVolumeType;
+        private Boolean redactClientLogData;
         private Integer replicationFactor;
         private List<GetClusterReplicationSpec> replicationSpecs;
         private List<GetClusterSnapshotBackupPolicy> snapshotBackupPolicies;
@@ -628,6 +641,7 @@ public final class GetClusterResult {
     	      this.providerName = defaults.providerName;
     	      this.providerRegionName = defaults.providerRegionName;
     	      this.providerVolumeType = defaults.providerVolumeType;
+    	      this.redactClientLogData = defaults.redactClientLogData;
     	      this.replicationFactor = defaults.replicationFactor;
     	      this.replicationSpecs = defaults.replicationSpecs;
     	      this.snapshotBackupPolicies = defaults.snapshotBackupPolicies;
@@ -931,6 +945,14 @@ public final class GetClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder redactClientLogData(Boolean redactClientLogData) {
+            if (redactClientLogData == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "redactClientLogData");
+            }
+            this.redactClientLogData = redactClientLogData;
+            return this;
+        }
+        @CustomType.Setter
         public Builder replicationFactor(Integer replicationFactor) {
             if (replicationFactor == null) {
               throw new MissingRequiredPropertyException("GetClusterResult", "replicationFactor");
@@ -1040,6 +1062,7 @@ public final class GetClusterResult {
             _resultValue.providerName = providerName;
             _resultValue.providerRegionName = providerRegionName;
             _resultValue.providerVolumeType = providerVolumeType;
+            _resultValue.redactClientLogData = redactClientLogData;
             _resultValue.replicationFactor = replicationFactor;
             _resultValue.replicationSpecs = replicationSpecs;
             _resultValue.snapshotBackupPolicies = snapshotBackupPolicies;

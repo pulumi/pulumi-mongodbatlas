@@ -44,7 +44,7 @@ export function getEncryptionAtRestPrivateEndpoints(args: GetEncryptionAtRestPri
  */
 export interface GetEncryptionAtRestPrivateEndpointsArgs {
     /**
-     * Human-readable label that identifies the cloud provider for the private endpoints to return.
+     * Label that identifies the cloud provider of the private endpoint.
      */
     cloudProvider: string;
     /**
@@ -58,7 +58,7 @@ export interface GetEncryptionAtRestPrivateEndpointsArgs {
  */
 export interface GetEncryptionAtRestPrivateEndpointsResult {
     /**
-     * Human-readable label that identifies the cloud provider for the private endpoints to return.
+     * Label that identifies the cloud provider of the private endpoint.
      */
     readonly cloudProvider: string;
     /**
@@ -112,7 +112,7 @@ export function getEncryptionAtRestPrivateEndpointsOutput(args: GetEncryptionAtR
  */
 export interface GetEncryptionAtRestPrivateEndpointsOutputArgs {
     /**
-     * Human-readable label that identifies the cloud provider for the private endpoints to return.
+     * Label that identifies the cloud provider of the private endpoint.
      */
     cloudProvider: pulumi.Input<string>;
     /**

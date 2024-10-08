@@ -31,6 +31,7 @@ class AdvancedClusterArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
+                 redact_client_log_data: Optional[pulumi.Input[bool]] = None,
                  replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
@@ -61,9 +62,10 @@ class AdvancedClusterArgs:
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
+        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
         :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
@@ -106,6 +108,8 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "paused", paused)
         if pit_enabled is not None:
             pulumi.set(__self__, "pit_enabled", pit_enabled)
+        if redact_client_log_data is not None:
+            pulumi.set(__self__, "redact_client_log_data", redact_client_log_data)
         if replica_set_scaling_strategy is not None:
             pulumi.set(__self__, "replica_set_scaling_strategy", replica_set_scaling_strategy)
         if retain_backups_enabled is not None:
@@ -266,7 +270,7 @@ class AdvancedClusterArgs:
     @pulumi.getter(name="mongoDbMajorVersion")
     def mongo_db_major_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         """
         return pulumi.get(self, "mongo_db_major_version")
 
@@ -306,6 +310,18 @@ class AdvancedClusterArgs:
     @pit_enabled.setter
     def pit_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "pit_enabled", value)
+
+    @property
+    @pulumi.getter(name="redactClientLogData")
+    def redact_client_log_data(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        """
+        return pulumi.get(self, "redact_client_log_data")
+
+    @redact_client_log_data.setter
+    def redact_client_log_data(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "redact_client_log_data", value)
 
     @property
     @pulumi.getter(name="replicaSetScalingStrategy")
@@ -403,6 +419,7 @@ class _AdvancedClusterState:
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 redact_client_log_data: Optional[pulumi.Input[bool]] = None,
                  replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
@@ -435,11 +452,12 @@ class _AdvancedClusterState:
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
+        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
         :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
@@ -500,6 +518,8 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "pit_enabled", pit_enabled)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if redact_client_log_data is not None:
+            pulumi.set(__self__, "redact_client_log_data", redact_client_log_data)
         if replica_set_scaling_strategy is not None:
             pulumi.set(__self__, "replica_set_scaling_strategy", replica_set_scaling_strategy)
         if replication_specs is not None:
@@ -673,7 +693,7 @@ class _AdvancedClusterState:
     @pulumi.getter(name="mongoDbMajorVersion")
     def mongo_db_major_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         """
         return pulumi.get(self, "mongo_db_major_version")
 
@@ -737,6 +757,18 @@ class _AdvancedClusterState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="redactClientLogData")
+    def redact_client_log_data(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        """
+        return pulumi.get(self, "redact_client_log_data")
+
+    @redact_client_log_data.setter
+    def redact_client_log_data(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "redact_client_log_data", value)
 
     @property
     @pulumi.getter(name="replicaSetScalingStrategy")
@@ -863,6 +895,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 redact_client_log_data: Optional[pulumi.Input[bool]] = None,
                  replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1228,10 +1261,11 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
+        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
         :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
@@ -1612,6 +1646,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 redact_client_log_data: Optional[pulumi.Input[bool]] = None,
                  replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1646,6 +1681,7 @@ class AdvancedCluster(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["redact_client_log_data"] = redact_client_log_data
             __props__.__dict__["replica_set_scaling_strategy"] = replica_set_scaling_strategy
             if replication_specs is None and not opts.urn:
                 raise TypeError("Missing required property 'replication_specs'")
@@ -1688,6 +1724,7 @@ class AdvancedCluster(pulumi.CustomResource):
             paused: Optional[pulumi.Input[bool]] = None,
             pit_enabled: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            redact_client_log_data: Optional[pulumi.Input[bool]] = None,
             replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1725,11 +1762,12 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
+        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
         :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
@@ -1770,6 +1808,7 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["paused"] = paused
         __props__.__dict__["pit_enabled"] = pit_enabled
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["redact_client_log_data"] = redact_client_log_data
         __props__.__dict__["replica_set_scaling_strategy"] = replica_set_scaling_strategy
         __props__.__dict__["replication_specs"] = replication_specs
         __props__.__dict__["retain_backups_enabled"] = retain_backups_enabled
@@ -1888,7 +1927,7 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter(name="mongoDbMajorVersion")
     def mongo_db_major_version(self) -> pulumi.Output[str]:
         """
-        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         """
         return pulumi.get(self, "mongo_db_major_version")
 
@@ -1928,6 +1967,14 @@ class AdvancedCluster(pulumi.CustomResource):
         Unique ID for the project to create the database user.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="redactClientLogData")
+    def redact_client_log_data(self) -> pulumi.Output[bool]:
+        """
+        Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        """
+        return pulumi.get(self, "redact_client_log_data")
 
     @property
     @pulumi.getter(name="replicaSetScalingStrategy")

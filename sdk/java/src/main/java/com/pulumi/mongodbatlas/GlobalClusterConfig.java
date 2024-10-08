@@ -142,18 +142,36 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
         return this.clusterName;
     }
     /**
-     * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id. */
     @Export(name="customZoneMapping", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> customZoneMapping;
 
     /**
-     * @return A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * @return (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
      * 
      */
     public Output<Map<String,String>> customZoneMapping() {
         return this.customZoneMapping;
+    }
+    /**
+     * A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * 
+     */
+    @Export(name="customZoneMappingZoneId", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> customZoneMappingZoneId;
+
+    /**
+     * @return A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * 
+     */
+    public Output<Map<String,String>> customZoneMappingZoneId() {
+        return this.customZoneMappingZoneId;
     }
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.

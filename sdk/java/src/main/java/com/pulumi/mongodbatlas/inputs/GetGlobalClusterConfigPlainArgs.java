@@ -17,9 +17,17 @@ public final class GetGlobalClusterConfigPlainArgs extends com.pulumi.resources.
 
     public static final GetGlobalClusterConfigPlainArgs Empty = new GetGlobalClusterConfigPlainArgs();
 
+    /**
+     * The name of the Global Cluster.
+     * 
+     */
     @Import(name="clusterName", required=true)
     private String clusterName;
 
+    /**
+     * @return The name of the Global Cluster.
+     * 
+     */
     public String clusterName() {
         return this.clusterName;
     }
@@ -41,7 +49,6 @@ public final class GetGlobalClusterConfigPlainArgs extends com.pulumi.resources.
 
     /**
      * The unique ID for the project to create the database user.
-     * * `cluster_name - (Required) The name of the Global Cluster.
      * 
      */
     @Import(name="projectId", required=true)
@@ -49,7 +56,6 @@ public final class GetGlobalClusterConfigPlainArgs extends com.pulumi.resources.
 
     /**
      * @return The unique ID for the project to create the database user.
-     * * `cluster_name - (Required) The name of the Global Cluster.
      * 
      */
     public String projectId() {
@@ -82,6 +88,12 @@ public final class GetGlobalClusterConfigPlainArgs extends com.pulumi.resources.
             $ = new GetGlobalClusterConfigPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param clusterName The name of the Global Cluster.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clusterName(String clusterName) {
             $.clusterName = clusterName;
             return this;
@@ -110,7 +122,6 @@ public final class GetGlobalClusterConfigPlainArgs extends com.pulumi.resources.
 
         /**
          * @param projectId The unique ID for the project to create the database user.
-         * * `cluster_name - (Required) The name of the Global Cluster.
          * 
          * @return builder
          * 

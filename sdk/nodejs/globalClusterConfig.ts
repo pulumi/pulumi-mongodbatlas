@@ -116,9 +116,15 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
-     * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
      */
     public /*out*/ readonly customZoneMapping!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     */
+    public /*out*/ readonly customZoneMappingZoneId!: pulumi.Output<{[key: string]: string}>;
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
      */
@@ -147,6 +153,7 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
             const state = argsOrState as GlobalClusterConfigState | undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
             resourceInputs["customZoneMapping"] = state ? state.customZoneMapping : undefined;
+            resourceInputs["customZoneMappingZoneId"] = state ? state.customZoneMappingZoneId : undefined;
             resourceInputs["customZoneMappings"] = state ? state.customZoneMappings : undefined;
             resourceInputs["managedNamespaces"] = state ? state.managedNamespaces : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -163,6 +170,7 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
             resourceInputs["managedNamespaces"] = args ? args.managedNamespaces : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["customZoneMapping"] = undefined /*out*/;
+            resourceInputs["customZoneMappingZoneId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GlobalClusterConfig.__pulumiType, name, resourceInputs, opts);
@@ -178,9 +186,15 @@ export interface GlobalClusterConfigState {
      */
     clusterName?: pulumi.Input<string>;
     /**
-     * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
      */
     customZoneMapping?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     */
+    customZoneMappingZoneId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
      */

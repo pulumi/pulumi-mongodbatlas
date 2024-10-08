@@ -118,8 +118,12 @@ type GlobalClusterConfig struct {
 
 	// The name of the Global Cluster.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
-	// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
 	CustomZoneMapping pulumi.StringMapOutput `pulumi:"customZoneMapping"`
+	// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+	CustomZoneMappingZoneId pulumi.StringMapOutput `pulumi:"customZoneMappingZoneId"`
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings GlobalClusterConfigCustomZoneMappingArrayOutput `pulumi:"customZoneMappings"`
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
@@ -166,8 +170,12 @@ func GetGlobalClusterConfig(ctx *pulumi.Context,
 type globalClusterConfigState struct {
 	// The name of the Global Cluster.
 	ClusterName *string `pulumi:"clusterName"`
-	// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
 	CustomZoneMapping map[string]string `pulumi:"customZoneMapping"`
+	// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+	CustomZoneMappingZoneId map[string]string `pulumi:"customZoneMappingZoneId"`
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings []GlobalClusterConfigCustomZoneMapping `pulumi:"customZoneMappings"`
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
@@ -179,8 +187,12 @@ type globalClusterConfigState struct {
 type GlobalClusterConfigState struct {
 	// The name of the Global Cluster.
 	ClusterName pulumi.StringPtrInput
-	// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
 	CustomZoneMapping pulumi.StringMapInput
+	// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+	CustomZoneMappingZoneId pulumi.StringMapInput
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings GlobalClusterConfigCustomZoneMappingArrayInput
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
@@ -308,9 +320,16 @@ func (o GlobalClusterConfigOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *GlobalClusterConfig) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
-// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
 func (o GlobalClusterConfigOutput) CustomZoneMapping() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *GlobalClusterConfig) pulumi.StringMapOutput { return v.CustomZoneMapping }).(pulumi.StringMapOutput)
+}
+
+// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+func (o GlobalClusterConfigOutput) CustomZoneMappingZoneId() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GlobalClusterConfig) pulumi.StringMapOutput { return v.CustomZoneMappingZoneId }).(pulumi.StringMapOutput)
 }
 
 // Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.

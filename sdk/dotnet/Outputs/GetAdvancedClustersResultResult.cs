@@ -65,6 +65,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool PitEnabled;
         /// <summary>
+        /// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        /// </summary>
+        public readonly bool RedactClientLogData;
+        /// <summary>
         /// (Optional) Replica set scaling mode for your cluster.
         /// </summary>
         public readonly string ReplicaSetScalingStrategy;
@@ -125,6 +129,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool pitEnabled,
 
+            bool redactClientLogData,
+
             string replicaSetScalingStrategy,
 
             ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecResult> replicationSpecs,
@@ -154,6 +160,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Name = name;
             Paused = paused;
             PitEnabled = pitEnabled;
+            RedactClientLogData = redactClientLogData;
             ReplicaSetScalingStrategy = replicaSetScalingStrategy;
             ReplicationSpecs = replicationSpecs;
             RootCertType = rootCertType;

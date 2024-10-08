@@ -189,6 +189,8 @@ type LookupAdvancedClusterResult struct {
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
+	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
@@ -341,6 +343,11 @@ func (o LookupAdvancedClusterResultOutput) PitEnabled() pulumi.BoolOutput {
 
 func (o LookupAdvancedClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+func (o LookupAdvancedClusterResultOutput) RedactClientLogData() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
 
 // (Optional) Replica set scaling mode for your cluster.

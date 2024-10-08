@@ -140,10 +140,10 @@ public class Project extends com.pulumi.resources.CustomResource {
      * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     @Export(name="ipAddresses", refs={ProjectIpAddresses.class}, tree="[0]")
     private Output<ProjectIpAddresses> ipAddresses;
 

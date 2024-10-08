@@ -209,6 +209,10 @@ export interface GetClusterResult {
      */
     readonly providerVolumeType: string;
     /**
+     * (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     */
+    readonly redactClientLogData: boolean;
+    /**
      * (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
     readonly replicationFactor: number;

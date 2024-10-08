@@ -429,7 +429,7 @@ type Cluster struct {
 	//
 	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels ClusterLabelArrayOutput `pulumi:"labels"`
-	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+	// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion pulumi.StringOutput `pulumi:"mongoDbMajorVersion"`
 	// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
 	MongoDbVersion pulumi.StringOutput `pulumi:"mongoDbVersion"`
@@ -479,6 +479,8 @@ type Cluster struct {
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringOutput `pulumi:"providerVolumeType"`
+	// Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `AdvancedCluster`.
+	RedactClientLogData pulumi.BoolOutput `pulumi:"redactClientLogData"`
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntOutput `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
@@ -601,7 +603,7 @@ type clusterState struct {
 	//
 	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []ClusterLabel `pulumi:"labels"`
-	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+	// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion *string `pulumi:"mongoDbMajorVersion"`
 	// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
 	MongoDbVersion *string `pulumi:"mongoDbVersion"`
@@ -651,6 +653,8 @@ type clusterState struct {
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType *string `pulumi:"providerVolumeType"`
+	// Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `AdvancedCluster`.
+	RedactClientLogData *bool `pulumi:"redactClientLogData"`
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor *int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
@@ -735,7 +739,7 @@ type ClusterState struct {
 	//
 	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels ClusterLabelArrayInput
-	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+	// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion pulumi.StringPtrInput
 	// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
 	MongoDbVersion pulumi.StringPtrInput
@@ -785,6 +789,8 @@ type ClusterState struct {
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringPtrInput
+	// Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `AdvancedCluster`.
+	RedactClientLogData pulumi.BoolPtrInput
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntPtrInput
 	// Configuration for cluster regions.  See Replication Spec below for more details.
@@ -867,7 +873,7 @@ type clusterArgs struct {
 	//
 	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []ClusterLabel `pulumi:"labels"`
-	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+	// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion *string `pulumi:"mongoDbMajorVersion"`
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
 	Name *string `pulumi:"name"`
@@ -908,6 +914,8 @@ type clusterArgs struct {
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType *string `pulumi:"providerVolumeType"`
+	// Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `AdvancedCluster`.
+	RedactClientLogData *bool `pulumi:"redactClientLogData"`
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor *int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
@@ -975,7 +983,7 @@ type ClusterArgs struct {
 	//
 	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels ClusterLabelArrayInput
-	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+	// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion pulumi.StringPtrInput
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
 	Name pulumi.StringPtrInput
@@ -1016,6 +1024,8 @@ type ClusterArgs struct {
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringPtrInput
+	// Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `AdvancedCluster`.
+	RedactClientLogData pulumi.BoolPtrInput
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntPtrInput
 	// Configuration for cluster regions.  See Replication Spec below for more details.
@@ -1222,7 +1232,7 @@ func (o ClusterOutput) Labels() ClusterLabelArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterLabelArrayOutput { return v.Labels }).(ClusterLabelArrayOutput)
 }
 
-// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 func (o ClusterOutput) MongoDbMajorVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.MongoDbMajorVersion }).(pulumi.StringOutput)
 }
@@ -1330,6 +1340,11 @@ func (o ClusterOutput) ProviderRegionName() pulumi.StringOutput {
 // > **NOTE:** `STANDARD` is not available for NVME clusters.
 func (o ClusterOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProviderVolumeType }).(pulumi.StringOutput)
+}
+
+// Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `AdvancedCluster`.
+func (o ClusterOutput) RedactClientLogData() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
 
 // Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.

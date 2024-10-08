@@ -289,6 +289,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetGlobalClusterConfigArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Global Cluster.
+        /// </summary>
         [Input("clusterName", required: true)]
         public string ClusterName { get; set; } = null!;
 
@@ -306,7 +309,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The unique ID for the project to create the database user.
-        /// * `cluster_name - (Required) The name of the Global Cluster.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -319,6 +321,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetGlobalClusterConfigInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Global Cluster.
+        /// </summary>
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
@@ -336,7 +341,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The unique ID for the project to create the database user.
-        /// * `cluster_name - (Required) The name of the Global Cluster.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -353,9 +357,13 @@ namespace Pulumi.Mongodbatlas
     {
         public readonly string ClusterName;
         /// <summary>
-        /// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
         /// </summary>
         public readonly ImmutableDictionary<string, string> CustomZoneMapping;
+        /// <summary>
+        /// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> CustomZoneMappingZoneId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -372,6 +380,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableDictionary<string, string> customZoneMapping,
 
+            ImmutableDictionary<string, string> customZoneMappingZoneId,
+
             string id,
 
             ImmutableArray<Outputs.GetGlobalClusterConfigManagedNamespaceResult> managedNamespaces,
@@ -380,6 +390,7 @@ namespace Pulumi.Mongodbatlas
         {
             ClusterName = clusterName;
             CustomZoneMapping = customZoneMapping;
+            CustomZoneMappingZoneId = customZoneMappingZoneId;
             Id = id;
             ManagedNamespaces = managedNamespaces;
             ProjectId = projectId;
