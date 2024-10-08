@@ -187,6 +187,10 @@ export interface GetAdvancedClusterResult {
     readonly pitEnabled: boolean;
     readonly projectId: string;
     /**
+     * (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     */
+    readonly redactClientLogData: boolean;
+    /**
      * (Optional) Replica set scaling mode for your cluster.
      */
     readonly replicaSetScalingStrategy: string;

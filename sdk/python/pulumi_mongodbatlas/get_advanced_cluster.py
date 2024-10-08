@@ -22,7 +22,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -74,6 +74,9 @@ class GetAdvancedClusterResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if redact_client_log_data and not isinstance(redact_client_log_data, bool):
+            raise TypeError("Expected argument 'redact_client_log_data' to be a bool")
+        pulumi.set(__self__, "redact_client_log_data", redact_client_log_data)
         if replica_set_scaling_strategy and not isinstance(replica_set_scaling_strategy, str):
             raise TypeError("Expected argument 'replica_set_scaling_strategy' to be a str")
         pulumi.set(__self__, "replica_set_scaling_strategy", replica_set_scaling_strategy)
@@ -226,6 +229,14 @@ class GetAdvancedClusterResult:
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="redactClientLogData")
+    def redact_client_log_data(self) -> bool:
+        """
+        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        """
+        return pulumi.get(self, "redact_client_log_data")
+
+    @property
     @pulumi.getter(name="replicaSetScalingStrategy")
     def replica_set_scaling_strategy(self) -> str:
         """
@@ -310,6 +321,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             paused=self.paused,
             pit_enabled=self.pit_enabled,
             project_id=self.project_id,
+            redact_client_log_data=self.redact_client_log_data,
             replica_set_scaling_strategy=self.replica_set_scaling_strategy,
             replication_specs=self.replication_specs,
             root_cert_type=self.root_cert_type,
@@ -435,6 +447,7 @@ def get_advanced_cluster(name: Optional[str] = None,
         paused=pulumi.get(__ret__, 'paused'),
         pit_enabled=pulumi.get(__ret__, 'pit_enabled'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        redact_client_log_data=pulumi.get(__ret__, 'redact_client_log_data'),
         replica_set_scaling_strategy=pulumi.get(__ret__, 'replica_set_scaling_strategy'),
         replication_specs=pulumi.get(__ret__, 'replication_specs'),
         root_cert_type=pulumi.get(__ret__, 'root_cert_type'),

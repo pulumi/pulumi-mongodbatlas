@@ -18,9 +18,17 @@ public final class GetGlobalClusterConfigArgs extends com.pulumi.resources.Invok
 
     public static final GetGlobalClusterConfigArgs Empty = new GetGlobalClusterConfigArgs();
 
+    /**
+     * The name of the Global Cluster.
+     * 
+     */
     @Import(name="clusterName", required=true)
     private Output<String> clusterName;
 
+    /**
+     * @return The name of the Global Cluster.
+     * 
+     */
     public Output<String> clusterName() {
         return this.clusterName;
     }
@@ -42,7 +50,6 @@ public final class GetGlobalClusterConfigArgs extends com.pulumi.resources.Invok
 
     /**
      * The unique ID for the project to create the database user.
-     * * `cluster_name - (Required) The name of the Global Cluster.
      * 
      */
     @Import(name="projectId", required=true)
@@ -50,7 +57,6 @@ public final class GetGlobalClusterConfigArgs extends com.pulumi.resources.Invok
 
     /**
      * @return The unique ID for the project to create the database user.
-     * * `cluster_name - (Required) The name of the Global Cluster.
      * 
      */
     public Output<String> projectId() {
@@ -83,11 +89,23 @@ public final class GetGlobalClusterConfigArgs extends com.pulumi.resources.Invok
             $ = new GetGlobalClusterConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param clusterName The name of the Global Cluster.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clusterName(Output<String> clusterName) {
             $.clusterName = clusterName;
             return this;
         }
 
+        /**
+         * @param clusterName The name of the Global Cluster.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clusterName(String clusterName) {
             return clusterName(Output.of(clusterName));
         }
@@ -125,7 +143,6 @@ public final class GetGlobalClusterConfigArgs extends com.pulumi.resources.Invok
 
         /**
          * @param projectId The unique ID for the project to create the database user.
-         * * `cluster_name - (Required) The name of the Global Cluster.
          * 
          * @return builder
          * 
@@ -137,7 +154,6 @@ public final class GetGlobalClusterConfigArgs extends com.pulumi.resources.Invok
 
         /**
          * @param projectId The unique ID for the project to create the database user.
-         * * `cluster_name - (Required) The name of the Global Cluster.
          * 
          * @return builder
          * 

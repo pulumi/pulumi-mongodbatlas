@@ -23,13 +23,16 @@ class GetGlobalClusterConfigResult:
     """
     A collection of values returned by getGlobalClusterConfig.
     """
-    def __init__(__self__, cluster_name=None, custom_zone_mapping=None, id=None, managed_namespaces=None, project_id=None):
+    def __init__(__self__, cluster_name=None, custom_zone_mapping=None, custom_zone_mapping_zone_id=None, id=None, managed_namespaces=None, project_id=None):
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
         if custom_zone_mapping and not isinstance(custom_zone_mapping, dict):
             raise TypeError("Expected argument 'custom_zone_mapping' to be a dict")
         pulumi.set(__self__, "custom_zone_mapping", custom_zone_mapping)
+        if custom_zone_mapping_zone_id and not isinstance(custom_zone_mapping_zone_id, dict):
+            raise TypeError("Expected argument 'custom_zone_mapping_zone_id' to be a dict")
+        pulumi.set(__self__, "custom_zone_mapping_zone_id", custom_zone_mapping_zone_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -47,11 +50,20 @@ class GetGlobalClusterConfigResult:
 
     @property
     @pulumi.getter(name="customZoneMapping")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.""")
     def custom_zone_mapping(self) -> Mapping[str, str]:
         """
-        A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
         """
         return pulumi.get(self, "custom_zone_mapping")
+
+    @property
+    @pulumi.getter(name="customZoneMappingZoneId")
+    def custom_zone_mapping_zone_id(self) -> Mapping[str, str]:
+        """
+        A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        """
+        return pulumi.get(self, "custom_zone_mapping_zone_id")
 
     @property
     @pulumi.getter
@@ -83,6 +95,7 @@ class AwaitableGetGlobalClusterConfigResult(GetGlobalClusterConfigResult):
         return GetGlobalClusterConfigResult(
             cluster_name=self.cluster_name,
             custom_zone_mapping=self.custom_zone_mapping,
+            custom_zone_mapping_zone_id=self.custom_zone_mapping_zone_id,
             id=self.id,
             managed_namespaces=self.managed_namespaces,
             project_id=self.project_id)
@@ -177,9 +190,9 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
     ```
 
 
+    :param str cluster_name: The name of the Global Cluster.
     :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
     :param str project_id: The unique ID for the project to create the database user.
-           * `cluster_name - (Required) The name of the Global Cluster.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -191,6 +204,7 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
     return AwaitableGetGlobalClusterConfigResult(
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
         custom_zone_mapping=pulumi.get(__ret__, 'custom_zone_mapping'),
+        custom_zone_mapping_zone_id=pulumi.get(__ret__, 'custom_zone_mapping_zone_id'),
         id=pulumi.get(__ret__, 'id'),
         managed_namespaces=pulumi.get(__ret__, 'managed_namespaces'),
         project_id=pulumi.get(__ret__, 'project_id'))
@@ -286,8 +300,8 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] =
     ```
 
 
+    :param str cluster_name: The name of the Global Cluster.
     :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
     :param str project_id: The unique ID for the project to create the database user.
-           * `cluster_name - (Required) The name of the Global Cluster.
     """
     ...

@@ -20186,6 +20186,8 @@ type GetAdvancedClustersResult struct {
 	Paused bool `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
+	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
@@ -20245,6 +20247,8 @@ type GetAdvancedClustersResultArgs struct {
 	Paused pulumi.BoolInput `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
+	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy pulumi.StringInput `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
@@ -20392,6 +20396,11 @@ func (o GetAdvancedClustersResultOutput) Paused() pulumi.BoolOutput {
 // Flag that indicates if the cluster uses Continuous Cloud Backup.
 func (o GetAdvancedClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
+}
+
+// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+func (o GetAdvancedClustersResultOutput) RedactClientLogData() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
 
 // (Optional) Replica set scaling mode for your cluster.
@@ -30112,6 +30121,8 @@ type GetClustersResult struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType string `pulumi:"providerVolumeType"`
+	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
@@ -30215,6 +30226,8 @@ type GetClustersResultArgs struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringInput `pulumi:"providerVolumeType"`
+	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntInput `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
@@ -30451,6 +30464,11 @@ func (o GetClustersResultOutput) ProviderRegionName() pulumi.StringOutput {
 // > **NOTE:** `STANDARD` is not available for NVME clusters.
 func (o GetClustersResultOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderVolumeType }).(pulumi.StringOutput)
+}
+
+// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+func (o GetClustersResultOutput) RedactClientLogData() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
 
 // (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
@@ -46662,7 +46680,7 @@ type GetProjectsResult struct {
 	Id string `pulumi:"id"`
 	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
 	//
-	// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
+	// Deprecated: This parameter is deprecated and will be removed in version 1.21.0. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddresses `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
@@ -46710,7 +46728,7 @@ type GetProjectsResultArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
 	//
-	// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
+	// Deprecated: This parameter is deprecated and will be removed in version 1.21.0. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddressesInput `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolInput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
@@ -46806,7 +46824,7 @@ func (o GetProjectsResultOutput) Id() pulumi.StringOutput {
 
 // IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
 //
-// Deprecated: This parameter is deprecated and will be removed by 1.21.0. Please transition to getProjectIpAddresses data source.
+// Deprecated: This parameter is deprecated and will be removed in version 1.21.0. Please transition to getProjectIpAddresses data source.
 func (o GetProjectsResultOutput) IpAddresses() GetProjectsResultIpAddressesOutput {
 	return o.ApplyT(func(v GetProjectsResult) GetProjectsResultIpAddresses { return v.IpAddresses }).(GetProjectsResultIpAddressesOutput)
 }

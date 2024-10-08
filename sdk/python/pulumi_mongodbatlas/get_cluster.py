@@ -22,7 +22,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, advanced_configurations=None, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None, tags=None, termination_protection_enabled=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, redact_client_log_data=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None, tags=None, termination_protection_enabled=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -128,6 +128,9 @@ class GetClusterResult:
         if provider_volume_type and not isinstance(provider_volume_type, str):
             raise TypeError("Expected argument 'provider_volume_type' to be a str")
         pulumi.set(__self__, "provider_volume_type", provider_volume_type)
+        if redact_client_log_data and not isinstance(redact_client_log_data, bool):
+            raise TypeError("Expected argument 'redact_client_log_data' to be a bool")
+        pulumi.set(__self__, "redact_client_log_data", redact_client_log_data)
         if replication_factor and not isinstance(replication_factor, int):
             raise TypeError("Expected argument 'replication_factor' to be a int")
         pulumi.set(__self__, "replication_factor", replication_factor)
@@ -427,6 +430,14 @@ class GetClusterResult:
         return pulumi.get(self, "provider_volume_type")
 
     @property
+    @pulumi.getter(name="redactClientLogData")
+    def redact_client_log_data(self) -> bool:
+        """
+        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        """
+        return pulumi.get(self, "redact_client_log_data")
+
+    @property
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> int:
         """
@@ -538,6 +549,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             provider_name=self.provider_name,
             provider_region_name=self.provider_region_name,
             provider_volume_type=self.provider_volume_type,
+            redact_client_log_data=self.redact_client_log_data,
             replication_factor=self.replication_factor,
             replication_specs=self.replication_specs,
             snapshot_backup_policies=self.snapshot_backup_policies,
@@ -636,6 +648,7 @@ def get_cluster(name: Optional[str] = None,
         provider_name=pulumi.get(__ret__, 'provider_name'),
         provider_region_name=pulumi.get(__ret__, 'provider_region_name'),
         provider_volume_type=pulumi.get(__ret__, 'provider_volume_type'),
+        redact_client_log_data=pulumi.get(__ret__, 'redact_client_log_data'),
         replication_factor=pulumi.get(__ret__, 'replication_factor'),
         replication_specs=pulumi.get(__ret__, 'replication_specs'),
         snapshot_backup_policies=pulumi.get(__ret__, 'snapshot_backup_policies'),

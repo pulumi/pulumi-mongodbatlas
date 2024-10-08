@@ -434,7 +434,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly labels!: pulumi.Output<outputs.AdvancedClusterLabel[] | undefined>;
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
+     * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
      */
     public readonly mongoDbMajorVersion!: pulumi.Output<string>;
     /**
@@ -454,6 +454,10 @@ export class AdvancedCluster extends pulumi.CustomResource {
      * Unique ID for the project to create the database user.
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     */
+    public readonly redactClientLogData!: pulumi.Output<boolean>;
     /**
      * Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
      */
@@ -527,6 +531,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["paused"] = state ? state.paused : undefined;
             resourceInputs["pitEnabled"] = state ? state.pitEnabled : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["redactClientLogData"] = state ? state.redactClientLogData : undefined;
             resourceInputs["replicaSetScalingStrategy"] = state ? state.replicaSetScalingStrategy : undefined;
             resourceInputs["replicationSpecs"] = state ? state.replicationSpecs : undefined;
             resourceInputs["retainBackupsEnabled"] = state ? state.retainBackupsEnabled : undefined;
@@ -560,6 +565,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["paused"] = args ? args.paused : undefined;
             resourceInputs["pitEnabled"] = args ? args.pitEnabled : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["redactClientLogData"] = args ? args.redactClientLogData : undefined;
             resourceInputs["replicaSetScalingStrategy"] = args ? args.replicaSetScalingStrategy : undefined;
             resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
             resourceInputs["retainBackupsEnabled"] = args ? args.retainBackupsEnabled : undefined;
@@ -641,7 +647,7 @@ export interface AdvancedClusterState {
      */
     labels?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterLabel>[]>;
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
+     * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
      */
     mongoDbMajorVersion?: pulumi.Input<string>;
     /**
@@ -661,6 +667,10 @@ export interface AdvancedClusterState {
      * Unique ID for the project to create the database user.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     */
+    redactClientLogData?: pulumi.Input<boolean>;
     /**
      * Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
      */
@@ -758,7 +768,7 @@ export interface AdvancedClusterArgs {
      */
     labels?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterLabel>[]>;
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
+     * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
      */
     mongoDbMajorVersion?: pulumi.Input<string>;
     /**
@@ -774,6 +784,10 @@ export interface AdvancedClusterArgs {
      * Unique ID for the project to create the database user.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     */
+    redactClientLogData?: pulumi.Input<boolean>;
     /**
      * Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
      */

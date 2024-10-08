@@ -15,10 +15,19 @@ import java.util.Objects;
 public final class GetGlobalClusterConfigResult {
     private String clusterName;
     /**
-     * @return A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * @return (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id. */
     private Map<String,String> customZoneMapping;
+    /**
+     * @return A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * 
+     */
+    private Map<String,String> customZoneMappingZoneId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -36,11 +45,22 @@ public final class GetGlobalClusterConfigResult {
         return this.clusterName;
     }
     /**
-     * @return A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * @return (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id. */
     public Map<String,String> customZoneMapping() {
         return this.customZoneMapping;
+    }
+    /**
+     * @return A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * 
+     */
+    public Map<String,String> customZoneMappingZoneId() {
+        return this.customZoneMappingZoneId;
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -71,6 +91,7 @@ public final class GetGlobalClusterConfigResult {
     public static final class Builder {
         private String clusterName;
         private Map<String,String> customZoneMapping;
+        private Map<String,String> customZoneMappingZoneId;
         private String id;
         private List<GetGlobalClusterConfigManagedNamespace> managedNamespaces;
         private String projectId;
@@ -79,6 +100,7 @@ public final class GetGlobalClusterConfigResult {
     	      Objects.requireNonNull(defaults);
     	      this.clusterName = defaults.clusterName;
     	      this.customZoneMapping = defaults.customZoneMapping;
+    	      this.customZoneMappingZoneId = defaults.customZoneMappingZoneId;
     	      this.id = defaults.id;
     	      this.managedNamespaces = defaults.managedNamespaces;
     	      this.projectId = defaults.projectId;
@@ -98,6 +120,14 @@ public final class GetGlobalClusterConfigResult {
               throw new MissingRequiredPropertyException("GetGlobalClusterConfigResult", "customZoneMapping");
             }
             this.customZoneMapping = customZoneMapping;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder customZoneMappingZoneId(Map<String,String> customZoneMappingZoneId) {
+            if (customZoneMappingZoneId == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigResult", "customZoneMappingZoneId");
+            }
+            this.customZoneMappingZoneId = customZoneMappingZoneId;
             return this;
         }
         @CustomType.Setter
@@ -131,6 +161,7 @@ public final class GetGlobalClusterConfigResult {
             final var _resultValue = new GetGlobalClusterConfigResult();
             _resultValue.clusterName = clusterName;
             _resultValue.customZoneMapping = customZoneMapping;
+            _resultValue.customZoneMappingZoneId = customZoneMappingZoneId;
             _resultValue.id = id;
             _resultValue.managedNamespaces = managedNamespaces;
             _resultValue.projectId = projectId;

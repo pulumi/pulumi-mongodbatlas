@@ -98,7 +98,7 @@ class GetProjectResult:
 
     @property
     @pulumi.getter(name="ipAddresses")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed by 1.21.0. Please transition to get_project_ip_addresses data source.""")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> 'outputs.GetProjectIpAddressesResult':
         """
         IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.

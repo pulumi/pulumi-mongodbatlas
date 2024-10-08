@@ -314,6 +314,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ProviderVolumeType;
         /// <summary>
+        /// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        /// </summary>
+        public readonly bool RedactClientLogData;
+        /// <summary>
         /// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         /// </summary>
         public readonly int ReplicationFactor;
@@ -424,6 +428,8 @@ namespace Pulumi.Mongodbatlas
 
             string providerVolumeType,
 
+            bool redactClientLogData,
+
             int replicationFactor,
 
             ImmutableArray<Outputs.GetClusterReplicationSpecResult> replicationSpecs,
@@ -475,6 +481,7 @@ namespace Pulumi.Mongodbatlas
             ProviderName = providerName;
             ProviderRegionName = providerRegionName;
             ProviderVolumeType = providerVolumeType;
+            RedactClientLogData = redactClientLogData;
             ReplicationFactor = replicationFactor;
             ReplicationSpecs = replicationSpecs;
             SnapshotBackupPolicies = snapshotBackupPolicies;

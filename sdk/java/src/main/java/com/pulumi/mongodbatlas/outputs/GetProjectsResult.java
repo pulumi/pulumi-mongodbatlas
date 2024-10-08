@@ -36,10 +36,10 @@ public final class GetProjectsResult {
      * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     private GetProjectsResultIpAddresses ipAddresses;
     /**
      * @return Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -125,10 +125,10 @@ public final class GetProjectsResult {
      * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     public GetProjectsResultIpAddresses ipAddresses() {
         return this.ipAddresses;
     }

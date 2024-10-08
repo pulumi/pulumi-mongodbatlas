@@ -126,10 +126,16 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ClusterName { get; private set; } = null!;
 
         /// <summary>
-        /// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
         /// </summary>
         [Output("customZoneMapping")]
         public Output<ImmutableDictionary<string, string>> CustomZoneMapping { get; private set; } = null!;
+
+        /// <summary>
+        /// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        /// </summary>
+        [Output("customZoneMappingZoneId")]
+        public Output<ImmutableDictionary<string, string>> CustomZoneMappingZoneId { get; private set; } = null!;
 
         /// <summary>
         /// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
@@ -249,12 +255,25 @@ namespace Pulumi.Mongodbatlas
         private InputMap<string>? _customZoneMapping;
 
         /// <summary>
-        /// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
         /// </summary>
+        [Obsolete(@"This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.")]
         public InputMap<string> CustomZoneMapping
         {
             get => _customZoneMapping ?? (_customZoneMapping = new InputMap<string>());
             set => _customZoneMapping = value;
+        }
+
+        [Input("customZoneMappingZoneId")]
+        private InputMap<string>? _customZoneMappingZoneId;
+
+        /// <summary>
+        /// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        /// </summary>
+        public InputMap<string> CustomZoneMappingZoneId
+        {
+            get => _customZoneMappingZoneId ?? (_customZoneMappingZoneId = new InputMap<string>());
+            set => _customZoneMappingZoneId = value;
         }
 
         [Input("customZoneMappings")]

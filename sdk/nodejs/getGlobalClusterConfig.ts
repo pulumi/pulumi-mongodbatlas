@@ -107,6 +107,9 @@ export function getGlobalClusterConfig(args: GetGlobalClusterConfigArgs, opts?: 
  * A collection of arguments for invoking getGlobalClusterConfig.
  */
 export interface GetGlobalClusterConfigArgs {
+    /**
+     * The name of the Global Cluster.
+     */
     clusterName: string;
     /**
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
@@ -114,7 +117,6 @@ export interface GetGlobalClusterConfigArgs {
     managedNamespaces?: inputs.GetGlobalClusterConfigManagedNamespace[];
     /**
      * The unique ID for the project to create the database user.
-     * * `clusterName - (Required) The name of the Global Cluster.
      */
     projectId: string;
 }
@@ -125,9 +127,15 @@ export interface GetGlobalClusterConfigArgs {
 export interface GetGlobalClusterConfigResult {
     readonly clusterName: string;
     /**
-     * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
      */
     readonly customZoneMapping: {[key: string]: string};
+    /**
+     * A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+     */
+    readonly customZoneMappingZoneId: {[key: string]: string};
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -239,6 +247,9 @@ export function getGlobalClusterConfigOutput(args: GetGlobalClusterConfigOutputA
  * A collection of arguments for invoking getGlobalClusterConfig.
  */
 export interface GetGlobalClusterConfigOutputArgs {
+    /**
+     * The name of the Global Cluster.
+     */
     clusterName: pulumi.Input<string>;
     /**
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
@@ -246,7 +257,6 @@ export interface GetGlobalClusterConfigOutputArgs {
     managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GetGlobalClusterConfigManagedNamespaceArgs>[]>;
     /**
      * The unique ID for the project to create the database user.
-     * * `clusterName - (Required) The name of the Global Cluster.
      */
     projectId: pulumi.Input<string>;
 }

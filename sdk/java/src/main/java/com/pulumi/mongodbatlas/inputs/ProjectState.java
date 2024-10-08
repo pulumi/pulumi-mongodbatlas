@@ -56,10 +56,10 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
      * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     @Import(name="ipAddresses")
     private @Nullable Output<ProjectIpAddressesArgs> ipAddresses;
 
@@ -67,10 +67,10 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
      * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     public Optional<Output<ProjectIpAddressesArgs>> ipAddresses() {
         return Optional.ofNullable(this.ipAddresses);
     }
@@ -357,10 +357,10 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+         * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
         public Builder ipAddresses(@Nullable Output<ProjectIpAddressesArgs> ipAddresses) {
             $.ipAddresses = ipAddresses;
             return this;
@@ -372,10 +372,10 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+         * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
         public Builder ipAddresses(ProjectIpAddressesArgs ipAddresses) {
             return ipAddresses(Output.of(ipAddresses));
         }

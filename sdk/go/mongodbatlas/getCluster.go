@@ -160,6 +160,8 @@ type LookupClusterResult struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType string `pulumi:"providerVolumeType"`
+	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
@@ -403,6 +405,11 @@ func (o LookupClusterResultOutput) ProviderRegionName() pulumi.StringOutput {
 // > **NOTE:** `STANDARD` is not available for NVME clusters.
 func (o LookupClusterResultOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ProviderVolumeType }).(pulumi.StringOutput)
+}
+
+// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+func (o LookupClusterResultOutput) RedactClientLogData() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClusterResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
 
 // (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.

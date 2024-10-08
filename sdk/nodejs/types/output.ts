@@ -2013,6 +2013,10 @@ export interface GetAdvancedClustersResult {
      */
     pitEnabled: boolean;
     /**
+     * (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     */
+    redactClientLogData: boolean;
+    /**
      * (Optional) Replica set scaling mode for your cluster.
      */
     replicaSetScalingStrategy: string;
@@ -3857,6 +3861,10 @@ export interface GetClustersResult {
      * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
     providerVolumeType: string;
+    /**
+     * (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     */
+    redactClientLogData: boolean;
     /**
      * (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
@@ -6098,7 +6106,7 @@ export interface GetProjectsResult {
     /**
      * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
      *
-     * @deprecated This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * @deprecated This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
      */
     ipAddresses: outputs.GetProjectsResultIpAddresses;
     /**

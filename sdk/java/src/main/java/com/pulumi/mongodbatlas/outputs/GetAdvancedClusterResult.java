@@ -99,6 +99,11 @@ public final class GetAdvancedClusterResult {
     private Boolean pitEnabled;
     private String projectId;
     /**
+     * @return (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * 
+     */
+    private Boolean redactClientLogData;
+    /**
      * @return (Optional) Replica set scaling mode for your cluster.
      * 
      */
@@ -248,6 +253,13 @@ public final class GetAdvancedClusterResult {
         return this.projectId;
     }
     /**
+     * @return (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * 
+     */
+    public Boolean redactClientLogData() {
+        return this.redactClientLogData;
+    }
+    /**
      * @return (Optional) Replica set scaling mode for your cluster.
      * 
      */
@@ -326,6 +338,7 @@ public final class GetAdvancedClusterResult {
         private Boolean paused;
         private Boolean pitEnabled;
         private String projectId;
+        private Boolean redactClientLogData;
         private String replicaSetScalingStrategy;
         private List<GetAdvancedClusterReplicationSpec> replicationSpecs;
         private String rootCertType;
@@ -354,6 +367,7 @@ public final class GetAdvancedClusterResult {
     	      this.paused = defaults.paused;
     	      this.pitEnabled = defaults.pitEnabled;
     	      this.projectId = defaults.projectId;
+    	      this.redactClientLogData = defaults.redactClientLogData;
     	      this.replicaSetScalingStrategy = defaults.replicaSetScalingStrategy;
     	      this.replicationSpecs = defaults.replicationSpecs;
     	      this.rootCertType = defaults.rootCertType;
@@ -513,6 +527,14 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder redactClientLogData(Boolean redactClientLogData) {
+            if (redactClientLogData == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "redactClientLogData");
+            }
+            this.redactClientLogData = redactClientLogData;
+            return this;
+        }
+        @CustomType.Setter
         public Builder replicaSetScalingStrategy(String replicaSetScalingStrategy) {
             if (replicaSetScalingStrategy == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "replicaSetScalingStrategy");
@@ -599,6 +621,7 @@ public final class GetAdvancedClusterResult {
             _resultValue.paused = paused;
             _resultValue.pitEnabled = pitEnabled;
             _resultValue.projectId = projectId;
+            _resultValue.redactClientLogData = redactClientLogData;
             _resultValue.replicaSetScalingStrategy = replicaSetScalingStrategy;
             _resultValue.replicationSpecs = replicationSpecs;
             _resultValue.rootCertType = rootCertType;
