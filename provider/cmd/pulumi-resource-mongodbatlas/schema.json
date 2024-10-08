@@ -4288,6 +4288,10 @@
                     "type": "boolean",
                     "description": "Flag that indicates if the cluster uses Continuous Cloud Backup.\n"
                 },
+                "redactClientLogData": {
+                    "type": "boolean",
+                    "description": "(Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.\n"
+                },
                 "replicaSetScalingStrategy": {
                     "type": "string",
                     "description": "(Optional) Replica set scaling mode for your cluster.\n"
@@ -4340,6 +4344,7 @@
                 "name",
                 "paused",
                 "pitEnabled",
+                "redactClientLogData",
                 "replicaSetScalingStrategy",
                 "replicationSpecs",
                 "rootCertType",
@@ -7280,6 +7285,10 @@
                     "type": "string",
                     "description": "Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
                 },
+                "redactClientLogData": {
+                    "type": "boolean",
+                    "description": "(Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.\n"
+                },
                 "replicationFactor": {
                     "type": "integer",
                     "description": "(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.\n"
@@ -7356,6 +7365,7 @@
                 "providerName",
                 "providerRegionName",
                 "providerVolumeType",
+                "redactClientLogData",
                 "replicationFactor",
                 "replicationSpecs",
                 "snapshotBackupPolicies",
@@ -11975,7 +11985,7 @@
                 "ipAddresses": {
                     "$ref": "#/types/mongodbatlas:index/getProjectsResultIpAddresses:getProjectsResultIpAddresses",
                     "description": "IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.\n",
-                    "deprecationMessage": "This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source."
+                    "deprecationMessage": "This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source."
                 },
                 "isCollectDatabaseSpecificsStatisticsEnabled": {
                     "type": "boolean",
@@ -13473,7 +13483,7 @@
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
-                    "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.\u003ctype\u003eSpecs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.\n"
+                    "description": "Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.\n"
                 },
                 "mongoDbVersion": {
                     "type": "string",
@@ -13493,6 +13503,10 @@
                 "projectId": {
                     "type": "string",
                     "description": "Unique ID for the project to create the database user.\n"
+                },
+                "redactClientLogData": {
+                    "type": "boolean",
+                    "description": "Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.\n"
                 },
                 "replicaSetScalingStrategy": {
                     "type": "string",
@@ -13550,6 +13564,7 @@
                 "paused",
                 "pitEnabled",
                 "projectId",
+                "redactClientLogData",
                 "replicaSetScalingStrategy",
                 "replicationSpecs",
                 "rootCertType",
@@ -13600,7 +13615,7 @@
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
-                    "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.\u003ctype\u003eSpecs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.\n"
+                    "description": "Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.\n"
                 },
                 "name": {
                     "type": "string",
@@ -13618,6 +13633,10 @@
                     "type": "string",
                     "description": "Unique ID for the project to create the database user.\n",
                     "willReplaceOnChanges": true
+                },
+                "redactClientLogData": {
+                    "type": "boolean",
+                    "description": "Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.\n"
                 },
                 "replicaSetScalingStrategy": {
                     "type": "string",
@@ -13718,7 +13737,7 @@
                     },
                     "mongoDbMajorVersion": {
                         "type": "string",
-                        "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.\u003ctype\u003eSpecs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.\n"
+                        "description": "Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.\n"
                     },
                     "mongoDbVersion": {
                         "type": "string",
@@ -13740,6 +13759,10 @@
                         "type": "string",
                         "description": "Unique ID for the project to create the database user.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "redactClientLogData": {
+                        "type": "boolean",
+                        "description": "Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.\n"
                     },
                     "replicaSetScalingStrategy": {
                         "type": "string",
@@ -15500,7 +15523,7 @@
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
-                    "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.\n"
+                    "description": "Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.\n"
                 },
                 "mongoDbVersion": {
                     "type": "string",
@@ -15576,6 +15599,10 @@
                 "providerVolumeType": {
                     "type": "string",
                     "description": "The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
+                },
+                "redactClientLogData": {
+                    "type": "boolean",
+                    "description": "Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.\n"
                 },
                 "replicationFactor": {
                     "type": "integer",
@@ -15659,6 +15686,7 @@
                 "providerName",
                 "providerRegionName",
                 "providerVolumeType",
+                "redactClientLogData",
                 "replicationFactor",
                 "replicationSpecs",
                 "snapshotBackupPolicies",
@@ -15722,7 +15750,7 @@
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
-                    "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.\n"
+                    "description": "Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.\n"
                 },
                 "name": {
                     "type": "string",
@@ -15781,6 +15809,10 @@
                 "providerVolumeType": {
                     "type": "string",
                     "description": "The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
+                },
+                "redactClientLogData": {
+                    "type": "boolean",
+                    "description": "Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.\n"
                 },
                 "replicationFactor": {
                     "type": "integer",
@@ -15890,7 +15922,7 @@
                     },
                     "mongoDbMajorVersion": {
                         "type": "string",
-                        "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.\n"
+                        "description": "Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.\n"
                     },
                     "mongoDbVersion": {
                         "type": "string",
@@ -15968,6 +16000,10 @@
                     "providerVolumeType": {
                         "type": "string",
                         "description": "The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
+                    },
+                    "redactClientLogData": {
+                        "type": "boolean",
+                        "description": "Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.\n"
                     },
                     "replicationFactor": {
                         "type": "integer",
@@ -17813,7 +17849,15 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.\n"
+                    "description": "(Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.\n",
+                    "deprecationMessage": "This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id."
+                },
+                "customZoneMappingZoneId": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.\n"
                 },
                 "customZoneMappings": {
                     "type": "array",
@@ -17837,6 +17881,7 @@
             "required": [
                 "clusterName",
                 "customZoneMapping",
+                "customZoneMappingZoneId",
                 "managedNamespaces",
                 "projectId"
             ],
@@ -17883,7 +17928,15 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.\n"
+                        "description": "(Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.\n",
+                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id."
+                    },
+                    "customZoneMappingZoneId": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.\n"
                     },
                     "customZoneMappings": {
                         "type": "array",
@@ -20227,7 +20280,7 @@
                 "ipAddresses": {
                     "$ref": "#/types/mongodbatlas:index/ProjectIpAddresses:ProjectIpAddresses",
                     "description": "IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.\n",
-                    "deprecationMessage": "This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source."
+                    "deprecationMessage": "This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source."
                 },
                 "isCollectDatabaseSpecificsStatisticsEnabled": {
                     "type": "boolean",
@@ -20390,7 +20443,7 @@
                     "ipAddresses": {
                         "$ref": "#/types/mongodbatlas:index/ProjectIpAddresses:ProjectIpAddresses",
                         "description": "IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.\n",
-                        "deprecationMessage": "This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source."
+                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source."
                     },
                     "isCollectDatabaseSpecificsStatisticsEnabled": {
                         "type": "boolean",
@@ -22454,6 +22507,10 @@
                     "projectId": {
                         "type": "string"
                     },
+                    "redactClientLogData": {
+                        "description": "(Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.\n",
+                        "type": "boolean"
+                    },
                     "replicaSetScalingStrategy": {
                         "description": "(Optional) Replica set scaling mode for your cluster.\n",
                         "type": "string"
@@ -22509,6 +22566,7 @@
                     "paused",
                     "pitEnabled",
                     "projectId",
+                    "redactClientLogData",
                     "replicaSetScalingStrategy",
                     "replicationSpecs",
                     "rootCertType",
@@ -24280,6 +24338,10 @@
                         "description": "Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n",
                         "type": "string"
                     },
+                    "redactClientLogData": {
+                        "description": "(Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.\n",
+                        "type": "boolean"
+                    },
                     "replicationFactor": {
                         "description": "(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.\n",
                         "type": "integer"
@@ -24357,6 +24419,7 @@
                     "providerName",
                     "providerRegionName",
                     "providerVolumeType",
+                    "redactClientLogData",
                     "replicationFactor",
                     "replicationSpecs",
                     "snapshotBackupPolicies",
@@ -25191,7 +25254,7 @@
                 "properties": {
                     "cloudProvider": {
                         "type": "string",
-                        "description": "Human-readable label that identifies the cloud provider for the private endpoints to return.\n"
+                        "description": "Label that identifies the cloud provider of the private endpoint.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -25208,7 +25271,7 @@
                 "description": "A collection of values returned by getEncryptionAtRestPrivateEndpoints.\n",
                 "properties": {
                     "cloudProvider": {
-                        "description": "Human-readable label that identifies the cloud provider for the private endpoints to return.\n",
+                        "description": "Label that identifies the cloud provider of the private endpoint.\n",
                         "type": "string"
                     },
                     "id": {
@@ -26267,7 +26330,8 @@
                 "description": "A collection of arguments for invoking getGlobalClusterConfig.\n",
                 "properties": {
                     "clusterName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the Global Cluster.\n"
                     },
                     "managedNamespaces": {
                         "type": "array",
@@ -26278,7 +26342,7 @@
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "The unique ID for the project to create the database user.\n* `cluster_name - (Required) The name of the Global Cluster.\n"
+                        "description": "The unique ID for the project to create the database user.\n"
                     }
                 },
                 "type": "object",
@@ -26297,7 +26361,15 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.\n",
+                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.",
+                        "description": "(Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.\n",
+                        "type": "object"
+                    },
+                    "customZoneMappingZoneId": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.\n",
                         "type": "object"
                     },
                     "id": {
@@ -26318,6 +26390,7 @@
                 "required": [
                     "clusterName",
                     "customZoneMapping",
+                    "customZoneMappingZoneId",
                     "managedNamespaces",
                     "projectId",
                     "id"
@@ -27835,7 +27908,7 @@
                     },
                     "ipAddresses": {
                         "$ref": "#/types/mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses",
-                        "deprecationMessage": "This parameter is deprecated and will be removed by 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.",
+                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.",
                         "description": "IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.\n"
                     },
                     "isCollectDatabaseSpecificsStatisticsEnabled": {
