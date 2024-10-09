@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -170,9 +175,6 @@ def get_advanced_clusters(project_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         use_replication_spec_per_shard=pulumi.get(__ret__, 'use_replication_spec_per_shard'))
-
-
-@_utilities.lift_output_func(get_advanced_clusters)
 def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
                                  use_replication_spec_per_shard: Optional[pulumi.Input[Optional[bool]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAdvancedClustersResult]:
@@ -257,4 +259,13 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
     :param str project_id: The unique ID for the project to get the clusters.
     :param bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    __args__['useReplicationSpecPerShard'] = use_replication_spec_per_shard
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAdvancedClusters:getAdvancedClusters', __args__, opts=opts, typ=GetAdvancedClustersResult)
+    return __ret__.apply(lambda __response__: GetAdvancedClustersResult(
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results'),
+        use_replication_spec_per_shard=pulumi.get(__response__, 'use_replication_spec_per_shard')))

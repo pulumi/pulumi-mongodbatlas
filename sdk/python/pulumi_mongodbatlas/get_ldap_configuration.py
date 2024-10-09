@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -210,9 +215,6 @@ def get_ldap_configuration(project_id: Optional[str] = None,
         port=pulumi.get(__ret__, 'port'),
         project_id=pulumi.get(__ret__, 'project_id'),
         user_to_dn_mappings=pulumi.get(__ret__, 'user_to_dn_mappings'))
-
-
-@_utilities.lift_output_func(get_ldap_configuration)
 def get_ldap_configuration_output(project_id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLdapConfigurationResult]:
     """
@@ -244,4 +246,19 @@ def get_ldap_configuration_output(project_id: Optional[pulumi.Input[str]] = None
 
     :param str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getLdapConfiguration:getLdapConfiguration', __args__, opts=opts, typ=GetLdapConfigurationResult)
+    return __ret__.apply(lambda __response__: GetLdapConfigurationResult(
+        authentication_enabled=pulumi.get(__response__, 'authentication_enabled'),
+        authorization_enabled=pulumi.get(__response__, 'authorization_enabled'),
+        authz_query_template=pulumi.get(__response__, 'authz_query_template'),
+        bind_password=pulumi.get(__response__, 'bind_password'),
+        bind_username=pulumi.get(__response__, 'bind_username'),
+        ca_certificate=pulumi.get(__response__, 'ca_certificate'),
+        hostname=pulumi.get(__response__, 'hostname'),
+        id=pulumi.get(__response__, 'id'),
+        port=pulumi.get(__response__, 'port'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        user_to_dn_mappings=pulumi.get(__response__, 'user_to_dn_mappings')))

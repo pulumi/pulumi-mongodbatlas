@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -145,9 +150,6 @@ def get_search_indexes(cluster_name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-
-
-@_utilities.lift_output_func(get_search_indexes)
 def get_search_indexes_output(cluster_name: Optional[pulumi.Input[str]] = None,
                               collection_name: Optional[pulumi.Input[str]] = None,
                               database: Optional[pulumi.Input[str]] = None,
@@ -166,4 +168,18 @@ def get_search_indexes_output(cluster_name: Optional[pulumi.Input[str]] = None,
     :param str database: (Required) Name of the database the collection is in.
     :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['collectionName'] = collection_name
+    __args__['database'] = database
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getSearchIndexes:getSearchIndexes', __args__, opts=opts, typ=GetSearchIndexesResult)
+    return __ret__.apply(lambda __response__: GetSearchIndexesResult(
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        collection_name=pulumi.get(__response__, 'collection_name'),
+        database=pulumi.get(__response__, 'database'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results'),
+        total_count=pulumi.get(__response__, 'total_count')))

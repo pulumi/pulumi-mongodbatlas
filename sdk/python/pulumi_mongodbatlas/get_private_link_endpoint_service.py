@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -260,9 +265,6 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[str] = None,
         private_link_id=pulumi.get(__ret__, 'private_link_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         provider_name=pulumi.get(__ret__, 'provider_name'))
-
-
-@_utilities.lift_output_func(get_private_link_endpoint_service)
 def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulumi.Input[str]] = None,
                                              private_link_id: Optional[pulumi.Input[str]] = None,
                                              project_id: Optional[pulumi.Input[str]] = None,
@@ -281,4 +283,26 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
     :param str project_id: Unique identifier for the project.
     :param str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
     """
-    ...
+    __args__ = dict()
+    __args__['endpointServiceId'] = endpoint_service_id
+    __args__['privateLinkId'] = private_link_id
+    __args__['projectId'] = project_id
+    __args__['providerName'] = provider_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService', __args__, opts=opts, typ=GetPrivateLinkEndpointServiceResult)
+    return __ret__.apply(lambda __response__: GetPrivateLinkEndpointServiceResult(
+        aws_connection_status=pulumi.get(__response__, 'aws_connection_status'),
+        azure_status=pulumi.get(__response__, 'azure_status'),
+        delete_requested=pulumi.get(__response__, 'delete_requested'),
+        endpoint_service_id=pulumi.get(__response__, 'endpoint_service_id'),
+        endpoints=pulumi.get(__response__, 'endpoints'),
+        error_message=pulumi.get(__response__, 'error_message'),
+        gcp_status=pulumi.get(__response__, 'gcp_status'),
+        id=pulumi.get(__response__, 'id'),
+        interface_endpoint_id=pulumi.get(__response__, 'interface_endpoint_id'),
+        private_endpoint_connection_name=pulumi.get(__response__, 'private_endpoint_connection_name'),
+        private_endpoint_ip_address=pulumi.get(__response__, 'private_endpoint_ip_address'),
+        private_endpoint_resource_id=pulumi.get(__response__, 'private_endpoint_resource_id'),
+        private_link_id=pulumi.get(__response__, 'private_link_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        provider_name=pulumi.get(__response__, 'provider_name')))

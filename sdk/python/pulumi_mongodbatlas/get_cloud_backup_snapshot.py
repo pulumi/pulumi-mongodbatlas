@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -285,9 +290,6 @@ def get_cloud_backup_snapshot(cluster_name: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         storage_size_bytes=pulumi.get(__ret__, 'storage_size_bytes'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_cloud_backup_snapshot)
 def get_cloud_backup_snapshot_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
                                      snapshot_id: Optional[pulumi.Input[str]] = None,
@@ -320,4 +322,27 @@ def get_cloud_backup_snapshot_output(cluster_name: Optional[pulumi.Input[str]] =
     :param str project_id: The unique identifier of the project for the Atlas cluster.
     :param str snapshot_id: The unique identifier of the snapshot you want to retrieve.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['projectId'] = project_id
+    __args__['snapshotId'] = snapshot_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot', __args__, opts=opts, typ=GetCloudBackupSnapshotResult)
+    return __ret__.apply(lambda __response__: GetCloudBackupSnapshotResult(
+        cloud_provider=pulumi.get(__response__, 'cloud_provider'),
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        description=pulumi.get(__response__, 'description'),
+        expires_at=pulumi.get(__response__, 'expires_at'),
+        id=pulumi.get(__response__, 'id'),
+        master_key_uuid=pulumi.get(__response__, 'master_key_uuid'),
+        members=pulumi.get(__response__, 'members'),
+        mongod_version=pulumi.get(__response__, 'mongod_version'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        replica_set_name=pulumi.get(__response__, 'replica_set_name'),
+        snapshot_id=pulumi.get(__response__, 'snapshot_id'),
+        snapshot_ids=pulumi.get(__response__, 'snapshot_ids'),
+        snapshot_type=pulumi.get(__response__, 'snapshot_type'),
+        status=pulumi.get(__response__, 'status'),
+        storage_size_bytes=pulumi.get(__response__, 'storage_size_bytes'),
+        type=pulumi.get(__response__, 'type')))

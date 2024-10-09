@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -98,9 +103,6 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[str] = None,
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-
-
-@_utilities.lift_output_func(get_custom_dns_configuration_cluster_aws)
 def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.Input[str]] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDnsConfigurationClusterAwsResult]:
     """
@@ -125,4 +127,11 @@ def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.
 
     :param str project_id: Unique identifier for the project.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws', __args__, opts=opts, typ=GetCustomDnsConfigurationClusterAwsResult)
+    return __ret__.apply(lambda __response__: GetCustomDnsConfigurationClusterAwsResult(
+        enabled=pulumi.get(__response__, 'enabled'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id')))

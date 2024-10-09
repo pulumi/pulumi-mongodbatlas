@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -94,9 +99,6 @@ def get_control_plane_ip_addresses(opts: Optional[pulumi.InvokeOptions] = None) 
         id=pulumi.get(__ret__, 'id'),
         inbound=pulumi.get(__ret__, 'inbound'),
         outbound=pulumi.get(__ret__, 'outbound'))
-
-
-@_utilities.lift_output_func(get_control_plane_ip_addresses)
 def get_control_plane_ip_addresses_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetControlPlaneIpAddressesResult]:
     """
     ## # Data Source: get_control_plane_ip_addresses
@@ -114,4 +116,10 @@ def get_control_plane_ip_addresses_output(opts: Optional[pulumi.InvokeOptions] =
     pulumi.export("outbound-aws-ip-addresses", test.outbound.aws)
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses', __args__, opts=opts, typ=GetControlPlaneIpAddressesResult)
+    return __ret__.apply(lambda __response__: GetControlPlaneIpAddressesResult(
+        id=pulumi.get(__response__, 'id'),
+        inbound=pulumi.get(__response__, 'inbound'),
+        outbound=pulumi.get(__response__, 'outbound')))

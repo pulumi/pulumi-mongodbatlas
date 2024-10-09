@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -246,9 +251,6 @@ def get_online_archive(archive_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         schedules=pulumi.get(__ret__, 'schedules'),
         state=pulumi.get(__ret__, 'state'))
-
-
-@_utilities.lift_output_func(get_online_archive)
 def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
                               cluster_name: Optional[pulumi.Input[str]] = None,
                               project_id: Optional[pulumi.Input[str]] = None,
@@ -311,4 +313,24 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
     :param str cluster_name: Name of the cluster that contains the collection.
     :param str project_id: The unique ID for the project.
     """
-    ...
+    __args__ = dict()
+    __args__['archiveId'] = archive_id
+    __args__['clusterName'] = cluster_name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOnlineArchive:getOnlineArchive', __args__, opts=opts, typ=GetOnlineArchiveResult)
+    return __ret__.apply(lambda __response__: GetOnlineArchiveResult(
+        archive_id=pulumi.get(__response__, 'archive_id'),
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        coll_name=pulumi.get(__response__, 'coll_name'),
+        collection_type=pulumi.get(__response__, 'collection_type'),
+        criterias=pulumi.get(__response__, 'criterias'),
+        data_expiration_rules=pulumi.get(__response__, 'data_expiration_rules'),
+        data_process_regions=pulumi.get(__response__, 'data_process_regions'),
+        db_name=pulumi.get(__response__, 'db_name'),
+        id=pulumi.get(__response__, 'id'),
+        partition_fields=pulumi.get(__response__, 'partition_fields'),
+        paused=pulumi.get(__response__, 'paused'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        schedules=pulumi.get(__response__, 'schedules'),
+        state=pulumi.get(__response__, 'state')))

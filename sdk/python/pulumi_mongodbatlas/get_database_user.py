@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -249,9 +254,6 @@ def get_database_user(auth_database_name: Optional[str] = None,
         scopes=pulumi.get(__ret__, 'scopes'),
         username=pulumi.get(__ret__, 'username'),
         x509_type=pulumi.get(__ret__, 'x509_type'))
-
-
-@_utilities.lift_output_func(get_database_user)
 def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = None,
                              project_id: Optional[pulumi.Input[str]] = None,
                              username: Optional[pulumi.Input[str]] = None,
@@ -326,4 +328,21 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
     :param str project_id: The unique ID for the project to create the database user.
     :param str username: Username for authenticating to MongoDB.
     """
-    ...
+    __args__ = dict()
+    __args__['authDatabaseName'] = auth_database_name
+    __args__['projectId'] = project_id
+    __args__['username'] = username
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getDatabaseUser:getDatabaseUser', __args__, opts=opts, typ=GetDatabaseUserResult)
+    return __ret__.apply(lambda __response__: GetDatabaseUserResult(
+        auth_database_name=pulumi.get(__response__, 'auth_database_name'),
+        aws_iam_type=pulumi.get(__response__, 'aws_iam_type'),
+        id=pulumi.get(__response__, 'id'),
+        labels=pulumi.get(__response__, 'labels'),
+        ldap_auth_type=pulumi.get(__response__, 'ldap_auth_type'),
+        oidc_auth_type=pulumi.get(__response__, 'oidc_auth_type'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        roles=pulumi.get(__response__, 'roles'),
+        scopes=pulumi.get(__response__, 'scopes'),
+        username=pulumi.get(__response__, 'username'),
+        x509_type=pulumi.get(__response__, 'x509_type')))
