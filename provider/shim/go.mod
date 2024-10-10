@@ -1,11 +1,11 @@
 module github.com/mongodb/terraform-provider-mongodbatlas/internal/shim
 
-go 1.23.1
+go 1.23.2
 
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.12.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
-	github.com/mongodb/terraform-provider-mongodbatlas v1.21.0
+	github.com/mongodb/terraform-provider-mongodbatlas v1.21.1
 )
 
 require (
@@ -83,7 +83,7 @@ require (
 	github.com/zclconf/go-cty-yaml v1.0.2 // indirect
 	go.mongodb.org/atlas v0.37.0 // indirect
 	go.mongodb.org/atlas-sdk/v20240530005 v20240530005.0.0 // indirect
-	go.mongodb.org/atlas-sdk/v20240805004 v20240805004.5.0 // indirect
+	go.mongodb.org/atlas-sdk/v20240805004 v20240805004.6.0 // indirect
 	go.mongodb.org/realm v0.1.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.47.0 // indirect
