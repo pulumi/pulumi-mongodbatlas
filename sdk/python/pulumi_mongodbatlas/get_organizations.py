@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -127,9 +132,6 @@ def get_organizations(items_per_page: Optional[int] = None,
         page_num=pulumi.get(__ret__, 'page_num'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-
-
-@_utilities.lift_output_func(get_organizations)
 def get_organizations_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
                              page_num: Optional[pulumi.Input[Optional[int]]] = None,
@@ -153,4 +155,16 @@ def get_organizations_output(items_per_page: Optional[pulumi.Input[Optional[int]
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param int page_num: The page to return. Defaults to `1`.
     """
-    ...
+    __args__ = dict()
+    __args__['itemsPerPage'] = items_per_page
+    __args__['name'] = name
+    __args__['pageNum'] = page_num
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOrganizations:getOrganizations', __args__, opts=opts, typ=GetOrganizationsResult)
+    return __ret__.apply(lambda __response__: GetOrganizationsResult(
+        id=pulumi.get(__response__, 'id'),
+        items_per_page=pulumi.get(__response__, 'items_per_page'),
+        name=pulumi.get(__response__, 'name'),
+        page_num=pulumi.get(__response__, 'page_num'),
+        results=pulumi.get(__response__, 'results'),
+        total_count=pulumi.get(__response__, 'total_count')))

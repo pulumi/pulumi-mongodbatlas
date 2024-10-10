@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -155,9 +160,6 @@ def get_online_archives(cluster_name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-
-
-@_utilities.lift_output_func(get_online_archives)
 def get_online_archives_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOnlineArchivesResult]:
@@ -220,4 +222,14 @@ def get_online_archives_output(cluster_name: Optional[pulumi.Input[str]] = None,
            In addition to all arguments above, the following attributes are exported:
     :param str project_id: The unique ID for the project.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOnlineArchives:getOnlineArchives', __args__, opts=opts, typ=GetOnlineArchivesResult)
+    return __ret__.apply(lambda __response__: GetOnlineArchivesResult(
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results'),
+        total_count=pulumi.get(__response__, 'total_count')))

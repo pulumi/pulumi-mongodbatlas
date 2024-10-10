@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -141,9 +146,6 @@ def get_x509_authentication_database_user(project_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         username=pulumi.get(__ret__, 'username'))
-
-
-@_utilities.lift_output_func(get_x509_authentication_database_user)
 def get_x509_authentication_database_user_output(project_id: Optional[pulumi.Input[str]] = None,
                                                  username: Optional[pulumi.Input[Optional[str]]] = None,
                                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetX509AuthenticationDatabaseUserResult]:
@@ -189,4 +191,14 @@ def get_x509_authentication_database_user_output(project_id: Optional[pulumi.Inp
     :param str project_id: Identifier for the Atlas project associated with the X.509 configuration.
     :param str username: Username of the database user to create a certificate for.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    __args__['username'] = username
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser', __args__, opts=opts, typ=GetX509AuthenticationDatabaseUserResult)
+    return __ret__.apply(lambda __response__: GetX509AuthenticationDatabaseUserResult(
+        certificates=pulumi.get(__response__, 'certificates'),
+        customer_x509_cas=pulumi.get(__response__, 'customer_x509_cas'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        username=pulumi.get(__response__, 'username')))

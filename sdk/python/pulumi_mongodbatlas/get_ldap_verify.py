@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -204,9 +209,6 @@ def get_ldap_verify(project_id: Optional[str] = None,
         request_id=pulumi.get(__ret__, 'request_id'),
         status=pulumi.get(__ret__, 'status'),
         validations=pulumi.get(__ret__, 'validations'))
-
-
-@_utilities.lift_output_func(get_ldap_verify)
 def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
                            request_id: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLdapVerifyResult]:
@@ -257,4 +259,18 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
     :param str project_id: Unique identifier for the Atlas project associated with the verification request.
     :param str request_id: Unique identifier of a request to verify an LDAP configuration.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    __args__['requestId'] = request_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getLdapVerify:getLdapVerify', __args__, opts=opts, typ=GetLdapVerifyResult)
+    return __ret__.apply(lambda __response__: GetLdapVerifyResult(
+        bind_username=pulumi.get(__response__, 'bind_username'),
+        hostname=pulumi.get(__response__, 'hostname'),
+        id=pulumi.get(__response__, 'id'),
+        links=pulumi.get(__response__, 'links'),
+        port=pulumi.get(__response__, 'port'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        request_id=pulumi.get(__response__, 'request_id'),
+        status=pulumi.get(__response__, 'status'),
+        validations=pulumi.get(__response__, 'validations')))

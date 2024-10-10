@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -355,9 +360,6 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
         state=pulumi.get(__ret__, 'state'),
         updated_date=pulumi.get(__ret__, 'updated_date'),
         updated_user=pulumi.get(__ret__, 'updated_user'))
-
-
-@_utilities.lift_output_func(get_backup_compliance_policy)
 def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackupCompliancePolicyResult]:
     """
@@ -461,4 +463,26 @@ def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] 
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy', __args__, opts=opts, typ=GetBackupCompliancePolicyResult)
+    return __ret__.apply(lambda __response__: GetBackupCompliancePolicyResult(
+        authorized_email=pulumi.get(__response__, 'authorized_email'),
+        authorized_user_first_name=pulumi.get(__response__, 'authorized_user_first_name'),
+        authorized_user_last_name=pulumi.get(__response__, 'authorized_user_last_name'),
+        copy_protection_enabled=pulumi.get(__response__, 'copy_protection_enabled'),
+        encryption_at_rest_enabled=pulumi.get(__response__, 'encryption_at_rest_enabled'),
+        id=pulumi.get(__response__, 'id'),
+        on_demand_policy_item=pulumi.get(__response__, 'on_demand_policy_item'),
+        pit_enabled=pulumi.get(__response__, 'pit_enabled'),
+        policy_item_daily=pulumi.get(__response__, 'policy_item_daily'),
+        policy_item_hourly=pulumi.get(__response__, 'policy_item_hourly'),
+        policy_item_monthlies=pulumi.get(__response__, 'policy_item_monthlies'),
+        policy_item_weeklies=pulumi.get(__response__, 'policy_item_weeklies'),
+        policy_item_yearlies=pulumi.get(__response__, 'policy_item_yearlies'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        restore_window_days=pulumi.get(__response__, 'restore_window_days'),
+        state=pulumi.get(__response__, 'state'),
+        updated_date=pulumi.get(__response__, 'updated_date'),
+        updated_user=pulumi.get(__response__, 'updated_user')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -91,9 +96,6 @@ def get_federated_database_instances(project_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-
-
-@_utilities.lift_output_func(get_federated_database_instances)
 def get_federated_database_instances_output(project_id: Optional[pulumi.Input[str]] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedDatabaseInstancesResult]:
     """
@@ -110,4 +112,11 @@ def get_federated_database_instances_output(project_id: Optional[pulumi.Input[st
 
     :param str project_id: The unique ID for the project to create a Federated Database Instance.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances', __args__, opts=opts, typ=GetFederatedDatabaseInstancesResult)
+    return __ret__.apply(lambda __response__: GetFederatedDatabaseInstancesResult(
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results')))

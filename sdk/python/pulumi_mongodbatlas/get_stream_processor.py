@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -146,9 +151,6 @@ def get_stream_processor(instance_name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         state=pulumi.get(__ret__, 'state'),
         stats=pulumi.get(__ret__, 'stats'))
-
-
-@_utilities.lift_output_func(get_stream_processor)
 def get_stream_processor_output(instance_name: Optional[pulumi.Input[str]] = None,
                                 processor_name: Optional[pulumi.Input[str]] = None,
                                 project_id: Optional[pulumi.Input[str]] = None,
@@ -165,4 +167,18 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[str]] = Non
     :param str processor_name: Human-readable label that identifies the stream processor.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceName'] = instance_name
+    __args__['processorName'] = processor_name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamProcessor:getStreamProcessor', __args__, opts=opts, typ=GetStreamProcessorResult)
+    return __ret__.apply(lambda __response__: GetStreamProcessorResult(
+        id=pulumi.get(__response__, 'id'),
+        instance_name=pulumi.get(__response__, 'instance_name'),
+        options=pulumi.get(__response__, 'options'),
+        pipeline=pulumi.get(__response__, 'pipeline'),
+        processor_name=pulumi.get(__response__, 'processor_name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        state=pulumi.get(__response__, 'state'),
+        stats=pulumi.get(__response__, 'stats')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -171,9 +176,6 @@ def get_privatelink_endpoint_service_data_federation_online_archive(endpoint_id:
         provider_name=pulumi.get(__ret__, 'provider_name'),
         region=pulumi.get(__ret__, 'region'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_privatelink_endpoint_service_data_federation_online_archive)
 def get_privatelink_endpoint_service_data_federation_online_archive_output(endpoint_id: Optional[pulumi.Input[str]] = None,
                                                                            project_id: Optional[pulumi.Input[str]] = None,
                                                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult]:
@@ -208,4 +210,17 @@ def get_privatelink_endpoint_service_data_federation_online_archive_output(endpo
     :param str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
-    ...
+    __args__ = dict()
+    __args__['endpointId'] = endpoint_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive', __args__, opts=opts, typ=GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult)
+    return __ret__.apply(lambda __response__: GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult(
+        comment=pulumi.get(__response__, 'comment'),
+        customer_endpoint_dns_name=pulumi.get(__response__, 'customer_endpoint_dns_name'),
+        endpoint_id=pulumi.get(__response__, 'endpoint_id'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        provider_name=pulumi.get(__response__, 'provider_name'),
+        region=pulumi.get(__response__, 'region'),
+        type=pulumi.get(__response__, 'type')))

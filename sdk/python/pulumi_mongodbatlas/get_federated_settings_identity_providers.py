@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -117,9 +122,6 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[s
         idp_types=pulumi.get(__ret__, 'idp_types'),
         protocols=pulumi.get(__ret__, 'protocols'),
         results=pulumi.get(__ret__, 'results'))
-
-
-@_utilities.lift_output_func(get_federated_settings_identity_providers)
 def get_federated_settings_identity_providers_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
                                                      idp_types: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                                      protocols: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -136,4 +138,15 @@ def get_federated_settings_identity_providers_output(federation_settings_id: Opt
     :param Sequence[str] idp_types: The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
     :param Sequence[str] protocols: The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
     """
-    ...
+    __args__ = dict()
+    __args__['federationSettingsId'] = federation_settings_id
+    __args__['idpTypes'] = idp_types
+    __args__['protocols'] = protocols
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders', __args__, opts=opts, typ=GetFederatedSettingsIdentityProvidersResult)
+    return __ret__.apply(lambda __response__: GetFederatedSettingsIdentityProvidersResult(
+        federation_settings_id=pulumi.get(__response__, 'federation_settings_id'),
+        id=pulumi.get(__response__, 'id'),
+        idp_types=pulumi.get(__response__, 'idp_types'),
+        protocols=pulumi.get(__response__, 'protocols'),
+        results=pulumi.get(__response__, 'results')))

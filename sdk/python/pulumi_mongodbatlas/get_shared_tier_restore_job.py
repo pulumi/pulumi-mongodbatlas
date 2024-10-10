@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -190,9 +195,6 @@ def get_shared_tier_restore_job(cluster_name: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         target_deployment_item_name=pulumi.get(__ret__, 'target_deployment_item_name'),
         target_project_id=pulumi.get(__ret__, 'target_project_id'))
-
-
-@_utilities.lift_output_func(get_shared_tier_restore_job)
 def get_shared_tier_restore_job_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                        job_id: Optional[pulumi.Input[str]] = None,
                                        project_id: Optional[pulumi.Input[str]] = None,
@@ -200,4 +202,24 @@ def get_shared_tier_restore_job_output(cluster_name: Optional[pulumi.Input[str]]
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['jobId'] = job_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob', __args__, opts=opts, typ=GetSharedTierRestoreJobResult)
+    return __ret__.apply(lambda __response__: GetSharedTierRestoreJobResult(
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        delivery_type=pulumi.get(__response__, 'delivery_type'),
+        expiration_date=pulumi.get(__response__, 'expiration_date'),
+        id=pulumi.get(__response__, 'id'),
+        job_id=pulumi.get(__response__, 'job_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        restore_finished_date=pulumi.get(__response__, 'restore_finished_date'),
+        restore_scheduled_date=pulumi.get(__response__, 'restore_scheduled_date'),
+        snapshot_finished_date=pulumi.get(__response__, 'snapshot_finished_date'),
+        snapshot_id=pulumi.get(__response__, 'snapshot_id'),
+        snapshot_url=pulumi.get(__response__, 'snapshot_url'),
+        status=pulumi.get(__response__, 'status'),
+        target_deployment_item_name=pulumi.get(__response__, 'target_deployment_item_name'),
+        target_project_id=pulumi.get(__response__, 'target_project_id')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -164,9 +169,6 @@ def get_cloud_backup_snapshot_export_jobs(cluster_name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-
-
-@_utilities.lift_output_func(get_cloud_backup_snapshot_export_jobs)
 def get_cloud_backup_snapshot_export_jobs_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                                  items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                                  page_num: Optional[pulumi.Input[Optional[int]]] = None,
@@ -209,4 +211,18 @@ def get_cloud_backup_snapshot_export_jobs_output(cluster_name: Optional[pulumi.I
     :param int page_num: The page to return. Defaults to `1`.
     :param str project_id: The unique identifier of the project for the Atlas cluster.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['itemsPerPage'] = items_per_page
+    __args__['pageNum'] = page_num
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs', __args__, opts=opts, typ=GetCloudBackupSnapshotExportJobsResult)
+    return __ret__.apply(lambda __response__: GetCloudBackupSnapshotExportJobsResult(
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        id=pulumi.get(__response__, 'id'),
+        items_per_page=pulumi.get(__response__, 'items_per_page'),
+        page_num=pulumi.get(__response__, 'page_num'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results'),
+        total_count=pulumi.get(__response__, 'total_count')))

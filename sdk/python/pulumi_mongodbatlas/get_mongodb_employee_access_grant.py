@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -128,9 +133,6 @@ def get_mongodb_employee_access_grant(cluster_name: Optional[str] = None,
         grant_type=pulumi.get(__ret__, 'grant_type'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-
-
-@_utilities.lift_output_func(get_mongodb_employee_access_grant)
 def get_mongodb_employee_access_grant_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                              project_id: Optional[pulumi.Input[str]] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMongodbEmployeeAccessGrantResult]:
@@ -161,4 +163,14 @@ def get_mongodb_employee_access_grant_output(cluster_name: Optional[pulumi.Input
     :param str cluster_name: Human-readable label that identifies this cluster.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant', __args__, opts=opts, typ=GetMongodbEmployeeAccessGrantResult)
+    return __ret__.apply(lambda __response__: GetMongodbEmployeeAccessGrantResult(
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        expiration_time=pulumi.get(__response__, 'expiration_time'),
+        grant_type=pulumi.get(__response__, 'grant_type'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id')))

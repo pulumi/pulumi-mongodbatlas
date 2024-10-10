@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -340,9 +345,6 @@ def get_event_trigger(app_id: Optional[str] = None,
         trigger_id=pulumi.get(__ret__, 'trigger_id'),
         type=pulumi.get(__ret__, 'type'),
         unordered=pulumi.get(__ret__, 'unordered'))
-
-
-@_utilities.lift_output_func(get_event_trigger)
 def get_event_trigger_output(app_id: Optional[pulumi.Input[str]] = None,
                              project_id: Optional[pulumi.Input[str]] = None,
                              trigger_id: Optional[pulumi.Input[str]] = None,
@@ -358,4 +360,33 @@ def get_event_trigger_output(app_id: Optional[pulumi.Input[str]] = None,
     :param str project_id: The unique ID for the project to create the trigger.
     :param str trigger_id: The unique ID of the trigger.
     """
-    ...
+    __args__ = dict()
+    __args__['appId'] = app_id
+    __args__['projectId'] = project_id
+    __args__['triggerId'] = trigger_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getEventTrigger:getEventTrigger', __args__, opts=opts, typ=GetEventTriggerResult)
+    return __ret__.apply(lambda __response__: GetEventTriggerResult(
+        app_id=pulumi.get(__response__, 'app_id'),
+        config_collection=pulumi.get(__response__, 'config_collection'),
+        config_database=pulumi.get(__response__, 'config_database'),
+        config_full_document=pulumi.get(__response__, 'config_full_document'),
+        config_full_document_before=pulumi.get(__response__, 'config_full_document_before'),
+        config_match=pulumi.get(__response__, 'config_match'),
+        config_operation_type=pulumi.get(__response__, 'config_operation_type'),
+        config_operation_types=pulumi.get(__response__, 'config_operation_types'),
+        config_project=pulumi.get(__response__, 'config_project'),
+        config_providers=pulumi.get(__response__, 'config_providers'),
+        config_schedule=pulumi.get(__response__, 'config_schedule'),
+        config_schedule_type=pulumi.get(__response__, 'config_schedule_type'),
+        config_service_id=pulumi.get(__response__, 'config_service_id'),
+        disabled=pulumi.get(__response__, 'disabled'),
+        event_processors=pulumi.get(__response__, 'event_processors'),
+        function_id=pulumi.get(__response__, 'function_id'),
+        function_name=pulumi.get(__response__, 'function_name'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        trigger_id=pulumi.get(__response__, 'trigger_id'),
+        type=pulumi.get(__response__, 'type'),
+        unordered=pulumi.get(__response__, 'unordered')))

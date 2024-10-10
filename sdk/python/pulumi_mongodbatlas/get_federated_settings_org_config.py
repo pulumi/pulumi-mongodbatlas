@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -199,9 +204,6 @@ def get_federated_settings_org_config(federation_settings_id: Optional[str] = No
         post_auth_role_grants=pulumi.get(__ret__, 'post_auth_role_grants'),
         role_mappings=pulumi.get(__ret__, 'role_mappings'),
         user_conflicts=pulumi.get(__ret__, 'user_conflicts'))
-
-
-@_utilities.lift_output_func(get_federated_settings_org_config)
 def get_federated_settings_org_config_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
                                              org_id: Optional[pulumi.Input[str]] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsOrgConfigResult]:
@@ -232,4 +234,19 @@ def get_federated_settings_org_config_output(federation_settings_id: Optional[pu
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """
-    ...
+    __args__ = dict()
+    __args__['federationSettingsId'] = federation_settings_id
+    __args__['orgId'] = org_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig', __args__, opts=opts, typ=GetFederatedSettingsOrgConfigResult)
+    return __ret__.apply(lambda __response__: GetFederatedSettingsOrgConfigResult(
+        data_access_identity_provider_ids=pulumi.get(__response__, 'data_access_identity_provider_ids'),
+        domain_allow_lists=pulumi.get(__response__, 'domain_allow_lists'),
+        domain_restriction_enabled=pulumi.get(__response__, 'domain_restriction_enabled'),
+        federation_settings_id=pulumi.get(__response__, 'federation_settings_id'),
+        id=pulumi.get(__response__, 'id'),
+        identity_provider_id=pulumi.get(__response__, 'identity_provider_id'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        post_auth_role_grants=pulumi.get(__response__, 'post_auth_role_grants'),
+        role_mappings=pulumi.get(__response__, 'role_mappings'),
+        user_conflicts=pulumi.get(__response__, 'user_conflicts')))

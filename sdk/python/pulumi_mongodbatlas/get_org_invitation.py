@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -162,9 +167,6 @@ def get_org_invitation(invitation_id: Optional[str] = None,
         roles=pulumi.get(__ret__, 'roles'),
         teams_ids=pulumi.get(__ret__, 'teams_ids'),
         username=pulumi.get(__ret__, 'username'))
-
-
-@_utilities.lift_output_func(get_org_invitation)
 def get_org_invitation_output(invitation_id: Optional[pulumi.Input[str]] = None,
                               org_id: Optional[pulumi.Input[str]] = None,
                               username: Optional[pulumi.Input[str]] = None,
@@ -179,4 +181,19 @@ def get_org_invitation_output(invitation_id: Optional[pulumi.Input[str]] = None,
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization to which you invited the user.
     :param str username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
     """
-    ...
+    __args__ = dict()
+    __args__['invitationId'] = invitation_id
+    __args__['orgId'] = org_id
+    __args__['username'] = username
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOrgInvitation:getOrgInvitation', __args__, opts=opts, typ=GetOrgInvitationResult)
+    return __ret__.apply(lambda __response__: GetOrgInvitationResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        expires_at=pulumi.get(__response__, 'expires_at'),
+        id=pulumi.get(__response__, 'id'),
+        invitation_id=pulumi.get(__response__, 'invitation_id'),
+        inviter_username=pulumi.get(__response__, 'inviter_username'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        roles=pulumi.get(__response__, 'roles'),
+        teams_ids=pulumi.get(__response__, 'teams_ids'),
+        username=pulumi.get(__response__, 'username')))

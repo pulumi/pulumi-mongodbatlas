@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -164,9 +169,6 @@ def get_encryption_at_rest_private_endpoint(cloud_provider: Optional[str] = None
         project_id=pulumi.get(__ret__, 'project_id'),
         region_name=pulumi.get(__ret__, 'region_name'),
         status=pulumi.get(__ret__, 'status'))
-
-
-@_utilities.lift_output_func(get_encryption_at_rest_private_endpoint)
 def get_encryption_at_rest_private_endpoint_output(cloud_provider: Optional[pulumi.Input[str]] = None,
                                                    id: Optional[pulumi.Input[str]] = None,
                                                    project_id: Optional[pulumi.Input[str]] = None,
@@ -200,4 +202,17 @@ def get_encryption_at_rest_private_endpoint_output(cloud_provider: Optional[pulu
     :param str id: Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
-    ...
+    __args__ = dict()
+    __args__['cloudProvider'] = cloud_provider
+    __args__['id'] = id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint', __args__, opts=opts, typ=GetEncryptionAtRestPrivateEndpointResult)
+    return __ret__.apply(lambda __response__: GetEncryptionAtRestPrivateEndpointResult(
+        cloud_provider=pulumi.get(__response__, 'cloud_provider'),
+        error_message=pulumi.get(__response__, 'error_message'),
+        id=pulumi.get(__response__, 'id'),
+        private_endpoint_connection_name=pulumi.get(__response__, 'private_endpoint_connection_name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region_name=pulumi.get(__response__, 'region_name'),
+        status=pulumi.get(__response__, 'status')))

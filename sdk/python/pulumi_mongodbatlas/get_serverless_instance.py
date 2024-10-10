@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -284,9 +289,6 @@ def get_serverless_instance(auto_indexing: Optional[bool] = None,
         state_name=pulumi.get(__ret__, 'state_name'),
         tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'))
-
-
-@_utilities.lift_output_func(get_serverless_instance)
 def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional[bool]]] = None,
                                    continuous_backup_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                    links: Optional[pulumi.Input[Optional[Sequence[Union['GetServerlessInstanceLinkArgs', 'GetServerlessInstanceLinkArgsDict']]]]] = None,
@@ -330,4 +332,29 @@ def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
     :param str state_name: Stage of deployment of this serverless instance when the resource made its request.
     """
-    ...
+    __args__ = dict()
+    __args__['autoIndexing'] = auto_indexing
+    __args__['continuousBackupEnabled'] = continuous_backup_enabled
+    __args__['links'] = links
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['stateName'] = state_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getServerlessInstance:getServerlessInstance', __args__, opts=opts, typ=GetServerlessInstanceResult)
+    return __ret__.apply(lambda __response__: GetServerlessInstanceResult(
+        auto_indexing=pulumi.get(__response__, 'auto_indexing'),
+        connection_strings_private_endpoint_srvs=pulumi.get(__response__, 'connection_strings_private_endpoint_srvs'),
+        connection_strings_standard_srv=pulumi.get(__response__, 'connection_strings_standard_srv'),
+        continuous_backup_enabled=pulumi.get(__response__, 'continuous_backup_enabled'),
+        create_date=pulumi.get(__response__, 'create_date'),
+        id=pulumi.get(__response__, 'id'),
+        links=pulumi.get(__response__, 'links'),
+        mongo_db_version=pulumi.get(__response__, 'mongo_db_version'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        provider_settings_backing_provider_name=pulumi.get(__response__, 'provider_settings_backing_provider_name'),
+        provider_settings_provider_name=pulumi.get(__response__, 'provider_settings_provider_name'),
+        provider_settings_region_name=pulumi.get(__response__, 'provider_settings_region_name'),
+        state_name=pulumi.get(__response__, 'state_name'),
+        tags=pulumi.get(__response__, 'tags'),
+        termination_protection_enabled=pulumi.get(__response__, 'termination_protection_enabled')))

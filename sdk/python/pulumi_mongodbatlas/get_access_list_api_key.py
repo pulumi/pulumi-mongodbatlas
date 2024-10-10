@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -147,9 +152,6 @@ def get_access_list_api_key(api_key_id: Optional[str] = None,
         last_used=pulumi.get(__ret__, 'last_used'),
         last_used_address=pulumi.get(__ret__, 'last_used_address'),
         org_id=pulumi.get(__ret__, 'org_id'))
-
-
-@_utilities.lift_output_func(get_access_list_api_key)
 def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
                                    ip_address: Optional[pulumi.Input[str]] = None,
                                    org_id: Optional[pulumi.Input[str]] = None,
@@ -164,4 +166,19 @@ def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[str]] = Non
     :param str ip_address: Single IP address to be added to the access list.
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """
-    ...
+    __args__ = dict()
+    __args__['apiKeyId'] = api_key_id
+    __args__['ipAddress'] = ip_address
+    __args__['orgId'] = org_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAccessListApiKey:getAccessListApiKey', __args__, opts=opts, typ=GetAccessListApiKeyResult)
+    return __ret__.apply(lambda __response__: GetAccessListApiKeyResult(
+        access_count=pulumi.get(__response__, 'access_count'),
+        api_key_id=pulumi.get(__response__, 'api_key_id'),
+        cidr_block=pulumi.get(__response__, 'cidr_block'),
+        created=pulumi.get(__response__, 'created'),
+        id=pulumi.get(__response__, 'id'),
+        ip_address=pulumi.get(__response__, 'ip_address'),
+        last_used=pulumi.get(__response__, 'last_used'),
+        last_used_address=pulumi.get(__response__, 'last_used_address'),
+        org_id=pulumi.get(__response__, 'org_id')))

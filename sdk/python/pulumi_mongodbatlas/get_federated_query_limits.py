@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -112,9 +117,6 @@ def get_federated_query_limits(project_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         tenant_name=pulumi.get(__ret__, 'tenant_name'))
-
-
-@_utilities.lift_output_func(get_federated_query_limits)
 def get_federated_query_limits_output(project_id: Optional[pulumi.Input[str]] = None,
                                       tenant_name: Optional[pulumi.Input[str]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedQueryLimitsResult]:
@@ -141,4 +143,13 @@ def get_federated_query_limits_output(project_id: Optional[pulumi.Input[str]] = 
     :param str project_id: The unique ID for the project to create a Federated Database Instance.
     :param str tenant_name: Name of the Atlas Federated Database Instance.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    __args__['tenantName'] = tenant_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits', __args__, opts=opts, typ=GetFederatedQueryLimitsResult)
+    return __ret__.apply(lambda __response__: GetFederatedQueryLimitsResult(
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results'),
+        tenant_name=pulumi.get(__response__, 'tenant_name')))

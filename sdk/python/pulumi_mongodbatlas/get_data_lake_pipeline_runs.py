@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -100,9 +105,6 @@ def get_data_lake_pipeline_runs(pipeline_name: Optional[str] = None,
         pipeline_name=pulumi.get(__ret__, 'pipeline_name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-
-
-@_utilities.lift_output_func(get_data_lake_pipeline_runs)
 def get_data_lake_pipeline_runs_output(pipeline_name: Optional[pulumi.Input[str]] = None,
                                        project_id: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakePipelineRunsResult]:
@@ -117,4 +119,13 @@ def get_data_lake_pipeline_runs_output(pipeline_name: Optional[pulumi.Input[str]
     :param str pipeline_name: Human-readable label that identifies the Data Lake Pipeline.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
-    ...
+    __args__ = dict()
+    __args__['pipelineName'] = pipeline_name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns', __args__, opts=opts, typ=GetDataLakePipelineRunsResult)
+    return __ret__.apply(lambda __response__: GetDataLakePipelineRunsResult(
+        id=pulumi.get(__response__, 'id'),
+        pipeline_name=pulumi.get(__response__, 'pipeline_name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results')))
