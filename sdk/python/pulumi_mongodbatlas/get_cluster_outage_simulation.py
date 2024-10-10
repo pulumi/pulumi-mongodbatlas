@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -151,9 +156,6 @@ def get_cluster_outage_simulation(cluster_name: Optional[str] = None,
         simulation_id=pulumi.get(__ret__, 'simulation_id'),
         start_request_date=pulumi.get(__ret__, 'start_request_date'),
         state=pulumi.get(__ret__, 'state'))
-
-
-@_utilities.lift_output_func(get_cluster_outage_simulation)
 def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                          project_id: Optional[pulumi.Input[str]] = None,
                                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterOutageSimulationResult]:
@@ -174,4 +176,16 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[str
     :param str cluster_name: Name of the Atlas Cluster that is undergoing outage simulation.
     :param str project_id: The unique ID for the project that contains the cluster that is undergoing outage simulation.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation', __args__, opts=opts, typ=GetClusterOutageSimulationResult)
+    return __ret__.apply(lambda __response__: GetClusterOutageSimulationResult(
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        id=pulumi.get(__response__, 'id'),
+        outage_filters=pulumi.get(__response__, 'outage_filters'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        simulation_id=pulumi.get(__response__, 'simulation_id'),
+        start_request_date=pulumi.get(__response__, 'start_request_date'),
+        state=pulumi.get(__response__, 'state')))

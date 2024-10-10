@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -297,9 +302,6 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
         restore_window_days=pulumi.get(__ret__, 'restore_window_days'),
         use_org_and_group_names_in_export_prefix=pulumi.get(__ret__, 'use_org_and_group_names_in_export_prefix'),
         use_zone_id_for_copy_settings=pulumi.get(__ret__, 'use_zone_id_for_copy_settings'))
-
-
-@_utilities.lift_output_func(get_cloud_backup_schedule)
 def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
                                      use_zone_id_for_copy_settings: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -316,4 +318,29 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[str]] =
     :param str project_id: The unique identifier of the project for the Atlas cluster.
     :param bool use_zone_id_for_copy_settings: Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['projectId'] = project_id
+    __args__['useZoneIdForCopySettings'] = use_zone_id_for_copy_settings
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule', __args__, opts=opts, typ=GetCloudBackupScheduleResult)
+    return __ret__.apply(lambda __response__: GetCloudBackupScheduleResult(
+        auto_export_enabled=pulumi.get(__response__, 'auto_export_enabled'),
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        copy_settings=pulumi.get(__response__, 'copy_settings'),
+        exports=pulumi.get(__response__, 'exports'),
+        id=pulumi.get(__response__, 'id'),
+        id_policy=pulumi.get(__response__, 'id_policy'),
+        next_snapshot=pulumi.get(__response__, 'next_snapshot'),
+        policy_item_dailies=pulumi.get(__response__, 'policy_item_dailies'),
+        policy_item_hourlies=pulumi.get(__response__, 'policy_item_hourlies'),
+        policy_item_monthlies=pulumi.get(__response__, 'policy_item_monthlies'),
+        policy_item_weeklies=pulumi.get(__response__, 'policy_item_weeklies'),
+        policy_item_yearlies=pulumi.get(__response__, 'policy_item_yearlies'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        reference_hour_of_day=pulumi.get(__response__, 'reference_hour_of_day'),
+        reference_minute_of_hour=pulumi.get(__response__, 'reference_minute_of_hour'),
+        restore_window_days=pulumi.get(__response__, 'restore_window_days'),
+        use_org_and_group_names_in_export_prefix=pulumi.get(__response__, 'use_org_and_group_names_in_export_prefix'),
+        use_zone_id_for_copy_settings=pulumi.get(__response__, 'use_zone_id_for_copy_settings')))

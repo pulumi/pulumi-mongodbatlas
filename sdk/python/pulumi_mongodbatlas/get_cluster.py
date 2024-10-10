@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -657,9 +662,6 @@ def get_cluster(name: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'),
         version_release_system=pulumi.get(__ret__, 'version_release_system'))
-
-
-@_utilities.lift_output_func(get_cluster)
 def get_cluster_output(name: Optional[pulumi.Input[str]] = None,
                        project_id: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterResult]:
@@ -706,4 +708,53 @@ def get_cluster_output(name: Optional[pulumi.Input[str]] = None,
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
     :param str project_id: The unique ID for the project to create the database user.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult)
+    return __ret__.apply(lambda __response__: GetClusterResult(
+        advanced_configurations=pulumi.get(__response__, 'advanced_configurations'),
+        auto_scaling_compute_enabled=pulumi.get(__response__, 'auto_scaling_compute_enabled'),
+        auto_scaling_compute_scale_down_enabled=pulumi.get(__response__, 'auto_scaling_compute_scale_down_enabled'),
+        auto_scaling_disk_gb_enabled=pulumi.get(__response__, 'auto_scaling_disk_gb_enabled'),
+        backing_provider_name=pulumi.get(__response__, 'backing_provider_name'),
+        backup_enabled=pulumi.get(__response__, 'backup_enabled'),
+        bi_connector_configs=pulumi.get(__response__, 'bi_connector_configs'),
+        cluster_type=pulumi.get(__response__, 'cluster_type'),
+        connection_strings=pulumi.get(__response__, 'connection_strings'),
+        container_id=pulumi.get(__response__, 'container_id'),
+        disk_size_gb=pulumi.get(__response__, 'disk_size_gb'),
+        encryption_at_rest_provider=pulumi.get(__response__, 'encryption_at_rest_provider'),
+        id=pulumi.get(__response__, 'id'),
+        labels=pulumi.get(__response__, 'labels'),
+        mongo_db_major_version=pulumi.get(__response__, 'mongo_db_major_version'),
+        mongo_db_version=pulumi.get(__response__, 'mongo_db_version'),
+        mongo_uri=pulumi.get(__response__, 'mongo_uri'),
+        mongo_uri_updated=pulumi.get(__response__, 'mongo_uri_updated'),
+        mongo_uri_with_options=pulumi.get(__response__, 'mongo_uri_with_options'),
+        name=pulumi.get(__response__, 'name'),
+        num_shards=pulumi.get(__response__, 'num_shards'),
+        paused=pulumi.get(__response__, 'paused'),
+        pit_enabled=pulumi.get(__response__, 'pit_enabled'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        provider_auto_scaling_compute_max_instance_size=pulumi.get(__response__, 'provider_auto_scaling_compute_max_instance_size'),
+        provider_auto_scaling_compute_min_instance_size=pulumi.get(__response__, 'provider_auto_scaling_compute_min_instance_size'),
+        provider_backup_enabled=pulumi.get(__response__, 'provider_backup_enabled'),
+        provider_disk_iops=pulumi.get(__response__, 'provider_disk_iops'),
+        provider_disk_type_name=pulumi.get(__response__, 'provider_disk_type_name'),
+        provider_encrypt_ebs_volume=pulumi.get(__response__, 'provider_encrypt_ebs_volume'),
+        provider_encrypt_ebs_volume_flag=pulumi.get(__response__, 'provider_encrypt_ebs_volume_flag'),
+        provider_instance_size_name=pulumi.get(__response__, 'provider_instance_size_name'),
+        provider_name=pulumi.get(__response__, 'provider_name'),
+        provider_region_name=pulumi.get(__response__, 'provider_region_name'),
+        provider_volume_type=pulumi.get(__response__, 'provider_volume_type'),
+        redact_client_log_data=pulumi.get(__response__, 'redact_client_log_data'),
+        replication_factor=pulumi.get(__response__, 'replication_factor'),
+        replication_specs=pulumi.get(__response__, 'replication_specs'),
+        snapshot_backup_policies=pulumi.get(__response__, 'snapshot_backup_policies'),
+        srv_address=pulumi.get(__response__, 'srv_address'),
+        state_name=pulumi.get(__response__, 'state_name'),
+        tags=pulumi.get(__response__, 'tags'),
+        termination_protection_enabled=pulumi.get(__response__, 'termination_protection_enabled'),
+        version_release_system=pulumi.get(__response__, 'version_release_system')))

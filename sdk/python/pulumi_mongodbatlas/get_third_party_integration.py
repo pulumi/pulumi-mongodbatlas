@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -286,9 +291,6 @@ def get_third_party_integration(enabled: Optional[bool] = None,
         type=pulumi.get(__ret__, 'type'),
         url=pulumi.get(__ret__, 'url'),
         user_name=pulumi.get(__ret__, 'user_name'))
-
-
-@_utilities.lift_output_func(get_third_party_integration)
 def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                        microsoft_teams_webhook_url: Optional[pulumi.Input[Optional[str]]] = None,
                                        project_id: Optional[pulumi.Input[str]] = None,
@@ -334,4 +336,29 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
            * PROMETHEUS
     :param str user_name: Your Prometheus username.
     """
-    ...
+    __args__ = dict()
+    __args__['enabled'] = enabled
+    __args__['microsoftTeamsWebhookUrl'] = microsoft_teams_webhook_url
+    __args__['projectId'] = project_id
+    __args__['serviceDiscovery'] = service_discovery
+    __args__['type'] = type
+    __args__['userName'] = user_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration', __args__, opts=opts, typ=GetThirdPartyIntegrationResult)
+    return __ret__.apply(lambda __response__: GetThirdPartyIntegrationResult(
+        account_id=pulumi.get(__response__, 'account_id'),
+        api_key=pulumi.get(__response__, 'api_key'),
+        channel_name=pulumi.get(__response__, 'channel_name'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        id=pulumi.get(__response__, 'id'),
+        microsoft_teams_webhook_url=pulumi.get(__response__, 'microsoft_teams_webhook_url'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        routing_key=pulumi.get(__response__, 'routing_key'),
+        secret=pulumi.get(__response__, 'secret'),
+        service_discovery=pulumi.get(__response__, 'service_discovery'),
+        service_key=pulumi.get(__response__, 'service_key'),
+        team_name=pulumi.get(__response__, 'team_name'),
+        type=pulumi.get(__response__, 'type'),
+        url=pulumi.get(__response__, 'url'),
+        user_name=pulumi.get(__response__, 'user_name')))

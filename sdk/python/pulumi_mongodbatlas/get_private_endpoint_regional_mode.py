@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -86,9 +91,6 @@ def get_private_endpoint_regional_mode(enabled: Optional[bool] = None,
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-
-
-@_utilities.lift_output_func(get_private_endpoint_regional_mode)
 def get_private_endpoint_regional_mode_output(enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                               project_id: Optional[pulumi.Input[str]] = None,
                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateEndpointRegionalModeResult]:
@@ -103,4 +105,12 @@ def get_private_endpoint_regional_mode_output(enabled: Optional[pulumi.Input[Opt
     :param bool enabled: Flag that indicates whether the regionalized private endpoitn setting is enabled for the project.
     :param str project_id: Unique identifier for the project.
     """
-    ...
+    __args__ = dict()
+    __args__['enabled'] = enabled
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode', __args__, opts=opts, typ=GetPrivateEndpointRegionalModeResult)
+    return __ret__.apply(lambda __response__: GetPrivateEndpointRegionalModeResult(
+        enabled=pulumi.get(__response__, 'enabled'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id')))

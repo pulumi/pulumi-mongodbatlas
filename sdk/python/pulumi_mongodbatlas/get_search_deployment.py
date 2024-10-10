@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -119,9 +124,6 @@ def get_search_deployment(cluster_name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         specs=pulumi.get(__ret__, 'specs'),
         state_name=pulumi.get(__ret__, 'state_name'))
-
-
-@_utilities.lift_output_func(get_search_deployment)
 def get_search_deployment_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                  project_id: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchDeploymentResult]:
@@ -136,4 +138,14 @@ def get_search_deployment_output(cluster_name: Optional[pulumi.Input[str]] = Non
     :param str cluster_name: Label that identifies the cluster to return the search nodes for.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getSearchDeployment:getSearchDeployment', __args__, opts=opts, typ=GetSearchDeploymentResult)
+    return __ret__.apply(lambda __response__: GetSearchDeploymentResult(
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        specs=pulumi.get(__response__, 'specs'),
+        state_name=pulumi.get(__response__, 'state_name')))

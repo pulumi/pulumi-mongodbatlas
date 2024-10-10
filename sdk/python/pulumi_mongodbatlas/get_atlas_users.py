@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -182,9 +187,6 @@ def get_atlas_users(items_per_page: Optional[int] = None,
         results=pulumi.get(__ret__, 'results'),
         team_id=pulumi.get(__ret__, 'team_id'),
         total_count=pulumi.get(__ret__, 'total_count'))
-
-
-@_utilities.lift_output_func(get_atlas_users)
 def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                            org_id: Optional[pulumi.Input[Optional[str]]] = None,
                            page_num: Optional[pulumi.Input[Optional[int]]] = None,
@@ -237,4 +239,20 @@ def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[int]]]
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
     :param str team_id: Unique 24-hexadecimal digit string that identifies the team whose users you want to return.
     """
-    ...
+    __args__ = dict()
+    __args__['itemsPerPage'] = items_per_page
+    __args__['orgId'] = org_id
+    __args__['pageNum'] = page_num
+    __args__['projectId'] = project_id
+    __args__['teamId'] = team_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAtlasUsers:getAtlasUsers', __args__, opts=opts, typ=GetAtlasUsersResult)
+    return __ret__.apply(lambda __response__: GetAtlasUsersResult(
+        id=pulumi.get(__response__, 'id'),
+        items_per_page=pulumi.get(__response__, 'items_per_page'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        page_num=pulumi.get(__response__, 'page_num'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results'),
+        team_id=pulumi.get(__response__, 'team_id'),
+        total_count=pulumi.get(__response__, 'total_count')))

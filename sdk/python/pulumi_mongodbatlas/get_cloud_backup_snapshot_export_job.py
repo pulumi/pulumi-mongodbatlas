@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -251,9 +256,6 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
         state=pulumi.get(__ret__, 'state'))
-
-
-@_utilities.lift_output_func(get_cloud_backup_snapshot_export_job)
 def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                                 export_job_id: Optional[pulumi.Input[str]] = None,
                                                 project_id: Optional[pulumi.Input[str]] = None,
@@ -295,4 +297,24 @@ def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.In
     :param str export_job_id: Unique identifier of the export job to retrieve.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterName'] = cluster_name
+    __args__['exportJobId'] = export_job_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob', __args__, opts=opts, typ=GetCloudBackupSnapshotExportJobResult)
+    return __ret__.apply(lambda __response__: GetCloudBackupSnapshotExportJobResult(
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
+        components=pulumi.get(__response__, 'components'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        custom_datas=pulumi.get(__response__, 'custom_datas'),
+        export_bucket_id=pulumi.get(__response__, 'export_bucket_id'),
+        export_job_id=pulumi.get(__response__, 'export_job_id'),
+        export_status_exported_collections=pulumi.get(__response__, 'export_status_exported_collections'),
+        export_status_total_collections=pulumi.get(__response__, 'export_status_total_collections'),
+        finished_at=pulumi.get(__response__, 'finished_at'),
+        id=pulumi.get(__response__, 'id'),
+        prefix=pulumi.get(__response__, 'prefix'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        snapshot_id=pulumi.get(__response__, 'snapshot_id'),
+        state=pulumi.get(__response__, 'state')))

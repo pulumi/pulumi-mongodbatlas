@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -122,9 +127,6 @@ def get_encryption_at_rest_private_endpoints(cloud_provider: Optional[str] = Non
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-
-
-@_utilities.lift_output_func(get_encryption_at_rest_private_endpoints)
 def get_encryption_at_rest_private_endpoints_output(cloud_provider: Optional[pulumi.Input[str]] = None,
                                                     project_id: Optional[pulumi.Input[str]] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEncryptionAtRestPrivateEndpointsResult]:
@@ -155,4 +157,13 @@ def get_encryption_at_rest_private_endpoints_output(cloud_provider: Optional[pul
     :param str cloud_provider: Label that identifies the cloud provider of the private endpoint.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
-    ...
+    __args__ = dict()
+    __args__['cloudProvider'] = cloud_provider
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints', __args__, opts=opts, typ=GetEncryptionAtRestPrivateEndpointsResult)
+    return __ret__.apply(lambda __response__: GetEncryptionAtRestPrivateEndpointsResult(
+        cloud_provider=pulumi.get(__response__, 'cloud_provider'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        results=pulumi.get(__response__, 'results')))

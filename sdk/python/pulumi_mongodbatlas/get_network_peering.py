@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -357,9 +362,6 @@ def get_network_peering(peering_id: Optional[str] = None,
         status_name=pulumi.get(__ret__, 'status_name'),
         vnet_name=pulumi.get(__ret__, 'vnet_name'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
-
-
-@_utilities.lift_output_func(get_network_peering)
 def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkPeeringResult]:
@@ -394,4 +396,32 @@ def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
     :param str peering_id: Atlas assigned unique ID for the peering connection.
     :param str project_id: The unique ID for the project to create the database user.
     """
-    ...
+    __args__ = dict()
+    __args__['peeringId'] = peering_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getNetworkPeering:getNetworkPeering', __args__, opts=opts, typ=GetNetworkPeeringResult)
+    return __ret__.apply(lambda __response__: GetNetworkPeeringResult(
+        accepter_region_name=pulumi.get(__response__, 'accepter_region_name'),
+        atlas_cidr_block=pulumi.get(__response__, 'atlas_cidr_block'),
+        atlas_id=pulumi.get(__response__, 'atlas_id'),
+        aws_account_id=pulumi.get(__response__, 'aws_account_id'),
+        azure_directory_id=pulumi.get(__response__, 'azure_directory_id'),
+        azure_subscription_id=pulumi.get(__response__, 'azure_subscription_id'),
+        connection_id=pulumi.get(__response__, 'connection_id'),
+        container_id=pulumi.get(__response__, 'container_id'),
+        error_message=pulumi.get(__response__, 'error_message'),
+        error_state=pulumi.get(__response__, 'error_state'),
+        error_state_name=pulumi.get(__response__, 'error_state_name'),
+        gcp_project_id=pulumi.get(__response__, 'gcp_project_id'),
+        id=pulumi.get(__response__, 'id'),
+        network_name=pulumi.get(__response__, 'network_name'),
+        peering_id=pulumi.get(__response__, 'peering_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        provider_name=pulumi.get(__response__, 'provider_name'),
+        resource_group_name=pulumi.get(__response__, 'resource_group_name'),
+        route_table_cidr_block=pulumi.get(__response__, 'route_table_cidr_block'),
+        status=pulumi.get(__response__, 'status'),
+        status_name=pulumi.get(__response__, 'status_name'),
+        vnet_name=pulumi.get(__response__, 'vnet_name'),
+        vpc_id=pulumi.get(__response__, 'vpc_id')))

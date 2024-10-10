@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := mongodbatlas.GetControlPlaneIpAddresses(ctx, nil, nil)
+//			test, err := mongodbatlas.GetControlPlaneIpAddresses(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}

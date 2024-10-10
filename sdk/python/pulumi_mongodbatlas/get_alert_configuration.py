@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -284,9 +289,6 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         threshold_configs=pulumi.get(__ret__, 'threshold_configs'),
         updated=pulumi.get(__ret__, 'updated'))
-
-
-@_utilities.lift_output_func(get_alert_configuration)
 def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input[str]] = None,
                                    outputs: Optional[pulumi.Input[Optional[Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']]]]] = None,
                                    project_id: Optional[pulumi.Input[str]] = None,
@@ -388,4 +390,22 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
            * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
     :param str project_id: The ID of the project where the alert configuration will create.
     """
-    ...
+    __args__ = dict()
+    __args__['alertConfigurationId'] = alert_configuration_id
+    __args__['outputs'] = outputs
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAlertConfiguration:getAlertConfiguration', __args__, opts=opts, typ=GetAlertConfigurationResult)
+    return __ret__.apply(lambda __response__: GetAlertConfigurationResult(
+        alert_configuration_id=pulumi.get(__response__, 'alert_configuration_id'),
+        created=pulumi.get(__response__, 'created'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        event_type=pulumi.get(__response__, 'event_type'),
+        id=pulumi.get(__response__, 'id'),
+        matchers=pulumi.get(__response__, 'matchers'),
+        metric_threshold_configs=pulumi.get(__response__, 'metric_threshold_configs'),
+        notifications=pulumi.get(__response__, 'notifications'),
+        outputs=pulumi.get(__response__, 'outputs'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        threshold_configs=pulumi.get(__response__, 'threshold_configs'),
+        updated=pulumi.get(__response__, 'updated')))
