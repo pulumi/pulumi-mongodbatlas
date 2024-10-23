@@ -69,14 +69,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalin
     }
 
     /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
      * 
      */
     @Import(name="diskGbEnabled")
     private @Nullable Output<Boolean> diskGbEnabled;
 
     /**
-     * @return Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     * @return Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
      * 
      */
     public Optional<Output<Boolean>> diskGbEnabled() {
@@ -184,7 +184,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalin
         }
 
         /**
-         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
          * 
          * @return builder
          * 
@@ -195,7 +195,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalin
         }
 
         /**
-         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
          * 
          * @return builder
          * 

@@ -72,6 +72,7 @@ namespace Pulumi.Mongodbatlas
     ///         IsPerformanceAdvisorEnabled = true,
     ///         IsRealtimePerformancePanelEnabled = true,
     ///         IsSchemaAdvisorEnabled = true,
+    ///         IsSlowOperationThresholdingEnabled = true,
     ///     });
     /// 
     /// });
@@ -142,6 +143,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("isSchemaAdvisorEnabled")]
         public Output<bool> IsSchemaAdvisorEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+        /// </summary>
+        [Output("isSlowOperationThresholdingEnabled")]
+        public Output<bool> IsSlowOperationThresholdingEnabled { get; private set; } = null!;
 
         [Output("limits")]
         public Output<ImmutableArray<Outputs.ProjectLimit>> Limits { get; private set; } = null!;
@@ -267,6 +274,12 @@ namespace Pulumi.Mongodbatlas
         [Input("isSchemaAdvisorEnabled")]
         public Input<bool>? IsSchemaAdvisorEnabled { get; set; }
 
+        /// <summary>
+        /// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+        /// </summary>
+        [Input("isSlowOperationThresholdingEnabled")]
+        public Input<bool>? IsSlowOperationThresholdingEnabled { get; set; }
+
         [Input("limits")]
         private InputList<Inputs.ProjectLimitArgs>? _limits;
         public InputList<Inputs.ProjectLimitArgs> Limits
@@ -386,6 +399,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("isSchemaAdvisorEnabled")]
         public Input<bool>? IsSchemaAdvisorEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+        /// </summary>
+        [Input("isSlowOperationThresholdingEnabled")]
+        public Input<bool>? IsSlowOperationThresholdingEnabled { get; set; }
 
         [Input("limits")]
         private InputList<Inputs.ProjectLimitGetArgs>? _limits;

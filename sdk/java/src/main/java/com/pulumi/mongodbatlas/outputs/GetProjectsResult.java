@@ -72,6 +72,11 @@ public final class GetProjectsResult {
      */
     private Boolean isSchemaAdvisorEnabled;
     /**
+     * @return Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+     * 
+     */
+    private Boolean isSlowOperationThresholdingEnabled;
+    /**
      * @return The limits for the specified project. See Limits.
      * 
      */
@@ -175,6 +180,13 @@ public final class GetProjectsResult {
         return this.isSchemaAdvisorEnabled;
     }
     /**
+     * @return Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+     * 
+     */
+    public Boolean isSlowOperationThresholdingEnabled() {
+        return this.isSlowOperationThresholdingEnabled;
+    }
+    /**
      * @return The limits for the specified project. See Limits.
      * 
      */
@@ -235,6 +247,7 @@ public final class GetProjectsResult {
         private Boolean isPerformanceAdvisorEnabled;
         private Boolean isRealtimePerformancePanelEnabled;
         private Boolean isSchemaAdvisorEnabled;
+        private Boolean isSlowOperationThresholdingEnabled;
         private List<GetProjectsResultLimit> limits;
         private String name;
         private String orgId;
@@ -255,6 +268,7 @@ public final class GetProjectsResult {
     	      this.isPerformanceAdvisorEnabled = defaults.isPerformanceAdvisorEnabled;
     	      this.isRealtimePerformancePanelEnabled = defaults.isRealtimePerformancePanelEnabled;
     	      this.isSchemaAdvisorEnabled = defaults.isSchemaAdvisorEnabled;
+    	      this.isSlowOperationThresholdingEnabled = defaults.isSlowOperationThresholdingEnabled;
     	      this.limits = defaults.limits;
     	      this.name = defaults.name;
     	      this.orgId = defaults.orgId;
@@ -345,6 +359,14 @@ public final class GetProjectsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder isSlowOperationThresholdingEnabled(Boolean isSlowOperationThresholdingEnabled) {
+            if (isSlowOperationThresholdingEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectsResult", "isSlowOperationThresholdingEnabled");
+            }
+            this.isSlowOperationThresholdingEnabled = isSlowOperationThresholdingEnabled;
+            return this;
+        }
+        @CustomType.Setter
         public Builder limits(List<GetProjectsResultLimit> limits) {
             if (limits == null) {
               throw new MissingRequiredPropertyException("GetProjectsResult", "limits");
@@ -418,6 +440,7 @@ public final class GetProjectsResult {
             _resultValue.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             _resultValue.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             _resultValue.isSchemaAdvisorEnabled = isSchemaAdvisorEnabled;
+            _resultValue.isSlowOperationThresholdingEnabled = isSlowOperationThresholdingEnabled;
             _resultValue.limits = limits;
             _resultValue.name = name;
             _resultValue.orgId = orgId;

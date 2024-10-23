@@ -242,7 +242,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
      */
     computeScaleDownEnabled: boolean;
     /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
      */
     diskGbEnabled: boolean;
 }
@@ -1971,6 +1971,14 @@ export interface GetAdvancedClustersResult {
      */
     clusterType: string;
     /**
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    configServerManagementMode: string;
+    /**
+     * Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    configServerType: string;
+    /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     connectionStrings: outputs.GetAdvancedClustersResultConnectionString[];
@@ -1991,8 +1999,6 @@ export interface GetAdvancedClustersResult {
     globalClusterSelfManagedSharding: boolean;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-     *
-     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels: outputs.GetAdvancedClustersResultLabel[];
     /**
@@ -2013,7 +2019,7 @@ export interface GetAdvancedClustersResult {
      */
     pitEnabled: boolean;
     /**
-     * (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
      */
     redactClientLogData: boolean;
     /**
@@ -3780,8 +3786,6 @@ export interface GetClustersResult {
     encryptionAtRestProvider: string;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-     *
-     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels: outputs.GetClustersResultLabel[];
     /**
@@ -3862,7 +3866,7 @@ export interface GetClustersResult {
      */
     providerVolumeType: string;
     /**
-     * (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
      */
     redactClientLogData: boolean;
     /**
@@ -6133,6 +6137,10 @@ export interface GetProjectsResult {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     isSchemaAdvisorEnabled: boolean;
+    /**
+     * Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+     */
+    isSlowOperationThresholdingEnabled: boolean;
     /**
      * The limits for the specified project. See Limits.
      */

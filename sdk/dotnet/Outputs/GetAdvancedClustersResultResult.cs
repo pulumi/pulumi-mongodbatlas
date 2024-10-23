@@ -27,6 +27,14 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ClusterType;
         /// <summary>
+        /// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        /// </summary>
+        public readonly string ConfigServerManagementMode;
+        /// <summary>
+        /// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        /// </summary>
+        public readonly string ConfigServerType;
+        /// <summary>
         /// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultConnectionStringResult> ConnectionStrings;
@@ -65,7 +73,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool PitEnabled;
         /// <summary>
-        /// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        /// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         /// </summary>
         public readonly bool RedactClientLogData;
         /// <summary>
@@ -106,6 +114,10 @@ namespace Pulumi.Mongodbatlas.Outputs
             ImmutableArray<Outputs.GetAdvancedClustersResultBiConnectorConfigResult> biConnectorConfigs,
 
             string clusterType,
+
+            string configServerManagementMode,
+
+            string configServerType,
 
             ImmutableArray<Outputs.GetAdvancedClustersResultConnectionStringResult> connectionStrings,
 
@@ -149,6 +161,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             BackupEnabled = backupEnabled;
             BiConnectorConfigs = biConnectorConfigs;
             ClusterType = clusterType;
+            ConfigServerManagementMode = configServerManagementMode;
+            ConfigServerType = configServerType;
             ConnectionStrings = connectionStrings;
             CreateDate = createDate;
             DiskSizeGb = diskSizeGb;

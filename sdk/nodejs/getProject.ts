@@ -147,6 +147,10 @@ export interface GetProjectResult {
      */
     readonly isSchemaAdvisorEnabled: boolean;
     /**
+     * Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+     */
+    readonly isSlowOperationThresholdingEnabled: boolean;
+    /**
      * The limits for the specified project. See Limits.
      */
     readonly limits: outputs.GetProjectLimit[];

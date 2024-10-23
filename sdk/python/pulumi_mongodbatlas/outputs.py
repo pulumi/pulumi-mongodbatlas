@@ -1230,7 +1230,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
         :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
         :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
-        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         if compute_enabled is not None:
             pulumi.set(__self__, "compute_enabled", compute_enabled)
@@ -1276,7 +1276,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
     @pulumi.getter(name="diskGbEnabled")
     def disk_gb_enabled(self) -> Optional[bool]:
         """
-        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         return pulumi.get(self, "disk_gb_enabled")
 
@@ -9386,6 +9386,8 @@ class GetAdvancedClustersResultResult(dict):
                  backup_enabled: bool,
                  bi_connector_configs: Sequence['outputs.GetAdvancedClustersResultBiConnectorConfigResult'],
                  cluster_type: str,
+                 config_server_management_mode: str,
+                 config_server_type: str,
                  connection_strings: Sequence['outputs.GetAdvancedClustersResultConnectionStringResult'],
                  create_date: str,
                  disk_size_gb: float,
@@ -9409,6 +9411,8 @@ class GetAdvancedClustersResultResult(dict):
         :param Sequence['GetAdvancedClustersResultAdvancedConfigurationArgs'] advanced_configurations: Get the advanced configuration options. See Advanced Configuration below for more details.
         :param Sequence['GetAdvancedClustersResultBiConnectorConfigArgs'] bi_connector_configs: Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
         :param str cluster_type: Type of the cluster that you want to create.
+        :param str config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        :param str config_server_type: Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
         :param Sequence['GetAdvancedClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         :param str encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.
@@ -9418,7 +9422,7 @@ class GetAdvancedClustersResultResult(dict):
         :param str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param bool paused: Flag that indicates whether the cluster is paused or not.
         :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         :param str replica_set_scaling_strategy: (Optional) Replica set scaling mode for your cluster.
         :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         :param str root_cert_type: Certificate Authority that MongoDB Atlas clusters use.
@@ -9431,6 +9435,8 @@ class GetAdvancedClustersResultResult(dict):
         pulumi.set(__self__, "backup_enabled", backup_enabled)
         pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
         pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "config_server_management_mode", config_server_management_mode)
+        pulumi.set(__self__, "config_server_type", config_server_type)
         pulumi.set(__self__, "connection_strings", connection_strings)
         pulumi.set(__self__, "create_date", create_date)
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
@@ -9481,6 +9487,22 @@ class GetAdvancedClustersResultResult(dict):
         return pulumi.get(self, "cluster_type")
 
     @property
+    @pulumi.getter(name="configServerManagementMode")
+    def config_server_management_mode(self) -> str:
+        """
+        Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_management_mode")
+
+    @property
+    @pulumi.getter(name="configServerType")
+    def config_server_type(self) -> str:
+        """
+        Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_type")
+
+    @property
     @pulumi.getter(name="connectionStrings")
     def connection_strings(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringResult']:
         """
@@ -9520,7 +9542,6 @@ class GetAdvancedClustersResultResult(dict):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Sequence['outputs.GetAdvancedClustersResultLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -9568,7 +9589,7 @@ class GetAdvancedClustersResultResult(dict):
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> bool:
         """
-        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -14373,7 +14394,7 @@ class GetClustersResultResult(dict):
         :param str provider_region_name: Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param str provider_volume_type: Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
                > **NOTE:** `STANDARD` is not available for NVME clusters.
-        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         :param int replication_factor: (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param Sequence['GetClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param Sequence['GetClustersResultSnapshotBackupPolicyArgs'] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
@@ -14529,7 +14550,6 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Sequence['outputs.GetClustersResultLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -14693,7 +14713,7 @@ class GetClustersResultResult(dict):
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> bool:
         """
-        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -21417,6 +21437,7 @@ class GetProjectsResultResult(dict):
                  is_performance_advisor_enabled: bool,
                  is_realtime_performance_panel_enabled: bool,
                  is_schema_advisor_enabled: bool,
+                 is_slow_operation_thresholding_enabled: bool,
                  limits: Sequence['outputs.GetProjectsResultLimitResult'],
                  name: str,
                  org_id: str,
@@ -21435,6 +21456,7 @@ class GetProjectsResultResult(dict):
         :param bool is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param bool is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        :param bool is_slow_operation_thresholding_enabled: Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
         :param Sequence['GetProjectsResultLimitArgs'] limits: The limits for the specified project. See Limits.
         :param str org_id: The ID of the organization you want to create the project within.
         :param str region_usage_restrictions: If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
@@ -21451,6 +21473,7 @@ class GetProjectsResultResult(dict):
         pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
         pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        pulumi.set(__self__, "is_slow_operation_thresholding_enabled", is_slow_operation_thresholding_enabled)
         pulumi.set(__self__, "limits", limits)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "org_id", org_id)
@@ -21539,6 +21562,14 @@ class GetProjectsResultResult(dict):
         Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         """
         return pulumi.get(self, "is_schema_advisor_enabled")
+
+    @property
+    @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    def is_slow_operation_thresholding_enabled(self) -> bool:
+        """
+        Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+        """
+        return pulumi.get(self, "is_slow_operation_thresholding_enabled")
 
     @property
     @pulumi.getter

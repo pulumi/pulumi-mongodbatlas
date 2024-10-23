@@ -1476,7 +1476,7 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling struct {
 	ComputeMinInstanceSize *string `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
 	ComputeScaleDownEnabled *bool `pulumi:"computeScaleDownEnabled"`
-	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 	DiskGbEnabled *bool `pulumi:"diskGbEnabled"`
 }
 
@@ -1499,7 +1499,7 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs struct {
 	ComputeMinInstanceSize pulumi.StringPtrInput `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
 	ComputeScaleDownEnabled pulumi.BoolPtrInput `pulumi:"computeScaleDownEnabled"`
-	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 	DiskGbEnabled pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
 }
 
@@ -1605,7 +1605,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) Co
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling) *bool { return v.DiskGbEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -1673,7 +1673,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling) *bool {
 		if v == nil {
@@ -20162,6 +20162,10 @@ type GetAdvancedClustersResult struct {
 	BiConnectorConfigs []GetAdvancedClustersResultBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Type of the cluster that you want to create.
 	ClusterType string `pulumi:"clusterType"`
+	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerManagementMode string `pulumi:"configServerManagementMode"`
+	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerType string `pulumi:"configServerType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []GetAdvancedClustersResultConnectionString `pulumi:"connectionStrings"`
 	CreateDate        string                                      `pulumi:"createDate"`
@@ -20174,8 +20178,6 @@ type GetAdvancedClustersResult struct {
 	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
 	GlobalClusterSelfManagedSharding bool `pulumi:"globalClusterSelfManagedSharding"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []GetAdvancedClustersResultLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -20186,7 +20188,7 @@ type GetAdvancedClustersResult struct {
 	Paused bool `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
-	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
@@ -20223,6 +20225,10 @@ type GetAdvancedClustersResultArgs struct {
 	BiConnectorConfigs GetAdvancedClustersResultBiConnectorConfigArrayInput `pulumi:"biConnectorConfigs"`
 	// Type of the cluster that you want to create.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
+	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerManagementMode pulumi.StringInput `pulumi:"configServerManagementMode"`
+	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerType pulumi.StringInput `pulumi:"configServerType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings GetAdvancedClustersResultConnectionStringArrayInput `pulumi:"connectionStrings"`
 	CreateDate        pulumi.StringInput                                  `pulumi:"createDate"`
@@ -20235,8 +20241,6 @@ type GetAdvancedClustersResultArgs struct {
 	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
 	GlobalClusterSelfManagedSharding pulumi.BoolInput `pulumi:"globalClusterSelfManagedSharding"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels GetAdvancedClustersResultLabelArrayInput `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -20247,7 +20251,7 @@ type GetAdvancedClustersResultArgs struct {
 	Paused pulumi.BoolInput `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
-	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy pulumi.StringInput `pulumi:"replicaSetScalingStrategy"`
@@ -20339,6 +20343,16 @@ func (o GetAdvancedClustersResultOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ClusterType }).(pulumi.StringOutput)
 }
 
+// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+func (o GetAdvancedClustersResultOutput) ConfigServerManagementMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ConfigServerManagementMode }).(pulumi.StringOutput)
+}
+
+// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+func (o GetAdvancedClustersResultOutput) ConfigServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ConfigServerType }).(pulumi.StringOutput)
+}
+
 // Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 func (o GetAdvancedClustersResultOutput) ConnectionStrings() GetAdvancedClustersResultConnectionStringArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultConnectionString {
@@ -20368,8 +20382,6 @@ func (o GetAdvancedClustersResultOutput) GlobalClusterSelfManagedSharding() pulu
 }
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-//
-// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 func (o GetAdvancedClustersResultOutput) Labels() GetAdvancedClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultLabel { return v.Labels }).(GetAdvancedClustersResultLabelArrayOutput)
 }
@@ -20398,7 +20410,7 @@ func (o GetAdvancedClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 func (o GetAdvancedClustersResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
@@ -30079,8 +30091,6 @@ type GetClustersResult struct {
 	// Indicates whether Encryption at Rest is enabled or disabled.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []GetClustersResultLabel `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -30121,7 +30131,7 @@ type GetClustersResult struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType string `pulumi:"providerVolumeType"`
-	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor int `pulumi:"replicationFactor"`
@@ -30184,8 +30194,6 @@ type GetClustersResultArgs struct {
 	// Indicates whether Encryption at Rest is enabled or disabled.
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels GetClustersResultLabelArrayInput `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -30226,7 +30234,7 @@ type GetClustersResultArgs struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringInput `pulumi:"providerVolumeType"`
-	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntInput `pulumi:"replicationFactor"`
@@ -30364,8 +30372,6 @@ func (o GetClustersResultOutput) EncryptionAtRestProvider() pulumi.StringOutput 
 }
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-//
-// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 func (o GetClustersResultOutput) Labels() GetClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersResultLabel { return v.Labels }).(GetClustersResultLabelArrayOutput)
 }
@@ -30466,7 +30472,7 @@ func (o GetClustersResultOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderVolumeType }).(pulumi.StringOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 func (o GetClustersResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
@@ -46694,6 +46700,8 @@ type GetProjectsResult struct {
 	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
+	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+	IsSlowOperationThresholdingEnabled bool `pulumi:"isSlowOperationThresholdingEnabled"`
 	// The limits for the specified project. See Limits.
 	Limits []GetProjectsResultLimit `pulumi:"limits"`
 	Name   string                   `pulumi:"name"`
@@ -46742,6 +46750,8 @@ type GetProjectsResultArgs struct {
 	IsRealtimePerformancePanelEnabled pulumi.BoolInput `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
+	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+	IsSlowOperationThresholdingEnabled pulumi.BoolInput `pulumi:"isSlowOperationThresholdingEnabled"`
 	// The limits for the specified project. See Limits.
 	Limits GetProjectsResultLimitArrayInput `pulumi:"limits"`
 	Name   pulumi.StringInput               `pulumi:"name"`
@@ -46857,6 +46867,11 @@ func (o GetProjectsResultOutput) IsRealtimePerformancePanelEnabled() pulumi.Bool
 // Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+func (o GetProjectsResultOutput) IsSlowOperationThresholdingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSlowOperationThresholdingEnabled }).(pulumi.BoolOutput)
 }
 
 // The limits for the specified project. See Limits.

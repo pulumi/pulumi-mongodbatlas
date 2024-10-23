@@ -29,7 +29,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalin
      */
     private @Nullable Boolean computeScaleDownEnabled;
     /**
-     * @return Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     * @return Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
      * 
      */
     private @Nullable Boolean diskGbEnabled;
@@ -60,7 +60,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalin
         return Optional.ofNullable(this.computeScaleDownEnabled);
     }
     /**
-     * @return Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     * @return Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
      * 
      */
     public Optional<Boolean> diskGbEnabled() {

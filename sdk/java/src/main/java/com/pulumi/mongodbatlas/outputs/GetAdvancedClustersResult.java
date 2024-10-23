@@ -36,6 +36,16 @@ public final class GetAdvancedClustersResult {
      */
     private String clusterType;
     /**
+     * @return Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    private String configServerManagementMode;
+    /**
+     * @return Describes a sharded cluster&#39;s config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    private String configServerType;
+    /**
      * @return Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
@@ -63,11 +73,7 @@ public final class GetAdvancedClustersResult {
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the future. Please transition to tags
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     private List<GetAdvancedClustersResultLabel> labels;
     /**
      * @return Version of the cluster to deploy.
@@ -91,7 +97,7 @@ public final class GetAdvancedClustersResult {
      */
     private Boolean pitEnabled;
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
      * 
      */
     private Boolean redactClientLogData;
@@ -157,6 +163,20 @@ public final class GetAdvancedClustersResult {
         return this.clusterType;
     }
     /**
+     * @return Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    public String configServerManagementMode() {
+        return this.configServerManagementMode;
+    }
+    /**
+     * @return Describes a sharded cluster&#39;s config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    public String configServerType() {
+        return this.configServerType;
+    }
+    /**
      * @return Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
@@ -194,11 +214,7 @@ public final class GetAdvancedClustersResult {
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the future. Please transition to tags
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     public List<GetAdvancedClustersResultLabel> labels() {
         return this.labels;
     }
@@ -234,7 +250,7 @@ public final class GetAdvancedClustersResult {
         return this.pitEnabled;
     }
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
      * 
      */
     public Boolean redactClientLogData() {
@@ -303,6 +319,8 @@ public final class GetAdvancedClustersResult {
         private Boolean backupEnabled;
         private List<GetAdvancedClustersResultBiConnectorConfig> biConnectorConfigs;
         private String clusterType;
+        private String configServerManagementMode;
+        private String configServerType;
         private List<GetAdvancedClustersResultConnectionString> connectionStrings;
         private String createDate;
         private Double diskSizeGb;
@@ -329,6 +347,8 @@ public final class GetAdvancedClustersResult {
     	      this.backupEnabled = defaults.backupEnabled;
     	      this.biConnectorConfigs = defaults.biConnectorConfigs;
     	      this.clusterType = defaults.clusterType;
+    	      this.configServerManagementMode = defaults.configServerManagementMode;
+    	      this.configServerType = defaults.configServerType;
     	      this.connectionStrings = defaults.connectionStrings;
     	      this.createDate = defaults.createDate;
     	      this.diskSizeGb = defaults.diskSizeGb;
@@ -386,6 +406,22 @@ public final class GetAdvancedClustersResult {
               throw new MissingRequiredPropertyException("GetAdvancedClustersResult", "clusterType");
             }
             this.clusterType = clusterType;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder configServerManagementMode(String configServerManagementMode) {
+            if (configServerManagementMode == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResult", "configServerManagementMode");
+            }
+            this.configServerManagementMode = configServerManagementMode;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder configServerType(String configServerType) {
+            if (configServerType == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResult", "configServerType");
+            }
+            this.configServerType = configServerType;
             return this;
         }
         @CustomType.Setter
@@ -558,6 +594,8 @@ public final class GetAdvancedClustersResult {
             _resultValue.backupEnabled = backupEnabled;
             _resultValue.biConnectorConfigs = biConnectorConfigs;
             _resultValue.clusterType = clusterType;
+            _resultValue.configServerManagementMode = configServerManagementMode;
+            _resultValue.configServerType = configServerType;
             _resultValue.connectionStrings = connectionStrings;
             _resultValue.createDate = createDate;
             _resultValue.diskSizeGb = diskSizeGb;

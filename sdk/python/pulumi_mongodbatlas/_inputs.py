@@ -1337,7 +1337,7 @@ if not MYPY:
         """
         disk_gb_enabled: NotRequired[pulumi.Input[bool]]
         """
-        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
 elif False:
     AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgsDict: TypeAlias = Mapping[str, Any]
@@ -1354,7 +1354,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
         :param pulumi.Input[str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
         :param pulumi.Input[str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
         :param pulumi.Input[bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
-        :param pulumi.Input[bool] disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        :param pulumi.Input[bool] disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         if compute_enabled is not None:
             pulumi.set(__self__, "compute_enabled", compute_enabled)
@@ -1416,7 +1416,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
     @pulumi.getter(name="diskGbEnabled")
     def disk_gb_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         return pulumi.get(self, "disk_gb_enabled")
 

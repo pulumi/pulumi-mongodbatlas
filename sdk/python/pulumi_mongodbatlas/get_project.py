@@ -27,7 +27,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None):
+    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, is_slow_operation_thresholding_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None):
         if cluster_count and not isinstance(cluster_count, int):
             raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
@@ -58,6 +58,9 @@ class GetProjectResult:
         if is_schema_advisor_enabled and not isinstance(is_schema_advisor_enabled, bool):
             raise TypeError("Expected argument 'is_schema_advisor_enabled' to be a bool")
         pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        if is_slow_operation_thresholding_enabled and not isinstance(is_slow_operation_thresholding_enabled, bool):
+            raise TypeError("Expected argument 'is_slow_operation_thresholding_enabled' to be a bool")
+        pulumi.set(__self__, "is_slow_operation_thresholding_enabled", is_slow_operation_thresholding_enabled)
         if limits and not isinstance(limits, list):
             raise TypeError("Expected argument 'limits' to be a list")
         pulumi.set(__self__, "limits", limits)
@@ -159,6 +162,14 @@ class GetProjectResult:
         return pulumi.get(self, "is_schema_advisor_enabled")
 
     @property
+    @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    def is_slow_operation_thresholding_enabled(self) -> bool:
+        """
+        Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. To use this resource, the requesting API Key must have the Project Owner role.
+        """
+        return pulumi.get(self, "is_slow_operation_thresholding_enabled")
+
+    @property
     @pulumi.getter
     def limits(self) -> Sequence['outputs.GetProjectLimitResult']:
         """
@@ -228,6 +239,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             is_performance_advisor_enabled=self.is_performance_advisor_enabled,
             is_realtime_performance_panel_enabled=self.is_realtime_performance_panel_enabled,
             is_schema_advisor_enabled=self.is_schema_advisor_enabled,
+            is_slow_operation_thresholding_enabled=self.is_slow_operation_thresholding_enabled,
             limits=self.limits,
             name=self.name,
             org_id=self.org_id,
@@ -329,6 +341,7 @@ def get_project(name: Optional[str] = None,
         is_performance_advisor_enabled=pulumi.get(__ret__, 'is_performance_advisor_enabled'),
         is_realtime_performance_panel_enabled=pulumi.get(__ret__, 'is_realtime_performance_panel_enabled'),
         is_schema_advisor_enabled=pulumi.get(__ret__, 'is_schema_advisor_enabled'),
+        is_slow_operation_thresholding_enabled=pulumi.get(__ret__, 'is_slow_operation_thresholding_enabled'),
         limits=pulumi.get(__ret__, 'limits'),
         name=pulumi.get(__ret__, 'name'),
         org_id=pulumi.get(__ret__, 'org_id'),
@@ -427,6 +440,7 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         is_performance_advisor_enabled=pulumi.get(__response__, 'is_performance_advisor_enabled'),
         is_realtime_performance_panel_enabled=pulumi.get(__response__, 'is_realtime_performance_panel_enabled'),
         is_schema_advisor_enabled=pulumi.get(__response__, 'is_schema_advisor_enabled'),
+        is_slow_operation_thresholding_enabled=pulumi.get(__response__, 'is_slow_operation_thresholding_enabled'),
         limits=pulumi.get(__response__, 'limits'),
         name=pulumi.get(__response__, 'name'),
         org_id=pulumi.get(__response__, 'org_id'),

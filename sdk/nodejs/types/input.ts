@@ -242,7 +242,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
      */
     computeScaleDownEnabled?: pulumi.Input<boolean>;
     /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
      */
     diskGbEnabled?: pulumi.Input<boolean>;
 }
