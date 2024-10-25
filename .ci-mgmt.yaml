@@ -21,3 +21,4 @@ license:
   ignore:
     - github.com/mongodb/terraform-provider-mongodbatlas/shim
 pulumiConvert: 1
+registryDocs: true
