@@ -272,22 +272,14 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the future. Please transition to tags
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     @Import(name="labels")
     private @Nullable Output<List<ClusterLabelArgs>> labels;
 
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the future. Please transition to tags
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     public Optional<Output<List<ClusterLabelArgs>>> labels() {
         return Optional.ofNullable(this.labels);
     }
@@ -605,14 +597,14 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
      * 
      */
     @Import(name="redactClientLogData")
     private @Nullable Output<Boolean> redactClientLogData;
 
     /**
-     * @return Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+     * @return Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
      * 
      */
     public Optional<Output<Boolean>> redactClientLogData() {
@@ -1171,11 +1163,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the future. Please transition to tags
-         * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(@Nullable Output<List<ClusterLabelArgs>> labels) {
             $.labels = labels;
             return this;
@@ -1186,11 +1174,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the future. Please transition to tags
-         * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(List<ClusterLabelArgs> labels) {
             return labels(Output.of(labels));
         }
@@ -1200,11 +1184,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the future. Please transition to tags
-         * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(ClusterLabelArgs... labels) {
             return labels(List.of(labels));
         }
@@ -1634,7 +1614,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redactClientLogData Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+         * @param redactClientLogData Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
          * 
          * @return builder
          * 
@@ -1645,7 +1625,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redactClientLogData Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+         * @param redactClientLogData Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
          * 
          * @return builder
          * 

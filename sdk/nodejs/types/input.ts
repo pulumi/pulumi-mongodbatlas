@@ -133,7 +133,7 @@ export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -154,8 +154,13 @@ export interface AdvancedClusterLabel {
 
 export interface AdvancedClusterReplicationSpec {
     containerId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+     */
     externalId?: pulumi.Input<string>;
     /**
+     * **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
     id?: pulumi.Input<string>;
@@ -214,7 +219,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: pulumi.Input<string>;
     /**
@@ -242,7 +247,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
      */
     computeScaleDownEnabled?: pulumi.Input<boolean>;
     /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
      */
     diskGbEnabled?: pulumi.Input<boolean>;
 }
@@ -1070,7 +1075,7 @@ export interface ClusterOutageSimulationOutageFilter {
 
 export interface ClusterReplicationSpec {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id?: pulumi.Input<string>;
     /**
@@ -1135,7 +1140,7 @@ export interface ClusterSnapshotBackupPolicy {
 
 export interface ClusterSnapshotBackupPolicyPolicy {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id?: pulumi.Input<string>;
     policyItems?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicyPolicyPolicyItem>[]>;
@@ -1145,7 +1150,7 @@ export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval?: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id?: pulumi.Input<string>;
     retentionUnit?: pulumi.Input<string>;

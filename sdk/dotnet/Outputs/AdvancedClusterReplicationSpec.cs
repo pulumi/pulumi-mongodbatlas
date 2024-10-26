@@ -14,7 +14,13 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class AdvancedClusterReplicationSpec
     {
         public readonly ImmutableDictionary<string, string>? ContainerId;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        /// </summary>
         public readonly string? ExternalId;
+        /// <summary>
+        /// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        /// </summary>
         public readonly string? Id;
         /// <summary>
         /// Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.

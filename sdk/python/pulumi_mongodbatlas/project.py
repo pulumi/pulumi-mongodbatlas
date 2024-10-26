@@ -28,6 +28,7 @@ class ProjectArgs:
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_slow_operation_thresholding_enabled: Optional[pulumi.Input[bool]] = None,
                  limits: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -44,6 +45,7 @@ class ProjectArgs:
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
+        :param pulumi.Input[bool] is_slow_operation_thresholding_enabled: (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
         :param pulumi.Input[str] name: The name of the project you want to create.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
@@ -63,6 +65,11 @@ class ProjectArgs:
             pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         if is_schema_advisor_enabled is not None:
             pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        if is_slow_operation_thresholding_enabled is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in version 1.24.0.""", DeprecationWarning)
+            pulumi.log.warn("""is_slow_operation_thresholding_enabled is deprecated: This parameter is deprecated and will be removed in version 1.24.0.""")
+        if is_slow_operation_thresholding_enabled is not None:
+            pulumi.set(__self__, "is_slow_operation_thresholding_enabled", is_slow_operation_thresholding_enabled)
         if limits is not None:
             pulumi.set(__self__, "limits", limits)
         if name is not None:
@@ -163,6 +170,19 @@ class ProjectArgs:
         pulumi.set(self, "is_schema_advisor_enabled", value)
 
     @property
+    @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.24.0.""")
+    def is_slow_operation_thresholding_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+        """
+        return pulumi.get(self, "is_slow_operation_thresholding_enabled")
+
+    @is_slow_operation_thresholding_enabled.setter
+    def is_slow_operation_thresholding_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_slow_operation_thresholding_enabled", value)
+
+    @property
     @pulumi.getter
     def limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]:
         return pulumi.get(self, "limits")
@@ -253,6 +273,7 @@ class _ProjectState:
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_slow_operation_thresholding_enabled: Optional[pulumi.Input[bool]] = None,
                  limits: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -272,6 +293,7 @@ class _ProjectState:
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
+        :param pulumi.Input[bool] is_slow_operation_thresholding_enabled: (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
         :param pulumi.Input[str] name: The name of the project you want to create.
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
@@ -300,6 +322,11 @@ class _ProjectState:
             pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         if is_schema_advisor_enabled is not None:
             pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        if is_slow_operation_thresholding_enabled is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in version 1.24.0.""", DeprecationWarning)
+            pulumi.log.warn("""is_slow_operation_thresholding_enabled is deprecated: This parameter is deprecated and will be removed in version 1.24.0.""")
+        if is_slow_operation_thresholding_enabled is not None:
+            pulumi.set(__self__, "is_slow_operation_thresholding_enabled", is_slow_operation_thresholding_enabled)
         if limits is not None:
             pulumi.set(__self__, "limits", limits)
         if name is not None:
@@ -427,6 +454,19 @@ class _ProjectState:
         pulumi.set(self, "is_schema_advisor_enabled", value)
 
     @property
+    @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.24.0.""")
+    def is_slow_operation_thresholding_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+        """
+        return pulumi.get(self, "is_slow_operation_thresholding_enabled")
+
+    @is_slow_operation_thresholding_enabled.setter
+    def is_slow_operation_thresholding_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_slow_operation_thresholding_enabled", value)
+
+    @property
     @pulumi.getter
     def limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]:
         return pulumi.get(self, "limits")
@@ -528,6 +568,7 @@ class Project(pulumi.CustomResource):
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_slow_operation_thresholding_enabled: Optional[pulumi.Input[bool]] = None,
                  limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -583,7 +624,8 @@ class Project(pulumi.CustomResource):
             is_extended_storage_sizes_enabled=True,
             is_performance_advisor_enabled=True,
             is_realtime_performance_panel_enabled=True,
-            is_schema_advisor_enabled=True)
+            is_schema_advisor_enabled=True,
+            is_slow_operation_thresholding_enabled=True)
         ```
 
         ## Import
@@ -603,6 +645,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
+        :param pulumi.Input[bool] is_slow_operation_thresholding_enabled: (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
         :param pulumi.Input[str] name: The name of the project you want to create.
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
@@ -662,7 +705,8 @@ class Project(pulumi.CustomResource):
             is_extended_storage_sizes_enabled=True,
             is_performance_advisor_enabled=True,
             is_realtime_performance_panel_enabled=True,
-            is_schema_advisor_enabled=True)
+            is_schema_advisor_enabled=True,
+            is_slow_operation_thresholding_enabled=True)
         ```
 
         ## Import
@@ -695,6 +739,7 @@ class Project(pulumi.CustomResource):
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_slow_operation_thresholding_enabled: Optional[pulumi.Input[bool]] = None,
                  limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -718,6 +763,7 @@ class Project(pulumi.CustomResource):
             __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
             __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
             __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
+            __props__.__dict__["is_slow_operation_thresholding_enabled"] = is_slow_operation_thresholding_enabled
             __props__.__dict__["limits"] = limits
             __props__.__dict__["name"] = name
             if org_id is None and not opts.urn:
@@ -750,6 +796,7 @@ class Project(pulumi.CustomResource):
             is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
             is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
             is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+            is_slow_operation_thresholding_enabled: Optional[pulumi.Input[bool]] = None,
             limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
@@ -774,6 +821,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
+        :param pulumi.Input[bool] is_slow_operation_thresholding_enabled: (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
         :param pulumi.Input[str] name: The name of the project you want to create.
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
@@ -794,6 +842,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
         __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
         __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
+        __props__.__dict__["is_slow_operation_thresholding_enabled"] = is_slow_operation_thresholding_enabled
         __props__.__dict__["limits"] = limits
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
@@ -876,6 +925,15 @@ class Project(pulumi.CustomResource):
         Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
         """
         return pulumi.get(self, "is_schema_advisor_enabled")
+
+    @property
+    @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.24.0.""")
+    def is_slow_operation_thresholding_enabled(self) -> pulumi.Output[bool]:
+        """
+        (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+        """
+        return pulumi.get(self, "is_slow_operation_thresholding_enabled")
 
     @property
     @pulumi.getter

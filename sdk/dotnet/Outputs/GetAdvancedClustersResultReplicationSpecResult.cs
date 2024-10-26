@@ -17,6 +17,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         /// </summary>
         public readonly ImmutableDictionary<string, string> ContainerId;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        /// </summary>
         public readonly string ExternalId;
         public readonly string Id;
         /// <summary>

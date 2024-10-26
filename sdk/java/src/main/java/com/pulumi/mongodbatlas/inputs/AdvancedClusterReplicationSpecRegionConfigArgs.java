@@ -123,7 +123,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      * 
      */
     @Import(name="providerName", required=true)
@@ -136,7 +136,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      * 
      */
     public Output<String> providerName() {
@@ -342,7 +342,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
          * - `AWS` - Amazon AWS
          * - `GCP` - Google Cloud Platform
          * - `AZURE` - Microsoft Azure
-         * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+         * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
          * 
          * @return builder
          * 
@@ -359,7 +359,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
          * - `AWS` - Amazon AWS
          * - `GCP` - Google Cloud Platform
          * - `AZURE` - Microsoft Azure
-         * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+         * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
          * 
          * @return builder
          * 

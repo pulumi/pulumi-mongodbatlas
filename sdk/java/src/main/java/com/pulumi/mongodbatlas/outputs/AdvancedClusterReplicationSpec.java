@@ -17,8 +17,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AdvancedClusterReplicationSpec {
     private @Nullable Map<String,String> containerId;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+     * 
+     */
     private @Nullable String externalId;
     /**
+     * @return **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * 
      * @deprecated
      * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
@@ -55,10 +61,16 @@ public final class AdvancedClusterReplicationSpec {
     public Map<String,String> containerId() {
         return this.containerId == null ? Map.of() : this.containerId;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+     * 
+     */
     public Optional<String> externalId() {
         return Optional.ofNullable(this.externalId);
     }
     /**
+     * @return **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * 
      * @deprecated
      * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 

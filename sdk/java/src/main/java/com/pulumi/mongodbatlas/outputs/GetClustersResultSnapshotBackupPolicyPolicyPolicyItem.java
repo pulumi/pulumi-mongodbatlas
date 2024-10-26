@@ -14,7 +14,7 @@ public final class GetClustersResultSnapshotBackupPolicyPolicyPolicyItem {
     private Integer frequencyInterval;
     private String frequencyType;
     /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * @return Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      * 
      */
     private String id;
@@ -29,7 +29,7 @@ public final class GetClustersResultSnapshotBackupPolicyPolicyPolicyItem {
         return this.frequencyType;
     }
     /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * @return Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      * 
      */
     public String id() {

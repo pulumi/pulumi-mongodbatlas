@@ -116,6 +116,21 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    @Import(name="configServerManagementMode")
+    private @Nullable Output<String> configServerManagementMode;
+
+    /**
+     * @return Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    public Optional<Output<String>> configServerManagementMode() {
+        return Optional.ofNullable(this.configServerManagementMode);
+    }
+
+    /**
      * Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
      * 
      * @deprecated
@@ -171,22 +186,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the future. Please transition to tags
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     @Import(name="labels")
     private @Nullable Output<List<AdvancedClusterLabelArgs>> labels;
 
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the future. Please transition to tags
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     public Optional<Output<List<AdvancedClusterLabelArgs>>> labels() {
         return Optional.ofNullable(this.labels);
     }
@@ -259,14 +266,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
      * 
      */
     @Import(name="redactClientLogData")
     private @Nullable Output<Boolean> redactClientLogData;
 
     /**
-     * @return Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * @return Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
      * 
      */
     public Optional<Output<Boolean>> redactClientLogData() {
@@ -390,6 +397,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         this.backupEnabled = $.backupEnabled;
         this.biConnectorConfig = $.biConnectorConfig;
         this.clusterType = $.clusterType;
+        this.configServerManagementMode = $.configServerManagementMode;
         this.diskSizeGb = $.diskSizeGb;
         this.encryptionAtRestProvider = $.encryptionAtRestProvider;
         this.globalClusterSelfManagedSharding = $.globalClusterSelfManagedSharding;
@@ -545,6 +553,27 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param configServerManagementMode Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder configServerManagementMode(@Nullable Output<String> configServerManagementMode) {
+            $.configServerManagementMode = configServerManagementMode;
+            return this;
+        }
+
+        /**
+         * @param configServerManagementMode Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder configServerManagementMode(String configServerManagementMode) {
+            return configServerManagementMode(Output.of(configServerManagementMode));
+        }
+
+        /**
          * @param diskSizeGb Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
          * 
          * @return builder
@@ -620,11 +649,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the future. Please transition to tags
-         * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(@Nullable Output<List<AdvancedClusterLabelArgs>> labels) {
             $.labels = labels;
             return this;
@@ -635,11 +660,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the future. Please transition to tags
-         * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(List<AdvancedClusterLabelArgs> labels) {
             return labels(Output.of(labels));
         }
@@ -649,11 +670,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the future. Please transition to tags
-         * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
         public Builder labels(AdvancedClusterLabelArgs... labels) {
             return labels(List.of(labels));
         }
@@ -752,7 +769,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param redactClientLogData Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+         * @param redactClientLogData Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
          * 
          * @return builder
          * 
@@ -763,7 +780,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param redactClientLogData Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+         * @param redactClientLogData Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
          * 
          * @return builder
          * 

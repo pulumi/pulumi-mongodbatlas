@@ -856,7 +856,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -880,7 +880,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -964,6 +964,8 @@ class AdvancedClusterReplicationSpec(dict):
                  zone_name: Optional[str] = None):
         """
         :param Sequence['AdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        :param str id: **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
                If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
         :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
@@ -999,12 +1001,18 @@ class AdvancedClusterReplicationSpec(dict):
     @property
     @pulumi.getter(name="externalId")
     def external_id(self) -> Optional[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        """
         return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter
     @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def id(self) -> Optional[str]:
+        """
+        **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -1087,7 +1095,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
@@ -1132,7 +1140,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1230,7 +1238,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
         :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
         :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
-        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         if compute_enabled is not None:
             pulumi.set(__self__, "compute_enabled", compute_enabled)
@@ -1276,7 +1284,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
     @pulumi.getter(name="diskGbEnabled")
     def disk_gb_enabled(self) -> Optional[bool]:
         """
-        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         return pulumi.get(self, "disk_gb_enabled")
 
@@ -4486,7 +4494,7 @@ class ClusterReplicationSpec(dict):
                  zone_name: Optional[str] = None):
         """
         :param int num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
+        :param str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         :param Sequence['ClusterReplicationSpecRegionsConfigArgs'] regions_configs: Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Name for the zone in a Global Cluster.
                
@@ -4513,7 +4521,7 @@ class ClusterReplicationSpec(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster.
+        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         return pulumi.get(self, "id")
 
@@ -4765,7 +4773,7 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
                  id: Optional[str] = None,
                  policy_items: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']] = None):
         """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
+        :param str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -4776,7 +4784,7 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster.
+        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         return pulumi.get(self, "id")
 
@@ -4818,7 +4826,7 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
                  retention_unit: Optional[str] = None,
                  retention_value: Optional[int] = None):
         """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
+        :param str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         if frequency_interval is not None:
             pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -4845,7 +4853,7 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster.
+        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         return pulumi.get(self, "id")
 
@@ -8849,6 +8857,7 @@ class GetAdvancedClusterReplicationSpecResult(dict):
                  zone_name: str):
         """
         :param Mapping[str, str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        :param str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
         :param int num_shards: Provide this value if you set a `cluster_type` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
         :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
@@ -8873,6 +8882,9 @@ class GetAdvancedClusterReplicationSpecResult(dict):
     @property
     @pulumi.getter(name="externalId")
     def external_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        """
         return pulumi.get(self, "external_id")
 
     @property
@@ -9386,6 +9398,8 @@ class GetAdvancedClustersResultResult(dict):
                  backup_enabled: bool,
                  bi_connector_configs: Sequence['outputs.GetAdvancedClustersResultBiConnectorConfigResult'],
                  cluster_type: str,
+                 config_server_management_mode: str,
+                 config_server_type: str,
                  connection_strings: Sequence['outputs.GetAdvancedClustersResultConnectionStringResult'],
                  create_date: str,
                  disk_size_gb: float,
@@ -9409,6 +9423,8 @@ class GetAdvancedClustersResultResult(dict):
         :param Sequence['GetAdvancedClustersResultAdvancedConfigurationArgs'] advanced_configurations: Get the advanced configuration options. See Advanced Configuration below for more details.
         :param Sequence['GetAdvancedClustersResultBiConnectorConfigArgs'] bi_connector_configs: Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
         :param str cluster_type: Type of the cluster that you want to create.
+        :param str config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        :param str config_server_type: Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
         :param Sequence['GetAdvancedClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         :param str encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.
@@ -9418,7 +9434,7 @@ class GetAdvancedClustersResultResult(dict):
         :param str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param bool paused: Flag that indicates whether the cluster is paused or not.
         :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         :param str replica_set_scaling_strategy: (Optional) Replica set scaling mode for your cluster.
         :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         :param str root_cert_type: Certificate Authority that MongoDB Atlas clusters use.
@@ -9431,6 +9447,8 @@ class GetAdvancedClustersResultResult(dict):
         pulumi.set(__self__, "backup_enabled", backup_enabled)
         pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
         pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "config_server_management_mode", config_server_management_mode)
+        pulumi.set(__self__, "config_server_type", config_server_type)
         pulumi.set(__self__, "connection_strings", connection_strings)
         pulumi.set(__self__, "create_date", create_date)
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
@@ -9481,6 +9499,22 @@ class GetAdvancedClustersResultResult(dict):
         return pulumi.get(self, "cluster_type")
 
     @property
+    @pulumi.getter(name="configServerManagementMode")
+    def config_server_management_mode(self) -> str:
+        """
+        Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_management_mode")
+
+    @property
+    @pulumi.getter(name="configServerType")
+    def config_server_type(self) -> str:
+        """
+        Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_type")
+
+    @property
     @pulumi.getter(name="connectionStrings")
     def connection_strings(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringResult']:
         """
@@ -9520,7 +9554,6 @@ class GetAdvancedClustersResultResult(dict):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Sequence['outputs.GetAdvancedClustersResultLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -9568,7 +9601,7 @@ class GetAdvancedClustersResultResult(dict):
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> bool:
         """
-        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -9990,6 +10023,7 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
                  zone_name: str):
         """
         :param Mapping[str, str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        :param str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
         :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
         :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
@@ -10014,6 +10048,9 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
     @property
     @pulumi.getter(name="externalId")
     def external_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        """
         return pulumi.get(self, "external_id")
 
     @property
@@ -14029,7 +14066,7 @@ class GetClusterReplicationSpecResult(dict):
                  regions_configs: Sequence['outputs.GetClusterReplicationSpecRegionsConfigResult'],
                  zone_name: str):
         """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
+        :param str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         :param int num_shards: Number of shards to deploy in the specified zone.
         :param Sequence['GetClusterReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Indicates the n ame for the zone in a Global Cluster.
@@ -14043,7 +14080,7 @@ class GetClusterReplicationSpecResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster.
+        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         return pulumi.get(self, "id")
 
@@ -14201,7 +14238,7 @@ class GetClusterSnapshotBackupPolicyPolicyResult(dict):
                  id: str,
                  policy_items: Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItemResult']):
         """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
+        :param str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "policy_items", policy_items)
@@ -14210,7 +14247,7 @@ class GetClusterSnapshotBackupPolicyPolicyResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster.
+        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         return pulumi.get(self, "id")
 
@@ -14229,7 +14266,7 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
                  retention_unit: str,
                  retention_value: int):
         """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
+        :param str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -14251,7 +14288,7 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster.
+        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         return pulumi.get(self, "id")
 
@@ -14373,7 +14410,7 @@ class GetClustersResultResult(dict):
         :param str provider_region_name: Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param str provider_volume_type: Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
                > **NOTE:** `STANDARD` is not available for NVME clusters.
-        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        :param bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         :param int replication_factor: (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param Sequence['GetClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param Sequence['GetClustersResultSnapshotBackupPolicyArgs'] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
@@ -14529,7 +14566,6 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Sequence['outputs.GetClustersResultLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -14693,7 +14729,7 @@ class GetClustersResultResult(dict):
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> bool:
         """
-        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -15131,7 +15167,7 @@ class GetClustersResultReplicationSpecResult(dict):
                  regions_configs: Sequence['outputs.GetClustersResultReplicationSpecRegionsConfigResult'],
                  zone_name: str):
         """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
+        :param str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         :param int num_shards: Number of shards to deploy in the specified zone.
         :param Sequence['GetClustersResultReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Indicates the n ame for the zone in a Global Cluster.
@@ -15145,7 +15181,7 @@ class GetClustersResultReplicationSpecResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster.
+        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         return pulumi.get(self, "id")
 
@@ -15303,7 +15339,7 @@ class GetClustersResultSnapshotBackupPolicyPolicyResult(dict):
                  id: str,
                  policy_items: Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult']):
         """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
+        :param str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "policy_items", policy_items)
@@ -15312,7 +15348,7 @@ class GetClustersResultSnapshotBackupPolicyPolicyResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster.
+        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         return pulumi.get(self, "id")
 
@@ -15331,7 +15367,7 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
                  retention_unit: str,
                  retention_value: int):
         """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
+        :param str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -15353,7 +15389,7 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster.
+        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         """
         return pulumi.get(self, "id")
 
@@ -21417,6 +21453,7 @@ class GetProjectsResultResult(dict):
                  is_performance_advisor_enabled: bool,
                  is_realtime_performance_panel_enabled: bool,
                  is_schema_advisor_enabled: bool,
+                 is_slow_operation_thresholding_enabled: bool,
                  limits: Sequence['outputs.GetProjectsResultLimitResult'],
                  name: str,
                  org_id: str,
@@ -21435,6 +21472,7 @@ class GetProjectsResultResult(dict):
         :param bool is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param bool is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        :param bool is_slow_operation_thresholding_enabled: Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
         :param Sequence['GetProjectsResultLimitArgs'] limits: The limits for the specified project. See Limits.
         :param str org_id: The ID of the organization you want to create the project within.
         :param str region_usage_restrictions: If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
@@ -21451,6 +21489,7 @@ class GetProjectsResultResult(dict):
         pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
         pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        pulumi.set(__self__, "is_slow_operation_thresholding_enabled", is_slow_operation_thresholding_enabled)
         pulumi.set(__self__, "limits", limits)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "org_id", org_id)
@@ -21539,6 +21578,15 @@ class GetProjectsResultResult(dict):
         Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         """
         return pulumi.get(self, "is_schema_advisor_enabled")
+
+    @property
+    @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.24.0.""")
+    def is_slow_operation_thresholding_enabled(self) -> bool:
+        """
+        Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+        """
+        return pulumi.get(self, "is_slow_operation_thresholding_enabled")
 
     @property
     @pulumi.getter

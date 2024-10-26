@@ -53,6 +53,7 @@ import * as utilities from "./utilities";
  *     isPerformanceAdvisorEnabled: true,
  *     isRealtimePerformancePanelEnabled: true,
  *     isSchemaAdvisorEnabled: true,
+ *     isSlowOperationThresholdingEnabled: true,
  * });
  * ```
  *
@@ -131,6 +132,12 @@ export class Project extends pulumi.CustomResource {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
      */
     public readonly isSchemaAdvisorEnabled!: pulumi.Output<boolean>;
+    /**
+     * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.24.0.
+     */
+    public readonly isSlowOperationThresholdingEnabled!: pulumi.Output<boolean>;
     public readonly limits!: pulumi.Output<outputs.ProjectLimit[] | undefined>;
     /**
      * The name of the project you want to create.
@@ -180,6 +187,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["isPerformanceAdvisorEnabled"] = state ? state.isPerformanceAdvisorEnabled : undefined;
             resourceInputs["isRealtimePerformancePanelEnabled"] = state ? state.isRealtimePerformancePanelEnabled : undefined;
             resourceInputs["isSchemaAdvisorEnabled"] = state ? state.isSchemaAdvisorEnabled : undefined;
+            resourceInputs["isSlowOperationThresholdingEnabled"] = state ? state.isSlowOperationThresholdingEnabled : undefined;
             resourceInputs["limits"] = state ? state.limits : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
@@ -199,6 +207,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["isPerformanceAdvisorEnabled"] = args ? args.isPerformanceAdvisorEnabled : undefined;
             resourceInputs["isRealtimePerformancePanelEnabled"] = args ? args.isRealtimePerformancePanelEnabled : undefined;
             resourceInputs["isSchemaAdvisorEnabled"] = args ? args.isSchemaAdvisorEnabled : undefined;
+            resourceInputs["isSlowOperationThresholdingEnabled"] = args ? args.isSlowOperationThresholdingEnabled : undefined;
             resourceInputs["limits"] = args ? args.limits : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
@@ -258,6 +267,12 @@ export interface ProjectState {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
      */
     isSchemaAdvisorEnabled?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.24.0.
+     */
+    isSlowOperationThresholdingEnabled?: pulumi.Input<boolean>;
     limits?: pulumi.Input<pulumi.Input<inputs.ProjectLimit>[]>;
     /**
      * The name of the project you want to create.
@@ -314,6 +329,12 @@ export interface ProjectArgs {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
      */
     isSchemaAdvisorEnabled?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.24.0.
+     */
+    isSlowOperationThresholdingEnabled?: pulumi.Input<boolean>;
     limits?: pulumi.Input<pulumi.Input<inputs.ProjectLimit>[]>;
     /**
      * The name of the project you want to create.

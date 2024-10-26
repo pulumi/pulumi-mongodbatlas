@@ -7,24 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.AdvancedCluster
- *
- * `mongodbatlas.AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
- *
- * More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
- *
- * > **IMPORTANT:** The primary difference between `mongodbatlas.Cluster` and `mongodbatlas.AdvancedCluster` is that `mongodbatlas.AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `mongodbatlas.AdvancedCluster` resource.
- *
- * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
- *
- * > **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs.#.container_id` attribute in the Attributes Reference for more information.
- *
- * > **NOTE:** To enable Cluster Extended Storage Sizes use the `isExtendedStorageSizesEnabled` parameter in the mongodbatlas.Project resource.
- *
- * > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
- *
- * > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ### Example single provider and single region
@@ -409,6 +391,14 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly clusterType!: pulumi.Output<string>;
     /**
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    public readonly configServerManagementMode!: pulumi.Output<string>;
+    /**
+     * Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    public /*out*/ readonly configServerType!: pulumi.Output<string>;
+    /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     public /*out*/ readonly connectionStrings!: pulumi.Output<outputs.AdvancedClusterConnectionString[]>;
@@ -429,8 +419,6 @@ export class AdvancedCluster extends pulumi.CustomResource {
     public readonly globalClusterSelfManagedSharding!: pulumi.Output<boolean>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-     *
-     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     public readonly labels!: pulumi.Output<outputs.AdvancedClusterLabel[] | undefined>;
     /**
@@ -455,7 +443,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
      */
     public readonly redactClientLogData!: pulumi.Output<boolean>;
     /**
@@ -519,6 +507,8 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["biConnectorConfig"] = state ? state.biConnectorConfig : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["clusterType"] = state ? state.clusterType : undefined;
+            resourceInputs["configServerManagementMode"] = state ? state.configServerManagementMode : undefined;
+            resourceInputs["configServerType"] = state ? state.configServerType : undefined;
             resourceInputs["connectionStrings"] = state ? state.connectionStrings : undefined;
             resourceInputs["createDate"] = state ? state.createDate : undefined;
             resourceInputs["diskSizeGb"] = state ? state.diskSizeGb : undefined;
@@ -556,6 +546,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["backupEnabled"] = args ? args.backupEnabled : undefined;
             resourceInputs["biConnectorConfig"] = args ? args.biConnectorConfig : undefined;
             resourceInputs["clusterType"] = args ? args.clusterType : undefined;
+            resourceInputs["configServerManagementMode"] = args ? args.configServerManagementMode : undefined;
             resourceInputs["diskSizeGb"] = args ? args.diskSizeGb : undefined;
             resourceInputs["encryptionAtRestProvider"] = args ? args.encryptionAtRestProvider : undefined;
             resourceInputs["globalClusterSelfManagedSharding"] = args ? args.globalClusterSelfManagedSharding : undefined;
@@ -574,6 +565,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
             resourceInputs["versionReleaseSystem"] = args ? args.versionReleaseSystem : undefined;
             resourceInputs["clusterId"] = undefined /*out*/;
+            resourceInputs["configServerType"] = undefined /*out*/;
             resourceInputs["connectionStrings"] = undefined /*out*/;
             resourceInputs["createDate"] = undefined /*out*/;
             resourceInputs["mongoDbVersion"] = undefined /*out*/;
@@ -622,6 +614,14 @@ export interface AdvancedClusterState {
      */
     clusterType?: pulumi.Input<string>;
     /**
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    configServerManagementMode?: pulumi.Input<string>;
+    /**
+     * Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    configServerType?: pulumi.Input<string>;
+    /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     connectionStrings?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionString>[]>;
@@ -642,8 +642,6 @@ export interface AdvancedClusterState {
     globalClusterSelfManagedSharding?: pulumi.Input<boolean>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-     *
-     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterLabel>[]>;
     /**
@@ -668,7 +666,7 @@ export interface AdvancedClusterState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
      */
     redactClientLogData?: pulumi.Input<boolean>;
     /**
@@ -748,6 +746,10 @@ export interface AdvancedClusterArgs {
      */
     clusterType: pulumi.Input<string>;
     /**
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    configServerManagementMode?: pulumi.Input<string>;
+    /**
      * Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -763,8 +765,6 @@ export interface AdvancedClusterArgs {
     globalClusterSelfManagedSharding?: pulumi.Input<boolean>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-     *
-     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterLabel>[]>;
     /**
@@ -785,7 +785,7 @@ export interface AdvancedClusterArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
      */
     redactClientLogData?: pulumi.Input<boolean>;
     /**

@@ -28,6 +28,7 @@ class AdvancedClusterArgs:
                  advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
+                 config_server_management_mode: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
                  global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
@@ -63,6 +64,7 @@ class AdvancedClusterArgs:
                
                This parameter defaults to false.
         :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+        :param pulumi.Input[str] config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
@@ -70,7 +72,7 @@ class AdvancedClusterArgs:
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
@@ -91,6 +93,8 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector_config is not None:
             pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+        if config_server_management_mode is not None:
+            pulumi.set(__self__, "config_server_management_mode", config_server_management_mode)
         if disk_size_gb is not None:
             warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
             pulumi.log.warn("""disk_size_gb is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
@@ -100,9 +104,6 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if global_cluster_self_managed_sharding is not None:
             pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
-        if labels is not None:
-            warnings.warn("""This parameter is deprecated and will be removed in the future. Please transition to tags""", DeprecationWarning)
-            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags""")
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
@@ -222,6 +223,18 @@ class AdvancedClusterArgs:
         pulumi.set(self, "bi_connector_config", value)
 
     @property
+    @pulumi.getter(name="configServerManagementMode")
+    def config_server_management_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_management_mode")
+
+    @config_server_management_mode.setter
+    def config_server_management_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "config_server_management_mode", value)
+
+    @property
     @pulumi.getter(name="diskSizeGb")
     @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def disk_size_gb(self) -> Optional[pulumi.Input[float]]:
@@ -260,7 +273,6 @@ class AdvancedClusterArgs:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -320,7 +332,7 @@ class AdvancedClusterArgs:
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> Optional[pulumi.Input[bool]]:
         """
-        Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -412,6 +424,8 @@ class _AdvancedClusterState:
                  bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
+                 config_server_management_mode: Optional[pulumi.Input[str]] = None,
+                 config_server_type: Optional[pulumi.Input[str]] = None,
                  connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]]] = None,
                  create_date: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
@@ -452,6 +466,8 @@ class _AdvancedClusterState:
                - `REPLICASET` Replica set
                - `SHARDED`	Sharded cluster
                - `GEOSHARDED` Global Cluster
+        :param pulumi.Input[str] config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        :param pulumi.Input[str] config_server_type: Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
@@ -462,7 +478,7 @@ class _AdvancedClusterState:
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
-        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
@@ -493,6 +509,10 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_type is not None:
             pulumi.set(__self__, "cluster_type", cluster_type)
+        if config_server_management_mode is not None:
+            pulumi.set(__self__, "config_server_management_mode", config_server_management_mode)
+        if config_server_type is not None:
+            pulumi.set(__self__, "config_server_type", config_server_type)
         if connection_strings is not None:
             pulumi.set(__self__, "connection_strings", connection_strings)
         if create_date is not None:
@@ -506,9 +526,6 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if global_cluster_self_managed_sharding is not None:
             pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
-        if labels is not None:
-            warnings.warn("""This parameter is deprecated and will be removed in the future. Please transition to tags""", DeprecationWarning)
-            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags""")
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
@@ -624,6 +641,30 @@ class _AdvancedClusterState:
         pulumi.set(self, "cluster_type", value)
 
     @property
+    @pulumi.getter(name="configServerManagementMode")
+    def config_server_management_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_management_mode")
+
+    @config_server_management_mode.setter
+    def config_server_management_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "config_server_management_mode", value)
+
+    @property
+    @pulumi.getter(name="configServerType")
+    def config_server_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_type")
+
+    @config_server_type.setter
+    def config_server_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "config_server_type", value)
+
+    @property
     @pulumi.getter(name="connectionStrings")
     def connection_strings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]]]:
         """
@@ -683,7 +724,6 @@ class _AdvancedClusterState:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -767,7 +807,7 @@ class _AdvancedClusterState:
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> Optional[pulumi.Input[bool]]:
         """
-        Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -891,6 +931,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector_config: Optional[pulumi.Input[Union['AdvancedClusterBiConnectorConfigArgs', 'AdvancedClusterBiConnectorConfigArgsDict']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
+                 config_server_management_mode: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
                  global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
@@ -910,24 +951,6 @@ class AdvancedCluster(pulumi.CustomResource):
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Resource: AdvancedCluster
-
-        `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
-
-        More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
-
-        > **IMPORTANT:** The primary difference between `Cluster` and `AdvancedCluster` is that `AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `AdvancedCluster` resource.
-
-        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
-
-        > **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs.#.container_id` attribute in the Attributes Reference for more information.
-
-        > **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the Project resource.
-
-        > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
-
-        > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
-
         ## Example Usage
 
         ### Example single provider and single region
@@ -1262,6 +1285,7 @@ class AdvancedCluster(pulumi.CustomResource):
                - `REPLICASET` Replica set
                - `SHARDED`	Sharded cluster
                - `GEOSHARDED` Global Cluster
+        :param pulumi.Input[str] config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
@@ -1270,7 +1294,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
-        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
@@ -1288,24 +1312,6 @@ class AdvancedCluster(pulumi.CustomResource):
                  args: AdvancedClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: AdvancedCluster
-
-        `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
-
-        More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
-
-        > **IMPORTANT:** The primary difference between `Cluster` and `AdvancedCluster` is that `AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `AdvancedCluster` resource.
-
-        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
-
-        > **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs.#.container_id` attribute in the Attributes Reference for more information.
-
-        > **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the Project resource.
-
-        > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
-
-        > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
-
         ## Example Usage
 
         ### Example single provider and single region
@@ -1642,6 +1648,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector_config: Optional[pulumi.Input[Union['AdvancedClusterBiConnectorConfigArgs', 'AdvancedClusterBiConnectorConfigArgsDict']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
+                 config_server_management_mode: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
                  global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
@@ -1675,6 +1682,7 @@ class AdvancedCluster(pulumi.CustomResource):
             if cluster_type is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_type'")
             __props__.__dict__["cluster_type"] = cluster_type
+            __props__.__dict__["config_server_management_mode"] = config_server_management_mode
             __props__.__dict__["disk_size_gb"] = disk_size_gb
             __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
             __props__.__dict__["global_cluster_self_managed_sharding"] = global_cluster_self_managed_sharding
@@ -1697,6 +1705,7 @@ class AdvancedCluster(pulumi.CustomResource):
             __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
             __props__.__dict__["version_release_system"] = version_release_system
             __props__.__dict__["cluster_id"] = None
+            __props__.__dict__["config_server_type"] = None
             __props__.__dict__["connection_strings"] = None
             __props__.__dict__["create_date"] = None
             __props__.__dict__["mongo_db_version"] = None
@@ -1717,6 +1726,8 @@ class AdvancedCluster(pulumi.CustomResource):
             bi_connector_config: Optional[pulumi.Input[Union['AdvancedClusterBiConnectorConfigArgs', 'AdvancedClusterBiConnectorConfigArgsDict']]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             cluster_type: Optional[pulumi.Input[str]] = None,
+            config_server_management_mode: Optional[pulumi.Input[str]] = None,
+            config_server_type: Optional[pulumi.Input[str]] = None,
             connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterConnectionStringArgs', 'AdvancedClusterConnectionStringArgsDict']]]]] = None,
             create_date: Optional[pulumi.Input[str]] = None,
             disk_size_gb: Optional[pulumi.Input[float]] = None,
@@ -1762,6 +1773,8 @@ class AdvancedCluster(pulumi.CustomResource):
                - `REPLICASET` Replica set
                - `SHARDED`	Sharded cluster
                - `GEOSHARDED` Global Cluster
+        :param pulumi.Input[str] config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        :param pulumi.Input[str] config_server_type: Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterConnectionStringArgs', 'AdvancedClusterConnectionStringArgsDict']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
@@ -1772,7 +1785,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
-        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
@@ -1801,6 +1814,8 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["bi_connector_config"] = bi_connector_config
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["cluster_type"] = cluster_type
+        __props__.__dict__["config_server_management_mode"] = config_server_management_mode
+        __props__.__dict__["config_server_type"] = config_server_type
         __props__.__dict__["connection_strings"] = connection_strings
         __props__.__dict__["create_date"] = create_date
         __props__.__dict__["disk_size_gb"] = disk_size_gb
@@ -1882,6 +1897,22 @@ class AdvancedCluster(pulumi.CustomResource):
         return pulumi.get(self, "cluster_type")
 
     @property
+    @pulumi.getter(name="configServerManagementMode")
+    def config_server_management_mode(self) -> pulumi.Output[str]:
+        """
+        Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_management_mode")
+
+    @property
+    @pulumi.getter(name="configServerType")
+    def config_server_type(self) -> pulumi.Output[str]:
+        """
+        Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_type")
+
+    @property
     @pulumi.getter(name="connectionStrings")
     def connection_strings(self) -> pulumi.Output[Sequence['outputs.AdvancedClusterConnectionString']]:
         """
@@ -1921,7 +1952,6 @@ class AdvancedCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> pulumi.Output[Optional[Sequence['outputs.AdvancedClusterLabel']]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -1977,7 +2007,7 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> pulumi.Output[bool]:
         """
-        Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         """
         return pulumi.get(self, "redact_client_log_data")
 

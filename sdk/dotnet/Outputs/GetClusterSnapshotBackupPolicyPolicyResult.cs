@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetClusterSnapshotBackupPolicyPolicyResult
     {
         /// <summary>
-        /// Unique identifer of the replication document for a zone in a Global Cluster.
+        /// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItemResult> PolicyItems;

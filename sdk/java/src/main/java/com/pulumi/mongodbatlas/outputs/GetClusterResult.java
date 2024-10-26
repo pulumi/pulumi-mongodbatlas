@@ -89,11 +89,7 @@ public final class GetClusterResult {
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the future. Please transition to tags
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     private List<GetClusterLabel> labels;
     /**
      * @return Indicates the version of the cluster to deploy.
@@ -190,7 +186,7 @@ public final class GetClusterResult {
      */
     private String providerVolumeType;
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
      * 
      */
     private Boolean redactClientLogData;
@@ -336,11 +332,7 @@ public final class GetClusterResult {
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the future. Please transition to tags
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     public List<GetClusterLabel> labels() {
         return this.labels;
     }
@@ -481,7 +473,7 @@ public final class GetClusterResult {
         return this.providerVolumeType;
     }
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
      * 
      */
     public Boolean redactClientLogData() {

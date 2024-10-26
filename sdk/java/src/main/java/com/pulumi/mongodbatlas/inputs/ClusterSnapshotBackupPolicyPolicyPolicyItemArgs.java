@@ -31,14 +31,14 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs extends com.p
     }
 
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      * 
      */
     @Import(name="id")
     private @Nullable Output<String> id;
 
     /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * @return Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      * 
      */
     public Optional<Output<String>> id() {
@@ -106,7 +106,7 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs extends com.p
         }
 
         /**
-         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
+         * @param id Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
          * 
          * @return builder
          * 
@@ -117,7 +117,7 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs extends com.p
         }
 
         /**
-         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
+         * @param id Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
          * 
          * @return builder
          * 

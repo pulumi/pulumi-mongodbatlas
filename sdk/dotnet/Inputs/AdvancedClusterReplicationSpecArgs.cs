@@ -20,9 +20,15 @@ namespace Pulumi.Mongodbatlas.Inputs
             set => _containerId = value;
         }
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        /// </summary>
         [Input("externalId")]
         public Input<string>? ExternalId { get; set; }
 
+        /// <summary>
+        /// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 

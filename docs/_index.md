@@ -21,6 +21,8 @@ Use the navigation to the left to read about the available provider resources an
 
 You may want to consider pinning the provider version to ensure you have a chance to review and prepare for changes.
 Speaking of changes, see CHANGELOG for current version information.
+
+For the best experience, we recommend using the latest HashiCorp Pulumi Core Version. For more details see HashiCorp Pulumi Version Compatibility Matrix.
 ## Example Usage
 
 {{< chooser language "typescript,python,go,csharp,java,yaml" >}}

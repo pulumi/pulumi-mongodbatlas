@@ -134,12 +134,16 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
     /**
      * Description of this Project API key.
      * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
      * @return Description of this Project API key.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
      * 
      */
     public Output<String> description() {

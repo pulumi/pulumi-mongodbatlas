@@ -27,14 +27,24 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
         return Optional.ofNullable(this.containerId);
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+     * 
+     */
     @Import(name="externalId")
     private @Nullable Output<String> externalId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+     * 
+     */
     public Optional<Output<String>> externalId() {
         return Optional.ofNullable(this.externalId);
     }
 
     /**
+     * **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * 
      * @deprecated
      * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
@@ -44,6 +54,8 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
     private @Nullable Output<String> id;
 
     /**
+     * @return **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * 
      * @deprecated
      * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
@@ -162,16 +174,30 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
             return containerId(Output.of(containerId));
         }
 
+        /**
+         * @param externalId Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+         * 
+         * @return builder
+         * 
+         */
         public Builder externalId(@Nullable Output<String> externalId) {
             $.externalId = externalId;
             return this;
         }
 
+        /**
+         * @param externalId Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+         * 
+         * @return builder
+         * 
+         */
         public Builder externalId(String externalId) {
             return externalId(Output.of(externalId));
         }
 
         /**
+         * @param id **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -185,6 +211,8 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param id **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+         * 
          * @return builder
          * 
          * @deprecated

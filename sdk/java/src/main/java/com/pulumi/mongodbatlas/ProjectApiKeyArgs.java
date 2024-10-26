@@ -19,12 +19,16 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Description of this Project API key.
      * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
      */
     @Import(name="description", required=true)
     private Output<String> description;
 
     /**
      * @return Description of this Project API key.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
      * 
      */
     public Output<String> description() {
@@ -66,6 +70,8 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param description Description of this Project API key.
          * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+         * 
          * @return builder
          * 
          */
@@ -76,6 +82,8 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param description Description of this Project API key.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 

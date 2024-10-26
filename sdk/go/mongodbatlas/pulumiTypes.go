@@ -878,7 +878,7 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpoint struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
@@ -902,7 +902,7 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -968,7 +968,7 @@ func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
-// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
@@ -1111,7 +1111,10 @@ func (o AdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) AdvancedCluste
 
 type AdvancedClusterReplicationSpec struct {
 	ContainerId map[string]string `pulumi:"containerId"`
-	ExternalId  *string           `pulumi:"externalId"`
+	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+	ExternalId *string `pulumi:"externalId"`
+	// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id *string `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
@@ -1140,7 +1143,10 @@ type AdvancedClusterReplicationSpecInput interface {
 
 type AdvancedClusterReplicationSpecArgs struct {
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
-	ExternalId  pulumi.StringPtrInput `pulumi:"externalId"`
+	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+	ExternalId pulumi.StringPtrInput `pulumi:"externalId"`
+	// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
@@ -1211,10 +1217,13 @@ func (o AdvancedClusterReplicationSpecOutput) ContainerId() pulumi.StringMapOutp
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
 func (o AdvancedClusterReplicationSpecOutput) ExternalId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
 }
 
+// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+//
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o AdvancedClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.Id }).(pulumi.StringPtrOutput)
@@ -1286,7 +1295,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
@@ -1326,7 +1335,7 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
@@ -1431,7 +1440,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) Priority() pulumi.IntO
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
-// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
@@ -1476,7 +1485,7 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling struct {
 	ComputeMinInstanceSize *string `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
 	ComputeScaleDownEnabled *bool `pulumi:"computeScaleDownEnabled"`
-	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 	DiskGbEnabled *bool `pulumi:"diskGbEnabled"`
 }
 
@@ -1499,7 +1508,7 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs struct {
 	ComputeMinInstanceSize pulumi.StringPtrInput `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
 	ComputeScaleDownEnabled pulumi.BoolPtrInput `pulumi:"computeScaleDownEnabled"`
-	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 	DiskGbEnabled pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
 }
 
@@ -1605,7 +1614,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) Co
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling) *bool { return v.DiskGbEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -1673,7 +1682,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling) *bool {
 		if v == nil {
@@ -8134,7 +8143,7 @@ func (o ClusterOutageSimulationOutageFilterArrayOutput) Index(i pulumi.IntInput)
 }
 
 type ClusterReplicationSpec struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id *string `pulumi:"id"`
 	// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
 	NumShards int `pulumi:"numShards"`
@@ -8158,7 +8167,7 @@ type ClusterReplicationSpecInput interface {
 }
 
 type ClusterReplicationSpecArgs struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
 	NumShards pulumi.IntInput `pulumi:"numShards"`
@@ -8221,7 +8230,7 @@ func (o ClusterReplicationSpecOutput) ToClusterReplicationSpecOutputWithContext(
 	return o
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
+// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 func (o ClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -8554,7 +8563,7 @@ func (o ClusterSnapshotBackupPolicyArrayOutput) Index(i pulumi.IntInput) Cluster
 }
 
 type ClusterSnapshotBackupPolicyPolicy struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id          *string                                       `pulumi:"id"`
 	PolicyItems []ClusterSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
 }
@@ -8571,7 +8580,7 @@ type ClusterSnapshotBackupPolicyPolicyInput interface {
 }
 
 type ClusterSnapshotBackupPolicyPolicyArgs struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id          pulumi.StringPtrInput                                 `pulumi:"id"`
 	PolicyItems ClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput `pulumi:"policyItems"`
 }
@@ -8627,7 +8636,7 @@ func (o ClusterSnapshotBackupPolicyPolicyOutput) ToClusterSnapshotBackupPolicyPo
 	return o
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
+// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 func (o ClusterSnapshotBackupPolicyPolicyOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicy) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -8661,7 +8670,7 @@ func (o ClusterSnapshotBackupPolicyPolicyArrayOutput) Index(i pulumi.IntInput) C
 type ClusterSnapshotBackupPolicyPolicyPolicyItem struct {
 	FrequencyInterval *int    `pulumi:"frequencyInterval"`
 	FrequencyType     *string `pulumi:"frequencyType"`
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id             *string `pulumi:"id"`
 	RetentionUnit  *string `pulumi:"retentionUnit"`
 	RetentionValue *int    `pulumi:"retentionValue"`
@@ -8681,7 +8690,7 @@ type ClusterSnapshotBackupPolicyPolicyPolicyItemInput interface {
 type ClusterSnapshotBackupPolicyPolicyPolicyItemArgs struct {
 	FrequencyInterval pulumi.IntPtrInput    `pulumi:"frequencyInterval"`
 	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id             pulumi.StringPtrInput `pulumi:"id"`
 	RetentionUnit  pulumi.StringPtrInput `pulumi:"retentionUnit"`
 	RetentionValue pulumi.IntPtrInput    `pulumi:"retentionValue"`
@@ -8746,7 +8755,7 @@ func (o ClusterSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyType() pulum
 	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicyPolicyItem) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
+// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 func (o ClusterSnapshotBackupPolicyPolicyPolicyItemOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicyPolicyItem) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -19148,7 +19157,8 @@ func (o GetAdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) GetAdvanced
 type GetAdvancedClusterReplicationSpec struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId map[string]string `pulumi:"containerId"`
-	ExternalId  string            `pulumi:"externalId"`
+	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+	ExternalId string `pulumi:"externalId"`
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id string `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
@@ -19177,7 +19187,8 @@ type GetAdvancedClusterReplicationSpecInput interface {
 type GetAdvancedClusterReplicationSpecArgs struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
-	ExternalId  pulumi.StringInput    `pulumi:"externalId"`
+	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+	ExternalId pulumi.StringInput `pulumi:"externalId"`
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id pulumi.StringInput `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
@@ -19248,6 +19259,7 @@ func (o GetAdvancedClusterReplicationSpecOutput) ContainerId() pulumi.StringMapO
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
 func (o GetAdvancedClusterReplicationSpecOutput) ExternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) string { return v.ExternalId }).(pulumi.StringOutput)
 }
@@ -20162,6 +20174,10 @@ type GetAdvancedClustersResult struct {
 	BiConnectorConfigs []GetAdvancedClustersResultBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Type of the cluster that you want to create.
 	ClusterType string `pulumi:"clusterType"`
+	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerManagementMode string `pulumi:"configServerManagementMode"`
+	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerType string `pulumi:"configServerType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []GetAdvancedClustersResultConnectionString `pulumi:"connectionStrings"`
 	CreateDate        string                                      `pulumi:"createDate"`
@@ -20174,8 +20190,6 @@ type GetAdvancedClustersResult struct {
 	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
 	GlobalClusterSelfManagedSharding bool `pulumi:"globalClusterSelfManagedSharding"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []GetAdvancedClustersResultLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -20186,7 +20200,7 @@ type GetAdvancedClustersResult struct {
 	Paused bool `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
-	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
@@ -20223,6 +20237,10 @@ type GetAdvancedClustersResultArgs struct {
 	BiConnectorConfigs GetAdvancedClustersResultBiConnectorConfigArrayInput `pulumi:"biConnectorConfigs"`
 	// Type of the cluster that you want to create.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
+	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerManagementMode pulumi.StringInput `pulumi:"configServerManagementMode"`
+	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerType pulumi.StringInput `pulumi:"configServerType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings GetAdvancedClustersResultConnectionStringArrayInput `pulumi:"connectionStrings"`
 	CreateDate        pulumi.StringInput                                  `pulumi:"createDate"`
@@ -20235,8 +20253,6 @@ type GetAdvancedClustersResultArgs struct {
 	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
 	GlobalClusterSelfManagedSharding pulumi.BoolInput `pulumi:"globalClusterSelfManagedSharding"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels GetAdvancedClustersResultLabelArrayInput `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -20247,7 +20263,7 @@ type GetAdvancedClustersResultArgs struct {
 	Paused pulumi.BoolInput `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
-	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy pulumi.StringInput `pulumi:"replicaSetScalingStrategy"`
@@ -20339,6 +20355,16 @@ func (o GetAdvancedClustersResultOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ClusterType }).(pulumi.StringOutput)
 }
 
+// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+func (o GetAdvancedClustersResultOutput) ConfigServerManagementMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ConfigServerManagementMode }).(pulumi.StringOutput)
+}
+
+// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+func (o GetAdvancedClustersResultOutput) ConfigServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ConfigServerType }).(pulumi.StringOutput)
+}
+
 // Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 func (o GetAdvancedClustersResultOutput) ConnectionStrings() GetAdvancedClustersResultConnectionStringArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultConnectionString {
@@ -20368,8 +20394,6 @@ func (o GetAdvancedClustersResultOutput) GlobalClusterSelfManagedSharding() pulu
 }
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-//
-// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 func (o GetAdvancedClustersResultOutput) Labels() GetAdvancedClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultLabel { return v.Labels }).(GetAdvancedClustersResultLabelArrayOutput)
 }
@@ -20398,7 +20422,7 @@ func (o GetAdvancedClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 func (o GetAdvancedClustersResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
@@ -21275,7 +21299,8 @@ func (o GetAdvancedClustersResultLabelArrayOutput) Index(i pulumi.IntInput) GetA
 type GetAdvancedClustersResultReplicationSpec struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId map[string]string `pulumi:"containerId"`
-	ExternalId  string            `pulumi:"externalId"`
+	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+	ExternalId string `pulumi:"externalId"`
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id string `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
@@ -21304,7 +21329,8 @@ type GetAdvancedClustersResultReplicationSpecInput interface {
 type GetAdvancedClustersResultReplicationSpecArgs struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
-	ExternalId  pulumi.StringInput    `pulumi:"externalId"`
+	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+	ExternalId pulumi.StringInput `pulumi:"externalId"`
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id pulumi.StringInput `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
@@ -21375,6 +21401,7 @@ func (o GetAdvancedClustersResultReplicationSpecOutput) ContainerId() pulumi.Str
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
 func (o GetAdvancedClustersResultReplicationSpecOutput) ExternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) string { return v.ExternalId }).(pulumi.StringOutput)
 }
@@ -29329,7 +29356,7 @@ func (o GetClusterOutageSimulationOutageFilterArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetClusterReplicationSpec struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id string `pulumi:"id"`
 	// Number of shards to deploy in the specified zone.
 	NumShards int `pulumi:"numShards"`
@@ -29351,7 +29378,7 @@ type GetClusterReplicationSpecInput interface {
 }
 
 type GetClusterReplicationSpecArgs struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Number of shards to deploy in the specified zone.
 	NumShards pulumi.IntInput `pulumi:"numShards"`
@@ -29412,7 +29439,7 @@ func (o GetClusterReplicationSpecOutput) ToGetClusterReplicationSpecOutputWithCo
 	return o
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
+// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 func (o GetClusterReplicationSpecOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -29722,7 +29749,7 @@ func (o GetClusterSnapshotBackupPolicyArrayOutput) Index(i pulumi.IntInput) GetC
 }
 
 type GetClusterSnapshotBackupPolicyPolicy struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id          string                                           `pulumi:"id"`
 	PolicyItems []GetClusterSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
 }
@@ -29739,7 +29766,7 @@ type GetClusterSnapshotBackupPolicyPolicyInput interface {
 }
 
 type GetClusterSnapshotBackupPolicyPolicyArgs struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id          pulumi.StringInput                                       `pulumi:"id"`
 	PolicyItems GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput `pulumi:"policyItems"`
 }
@@ -29795,7 +29822,7 @@ func (o GetClusterSnapshotBackupPolicyPolicyOutput) ToGetClusterSnapshotBackupPo
 	return o
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
+// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 func (o GetClusterSnapshotBackupPolicyPolicyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterSnapshotBackupPolicyPolicy) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -29829,7 +29856,7 @@ func (o GetClusterSnapshotBackupPolicyPolicyArrayOutput) Index(i pulumi.IntInput
 type GetClusterSnapshotBackupPolicyPolicyPolicyItem struct {
 	FrequencyInterval int    `pulumi:"frequencyInterval"`
 	FrequencyType     string `pulumi:"frequencyType"`
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id             string `pulumi:"id"`
 	RetentionUnit  string `pulumi:"retentionUnit"`
 	RetentionValue int    `pulumi:"retentionValue"`
@@ -29849,7 +29876,7 @@ type GetClusterSnapshotBackupPolicyPolicyPolicyItemInput interface {
 type GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs struct {
 	FrequencyInterval pulumi.IntInput    `pulumi:"frequencyInterval"`
 	FrequencyType     pulumi.StringInput `pulumi:"frequencyType"`
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id             pulumi.StringInput `pulumi:"id"`
 	RetentionUnit  pulumi.StringInput `pulumi:"retentionUnit"`
 	RetentionValue pulumi.IntInput    `pulumi:"retentionValue"`
@@ -29914,7 +29941,7 @@ func (o GetClusterSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyType() pu
 	return o.ApplyT(func(v GetClusterSnapshotBackupPolicyPolicyPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
+// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 func (o GetClusterSnapshotBackupPolicyPolicyPolicyItemOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterSnapshotBackupPolicyPolicyPolicyItem) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -30079,8 +30106,6 @@ type GetClustersResult struct {
 	// Indicates whether Encryption at Rest is enabled or disabled.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []GetClustersResultLabel `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -30121,7 +30146,7 @@ type GetClustersResult struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType string `pulumi:"providerVolumeType"`
-	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor int `pulumi:"replicationFactor"`
@@ -30184,8 +30209,6 @@ type GetClustersResultArgs struct {
 	// Indicates whether Encryption at Rest is enabled or disabled.
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels GetClustersResultLabelArrayInput `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -30226,7 +30249,7 @@ type GetClustersResultArgs struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringInput `pulumi:"providerVolumeType"`
-	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntInput `pulumi:"replicationFactor"`
@@ -30364,8 +30387,6 @@ func (o GetClustersResultOutput) EncryptionAtRestProvider() pulumi.StringOutput 
 }
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-//
-// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 func (o GetClustersResultOutput) Labels() GetClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersResultLabel { return v.Labels }).(GetClustersResultLabelArrayOutput)
 }
@@ -30466,7 +30487,7 @@ func (o GetClustersResultOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderVolumeType }).(pulumi.StringOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 func (o GetClustersResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
@@ -31356,7 +31377,7 @@ func (o GetClustersResultLabelArrayOutput) Index(i pulumi.IntInput) GetClustersR
 }
 
 type GetClustersResultReplicationSpec struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id string `pulumi:"id"`
 	// Number of shards to deploy in the specified zone.
 	NumShards int `pulumi:"numShards"`
@@ -31378,7 +31399,7 @@ type GetClustersResultReplicationSpecInput interface {
 }
 
 type GetClustersResultReplicationSpecArgs struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Number of shards to deploy in the specified zone.
 	NumShards pulumi.IntInput `pulumi:"numShards"`
@@ -31439,7 +31460,7 @@ func (o GetClustersResultReplicationSpecOutput) ToGetClustersResultReplicationSp
 	return o
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
+// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 func (o GetClustersResultReplicationSpecOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -31753,7 +31774,7 @@ func (o GetClustersResultSnapshotBackupPolicyArrayOutput) Index(i pulumi.IntInpu
 }
 
 type GetClustersResultSnapshotBackupPolicyPolicy struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id          string                                                  `pulumi:"id"`
 	PolicyItems []GetClustersResultSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
 }
@@ -31770,7 +31791,7 @@ type GetClustersResultSnapshotBackupPolicyPolicyInput interface {
 }
 
 type GetClustersResultSnapshotBackupPolicyPolicyArgs struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id          pulumi.StringInput                                              `pulumi:"id"`
 	PolicyItems GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArrayInput `pulumi:"policyItems"`
 }
@@ -31826,7 +31847,7 @@ func (o GetClustersResultSnapshotBackupPolicyPolicyOutput) ToGetClustersResultSn
 	return o
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
+// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 func (o GetClustersResultSnapshotBackupPolicyPolicyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultSnapshotBackupPolicyPolicy) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -31860,7 +31881,7 @@ func (o GetClustersResultSnapshotBackupPolicyPolicyArrayOutput) Index(i pulumi.I
 type GetClustersResultSnapshotBackupPolicyPolicyPolicyItem struct {
 	FrequencyInterval int    `pulumi:"frequencyInterval"`
 	FrequencyType     string `pulumi:"frequencyType"`
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id             string `pulumi:"id"`
 	RetentionUnit  string `pulumi:"retentionUnit"`
 	RetentionValue int    `pulumi:"retentionValue"`
@@ -31880,7 +31901,7 @@ type GetClustersResultSnapshotBackupPolicyPolicyPolicyItemInput interface {
 type GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs struct {
 	FrequencyInterval pulumi.IntInput    `pulumi:"frequencyInterval"`
 	FrequencyType     pulumi.StringInput `pulumi:"frequencyType"`
-	// Unique identifer of the replication document for a zone in a Global Cluster.
+	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id             pulumi.StringInput `pulumi:"id"`
 	RetentionUnit  pulumi.StringInput `pulumi:"retentionUnit"`
 	RetentionValue pulumi.IntInput    `pulumi:"retentionValue"`
@@ -31945,7 +31966,7 @@ func (o GetClustersResultSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyTy
 	return o.ApplyT(func(v GetClustersResultSnapshotBackupPolicyPolicyPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
+// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 func (o GetClustersResultSnapshotBackupPolicyPolicyPolicyItemOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultSnapshotBackupPolicyPolicyPolicyItem) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -46694,6 +46715,10 @@ type GetProjectsResult struct {
 	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
+	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.24.0.
+	IsSlowOperationThresholdingEnabled bool `pulumi:"isSlowOperationThresholdingEnabled"`
 	// The limits for the specified project. See Limits.
 	Limits []GetProjectsResultLimit `pulumi:"limits"`
 	Name   string                   `pulumi:"name"`
@@ -46742,6 +46767,10 @@ type GetProjectsResultArgs struct {
 	IsRealtimePerformancePanelEnabled pulumi.BoolInput `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
+	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.24.0.
+	IsSlowOperationThresholdingEnabled pulumi.BoolInput `pulumi:"isSlowOperationThresholdingEnabled"`
 	// The limits for the specified project. See Limits.
 	Limits GetProjectsResultLimitArrayInput `pulumi:"limits"`
 	Name   pulumi.StringInput               `pulumi:"name"`
@@ -46857,6 +46886,13 @@ func (o GetProjectsResultOutput) IsRealtimePerformancePanelEnabled() pulumi.Bool
 // Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.24.0.
+func (o GetProjectsResultOutput) IsSlowOperationThresholdingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSlowOperationThresholdingEnabled }).(pulumi.BoolOutput)
 }
 
 // The limits for the specified project. See Limits.
