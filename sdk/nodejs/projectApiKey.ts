@@ -91,6 +91,8 @@ export class ProjectApiKey extends pulumi.CustomResource {
     public /*out*/ readonly apiKeyId!: pulumi.Output<string>;
     /**
      * Description of this Project API key.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
     public readonly description!: pulumi.Output<string>;
     public /*out*/ readonly privateKey!: pulumi.Output<string>;
@@ -146,6 +148,8 @@ export interface ProjectApiKeyState {
     apiKeyId?: pulumi.Input<string>;
     /**
      * Description of this Project API key.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
     description?: pulumi.Input<string>;
     privateKey?: pulumi.Input<string>;
@@ -159,6 +163,8 @@ export interface ProjectApiKeyState {
 export interface ProjectApiKeyArgs {
     /**
      * Description of this Project API key.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
     description: pulumi.Input<string>;
     projectAssignments: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;

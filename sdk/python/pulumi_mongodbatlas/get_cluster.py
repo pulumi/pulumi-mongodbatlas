@@ -267,7 +267,6 @@ class GetClusterResult:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Sequence['outputs.GetClusterLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -438,7 +437,7 @@ class GetClusterResult:
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> bool:
         """
-        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         """
         return pulumi.get(self, "redact_client_log_data")
 

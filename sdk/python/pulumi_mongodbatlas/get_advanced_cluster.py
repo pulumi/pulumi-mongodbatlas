@@ -27,7 +27,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -40,6 +40,12 @@ class GetAdvancedClusterResult:
         if cluster_type and not isinstance(cluster_type, str):
             raise TypeError("Expected argument 'cluster_type' to be a str")
         pulumi.set(__self__, "cluster_type", cluster_type)
+        if config_server_management_mode and not isinstance(config_server_management_mode, str):
+            raise TypeError("Expected argument 'config_server_management_mode' to be a str")
+        pulumi.set(__self__, "config_server_management_mode", config_server_management_mode)
+        if config_server_type and not isinstance(config_server_type, str):
+            raise TypeError("Expected argument 'config_server_type' to be a str")
+        pulumi.set(__self__, "config_server_type", config_server_type)
         if connection_strings and not isinstance(connection_strings, list):
             raise TypeError("Expected argument 'connection_strings' to be a list")
         pulumi.set(__self__, "connection_strings", connection_strings)
@@ -137,6 +143,22 @@ class GetAdvancedClusterResult:
         return pulumi.get(self, "cluster_type")
 
     @property
+    @pulumi.getter(name="configServerManagementMode")
+    def config_server_management_mode(self) -> str:
+        """
+        Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_management_mode")
+
+    @property
+    @pulumi.getter(name="configServerType")
+    def config_server_type(self) -> str:
+        """
+        Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        """
+        return pulumi.get(self, "config_server_type")
+
+    @property
     @pulumi.getter(name="connectionStrings")
     def connection_strings(self) -> Sequence['outputs.GetAdvancedClusterConnectionStringResult']:
         """
@@ -184,7 +206,6 @@ class GetAdvancedClusterResult:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in the future. Please transition to tags""")
     def labels(self) -> Sequence['outputs.GetAdvancedClusterLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
@@ -237,7 +258,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> bool:
         """
-        (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -313,6 +334,8 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             backup_enabled=self.backup_enabled,
             bi_connector_configs=self.bi_connector_configs,
             cluster_type=self.cluster_type,
+            config_server_management_mode=self.config_server_management_mode,
+            config_server_type=self.config_server_type,
             connection_strings=self.connection_strings,
             create_date=self.create_date,
             disk_size_gb=self.disk_size_gb,
@@ -439,6 +462,8 @@ def get_advanced_cluster(name: Optional[str] = None,
         backup_enabled=pulumi.get(__ret__, 'backup_enabled'),
         bi_connector_configs=pulumi.get(__ret__, 'bi_connector_configs'),
         cluster_type=pulumi.get(__ret__, 'cluster_type'),
+        config_server_management_mode=pulumi.get(__ret__, 'config_server_management_mode'),
+        config_server_type=pulumi.get(__ret__, 'config_server_type'),
         connection_strings=pulumi.get(__ret__, 'connection_strings'),
         create_date=pulumi.get(__ret__, 'create_date'),
         disk_size_gb=pulumi.get(__ret__, 'disk_size_gb'),
@@ -562,6 +587,8 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
         backup_enabled=pulumi.get(__response__, 'backup_enabled'),
         bi_connector_configs=pulumi.get(__response__, 'bi_connector_configs'),
         cluster_type=pulumi.get(__response__, 'cluster_type'),
+        config_server_management_mode=pulumi.get(__response__, 'config_server_management_mode'),
+        config_server_type=pulumi.get(__response__, 'config_server_type'),
         connection_strings=pulumi.get(__response__, 'connection_strings'),
         create_date=pulumi.get(__response__, 'create_date'),
         disk_size_gb=pulumi.get(__response__, 'disk_size_gb'),

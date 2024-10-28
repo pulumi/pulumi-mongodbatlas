@@ -572,7 +572,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProviderVolumeType { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+        /// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
         /// </summary>
         [Output("redactClientLogData")]
         public Output<bool> RedactClientLogData { get; private set; } = null!;
@@ -780,7 +780,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
-        [Obsolete(@"This parameter is deprecated and will be removed in the future. Please transition to tags")]
         public InputList<Inputs.ClusterLabelArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.ClusterLabelArgs>());
@@ -885,7 +884,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderVolumeType { get; set; }
 
         /// <summary>
-        /// Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+        /// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
         /// </summary>
         [Input("redactClientLogData")]
         public Input<bool>? RedactClientLogData { get; set; }
@@ -1067,7 +1066,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
-        [Obsolete(@"This parameter is deprecated and will be removed in the future. Please transition to tags")]
         public InputList<Inputs.ClusterLabelGetArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.ClusterLabelGetArgs>());
@@ -1199,7 +1197,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderVolumeType { get; set; }
 
         /// <summary>
-        /// Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+        /// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
         /// </summary>
         [Input("redactClientLogData")]
         public Input<bool>? RedactClientLogData { get; set; }

@@ -5,7 +5,7 @@ go 1.23.2
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.12.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
-	github.com/mongodb/terraform-provider-mongodbatlas v1.21.1
+	github.com/mongodb/terraform-provider-mongodbatlas v1.21.3
 )
 
 require (
@@ -48,7 +48,7 @@ require (
 	github.com/hashicorp/hcl/v2 v2.22.0 // indirect
 	github.com/hashicorp/logutils v1.0.0 // indirect
 	github.com/hashicorp/terraform-plugin-framework-timeouts v0.4.1 // indirect
-	github.com/hashicorp/terraform-plugin-framework-validators v0.13.0 // indirect
+	github.com/hashicorp/terraform-plugin-framework-validators v0.14.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.24.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
 	github.com/hashicorp/terraform-plugin-mux v0.16.0 // indirect
@@ -83,7 +83,7 @@ require (
 	github.com/zclconf/go-cty-yaml v1.0.2 // indirect
 	go.mongodb.org/atlas v0.37.0 // indirect
 	go.mongodb.org/atlas-sdk/v20240530005 v20240530005.0.0 // indirect
-	go.mongodb.org/atlas-sdk/v20240805004 v20240805004.6.0 // indirect
+	go.mongodb.org/atlas-sdk/v20240805005 v20240805005.0.0 // indirect
 	go.mongodb.org/realm v0.1.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.47.0 // indirect

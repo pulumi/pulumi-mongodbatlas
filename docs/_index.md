@@ -20,7 +20,6 @@ The provider needs to be configured with the proper credentials before it can be
 Use the navigation to the left to read about the available provider resources and functions.
 
 You may want to consider pinning the provider version to ensure you have a chance to review and prepare for changes.
-Speaking of changes, see CHANGELOG for current version information.
 ## Example Usage
 
 {{< chooser language "typescript,python,go,csharp,java,yaml" >}}

@@ -99,6 +99,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Description of this Project API key.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
@@ -164,6 +166,8 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Description of this Project API key.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         [Input("description", required: true)]
         public Input<string> Description { get; set; } = null!;
@@ -192,6 +196,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Description of this Project API key.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }

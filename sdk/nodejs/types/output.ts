@@ -133,7 +133,7 @@ export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: string;
     region: string;
@@ -154,8 +154,13 @@ export interface AdvancedClusterLabel {
 
 export interface AdvancedClusterReplicationSpec {
     containerId: {[key: string]: string};
+    /**
+     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+     */
     externalId: string;
     /**
+     * **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
     id: string;
@@ -214,7 +219,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: string;
     /**
@@ -242,7 +247,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
      */
     computeScaleDownEnabled: boolean;
     /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
      */
     diskGbEnabled: boolean;
 }
@@ -1070,7 +1075,7 @@ export interface ClusterOutageSimulationOutageFilter {
 
 export interface ClusterReplicationSpec {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id: string;
     /**
@@ -1135,7 +1140,7 @@ export interface ClusterSnapshotBackupPolicy {
 
 export interface ClusterSnapshotBackupPolicyPolicy {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id: string;
     policyItems: outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem[];
@@ -1145,7 +1150,7 @@ export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: number;
     frequencyType: string;
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id: string;
     retentionUnit: string;
@@ -1758,6 +1763,9 @@ export interface GetAdvancedClusterReplicationSpec {
      * A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
      */
     containerId: {[key: string]: string};
+    /**
+     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+     */
     externalId: string;
     /**
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -1971,6 +1979,14 @@ export interface GetAdvancedClustersResult {
      */
     clusterType: string;
     /**
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    configServerManagementMode: string;
+    /**
+     * Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    configServerType: string;
+    /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     connectionStrings: outputs.GetAdvancedClustersResultConnectionString[];
@@ -1991,8 +2007,6 @@ export interface GetAdvancedClustersResult {
     globalClusterSelfManagedSharding: boolean;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-     *
-     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels: outputs.GetAdvancedClustersResultLabel[];
     /**
@@ -2013,7 +2027,7 @@ export interface GetAdvancedClustersResult {
      */
     pitEnabled: boolean;
     /**
-     * (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
      */
     redactClientLogData: boolean;
     /**
@@ -2176,6 +2190,9 @@ export interface GetAdvancedClustersResultReplicationSpec {
      * A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
      */
     containerId: {[key: string]: string};
+    /**
+     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+     */
     externalId: string;
     /**
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -3648,7 +3665,7 @@ export interface GetClusterOutageSimulationOutageFilter {
 
 export interface GetClusterReplicationSpec {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id: string;
     /**
@@ -3701,7 +3718,7 @@ export interface GetClusterSnapshotBackupPolicy {
 
 export interface GetClusterSnapshotBackupPolicyPolicy {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id: string;
     policyItems: outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItem[];
@@ -3711,7 +3728,7 @@ export interface GetClusterSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: number;
     frequencyType: string;
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id: string;
     retentionUnit: string;
@@ -3780,8 +3797,6 @@ export interface GetClustersResult {
     encryptionAtRestProvider: string;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-     *
-     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     labels: outputs.GetClustersResultLabel[];
     /**
@@ -3862,7 +3877,7 @@ export interface GetClustersResult {
      */
     providerVolumeType: string;
     /**
-     * (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
      */
     redactClientLogData: boolean;
     /**
@@ -4028,7 +4043,7 @@ export interface GetClustersResultLabel {
 
 export interface GetClustersResultReplicationSpec {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id: string;
     /**
@@ -4081,7 +4096,7 @@ export interface GetClustersResultSnapshotBackupPolicy {
 
 export interface GetClustersResultSnapshotBackupPolicyPolicy {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id: string;
     policyItems: outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItem[];
@@ -4091,7 +4106,7 @@ export interface GetClustersResultSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: number;
     frequencyType: string;
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
      */
     id: string;
     retentionUnit: string;
@@ -6133,6 +6148,12 @@ export interface GetProjectsResult {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     isSchemaAdvisorEnabled: boolean;
+    /**
+     * Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.24.0.
+     */
+    isSlowOperationThresholdingEnabled: boolean;
     /**
      * The limits for the specified project. See Limits.
      */

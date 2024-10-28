@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool? ComputeScaleDownEnabled;
         /// <summary>
-        /// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        /// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         /// </summary>
         public readonly bool? DiskGbEnabled;
 

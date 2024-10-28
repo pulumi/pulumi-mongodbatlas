@@ -26,6 +26,8 @@ class ProjectApiKeyArgs:
         """
         The set of arguments for constructing a ProjectApiKey resource.
         :param pulumi.Input[str] description: Description of this Project API key.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "project_assignments", project_assignments)
@@ -35,6 +37,8 @@ class ProjectApiKeyArgs:
     def description(self) -> pulumi.Input[str]:
         """
         Description of this Project API key.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "description")
 
@@ -64,6 +68,8 @@ class _ProjectApiKeyState:
         Input properties used for looking up and filtering ProjectApiKey resources.
         :param pulumi.Input[str] api_key_id: Unique identifier for this Project API key.
         :param pulumi.Input[str] description: Description of this Project API key.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         if api_key_id is not None:
             pulumi.set(__self__, "api_key_id", api_key_id)
@@ -93,6 +99,8 @@ class _ProjectApiKeyState:
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         Description of this Project API key.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "description")
 
@@ -188,6 +196,8 @@ class ProjectApiKey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of this Project API key.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         ...
     @overload
@@ -305,6 +315,8 @@ class ProjectApiKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_key_id: Unique identifier for this Project API key.
         :param pulumi.Input[str] description: Description of this Project API key.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -330,6 +342,8 @@ class ProjectApiKey(pulumi.CustomResource):
     def description(self) -> pulumi.Output[str]:
         """
         Description of this Project API key.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "description")
 

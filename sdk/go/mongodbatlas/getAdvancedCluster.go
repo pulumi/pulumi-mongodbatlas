@@ -162,6 +162,10 @@ type LookupAdvancedClusterResult struct {
 	BiConnectorConfigs []GetAdvancedClusterBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Type of the cluster that you want to create.
 	ClusterType string `pulumi:"clusterType"`
+	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerManagementMode string `pulumi:"configServerManagementMode"`
+	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	ConfigServerType string `pulumi:"configServerType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []GetAdvancedClusterConnectionString `pulumi:"connectionStrings"`
 	CreateDate        string                               `pulumi:"createDate"`
@@ -176,8 +180,6 @@ type LookupAdvancedClusterResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 	Labels []GetAdvancedClusterLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -189,7 +191,7 @@ type LookupAdvancedClusterResult struct {
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
-	// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
@@ -279,6 +281,16 @@ func (o LookupAdvancedClusterResultOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ClusterType }).(pulumi.StringOutput)
 }
 
+// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+func (o LookupAdvancedClusterResultOutput) ConfigServerManagementMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ConfigServerManagementMode }).(pulumi.StringOutput)
+}
+
+// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+func (o LookupAdvancedClusterResultOutput) ConfigServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ConfigServerType }).(pulumi.StringOutput)
+}
+
 // Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 func (o LookupAdvancedClusterResultOutput) ConnectionStrings() GetAdvancedClusterConnectionStringArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterConnectionString { return v.ConnectionStrings }).(GetAdvancedClusterConnectionStringArrayOutput)
@@ -311,8 +323,6 @@ func (o LookupAdvancedClusterResultOutput) Id() pulumi.StringOutput {
 }
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
-//
-// Deprecated: This parameter is deprecated and will be removed in the future. Please transition to tags
 func (o LookupAdvancedClusterResultOutput) Labels() GetAdvancedClusterLabelArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterLabel { return v.Labels }).(GetAdvancedClusterLabelArrayOutput)
 }
@@ -345,7 +355,7 @@ func (o LookupAdvancedClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
 func (o LookupAdvancedClusterResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }

@@ -140,6 +140,14 @@ export interface GetAdvancedClusterResult {
      */
     readonly clusterType: string;
     /**
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    readonly configServerManagementMode: string;
+    /**
+     * Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     */
+    readonly configServerType: string;
+    /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     readonly connectionStrings: outputs.GetAdvancedClusterConnectionString[];
@@ -164,8 +172,6 @@ export interface GetAdvancedClusterResult {
     readonly id: string;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
-     *
-     * @deprecated This parameter is deprecated and will be removed in the future. Please transition to tags
      */
     readonly labels: outputs.GetAdvancedClusterLabel[];
     /**
@@ -187,7 +193,7 @@ export interface GetAdvancedClusterResult {
     readonly pitEnabled: boolean;
     readonly projectId: string;
     /**
-     * (Optional) Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
      */
     readonly redactClientLogData: boolean;
     /**

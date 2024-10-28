@@ -103,6 +103,8 @@ type ProjectApiKey struct {
 	// Unique identifier for this Project API key.
 	ApiKeyId pulumi.StringOutput `pulumi:"apiKeyId"`
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        pulumi.StringOutput                       `pulumi:"description"`
 	PrivateKey         pulumi.StringOutput                       `pulumi:"privateKey"`
 	ProjectAssignments ProjectApiKeyProjectAssignmentArrayOutput `pulumi:"projectAssignments"`
@@ -152,6 +154,8 @@ type projectApiKeyState struct {
 	// Unique identifier for this Project API key.
 	ApiKeyId *string `pulumi:"apiKeyId"`
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        *string                          `pulumi:"description"`
 	PrivateKey         *string                          `pulumi:"privateKey"`
 	ProjectAssignments []ProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
@@ -162,6 +166,8 @@ type ProjectApiKeyState struct {
 	// Unique identifier for this Project API key.
 	ApiKeyId pulumi.StringPtrInput
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        pulumi.StringPtrInput
 	PrivateKey         pulumi.StringPtrInput
 	ProjectAssignments ProjectApiKeyProjectAssignmentArrayInput
@@ -174,6 +180,8 @@ func (ProjectApiKeyState) ElementType() reflect.Type {
 
 type projectApiKeyArgs struct {
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        string                           `pulumi:"description"`
 	ProjectAssignments []ProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
 }
@@ -181,6 +189,8 @@ type projectApiKeyArgs struct {
 // The set of arguments for constructing a ProjectApiKey resource.
 type ProjectApiKeyArgs struct {
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        pulumi.StringInput
 	ProjectAssignments ProjectApiKeyProjectAssignmentArrayInput
 }
@@ -278,6 +288,8 @@ func (o ProjectApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 }
 
 // Description of this Project API key.
+//
+// > **NOTE:** Project created by API Keys must belong to an existing organization.
 func (o ProjectApiKeyOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectApiKey) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }

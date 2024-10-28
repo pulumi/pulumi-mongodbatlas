@@ -111,6 +111,29 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.isSchemaAdvisorEnabled);
     }
 
+    /**
+     * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.24.0.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.24.0. */
+    @Import(name="isSlowOperationThresholdingEnabled")
+    private @Nullable Output<Boolean> isSlowOperationThresholdingEnabled;
+
+    /**
+     * @return (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.24.0.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.24.0. */
+    public Optional<Output<Boolean>> isSlowOperationThresholdingEnabled() {
+        return Optional.ofNullable(this.isSlowOperationThresholdingEnabled);
+    }
+
     @Import(name="limits")
     private @Nullable Output<List<ProjectLimitArgs>> limits;
 
@@ -224,6 +247,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         this.isPerformanceAdvisorEnabled = $.isPerformanceAdvisorEnabled;
         this.isRealtimePerformancePanelEnabled = $.isRealtimePerformancePanelEnabled;
         this.isSchemaAdvisorEnabled = $.isSchemaAdvisorEnabled;
+        this.isSlowOperationThresholdingEnabled = $.isSlowOperationThresholdingEnabled;
         this.limits = $.limits;
         this.name = $.name;
         this.orgId = $.orgId;
@@ -376,6 +400,35 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder isSchemaAdvisorEnabled(Boolean isSchemaAdvisorEnabled) {
             return isSchemaAdvisorEnabled(Output.of(isSchemaAdvisorEnabled));
+        }
+
+        /**
+         * @param isSlowOperationThresholdingEnabled (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.24.0.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.24.0. */
+        public Builder isSlowOperationThresholdingEnabled(@Nullable Output<Boolean> isSlowOperationThresholdingEnabled) {
+            $.isSlowOperationThresholdingEnabled = isSlowOperationThresholdingEnabled;
+            return this;
+        }
+
+        /**
+         * @param isSlowOperationThresholdingEnabled (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.24.0.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.24.0. */
+        public Builder isSlowOperationThresholdingEnabled(Boolean isSlowOperationThresholdingEnabled) {
+            return isSlowOperationThresholdingEnabled(Output.of(isSlowOperationThresholdingEnabled));
         }
 
         public Builder limits(@Nullable Output<List<ProjectLimitArgs>> limits) {

@@ -24,24 +24,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.AdvancedCluster
- * 
- * `mongodbatlas.AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
- * 
- * More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
- * 
- * &gt; **IMPORTANT:** The primary difference between `mongodbatlas.Cluster` and `mongodbatlas.AdvancedCluster` is that `mongodbatlas.AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `mongodbatlas.AdvancedCluster` resource.
- * 
- * &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
- * 
- * &gt; **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs.#.container_id` attribute in the Attributes Reference for more information.
- * 
- * &gt; **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the mongodbatlas.Project resource.
- * 
- * &gt; **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
- * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
- * 
  * ## Example Usage
  * 
  * ### Example single provider and single region
@@ -655,6 +637,34 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.clusterType;
     }
     /**
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    @Export(name="configServerManagementMode", refs={String.class}, tree="[0]")
+    private Output<String> configServerManagementMode;
+
+    /**
+     * @return Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    public Output<String> configServerManagementMode() {
+        return this.configServerManagementMode;
+    }
+    /**
+     * Describes a sharded cluster&#39;s config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    @Export(name="configServerType", refs={String.class}, tree="[0]")
+    private Output<String> configServerType;
+
+    /**
+     * @return Describes a sharded cluster&#39;s config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * 
+     */
+    public Output<String> configServerType() {
+        return this.configServerType;
+    }
+    /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
@@ -723,11 +733,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the future. Please transition to tags
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the future. Please transition to tags */
     @Export(name="labels", refs={List.class,AdvancedClusterLabel.class}, tree="[0,1]")
     private Output</* @Nullable */ List<AdvancedClusterLabel>> labels;
 
@@ -815,14 +821,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
      * 
      */
     @Export(name="redactClientLogData", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> redactClientLogData;
 
     /**
-     * @return Flag that enables or disables log redaction, see [param reference](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.redactClientLogData) for more info.
+     * @return Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
      * 
      */
     public Output<Boolean> redactClientLogData() {

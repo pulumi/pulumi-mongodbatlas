@@ -19,6 +19,10 @@ public final class GetAdvancedClusterReplicationSpec {
      * 
      */
     private Map<String,String> containerId;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+     * 
+     */
     private String externalId;
     /**
      * @deprecated
@@ -60,6 +64,10 @@ public final class GetAdvancedClusterReplicationSpec {
     public Map<String,String> containerId() {
         return this.containerId;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+     * 
+     */
     public String externalId() {
         return this.externalId;
     }
