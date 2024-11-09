@@ -73,8 +73,7 @@ func Provider() tfbridge.ProviderInfo {
 	ctx := context.Background()
 	// Instantiate the Terraform provider
 	p := pfbridge.MuxShimWithPF(ctx,
-		shimv2.NewProvider(mongodbatlas.SDKProvider(),
-			shimv2.WithPlanResourceChange(func(string) bool { return true })),
+		shimv2.NewProvider(mongodbatlas.SDKProvider()),
 		mongodbatlas.FrameworkProvider())
 
 	// Create a Pulumi provider mapping
