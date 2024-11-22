@@ -6,7 +6,7 @@ layout: package
 ---
 ## Installation
 
-The mongodbatlas provider is available as a package in all Pulumi languages:
+The Mongodbatlas provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/mongodbatlas`](https://www.npmjs.com/package/@pulumi/mongodbatlas)
 * Python: [`pulumi-mongodbatlas`](https://pypi.org/project/pulumi-mongodbatlas/)
