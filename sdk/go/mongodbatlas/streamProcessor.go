@@ -20,7 +20,7 @@ type StreamProcessor struct {
 	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options StreamProcessorOptionsPtrOutput `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline pulumi.StringOutput `pulumi:"pipeline"`
 	// Human-readable label that identifies the stream processor.
 	ProcessorName pulumi.StringOutput `pulumi:"processorName"`
@@ -28,9 +28,8 @@ type StreamProcessor struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-	// the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-	// state is set to STARTED.
+	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+	// setting the state to STARTED can automatically start the stream processor.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas
 	// Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
@@ -84,7 +83,7 @@ type streamProcessorState struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options *StreamProcessorOptions `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline *string `pulumi:"pipeline"`
 	// Human-readable label that identifies the stream processor.
 	ProcessorName *string `pulumi:"processorName"`
@@ -92,9 +91,8 @@ type streamProcessorState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-	// the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-	// state is set to STARTED.
+	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+	// setting the state to STARTED can automatically start the stream processor.
 	State *string `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas
 	// Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
@@ -107,7 +105,7 @@ type StreamProcessorState struct {
 	InstanceName pulumi.StringPtrInput
 	// Optional configuration for the stream processor.
 	Options StreamProcessorOptionsPtrInput
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline pulumi.StringPtrInput
 	// Human-readable label that identifies the stream processor.
 	ProcessorName pulumi.StringPtrInput
@@ -115,9 +113,8 @@ type StreamProcessorState struct {
 	ProjectId pulumi.StringPtrInput
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-	// the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-	// state is set to STARTED.
+	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+	// setting the state to STARTED can automatically start the stream processor.
 	State pulumi.StringPtrInput
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas
 	// Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
@@ -134,7 +131,7 @@ type streamProcessorArgs struct {
 	InstanceName string `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options *StreamProcessorOptions `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline string `pulumi:"pipeline"`
 	// Human-readable label that identifies the stream processor.
 	ProcessorName string `pulumi:"processorName"`
@@ -142,9 +139,8 @@ type streamProcessorArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-	// the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-	// state is set to STARTED.
+	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+	// setting the state to STARTED can automatically start the stream processor.
 	State *string `pulumi:"state"`
 }
 
@@ -154,7 +150,7 @@ type StreamProcessorArgs struct {
 	InstanceName pulumi.StringInput
 	// Optional configuration for the stream processor.
 	Options StreamProcessorOptionsPtrInput
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline pulumi.StringInput
 	// Human-readable label that identifies the stream processor.
 	ProcessorName pulumi.StringInput
@@ -162,9 +158,8 @@ type StreamProcessorArgs struct {
 	ProjectId pulumi.StringInput
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-	// the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-	// state is set to STARTED.
+	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+	// setting the state to STARTED can automatically start the stream processor.
 	State pulumi.StringPtrInput
 }
 
@@ -265,7 +260,7 @@ func (o StreamProcessorOutput) Options() StreamProcessorOptionsPtrOutput {
 	return o.ApplyT(func(v *StreamProcessor) StreamProcessorOptionsPtrOutput { return v.Options }).(StreamProcessorOptionsPtrOutput)
 }
 
-// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 func (o StreamProcessorOutput) Pipeline() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.Pipeline }).(pulumi.StringOutput)
 }
@@ -282,9 +277,8 @@ func (o StreamProcessorOutput) ProjectId() pulumi.StringOutput {
 
 // The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 // start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-// created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-// the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-// state is set to STARTED.
+// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+// setting the state to STARTED can automatically start the stream processor.
 func (o StreamProcessorOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }

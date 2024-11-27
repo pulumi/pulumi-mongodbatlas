@@ -72,12 +72,16 @@ type ServerlessInstance struct {
 	pulumi.CustomResourceState
 
 	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	AutoIndexing pulumi.BoolOutput `pulumi:"autoIndexing"`
 	// List of Serverless Private Endpoint Connections
 	ConnectionStringsPrivateEndpointSrvs pulumi.StringArrayOutput `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv pulumi.StringOutput `pulumi:"connectionStringsStandardSrv"`
 	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	ContinuousBackupEnabled pulumi.BoolOutput `pulumi:"continuousBackupEnabled"`
 	// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
 	CreateDate pulumi.StringOutput               `pulumi:"createDate"`
@@ -145,12 +149,16 @@ func GetServerlessInstance(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ServerlessInstance resources.
 type serverlessInstanceState struct {
 	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	AutoIndexing *bool `pulumi:"autoIndexing"`
 	// List of Serverless Private Endpoint Connections
 	ConnectionStringsPrivateEndpointSrvs []string `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv *string `pulumi:"connectionStringsStandardSrv"`
 	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	ContinuousBackupEnabled *bool `pulumi:"continuousBackupEnabled"`
 	// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
 	CreateDate *string                  `pulumi:"createDate"`
@@ -177,12 +185,16 @@ type serverlessInstanceState struct {
 
 type ServerlessInstanceState struct {
 	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	AutoIndexing pulumi.BoolPtrInput
 	// List of Serverless Private Endpoint Connections
 	ConnectionStringsPrivateEndpointSrvs pulumi.StringArrayInput
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv pulumi.StringPtrInput
 	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	ContinuousBackupEnabled pulumi.BoolPtrInput
 	// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
 	CreateDate pulumi.StringPtrInput
@@ -213,8 +225,12 @@ func (ServerlessInstanceState) ElementType() reflect.Type {
 
 type serverlessInstanceArgs struct {
 	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	AutoIndexing *bool `pulumi:"autoIndexing"`
 	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	ContinuousBackupEnabled *bool                    `pulumi:"continuousBackupEnabled"`
 	Links                   []ServerlessInstanceLink `pulumi:"links"`
 	// Human-readable label that identifies the serverless instance.
@@ -238,8 +254,12 @@ type serverlessInstanceArgs struct {
 // The set of arguments for constructing a ServerlessInstance resource.
 type ServerlessInstanceArgs struct {
 	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	AutoIndexing pulumi.BoolPtrInput
 	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	//
+	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 	ContinuousBackupEnabled pulumi.BoolPtrInput
 	Links                   ServerlessInstanceLinkArrayInput
 	// Human-readable label that identifies the serverless instance.
@@ -348,6 +368,8 @@ func (o ServerlessInstanceOutput) ToServerlessInstanceOutputWithContext(ctx cont
 }
 
 // Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+//
+// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 func (o ServerlessInstanceOutput) AutoIndexing() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServerlessInstance) pulumi.BoolOutput { return v.AutoIndexing }).(pulumi.BoolOutput)
 }
@@ -363,6 +385,8 @@ func (o ServerlessInstanceOutput) ConnectionStringsStandardSrv() pulumi.StringOu
 }
 
 // Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+//
+// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
 func (o ServerlessInstanceOutput) ContinuousBackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServerlessInstance) pulumi.BoolOutput { return v.ContinuousBackupEnabled }).(pulumi.BoolOutput)
 }

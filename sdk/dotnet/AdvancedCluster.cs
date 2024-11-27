@@ -82,7 +82,7 @@ namespace Pulumi.Mongodbatlas
     ///                     {
     ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
     ///                         {
-    ///                             InstanceSize = "M5",
+    ///                             InstanceSize = "M0",
     ///                         },
     ///                         ProviderName = "TENANT",
     ///                         BackingProviderName = "AWS",
@@ -96,6 +96,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
+    /// **NOTE:** There can only be one M0 cluster per project.
     /// 
     /// **NOTE**: Upgrading the shared tier is supported. Any change from a shared tier cluster (a tenant) to a different instance size will be considered a tenant upgrade. When upgrading from the shared tier, change the `provider_name` from "TENANT" to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below. You can upgrade a shared tier cluster only to a single provider on an M10-tier cluster or greater.
     /// 

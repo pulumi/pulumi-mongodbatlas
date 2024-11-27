@@ -107,7 +107,7 @@ def get_advanced_clusters(project_id: Optional[str] = None,
         replication_specs=[{
             "region_configs": [{
                 "electable_specs": {
-                    "instance_size": "M5",
+                    "instance_size": "M0",
                 },
                 "provider_name": "TENANT",
                 "backing_provider_name": "AWS",
@@ -117,6 +117,8 @@ def get_advanced_clusters(project_id: Optional[str] = None,
         }])
     example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
     ```
+
+    **NOTE:** There can only be one M0 cluster per project.
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
 
@@ -202,7 +204,7 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
         replication_specs=[{
             "region_configs": [{
                 "electable_specs": {
-                    "instance_size": "M5",
+                    "instance_size": "M0",
                 },
                 "provider_name": "TENANT",
                 "backing_provider_name": "AWS",
@@ -212,6 +214,8 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
         }])
     example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
     ```
+
+    **NOTE:** There can only be one M0 cluster per project.
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
 

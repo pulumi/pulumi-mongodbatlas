@@ -80,9 +80,10 @@ class GetServerlessInstanceResult:
 
     @property
     @pulumi.getter(name="autoIndexing")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
     def auto_indexing(self) -> bool:
         """
-        Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+        (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
         """
         return pulumi.get(self, "auto_indexing")
 
@@ -104,9 +105,10 @@ class GetServerlessInstanceResult:
 
     @property
     @pulumi.getter(name="continuousBackupEnabled")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
     def continuous_backup_enabled(self) -> bool:
         """
-        Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+        (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
         """
         return pulumi.get(self, "continuous_backup_enabled")
 
@@ -256,8 +258,8 @@ def get_serverless_instance(auto_indexing: Optional[bool] = None,
     Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
 
 
-    :param bool auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
-    :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+    :param bool auto_indexing: (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+    :param bool continuous_backup_enabled: (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
     :param str state_name: Stage of deployment of this serverless instance when the resource made its request.
@@ -326,8 +328,8 @@ def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional
     Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
 
 
-    :param bool auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
-    :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+    :param bool auto_indexing: (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+    :param bool continuous_backup_enabled: (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
     :param str state_name: Stage of deployment of this serverless instance when the resource made its request.

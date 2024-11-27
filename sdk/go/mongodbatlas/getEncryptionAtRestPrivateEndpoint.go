@@ -62,7 +62,7 @@ func LookupEncryptionAtRestPrivateEndpoint(ctx *pulumi.Context, args *LookupEncr
 
 // A collection of arguments for invoking getEncryptionAtRestPrivateEndpoint.
 type LookupEncryptionAtRestPrivateEndpointArgs struct {
-	// Label that identifies the cloud provider of the private endpoint.
+	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
 	Id string `pulumi:"id"`
@@ -72,7 +72,7 @@ type LookupEncryptionAtRestPrivateEndpointArgs struct {
 
 // A collection of values returned by getEncryptionAtRestPrivateEndpoint.
 type LookupEncryptionAtRestPrivateEndpointResult struct {
-	// Label that identifies the cloud provider of the private endpoint.
+	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Error message for failures associated with the Encryption At Rest private endpoint.
 	ErrorMessage string `pulumi:"errorMessage"`
@@ -109,7 +109,7 @@ func LookupEncryptionAtRestPrivateEndpointOutput(ctx *pulumi.Context, args Looku
 
 // A collection of arguments for invoking getEncryptionAtRestPrivateEndpoint.
 type LookupEncryptionAtRestPrivateEndpointOutputArgs struct {
-	// Label that identifies the cloud provider of the private endpoint.
+	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -136,7 +136,7 @@ func (o LookupEncryptionAtRestPrivateEndpointResultOutput) ToLookupEncryptionAtR
 	return o
 }
 
-// Label that identifies the cloud provider of the private endpoint.
+// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 func (o LookupEncryptionAtRestPrivateEndpointResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }

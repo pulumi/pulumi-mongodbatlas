@@ -48,14 +48,14 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
      * 
      */
     @Import(name="pipeline", required=true)
     private Output<String> pipeline;
 
     /**
-     * @return Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * @return Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
      * 
      */
     public Output<String> pipeline() {
@@ -95,9 +95,8 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
     /**
      * The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
      * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-     * the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-     * state is set to STARTED.
+     * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+     * setting the state to STARTED can automatically start the stream processor.
      * 
      */
     @Import(name="state")
@@ -106,9 +105,8 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
     /**
      * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
      * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-     * the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-     * state is set to STARTED.
+     * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+     * setting the state to STARTED can automatically start the stream processor.
      * 
      */
     public Optional<Output<String>> state() {
@@ -187,7 +185,7 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param pipeline Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+         * @param pipeline Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
          * 
          * @return builder
          * 
@@ -198,7 +196,7 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param pipeline Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+         * @param pipeline Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
          * 
          * @return builder
          * 
@@ -252,9 +250,8 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param state The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
          * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-         * created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-         * the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-         * state is set to STARTED.
+         * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+         * setting the state to STARTED can automatically start the stream processor.
          * 
          * @return builder
          * 
@@ -267,9 +264,8 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param state The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
          * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-         * created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-         * the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-         * state is set to STARTED.
+         * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+         * setting the state to STARTED can automatically start the stream processor.
          * 
          * @return builder
          * 

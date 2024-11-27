@@ -40,6 +40,11 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
      */
     private String expiresAt;
     /**
+     * @return Indicates whether the restore job failed.
+     * 
+     */
+    private Boolean failed;
+    /**
      * @return UTC ISO 8601 formatted point in time when the restore job completed.
      * 
      */
@@ -118,6 +123,13 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
         return this.expiresAt;
     }
     /**
+     * @return Indicates whether the restore job failed.
+     * 
+     */
+    public Boolean failed() {
+        return this.failed;
+    }
+    /**
      * @return UTC ISO 8601 formatted point in time when the restore job completed.
      * 
      */
@@ -193,6 +205,7 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
         private List<String> deliveryUrls;
         private Boolean expired;
         private String expiresAt;
+        private Boolean failed;
         private String finishedAt;
         private String id;
         private Integer oplogInc;
@@ -213,6 +226,7 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
     	      this.deliveryUrls = defaults.deliveryUrls;
     	      this.expired = defaults.expired;
     	      this.expiresAt = defaults.expiresAt;
+    	      this.failed = defaults.failed;
     	      this.finishedAt = defaults.finishedAt;
     	      this.id = defaults.id;
     	      this.oplogInc = defaults.oplogInc;
@@ -275,6 +289,14 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
               throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobResult", "expiresAt");
             }
             this.expiresAt = expiresAt;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder failed(Boolean failed) {
+            if (failed == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobResult", "failed");
+            }
+            this.failed = failed;
             return this;
         }
         @CustomType.Setter
@@ -373,6 +395,7 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
             _resultValue.deliveryUrls = deliveryUrls;
             _resultValue.expired = expired;
             _resultValue.expiresAt = expiresAt;
+            _resultValue.failed = failed;
             _resultValue.finishedAt = finishedAt;
             _resultValue.id = id;
             _resultValue.oplogInc = oplogInc;

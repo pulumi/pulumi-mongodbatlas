@@ -64,6 +64,10 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
      */
     readonly expiresAt: string;
     /**
+     * Indicates whether the restore job failed.
+     */
+    readonly failed: boolean;
+    /**
      * UTC ISO 8601 formatted point in time when the restore job completed.
      */
     readonly finishedAt: string;

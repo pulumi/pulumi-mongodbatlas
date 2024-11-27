@@ -54,11 +54,15 @@ export function getServerlessInstance(args: GetServerlessInstanceArgs, opts?: pu
  */
 export interface GetServerlessInstanceArgs {
     /**
-     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     *
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
     autoIndexing?: boolean;
     /**
-     * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     *
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
     continuousBackupEnabled?: boolean;
     links?: inputs.GetServerlessInstanceLink[];
@@ -81,7 +85,9 @@ export interface GetServerlessInstanceArgs {
  */
 export interface GetServerlessInstanceResult {
     /**
-     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     *
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
     readonly autoIndexing: boolean;
     /**
@@ -93,7 +99,9 @@ export interface GetServerlessInstanceResult {
      */
     readonly connectionStringsStandardSrv: string;
     /**
-     * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     *
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
     readonly continuousBackupEnabled: boolean;
     readonly createDate: string;
@@ -181,11 +189,15 @@ export function getServerlessInstanceOutput(args: GetServerlessInstanceOutputArg
  */
 export interface GetServerlessInstanceOutputArgs {
     /**
-     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     *
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
     autoIndexing?: pulumi.Input<boolean>;
     /**
-     * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     *
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
     continuousBackupEnabled?: pulumi.Input<boolean>;
     links?: pulumi.Input<pulumi.Input<inputs.GetServerlessInstanceLinkArgs>[]>;

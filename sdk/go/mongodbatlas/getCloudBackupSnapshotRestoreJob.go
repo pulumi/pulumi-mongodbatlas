@@ -49,6 +49,8 @@ type LookupCloudBackupSnapshotRestoreJobResult struct {
 	Expired bool `pulumi:"expired"`
 	// UTC ISO 8601 formatted point in time when the restore job expires.
 	ExpiresAt string `pulumi:"expiresAt"`
+	// Indicates whether the restore job failed.
+	Failed bool `pulumi:"failed"`
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt string `pulumi:"finishedAt"`
 	// The provider-assigned unique ID for this managed resource.
@@ -146,6 +148,11 @@ func (o LookupCloudBackupSnapshotRestoreJobResultOutput) Expired() pulumi.BoolOu
 // UTC ISO 8601 formatted point in time when the restore job expires.
 func (o LookupCloudBackupSnapshotRestoreJobResultOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// Indicates whether the restore job failed.
+func (o LookupCloudBackupSnapshotRestoreJobResultOutput) Failed() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) bool { return v.Failed }).(pulumi.BoolOutput)
 }
 
 // UTC ISO 8601 formatted point in time when the restore job completed.

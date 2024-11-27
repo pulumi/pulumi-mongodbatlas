@@ -122,14 +122,14 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
         return this.clusterName;
     }
     /**
-     * Unique 24-hexadecimal character string that identifies the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal character string that identifies the project.
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Output<String> projectId() {

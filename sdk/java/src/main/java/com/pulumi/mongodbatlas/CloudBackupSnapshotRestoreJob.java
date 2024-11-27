@@ -358,6 +358,20 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
         return this.expiresAt;
     }
     /**
+     * Indicates whether the restore job failed.
+     * 
+     */
+    @Export(name="failed", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> failed;
+
+    /**
+     * @return Indicates whether the restore job failed.
+     * 
+     */
+    public Output<Boolean> failed() {
+        return this.failed;
+    }
+    /**
      * UTC ISO 8601 formatted point in time when the restore job completed.
      * 
      */

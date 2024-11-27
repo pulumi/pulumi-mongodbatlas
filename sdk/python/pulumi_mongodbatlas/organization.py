@@ -24,6 +24,7 @@ class OrganizationArgs:
                  role_names: pulumi.Input[Sequence[pulumi.Input[str]]],
                  api_access_list_required: Optional[pulumi.Input[bool]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
+                 gen_ai_features_enabled: Optional[pulumi.Input[bool]] = None,
                  multi_factor_auth_required: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  restrict_employee_access: Optional[pulumi.Input[bool]] = None):
@@ -33,6 +34,7 @@ class OrganizationArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         :param pulumi.Input[bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        :param pulumi.Input[bool] gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         :param pulumi.Input[bool] multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param pulumi.Input[str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
@@ -44,6 +46,8 @@ class OrganizationArgs:
             pulumi.set(__self__, "api_access_list_required", api_access_list_required)
         if federation_settings_id is not None:
             pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        if gen_ai_features_enabled is not None:
+            pulumi.set(__self__, "gen_ai_features_enabled", gen_ai_features_enabled)
         if multi_factor_auth_required is not None:
             pulumi.set(__self__, "multi_factor_auth_required", multi_factor_auth_required)
         if name is not None:
@@ -109,6 +113,18 @@ class OrganizationArgs:
         pulumi.set(self, "federation_settings_id", value)
 
     @property
+    @pulumi.getter(name="genAiFeaturesEnabled")
+    def gen_ai_features_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+        """
+        return pulumi.get(self, "gen_ai_features_enabled")
+
+    @gen_ai_features_enabled.setter
+    def gen_ai_features_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "gen_ai_features_enabled", value)
+
+    @property
     @pulumi.getter(name="multiFactorAuthRequired")
     def multi_factor_auth_required(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -151,6 +167,7 @@ class _OrganizationState:
                  api_access_list_required: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
+                 gen_ai_features_enabled: Optional[pulumi.Input[bool]] = None,
                  multi_factor_auth_required: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -163,6 +180,7 @@ class _OrganizationState:
         Input properties used for looking up and filtering Organization resources.
         :param pulumi.Input[bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        :param pulumi.Input[bool] gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         :param pulumi.Input[bool] multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param pulumi.Input[str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The organization id.
@@ -177,6 +195,8 @@ class _OrganizationState:
             pulumi.set(__self__, "description", description)
         if federation_settings_id is not None:
             pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        if gen_ai_features_enabled is not None:
+            pulumi.set(__self__, "gen_ai_features_enabled", gen_ai_features_enabled)
         if multi_factor_auth_required is not None:
             pulumi.set(__self__, "multi_factor_auth_required", multi_factor_auth_required)
         if name is not None:
@@ -226,6 +246,18 @@ class _OrganizationState:
     @federation_settings_id.setter
     def federation_settings_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "federation_settings_id", value)
+
+    @property
+    @pulumi.getter(name="genAiFeaturesEnabled")
+    def gen_ai_features_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+        """
+        return pulumi.get(self, "gen_ai_features_enabled")
+
+    @gen_ai_features_enabled.setter
+    def gen_ai_features_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "gen_ai_features_enabled", value)
 
     @property
     @pulumi.getter(name="multiFactorAuthRequired")
@@ -329,6 +361,7 @@ class Organization(pulumi.CustomResource):
                  api_access_list_required: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
+                 gen_ai_features_enabled: Optional[pulumi.Input[bool]] = None,
                  multi_factor_auth_required: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_owner_id: Optional[pulumi.Input[str]] = None,
@@ -363,6 +396,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        :param pulumi.Input[bool] gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         :param pulumi.Input[bool] multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param pulumi.Input[str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
@@ -417,6 +451,7 @@ class Organization(pulumi.CustomResource):
                  api_access_list_required: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
+                 gen_ai_features_enabled: Optional[pulumi.Input[bool]] = None,
                  multi_factor_auth_required: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_owner_id: Optional[pulumi.Input[str]] = None,
@@ -436,6 +471,7 @@ class Organization(pulumi.CustomResource):
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
             __props__.__dict__["federation_settings_id"] = federation_settings_id
+            __props__.__dict__["gen_ai_features_enabled"] = gen_ai_features_enabled
             __props__.__dict__["multi_factor_auth_required"] = multi_factor_auth_required
             __props__.__dict__["name"] = name
             if org_owner_id is None and not opts.urn:
@@ -463,6 +499,7 @@ class Organization(pulumi.CustomResource):
             api_access_list_required: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             federation_settings_id: Optional[pulumi.Input[str]] = None,
+            gen_ai_features_enabled: Optional[pulumi.Input[bool]] = None,
             multi_factor_auth_required: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
@@ -480,6 +517,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        :param pulumi.Input[bool] gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         :param pulumi.Input[bool] multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param pulumi.Input[str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The organization id.
@@ -495,6 +533,7 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["api_access_list_required"] = api_access_list_required
         __props__.__dict__["description"] = description
         __props__.__dict__["federation_settings_id"] = federation_settings_id
+        __props__.__dict__["gen_ai_features_enabled"] = gen_ai_features_enabled
         __props__.__dict__["multi_factor_auth_required"] = multi_factor_auth_required
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
@@ -525,6 +564,14 @@ class Organization(pulumi.CustomResource):
         Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
         """
         return pulumi.get(self, "federation_settings_id")
+
+    @property
+    @pulumi.getter(name="genAiFeaturesEnabled")
+    def gen_ai_features_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+        """
+        return pulumi.get(self, "gen_ai_features_enabled")
 
     @property
     @pulumi.getter(name="multiFactorAuthRequired")

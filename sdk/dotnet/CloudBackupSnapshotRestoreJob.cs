@@ -261,6 +261,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
+        /// Indicates whether the restore job failed.
+        /// </summary>
+        [Output("failed")]
+        public Output<bool> Failed { get; private set; } = null!;
+
+        /// <summary>
         /// UTC ISO 8601 formatted point in time when the restore job completed.
         /// </summary>
         [Output("finishedAt")]
@@ -439,6 +445,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
+
+        /// <summary>
+        /// Indicates whether the restore job failed.
+        /// </summary>
+        [Input("failed")]
+        public Input<bool>? Failed { get; set; }
 
         /// <summary>
         /// UTC ISO 8601 formatted point in time when the restore job completed.

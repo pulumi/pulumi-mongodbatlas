@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: privatelinkEndpointsServiceServerless
+ * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
  *
  * `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
  *
@@ -115,7 +115,7 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
     readonly results: outputs.GetPrivatelinkEndpointsServiceServerlessResult[];
 }
 /**
- * ## # Data Source: privatelinkEndpointsServiceServerless
+ * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
  *
  * `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
  *

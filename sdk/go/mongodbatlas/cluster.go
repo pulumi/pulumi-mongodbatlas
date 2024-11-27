@@ -267,35 +267,6 @@ import (
 //	}
 //
 // ```
-// ### Example AWS Shared Tier (M2/M5) cluster
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewCluster(ctx, "cluster-test", &mongodbatlas.ClusterArgs{
-//				ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-//				Name:                     pulumi.String("cluster-test-global"),
-//				ProviderName:             pulumi.String("TENANT"),
-//				BackingProviderName:      pulumi.String("AWS"),
-//				ProviderRegionName:       pulumi.String("US_EAST_1"),
-//				ProviderInstanceSizeName: pulumi.String("M2"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 // ### Example AWS Free Tier cluster
 // ```go
 // package main

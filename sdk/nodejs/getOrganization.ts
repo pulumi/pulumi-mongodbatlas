@@ -49,6 +49,10 @@ export interface GetOrganizationResult {
      */
     readonly apiAccessListRequired: boolean;
     /**
+     * (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     */
+    readonly genAiFeaturesEnabled: boolean;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;

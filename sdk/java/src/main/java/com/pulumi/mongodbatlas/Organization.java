@@ -103,6 +103,20 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.federationSettingsId);
     }
     /**
+     * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     * 
+     */
+    @Export(name="genAiFeaturesEnabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> genAiFeaturesEnabled;
+
+    /**
+     * @return Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     * 
+     */
+    public Output<Optional<Boolean>> genAiFeaturesEnabled() {
+        return Codegen.optional(this.genAiFeaturesEnabled);
+    }
+    /**
      * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
      * 
      */

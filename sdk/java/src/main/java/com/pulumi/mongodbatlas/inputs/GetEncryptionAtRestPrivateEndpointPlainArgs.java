@@ -14,14 +14,14 @@ public final class GetEncryptionAtRestPrivateEndpointPlainArgs extends com.pulum
     public static final GetEncryptionAtRestPrivateEndpointPlainArgs Empty = new GetEncryptionAtRestPrivateEndpointPlainArgs();
 
     /**
-     * Label that identifies the cloud provider of the private endpoint.
+     * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      * 
      */
     @Import(name="cloudProvider", required=true)
     private String cloudProvider;
 
     /**
-     * @return Label that identifies the cloud provider of the private endpoint.
+     * @return Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      * 
      */
     public String cloudProvider() {
@@ -85,7 +85,7 @@ public final class GetEncryptionAtRestPrivateEndpointPlainArgs extends com.pulum
         }
 
         /**
-         * @param cloudProvider Label that identifies the cloud provider of the private endpoint.
+         * @param cloudProvider Label that identifies the cloud provider for the Encryption At Rest private endpoint.
          * 
          * @return builder
          * 

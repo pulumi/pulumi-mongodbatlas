@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: privatelinkEndpointServiceServerless
+// **WARNING:** This resource is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
 //
 // `privatelinkEndpointServiceServerless` Provides a Serverless PrivateLink Endpoint Service resource.
 // This is the second of two resources required to configure PrivateLink for Serverless, the first is mongodbatlas_privatelink_endpoint_serverless.

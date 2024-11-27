@@ -94,7 +94,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetEncryptionAtRestPrivateEndpointArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Label that identifies the cloud provider of the private endpoint.
+        /// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         /// </summary>
         [Input("cloudProvider", required: true)]
         public string CloudProvider { get; set; } = null!;
@@ -120,7 +120,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetEncryptionAtRestPrivateEndpointInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Label that identifies the cloud provider of the private endpoint.
+        /// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         /// </summary>
         [Input("cloudProvider", required: true)]
         public Input<string> CloudProvider { get; set; } = null!;
@@ -148,7 +148,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetEncryptionAtRestPrivateEndpointResult
     {
         /// <summary>
-        /// Label that identifies the cloud provider of the private endpoint.
+        /// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>

@@ -250,27 +250,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// ### Example AWS Shared Tier (M2/M5) cluster
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
-    ///     {
-    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-    ///         Name = "cluster-test-global",
-    ///         ProviderName = "TENANT",
-    ///         BackingProviderName = "AWS",
-    ///         ProviderRegionName = "US_EAST_1",
-    ///         ProviderInstanceSizeName = "M2",
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// ### Example AWS Free Tier cluster
     /// ```csharp
     /// using System.Collections.Generic;

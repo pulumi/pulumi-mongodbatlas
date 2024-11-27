@@ -44,7 +44,7 @@ export function getEncryptionAtRestPrivateEndpoint(args: GetEncryptionAtRestPriv
  */
 export interface GetEncryptionAtRestPrivateEndpointArgs {
     /**
-     * Label that identifies the cloud provider of the private endpoint.
+     * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      */
     cloudProvider: string;
     /**
@@ -62,7 +62,7 @@ export interface GetEncryptionAtRestPrivateEndpointArgs {
  */
 export interface GetEncryptionAtRestPrivateEndpointResult {
     /**
-     * Label that identifies the cloud provider of the private endpoint.
+     * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      */
     readonly cloudProvider: string;
     /**
@@ -130,7 +130,7 @@ export function getEncryptionAtRestPrivateEndpointOutput(args: GetEncryptionAtRe
  */
 export interface GetEncryptionAtRestPrivateEndpointOutputArgs {
     /**
-     * Label that identifies the cloud provider of the private endpoint.
+     * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      */
     cloudProvider: pulumi.Input<string>;
     /**

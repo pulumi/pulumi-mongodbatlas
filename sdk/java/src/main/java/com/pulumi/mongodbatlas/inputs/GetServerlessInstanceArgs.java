@@ -20,31 +20,47 @@ public final class GetServerlessInstanceArgs extends com.pulumi.resources.Invoke
     public static final GetServerlessInstanceArgs Empty = new GetServerlessInstanceArgs();
 
     /**
-     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
     @Import(name="autoIndexing")
     private @Nullable Output<Boolean> autoIndexing;
 
     /**
-     * @return Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * @return (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
     public Optional<Output<Boolean>> autoIndexing() {
         return Optional.ofNullable(this.autoIndexing);
     }
 
     /**
-     * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
     @Import(name="continuousBackupEnabled")
     private @Nullable Output<Boolean> continuousBackupEnabled;
 
     /**
-     * @return Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * @return (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
     public Optional<Output<Boolean>> continuousBackupEnabled() {
         return Optional.ofNullable(this.continuousBackupEnabled);
     }
@@ -131,43 +147,59 @@ public final class GetServerlessInstanceArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param autoIndexing Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+         * @param autoIndexing (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
         public Builder autoIndexing(@Nullable Output<Boolean> autoIndexing) {
             $.autoIndexing = autoIndexing;
             return this;
         }
 
         /**
-         * @param autoIndexing Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+         * @param autoIndexing (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
         public Builder autoIndexing(Boolean autoIndexing) {
             return autoIndexing(Output.of(autoIndexing));
         }
 
         /**
-         * @param continuousBackupEnabled Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+         * @param continuousBackupEnabled (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
         public Builder continuousBackupEnabled(@Nullable Output<Boolean> continuousBackupEnabled) {
             $.continuousBackupEnabled = continuousBackupEnabled;
             return this;
         }
 
         /**
-         * @param continuousBackupEnabled Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+         * @param continuousBackupEnabled (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
         public Builder continuousBackupEnabled(Boolean continuousBackupEnabled) {
             return continuousBackupEnabled(Output.of(continuousBackupEnabled));
         }

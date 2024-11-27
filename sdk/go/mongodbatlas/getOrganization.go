@@ -61,6 +61,8 @@ type LookupOrganizationArgs struct {
 type LookupOrganizationResult struct {
 	// (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired bool `pulumi:"apiAccessListRequired"`
+	// (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+	GenAiFeaturesEnabled bool `pulumi:"genAiFeaturesEnabled"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Flag that indicates whether this organization has been deleted.
@@ -122,6 +124,11 @@ func (o LookupOrganizationResultOutput) ToLookupOrganizationResultOutputWithCont
 // (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 func (o LookupOrganizationResultOutput) ApiAccessListRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.ApiAccessListRequired }).(pulumi.BoolOutput)
+}
+
+// (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+func (o LookupOrganizationResultOutput) GenAiFeaturesEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.GenAiFeaturesEnabled }).(pulumi.BoolOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

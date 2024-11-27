@@ -67,6 +67,10 @@ export class Organization extends pulumi.CustomResource {
      */
     public readonly federationSettingsId!: pulumi.Output<string | undefined>;
     /**
+     * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     */
+    public readonly genAiFeaturesEnabled!: pulumi.Output<boolean | undefined>;
+    /**
      * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
      */
     public readonly multiFactorAuthRequired!: pulumi.Output<boolean>;
@@ -112,6 +116,7 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["apiAccessListRequired"] = state ? state.apiAccessListRequired : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
+            resourceInputs["genAiFeaturesEnabled"] = state ? state.genAiFeaturesEnabled : undefined;
             resourceInputs["multiFactorAuthRequired"] = state ? state.multiFactorAuthRequired : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
@@ -134,6 +139,7 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["apiAccessListRequired"] = args ? args.apiAccessListRequired : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
+            resourceInputs["genAiFeaturesEnabled"] = args ? args.genAiFeaturesEnabled : undefined;
             resourceInputs["multiFactorAuthRequired"] = args ? args.multiFactorAuthRequired : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgOwnerId"] = args ? args.orgOwnerId : undefined;
@@ -163,6 +169,10 @@ export interface OrganizationState {
      * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
      */
     federationSettingsId?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     */
+    genAiFeaturesEnabled?: pulumi.Input<boolean>;
     /**
      * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
      */
@@ -207,6 +217,10 @@ export interface OrganizationArgs {
      * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
      */
     federationSettingsId?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     */
+    genAiFeaturesEnabled?: pulumi.Input<boolean>;
     /**
      * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
      */

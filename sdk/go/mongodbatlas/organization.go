@@ -60,6 +60,8 @@ type Organization struct {
 	Description           pulumi.StringOutput `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId pulumi.StringPtrOutput `pulumi:"federationSettingsId"`
+	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+	GenAiFeaturesEnabled pulumi.BoolPtrOutput `pulumi:"genAiFeaturesEnabled"`
 	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 	MultiFactorAuthRequired pulumi.BoolOutput `pulumi:"multiFactorAuthRequired"`
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -126,6 +128,8 @@ type organizationState struct {
 	Description           *string `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId *string `pulumi:"federationSettingsId"`
+	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+	GenAiFeaturesEnabled *bool `pulumi:"genAiFeaturesEnabled"`
 	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 	MultiFactorAuthRequired *bool `pulumi:"multiFactorAuthRequired"`
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -149,6 +153,8 @@ type OrganizationState struct {
 	Description           pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId pulumi.StringPtrInput
+	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+	GenAiFeaturesEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 	MultiFactorAuthRequired pulumi.BoolPtrInput
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -176,6 +182,8 @@ type organizationArgs struct {
 	Description           string `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId *string `pulumi:"federationSettingsId"`
+	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+	GenAiFeaturesEnabled *bool `pulumi:"genAiFeaturesEnabled"`
 	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 	MultiFactorAuthRequired *bool `pulumi:"multiFactorAuthRequired"`
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -195,6 +203,8 @@ type OrganizationArgs struct {
 	Description           pulumi.StringInput
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId pulumi.StringPtrInput
+	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+	GenAiFeaturesEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 	MultiFactorAuthRequired pulumi.BoolPtrInput
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -306,6 +316,11 @@ func (o OrganizationOutput) Description() pulumi.StringOutput {
 // Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 func (o OrganizationOutput) FederationSettingsId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.FederationSettingsId }).(pulumi.StringPtrOutput)
+}
+
+// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+func (o OrganizationOutput) GenAiFeaturesEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Organization) pulumi.BoolPtrOutput { return v.GenAiFeaturesEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.

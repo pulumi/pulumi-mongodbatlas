@@ -257,6 +257,8 @@ type CloudBackupSnapshotRestoreJob struct {
 	Expired pulumi.BoolOutput `pulumi:"expired"`
 	// UTC ISO 8601 formatted point in time when the restore job expires.
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
+	// Indicates whether the restore job failed.
+	Failed pulumi.BoolOutput `pulumi:"failed"`
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt pulumi.StringOutput `pulumi:"finishedAt"`
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
@@ -339,6 +341,8 @@ type cloudBackupSnapshotRestoreJobState struct {
 	Expired *bool `pulumi:"expired"`
 	// UTC ISO 8601 formatted point in time when the restore job expires.
 	ExpiresAt *string `pulumi:"expiresAt"`
+	// Indicates whether the restore job failed.
+	Failed *bool `pulumi:"failed"`
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt *string `pulumi:"finishedAt"`
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
@@ -386,6 +390,8 @@ type CloudBackupSnapshotRestoreJobState struct {
 	Expired pulumi.BoolPtrInput
 	// UTC ISO 8601 formatted point in time when the restore job expires.
 	ExpiresAt pulumi.StringPtrInput
+	// Indicates whether the restore job failed.
+	Failed pulumi.BoolPtrInput
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt pulumi.StringPtrInput
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
@@ -580,6 +586,11 @@ func (o CloudBackupSnapshotRestoreJobOutput) Expired() pulumi.BoolOutput {
 // UTC ISO 8601 formatted point in time when the restore job expires.
 func (o CloudBackupSnapshotRestoreJobOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// Indicates whether the restore job failed.
+func (o CloudBackupSnapshotRestoreJobOutput) Failed() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.BoolOutput { return v.Failed }).(pulumi.BoolOutput)
 }
 
 // UTC ISO 8601 formatted point in time when the restore job completed.

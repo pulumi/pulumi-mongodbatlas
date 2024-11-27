@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     replicationSpecs: [{
  *         regionConfigs: [{
  *             electableSpecs: {
- *                 instanceSize: "M5",
+ *                 instanceSize: "M0",
  *             },
  *             providerName: "TENANT",
  *             backingProviderName: "AWS",
@@ -43,6 +43,8 @@ import * as utilities from "./utilities";
  *     projectId: exampleAdvancedCluster.projectId,
  * });
  * ```
+ *
+ * **NOTE:** There can only be one M0 cluster per project.
  *
  * ## Example using latest sharding configurations with independent shard scaling in the cluster
  *
@@ -150,7 +152,7 @@ export interface GetAdvancedClustersResult {
  *     replicationSpecs: [{
  *         regionConfigs: [{
  *             electableSpecs: {
- *                 instanceSize: "M5",
+ *                 instanceSize: "M0",
  *             },
  *             providerName: "TENANT",
  *             backingProviderName: "AWS",
@@ -163,6 +165,8 @@ export interface GetAdvancedClustersResult {
  *     projectId: exampleAdvancedCluster.projectId,
  * });
  * ```
+ *
+ * **NOTE:** There can only be one M0 cluster per project.
  *
  * ## Example using latest sharding configurations with independent shard scaling in the cluster
  *

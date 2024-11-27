@@ -56,6 +56,21 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     * 
+     */
+    @Import(name="genAiFeaturesEnabled")
+    private @Nullable Output<Boolean> genAiFeaturesEnabled;
+
+    /**
+     * @return Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     * 
+     */
+    public Optional<Output<Boolean>> genAiFeaturesEnabled() {
+        return Optional.ofNullable(this.genAiFeaturesEnabled);
+    }
+
+    /**
      * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
      * 
      */
@@ -136,6 +151,7 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         this.apiAccessListRequired = $.apiAccessListRequired;
         this.description = $.description;
         this.federationSettingsId = $.federationSettingsId;
+        this.genAiFeaturesEnabled = $.genAiFeaturesEnabled;
         this.multiFactorAuthRequired = $.multiFactorAuthRequired;
         this.name = $.name;
         this.orgOwnerId = $.orgOwnerId;
@@ -210,6 +226,27 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder federationSettingsId(String federationSettingsId) {
             return federationSettingsId(Output.of(federationSettingsId));
+        }
+
+        /**
+         * @param genAiFeaturesEnabled Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder genAiFeaturesEnabled(@Nullable Output<Boolean> genAiFeaturesEnabled) {
+            $.genAiFeaturesEnabled = genAiFeaturesEnabled;
+            return this;
+        }
+
+        /**
+         * @param genAiFeaturesEnabled Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder genAiFeaturesEnabled(Boolean genAiFeaturesEnabled) {
+            return genAiFeaturesEnabled(Output.of(genAiFeaturesEnabled));
         }
 
         /**

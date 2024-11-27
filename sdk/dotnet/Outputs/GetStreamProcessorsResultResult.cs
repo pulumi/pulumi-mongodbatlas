@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.GetStreamProcessorsResultOptionsResult Options;
         /// <summary>
-        /// Stream aggregation pipeline you want to apply to your streaming data.
+        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         /// </summary>
         public readonly string Pipeline;
         /// <summary>
@@ -38,11 +38,13 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The state of the stream processor.
+        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state.
+        /// 
+        /// **NOTE** When creating a stream processor, setting the state to STARTED can automatically start the stream processor.
         /// </summary>
         public readonly string State;
         /// <summary>
-        /// The stats associated with the stream processor.
+        /// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         /// </summary>
         public readonly string Stats;
 

@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamProcessorOptions?> Options { get; private set; } = null!;
 
         /// <summary>
-        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         /// </summary>
         [Output("pipeline")]
         public Output<string> Pipeline { get; private set; } = null!;
@@ -48,9 +48,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
         /// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        /// created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-        /// the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-        /// state is set to STARTED.
+        /// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+        /// setting the state to STARTED can automatically start the stream processor.
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -122,7 +121,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamProcessorOptionsArgs>? Options { get; set; }
 
         /// <summary>
-        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         /// </summary>
         [Input("pipeline", required: true)]
         public Input<string> Pipeline { get; set; } = null!;
@@ -142,9 +141,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
         /// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        /// created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-        /// the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-        /// state is set to STARTED.
+        /// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+        /// setting the state to STARTED can automatically start the stream processor.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
@@ -170,7 +168,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamProcessorOptionsGetArgs>? Options { get; set; }
 
         /// <summary>
-        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when settig this attribute. For more details see [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         /// </summary>
         [Input("pipeline")]
         public Input<string>? Pipeline { get; set; }
@@ -190,9 +188,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
         /// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        /// created without specifying the state, it will default to `CREATED` state. **NOTE** When a stream processor is created,
-        /// the only valid states are CREATED or STARTED. A stream processor can be automatically started when creating it if the
-        /// state is set to STARTED.
+        /// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
+        /// setting the state to STARTED can automatically start the stream processor.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }

@@ -27,10 +27,13 @@ class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
     """
-    def __init__(__self__, api_access_list_required=None, id=None, is_deleted=None, links=None, multi_factor_auth_required=None, name=None, org_id=None, restrict_employee_access=None):
+    def __init__(__self__, api_access_list_required=None, gen_ai_features_enabled=None, id=None, is_deleted=None, links=None, multi_factor_auth_required=None, name=None, org_id=None, restrict_employee_access=None):
         if api_access_list_required and not isinstance(api_access_list_required, bool):
             raise TypeError("Expected argument 'api_access_list_required' to be a bool")
         pulumi.set(__self__, "api_access_list_required", api_access_list_required)
+        if gen_ai_features_enabled and not isinstance(gen_ai_features_enabled, bool):
+            raise TypeError("Expected argument 'gen_ai_features_enabled' to be a bool")
+        pulumi.set(__self__, "gen_ai_features_enabled", gen_ai_features_enabled)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -60,6 +63,14 @@ class GetOrganizationResult:
         (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         """
         return pulumi.get(self, "api_access_list_required")
+
+    @property
+    @pulumi.getter(name="genAiFeaturesEnabled")
+    def gen_ai_features_enabled(self) -> bool:
+        """
+        (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+        """
+        return pulumi.get(self, "gen_ai_features_enabled")
 
     @property
     @pulumi.getter
@@ -119,6 +130,7 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             yield self
         return GetOrganizationResult(
             api_access_list_required=self.api_access_list_required,
+            gen_ai_features_enabled=self.gen_ai_features_enabled,
             id=self.id,
             is_deleted=self.is_deleted,
             links=self.links,
@@ -155,6 +167,7 @@ def get_organization(org_id: Optional[str] = None,
 
     return AwaitableGetOrganizationResult(
         api_access_list_required=pulumi.get(__ret__, 'api_access_list_required'),
+        gen_ai_features_enabled=pulumi.get(__ret__, 'gen_ai_features_enabled'),
         id=pulumi.get(__ret__, 'id'),
         is_deleted=pulumi.get(__ret__, 'is_deleted'),
         links=pulumi.get(__ret__, 'links'),
@@ -188,6 +201,7 @@ def get_organization_output(org_id: Optional[pulumi.Input[str]] = None,
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
     return __ret__.apply(lambda __response__: GetOrganizationResult(
         api_access_list_required=pulumi.get(__response__, 'api_access_list_required'),
+        gen_ai_features_enabled=pulumi.get(__response__, 'gen_ai_features_enabled'),
         id=pulumi.get(__response__, 'id'),
         is_deleted=pulumi.get(__response__, 'is_deleted'),
         links=pulumi.get(__response__, 'links'),

@@ -15,14 +15,14 @@ public final class GetEncryptionAtRestPrivateEndpointArgs extends com.pulumi.res
     public static final GetEncryptionAtRestPrivateEndpointArgs Empty = new GetEncryptionAtRestPrivateEndpointArgs();
 
     /**
-     * Label that identifies the cloud provider of the private endpoint.
+     * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      * 
      */
     @Import(name="cloudProvider", required=true)
     private Output<String> cloudProvider;
 
     /**
-     * @return Label that identifies the cloud provider of the private endpoint.
+     * @return Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      * 
      */
     public Output<String> cloudProvider() {
@@ -86,7 +86,7 @@ public final class GetEncryptionAtRestPrivateEndpointArgs extends com.pulumi.res
         }
 
         /**
-         * @param cloudProvider Label that identifies the cloud provider of the private endpoint.
+         * @param cloudProvider Label that identifies the cloud provider for the Encryption At Rest private endpoint.
          * 
          * @return builder
          * 
@@ -97,7 +97,7 @@ public final class GetEncryptionAtRestPrivateEndpointArgs extends com.pulumi.res
         }
 
         /**
-         * @param cloudProvider Label that identifies the cloud provider of the private endpoint.
+         * @param cloudProvider Label that identifies the cloud provider for the Encryption At Rest private endpoint.
          * 
          * @return builder
          * 

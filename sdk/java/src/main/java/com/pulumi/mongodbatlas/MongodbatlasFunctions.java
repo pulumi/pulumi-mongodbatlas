@@ -804,7 +804,7 @@ public final class MongodbatlasFunctions {
      *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
      *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
-     *                         .instanceSize("M5")
+     *                         .instanceSize("M0")
      *                         .build())
      *                     .providerName("TENANT")
      *                     .backingProviderName("AWS")
@@ -824,6 +824,8 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -947,7 +949,7 @@ public final class MongodbatlasFunctions {
      *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
      *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
-     *                         .instanceSize("M5")
+     *                         .instanceSize("M0")
      *                         .build())
      *                     .providerName("TENANT")
      *                     .backingProviderName("AWS")
@@ -967,6 +969,8 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1090,7 +1094,7 @@ public final class MongodbatlasFunctions {
      *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
      *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
-     *                         .instanceSize("M5")
+     *                         .instanceSize("M0")
      *                         .build())
      *                     .providerName("TENANT")
      *                     .backingProviderName("AWS")
@@ -1110,6 +1114,8 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1233,7 +1239,7 @@ public final class MongodbatlasFunctions {
      *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
      *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
-     *                         .instanceSize("M5")
+     *                         .instanceSize("M0")
      *                         .build())
      *                     .providerName("TENANT")
      *                     .backingProviderName("AWS")
@@ -1253,6 +1259,8 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1376,7 +1384,7 @@ public final class MongodbatlasFunctions {
      *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
      *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
-     *                         .instanceSize("M5")
+     *                         .instanceSize("M0")
      *                         .build())
      *                     .providerName("TENANT")
      *                     .backingProviderName("AWS")
@@ -1395,6 +1403,8 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1518,7 +1528,7 @@ public final class MongodbatlasFunctions {
      *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
      *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
-     *                         .instanceSize("M5")
+     *                         .instanceSize("M0")
      *                         .build())
      *                     .providerName("TENANT")
      *                     .backingProviderName("AWS")
@@ -1537,6 +1547,8 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1660,7 +1672,7 @@ public final class MongodbatlasFunctions {
      *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
      *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
-     *                         .instanceSize("M5")
+     *                         .instanceSize("M0")
      *                         .build())
      *                     .providerName("TENANT")
      *                     .backingProviderName("AWS")
@@ -1679,6 +1691,8 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1802,7 +1816,7 @@ public final class MongodbatlasFunctions {
      *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
      *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
-     *                         .instanceSize("M5")
+     *                         .instanceSize("M0")
      *                         .build())
      *                     .providerName("TENANT")
      *                     .backingProviderName("AWS")
@@ -1821,6 +1835,8 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -19595,7 +19611,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: privatelink_endpoint_service_serverless
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
      * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
      * 
@@ -19741,7 +19757,7 @@ public final class MongodbatlasFunctions {
         return getPrivatelinkEndpointServiceServerless(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: privatelink_endpoint_service_serverless
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
      * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
      * 
@@ -19887,7 +19903,7 @@ public final class MongodbatlasFunctions {
         return getPrivatelinkEndpointServiceServerlessPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: privatelink_endpoint_service_serverless
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
      * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
      * 
@@ -20033,7 +20049,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", TypeShape.of(GetPrivatelinkEndpointServiceServerlessResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: privatelink_endpoint_service_serverless
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
      * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
      * 
@@ -20179,7 +20195,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", TypeShape.of(GetPrivatelinkEndpointServiceServerlessResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: privatelink_endpoints_service_serverless
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
      * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
      * 
@@ -20320,7 +20336,7 @@ public final class MongodbatlasFunctions {
         return getPrivatelinkEndpointsServiceServerless(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: privatelink_endpoints_service_serverless
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
      * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
      * 
@@ -20461,7 +20477,7 @@ public final class MongodbatlasFunctions {
         return getPrivatelinkEndpointsServiceServerlessPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: privatelink_endpoints_service_serverless
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
      * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
      * 
@@ -20602,7 +20618,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", TypeShape.of(GetPrivatelinkEndpointsServiceServerlessInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: privatelink_endpoints_service_serverless
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
      * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
      * 
