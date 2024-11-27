@@ -207,6 +207,10 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      */
     public /*out*/ readonly expiresAt!: pulumi.Output<string>;
     /**
+     * Indicates whether the restore job failed.
+     */
+    public /*out*/ readonly failed!: pulumi.Output<boolean>;
+    /**
      * UTC ISO 8601 formatted point in time when the restore job completed.
      */
     public /*out*/ readonly finishedAt!: pulumi.Output<string>;
@@ -260,6 +264,7 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
             resourceInputs["deliveryUrls"] = state ? state.deliveryUrls : undefined;
             resourceInputs["expired"] = state ? state.expired : undefined;
             resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
+            resourceInputs["failed"] = state ? state.failed : undefined;
             resourceInputs["finishedAt"] = state ? state.finishedAt : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
@@ -281,6 +286,7 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
             resourceInputs["deliveryUrls"] = undefined /*out*/;
             resourceInputs["expired"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;
+            resourceInputs["failed"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["snapshotRestoreJobId"] = undefined /*out*/;
             resourceInputs["timestamp"] = undefined /*out*/;
@@ -326,6 +332,10 @@ export interface CloudBackupSnapshotRestoreJobState {
      * UTC ISO 8601 formatted point in time when the restore job expires.
      */
     expiresAt?: pulumi.Input<string>;
+    /**
+     * Indicates whether the restore job failed.
+     */
+    failed?: pulumi.Input<boolean>;
     /**
      * UTC ISO 8601 formatted point in time when the restore job completed.
      */

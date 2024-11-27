@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetEncryptionAtRestPrivateEndpointsResultResult
     {
         /// <summary>
-        /// Label that identifies the cloud provider of the private endpoint.
+        /// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>

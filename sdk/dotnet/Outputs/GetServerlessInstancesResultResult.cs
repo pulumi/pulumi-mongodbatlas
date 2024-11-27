@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetServerlessInstancesResultResult
     {
         /// <summary>
-        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+        /// (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
         /// </summary>
         public readonly bool AutoIndexing;
         public readonly ImmutableArray<string> ConnectionStringsPrivateEndpointSrvs;
@@ -23,7 +23,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ConnectionStringsStandardSrv;
         /// <summary>
-        /// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+        /// (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
         /// </summary>
         public readonly bool ContinuousBackupEnabled;
         public readonly string CreateDate;

@@ -27,7 +27,7 @@ public final class GetStreamProcessorsResult {
      */
     private GetStreamProcessorsResultOptions options;
     /**
-     * @return Stream aggregation pipeline you want to apply to your streaming data.
+     * @return Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
      * 
      */
     private String pipeline;
@@ -42,12 +42,14 @@ public final class GetStreamProcessorsResult {
      */
     private String projectId;
     /**
-     * @return The state of the stream processor.
+     * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state.
+     * 
+     * **NOTE** When creating a stream processor, setting the state to STARTED can automatically start the stream processor.
      * 
      */
     private String state;
     /**
-     * @return The stats associated with the stream processor.
+     * @return The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      * 
      */
     private String stats;
@@ -75,7 +77,7 @@ public final class GetStreamProcessorsResult {
         return this.options;
     }
     /**
-     * @return Stream aggregation pipeline you want to apply to your streaming data.
+     * @return Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
      * 
      */
     public String pipeline() {
@@ -96,14 +98,16 @@ public final class GetStreamProcessorsResult {
         return this.projectId;
     }
     /**
-     * @return The state of the stream processor.
+     * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state.
+     * 
+     * **NOTE** When creating a stream processor, setting the state to STARTED can automatically start the stream processor.
      * 
      */
     public String state() {
         return this.state;
     }
     /**
-     * @return The stats associated with the stream processor.
+     * @return The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      * 
      */
     public String stats() {

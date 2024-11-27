@@ -26,7 +26,7 @@ class GetCloudBackupSnapshotRestoreJobResult:
     """
     A collection of values returned by getCloudBackupSnapshotRestoreJob.
     """
-    def __init__(__self__, cancelled=None, cluster_name=None, delivery_type=None, delivery_urls=None, expired=None, expires_at=None, finished_at=None, id=None, oplog_inc=None, oplog_ts=None, point_in_time_utc_seconds=None, project_id=None, snapshot_id=None, snapshot_restore_job_id=None, target_cluster_name=None, target_project_id=None, timestamp=None):
+    def __init__(__self__, cancelled=None, cluster_name=None, delivery_type=None, delivery_urls=None, expired=None, expires_at=None, failed=None, finished_at=None, id=None, oplog_inc=None, oplog_ts=None, point_in_time_utc_seconds=None, project_id=None, snapshot_id=None, snapshot_restore_job_id=None, target_cluster_name=None, target_project_id=None, timestamp=None):
         if cancelled and not isinstance(cancelled, bool):
             raise TypeError("Expected argument 'cancelled' to be a bool")
         pulumi.set(__self__, "cancelled", cancelled)
@@ -45,6 +45,9 @@ class GetCloudBackupSnapshotRestoreJobResult:
         if expires_at and not isinstance(expires_at, str):
             raise TypeError("Expected argument 'expires_at' to be a str")
         pulumi.set(__self__, "expires_at", expires_at)
+        if failed and not isinstance(failed, bool):
+            raise TypeError("Expected argument 'failed' to be a bool")
+        pulumi.set(__self__, "failed", failed)
         if finished_at and not isinstance(finished_at, str):
             raise TypeError("Expected argument 'finished_at' to be a str")
         pulumi.set(__self__, "finished_at", finished_at)
@@ -123,6 +126,14 @@ class GetCloudBackupSnapshotRestoreJobResult:
         UTC ISO 8601 formatted point in time when the restore job expires.
         """
         return pulumi.get(self, "expires_at")
+
+    @property
+    @pulumi.getter
+    def failed(self) -> bool:
+        """
+        Indicates whether the restore job failed.
+        """
+        return pulumi.get(self, "failed")
 
     @property
     @pulumi.getter(name="finishedAt")
@@ -213,6 +224,7 @@ class AwaitableGetCloudBackupSnapshotRestoreJobResult(GetCloudBackupSnapshotRest
             delivery_urls=self.delivery_urls,
             expired=self.expired,
             expires_at=self.expires_at,
+            failed=self.failed,
             finished_at=self.finished_at,
             id=self.id,
             oplog_inc=self.oplog_inc,
@@ -256,6 +268,7 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[str] = None,
         delivery_urls=pulumi.get(__ret__, 'delivery_urls'),
         expired=pulumi.get(__ret__, 'expired'),
         expires_at=pulumi.get(__ret__, 'expires_at'),
+        failed=pulumi.get(__ret__, 'failed'),
         finished_at=pulumi.get(__ret__, 'finished_at'),
         id=pulumi.get(__ret__, 'id'),
         oplog_inc=pulumi.get(__ret__, 'oplog_inc'),
@@ -296,6 +309,7 @@ def get_cloud_backup_snapshot_restore_job_output(cluster_name: Optional[pulumi.I
         delivery_urls=pulumi.get(__response__, 'delivery_urls'),
         expired=pulumi.get(__response__, 'expired'),
         expires_at=pulumi.get(__response__, 'expires_at'),
+        failed=pulumi.get(__response__, 'failed'),
         finished_at=pulumi.get(__response__, 'finished_at'),
         id=pulumi.get(__response__, 'id'),
         oplog_inc=pulumi.get(__response__, 'oplog_inc'),

@@ -113,6 +113,7 @@ class _CloudBackupSnapshotRestoreJobState:
                  delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  expired: Optional[pulumi.Input[bool]] = None,
                  expires_at: Optional[pulumi.Input[str]] = None,
+                 failed: Optional[pulumi.Input[bool]] = None,
                  finished_at: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
@@ -134,6 +135,7 @@ class _CloudBackupSnapshotRestoreJobState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         :param pulumi.Input[bool] expired: Indicates whether the restore job expired.
         :param pulumi.Input[str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
+        :param pulumi.Input[bool] failed: Indicates whether the restore job failed.
         :param pulumi.Input[str] finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
@@ -166,6 +168,8 @@ class _CloudBackupSnapshotRestoreJobState:
             pulumi.set(__self__, "expired", expired)
         if expires_at is not None:
             pulumi.set(__self__, "expires_at", expires_at)
+        if failed is not None:
+            pulumi.set(__self__, "failed", failed)
         if finished_at is not None:
             pulumi.set(__self__, "finished_at", finished_at)
         if project_id is not None:
@@ -256,6 +260,18 @@ class _CloudBackupSnapshotRestoreJobState:
     @expires_at.setter
     def expires_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "expires_at", value)
+
+    @property
+    @pulumi.getter
+    def failed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the restore job failed.
+        """
+        return pulumi.get(self, "failed")
+
+    @failed.setter
+    def failed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "failed", value)
 
     @property
     @pulumi.getter(name="finishedAt")
@@ -663,6 +679,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             __props__.__dict__["delivery_urls"] = None
             __props__.__dict__["expired"] = None
             __props__.__dict__["expires_at"] = None
+            __props__.__dict__["failed"] = None
             __props__.__dict__["finished_at"] = None
             __props__.__dict__["snapshot_restore_job_id"] = None
             __props__.__dict__["timestamp"] = None
@@ -682,6 +699,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             expired: Optional[pulumi.Input[bool]] = None,
             expires_at: Optional[pulumi.Input[str]] = None,
+            failed: Optional[pulumi.Input[bool]] = None,
             finished_at: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             snapshot_id: Optional[pulumi.Input[str]] = None,
@@ -708,6 +726,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         :param pulumi.Input[bool] expired: Indicates whether the restore job expired.
         :param pulumi.Input[str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
+        :param pulumi.Input[bool] failed: Indicates whether the restore job failed.
         :param pulumi.Input[str] finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
@@ -738,6 +757,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         __props__.__dict__["delivery_urls"] = delivery_urls
         __props__.__dict__["expired"] = expired
         __props__.__dict__["expires_at"] = expires_at
+        __props__.__dict__["failed"] = failed
         __props__.__dict__["finished_at"] = finished_at
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["snapshot_id"] = snapshot_id
@@ -800,6 +820,14 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         UTC ISO 8601 formatted point in time when the restore job expires.
         """
         return pulumi.get(self, "expires_at")
+
+    @property
+    @pulumi.getter
+    def failed(self) -> pulumi.Output[bool]:
+        """
+        Indicates whether the restore job failed.
+        """
+        return pulumi.get(self, "failed")
 
     @property
     @pulumi.getter(name="finishedAt")

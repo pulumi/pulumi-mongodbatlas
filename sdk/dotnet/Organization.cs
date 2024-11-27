@@ -63,6 +63,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> FederationSettingsId { get; private set; } = null!;
 
         /// <summary>
+        /// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+        /// </summary>
+        [Output("genAiFeaturesEnabled")]
+        public Output<bool?> GenAiFeaturesEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         /// </summary>
         [Output("multiFactorAuthRequired")]
@@ -174,6 +180,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? FederationSettingsId { get; set; }
 
         /// <summary>
+        /// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+        /// </summary>
+        [Input("genAiFeaturesEnabled")]
+        public Input<bool>? GenAiFeaturesEnabled { get; set; }
+
+        /// <summary>
         /// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         /// </summary>
         [Input("multiFactorAuthRequired")]
@@ -231,6 +243,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("federationSettingsId")]
         public Input<string>? FederationSettingsId { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+        /// </summary>
+        [Input("genAiFeaturesEnabled")]
+        public Input<bool>? GenAiFeaturesEnabled { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.

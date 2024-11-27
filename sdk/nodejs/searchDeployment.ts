@@ -50,7 +50,7 @@ export class SearchDeployment extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal character string that identifies the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -112,7 +112,7 @@ export interface SearchDeploymentState {
      */
     clusterName?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal character string that identifies the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -135,7 +135,7 @@ export interface SearchDeploymentArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal character string that identifies the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
     /**

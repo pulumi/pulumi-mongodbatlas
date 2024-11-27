@@ -28,7 +28,7 @@ class SearchDeploymentArgs:
         """
         The set of arguments for constructing a SearchDeployment resource.
         :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -53,7 +53,7 @@ class SearchDeploymentArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        Unique 24-hexadecimal character string that identifies the project.
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
@@ -94,7 +94,7 @@ class _SearchDeploymentState:
         """
         Input properties used for looking up and filtering SearchDeployment resources.
         :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
         """
@@ -125,7 +125,7 @@ class _SearchDeploymentState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique 24-hexadecimal character string that identifies the project.
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
@@ -191,7 +191,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         ...
@@ -273,7 +273,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
         """
@@ -300,7 +300,7 @@ class SearchDeployment(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        Unique 24-hexadecimal character string that identifies the project.
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 

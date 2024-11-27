@@ -169,20 +169,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * ### Example AWS Shared Tier (M2/M5) cluster
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     projectId: "<YOUR-PROJECT-ID>",
- *     name: "cluster-test-global",
- *     providerName: "TENANT",
- *     backingProviderName: "AWS",
- *     providerRegionName: "US_EAST_1",
- *     providerInstanceSizeName: "M2",
- * });
- * ```
  * ### Example AWS Free Tier cluster
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

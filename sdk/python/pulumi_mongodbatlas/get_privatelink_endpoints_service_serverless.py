@@ -84,7 +84,7 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
                                                  project_id: Optional[str] = None,
                                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivatelinkEndpointsServiceServerlessResult:
     """
-    ## # Data Source: privatelink_endpoints_service_serverless
+    **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
 
     `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
 
@@ -163,7 +163,7 @@ def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[
                                                         project_id: Optional[pulumi.Input[str]] = None,
                                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointsServiceServerlessResult]:
     """
-    ## # Data Source: privatelink_endpoints_service_serverless
+    **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
 
     `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
 

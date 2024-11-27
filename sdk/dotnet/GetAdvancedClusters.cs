@@ -47,7 +47,7 @@ namespace Pulumi.Mongodbatlas
         ///                     {
         ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
         ///                         {
-        ///                             InstanceSize = "M5",
+        ///                             InstanceSize = "M0",
         ///                         },
         ///                         ProviderName = "TENANT",
         ///                         BackingProviderName = "AWS",
@@ -66,6 +66,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
+        /// 
+        /// **NOTE:** There can only be one M0 cluster per project.
         /// 
         /// ## Example using latest sharding configurations with independent shard scaling in the cluster
         /// 
@@ -173,7 +175,7 @@ namespace Pulumi.Mongodbatlas
         ///                     {
         ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
         ///                         {
-        ///                             InstanceSize = "M5",
+        ///                             InstanceSize = "M0",
         ///                         },
         ///                         ProviderName = "TENANT",
         ///                         BackingProviderName = "AWS",
@@ -192,6 +194,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
+        /// 
+        /// **NOTE:** There can only be one M0 cluster per project.
         /// 
         /// ## Example using latest sharding configurations with independent shard scaling in the cluster
         /// 

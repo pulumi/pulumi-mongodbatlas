@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetPrivatelinkEndpointServiceServerless
     {
         /// <summary>
-        /// ## # Data Source: privatelink_endpoint_service_serverless
+        /// **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
         /// 
         /// `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
         /// 
@@ -117,7 +117,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointServiceServerlessResult>("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", args ?? new GetPrivatelinkEndpointServiceServerlessArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: privatelink_endpoint_service_serverless
+        /// **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
         /// 
         /// `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
         /// 

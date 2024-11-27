@@ -311,44 +311,6 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
- * ### Example AWS Shared Tier (M2/M5) cluster
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()
- *             .projectId("<YOUR-PROJECT-ID>")
- *             .name("cluster-test-global")
- *             .providerName("TENANT")
- *             .backingProviderName("AWS")
- *             .providerRegionName("US_EAST_1")
- *             .providerInstanceSizeName("M2")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
  * ### Example AWS Free Tier cluster
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

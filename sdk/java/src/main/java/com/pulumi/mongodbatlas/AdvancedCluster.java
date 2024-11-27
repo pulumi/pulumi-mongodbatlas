@@ -112,7 +112,7 @@ import javax.annotation.Nullable;
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                         .instanceSize("M5")
+ *                         .instanceSize("M0")
  *                         .build())
  *                     .providerName("TENANT")
  *                     .backingProviderName("AWS")
@@ -127,6 +127,8 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * **NOTE:** There can only be one M0 cluster per project.
  * 
  * **NOTE**: Upgrading the shared tier is supported. Any change from a shared tier cluster (a tenant) to a different instance size will be considered a tenant upgrade. When upgrading from the shared tier, change the `provider_name` from &#34;TENANT&#34; to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below. You can upgrade a shared tier cluster only to a single provider on an M10-tier cluster or greater.
  * 

@@ -1666,19 +1666,6 @@ class Cluster(pulumi.CustomResource):
                 },
             ])
         ```
-        ### Example AWS Shared Tier (M2/M5) cluster
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            project_id="<YOUR-PROJECT-ID>",
-            name="cluster-test-global",
-            provider_name="TENANT",
-            backing_provider_name="AWS",
-            provider_region_name="US_EAST_1",
-            provider_instance_size_name="M2")
-        ```
         ### Example AWS Free Tier cluster
         ```python
         import pulumi
@@ -1952,19 +1939,6 @@ class Cluster(pulumi.CustomResource):
                     }],
                 },
             ])
-        ```
-        ### Example AWS Shared Tier (M2/M5) cluster
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            project_id="<YOUR-PROJECT-ID>",
-            name="cluster-test-global",
-            provider_name="TENANT",
-            backing_provider_name="AWS",
-            provider_region_name="US_EAST_1",
-            provider_instance_size_name="M2")
         ```
         ### Example AWS Free Tier cluster
         ```python

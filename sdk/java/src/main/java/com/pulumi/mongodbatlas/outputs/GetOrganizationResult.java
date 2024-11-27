@@ -19,6 +19,11 @@ public final class GetOrganizationResult {
      */
     private Boolean apiAccessListRequired;
     /**
+     * @return (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     * 
+     */
+    private Boolean genAiFeaturesEnabled;
+    /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
@@ -53,6 +58,13 @@ public final class GetOrganizationResult {
      */
     public Boolean apiAccessListRequired() {
         return this.apiAccessListRequired;
+    }
+    /**
+     * @return (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+     * 
+     */
+    public Boolean genAiFeaturesEnabled() {
+        return this.genAiFeaturesEnabled;
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -106,6 +118,7 @@ public final class GetOrganizationResult {
     @CustomType.Builder
     public static final class Builder {
         private Boolean apiAccessListRequired;
+        private Boolean genAiFeaturesEnabled;
         private String id;
         private Boolean isDeleted;
         private List<GetOrganizationLink> links;
@@ -117,6 +130,7 @@ public final class GetOrganizationResult {
         public Builder(GetOrganizationResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apiAccessListRequired = defaults.apiAccessListRequired;
+    	      this.genAiFeaturesEnabled = defaults.genAiFeaturesEnabled;
     	      this.id = defaults.id;
     	      this.isDeleted = defaults.isDeleted;
     	      this.links = defaults.links;
@@ -132,6 +146,14 @@ public final class GetOrganizationResult {
               throw new MissingRequiredPropertyException("GetOrganizationResult", "apiAccessListRequired");
             }
             this.apiAccessListRequired = apiAccessListRequired;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder genAiFeaturesEnabled(Boolean genAiFeaturesEnabled) {
+            if (genAiFeaturesEnabled == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "genAiFeaturesEnabled");
+            }
+            this.genAiFeaturesEnabled = genAiFeaturesEnabled;
             return this;
         }
         @CustomType.Setter
@@ -196,6 +218,7 @@ public final class GetOrganizationResult {
         public GetOrganizationResult build() {
             final var _resultValue = new GetOrganizationResult();
             _resultValue.apiAccessListRequired = apiAccessListRequired;
+            _resultValue.genAiFeaturesEnabled = genAiFeaturesEnabled;
             _resultValue.id = id;
             _resultValue.isDeleted = isDeleted;
             _resultValue.links = links;

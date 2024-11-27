@@ -35,14 +35,14 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Unique 24-hexadecimal character string that identifies the project.
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal character string that identifies the project.
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Output<String> projectId() {
@@ -120,7 +120,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal character string that identifies the project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal character string that identifies the project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 

@@ -26,7 +26,7 @@ type SearchDeployment struct {
 
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
-	// Unique 24-hexadecimal character string that identifies the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs SearchDeploymentSpecArrayOutput `pulumi:"specs"`
@@ -76,7 +76,7 @@ func GetSearchDeployment(ctx *pulumi.Context,
 type searchDeploymentState struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName *string `pulumi:"clusterName"`
-	// Unique 24-hexadecimal character string that identifies the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string `pulumi:"projectId"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs []SearchDeploymentSpec `pulumi:"specs"`
@@ -88,7 +88,7 @@ type searchDeploymentState struct {
 type SearchDeploymentState struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringPtrInput
-	// Unique 24-hexadecimal character string that identifies the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs SearchDeploymentSpecArrayInput
@@ -104,7 +104,7 @@ func (SearchDeploymentState) ElementType() reflect.Type {
 type searchDeploymentArgs struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName string `pulumi:"clusterName"`
-	// Unique 24-hexadecimal character string that identifies the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs    []SearchDeploymentSpec    `pulumi:"specs"`
@@ -115,7 +115,7 @@ type searchDeploymentArgs struct {
 type SearchDeploymentArgs struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringInput
-	// Unique 24-hexadecimal character string that identifies the project.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs    SearchDeploymentSpecArrayInput
@@ -214,7 +214,7 @@ func (o SearchDeploymentOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal character string that identifies the project.
+// Unique 24-hexadecimal digit string that identifies your project.
 func (o SearchDeploymentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

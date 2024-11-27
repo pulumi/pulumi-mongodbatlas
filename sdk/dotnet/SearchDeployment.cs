@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ClusterName { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal character string that identifies the project.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -103,7 +103,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal character string that identifies the project.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -138,7 +138,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ClusterName { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal character string that identifies the project.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

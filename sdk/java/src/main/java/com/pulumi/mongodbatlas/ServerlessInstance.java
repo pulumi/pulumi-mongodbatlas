@@ -91,7 +91,11 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
     /**
      * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
     @Export(name="autoIndexing", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoIndexing;
 
@@ -133,7 +137,11 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
     /**
      * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
     @Export(name="continuousBackupEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> continuousBackupEnabled;
 

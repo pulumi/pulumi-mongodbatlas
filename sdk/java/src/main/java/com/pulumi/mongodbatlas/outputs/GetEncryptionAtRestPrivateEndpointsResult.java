@@ -11,7 +11,7 @@ import java.util.Objects;
 @CustomType
 public final class GetEncryptionAtRestPrivateEndpointsResult {
     /**
-     * @return Label that identifies the cloud provider of the private endpoint.
+     * @return Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      * 
      */
     private String cloudProvider;
@@ -48,7 +48,7 @@ public final class GetEncryptionAtRestPrivateEndpointsResult {
 
     private GetEncryptionAtRestPrivateEndpointsResult() {}
     /**
-     * @return Label that identifies the cloud provider of the private endpoint.
+     * @return Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      * 
      */
     public String cloudProvider() {

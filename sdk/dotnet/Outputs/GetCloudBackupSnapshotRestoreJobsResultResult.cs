@@ -34,6 +34,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ExpiresAt;
         /// <summary>
+        /// Indicates whether the restore job failed.
+        /// </summary>
+        public readonly bool Failed;
+        /// <summary>
         /// UTC ISO 8601 formatted point in time when the restore job completed.
         /// </summary>
         public readonly string FinishedAt;
@@ -76,6 +80,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string expiresAt,
 
+            bool failed,
+
             string finishedAt,
 
             string id,
@@ -99,6 +105,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             DeliveryUrls = deliveryUrls;
             Expired = expired;
             ExpiresAt = expiresAt;
+            Failed = failed;
             FinishedAt = finishedAt;
             Id = id;
             OplogInc = oplogInc;

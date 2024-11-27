@@ -53,7 +53,7 @@ class GetEncryptionAtRestPrivateEndpointResult:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> str:
         """
-        Label that identifies the cloud provider of the private endpoint.
+        Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -150,7 +150,7 @@ def get_encryption_at_rest_private_endpoint(cloud_provider: Optional[str] = None
     ```
 
 
-    :param str cloud_provider: Label that identifies the cloud provider of the private endpoint.
+    :param str cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
     :param str id: Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
@@ -198,7 +198,7 @@ def get_encryption_at_rest_private_endpoint_output(cloud_provider: Optional[pulu
     ```
 
 
-    :param str cloud_provider: Label that identifies the cloud provider of the private endpoint.
+    :param str cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
     :param str id: Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """

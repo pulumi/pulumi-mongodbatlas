@@ -125,6 +125,21 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
     }
 
     /**
+     * Indicates whether the restore job failed.
+     * 
+     */
+    @Import(name="failed")
+    private @Nullable Output<Boolean> failed;
+
+    /**
+     * @return Indicates whether the restore job failed.
+     * 
+     */
+    public Optional<Output<Boolean>> failed() {
+        return Optional.ofNullable(this.failed);
+    }
+
+    /**
      * UTC ISO 8601 formatted point in time when the restore job completed.
      * 
      */
@@ -236,6 +251,7 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
         this.deliveryUrls = $.deliveryUrls;
         this.expired = $.expired;
         this.expiresAt = $.expiresAt;
+        this.failed = $.failed;
         this.finishedAt = $.finishedAt;
         this.projectId = $.projectId;
         this.snapshotId = $.snapshotId;
@@ -411,6 +427,27 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
          */
         public Builder expiresAt(String expiresAt) {
             return expiresAt(Output.of(expiresAt));
+        }
+
+        /**
+         * @param failed Indicates whether the restore job failed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder failed(@Nullable Output<Boolean> failed) {
+            $.failed = failed;
+            return this;
+        }
+
+        /**
+         * @param failed Indicates whether the restore job failed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder failed(Boolean failed) {
+            return failed(Output.of(failed));
         }
 
         /**

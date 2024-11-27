@@ -50,7 +50,13 @@ class ServerlessInstanceArgs:
         pulumi.set(__self__, "provider_settings_provider_name", provider_settings_provider_name)
         pulumi.set(__self__, "provider_settings_region_name", provider_settings_region_name)
         if auto_indexing is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""", DeprecationWarning)
+            pulumi.log.warn("""auto_indexing is deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
+        if auto_indexing is not None:
             pulumi.set(__self__, "auto_indexing", auto_indexing)
+        if continuous_backup_enabled is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""", DeprecationWarning)
+            pulumi.log.warn("""continuous_backup_enabled is deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
         if continuous_backup_enabled is not None:
             pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
         if links is not None:
@@ -114,6 +120,7 @@ class ServerlessInstanceArgs:
 
     @property
     @pulumi.getter(name="autoIndexing")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
     def auto_indexing(self) -> Optional[pulumi.Input[bool]]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
@@ -126,6 +133,7 @@ class ServerlessInstanceArgs:
 
     @property
     @pulumi.getter(name="continuousBackupEnabled")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
     def continuous_backup_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
@@ -230,11 +238,17 @@ class _ServerlessInstanceState:
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         if auto_indexing is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""", DeprecationWarning)
+            pulumi.log.warn("""auto_indexing is deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
+        if auto_indexing is not None:
             pulumi.set(__self__, "auto_indexing", auto_indexing)
         if connection_strings_private_endpoint_srvs is not None:
             pulumi.set(__self__, "connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
         if connection_strings_standard_srv is not None:
             pulumi.set(__self__, "connection_strings_standard_srv", connection_strings_standard_srv)
+        if continuous_backup_enabled is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""", DeprecationWarning)
+            pulumi.log.warn("""continuous_backup_enabled is deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
         if continuous_backup_enabled is not None:
             pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
         if create_date is not None:
@@ -262,6 +276,7 @@ class _ServerlessInstanceState:
 
     @property
     @pulumi.getter(name="autoIndexing")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
     def auto_indexing(self) -> Optional[pulumi.Input[bool]]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
@@ -298,6 +313,7 @@ class _ServerlessInstanceState:
 
     @property
     @pulumi.getter(name="continuousBackupEnabled")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
     def continuous_backup_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
@@ -686,6 +702,7 @@ class ServerlessInstance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="autoIndexing")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
     def auto_indexing(self) -> pulumi.Output[bool]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
@@ -710,6 +727,7 @@ class ServerlessInstance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="continuousBackupEnabled")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
     def continuous_backup_enabled(self) -> pulumi.Output[bool]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).

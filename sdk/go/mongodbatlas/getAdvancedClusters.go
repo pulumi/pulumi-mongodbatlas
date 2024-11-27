@@ -44,7 +44,7 @@ import (
 //						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
 //							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
 //								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
-//									InstanceSize: pulumi.String("M5"),
+//									InstanceSize: pulumi.String("M0"),
 //								},
 //								ProviderName:        pulumi.String("TENANT"),
 //								BackingProviderName: pulumi.String("AWS"),
@@ -66,6 +66,8 @@ import (
 //	}
 //
 // ```
+//
+// **NOTE:** There can only be one M0 cluster per project.
 //
 // ## Example using latest sharding configurations with independent shard scaling in the cluster
 //
