@@ -219,7 +219,7 @@ def get_data_lake_pipeline(name: Optional[str] = None,
         transformations=pulumi.get(__ret__, 'transformations'))
 def get_data_lake_pipeline_output(name: Optional[pulumi.Input[str]] = None,
                                   project_id: Optional[pulumi.Input[str]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakePipelineResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDataLakePipelineResult]:
     """
     **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
 
@@ -236,7 +236,7 @@ def get_data_lake_pipeline_output(name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getDataLakePipeline:getDataLakePipeline', __args__, opts=opts, typ=GetDataLakePipelineResult)
     return __ret__.apply(lambda __response__: GetDataLakePipelineResult(
         created_date=pulumi.get(__response__, 'created_date'),

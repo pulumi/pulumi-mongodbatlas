@@ -108,7 +108,7 @@ export interface GetCloudBackupSnapshotExportBucketResult {
  * });
  * ```
  */
-export function getCloudBackupSnapshotExportBucketOutput(args: GetCloudBackupSnapshotExportBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketResult> {
+export function getCloudBackupSnapshotExportBucketOutput(args: GetCloudBackupSnapshotExportBucketOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", {
         "exportBucketId": args.exportBucketId,

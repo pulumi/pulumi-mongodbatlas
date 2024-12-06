@@ -51,7 +51,7 @@ export interface GetCustomDbRolesResult {
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
-export function getCustomDbRolesOutput(args: GetCustomDbRolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDbRolesResult> {
+export function getCustomDbRolesOutput(args: GetCustomDbRolesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCustomDbRolesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", {
         "projectId": args.projectId,

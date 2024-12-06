@@ -240,7 +240,7 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
 def get_federated_database_instance_output(cloud_provider_config: Optional[pulumi.Input[Optional[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']]]] = None,
                                            name: Optional[pulumi.Input[str]] = None,
                                            project_id: Optional[pulumi.Input[str]] = None,
-                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedDatabaseInstanceResult]:
+                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedDatabaseInstanceResult]:
     """
     ## # Data Source: FederatedDatabaseInstance
 
@@ -285,7 +285,7 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     __args__['cloudProviderConfig'] = cloud_provider_config
     __args__['name'] = name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance', __args__, opts=opts, typ=GetFederatedDatabaseInstanceResult)
     return __ret__.apply(lambda __response__: GetFederatedDatabaseInstanceResult(
         cloud_provider_config=pulumi.get(__response__, 'cloud_provider_config'),

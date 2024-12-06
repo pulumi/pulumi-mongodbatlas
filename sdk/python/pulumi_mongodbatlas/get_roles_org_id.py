@@ -85,7 +85,7 @@ def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     return AwaitableGetRolesOrgIdResult(
         id=pulumi.get(__ret__, 'id'),
         org_id=pulumi.get(__ret__, 'org_id'))
-def get_roles_org_id_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRolesOrgIdResult]:
+def get_roles_org_id_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRolesOrgIdResult]:
     """
     ## # Data Source: get_roles_org_id
 
@@ -103,7 +103,7 @@ def get_roles_org_id_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getRolesOrgId:getRolesOrgId', __args__, opts=opts, typ=GetRolesOrgIdResult)
     return __ret__.apply(lambda __response__: GetRolesOrgIdResult(
         id=pulumi.get(__response__, 'id'),

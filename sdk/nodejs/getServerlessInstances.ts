@@ -79,7 +79,7 @@ export interface GetServerlessInstancesResult {
  * });
  * ```
  */
-export function getServerlessInstancesOutput(args: GetServerlessInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerlessInstancesResult> {
+export function getServerlessInstancesOutput(args: GetServerlessInstancesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServerlessInstancesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getServerlessInstances:getServerlessInstances", {
         "projectId": args.projectId,

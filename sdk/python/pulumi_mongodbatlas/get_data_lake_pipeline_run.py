@@ -225,7 +225,7 @@ def get_data_lake_pipeline_run(pipeline_name: Optional[str] = None,
 def get_data_lake_pipeline_run_output(pipeline_name: Optional[pulumi.Input[str]] = None,
                                       pipeline_run_id: Optional[pulumi.Input[str]] = None,
                                       project_id: Optional[pulumi.Input[str]] = None,
-                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakePipelineRunResult]:
+                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDataLakePipelineRunResult]:
     """
     **WARNING:** Data Lake is deprecated. To learn more, see <https://dochub.mongodb.org/core/data-lake-deprecation>
 
@@ -242,7 +242,7 @@ def get_data_lake_pipeline_run_output(pipeline_name: Optional[pulumi.Input[str]]
     __args__['pipelineName'] = pipeline_name
     __args__['pipelineRunId'] = pipeline_run_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun', __args__, opts=opts, typ=GetDataLakePipelineRunResult)
     return __ret__.apply(lambda __response__: GetDataLakePipelineRunResult(
         backup_frequency_type=pulumi.get(__response__, 'backup_frequency_type'),

@@ -125,7 +125,7 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[s
 def get_federated_settings_identity_providers_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
                                                      idp_types: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                                      protocols: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsIdentityProvidersResult]:
+                                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsIdentityProvidersResult]:
     """
     ## # Data Source: get_federated_settings_identity_providers
 
@@ -142,7 +142,7 @@ def get_federated_settings_identity_providers_output(federation_settings_id: Opt
     __args__['federationSettingsId'] = federation_settings_id
     __args__['idpTypes'] = idp_types
     __args__['protocols'] = protocols
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders', __args__, opts=opts, typ=GetFederatedSettingsIdentityProvidersResult)
     return __ret__.apply(lambda __response__: GetFederatedSettingsIdentityProvidersResult(
         federation_settings_id=pulumi.get(__response__, 'federation_settings_id'),

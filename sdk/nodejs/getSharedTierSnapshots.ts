@@ -35,7 +35,7 @@ export interface GetSharedTierSnapshotsResult {
     readonly results: outputs.GetSharedTierSnapshotsResult[];
     readonly totalCount: number;
 }
-export function getSharedTierSnapshotsOutput(args: GetSharedTierSnapshotsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSharedTierSnapshotsResult> {
+export function getSharedTierSnapshotsOutput(args: GetSharedTierSnapshotsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSharedTierSnapshotsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", {
         "clusterName": args.clusterName,

@@ -59,7 +59,7 @@ export interface GetFederatedDatabaseInstancesResult {
  *
  * ## Example Usage
  */
-export function getFederatedDatabaseInstancesOutput(args: GetFederatedDatabaseInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedDatabaseInstancesResult> {
+export function getFederatedDatabaseInstancesOutput(args: GetFederatedDatabaseInstancesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedDatabaseInstancesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", {
         "projectId": args.projectId,

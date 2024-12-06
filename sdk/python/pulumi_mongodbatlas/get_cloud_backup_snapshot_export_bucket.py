@@ -183,7 +183,7 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = No
         tenant_id=pulumi.get(__ret__, 'tenant_id'))
 def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pulumi.Input[str]] = None,
                                                    project_id: Optional[pulumi.Input[str]] = None,
-                                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportBucketResult]:
+                                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotExportBucketResult]:
     """
     ## # Data Source: CloudBackupSnapshotExportBucket
 
@@ -213,7 +213,7 @@ def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pu
     __args__ = dict()
     __args__['exportBucketId'] = export_bucket_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket', __args__, opts=opts, typ=GetCloudBackupSnapshotExportBucketResult)
     return __ret__.apply(lambda __response__: GetCloudBackupSnapshotExportBucketResult(
         bucket_name=pulumi.get(__response__, 'bucket_name'),

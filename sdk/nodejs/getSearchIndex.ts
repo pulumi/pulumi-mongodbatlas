@@ -134,7 +134,7 @@ export interface GetSearchIndexResult {
  * });
  * ```
  */
-export function getSearchIndexOutput(args: GetSearchIndexOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchIndexResult> {
+export function getSearchIndexOutput(args: GetSearchIndexOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSearchIndexResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getSearchIndex:getSearchIndex", {
         "clusterName": args.clusterName,

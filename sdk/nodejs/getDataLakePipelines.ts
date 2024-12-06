@@ -59,7 +59,7 @@ export interface GetDataLakePipelinesResult {
  *
  * ## Example Usage
  */
-export function getDataLakePipelinesOutput(args: GetDataLakePipelinesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataLakePipelinesResult> {
+export function getDataLakePipelinesOutput(args: GetDataLakePipelinesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataLakePipelinesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getDataLakePipelines:getDataLakePipelines", {
         "projectId": args.projectId,

@@ -289,7 +289,7 @@ export interface GetBackupCompliancePolicyResult {
  * });
  * ```
  */
-export function getBackupCompliancePolicyOutput(args: GetBackupCompliancePolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackupCompliancePolicyResult> {
+export function getBackupCompliancePolicyOutput(args: GetBackupCompliancePolicyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackupCompliancePolicyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", {
         "projectId": args.projectId,

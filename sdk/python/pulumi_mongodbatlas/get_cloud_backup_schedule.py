@@ -305,7 +305,7 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
 def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
                                      use_zone_id_for_copy_settings: Optional[pulumi.Input[Optional[bool]]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupScheduleResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupScheduleResult]:
     """
     ## # Data Source: CloudBackupSchedule
 
@@ -322,7 +322,7 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[str]] =
     __args__['clusterName'] = cluster_name
     __args__['projectId'] = project_id
     __args__['useZoneIdForCopySettings'] = use_zone_id_for_copy_settings
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule', __args__, opts=opts, typ=GetCloudBackupScheduleResult)
     return __ret__.apply(lambda __response__: GetCloudBackupScheduleResult(
         auto_export_enabled=pulumi.get(__response__, 'auto_export_enabled'),

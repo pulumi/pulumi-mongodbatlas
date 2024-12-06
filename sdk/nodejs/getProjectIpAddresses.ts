@@ -76,7 +76,7 @@ export interface GetProjectIpAddressesResult {
  * export const projectServices = test.then(test => test.services);
  * ```
  */
-export function getProjectIpAddressesOutput(args: GetProjectIpAddressesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectIpAddressesResult> {
+export function getProjectIpAddressesOutput(args: GetProjectIpAddressesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectIpAddressesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", {
         "projectId": args.projectId,

@@ -111,7 +111,7 @@ export interface GetProjectInvitationResult {
  * });
  * ```
  */
-export function getProjectInvitationOutput(args: GetProjectInvitationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectInvitationResult> {
+export function getProjectInvitationOutput(args: GetProjectInvitationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectInvitationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectInvitation:getProjectInvitation", {
         "invitationId": args.invitationId,

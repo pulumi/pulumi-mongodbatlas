@@ -193,7 +193,7 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
                                       cidr_block: Optional[pulumi.Input[Optional[str]]] = None,
                                       ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                                       project_id: Optional[pulumi.Input[str]] = None,
-                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectIpAccessListResult]:
+                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectIpAccessListResult]:
     """
     ## # Data Source: ProjectIpAccessList
 
@@ -274,7 +274,7 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     __args__['cidrBlock'] = cidr_block
     __args__['ipAddress'] = ip_address
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList', __args__, opts=opts, typ=GetProjectIpAccessListResult)
     return __ret__.apply(lambda __response__: GetProjectIpAccessListResult(
         aws_security_group=pulumi.get(__response__, 'aws_security_group'),

@@ -52,7 +52,7 @@ export interface GetApiKeysResult {
 /**
  * ## Example Usage
  */
-export function getApiKeysOutput(args: GetApiKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApiKeysResult> {
+export function getApiKeysOutput(args: GetApiKeysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApiKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getApiKeys:getApiKeys", {
         "itemsPerPage": args.itemsPerPage,

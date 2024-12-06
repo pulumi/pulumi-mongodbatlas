@@ -49,7 +49,7 @@ export interface GetTeamsResult {
  *
  * In the future this data source will define a new implementation capable of fetching all teams in one organization.
  */
-export function getTeamsOutput(args: GetTeamsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamsResult> {
+export function getTeamsOutput(args: GetTeamsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTeamsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getTeams:getTeams", {
         "name": args.name,

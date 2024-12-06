@@ -95,7 +95,7 @@ export interface GetDataLakePipelineRunResult {
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
-export function getDataLakePipelineRunOutput(args: GetDataLakePipelineRunOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataLakePipelineRunResult> {
+export function getDataLakePipelineRunOutput(args: GetDataLakePipelineRunOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataLakePipelineRunResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun", {
         "pipelineName": args.pipelineName,

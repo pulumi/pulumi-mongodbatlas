@@ -135,7 +135,7 @@ def get_mongodb_employee_access_grant(cluster_name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_mongodb_employee_access_grant_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                              project_id: Optional[pulumi.Input[str]] = None,
-                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMongodbEmployeeAccessGrantResult]:
+                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongodbEmployeeAccessGrantResult]:
     """
     ## # Data Source: MongodbEmployeeAccessGrant
 
@@ -166,7 +166,7 @@ def get_mongodb_employee_access_grant_output(cluster_name: Optional[pulumi.Input
     __args__ = dict()
     __args__['clusterName'] = cluster_name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant', __args__, opts=opts, typ=GetMongodbEmployeeAccessGrantResult)
     return __ret__.apply(lambda __response__: GetMongodbEmployeeAccessGrantResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

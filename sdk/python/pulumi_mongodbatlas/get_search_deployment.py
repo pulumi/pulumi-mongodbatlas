@@ -126,7 +126,7 @@ def get_search_deployment(cluster_name: Optional[str] = None,
         state_name=pulumi.get(__ret__, 'state_name'))
 def get_search_deployment_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                  project_id: Optional[pulumi.Input[str]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchDeploymentResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSearchDeploymentResult]:
     """
     ## # Data Source: SearchDeployment
 
@@ -141,7 +141,7 @@ def get_search_deployment_output(cluster_name: Optional[pulumi.Input[str]] = Non
     __args__ = dict()
     __args__['clusterName'] = cluster_name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getSearchDeployment:getSearchDeployment', __args__, opts=opts, typ=GetSearchDeploymentResult)
     return __ret__.apply(lambda __response__: GetSearchDeploymentResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

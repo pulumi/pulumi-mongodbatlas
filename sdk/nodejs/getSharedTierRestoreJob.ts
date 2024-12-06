@@ -44,7 +44,7 @@ export interface GetSharedTierRestoreJobResult {
     readonly targetDeploymentItemName: string;
     readonly targetProjectId: string;
 }
-export function getSharedTierRestoreJobOutput(args: GetSharedTierRestoreJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSharedTierRestoreJobResult> {
+export function getSharedTierRestoreJobOutput(args: GetSharedTierRestoreJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSharedTierRestoreJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", {
         "clusterName": args.clusterName,

@@ -206,7 +206,7 @@ def get_federated_settings_org_config(federation_settings_id: Optional[str] = No
         user_conflicts=pulumi.get(__ret__, 'user_conflicts'))
 def get_federated_settings_org_config_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
                                              org_id: Optional[pulumi.Input[str]] = None,
-                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsOrgConfigResult]:
+                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsOrgConfigResult]:
     """
     ## # Data Source: FederatedSettingsOrgConfig
 
@@ -237,7 +237,7 @@ def get_federated_settings_org_config_output(federation_settings_id: Optional[pu
     __args__ = dict()
     __args__['federationSettingsId'] = federation_settings_id
     __args__['orgId'] = org_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig', __args__, opts=opts, typ=GetFederatedSettingsOrgConfigResult)
     return __ret__.apply(lambda __response__: GetFederatedSettingsOrgConfigResult(
         data_access_identity_provider_ids=pulumi.get(__response__, 'data_access_identity_provider_ids'),

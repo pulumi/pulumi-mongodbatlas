@@ -213,7 +213,7 @@ export interface GetAdvancedClustersResult {
  * });
  * ```
  */
-export function getAdvancedClustersOutput(args: GetAdvancedClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAdvancedClustersResult> {
+export function getAdvancedClustersOutput(args: GetAdvancedClustersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAdvancedClustersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", {
         "projectId": args.projectId,

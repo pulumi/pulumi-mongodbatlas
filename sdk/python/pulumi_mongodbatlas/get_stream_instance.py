@@ -138,7 +138,7 @@ def get_stream_instance(instance_name: Optional[str] = None,
         stream_config=pulumi.get(__ret__, 'stream_config'))
 def get_stream_instance_output(instance_name: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamInstanceResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamInstanceResult]:
     """
     ## # Data Source: StreamInstance
 
@@ -161,7 +161,7 @@ def get_stream_instance_output(instance_name: Optional[pulumi.Input[str]] = None
     __args__ = dict()
     __args__['instanceName'] = instance_name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamInstance:getStreamInstance', __args__, opts=opts, typ=GetStreamInstanceResult)
     return __ret__.apply(lambda __response__: GetStreamInstanceResult(
         data_process_region=pulumi.get(__response__, 'data_process_region'),

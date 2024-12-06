@@ -119,7 +119,7 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult 
  * });
  * ```
  */
-export function getPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> {
+export function getPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", {
         "endpointId": args.endpointId,

@@ -162,7 +162,7 @@ def get_online_archives(cluster_name: Optional[str] = None,
         total_count=pulumi.get(__ret__, 'total_count'))
 def get_online_archives_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOnlineArchivesResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOnlineArchivesResult]:
     """
     ## # Data Source: OnlineArchive
 
@@ -225,7 +225,7 @@ def get_online_archives_output(cluster_name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['clusterName'] = cluster_name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOnlineArchives:getOnlineArchives', __args__, opts=opts, typ=GetOnlineArchivesResult)
     return __ret__.apply(lambda __response__: GetOnlineArchivesResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

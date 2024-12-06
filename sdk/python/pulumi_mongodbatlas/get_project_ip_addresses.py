@@ -105,7 +105,7 @@ def get_project_ip_addresses(project_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         services=pulumi.get(__ret__, 'services'))
 def get_project_ip_addresses_output(project_id: Optional[pulumi.Input[str]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectIpAddressesResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectIpAddressesResult]:
     """
     ## # Data Source: get_project_ip_addresses
 
@@ -127,7 +127,7 @@ def get_project_ip_addresses_output(project_id: Optional[pulumi.Input[str]] = No
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses', __args__, opts=opts, typ=GetProjectIpAddressesResult)
     return __ret__.apply(lambda __response__: GetProjectIpAddressesResult(
         id=pulumi.get(__response__, 'id'),

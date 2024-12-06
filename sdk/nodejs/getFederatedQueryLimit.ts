@@ -101,7 +101,7 @@ export interface GetFederatedQueryLimitResult {
  * });
  * ```
  */
-export function getFederatedQueryLimitOutput(args: GetFederatedQueryLimitOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedQueryLimitResult> {
+export function getFederatedQueryLimitOutput(args: GetFederatedQueryLimitOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedQueryLimitResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", {
         "limitName": args.limitName,

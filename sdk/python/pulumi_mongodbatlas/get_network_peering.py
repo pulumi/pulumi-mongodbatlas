@@ -364,7 +364,7 @@ def get_network_peering(peering_id: Optional[str] = None,
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkPeeringResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkPeeringResult]:
     """
     ## # Data Source: NetworkPeering
 
@@ -399,7 +399,7 @@ def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['peeringId'] = peering_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getNetworkPeering:getNetworkPeering', __args__, opts=opts, typ=GetNetworkPeeringResult)
     return __ret__.apply(lambda __response__: GetNetworkPeeringResult(
         accepter_region_name=pulumi.get(__response__, 'accepter_region_name'),
