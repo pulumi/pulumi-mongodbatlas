@@ -255,7 +255,7 @@ def get_network_container(container_id: Optional[str] = None,
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 def get_network_container_output(container_id: Optional[pulumi.Input[str]] = None,
                                  project_id: Optional[pulumi.Input[str]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkContainerResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkContainerResult]:
     """
     ## # Data Source: NetworkContainer
 
@@ -289,7 +289,7 @@ def get_network_container_output(container_id: Optional[pulumi.Input[str]] = Non
     __args__ = dict()
     __args__['containerId'] = container_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getNetworkContainer:getNetworkContainer', __args__, opts=opts, typ=GetNetworkContainerResult)
     return __ret__.apply(lambda __response__: GetNetworkContainerResult(
         atlas_cidr_block=pulumi.get(__response__, 'atlas_cidr_block'),

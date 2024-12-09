@@ -185,7 +185,7 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
  * });
  * ```
  */
-export function getPrivatelinkEndpointsServiceServerlessOutput(args: GetPrivatelinkEndpointsServiceServerlessOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointsServiceServerlessResult> {
+export function getPrivatelinkEndpointsServiceServerlessOutput(args: GetPrivatelinkEndpointsServiceServerlessOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivatelinkEndpointsServiceServerlessResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", {
         "instanceName": args.instanceName,

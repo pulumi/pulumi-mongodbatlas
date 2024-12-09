@@ -40,7 +40,7 @@ export interface GetSharedTierSnapshotResult {
     readonly startTime: string;
     readonly status: string;
 }
-export function getSharedTierSnapshotOutput(args: GetSharedTierSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSharedTierSnapshotResult> {
+export function getSharedTierSnapshotOutput(args: GetSharedTierSnapshotOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSharedTierSnapshotResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", {
         "clusterName": args.clusterName,

@@ -162,7 +162,7 @@ def get_team(name: Optional[str] = None,
 def get_team_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                     org_id: Optional[pulumi.Input[str]] = None,
                     team_id: Optional[pulumi.Input[Optional[str]]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamResult]:
     """
     ## # Data Source: Team
 
@@ -215,7 +215,7 @@ def get_team_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['name'] = name
     __args__['orgId'] = org_id
     __args__['teamId'] = team_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getTeam:getTeam', __args__, opts=opts, typ=GetTeamResult)
     return __ret__.apply(lambda __response__: GetTeamResult(
         id=pulumi.get(__response__, 'id'),

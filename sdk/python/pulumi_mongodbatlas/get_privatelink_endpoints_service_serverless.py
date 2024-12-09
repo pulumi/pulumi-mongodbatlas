@@ -161,7 +161,7 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
         results=pulumi.get(__ret__, 'results'))
 def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[pulumi.Input[str]] = None,
                                                         project_id: Optional[pulumi.Input[str]] = None,
-                                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointsServiceServerlessResult]:
+                                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointsServiceServerlessResult]:
     """
     **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
 
@@ -230,7 +230,7 @@ def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[
     __args__ = dict()
     __args__['instanceName'] = instance_name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless', __args__, opts=opts, typ=GetPrivatelinkEndpointsServiceServerlessResult)
     return __ret__.apply(lambda __response__: GetPrivatelinkEndpointsServiceServerlessResult(
         id=pulumi.get(__response__, 'id'),

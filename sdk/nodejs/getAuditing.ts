@@ -95,7 +95,7 @@ export interface GetAuditingResult {
  * });
  * ```
  */
-export function getAuditingOutput(args: GetAuditingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuditingResult> {
+export function getAuditingOutput(args: GetAuditingOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuditingResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getAuditing:getAuditing", {
         "projectId": args.projectId,

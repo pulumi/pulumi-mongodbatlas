@@ -361,7 +361,7 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
         updated_date=pulumi.get(__ret__, 'updated_date'),
         updated_user=pulumi.get(__ret__, 'updated_user'))
 def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackupCompliancePolicyResult]:
+                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackupCompliancePolicyResult]:
     """
     ## Example Usage
 
@@ -465,7 +465,7 @@ def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] 
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy', __args__, opts=opts, typ=GetBackupCompliancePolicyResult)
     return __ret__.apply(lambda __response__: GetBackupCompliancePolicyResult(
         authorized_email=pulumi.get(__response__, 'authorized_email'),

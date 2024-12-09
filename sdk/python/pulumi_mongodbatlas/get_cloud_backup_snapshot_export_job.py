@@ -259,7 +259,7 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
 def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                                 export_job_id: Optional[pulumi.Input[str]] = None,
                                                 project_id: Optional[pulumi.Input[str]] = None,
-                                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportJobResult]:
+                                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotExportJobResult]:
     """
     ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
 
@@ -301,7 +301,7 @@ def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.In
     __args__['clusterName'] = cluster_name
     __args__['exportJobId'] = export_job_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob', __args__, opts=opts, typ=GetCloudBackupSnapshotExportJobResult)
     return __ret__.apply(lambda __response__: GetCloudBackupSnapshotExportJobResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

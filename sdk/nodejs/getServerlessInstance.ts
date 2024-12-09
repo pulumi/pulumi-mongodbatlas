@@ -172,7 +172,7 @@ export interface GetServerlessInstanceResult {
  *
  * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
  */
-export function getServerlessInstanceOutput(args: GetServerlessInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerlessInstanceResult> {
+export function getServerlessInstanceOutput(args: GetServerlessInstanceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServerlessInstanceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getServerlessInstance:getServerlessInstance", {
         "autoIndexing": args.autoIndexing,

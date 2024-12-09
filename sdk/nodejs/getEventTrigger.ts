@@ -126,7 +126,7 @@ export interface GetEventTriggerResult {
  *
  * `mongodbatlas.EventTrigger` describes an Event Trigger.
  */
-export function getEventTriggerOutput(args: GetEventTriggerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEventTriggerResult> {
+export function getEventTriggerOutput(args: GetEventTriggerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEventTriggerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getEventTrigger:getEventTrigger", {
         "appId": args.appId,

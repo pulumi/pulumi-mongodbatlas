@@ -95,7 +95,7 @@ export interface GetNetworkPeeringsResult {
  * });
  * ```
  */
-export function getNetworkPeeringsOutput(args: GetNetworkPeeringsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkPeeringsResult> {
+export function getNetworkPeeringsOutput(args: GetNetworkPeeringsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNetworkPeeringsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", {
         "projectId": args.projectId,

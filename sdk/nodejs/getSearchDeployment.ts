@@ -67,7 +67,7 @@ export interface GetSearchDeploymentResult {
  *
  * ## Example Usage
  */
-export function getSearchDeploymentOutput(args: GetSearchDeploymentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchDeploymentResult> {
+export function getSearchDeploymentOutput(args: GetSearchDeploymentOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSearchDeploymentResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getSearchDeployment:getSearchDeployment", {
         "clusterName": args.clusterName,

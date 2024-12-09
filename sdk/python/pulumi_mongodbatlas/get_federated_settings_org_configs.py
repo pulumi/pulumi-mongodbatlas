@@ -140,7 +140,7 @@ def get_federated_settings_org_configs(federation_settings_id: Optional[str] = N
 def get_federated_settings_org_configs_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
                                               items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                               page_num: Optional[pulumi.Input[Optional[int]]] = None,
-                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsOrgConfigsResult]:
+                                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsOrgConfigsResult]:
     """
     ## # Data Source: get_federated_settings_org_configs
 
@@ -172,7 +172,7 @@ def get_federated_settings_org_configs_output(federation_settings_id: Optional[p
     __args__['federationSettingsId'] = federation_settings_id
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs', __args__, opts=opts, typ=GetFederatedSettingsOrgConfigsResult)
     return __ret__.apply(lambda __response__: GetFederatedSettingsOrgConfigsResult(
         federation_settings_id=pulumi.get(__response__, 'federation_settings_id'),

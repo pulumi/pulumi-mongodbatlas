@@ -150,7 +150,7 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRole
 def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Sequence[Union['GetCustomDbRoleInheritedRoleArgs', 'GetCustomDbRoleInheritedRoleArgsDict']]]]] = None,
                               project_id: Optional[pulumi.Input[str]] = None,
                               role_name: Optional[pulumi.Input[str]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDbRoleResult]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCustomDbRoleResult]:
     """
     ## # Data Source: CustomDbRole
 
@@ -195,7 +195,7 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
     __args__['inheritedRoles'] = inherited_roles
     __args__['projectId'] = project_id
     __args__['roleName'] = role_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCustomDbRole:getCustomDbRole', __args__, opts=opts, typ=GetCustomDbRoleResult)
     return __ret__.apply(lambda __response__: GetCustomDbRoleResult(
         actions=pulumi.get(__response__, 'actions'),

@@ -283,7 +283,7 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[str] = None,
 def get_cloud_backup_snapshot_restore_job_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                                  project_id: Optional[pulumi.Input[str]] = None,
                                                  snapshot_restore_job_id: Optional[pulumi.Input[str]] = None,
-                                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotRestoreJobResult]:
+                                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotRestoreJobResult]:
     """
     ## # Data Source: CloudBackupSnapshotRestoreJob
 
@@ -300,7 +300,7 @@ def get_cloud_backup_snapshot_restore_job_output(cluster_name: Optional[pulumi.I
     __args__['clusterName'] = cluster_name
     __args__['projectId'] = project_id
     __args__['snapshotRestoreJobId'] = snapshot_restore_job_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob', __args__, opts=opts, typ=GetCloudBackupSnapshotRestoreJobResult)
     return __ret__.apply(lambda __response__: GetCloudBackupSnapshotRestoreJobResult(
         cancelled=pulumi.get(__response__, 'cancelled'),

@@ -97,7 +97,7 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
  * });
  * ```
  */
-export function getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchivesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult> {
+export function getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchivesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", {
         "projectId": args.projectId,

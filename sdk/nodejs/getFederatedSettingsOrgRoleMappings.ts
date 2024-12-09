@@ -66,7 +66,7 @@ export interface GetFederatedSettingsOrgRoleMappingsResult {
  *
  * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
  */
-export function getFederatedSettingsOrgRoleMappingsOutput(args: GetFederatedSettingsOrgRoleMappingsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingsResult> {
+export function getFederatedSettingsOrgRoleMappingsOutput(args: GetFederatedSettingsOrgRoleMappingsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", {
         "federationSettingsId": args.federationSettingsId,

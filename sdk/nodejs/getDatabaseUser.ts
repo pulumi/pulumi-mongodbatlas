@@ -215,7 +215,7 @@ export interface GetDatabaseUserResult {
  * ```
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  */
-export function getDatabaseUserOutput(args: GetDatabaseUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseUserResult> {
+export function getDatabaseUserOutput(args: GetDatabaseUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabaseUserResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getDatabaseUser:getDatabaseUser", {
         "authDatabaseName": args.authDatabaseName,

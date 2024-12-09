@@ -138,7 +138,7 @@ def get_federated_settings(org_id: Optional[str] = None,
         identity_provider_status=pulumi.get(__ret__, 'identity_provider_status'),
         org_id=pulumi.get(__ret__, 'org_id'))
 def get_federated_settings_output(org_id: Optional[pulumi.Input[str]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsResult]:
     """
     ## # Data Source: get_federated_settings
 
@@ -158,7 +158,7 @@ def get_federated_settings_output(org_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['orgId'] = org_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettings:getFederatedSettings', __args__, opts=opts, typ=GetFederatedSettingsResult)
     return __ret__.apply(lambda __response__: GetFederatedSettingsResult(
         federated_domains=pulumi.get(__response__, 'federated_domains'),

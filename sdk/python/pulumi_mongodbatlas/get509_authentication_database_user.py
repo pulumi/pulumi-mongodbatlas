@@ -151,7 +151,7 @@ def get509_authentication_database_user(project_id: Optional[str] = None,
         username=pulumi.get(__ret__, 'username'))
 def get509_authentication_database_user_output(project_id: Optional[pulumi.Input[str]] = None,
                                                username: Optional[pulumi.Input[Optional[str]]] = None,
-                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Get509AuthenticationDatabaseUserResult]:
+                                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[Get509AuthenticationDatabaseUserResult]:
     """
     ## # Data Source: X509AuthenticationDatabaseUser
 
@@ -198,7 +198,7 @@ def get509_authentication_database_user_output(project_id: Optional[pulumi.Input
     __args__ = dict()
     __args__['projectId'] = project_id
     __args__['username'] = username
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser', __args__, opts=opts, typ=Get509AuthenticationDatabaseUserResult)
     return __ret__.apply(lambda __response__: Get509AuthenticationDatabaseUserResult(
         certificates=pulumi.get(__response__, 'certificates'),

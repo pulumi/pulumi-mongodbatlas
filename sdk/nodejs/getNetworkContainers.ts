@@ -100,7 +100,7 @@ export interface GetNetworkContainersResult {
  * }));
  * ```
  */
-export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainersResult> {
+export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNetworkContainersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getNetworkContainers:getNetworkContainers", {
         "projectId": args.projectId,

@@ -269,7 +269,7 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
                                              private_link_id: Optional[pulumi.Input[str]] = None,
                                              project_id: Optional[pulumi.Input[str]] = None,
                                              provider_name: Optional[pulumi.Input[str]] = None,
-                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateLinkEndpointServiceResult]:
+                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivateLinkEndpointServiceResult]:
     """
     ## # Data Source: PrivateLinkEndpointService
 
@@ -288,7 +288,7 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
     __args__['privateLinkId'] = private_link_id
     __args__['projectId'] = project_id
     __args__['providerName'] = provider_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService', __args__, opts=opts, typ=GetPrivateLinkEndpointServiceResult)
     return __ret__.apply(lambda __response__: GetPrivateLinkEndpointServiceResult(
         aws_connection_status=pulumi.get(__response__, 'aws_connection_status'),

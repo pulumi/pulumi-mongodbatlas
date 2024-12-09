@@ -129,7 +129,7 @@ export interface Get509AuthenticationDatabaseUserResult {
  * ```
  */
 /** @deprecated mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser */
-export function get509AuthenticationDatabaseUserOutput(args: Get509AuthenticationDatabaseUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Get509AuthenticationDatabaseUserResult> {
+export function get509AuthenticationDatabaseUserOutput(args: Get509AuthenticationDatabaseUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<Get509AuthenticationDatabaseUserResult> {
     pulumi.log.warn("get509AuthenticationDatabaseUser is deprecated: mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", {

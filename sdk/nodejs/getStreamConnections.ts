@@ -96,7 +96,7 @@ export interface GetStreamConnectionsResult {
  * });
  * ```
  */
-export function getStreamConnectionsOutput(args: GetStreamConnectionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStreamConnectionsResult> {
+export function getStreamConnectionsOutput(args: GetStreamConnectionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamConnectionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getStreamConnections:getStreamConnections", {
         "instanceName": args.instanceName,
