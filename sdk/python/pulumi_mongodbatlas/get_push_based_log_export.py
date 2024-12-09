@@ -160,7 +160,7 @@ def get_push_based_log_export(project_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         state=pulumi.get(__ret__, 'state'))
 def get_push_based_log_export_output(project_id: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPushBasedLogExportResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPushBasedLogExportResult]:
     """
     ## # Data Source: PushBasedLogExport
 
@@ -201,7 +201,7 @@ def get_push_based_log_export_output(project_id: Optional[pulumi.Input[str]] = N
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport', __args__, opts=opts, typ=GetPushBasedLogExportResult)
     return __ret__.apply(lambda __response__: GetPushBasedLogExportResult(
         bucket_name=pulumi.get(__response__, 'bucket_name'),

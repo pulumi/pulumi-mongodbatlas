@@ -35,7 +35,7 @@ export interface GetSharedTierRestoreJobsResult {
     readonly results: outputs.GetSharedTierRestoreJobsResult[];
     readonly totalCount: number;
 }
-export function getSharedTierRestoreJobsOutput(args: GetSharedTierRestoreJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSharedTierRestoreJobsResult> {
+export function getSharedTierRestoreJobsOutput(args: GetSharedTierRestoreJobsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSharedTierRestoreJobsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs", {
         "clusterName": args.clusterName,

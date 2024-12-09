@@ -257,7 +257,7 @@ def get_database_user(auth_database_name: Optional[str] = None,
 def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = None,
                              project_id: Optional[pulumi.Input[str]] = None,
                              username: Optional[pulumi.Input[str]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseUserResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabaseUserResult]:
     """
     ## # Data Source: DatabaseUser
 
@@ -332,7 +332,7 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
     __args__['authDatabaseName'] = auth_database_name
     __args__['projectId'] = project_id
     __args__['username'] = username
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getDatabaseUser:getDatabaseUser', __args__, opts=opts, typ=GetDatabaseUserResult)
     return __ret__.apply(lambda __response__: GetDatabaseUserResult(
         auth_database_name=pulumi.get(__response__, 'auth_database_name'),

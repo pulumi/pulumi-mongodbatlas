@@ -97,7 +97,7 @@ export interface GetMongodbEmployeeAccessGrantResult {
  * export const expirationTime = dsExample.then(dsExample => dsExample.expirationTime);
  * ```
  */
-export function getMongodbEmployeeAccessGrantOutput(args: GetMongodbEmployeeAccessGrantOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMongodbEmployeeAccessGrantResult> {
+export function getMongodbEmployeeAccessGrantOutput(args: GetMongodbEmployeeAccessGrantOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongodbEmployeeAccessGrantResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", {
         "clusterName": args.clusterName,

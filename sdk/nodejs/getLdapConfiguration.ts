@@ -129,7 +129,7 @@ export interface GetLdapConfigurationResult {
  * });
  * ```
  */
-export function getLdapConfigurationOutput(args: GetLdapConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapConfigurationResult> {
+export function getLdapConfigurationOutput(args: GetLdapConfigurationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLdapConfigurationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", {
         "projectId": args.projectId,

@@ -134,7 +134,7 @@ def get_api_key(api_key_id: Optional[str] = None,
         role_names=pulumi.get(__ret__, 'role_names'))
 def get_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
                        org_id: Optional[pulumi.Input[str]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApiKeyResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiKeyResult]:
     """
     ## Example Usage
 
@@ -145,7 +145,7 @@ def get_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['apiKeyId'] = api_key_id
     __args__['orgId'] = org_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getApiKey:getApiKey', __args__, opts=opts, typ=GetApiKeyResult)
     return __ret__.apply(lambda __response__: GetApiKeyResult(
         api_key_id=pulumi.get(__response__, 'api_key_id'),

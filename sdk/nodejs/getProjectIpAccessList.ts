@@ -210,7 +210,7 @@ export interface GetProjectIpAccessListResult {
  *
  * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
  */
-export function getProjectIpAccessListOutput(args: GetProjectIpAccessListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectIpAccessListResult> {
+export function getProjectIpAccessListOutput(args: GetProjectIpAccessListOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectIpAccessListResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", {
         "awsSecurityGroup": args.awsSecurityGroup,

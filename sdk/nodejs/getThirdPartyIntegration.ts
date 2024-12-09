@@ -163,7 +163,7 @@ export interface GetThirdPartyIntegrationResult {
  * });
  * ```
  */
-export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
+export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", {
         "enabled": args.enabled,

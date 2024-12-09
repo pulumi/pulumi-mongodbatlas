@@ -172,7 +172,7 @@ def get_encryption_at_rest_private_endpoint(cloud_provider: Optional[str] = None
 def get_encryption_at_rest_private_endpoint_output(cloud_provider: Optional[pulumi.Input[str]] = None,
                                                    id: Optional[pulumi.Input[str]] = None,
                                                    project_id: Optional[pulumi.Input[str]] = None,
-                                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEncryptionAtRestPrivateEndpointResult]:
+                                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncryptionAtRestPrivateEndpointResult]:
     """
     ## # Data Source: EncryptionAtRestPrivateEndpoint
 
@@ -206,7 +206,7 @@ def get_encryption_at_rest_private_endpoint_output(cloud_provider: Optional[pulu
     __args__['cloudProvider'] = cloud_provider
     __args__['id'] = id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint', __args__, opts=opts, typ=GetEncryptionAtRestPrivateEndpointResult)
     return __ret__.apply(lambda __response__: GetEncryptionAtRestPrivateEndpointResult(
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),

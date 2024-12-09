@@ -107,7 +107,7 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
-export function getCloudBackupSnapshotRestoreJobOutput(args: GetCloudBackupSnapshotRestoreJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotRestoreJobResult> {
+export function getCloudBackupSnapshotRestoreJobOutput(args: GetCloudBackupSnapshotRestoreJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudBackupSnapshotRestoreJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", {
         "clusterName": args.clusterName,

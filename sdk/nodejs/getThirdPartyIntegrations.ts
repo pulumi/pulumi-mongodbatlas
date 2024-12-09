@@ -100,7 +100,7 @@ export interface GetThirdPartyIntegrationsResult {
  * });
  * ```
  */
-export function getThirdPartyIntegrationsOutput(args: GetThirdPartyIntegrationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationsResult> {
+export function getThirdPartyIntegrationsOutput(args: GetThirdPartyIntegrationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetThirdPartyIntegrationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", {
         "projectId": args.projectId,

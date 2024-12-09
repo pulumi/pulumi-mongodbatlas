@@ -145,7 +145,7 @@ def get_cloud_backup_snapshots_output(cluster_name: Optional[pulumi.Input[str]] 
                                       items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                       page_num: Optional[pulumi.Input[Optional[int]]] = None,
                                       project_id: Optional[pulumi.Input[str]] = None,
-                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotsResult]:
+                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotsResult]:
     """
     ## # Data Source: get_cloud_backup_snapshots
 
@@ -163,7 +163,7 @@ def get_cloud_backup_snapshots_output(cluster_name: Optional[pulumi.Input[str]] 
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots', __args__, opts=opts, typ=GetCloudBackupSnapshotsResult)
     return __ret__.apply(lambda __response__: GetCloudBackupSnapshotsResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

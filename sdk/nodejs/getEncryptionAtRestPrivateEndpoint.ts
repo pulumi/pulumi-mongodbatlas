@@ -116,7 +116,7 @@ export interface GetEncryptionAtRestPrivateEndpointResult {
  * export const endpointConnectionName = single.then(single => single.privateEndpointConnectionName);
  * ```
  */
-export function getEncryptionAtRestPrivateEndpointOutput(args: GetEncryptionAtRestPrivateEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncryptionAtRestPrivateEndpointResult> {
+export function getEncryptionAtRestPrivateEndpointOutput(args: GetEncryptionAtRestPrivateEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEncryptionAtRestPrivateEndpointResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", {
         "cloudProvider": args.cloudProvider,

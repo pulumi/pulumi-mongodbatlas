@@ -154,7 +154,7 @@ def get_stream_processor(instance_name: Optional[str] = None,
 def get_stream_processor_output(instance_name: Optional[pulumi.Input[str]] = None,
                                 processor_name: Optional[pulumi.Input[str]] = None,
                                 project_id: Optional[pulumi.Input[str]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamProcessorResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamProcessorResult]:
     """
     ## # Data Source: StreamProcessor
 
@@ -171,7 +171,7 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[str]] = Non
     __args__['instanceName'] = instance_name
     __args__['processorName'] = processor_name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamProcessor:getStreamProcessor', __args__, opts=opts, typ=GetStreamProcessorResult)
     return __ret__.apply(lambda __response__: GetStreamProcessorResult(
         id=pulumi.get(__response__, 'id'),

@@ -85,7 +85,7 @@ export interface GetStreamInstancesResult {
  * });
  * ```
  */
-export function getStreamInstancesOutput(args: GetStreamInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStreamInstancesResult> {
+export function getStreamInstancesOutput(args: GetStreamInstancesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamInstancesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getStreamInstances:getStreamInstances", {
         "itemsPerPage": args.itemsPerPage,

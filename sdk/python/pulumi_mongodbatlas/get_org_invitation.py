@@ -170,7 +170,7 @@ def get_org_invitation(invitation_id: Optional[str] = None,
 def get_org_invitation_output(invitation_id: Optional[pulumi.Input[str]] = None,
                               org_id: Optional[pulumi.Input[str]] = None,
                               username: Optional[pulumi.Input[str]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrgInvitationResult]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrgInvitationResult]:
     """
     ## # Data Source: OrgInvitation
 
@@ -185,7 +185,7 @@ def get_org_invitation_output(invitation_id: Optional[pulumi.Input[str]] = None,
     __args__['invitationId'] = invitation_id
     __args__['orgId'] = org_id
     __args__['username'] = username
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOrgInvitation:getOrgInvitation', __args__, opts=opts, typ=GetOrgInvitationResult)
     return __ret__.apply(lambda __response__: GetOrgInvitationResult(
         created_at=pulumi.get(__response__, 'created_at'),

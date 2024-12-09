@@ -99,7 +99,7 @@ export interface GetEncryptionAtRestPrivateEndpointsResult {
  * export const numberOfEndpoints = plural.then(plural => plural.results).length;
  * ```
  */
-export function getEncryptionAtRestPrivateEndpointsOutput(args: GetEncryptionAtRestPrivateEndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncryptionAtRestPrivateEndpointsResult> {
+export function getEncryptionAtRestPrivateEndpointsOutput(args: GetEncryptionAtRestPrivateEndpointsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEncryptionAtRestPrivateEndpointsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", {
         "cloudProvider": args.cloudProvider,

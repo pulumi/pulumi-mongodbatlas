@@ -51,7 +51,7 @@ export interface GetPrivateEndpointRegionalModeResult {
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
-export function getPrivateEndpointRegionalModeOutput(args: GetPrivateEndpointRegionalModeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateEndpointRegionalModeResult> {
+export function getPrivateEndpointRegionalModeOutput(args: GetPrivateEndpointRegionalModeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivateEndpointRegionalModeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", {
         "enabled": args.enabled,

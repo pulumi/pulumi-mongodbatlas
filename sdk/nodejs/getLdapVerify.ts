@@ -164,7 +164,7 @@ export interface GetLdapVerifyResult {
  * });
  * ```
  */
-export function getLdapVerifyOutput(args: GetLdapVerifyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapVerifyResult> {
+export function getLdapVerifyOutput(args: GetLdapVerifyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLdapVerifyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getLdapVerify:getLdapVerify", {
         "projectId": args.projectId,

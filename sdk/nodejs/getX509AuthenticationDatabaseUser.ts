@@ -126,7 +126,7 @@ export interface GetX509AuthenticationDatabaseUserResult {
  * });
  * ```
  */
-export function getX509AuthenticationDatabaseUserOutput(args: GetX509AuthenticationDatabaseUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetX509AuthenticationDatabaseUserResult> {
+export function getX509AuthenticationDatabaseUserOutput(args: GetX509AuthenticationDatabaseUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetX509AuthenticationDatabaseUserResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", {
         "projectId": args.projectId,

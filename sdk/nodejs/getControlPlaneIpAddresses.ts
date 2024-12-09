@@ -69,7 +69,7 @@ export interface GetControlPlaneIpAddressesResult {
  * }
  * ```
  */
-export function getControlPlaneIpAddressesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetControlPlaneIpAddressesResult> {
+export function getControlPlaneIpAddressesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetControlPlaneIpAddressesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", {
     }, opts);
