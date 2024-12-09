@@ -180,7 +180,7 @@ export interface GetFederatedDatabaseInstanceResult {
  * });
  * ```
  */
-export function getFederatedDatabaseInstanceOutput(args: GetFederatedDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedDatabaseInstanceResult> {
+export function getFederatedDatabaseInstanceOutput(args: GetFederatedDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedDatabaseInstanceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", {
         "cloudProviderConfig": args.cloudProviderConfig,

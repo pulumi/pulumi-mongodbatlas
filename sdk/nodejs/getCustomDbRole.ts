@@ -124,7 +124,7 @@ export interface GetCustomDbRoleResult {
  * });
  * ```
  */
-export function getCustomDbRoleOutput(args: GetCustomDbRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDbRoleResult> {
+export function getCustomDbRoleOutput(args: GetCustomDbRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCustomDbRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getCustomDbRole:getCustomDbRole", {
         "inheritedRoles": args.inheritedRoles,

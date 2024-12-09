@@ -82,7 +82,7 @@ export interface GetStreamInstanceResult {
  * });
  * ```
  */
-export function getStreamInstanceOutput(args: GetStreamInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStreamInstanceResult> {
+export function getStreamInstanceOutput(args: GetStreamInstanceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamInstanceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getStreamInstance:getStreamInstance", {
         "instanceName": args.instanceName,

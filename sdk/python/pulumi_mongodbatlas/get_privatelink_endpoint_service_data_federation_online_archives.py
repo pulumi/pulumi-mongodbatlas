@@ -112,7 +112,7 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
 def get_privatelink_endpoint_service_data_federation_online_archives_output(project_id: Optional[pulumi.Input[str]] = None,
-                                                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult]:
+                                                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult]:
     """
     ## # Data Source: get_privatelink_endpoint_service_data_federation_online_archives
 
@@ -144,7 +144,7 @@ def get_privatelink_endpoint_service_data_federation_online_archives_output(proj
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives', __args__, opts=opts, typ=GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult)
     return __ret__.apply(lambda __response__: GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult(
         id=pulumi.get(__response__, 'id'),

@@ -191,7 +191,7 @@ export interface GetFederatedSettingsIdentityProviderResult {
  * });
  * ```
  */
-export function getFederatedSettingsIdentityProviderOutput(args: GetFederatedSettingsIdentityProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProviderResult> {
+export function getFederatedSettingsIdentityProviderOutput(args: GetFederatedSettingsIdentityProviderOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsIdentityProviderResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", {
         "federationSettingsId": args.federationSettingsId,

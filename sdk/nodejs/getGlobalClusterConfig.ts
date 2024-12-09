@@ -234,7 +234,7 @@ export interface GetGlobalClusterConfigResult {
  * });
  * ```
  */
-export function getGlobalClusterConfigOutput(args: GetGlobalClusterConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalClusterConfigResult> {
+export function getGlobalClusterConfigOutput(args: GetGlobalClusterConfigOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGlobalClusterConfigResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", {
         "clusterName": args.clusterName,

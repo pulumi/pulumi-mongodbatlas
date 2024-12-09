@@ -205,7 +205,7 @@ def get_stream_connection(connection_name: Optional[str] = None,
 def get_stream_connection_output(connection_name: Optional[pulumi.Input[str]] = None,
                                  instance_name: Optional[pulumi.Input[str]] = None,
                                  project_id: Optional[pulumi.Input[str]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamConnectionResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamConnectionResult]:
     """
     ## # Data Source: StreamConnection
 
@@ -231,7 +231,7 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[str]] = 
     __args__['connectionName'] = connection_name
     __args__['instanceName'] = instance_name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamConnection:getStreamConnection', __args__, opts=opts, typ=GetStreamConnectionResult)
     return __ret__.apply(lambda __response__: GetStreamConnectionResult(
         authentication=pulumi.get(__response__, 'authentication'),

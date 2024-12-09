@@ -73,7 +73,7 @@ export interface GetOrgInvitationResult {
  *
  * `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
  */
-export function getOrgInvitationOutput(args: GetOrgInvitationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrgInvitationResult> {
+export function getOrgInvitationOutput(args: GetOrgInvitationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOrgInvitationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getOrgInvitation:getOrgInvitation", {
         "invitationId": args.invitationId,

@@ -270,7 +270,7 @@ export interface GetAlertConfigurationResult {
  * });
  * ```
  */
-export function getAlertConfigurationOutput(args: GetAlertConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlertConfigurationResult> {
+export function getAlertConfigurationOutput(args: GetAlertConfigurationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAlertConfigurationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", {
         "alertConfigurationId": args.alertConfigurationId,

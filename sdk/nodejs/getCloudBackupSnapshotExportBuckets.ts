@@ -102,7 +102,7 @@ export interface GetCloudBackupSnapshotExportBucketsResult {
  * });
  * ```
  */
-export function getCloudBackupSnapshotExportBucketsOutput(args: GetCloudBackupSnapshotExportBucketsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketsResult> {
+export function getCloudBackupSnapshotExportBucketsOutput(args: GetCloudBackupSnapshotExportBucketsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", {
         "itemsPerPage": args.itemsPerPage,

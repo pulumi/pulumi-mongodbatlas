@@ -106,14 +106,14 @@ def get_shared_tier_snapshots(cluster_name: Optional[str] = None,
         total_count=pulumi.get(__ret__, 'total_count'))
 def get_shared_tier_snapshots_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSharedTierSnapshotsResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSharedTierSnapshotsResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots', __args__, opts=opts, typ=GetSharedTierSnapshotsResult)
     return __ret__.apply(lambda __response__: GetSharedTierSnapshotsResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

@@ -216,7 +216,7 @@ def get_ldap_configuration(project_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         user_to_dn_mappings=pulumi.get(__ret__, 'user_to_dn_mappings'))
 def get_ldap_configuration_output(project_id: Optional[pulumi.Input[str]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLdapConfigurationResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLdapConfigurationResult]:
     """
     ## # Data Source: LdapConfiguration
 
@@ -248,7 +248,7 @@ def get_ldap_configuration_output(project_id: Optional[pulumi.Input[str]] = None
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getLdapConfiguration:getLdapConfiguration', __args__, opts=opts, typ=GetLdapConfigurationResult)
     return __ret__.apply(lambda __response__: GetLdapConfigurationResult(
         authentication_enabled=pulumi.get(__response__, 'authentication_enabled'),

@@ -79,7 +79,7 @@ export interface GetSearchIndexesResult {
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
-export function getSearchIndexesOutput(args: GetSearchIndexesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchIndexesResult> {
+export function getSearchIndexesOutput(args: GetSearchIndexesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSearchIndexesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getSearchIndexes:getSearchIndexes", {
         "clusterName": args.clusterName,

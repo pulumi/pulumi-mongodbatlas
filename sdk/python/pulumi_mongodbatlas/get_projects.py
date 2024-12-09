@@ -143,7 +143,7 @@ def get_projects(items_per_page: Optional[int] = None,
         total_count=pulumi.get(__ret__, 'total_count'))
 def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                         page_num: Optional[pulumi.Input[Optional[int]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectsResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectsResult]:
     """
     ## # Data Source: get_projects
 
@@ -189,7 +189,7 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
     __args__ = dict()
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjects:getProjects', __args__, opts=opts, typ=GetProjectsResult)
     return __ret__.apply(lambda __response__: GetProjectsResult(
         id=pulumi.get(__response__, 'id'),

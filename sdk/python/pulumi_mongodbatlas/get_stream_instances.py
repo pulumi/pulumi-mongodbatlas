@@ -141,7 +141,7 @@ def get_stream_instances(items_per_page: Optional[int] = None,
 def get_stream_instances_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                 page_num: Optional[pulumi.Input[Optional[int]]] = None,
                                 project_id: Optional[pulumi.Input[str]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamInstancesResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamInstancesResult]:
     """
     ## # Data Source: get_stream_instances
 
@@ -165,7 +165,7 @@ def get_stream_instances_output(items_per_page: Optional[pulumi.Input[Optional[i
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamInstances:getStreamInstances', __args__, opts=opts, typ=GetStreamInstancesResult)
     return __ret__.apply(lambda __response__: GetStreamInstancesResult(
         id=pulumi.get(__response__, 'id'),

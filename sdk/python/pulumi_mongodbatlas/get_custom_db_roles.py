@@ -93,7 +93,7 @@ def get_custom_db_roles(project_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
 def get_custom_db_roles_output(project_id: Optional[pulumi.Input[str]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDbRolesResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCustomDbRolesResult]:
     """
     ## # Data Source: get_custom_db_roles
 
@@ -106,7 +106,7 @@ def get_custom_db_roles_output(project_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCustomDbRoles:getCustomDbRoles', __args__, opts=opts, typ=GetCustomDbRolesResult)
     return __ret__.apply(lambda __response__: GetCustomDbRolesResult(
         id=pulumi.get(__response__, 'id'),

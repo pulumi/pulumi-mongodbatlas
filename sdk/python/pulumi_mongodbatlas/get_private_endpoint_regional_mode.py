@@ -93,7 +93,7 @@ def get_private_endpoint_regional_mode(enabled: Optional[bool] = None,
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_private_endpoint_regional_mode_output(enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                               project_id: Optional[pulumi.Input[str]] = None,
-                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateEndpointRegionalModeResult]:
+                                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivateEndpointRegionalModeResult]:
     """
     ## # Data Source: private_endpoint_regional_mode
 
@@ -108,7 +108,7 @@ def get_private_endpoint_regional_mode_output(enabled: Optional[pulumi.Input[Opt
     __args__ = dict()
     __args__['enabled'] = enabled
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode', __args__, opts=opts, typ=GetPrivateEndpointRegionalModeResult)
     return __ret__.apply(lambda __response__: GetPrivateEndpointRegionalModeResult(
         enabled=pulumi.get(__response__, 'enabled'),
