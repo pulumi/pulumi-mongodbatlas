@@ -145,7 +145,7 @@ export interface GetPrivateLinkEndpointResult {
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
  */
-export function getPrivateLinkEndpointOutput(args: GetPrivateLinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateLinkEndpointResult> {
+export function getPrivateLinkEndpointOutput(args: GetPrivateLinkEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivateLinkEndpointResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", {
         "privateLinkId": args.privateLinkId,

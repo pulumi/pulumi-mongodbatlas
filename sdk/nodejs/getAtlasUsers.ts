@@ -154,7 +154,7 @@ export interface GetAtlasUsersResult {
  * });
  * ```
  */
-export function getAtlasUsersOutput(args?: GetAtlasUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAtlasUsersResult> {
+export function getAtlasUsersOutput(args?: GetAtlasUsersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAtlasUsersResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getAtlasUsers:getAtlasUsers", {

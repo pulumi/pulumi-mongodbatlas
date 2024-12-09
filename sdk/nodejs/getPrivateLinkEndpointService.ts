@@ -122,7 +122,7 @@ export interface GetPrivateLinkEndpointServiceResult {
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
-export function getPrivateLinkEndpointServiceOutput(args: GetPrivateLinkEndpointServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateLinkEndpointServiceResult> {
+export function getPrivateLinkEndpointServiceOutput(args: GetPrivateLinkEndpointServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivateLinkEndpointServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", {
         "endpointServiceId": args.endpointServiceId,

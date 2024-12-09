@@ -348,7 +348,7 @@ def get_event_trigger(app_id: Optional[str] = None,
 def get_event_trigger_output(app_id: Optional[pulumi.Input[str]] = None,
                              project_id: Optional[pulumi.Input[str]] = None,
                              trigger_id: Optional[pulumi.Input[str]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEventTriggerResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEventTriggerResult]:
     """
     ## # Data Source: EventTrigger
 
@@ -364,7 +364,7 @@ def get_event_trigger_output(app_id: Optional[pulumi.Input[str]] = None,
     __args__['appId'] = app_id
     __args__['projectId'] = project_id
     __args__['triggerId'] = trigger_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getEventTrigger:getEventTrigger', __args__, opts=opts, typ=GetEventTriggerResult)
     return __ret__.apply(lambda __response__: GetEventTriggerResult(
         app_id=pulumi.get(__response__, 'app_id'),

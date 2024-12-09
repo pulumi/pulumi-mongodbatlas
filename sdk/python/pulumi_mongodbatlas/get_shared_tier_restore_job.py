@@ -198,7 +198,7 @@ def get_shared_tier_restore_job(cluster_name: Optional[str] = None,
 def get_shared_tier_restore_job_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                        job_id: Optional[pulumi.Input[str]] = None,
                                        project_id: Optional[pulumi.Input[str]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSharedTierRestoreJobResult]:
+                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSharedTierRestoreJobResult]:
     """
     Use this data source to access information about an existing resource.
     """
@@ -206,7 +206,7 @@ def get_shared_tier_restore_job_output(cluster_name: Optional[pulumi.Input[str]]
     __args__['clusterName'] = cluster_name
     __args__['jobId'] = job_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob', __args__, opts=opts, typ=GetSharedTierRestoreJobResult)
     return __ret__.apply(lambda __response__: GetSharedTierRestoreJobResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

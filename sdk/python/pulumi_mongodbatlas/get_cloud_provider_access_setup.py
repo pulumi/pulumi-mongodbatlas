@@ -211,7 +211,7 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
                                            project_id: Optional[pulumi.Input[str]] = None,
                                            provider_name: Optional[pulumi.Input[str]] = None,
                                            role_id: Optional[pulumi.Input[str]] = None,
-                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderAccessSetupResult]:
+                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudProviderAccessSetupResult]:
     """
     ## # Data Source: CloudProviderAccessSetup
 
@@ -263,7 +263,7 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
     __args__['projectId'] = project_id
     __args__['providerName'] = provider_name
     __args__['roleId'] = role_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup', __args__, opts=opts, typ=GetCloudProviderAccessSetupResult)
     return __ret__.apply(lambda __response__: GetCloudProviderAccessSetupResult(
         aws=pulumi.get(__response__, 'aws'),

@@ -314,7 +314,7 @@ export interface GetAdvancedClusterResult {
  * });
  * ```
  */
-export function getAdvancedClusterOutput(args: GetAdvancedClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAdvancedClusterResult> {
+export function getAdvancedClusterOutput(args: GetAdvancedClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAdvancedClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", {
         "name": args.name,

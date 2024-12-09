@@ -216,7 +216,7 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
 def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                      managed_namespaces: Optional[pulumi.Input[Optional[Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalClusterConfigResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGlobalClusterConfigResult]:
     """
     ## # Data Source: GlobalClusterConfig
 
@@ -310,7 +310,7 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] =
     __args__['clusterName'] = cluster_name
     __args__['managedNamespaces'] = managed_namespaces
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig', __args__, opts=opts, typ=GetGlobalClusterConfigResult)
     return __ret__.apply(lambda __response__: GetGlobalClusterConfigResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

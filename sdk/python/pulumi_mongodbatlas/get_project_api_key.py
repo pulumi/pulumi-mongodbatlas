@@ -157,7 +157,7 @@ def get_project_api_key(api_key_id: Optional[str] = None,
         public_key=pulumi.get(__ret__, 'public_key'))
 def get_project_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectApiKeyResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectApiKeyResult]:
     """
     ## Example Usage
 
@@ -183,7 +183,7 @@ def get_project_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['apiKeyId'] = api_key_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjectApiKey:getProjectApiKey', __args__, opts=opts, typ=GetProjectApiKeyResult)
     return __ret__.apply(lambda __response__: GetProjectApiKeyResult(
         api_key_id=pulumi.get(__response__, 'api_key_id'),

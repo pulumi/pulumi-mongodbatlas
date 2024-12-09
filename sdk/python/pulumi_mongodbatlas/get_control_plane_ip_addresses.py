@@ -99,7 +99,7 @@ def get_control_plane_ip_addresses(opts: Optional[pulumi.InvokeOptions] = None) 
         id=pulumi.get(__ret__, 'id'),
         inbound=pulumi.get(__ret__, 'inbound'),
         outbound=pulumi.get(__ret__, 'outbound'))
-def get_control_plane_ip_addresses_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetControlPlaneIpAddressesResult]:
+def get_control_plane_ip_addresses_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetControlPlaneIpAddressesResult]:
     """
     ## # Data Source: get_control_plane_ip_addresses
 
@@ -117,7 +117,7 @@ def get_control_plane_ip_addresses_output(opts: Optional[pulumi.InvokeOptions] =
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses', __args__, opts=opts, typ=GetControlPlaneIpAddressesResult)
     return __ret__.apply(lambda __response__: GetControlPlaneIpAddressesResult(
         id=pulumi.get(__response__, 'id'),

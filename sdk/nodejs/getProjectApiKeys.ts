@@ -80,7 +80,7 @@ export interface GetProjectApiKeysResult {
  * });
  * ```
  */
-export function getProjectApiKeysOutput(args: GetProjectApiKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectApiKeysResult> {
+export function getProjectApiKeysOutput(args: GetProjectApiKeysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectApiKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", {
         "itemsPerPage": args.itemsPerPage,

@@ -155,7 +155,7 @@ def get_access_list_api_key(api_key_id: Optional[str] = None,
 def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
                                    ip_address: Optional[pulumi.Input[str]] = None,
                                    org_id: Optional[pulumi.Input[str]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessListApiKeyResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessListApiKeyResult]:
     """
     ## Example Usage
 
@@ -170,7 +170,7 @@ def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[str]] = Non
     __args__['apiKeyId'] = api_key_id
     __args__['ipAddress'] = ip_address
     __args__['orgId'] = org_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAccessListApiKey:getAccessListApiKey', __args__, opts=opts, typ=GetAccessListApiKeyResult)
     return __ret__.apply(lambda __response__: GetAccessListApiKeyResult(
         access_count=pulumi.get(__response__, 'access_count'),

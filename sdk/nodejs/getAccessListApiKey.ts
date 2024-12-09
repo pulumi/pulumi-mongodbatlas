@@ -56,7 +56,7 @@ export interface GetAccessListApiKeyResult {
 /**
  * ## Example Usage
  */
-export function getAccessListApiKeyOutput(args: GetAccessListApiKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessListApiKeyResult> {
+export function getAccessListApiKeyOutput(args: GetAccessListApiKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccessListApiKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", {
         "apiKeyId": args.apiKeyId,

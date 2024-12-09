@@ -55,7 +55,7 @@ export interface GetRolesOrgIdResult {
  * export const orgId = test.then(test => test.orgId);
  * ```
  */
-export function getRolesOrgIdOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRolesOrgIdResult> {
+export function getRolesOrgIdOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRolesOrgIdResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getRolesOrgId:getRolesOrgId", {
     }, opts);

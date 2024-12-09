@@ -217,7 +217,7 @@ def get_encryption_at_rest(project_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[str]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEncryptionAtRestResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncryptionAtRestResult]:
     """
     ## # Data Source: EncryptionAtRest
 
@@ -325,7 +325,7 @@ def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[str]] = None
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest', __args__, opts=opts, typ=GetEncryptionAtRestResult)
     return __ret__.apply(lambda __response__: GetEncryptionAtRestResult(
         aws_kms_config=pulumi.get(__response__, 'aws_kms_config'),

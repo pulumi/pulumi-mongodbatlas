@@ -85,7 +85,7 @@ export interface GetFederatedQueryLimitsResult {
  * });
  * ```
  */
-export function getFederatedQueryLimitsOutput(args: GetFederatedQueryLimitsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedQueryLimitsResult> {
+export function getFederatedQueryLimitsOutput(args: GetFederatedQueryLimitsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedQueryLimitsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", {
         "projectId": args.projectId,

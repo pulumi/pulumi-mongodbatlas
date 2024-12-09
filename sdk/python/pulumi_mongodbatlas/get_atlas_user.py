@@ -241,7 +241,7 @@ def get_atlas_user(user_id: Optional[str] = None,
         username=pulumi.get(__ret__, 'username'))
 def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[str]]] = None,
                           username: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAtlasUserResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAtlasUserResult]:
     """
     ## # Data Source: get_atlas_user
 
@@ -276,7 +276,7 @@ def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['userId'] = user_id
     __args__['username'] = username
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAtlasUser:getAtlasUser', __args__, opts=opts, typ=GetAtlasUserResult)
     return __ret__.apply(lambda __response__: GetAtlasUserResult(
         country=pulumi.get(__response__, 'country'),

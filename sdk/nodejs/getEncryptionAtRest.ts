@@ -276,7 +276,7 @@ export interface GetEncryptionAtRestResult {
  * export const isGcpEncryptionAtRestValid = test.apply(test => test.googleCloudKmsConfig?.valid);
  * ```
  */
-export function getEncryptionAtRestOutput(args: GetEncryptionAtRestOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncryptionAtRestResult> {
+export function getEncryptionAtRestOutput(args: GetEncryptionAtRestOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEncryptionAtRestResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", {
         "projectId": args.projectId,

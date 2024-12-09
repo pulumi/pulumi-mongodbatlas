@@ -175,7 +175,7 @@ def get_project_invitation(invitation_id: Optional[str] = None,
 def get_project_invitation_output(invitation_id: Optional[pulumi.Input[str]] = None,
                                   project_id: Optional[pulumi.Input[str]] = None,
                                   username: Optional[pulumi.Input[str]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectInvitationResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectInvitationResult]:
     """
     ## # Data Source: ProjectInvitation
 
@@ -208,7 +208,7 @@ def get_project_invitation_output(invitation_id: Optional[pulumi.Input[str]] = N
     __args__['invitationId'] = invitation_id
     __args__['projectId'] = project_id
     __args__['username'] = username
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjectInvitation:getProjectInvitation', __args__, opts=opts, typ=GetProjectInvitationResult)
     return __ret__.apply(lambda __response__: GetProjectInvitationResult(
         created_at=pulumi.get(__response__, 'created_at'),

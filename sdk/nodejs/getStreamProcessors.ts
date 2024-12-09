@@ -60,7 +60,7 @@ export interface GetStreamProcessorsResult {
  *
  * ## Example Usage
  */
-export function getStreamProcessorsOutput(args: GetStreamProcessorsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStreamProcessorsResult> {
+export function getStreamProcessorsOutput(args: GetStreamProcessorsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamProcessorsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getStreamProcessors:getStreamProcessors", {
         "instanceName": args.instanceName,

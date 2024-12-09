@@ -176,7 +176,7 @@ def get_organization(org_id: Optional[str] = None,
         org_id=pulumi.get(__ret__, 'org_id'),
         restrict_employee_access=pulumi.get(__ret__, 'restrict_employee_access'))
 def get_organization_output(org_id: Optional[pulumi.Input[str]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
     ## # Data Source: Organization
 
@@ -197,7 +197,7 @@ def get_organization_output(org_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['orgId'] = org_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
     return __ret__.apply(lambda __response__: GetOrganizationResult(
         api_access_list_required=pulumi.get(__response__, 'api_access_list_required'),

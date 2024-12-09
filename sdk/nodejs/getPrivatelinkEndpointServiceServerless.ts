@@ -214,7 +214,7 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
  */
-export function getPrivatelinkEndpointServiceServerlessOutput(args: GetPrivatelinkEndpointServiceServerlessOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointServiceServerlessResult> {
+export function getPrivatelinkEndpointServiceServerlessOutput(args: GetPrivatelinkEndpointServiceServerlessOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivatelinkEndpointServiceServerlessResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", {
         "endpointId": args.endpointId,

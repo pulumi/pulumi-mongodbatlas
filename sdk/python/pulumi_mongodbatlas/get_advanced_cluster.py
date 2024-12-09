@@ -492,7 +492,7 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
                                 pit_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                 project_id: Optional[pulumi.Input[str]] = None,
                                 use_replication_spec_per_shard: Optional[pulumi.Input[Optional[bool]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAdvancedClusterResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAdvancedClusterResult]:
     """
     ## # Data Source: AdvancedCluster
 
@@ -584,7 +584,7 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
     __args__['pitEnabled'] = pit_enabled
     __args__['projectId'] = project_id
     __args__['useReplicationSpecPerShard'] = use_replication_spec_per_shard
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAdvancedCluster:getAdvancedCluster', __args__, opts=opts, typ=GetAdvancedClusterResult)
     return __ret__.apply(lambda __response__: GetAdvancedClusterResult(
         advanced_configurations=pulumi.get(__response__, 'advanced_configurations'),

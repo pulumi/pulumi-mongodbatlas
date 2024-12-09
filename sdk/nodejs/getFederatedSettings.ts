@@ -79,7 +79,7 @@ export interface GetFederatedSettingsResult {
  * });
  * ```
  */
-export function getFederatedSettingsOutput(args: GetFederatedSettingsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsResult> {
+export function getFederatedSettingsOutput(args: GetFederatedSettingsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettings:getFederatedSettings", {
         "orgId": args.orgId,

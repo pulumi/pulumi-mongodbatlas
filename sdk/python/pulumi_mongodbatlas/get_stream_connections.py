@@ -159,7 +159,7 @@ def get_stream_connections_output(instance_name: Optional[pulumi.Input[str]] = N
                                   items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                   page_num: Optional[pulumi.Input[Optional[int]]] = None,
                                   project_id: Optional[pulumi.Input[str]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamConnectionsResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamConnectionsResult]:
     """
     ## # Data Source: get_stream_connections
 
@@ -186,7 +186,7 @@ def get_stream_connections_output(instance_name: Optional[pulumi.Input[str]] = N
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamConnections:getStreamConnections', __args__, opts=opts, typ=GetStreamConnectionsResult)
     return __ret__.apply(lambda __response__: GetStreamConnectionsResult(
         id=pulumi.get(__response__, 'id'),
