@@ -119,7 +119,7 @@ def get_federated_query_limits(project_id: Optional[str] = None,
         tenant_name=pulumi.get(__ret__, 'tenant_name'))
 def get_federated_query_limits_output(project_id: Optional[pulumi.Input[str]] = None,
                                       tenant_name: Optional[pulumi.Input[str]] = None,
-                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedQueryLimitsResult]:
+                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedQueryLimitsResult]:
     """
     ## # Data Source: get_federated_query_limits
 
@@ -146,7 +146,7 @@ def get_federated_query_limits_output(project_id: Optional[pulumi.Input[str]] = 
     __args__ = dict()
     __args__['projectId'] = project_id
     __args__['tenantName'] = tenant_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits', __args__, opts=opts, typ=GetFederatedQueryLimitsResult)
     return __ret__.apply(lambda __response__: GetFederatedQueryLimitsResult(
         id=pulumi.get(__response__, 'id'),

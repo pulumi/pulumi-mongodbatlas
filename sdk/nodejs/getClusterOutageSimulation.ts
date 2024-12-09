@@ -91,7 +91,7 @@ export interface GetClusterOutageSimulationResult {
  * });
  * ```
  */
-export function getClusterOutageSimulationOutput(args: GetClusterOutageSimulationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterOutageSimulationResult> {
+export function getClusterOutageSimulationOutput(args: GetClusterOutageSimulationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClusterOutageSimulationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", {
         "clusterName": args.clusterName,

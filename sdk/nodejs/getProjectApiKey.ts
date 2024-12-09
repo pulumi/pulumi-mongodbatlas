@@ -97,7 +97,7 @@ export interface GetProjectApiKeyResult {
  * });
  * ```
  */
-export function getProjectApiKeyOutput(args: GetProjectApiKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectApiKeyResult> {
+export function getProjectApiKeyOutput(args: GetProjectApiKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectApiKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectApiKey:getProjectApiKey", {
         "apiKeyId": args.apiKeyId,

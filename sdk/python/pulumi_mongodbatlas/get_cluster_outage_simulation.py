@@ -158,7 +158,7 @@ def get_cluster_outage_simulation(cluster_name: Optional[str] = None,
         state=pulumi.get(__ret__, 'state'))
 def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                          project_id: Optional[pulumi.Input[str]] = None,
-                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterOutageSimulationResult]:
+                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterOutageSimulationResult]:
     """
     ## Example Usage
 
@@ -179,7 +179,7 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[str
     __args__ = dict()
     __args__['clusterName'] = cluster_name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation', __args__, opts=opts, typ=GetClusterOutageSimulationResult)
     return __ret__.apply(lambda __response__: GetClusterOutageSimulationResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

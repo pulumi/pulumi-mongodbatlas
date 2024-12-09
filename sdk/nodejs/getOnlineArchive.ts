@@ -161,7 +161,7 @@ export interface GetOnlineArchiveResult {
  *
  * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
  */
-export function getOnlineArchiveOutput(args: GetOnlineArchiveOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnlineArchiveResult> {
+export function getOnlineArchiveOutput(args: GetOnlineArchiveOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOnlineArchiveResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getOnlineArchive:getOnlineArchive", {
         "archiveId": args.archiveId,

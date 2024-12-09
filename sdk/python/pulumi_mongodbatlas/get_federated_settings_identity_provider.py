@@ -415,7 +415,7 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
         user_claim=pulumi.get(__ret__, 'user_claim'))
 def get_federated_settings_identity_provider_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
                                                     identity_provider_id: Optional[pulumi.Input[str]] = None,
-                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsIdentityProviderResult]:
+                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsIdentityProviderResult]:
     """
     ## # Data Source: FederatedSettingsIdentityProvider
 
@@ -448,7 +448,7 @@ def get_federated_settings_identity_provider_output(federation_settings_id: Opti
     __args__ = dict()
     __args__['federationSettingsId'] = federation_settings_id
     __args__['identityProviderId'] = identity_provider_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider', __args__, opts=opts, typ=GetFederatedSettingsIdentityProviderResult)
     return __ret__.apply(lambda __response__: GetFederatedSettingsIdentityProviderResult(
         acs_url=pulumi.get(__response__, 'acs_url'),

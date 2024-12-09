@@ -297,7 +297,7 @@ def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional
                                    name: Optional[pulumi.Input[str]] = None,
                                    project_id: Optional[pulumi.Input[str]] = None,
                                    state_name: Optional[pulumi.Input[Optional[str]]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServerlessInstanceResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerlessInstanceResult]:
     """
     ## # Data Source: ServerlessInstance
 
@@ -341,7 +341,7 @@ def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['stateName'] = state_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getServerlessInstance:getServerlessInstance', __args__, opts=opts, typ=GetServerlessInstanceResult)
     return __ret__.apply(lambda __response__: GetServerlessInstanceResult(
         auto_indexing=pulumi.get(__response__, 'auto_indexing'),

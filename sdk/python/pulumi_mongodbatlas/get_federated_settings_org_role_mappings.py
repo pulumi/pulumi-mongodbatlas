@@ -134,7 +134,7 @@ def get_federated_settings_org_role_mappings_output(federation_settings_id: Opti
                                                     items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                                     org_id: Optional[pulumi.Input[str]] = None,
                                                     page_num: Optional[pulumi.Input[Optional[int]]] = None,
-                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsOrgRoleMappingsResult]:
+                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsOrgRoleMappingsResult]:
     """
     ## # Data Source: get_federated_settings_org_role_mappings
 
@@ -151,7 +151,7 @@ def get_federated_settings_org_role_mappings_output(federation_settings_id: Opti
     __args__['itemsPerPage'] = items_per_page
     __args__['orgId'] = org_id
     __args__['pageNum'] = page_num
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings', __args__, opts=opts, typ=GetFederatedSettingsOrgRoleMappingsResult)
     return __ret__.apply(lambda __response__: GetFederatedSettingsOrgRoleMappingsResult(
         federation_settings_id=pulumi.get(__response__, 'federation_settings_id'),

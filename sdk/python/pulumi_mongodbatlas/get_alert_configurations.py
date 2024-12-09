@@ -138,7 +138,7 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
 def get_alert_configurations_output(list_options: Optional[pulumi.Input[Optional[Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']]]]] = None,
                                     output_types: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                     project_id: Optional[pulumi.Input[str]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlertConfigurationsResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlertConfigurationsResult]:
     """
     ## # Data Source: get_alert_configurations
 
@@ -158,7 +158,7 @@ def get_alert_configurations_output(list_options: Optional[pulumi.Input[Optional
     __args__['listOptions'] = list_options
     __args__['outputTypes'] = output_types
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAlertConfigurations:getAlertConfigurations', __args__, opts=opts, typ=GetAlertConfigurationsResult)
     return __ret__.apply(lambda __response__: GetAlertConfigurationsResult(
         id=pulumi.get(__response__, 'id'),

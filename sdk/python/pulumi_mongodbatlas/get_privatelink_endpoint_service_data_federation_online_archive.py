@@ -178,7 +178,7 @@ def get_privatelink_endpoint_service_data_federation_online_archive(endpoint_id:
         type=pulumi.get(__ret__, 'type'))
 def get_privatelink_endpoint_service_data_federation_online_archive_output(endpoint_id: Optional[pulumi.Input[str]] = None,
                                                                            project_id: Optional[pulumi.Input[str]] = None,
-                                                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult]:
+                                                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult]:
     """
     ## # Data Source: PrivatelinkEndpointServiceDataFederationOnlineArchive
 
@@ -213,7 +213,7 @@ def get_privatelink_endpoint_service_data_federation_online_archive_output(endpo
     __args__ = dict()
     __args__['endpointId'] = endpoint_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive', __args__, opts=opts, typ=GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult)
     return __ret__.apply(lambda __response__: GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult(
         comment=pulumi.get(__response__, 'comment'),

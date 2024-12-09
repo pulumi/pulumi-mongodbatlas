@@ -147,7 +147,7 @@ export interface GetOnlineArchivesResult {
  * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
  * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
  */
-export function getOnlineArchivesOutput(args: GetOnlineArchivesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnlineArchivesResult> {
+export function getOnlineArchivesOutput(args: GetOnlineArchivesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOnlineArchivesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getOnlineArchives:getOnlineArchives", {
         "clusterName": args.clusterName,

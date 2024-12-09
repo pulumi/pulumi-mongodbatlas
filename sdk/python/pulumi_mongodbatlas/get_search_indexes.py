@@ -154,7 +154,7 @@ def get_search_indexes_output(cluster_name: Optional[pulumi.Input[str]] = None,
                               collection_name: Optional[pulumi.Input[str]] = None,
                               database: Optional[pulumi.Input[str]] = None,
                               project_id: Optional[pulumi.Input[str]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchIndexesResult]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSearchIndexesResult]:
     """
     ## # Data Source: get_search_indexes
 
@@ -173,7 +173,7 @@ def get_search_indexes_output(cluster_name: Optional[pulumi.Input[str]] = None,
     __args__['collectionName'] = collection_name
     __args__['database'] = database
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getSearchIndexes:getSearchIndexes', __args__, opts=opts, typ=GetSearchIndexesResult)
     return __ret__.apply(lambda __response__: GetSearchIndexesResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

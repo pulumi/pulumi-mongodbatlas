@@ -79,7 +79,7 @@ export interface GetCustomDnsConfigurationClusterAwsResult {
  * });
  * ```
  */
-export function getCustomDnsConfigurationClusterAwsOutput(args: GetCustomDnsConfigurationClusterAwsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDnsConfigurationClusterAwsResult> {
+export function getCustomDnsConfigurationClusterAwsOutput(args: GetCustomDnsConfigurationClusterAwsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCustomDnsConfigurationClusterAwsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", {
         "projectId": args.projectId,

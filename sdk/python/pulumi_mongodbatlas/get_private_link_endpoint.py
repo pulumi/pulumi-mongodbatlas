@@ -261,7 +261,7 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
 def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
                                      provider_name: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateLinkEndpointResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivateLinkEndpointResult]:
     """
     ## # Data Source: PrivateLinkEndpoint
 
@@ -296,7 +296,7 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]
     __args__['privateLinkId'] = private_link_id
     __args__['projectId'] = project_id
     __args__['providerName'] = provider_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint', __args__, opts=opts, typ=GetPrivateLinkEndpointResult)
     return __ret__.apply(lambda __response__: GetPrivateLinkEndpointResult(
         endpoint_group_names=pulumi.get(__response__, 'endpoint_group_names'),

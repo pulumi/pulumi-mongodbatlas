@@ -177,7 +177,7 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
                                                   items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                                   page_num: Optional[pulumi.Input[Optional[int]]] = None,
                                                   project_id: Optional[pulumi.Input[str]] = None,
-                                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotRestoreJobsResult]:
+                                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotRestoreJobsResult]:
     """
     ## # Data Source: get_cloud_backup_snapshot_restore_jobs
 
@@ -227,7 +227,7 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs', __args__, opts=opts, typ=GetCloudBackupSnapshotRestoreJobsResult)
     return __ret__.apply(lambda __response__: GetCloudBackupSnapshotRestoreJobsResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),

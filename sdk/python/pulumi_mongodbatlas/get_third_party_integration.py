@@ -297,7 +297,7 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
                                        service_discovery: Optional[pulumi.Input[Optional[str]]] = None,
                                        type: Optional[pulumi.Input[str]] = None,
                                        user_name: Optional[pulumi.Input[Optional[str]]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetThirdPartyIntegrationResult]:
+                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetThirdPartyIntegrationResult]:
     """
     ## # Data Source: ThirdPartyIntegration
 
@@ -343,7 +343,7 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
     __args__['serviceDiscovery'] = service_discovery
     __args__['type'] = type
     __args__['userName'] = user_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration', __args__, opts=opts, typ=GetThirdPartyIntegrationResult)
     return __ret__.apply(lambda __response__: GetThirdPartyIntegrationResult(
         account_id=pulumi.get(__response__, 'account_id'),

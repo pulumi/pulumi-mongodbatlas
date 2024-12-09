@@ -67,7 +67,7 @@ export interface GetFederatedSettingsIdentityProvidersResult {
  *
  * Note: This implementation returns a maximum of 100 results.
  */
-export function getFederatedSettingsIdentityProvidersOutput(args: GetFederatedSettingsIdentityProvidersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProvidersResult> {
+export function getFederatedSettingsIdentityProvidersOutput(args: GetFederatedSettingsIdentityProvidersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsIdentityProvidersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", {
         "federationSettingsId": args.federationSettingsId,

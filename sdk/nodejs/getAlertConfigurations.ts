@@ -70,7 +70,7 @@ export interface GetAlertConfigurationsResult {
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
-export function getAlertConfigurationsOutput(args: GetAlertConfigurationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlertConfigurationsResult> {
+export function getAlertConfigurationsOutput(args: GetAlertConfigurationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAlertConfigurationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", {
         "listOptions": args.listOptions,

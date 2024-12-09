@@ -129,7 +129,7 @@ export interface GetPushBasedLogExportResult {
  * }
  * ```
  */
-export function getPushBasedLogExportOutput(args: GetPushBasedLogExportOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPushBasedLogExportResult> {
+export function getPushBasedLogExportOutput(args: GetPushBasedLogExportOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPushBasedLogExportResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", {
         "projectId": args.projectId,

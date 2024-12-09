@@ -135,7 +135,7 @@ def get_organizations(items_per_page: Optional[int] = None,
 def get_organizations_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
                              page_num: Optional[pulumi.Input[Optional[int]]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationsResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationsResult]:
     """
     ## # Data Source: get_organizations
 
@@ -159,7 +159,7 @@ def get_organizations_output(items_per_page: Optional[pulumi.Input[Optional[int]
     __args__['itemsPerPage'] = items_per_page
     __args__['name'] = name
     __args__['pageNum'] = page_num
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOrganizations:getOrganizations', __args__, opts=opts, typ=GetOrganizationsResult)
     return __ret__.apply(lambda __response__: GetOrganizationsResult(
         id=pulumi.get(__response__, 'id'),
