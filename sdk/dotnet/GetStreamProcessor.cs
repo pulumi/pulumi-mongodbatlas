@@ -30,6 +30,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetStreamProcessorResult> Invoke(GetStreamProcessorInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamProcessorResult>("mongodbatlas:index/getStreamProcessor:getStreamProcessor", args ?? new GetStreamProcessorInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.StreamProcessor
+        /// 
+        /// `mongodbatlas.StreamProcessor` describes a stream processor.
+        /// 
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetStreamProcessorResult> Invoke(GetStreamProcessorInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetStreamProcessorResult>("mongodbatlas:index/getStreamProcessor:getStreamProcessor", args ?? new GetStreamProcessorInvokeArgs(), options.WithDefaults());
     }
 
 

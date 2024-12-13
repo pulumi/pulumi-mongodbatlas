@@ -16,6 +16,9 @@ namespace Pulumi.Mongodbatlas
 
         public static Output<GetSharedTierRestoreJobResult> Invoke(GetSharedTierRestoreJobInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSharedTierRestoreJobResult>("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", args ?? new GetSharedTierRestoreJobInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetSharedTierRestoreJobResult> Invoke(GetSharedTierRestoreJobInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSharedTierRestoreJobResult>("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", args ?? new GetSharedTierRestoreJobInvokeArgs(), options.WithDefaults());
     }
 
 

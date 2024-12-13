@@ -154,6 +154,78 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetCloudProviderAccessSetupResult> Invoke(GetCloudProviderAccessSetupInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudProviderAccessSetupResult>("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args ?? new GetCloudProviderAccessSetupInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.CloudProviderAccessSetup
+        /// 
+        /// `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### With AWS
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
+        ///     {
+        ///         ProjectId = "64259ee860c43338194b0f8e",
+        ///         ProviderName = "AWS",
+        ///     });
+        /// 
+        ///     var singleSetup = Mongodbatlas.GetCloudProviderAccessSetup.Invoke(new()
+        ///     {
+        ///         ProjectId = testRole.ProjectId,
+        ///         ProviderName = testRole.ProviderName,
+        ///         RoleId = testRole.RoleId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// 
+        /// ### With AZURE
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
+        ///     {
+        ///         ProjectId = "64259ee860c43338194b0f8e",
+        ///         ProviderName = "AZURE",
+        ///         AzureConfigs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudProviderAccessSetupAzureConfigArgs
+        ///             {
+        ///                 AtlasAzureAppId = "9f2deb0d-be22-4524-a403-df531868bac0",
+        ///                 ServicePrincipalId = "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+        ///                 TenantId = "91402384-d71e-22f5-22dd-759e272cdc1c",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var singleSetup = Mongodbatlas.GetCloudProviderAccessSetup.Invoke(new()
+        ///     {
+        ///         ProjectId = testRole.ProjectId,
+        ///         ProviderName = testRole.ProviderName,
+        ///         RoleId = testRole.RoleId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetCloudProviderAccessSetupResult> Invoke(GetCloudProviderAccessSetupInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudProviderAccessSetupResult>("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args ?? new GetCloudProviderAccessSetupInvokeArgs(), options.WithDefaults());
     }
 
 

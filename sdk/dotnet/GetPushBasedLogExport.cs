@@ -136,6 +136,69 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetPushBasedLogExportResult> Invoke(GetPushBasedLogExportInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPushBasedLogExportResult>("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", args ?? new GetPushBasedLogExportInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.PushBasedLogExport
+        /// 
+        /// `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var project_tf = new Mongodbatlas.Project("project-tf", new()
+        ///     {
+        ///         Name = atlasProjectName,
+        ///         OrgId = atlasOrgId,
+        ///     });
+        /// 
+        ///     // Set up cloud provider access in Atlas using the created IAM role
+        ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setup_only", new()
+        ///     {
+        ///         ProjectId = project_tf.Id,
+        ///         ProviderName = "AWS",
+        ///     });
+        /// 
+        ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("auth_role", new()
+        ///     {
+        ///         ProjectId = project_tf.Id,
+        ///         RoleId = setupOnly.RoleId,
+        ///         Aws = new Mongodbatlas.Inputs.CloudProviderAccessAuthorizationAwsArgs
+        ///         {
+        ///             IamAssumedRoleArn = testRole.Arn,
+        ///         },
+        ///     });
+        /// 
+        ///     // Set up push-based log export with authorized IAM role
+        ///     var testPushBasedLogExport = new Mongodbatlas.PushBasedLogExport("test", new()
+        ///     {
+        ///         ProjectId = project_tf.Id,
+        ///         BucketName = logBucket.Bucket,
+        ///         IamRoleId = authRole.RoleId,
+        ///         PrefixPath = "push-based-log-test",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetPushBasedLogExport.Invoke(new()
+        ///     {
+        ///         ProjectId = testPushBasedLogExport.ProjectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["test"] = test.Apply(getPushBasedLogExportResult =&gt; getPushBasedLogExportResult.PrefixPath),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetPushBasedLogExportResult> Invoke(GetPushBasedLogExportInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPushBasedLogExportResult>("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", args ?? new GetPushBasedLogExportInvokeArgs(), options.WithDefaults());
     }
 
 

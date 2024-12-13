@@ -81,21 +81,11 @@ type LookupEventTriggerResult struct {
 }
 
 func LookupEventTriggerOutput(ctx *pulumi.Context, args LookupEventTriggerOutputArgs, opts ...pulumi.InvokeOption) LookupEventTriggerResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupEventTriggerResultOutput, error) {
 			args := v.(LookupEventTriggerArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupEventTriggerResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getEventTrigger:getEventTrigger", args, &rv, "", opts...)
-			if err != nil {
-				return LookupEventTriggerResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupEventTriggerResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupEventTriggerResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getEventTrigger:getEventTrigger", args, LookupEventTriggerResultOutput{}, options).(LookupEventTriggerResultOutput), nil
 		}).(LookupEventTriggerResultOutput)
 }
 

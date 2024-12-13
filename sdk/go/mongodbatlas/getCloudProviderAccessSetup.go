@@ -129,21 +129,11 @@ type LookupCloudProviderAccessSetupResult struct {
 }
 
 func LookupCloudProviderAccessSetupOutput(ctx *pulumi.Context, args LookupCloudProviderAccessSetupOutputArgs, opts ...pulumi.InvokeOption) LookupCloudProviderAccessSetupResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupCloudProviderAccessSetupResultOutput, error) {
 			args := v.(LookupCloudProviderAccessSetupArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupCloudProviderAccessSetupResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args, &rv, "", opts...)
-			if err != nil {
-				return LookupCloudProviderAccessSetupResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupCloudProviderAccessSetupResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupCloudProviderAccessSetupResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args, LookupCloudProviderAccessSetupResultOutput{}, options).(LookupCloudProviderAccessSetupResultOutput), nil
 		}).(LookupCloudProviderAccessSetupResultOutput)
 }
 

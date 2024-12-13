@@ -16,6 +16,9 @@ namespace Pulumi.Mongodbatlas
 
         public static Output<GetSharedTierSnapshotsResult> Invoke(GetSharedTierSnapshotsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSharedTierSnapshotsResult>("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", args ?? new GetSharedTierSnapshotsInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetSharedTierSnapshotsResult> Invoke(GetSharedTierSnapshotsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSharedTierSnapshotsResult>("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", args ?? new GetSharedTierSnapshotsInvokeArgs(), options.WithDefaults());
     }
 
 

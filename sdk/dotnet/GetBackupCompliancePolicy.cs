@@ -332,6 +332,167 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetBackupCompliancePolicyResult> Invoke(GetBackupCompliancePolicyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackupCompliancePolicyResult>("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", args ?? new GetBackupCompliancePolicyInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Name = "clusterTest",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AWS",
+        ///                         RegionName = "EU_CENTRAL_1",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
+        ///     {
+        ///         ProjectId = myCluster.ProjectId,
+        ///         ClusterName = myCluster.Name,
+        ///         ReferenceHourOfDay = 3,
+        ///         ReferenceMinuteOfHour = 45,
+        ///         RestoreWindowDays = 4,
+        ///         PolicyItemHourly = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemHourlyArgs
+        ///         {
+        ///             FrequencyInterval = 1,
+        ///             RetentionUnit = "days",
+        ///             RetentionValue = 1,
+        ///         },
+        ///         PolicyItemDaily = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemDailyArgs
+        ///         {
+        ///             FrequencyInterval = 1,
+        ///             RetentionUnit = "days",
+        ///             RetentionValue = 2,
+        ///         },
+        ///         PolicyItemWeeklies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemWeeklyArgs
+        ///             {
+        ///                 FrequencyInterval = 4,
+        ///                 RetentionUnit = "weeks",
+        ///                 RetentionValue = 3,
+        ///             },
+        ///         },
+        ///         PolicyItemMonthlies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemMonthlyArgs
+        ///             {
+        ///                 FrequencyInterval = 5,
+        ///                 RetentionUnit = "months",
+        ///                 RetentionValue = 4,
+        ///             },
+        ///         },
+        ///         PolicyItemYearlies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemYearlyArgs
+        ///             {
+        ///                 FrequencyInterval = 1,
+        ///                 RetentionUnit = "years",
+        ///                 RetentionValue = 1,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSchedule.ProjectId,
+        ///         ClusterName = testCloudBackupSchedule.ClusterName,
+        ///     });
+        /// 
+        ///     var backupPolicy = Mongodbatlas.GetBackupCompliancePolicy.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSchedule.Id,
+        ///     });
+        /// 
+        ///     var backupPolicyBackupCompliancePolicy = new Mongodbatlas.BackupCompliancePolicy("backup_policy", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         AuthorizedEmail = "user@email.com",
+        ///         AuthorizedUserFirstName = "First",
+        ///         AuthorizedUserLastName = "Last",
+        ///         CopyProtectionEnabled = false,
+        ///         PitEnabled = false,
+        ///         EncryptionAtRestEnabled = false,
+        ///         RestoreWindowDays = 7,
+        ///         OnDemandPolicyItem = new Mongodbatlas.Inputs.BackupCompliancePolicyOnDemandPolicyItemArgs
+        ///         {
+        ///             FrequencyInterval = 0,
+        ///             RetentionUnit = "days",
+        ///             RetentionValue = 3,
+        ///         },
+        ///         PolicyItemHourly = new Mongodbatlas.Inputs.BackupCompliancePolicyPolicyItemHourlyArgs
+        ///         {
+        ///             FrequencyInterval = 6,
+        ///             RetentionUnit = "days",
+        ///             RetentionValue = 7,
+        ///         },
+        ///         PolicyItemDaily = new Mongodbatlas.Inputs.BackupCompliancePolicyPolicyItemDailyArgs
+        ///         {
+        ///             FrequencyInterval = 0,
+        ///             RetentionUnit = "days",
+        ///             RetentionValue = 7,
+        ///         },
+        ///         PolicyItemWeeklies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.BackupCompliancePolicyPolicyItemWeeklyArgs
+        ///             {
+        ///                 FrequencyInterval = 0,
+        ///                 RetentionUnit = "weeks",
+        ///                 RetentionValue = 4,
+        ///             },
+        ///         },
+        ///         PolicyItemMonthlies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.BackupCompliancePolicyPolicyItemMonthlyArgs
+        ///             {
+        ///                 FrequencyInterval = 0,
+        ///                 RetentionUnit = "months",
+        ///                 RetentionValue = 12,
+        ///             },
+        ///         },
+        ///         PolicyItemYearlies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.BackupCompliancePolicyPolicyItemYearlyArgs
+        ///             {
+        ///                 FrequencyInterval = 1,
+        ///                 RetentionUnit = "years",
+        ///                 RetentionValue = 1,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetBackupCompliancePolicyResult> Invoke(GetBackupCompliancePolicyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBackupCompliancePolicyResult>("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", args ?? new GetBackupCompliancePolicyInvokeArgs(), options.WithDefaults());
     }
 
 

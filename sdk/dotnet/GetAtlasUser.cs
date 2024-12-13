@@ -102,6 +102,52 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetAtlasUserResult> Invoke(GetAtlasUserInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAtlasUserResult>("mongodbatlas:index/getAtlasUser:getAtlasUser", args ?? new GetAtlasUserInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getAtlasUser
+        /// 
+        /// `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+        /// 
+        /// &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Using user_id attribute to query
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
+        ///     {
+        ///         UserId = "&lt;USER_ID&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Using username attribute to query
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
+        ///     {
+        ///         Username = "&lt;USERNAME&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAtlasUserResult> Invoke(GetAtlasUserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAtlasUserResult>("mongodbatlas:index/getAtlasUser:getAtlasUser", args ?? new GetAtlasUserInvokeArgs(), options.WithDefaults());
     }
 
 

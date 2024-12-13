@@ -101,21 +101,11 @@ type LookupSearchIndexResult struct {
 }
 
 func LookupSearchIndexOutput(ctx *pulumi.Context, args LookupSearchIndexOutputArgs, opts ...pulumi.InvokeOption) LookupSearchIndexResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupSearchIndexResultOutput, error) {
 			args := v.(LookupSearchIndexArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupSearchIndexResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getSearchIndex:getSearchIndex", args, &rv, "", opts...)
-			if err != nil {
-				return LookupSearchIndexResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupSearchIndexResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupSearchIndexResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getSearchIndex:getSearchIndex", args, LookupSearchIndexResultOutput{}, options).(LookupSearchIndexResultOutput), nil
 		}).(LookupSearchIndexResultOutput)
 }
 

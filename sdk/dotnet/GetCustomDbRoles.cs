@@ -30,6 +30,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetCustomDbRolesResult> Invoke(GetCustomDbRolesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCustomDbRolesResult>("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", args ?? new GetCustomDbRolesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getCustomDbRoles
+        /// 
+        /// `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// </summary>
+        public static Output<GetCustomDbRolesResult> Invoke(GetCustomDbRolesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCustomDbRolesResult>("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", args ?? new GetCustomDbRolesInvokeArgs(), options.WithDefaults());
     }
 
 

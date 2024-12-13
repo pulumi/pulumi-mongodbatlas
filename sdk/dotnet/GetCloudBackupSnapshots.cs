@@ -30,6 +30,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetCloudBackupSnapshotsResult> Invoke(GetCloudBackupSnapshotsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotsResult>("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", args ?? new GetCloudBackupSnapshotsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshots
+        /// 
+        /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// </summary>
+        public static Output<GetCloudBackupSnapshotsResult> Invoke(GetCloudBackupSnapshotsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotsResult>("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", args ?? new GetCloudBackupSnapshotsInvokeArgs(), options.WithDefaults());
     }
 
 

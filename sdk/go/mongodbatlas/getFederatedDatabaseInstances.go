@@ -46,21 +46,11 @@ type LookupFederatedDatabaseInstancesResult struct {
 }
 
 func LookupFederatedDatabaseInstancesOutput(ctx *pulumi.Context, args LookupFederatedDatabaseInstancesOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedDatabaseInstancesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupFederatedDatabaseInstancesResultOutput, error) {
 			args := v.(LookupFederatedDatabaseInstancesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupFederatedDatabaseInstancesResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args, &rv, "", opts...)
-			if err != nil {
-				return LookupFederatedDatabaseInstancesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupFederatedDatabaseInstancesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupFederatedDatabaseInstancesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args, LookupFederatedDatabaseInstancesResultOutput{}, options).(LookupFederatedDatabaseInstancesResultOutput), nil
 		}).(LookupFederatedDatabaseInstancesResultOutput)
 }
 

@@ -150,6 +150,76 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetTeamResult> Invoke(GetTeamInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.Team
+        /// 
+        /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testTeam = new Mongodbatlas.Team("test", new()
+        ///     {
+        ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
+        ///         Name = "myNewTeam",
+        ///         Usernames = new[]
+        ///         {
+        ///             "user1",
+        ///             "user2",
+        ///             "user3",
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetTeam.Invoke(new()
+        ///     {
+        ///         OrgId = testTeam.OrgId,
+        ///         TeamId = testTeam.TeamId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Mongodbatlas.Team("test", new()
+        ///     {
+        ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
+        ///         Name = "myNewTeam",
+        ///         Usernames = new[]
+        ///         {
+        ///             "user1",
+        ///             "user2",
+        ///             "user3",
+        ///         },
+        ///     });
+        /// 
+        ///     var test2 = Mongodbatlas.GetTeam.Invoke(new()
+        ///     {
+        ///         OrgId = test.OrgId,
+        ///         Name = test.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTeamResult> Invoke(GetTeamInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithDefaults());
     }
 
 

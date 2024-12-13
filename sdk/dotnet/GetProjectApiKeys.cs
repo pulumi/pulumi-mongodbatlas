@@ -58,6 +58,30 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetProjectApiKeysResult> Invoke(GetProjectApiKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectApiKeysResult>("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", args ?? new GetProjectApiKeysInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetProjectApiKeys.Invoke(new()
+        ///     {
+        ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
+        ///         ProjectId = "32b6e34b3d91647abb20e7b8",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetProjectApiKeysResult> Invoke(GetProjectApiKeysInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetProjectApiKeysResult>("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", args ?? new GetProjectApiKeysInvokeArgs(), options.WithDefaults());
     }
 
 

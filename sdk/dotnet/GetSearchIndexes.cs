@@ -30,6 +30,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetSearchIndexesResult> Invoke(GetSearchIndexesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getSearchIndexes
+        /// 
+        /// `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// </summary>
+        public static Output<GetSearchIndexesResult> Invoke(GetSearchIndexesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesInvokeArgs(), options.WithDefaults());
     }
 
 

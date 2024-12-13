@@ -69,21 +69,11 @@ type LookupProjectIpAddressesResult struct {
 }
 
 func LookupProjectIpAddressesOutput(ctx *pulumi.Context, args LookupProjectIpAddressesOutputArgs, opts ...pulumi.InvokeOption) LookupProjectIpAddressesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupProjectIpAddressesResultOutput, error) {
 			args := v.(LookupProjectIpAddressesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupProjectIpAddressesResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", args, &rv, "", opts...)
-			if err != nil {
-				return LookupProjectIpAddressesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupProjectIpAddressesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupProjectIpAddressesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", args, LookupProjectIpAddressesResultOutput{}, options).(LookupProjectIpAddressesResultOutput), nil
 		}).(LookupProjectIpAddressesResultOutput)
 }
 

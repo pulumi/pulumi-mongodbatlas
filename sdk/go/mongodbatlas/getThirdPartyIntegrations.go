@@ -84,21 +84,11 @@ type LookupThirdPartyIntegrationsResult struct {
 }
 
 func LookupThirdPartyIntegrationsOutput(ctx *pulumi.Context, args LookupThirdPartyIntegrationsOutputArgs, opts ...pulumi.InvokeOption) LookupThirdPartyIntegrationsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupThirdPartyIntegrationsResultOutput, error) {
 			args := v.(LookupThirdPartyIntegrationsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupThirdPartyIntegrationsResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args, &rv, "", opts...)
-			if err != nil {
-				return LookupThirdPartyIntegrationsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupThirdPartyIntegrationsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupThirdPartyIntegrationsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args, LookupThirdPartyIntegrationsResultOutput{}, options).(LookupThirdPartyIntegrationsResultOutput), nil
 		}).(LookupThirdPartyIntegrationsResultOutput)
 }
 

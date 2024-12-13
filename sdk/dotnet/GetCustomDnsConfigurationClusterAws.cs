@@ -80,6 +80,41 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetCustomDnsConfigurationClusterAwsResult> Invoke(GetCustomDnsConfigurationClusterAwsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.CustomDnsConfigurationClusterAws
+        /// 
+        /// `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCustomDnsConfigurationClusterAws = new Mongodbatlas.CustomDnsConfigurationClusterAws("test", new()
+        ///     {
+        ///         ProjectId = "&lt;project-id&gt;",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCustomDnsConfigurationClusterAws.Invoke(new()
+        ///     {
+        ///         ProjectId = testCustomDnsConfigurationClusterAws.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetCustomDnsConfigurationClusterAwsResult> Invoke(GetCustomDnsConfigurationClusterAwsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsInvokeArgs(), options.WithDefaults());
     }
 
 

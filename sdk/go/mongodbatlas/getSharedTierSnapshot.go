@@ -44,21 +44,11 @@ type GetSharedTierSnapshotResult struct {
 }
 
 func GetSharedTierSnapshotOutput(ctx *pulumi.Context, args GetSharedTierSnapshotOutputArgs, opts ...pulumi.InvokeOption) GetSharedTierSnapshotResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetSharedTierSnapshotResultOutput, error) {
 			args := v.(GetSharedTierSnapshotArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetSharedTierSnapshotResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", args, &rv, "", opts...)
-			if err != nil {
-				return GetSharedTierSnapshotResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetSharedTierSnapshotResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetSharedTierSnapshotResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", args, GetSharedTierSnapshotResultOutput{}, options).(GetSharedTierSnapshotResultOutput), nil
 		}).(GetSharedTierSnapshotResultOutput)
 }
 

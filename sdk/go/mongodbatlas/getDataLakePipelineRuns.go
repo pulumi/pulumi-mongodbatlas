@@ -45,21 +45,11 @@ type LookupDataLakePipelineRunsResult struct {
 }
 
 func LookupDataLakePipelineRunsOutput(ctx *pulumi.Context, args LookupDataLakePipelineRunsOutputArgs, opts ...pulumi.InvokeOption) LookupDataLakePipelineRunsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupDataLakePipelineRunsResultOutput, error) {
 			args := v.(LookupDataLakePipelineRunsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupDataLakePipelineRunsResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", args, &rv, "", opts...)
-			if err != nil {
-				return LookupDataLakePipelineRunsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupDataLakePipelineRunsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupDataLakePipelineRunsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", args, LookupDataLakePipelineRunsResultOutput{}, options).(LookupDataLakePipelineRunsResultOutput), nil
 		}).(LookupDataLakePipelineRunsResultOutput)
 }
 
