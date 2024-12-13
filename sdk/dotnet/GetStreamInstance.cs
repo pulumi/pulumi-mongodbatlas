@@ -64,6 +64,33 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetStreamInstanceResult> Invoke(GetStreamInstanceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamInstanceResult>("mongodbatlas:index/getStreamInstance:getStreamInstance", args ?? new GetStreamInstanceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.StreamInstance
+        /// 
+        /// `mongodbatlas.StreamInstance` describes a stream instance.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Mongodbatlas.GetStreamInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetStreamInstanceResult> Invoke(GetStreamInstanceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetStreamInstanceResult>("mongodbatlas:index/getStreamInstance:getStreamInstance", args ?? new GetStreamInstanceInvokeArgs(), options.WithDefaults());
     }
 
 

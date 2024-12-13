@@ -78,21 +78,11 @@ type LookupCloudBackupScheduleResult struct {
 }
 
 func LookupCloudBackupScheduleOutput(ctx *pulumi.Context, args LookupCloudBackupScheduleOutputArgs, opts ...pulumi.InvokeOption) LookupCloudBackupScheduleResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupCloudBackupScheduleResultOutput, error) {
 			args := v.(LookupCloudBackupScheduleArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupCloudBackupScheduleResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args, &rv, "", opts...)
-			if err != nil {
-				return LookupCloudBackupScheduleResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupCloudBackupScheduleResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupCloudBackupScheduleResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args, LookupCloudBackupScheduleResultOutput{}, options).(LookupCloudBackupScheduleResultOutput), nil
 		}).(LookupCloudBackupScheduleResultOutput)
 }
 

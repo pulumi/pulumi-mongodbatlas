@@ -168,6 +168,85 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetLdapVerifyResult> Invoke(GetLdapVerifyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.LdapVerify
+        /// 
+        /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "NAME OF THE PROJECT",
+        ///         OrgId = "ORG ID",
+        ///     });
+        /// 
+        ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///         Name = "ClusterName",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AWS",
+        ///                         RegionName = "US_EAST_1",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///         Hostname = "HOSTNAME",
+        ///         Port = 636,
+        ///         BindUsername = "USERNAME",
+        ///         BindPassword = "PASSWORD",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             testAdvancedCluster,
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetLdapVerify.Invoke(new()
+        ///     {
+        ///         ProjectId = testLdapVerify.ProjectId,
+        ///         RequestId = testLdapVerify.RequestId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLdapVerifyResult> Invoke(GetLdapVerifyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyInvokeArgs(), options.WithDefaults());
     }
 
 

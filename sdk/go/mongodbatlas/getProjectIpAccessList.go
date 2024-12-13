@@ -175,21 +175,11 @@ type LookupProjectIpAccessListResult struct {
 }
 
 func LookupProjectIpAccessListOutput(ctx *pulumi.Context, args LookupProjectIpAccessListOutputArgs, opts ...pulumi.InvokeOption) LookupProjectIpAccessListResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupProjectIpAccessListResultOutput, error) {
 			args := v.(LookupProjectIpAccessListArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupProjectIpAccessListResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", args, &rv, "", opts...)
-			if err != nil {
-				return LookupProjectIpAccessListResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupProjectIpAccessListResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupProjectIpAccessListResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", args, LookupProjectIpAccessListResultOutput{}, options).(LookupProjectIpAccessListResultOutput), nil
 		}).(LookupProjectIpAccessListResultOutput)
 }
 

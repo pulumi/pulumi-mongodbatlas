@@ -80,21 +80,11 @@ type LookupEncryptionAtRestPrivateEndpointsResult struct {
 }
 
 func LookupEncryptionAtRestPrivateEndpointsOutput(ctx *pulumi.Context, args LookupEncryptionAtRestPrivateEndpointsOutputArgs, opts ...pulumi.InvokeOption) LookupEncryptionAtRestPrivateEndpointsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupEncryptionAtRestPrivateEndpointsResultOutput, error) {
 			args := v.(LookupEncryptionAtRestPrivateEndpointsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupEncryptionAtRestPrivateEndpointsResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", args, &rv, "", opts...)
-			if err != nil {
-				return LookupEncryptionAtRestPrivateEndpointsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupEncryptionAtRestPrivateEndpointsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupEncryptionAtRestPrivateEndpointsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", args, LookupEncryptionAtRestPrivateEndpointsResultOutput{}, options).(LookupEncryptionAtRestPrivateEndpointsResultOutput), nil
 		}).(LookupEncryptionAtRestPrivateEndpointsResultOutput)
 }
 

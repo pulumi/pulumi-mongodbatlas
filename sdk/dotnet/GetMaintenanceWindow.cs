@@ -128,6 +128,65 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetMaintenanceWindowResult> Invoke(GetMaintenanceWindowInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMaintenanceWindowResult>("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", args ?? new GetMaintenanceWindowInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.MaintenanceWindow
+        /// 
+        /// `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Examples Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testMaintenanceWindow = new Mongodbatlas.MaintenanceWindow("test", new()
+        ///     {
+        ///         ProjectId = "&lt;your-project-id&gt;",
+        ///         DayOfWeek = 3,
+        ///         HourOfDay = 4,
+        ///         AutoDeferOnceEnabled = true,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetMaintenanceWindow.Invoke(new()
+        ///     {
+        ///         ProjectId = testMaintenanceWindow.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testMaintenanceWindow = new Mongodbatlas.MaintenanceWindow("test", new()
+        ///     {
+        ///         ProjectId = "&lt;your-project-id&gt;",
+        ///         StartAsap = true,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetMaintenanceWindow.Invoke(new()
+        ///     {
+        ///         ProjectId = testMaintenanceWindow.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetMaintenanceWindowResult> Invoke(GetMaintenanceWindowInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMaintenanceWindowResult>("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", args ?? new GetMaintenanceWindowInvokeArgs(), options.WithDefaults());
     }
 
 

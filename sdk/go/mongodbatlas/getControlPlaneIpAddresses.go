@@ -62,18 +62,8 @@ type GetControlPlaneIpAddressesResult struct {
 
 func GetControlPlaneIpAddressesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetControlPlaneIpAddressesResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetControlPlaneIpAddressesResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetControlPlaneIpAddressesResult
-		secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", nil, &rv, "", opts...)
-		if err != nil {
-			return GetControlPlaneIpAddressesResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetControlPlaneIpAddressesResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetControlPlaneIpAddressesResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", nil, GetControlPlaneIpAddressesResultOutput{}, options).(GetControlPlaneIpAddressesResultOutput), nil
 	}).(GetControlPlaneIpAddressesResultOutput)
 }
 

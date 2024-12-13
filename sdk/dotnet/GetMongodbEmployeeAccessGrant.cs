@@ -92,6 +92,47 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetMongodbEmployeeAccessGrantResult> Invoke(GetMongodbEmployeeAccessGrantInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMongodbEmployeeAccessGrantResult>("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", args ?? new GetMongodbEmployeeAccessGrantInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
+        /// 
+        /// `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = new Mongodbatlas.MongodbEmployeeAccessGrant("example", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClusterName = clusterName,
+        ///         GrantType = "CLUSTER_INFRASTRUCTURE_AND_APP_SERVICES_SYNC_DATA",
+        ///         ExpirationTime = "2025-01-01T12:00:00Z",
+        ///     });
+        /// 
+        ///     var dsExample = Mongodbatlas.GetMongodbEmployeeAccessGrant.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClusterName = clusterName,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grantType"] = dsExample.Apply(getMongodbEmployeeAccessGrantResult =&gt; getMongodbEmployeeAccessGrantResult.GrantType),
+        ///         ["expirationTime"] = dsExample.Apply(getMongodbEmployeeAccessGrantResult =&gt; getMongodbEmployeeAccessGrantResult.ExpirationTime),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetMongodbEmployeeAccessGrantResult> Invoke(GetMongodbEmployeeAccessGrantInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMongodbEmployeeAccessGrantResult>("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", args ?? new GetMongodbEmployeeAccessGrantInvokeArgs(), options.WithDefaults());
     }
 
 

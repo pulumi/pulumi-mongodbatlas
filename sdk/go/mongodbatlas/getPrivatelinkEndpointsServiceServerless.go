@@ -151,21 +151,11 @@ type LookupPrivatelinkEndpointsServiceServerlessResult struct {
 }
 
 func LookupPrivatelinkEndpointsServiceServerlessOutput(ctx *pulumi.Context, args LookupPrivatelinkEndpointsServiceServerlessOutputArgs, opts ...pulumi.InvokeOption) LookupPrivatelinkEndpointsServiceServerlessResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupPrivatelinkEndpointsServiceServerlessResultOutput, error) {
 			args := v.(LookupPrivatelinkEndpointsServiceServerlessArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupPrivatelinkEndpointsServiceServerlessResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", args, &rv, "", opts...)
-			if err != nil {
-				return LookupPrivatelinkEndpointsServiceServerlessResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupPrivatelinkEndpointsServiceServerlessResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupPrivatelinkEndpointsServiceServerlessResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", args, LookupPrivatelinkEndpointsServiceServerlessResultOutput{}, options).(LookupPrivatelinkEndpointsServiceServerlessResultOutput), nil
 		}).(LookupPrivatelinkEndpointsServiceServerlessResultOutput)
 }
 

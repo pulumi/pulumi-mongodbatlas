@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
 import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserPlainArgs;
@@ -635,6 +636,87 @@ public final class MongodbatlasFunctions {
      * 
      */
     @Deprecated /* mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser */
+    public static Output<Get509AuthenticationDatabaseUserResult> get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", TypeShape.of(Get509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
+     * 
+     * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .customerX509Cas("""
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
+     *             """)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser
+     * 
+     */
+    @Deprecated /* mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser */
     public static CompletableFuture<Get509AuthenticationDatabaseUserResult> get509AuthenticationDatabaseUserPlain(Get509AuthenticationDatabaseUserPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", TypeShape.of(Get509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
     }
@@ -695,6 +777,21 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAccessListApiKeyResult> getAccessListApiKey(GetAccessListApiKeyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", TypeShape.of(GetAccessListApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Using CIDR Block
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Using IP Address
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAccessListApiKeyResult> getAccessListApiKeyPlain(GetAccessListApiKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", TypeShape.of(GetAccessListApiKeyResult.class), args, Utilities.withVersion(options));
     }
@@ -741,6 +838,21 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", TypeShape.of(GetAccessListApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Using CIDR Block
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Using IP Address
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", TypeShape.of(GetAccessListApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1335,6 +1447,151 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAdvancedClusterResult> getAdvancedCluster(GetAdvancedClusterArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", TypeShape.of(GetAdvancedClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.AdvancedCluster
+     * 
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("cluster-test")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M0")
+     *                         .build())
+     *                     .providerName("TENANT")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedCluster(GetAdvancedClusterArgs.builder()
+     *             .projectId(exampleAdvancedCluster.projectId())
+     *             .name(exampleAdvancedCluster.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
+     * 
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("cluster-test")
+     *             .backupEnabled(false)
+     *             .clusterType("SHARDED")
+     *             .replicationSpecs(            
+     *                 AdvancedClusterReplicationSpecArgs.builder()
+     *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                             .instanceSize("M30")
+     *                             .diskIops(3000)
+     *                             .nodeCount(3)
+     *                             .build())
+     *                         .providerName("AWS")
+     *                         .priority(7)
+     *                         .regionName("EU_WEST_1")
+     *                         .build())
+     *                     .build(),
+     *                 AdvancedClusterReplicationSpecArgs.builder()
+     *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                             .instanceSize("M40")
+     *                             .diskIops(3000)
+     *                             .nodeCount(3)
+     *                             .build())
+     *                         .providerName("AWS")
+     *                         .priority(7)
+     *                         .regionName("EU_WEST_1")
+     *                         .build())
+     *                     .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedCluster(GetAdvancedClusterArgs.builder()
+     *             .projectId(exampleAdvancedCluster.projectId())
+     *             .name(exampleAdvancedCluster.name())
+     *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAdvancedClusterResult> getAdvancedClusterPlain(GetAdvancedClusterPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", TypeShape.of(GetAdvancedClusterResult.class), args, Utilities.withVersion(options));
     }
@@ -1768,6 +2025,150 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetAdvancedClustersInvokeResult> getAdvancedClusters(GetAdvancedClustersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", TypeShape.of(GetAdvancedClustersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getAdvancedClusters
+     * 
+     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("cluster-test")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M0")
+     *                         .build())
+     *                     .providerName("TENANT")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedClusters(GetAdvancedClustersArgs.builder()
+     *             .projectId(exampleAdvancedCluster.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:** There can only be one M0 cluster per project.
+     * 
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new AdvancedCluster("example", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("cluster-test")
+     *             .backupEnabled(false)
+     *             .clusterType("SHARDED")
+     *             .replicationSpecs(            
+     *                 AdvancedClusterReplicationSpecArgs.builder()
+     *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                             .instanceSize("M30")
+     *                             .diskIops(3000)
+     *                             .nodeCount(3)
+     *                             .build())
+     *                         .providerName("AWS")
+     *                         .priority(7)
+     *                         .regionName("EU_WEST_1")
+     *                         .build())
+     *                     .build(),
+     *                 AdvancedClusterReplicationSpecArgs.builder()
+     *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                             .instanceSize("M40")
+     *                             .diskIops(3000)
+     *                             .nodeCount(3)
+     *                             .build())
+     *                         .providerName("AWS")
+     *                         .priority(7)
+     *                         .regionName("EU_WEST_1")
+     *                         .build())
+     *                     .build())
+     *             .build());
+     * 
+     *         final var example-asym = MongodbatlasFunctions.getAdvancedCluster(GetAdvancedClusterArgs.builder()
+     *             .projectId(example.projectId())
+     *             .name(example.name())
+     *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAdvancedClustersInvokeResult> getAdvancedClusters(GetAdvancedClustersArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", TypeShape.of(GetAdvancedClustersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -2655,6 +3056,192 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAlertConfigurationResult> getAlertConfiguration(GetAlertConfigurationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", TypeShape.of(GetAlertConfigurationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.AlertConfiguration
+     * 
+     * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AlertConfiguration;
+     * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
+     * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
+     * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
+     * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .eventType("OUTSIDE_METRIC_THRESHOLD")
+     *             .enabled(true)
+     *             .notifications(AlertConfigurationNotificationArgs.builder()
+     *                 .typeName("GROUP")
+     *                 .intervalMin(5)
+     *                 .delayMin(0)
+     *                 .smsEnabled(false)
+     *                 .emailEnabled(true)
+     *                 .build())
+     *             .matchers(AlertConfigurationMatcherArgs.builder()
+     *                 .fieldName("HOSTNAME_AND_PORT")
+     *                 .operator("EQUALS")
+     *                 .value("SECONDARY")
+     *                 .build())
+     *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
+     *                 .metricName("ASSERT_REGULAR")
+     *                 .operator("LESS_THAN")
+     *                 .threshold(99)
+     *                 .units("RAW")
+     *                 .mode("AVERAGE")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAlertConfiguration(GetAlertConfigurationArgs.builder()
+     *             .projectId(testAlertConfiguration.projectId())
+     *             .alertConfigurationId(testAlertConfiguration.alertConfigurationId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AlertConfiguration;
+     * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
+     * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
+     * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
+     * import com.pulumi.mongodbatlas.inputs.AlertConfigurationThresholdConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .eventType("REPLICATION_OPLOG_WINDOW_RUNNING_OUT")
+     *             .enabled(true)
+     *             .notifications(AlertConfigurationNotificationArgs.builder()
+     *                 .typeName("GROUP")
+     *                 .intervalMin(5)
+     *                 .delayMin(0)
+     *                 .smsEnabled(false)
+     *                 .emailEnabled(true)
+     *                 .roles("GROUP_CLUSTER_MANAGER")
+     *                 .build())
+     *             .matchers(AlertConfigurationMatcherArgs.builder()
+     *                 .fieldName("HOSTNAME_AND_PORT")
+     *                 .operator("EQUALS")
+     *                 .value("SECONDARY")
+     *                 .build())
+     *             .thresholdConfig(AlertConfigurationThresholdConfigArgs.builder()
+     *                 .operator("LESS_THAN")
+     *                 .threshold(1)
+     *                 .units("HOURS")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAlertConfiguration(GetAlertConfigurationArgs.builder()
+     *             .projectId(testAlertConfiguration.projectId())
+     *             .alertConfigurationId(testAlertConfiguration.alertConfigurationId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAlertConfiguration(GetAlertConfigurationArgs.builder()
+     *             .projectId(projectId)
+     *             .alertConfigurationId(alertConfigurationId)
+     *             .outputs(            
+     *                 GetAlertConfigurationOutputArgs.builder()
+     *                     .type("resource_hcl")
+     *                     .label("test")
+     *                     .build(),
+     *                 GetAlertConfigurationOutputArgs.builder()
+     *                     .type("resource_import")
+     *                     .label("test")
+     *                     .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAlertConfigurationResult> getAlertConfigurationPlain(GetAlertConfigurationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", TypeShape.of(GetAlertConfigurationResult.class), args, Utilities.withVersion(options));
     }
@@ -2699,6 +3286,17 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      */
+    public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", TypeShape.of(GetAlertConfigurationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getAlertConfigurations
+     * 
+     * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     */
     public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", TypeShape.of(GetAlertConfigurationsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -2727,6 +3325,13 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      */
+    public static Output<GetApiKeyResult> getApiKey(GetApiKeyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getApiKey:getApiKey", TypeShape.of(GetApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static CompletableFuture<GetApiKeyResult> getApiKeyPlain(GetApiKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKey:getApiKey", TypeShape.of(GetApiKeyResult.class), args, Utilities.withVersion(options));
     }
@@ -2749,6 +3354,13 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -3161,6 +3773,87 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetAtlasUserResult> getAtlasUser(GetAtlasUserArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAtlasUser:getAtlasUser", TypeShape.of(GetAtlasUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getAtlasUser
+     * 
+     * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+     * 
+     * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
+     * 
+     * ## Example Usage
+     * 
+     * ### Using user_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .userId("<USER_ID>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Using username attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .username("<USERNAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAtlasUserResult> getAtlasUser(GetAtlasUserArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAtlasUser:getAtlasUser", TypeShape.of(GetAtlasUserResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -3955,6 +4648,125 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAtlasUsersInvokeResult> getAtlasUsers(GetAtlasUsersArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAtlasUsers:getAtlasUsers", TypeShape.of(GetAtlasUsersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: atlas_users
+     * 
+     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### Using org_id attribute to query Organization Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Using project_id attribute to query Project Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .teamId("<TEAM_ID>")
+     *             .orgId("<ORG_ID>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAtlasUsersInvokeResult> getAtlasUsersPlain(GetAtlasUsersPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAtlasUsers:getAtlasUsers", TypeShape.of(GetAtlasUsersInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -4121,6 +4933,61 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetAuditingResult> getAuditing(GetAuditingArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAuditing:getAuditing", TypeShape.of(GetAuditingResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.Auditing
+     * 
+     * `mongodbatlas.Auditing` describes a Auditing.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Auditing;
+     * import com.pulumi.mongodbatlas.AuditingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAuditing = new Auditing("testAuditing", AuditingArgs.builder()
+     *             .projectId("<project-id>")
+     *             .auditFilter("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}")
+     *             .auditAuthorizationSuccess(false)
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAuditing(GetAuditingArgs.builder()
+     *             .projectId(testAuditing.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAuditingResult> getAuditing(GetAuditingArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAuditing:getAuditing", TypeShape.of(GetAuditingResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -4799,6 +5666,162 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetBackupCompliancePolicyResult> getBackupCompliancePolicy(GetBackupCompliancePolicyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+     * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemYearlyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
+     * import com.pulumi.mongodbatlas.BackupCompliancePolicy;
+     * import com.pulumi.mongodbatlas.BackupCompliancePolicyArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyOnDemandPolicyItemArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemHourlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .name("clusterTest")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("EU_CENTRAL_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
+     *             .projectId(myCluster.projectId())
+     *             .clusterName(myCluster.name())
+     *             .referenceHourOfDay(3)
+     *             .referenceMinuteOfHour(45)
+     *             .restoreWindowDays(4)
+     *             .policyItemHourly(CloudBackupSchedulePolicyItemHourlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(1)
+     *                 .build())
+     *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(2)
+     *                 .build())
+     *             .policyItemWeeklies(CloudBackupSchedulePolicyItemWeeklyArgs.builder()
+     *                 .frequencyInterval(4)
+     *                 .retentionUnit("weeks")
+     *                 .retentionValue(3)
+     *                 .build())
+     *             .policyItemMonthlies(CloudBackupSchedulePolicyItemMonthlyArgs.builder()
+     *                 .frequencyInterval(5)
+     *                 .retentionUnit("months")
+     *                 .retentionValue(4)
+     *                 .build())
+     *             .policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit("years")
+     *                 .retentionValue(1)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
+     *             .projectId(testCloudBackupSchedule.projectId())
+     *             .clusterName(testCloudBackupSchedule.clusterName())
+     *             .build());
+     * 
+     *         final var backupPolicy = MongodbatlasFunctions.getBackupCompliancePolicy(GetBackupCompliancePolicyArgs.builder()
+     *             .projectId(testCloudBackupSchedule.id())
+     *             .build());
+     * 
+     *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .authorizedEmail("user}{@literal @}{@code email.com")
+     *             .authorizedUserFirstName("First")
+     *             .authorizedUserLastName("Last")
+     *             .copyProtectionEnabled(false)
+     *             .pitEnabled(false)
+     *             .encryptionAtRestEnabled(false)
+     *             .restoreWindowDays(7)
+     *             .onDemandPolicyItem(BackupCompliancePolicyOnDemandPolicyItemArgs.builder()
+     *                 .frequencyInterval(0)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(3)
+     *                 .build())
+     *             .policyItemHourly(BackupCompliancePolicyPolicyItemHourlyArgs.builder()
+     *                 .frequencyInterval(6)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(7)
+     *                 .build())
+     *             .policyItemDaily(BackupCompliancePolicyPolicyItemDailyArgs.builder()
+     *                 .frequencyInterval(0)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(7)
+     *                 .build())
+     *             .policyItemWeeklies(BackupCompliancePolicyPolicyItemWeeklyArgs.builder()
+     *                 .frequencyInterval(0)
+     *                 .retentionUnit("weeks")
+     *                 .retentionValue(4)
+     *                 .build())
+     *             .policyItemMonthlies(BackupCompliancePolicyPolicyItemMonthlyArgs.builder()
+     *                 .frequencyInterval(0)
+     *                 .retentionUnit("months")
+     *                 .retentionValue(12)
+     *                 .build())
+     *             .policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit("years")
+     *                 .retentionValue(1)
+     *                 .build())
+     *             .build());
+     * 
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetBackupCompliancePolicyResult> getBackupCompliancePolicyPlain(GetBackupCompliancePolicyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
     }
@@ -4833,6 +5856,17 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetCloudBackupScheduleResult> getCloudBackupSchedule(GetCloudBackupScheduleArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", TypeShape.of(GetCloudBackupScheduleResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.CloudBackupSchedule
+     * 
+     * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     */
+    public static Output<GetCloudBackupScheduleResult> getCloudBackupSchedule(GetCloudBackupScheduleArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", TypeShape.of(GetCloudBackupScheduleResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -5015,6 +6049,63 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetCloudBackupSnapshotResult> getCloudBackupSnapshot(GetCloudBackupSnapshotArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot", TypeShape.of(GetCloudBackupSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.CloudBackupSnapshot
+     * 
+     * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
+     *             .projectId("5d0f1f73cf09a29120e173cf")
+     *             .clusterName("MyClusterTest")
+     *             .description("SomeDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshot(GetCloudBackupSnapshotArgs.builder()
+     *             .snapshotId("5d1285acd5ec13b6c2d1726a")
+     *             .projectId(testCloudBackupSnapshot.projectId())
+     *             .clusterName(testCloudBackupSnapshot.clusterName())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotResult> getCloudBackupSnapshot(GetCloudBackupSnapshotArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot", TypeShape.of(GetCloudBackupSnapshotResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -5295,6 +6386,62 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetCloudBackupSnapshotExportBucketResult> getCloudBackupSnapshotExportBucket(GetCloudBackupSnapshotExportBucketArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", TypeShape.of(GetCloudBackupSnapshotExportBucketResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.CloudBackupSnapshotExportBucket
+     * 
+     * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucket;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .iamRoleId("{IAM_ROLE_ID}")
+     *             .bucketName("example-bucket")
+     *             .cloudProvider("AWS")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotExportBucket(GetCloudBackupSnapshotExportBucketArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .exportBucketId(testCloudBackupSnapshotExportBucket.exportBucketId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetCloudBackupSnapshotExportBucketResult> getCloudBackupSnapshotExportBucketPlain(GetCloudBackupSnapshotExportBucketPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", TypeShape.of(GetCloudBackupSnapshotExportBucketResult.class), args, Utilities.withVersion(options));
     }
@@ -5461,6 +6608,61 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetCloudBackupSnapshotExportBucketsInvokeResult> getCloudBackupSnapshotExportBuckets(GetCloudBackupSnapshotExportBucketsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", TypeShape.of(GetCloudBackupSnapshotExportBucketsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportBuckets
+     * 
+     * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucket;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .iamRoleId("{IAM_ROLE_ID}")
+     *             .bucketName("example-bucket")
+     *             .cloudProvider("AWS")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotExportBuckets(GetCloudBackupSnapshotExportBucketsArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotExportBucketsInvokeResult> getCloudBackupSnapshotExportBuckets(GetCloudBackupSnapshotExportBucketsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", TypeShape.of(GetCloudBackupSnapshotExportBucketsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -5729,6 +6931,77 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetCloudBackupSnapshotExportJobResult> getCloudBackupSnapshotExportJob(GetCloudBackupSnapshotExportJobArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", TypeShape.of(GetCloudBackupSnapshotExportJobResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+     * 
+     * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucket;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportJob;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportJobArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .iamRoleId("{IAM_ROLE_ID}")
+     *             .bucketName("example_bucket")
+     *             .cloudProvider("AWS")
+     *             .build());
+     * 
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .clusterName("{CLUSTER_NAME}")
+     *             .snapshotId("{SNAPSHOT_ID}")
+     *             .exportBucketId(testCloudBackupSnapshotExportBucket.exportBucketId())
+     *             .customDatas(CloudBackupSnapshotExportJobCustomDataArgs.builder()
+     *                 .key("exported by")
+     *                 .value("myName")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotExportJob(GetCloudBackupSnapshotExportJobArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .clusterName("{CLUSTER_NAME}")
+     *             .exportJobId(testCloudBackupSnapshotExportJob.exportJobId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotExportJobResult> getCloudBackupSnapshotExportJob(GetCloudBackupSnapshotExportJobArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", TypeShape.of(GetCloudBackupSnapshotExportJobResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -6079,6 +7352,76 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetCloudBackupSnapshotExportJobsInvokeResult> getCloudBackupSnapshotExportJobs(GetCloudBackupSnapshotExportJobsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", TypeShape.of(GetCloudBackupSnapshotExportJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportJobs
+     * 
+     * `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucket;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportJob;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportJobArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .iamRoleId("{IAM_ROLE_ID}")
+     *             .bucketName("example_bucket")
+     *             .cloudProvider("AWS")
+     *             .build());
+     * 
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .clusterName("{CLUSTER_NAME}")
+     *             .snapshotId("{SNAPSHOT_ID}")
+     *             .exportBucketId(testCloudBackupSnapshotExportBucket.exportBucketId())
+     *             .customDatas(CloudBackupSnapshotExportJobCustomDataArgs.builder()
+     *                 .key("exported by")
+     *                 .value("myName")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotExportJobs(GetCloudBackupSnapshotExportJobsArgs.builder()
+     *             .projectId("{PROJECT_ID}")
+     *             .clusterName("{CLUSTER_NAME}")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetCloudBackupSnapshotExportJobsInvokeResult> getCloudBackupSnapshotExportJobsPlain(GetCloudBackupSnapshotExportJobsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", TypeShape.of(GetCloudBackupSnapshotExportJobsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -6134,6 +7477,24 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", TypeShape.of(GetCloudBackupSnapshotRestoreJobResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.CloudBackupSnapshotRestoreJob
+     * 
+     * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", TypeShape.of(GetCloudBackupSnapshotRestoreJobResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -6447,6 +7808,80 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetCloudBackupSnapshotRestoreJobsInvokeResult> getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", TypeShape.of(GetCloudBackupSnapshotRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getCloudBackupSnapshotRestoreJobs
+     * 
+     * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .description("MyDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .snapshotId(testCloudBackupSnapshot.id())
+     *             .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
+     *                 .automated(true)
+     *                 .targetClusterName("MyCluster")
+     *                 .targetProjectId("5cf5a45a9ccf6400e60981b6")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetCloudBackupSnapshotRestoreJobsInvokeResult> getCloudBackupSnapshotRestoreJobsPlain(GetCloudBackupSnapshotRestoreJobsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", TypeShape.of(GetCloudBackupSnapshotRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -6622,6 +8057,64 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", TypeShape.of(GetCloudBackupSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getCloudBackupSnapshots
+     * 
+     * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.cloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
+     *             .groupId("5d0f1f73cf09a29120e173cf")
+     *             .clusterName("MyClusterTest")
+     *             .description("SomeDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
+     *             .groupId(testCloudBackupSnapshots.groupId())
+     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", TypeShape.of(GetCloudBackupSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -7099,6 +8592,111 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetCloudProviderAccessSetupResult> getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", TypeShape.of(GetCloudProviderAccessSetupResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
+     * 
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### With AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### With AZURE
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("AZURE")
+     *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+     *                 .atlasAzureAppId("9f2deb0d-be22-4524-a403-df531868bac0")
+     *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
+     *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetCloudProviderAccessSetupResult> getCloudProviderAccessSetupPlain(GetCloudProviderAccessSetupPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", TypeShape.of(GetCloudProviderAccessSetupResult.class), args, Utilities.withVersion(options));
     }
@@ -7395,6 +8993,80 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetClusterResult> getCluster(GetClusterArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.Cluster
+     * 
+     * `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Cluster;
+     * import com.pulumi.mongodbatlas.ClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("cluster-test")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
+     *                 .numShards(1)
+     *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+     *                     .regionName("US_EAST_1")
+     *                     .electableNodes(3)
+     *                     .priority(7)
+     *                     .readOnlyNodes(0)
+     *                     .build())
+     *                 .build())
+     *             .cloudBackup(true)
+     *             .autoScalingDiskGbEnabled(true)
+     *             .providerName("AWS")
+     *             .providerInstanceSizeName("M40")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCluster(GetClusterArgs.builder()
+     *             .projectId(testCluster.projectId())
+     *             .name(testCluster.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetClusterResult> getClusterPlain(GetClusterPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
@@ -7525,6 +9197,49 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetClusterOutageSimulationResult> getClusterOutageSimulation(GetClusterOutageSimulationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", TypeShape.of(GetClusterOutageSimulationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterOutageSimulationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var outageSimulation = MongodbatlasFunctions.getClusterOutageSimulation(GetClusterOutageSimulationArgs.builder()
+     *             .projectId("64707f06c519c20c3a2b1b03")
+     *             .clusterName("Cluster0")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetClusterOutageSimulationResult> getClusterOutageSimulation(GetClusterOutageSimulationArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", TypeShape.of(GetClusterOutageSimulationResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -7859,6 +9574,79 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetClustersInvokeResult> getClusters(GetClustersArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getClusters:getClusters", TypeShape.of(GetClustersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getClusters
+     * 
+     * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Cluster;
+     * import com.pulumi.mongodbatlas.ClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("cluster-test")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
+     *                 .numShards(1)
+     *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+     *                     .regionName("US_EAST_1")
+     *                     .electableNodes(3)
+     *                     .priority(7)
+     *                     .readOnlyNodes(0)
+     *                     .build())
+     *                 .build())
+     *             .cloudBackup(true)
+     *             .autoScalingDiskGbEnabled(true)
+     *             .providerName("AWS")
+     *             .providerInstanceSizeName("M40")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getClusters(GetClustersArgs.builder()
+     *             .projectId(testCluster.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetClustersInvokeResult> getClustersPlain(GetClustersPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getClusters:getClusters", TypeShape.of(GetClustersInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -8075,6 +9863,49 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetControlPlaneIpAddressesResult> getControlPlaneIpAddresses(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", TypeShape.of(GetControlPlaneIpAddressesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getControlPlaneIpAddresses
+     * 
+     * `mongodbatlas.getControlPlaneIpAddresses` returns all control plane IP addresses.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getControlPlaneIpAddresses();
+     * 
+     *         ctx.export("outbound-aws-ip-addresses", test.applyValue(getControlPlaneIpAddressesResult -> getControlPlaneIpAddressesResult.outbound().aws()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetControlPlaneIpAddressesResult> getControlPlaneIpAddresses(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", TypeShape.of(GetControlPlaneIpAddressesResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -8397,6 +10228,76 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetCustomDbRoleResult> getCustomDbRole(GetCustomDbRoleArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCustomDbRole:getCustomDbRole", TypeShape.of(GetCustomDbRoleResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.CustomDbRole
+     * 
+     * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CustomDbRole;
+     * import com.pulumi.mongodbatlas.CustomDbRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .roleName("myCustomRole")
+     *             .actions(            
+     *                 CustomDbRoleActionArgs.builder()
+     *                     .action("UPDATE")
+     *                     .resources(CustomDbRoleActionResourceArgs.builder()
+     *                         .collectionName("")
+     *                         .databaseName("anyDatabase")
+     *                         .build())
+     *                     .build(),
+     *                 CustomDbRoleActionArgs.builder()
+     *                     .action("INSERT")
+     *                     .resources(CustomDbRoleActionResourceArgs.builder()
+     *                         .collectionName("")
+     *                         .databaseName("anyDatabase")
+     *                         .build())
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCustomDbRole(GetCustomDbRoleArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .roleName(testRole.roleName())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetCustomDbRoleResult> getCustomDbRolePlain(GetCustomDbRolePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCustomDbRole:getCustomDbRole", TypeShape.of(GetCustomDbRoleResult.class), args, Utilities.withVersion(options));
     }
@@ -8446,6 +10347,22 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", TypeShape.of(GetCustomDbRolesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getCustomDbRoles
+     * 
+     * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", TypeShape.of(GetCustomDbRolesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -8621,6 +10538,59 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetCustomDnsConfigurationClusterAwsResult> getCustomDnsConfigurationClusterAws(GetCustomDnsConfigurationClusterAwsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", TypeShape.of(GetCustomDnsConfigurationClusterAwsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.CustomDnsConfigurationClusterAws
+     * 
+     * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CustomDnsConfigurationClusterAws;
+     * import com.pulumi.mongodbatlas.CustomDnsConfigurationClusterAwsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCustomDnsConfigurationClusterAwsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCustomDnsConfigurationClusterAws = new CustomDnsConfigurationClusterAws("testCustomDnsConfigurationClusterAws", CustomDnsConfigurationClusterAwsArgs.builder()
+     *             .projectId("<project-id>")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCustomDnsConfigurationClusterAws(GetCustomDnsConfigurationClusterAwsArgs.builder()
+     *             .projectId(testCustomDnsConfigurationClusterAws.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCustomDnsConfigurationClusterAwsResult> getCustomDnsConfigurationClusterAws(GetCustomDnsConfigurationClusterAwsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", TypeShape.of(GetCustomDnsConfigurationClusterAwsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -9109,6 +11079,115 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDataLakePipelineResult> getDataLakePipeline(GetDataLakePipelineArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", TypeShape.of(GetDataLakePipelineResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
+     * 
+     * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var projectTest = new Project("projectTest", ProjectArgs.builder()
+     *             .name("NAME OF THE PROJECT")
+     *             .orgId("ORGANIZATION ID")
+     *             .build());
+     * 
+     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name("automated-backup-test")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("GCP")
+     *                     .regionName("US_EAST_4")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(automatedBackupTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
+     *             .projectId(pipeline.projectId())
+     *             .name(pipeline.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDataLakePipelineResult> getDataLakePipelinePlain(GetDataLakePipelinePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", TypeShape.of(GetDataLakePipelineResult.class), args, Utilities.withVersion(options));
     }
@@ -9368,6 +11447,92 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetDataLakePipelineRunResult> getDataLakePipelineRun(GetDataLakePipelineRunArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun", TypeShape.of(GetDataLakePipelineRunResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
+     * 
+     * `mongodbatlas.getDataLakePipelineRun` describes a Data Lake Pipeline Run.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(clusterTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var pipelineRun = MongodbatlasFunctions.getDataLakePipelineRuns(GetDataLakePipelineRunsArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name(pipeline.name())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getDataLakePipelineRun(GetDataLakePipelineRunArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .pipelineName(pipeline.name())
+     *             .pipelineRunId(pipelineRunMongodbatlasDataLakePipelineRuns.results()[0].pipelineRunId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDataLakePipelineRunResult> getDataLakePipelineRun(GetDataLakePipelineRunArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun", TypeShape.of(GetDataLakePipelineRunResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -9769,6 +11934,85 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRuns(GetDataLakePipelineRunsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", TypeShape.of(GetDataLakePipelineRunsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
+     * 
+     * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(clusterTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getDataLakePipelineRuns(GetDataLakePipelineRunsArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .pipelineName(pipeline.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRunsPlain(GetDataLakePipelineRunsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", TypeShape.of(GetDataLakePipelineRunsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -9809,6 +12053,19 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetDataLakePipelinesInvokeResult> getDataLakePipelines(GetDataLakePipelinesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelines:getDataLakePipelines", TypeShape.of(GetDataLakePipelinesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
+     * 
+     * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetDataLakePipelinesInvokeResult> getDataLakePipelines(GetDataLakePipelinesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelines:getDataLakePipelines", TypeShape.of(GetDataLakePipelinesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -10341,6 +12598,136 @@ public final class MongodbatlasFunctions {
      * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
+    public static Output<GetDatabaseUserResult> getDatabaseUser(GetDatabaseUserArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getDatabaseUser:getDatabaseUser", TypeShape.of(GetDatabaseUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.DatabaseUser
+     * 
+     * `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
+     * 
+     * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
+     *             .username("test-acc-username")
+     *             .password("test-acc-password")
+     *             .projectId("<PROJECT-ID>")
+     *             .authDatabaseName("admin")
+     *             .roles(            
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("readWrite")
+     *                     .databaseName("admin")
+     *                     .build(),
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("atlasAdmin")
+     *                     .databaseName("admin")
+     *                     .build())
+     *             .labels(            
+     *                 DatabaseUserLabelArgs.builder()
+     *                     .key("key 1")
+     *                     .value("value 1")
+     *                     .build(),
+     *                 DatabaseUserLabelArgs.builder()
+     *                     .key("key 2")
+     *                     .value("value 2")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getDatabaseUser(GetDatabaseUserArgs.builder()
+     *             .projectId(testDatabaseUser.projectId())
+     *             .username(testDatabaseUser.username())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **Example of usage with a OIDC federated authentication user**
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
+     *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
+     *             .projectId("6414908c207f4d22f4d8f232")
+     *             .authDatabaseName("admin")
+     *             .oidcAuthType("IDP_GROUP")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("readWriteAnyDatabase")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getDatabaseUser(GetDatabaseUserArgs.builder()
+     *             .username(testDatabaseUser.username())
+     *             .projectId("6414908c207f4d22f4d8f232")
+     *             .authDatabaseName("admin")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     */
     public static CompletableFuture<GetDatabaseUserResult> getDatabaseUserPlain(GetDatabaseUserPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDatabaseUser:getDatabaseUser", TypeShape.of(GetDatabaseUserResult.class), args, Utilities.withVersion(options));
     }
@@ -10720,6 +13107,132 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", TypeShape.of(GetDatabaseUsersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getDatabaseUsers
+     * 
+     * `mongodbatlas.getDatabaseUsers` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
+     * 
+     * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
+     *             .username("test-acc-username")
+     *             .password("test-acc-password")
+     *             .projectId("<PROJECT-ID>")
+     *             .authDatabaseName("admin")
+     *             .roles(            
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("readWrite")
+     *                     .databaseName("admin")
+     *                     .build(),
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("atlasAdmin")
+     *                     .databaseName("admin")
+     *                     .build())
+     *             .labels(            
+     *                 DatabaseUserLabelArgs.builder()
+     *                     .key("key 1")
+     *                     .value("value 1")
+     *                     .build(),
+     *                 DatabaseUserLabelArgs.builder()
+     *                     .key("key 2")
+     *                     .value("value 2")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getDatabaseUsers(GetDatabaseUsersArgs.builder()
+     *             .projectId(testDatabaseUser.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * **Example of usage with a OIDC federated authentication user**
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
+     *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
+     *             .projectId("6414908c207f4d22f4d8f232")
+     *             .authDatabaseName("admin")
+     *             .oidcAuthType("IDP_GROUP")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("readWriteAnyDatabase")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getDatabaseUsers(GetDatabaseUsersArgs.builder()
+     *             .projectId("6414908c207f4d22f4d8f232")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     */
+    public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", TypeShape.of(GetDatabaseUsersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -11697,6 +14210,219 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetEncryptionAtRestResult> getEncryptionAtRest(GetEncryptionAtRestArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", TypeShape.of(GetEncryptionAtRestResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRest
+     * 
+     * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
+     * 
+     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * 
+     * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
+     * 
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * ### Configuring encryption at rest using customer key management in AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAwsKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .region(atlasRegion)
+     *                 .roleId(authRole.roleId())
+     *                 .build())
+     *             .build());
+     * 
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .name("MyCluster")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .encryptionAtRestProvider("AWS")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAwsKmsEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.awsKmsConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Configuring encryption at rest using customer key management in Azure
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .azureEnvironment("AZURE")
+     *                 .tenantId(azureTenantId)
+     *                 .subscriptionId(azureSubscriptionId)
+     *                 .clientId(azureClientId)
+     *                 .secret(azureClientSecret)
+     *                 .resourceGroupName(azureResourceGroupName)
+     *                 .keyVaultName(azureKeyVaultName)
+     *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isAzureEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.azureKeyVaultConfig().valid())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Azure Key Vault using Azure Private Link, ensuring that all traffic between Atlas and Key Vault takes place over Azure’s private network interfaces. Please review `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
+     * 
+     * ### Configuring encryption at rest using customer key management in GCP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.EncryptionAtRest;
+     * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+     * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var testEncryptionAtRest = new EncryptionAtRest("testEncryptionAtRest", EncryptionAtRestArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
+     *                 .enabled(true)
+     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getEncryptionAtRest(GetEncryptionAtRestArgs.builder()
+     *             .projectId(testEncryptionAtRest.projectId())
+     *             .build());
+     * 
+     *         ctx.export("isGcpEncryptionAtRestValid", test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult).applyValue(test -> test.applyValue(getEncryptionAtRestResult -> getEncryptionAtRestResult.googleCloudKmsConfig().valid())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetEncryptionAtRestResult> getEncryptionAtRestPlain(GetEncryptionAtRestPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", TypeShape.of(GetEncryptionAtRestResult.class), args, Utilities.withVersion(options));
     }
@@ -11860,6 +14586,60 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetEncryptionAtRestPrivateEndpointResult> getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", TypeShape.of(GetEncryptionAtRestPrivateEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EncryptionAtRestPrivateEndpoint
+     * 
+     * `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .id(endpoint.id())
+     *             .build());
+     * 
+     *         ctx.export("endpointConnectionName", single.applyValue(getEncryptionAtRestPrivateEndpointResult -> getEncryptionAtRestPrivateEndpointResult.privateEndpointConnectionName()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetEncryptionAtRestPrivateEndpointResult> getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", TypeShape.of(GetEncryptionAtRestPrivateEndpointResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -12125,6 +14905,59 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetEncryptionAtRestPrivateEndpointsInvokeResult> getEncryptionAtRestPrivateEndpoints(GetEncryptionAtRestPrivateEndpointsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", TypeShape.of(GetEncryptionAtRestPrivateEndpointsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
+     * 
+     * `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
+     * 
+     * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
+     * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var plural = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoints(GetEncryptionAtRestPrivateEndpointsArgs.builder()
+     *             .projectId(atlasProjectId)
+     *             .cloudProvider("AZURE")
+     *             .build());
+     * 
+     *         ctx.export("numberOfEndpoints", plural.applyValue(getEncryptionAtRestPrivateEndpointsResult -> getEncryptionAtRestPrivateEndpointsResult.results()).length());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetEncryptionAtRestPrivateEndpointsInvokeResult> getEncryptionAtRestPrivateEndpointsPlain(GetEncryptionAtRestPrivateEndpointsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", TypeShape.of(GetEncryptionAtRestPrivateEndpointsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -12161,6 +14994,15 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.EventTrigger` describes an Event Trigger.
      * 
      */
+    public static Output<GetEventTriggerResult> getEventTrigger(GetEventTriggerArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getEventTrigger:getEventTrigger", TypeShape.of(GetEventTriggerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.EventTrigger
+     * 
+     * `mongodbatlas.EventTrigger` describes an Event Trigger.
+     * 
+     */
     public static CompletableFuture<GetEventTriggerResult> getEventTriggerPlain(GetEventTriggerPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getEventTrigger:getEventTrigger", TypeShape.of(GetEventTriggerResult.class), args, Utilities.withVersion(options));
     }
@@ -12189,6 +15031,15 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetEventTriggersInvokeResult> getEventTriggers(GetEventTriggersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getEventTriggers:getEventTriggers", TypeShape.of(GetEventTriggersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getEventTriggers
+     * 
+     * `mongodbatlas.getEventTriggers` describes all Event Triggers.
+     * 
+     */
+    public static Output<GetEventTriggersInvokeResult> getEventTriggers(GetEventTriggersArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getEventTriggers:getEventTriggers", TypeShape.of(GetEventTriggersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -12573,6 +15424,100 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetFederatedDatabaseInstanceResult> getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", TypeShape.of(GetFederatedDatabaseInstanceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+     * 
+     * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
+     * 
+     * ## Example Usage
+     * 
+     * ### S With MongoDB Atlas Cluster As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
+     *             .projectId("PROJECT ID")
+     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### S With Amazon S3 Bucket As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
+     *             .projectId("PROJECT ID")
+     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .cloudProviderConfig(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
+     *                 .aws(GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs.builder()
+     *                     .testS3Bucket("Amazon S3 Bucket Name")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetFederatedDatabaseInstanceResult> getFederatedDatabaseInstancePlain(GetFederatedDatabaseInstancePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", TypeShape.of(GetFederatedDatabaseInstanceResult.class), args, Utilities.withVersion(options));
     }
@@ -12777,6 +15722,57 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", TypeShape.of(GetFederatedDatabaseInstancesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
+     * 
+     * `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstancesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs.builder()
+     *             .projectId("PROJECT ID")
+     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstancesPlain(GetFederatedDatabaseInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", TypeShape.of(GetFederatedDatabaseInstancesInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -12922,6 +15918,54 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetFederatedQueryLimitResult> getFederatedQueryLimit(GetFederatedQueryLimitArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", TypeShape.of(GetFederatedQueryLimitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FederatedQueryLimit
+     * 
+     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedQueryLimit(GetFederatedQueryLimitArgs.builder()
+     *             .projectId("PROJECT_ID")
+     *             .tenantName("FEDERATED_DATABASE_INSTANCE_NAME")
+     *             .limitName("LIMIT_NAME")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFederatedQueryLimitResult> getFederatedQueryLimit(GetFederatedQueryLimitArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", TypeShape.of(GetFederatedQueryLimitResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -13165,6 +16209,55 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetFederatedQueryLimitsInvokeResult> getFederatedQueryLimits(GetFederatedQueryLimitsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", TypeShape.of(GetFederatedQueryLimitsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFederatedQueryLimits
+     * 
+     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedQueryLimits(GetFederatedQueryLimitsArgs.builder()
+     *             .projectId("PROJECT_ID")
+     *             .tenantName("FEDERATED_DATABASE_INSTANCE_NAME")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetFederatedQueryLimitsInvokeResult> getFederatedQueryLimitsPlain(GetFederatedQueryLimitsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", TypeShape.of(GetFederatedQueryLimitsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -13298,6 +16391,50 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetFederatedSettingsResult> getFederatedSettings(GetFederatedSettingsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettings:getFederatedSettings", TypeShape.of(GetFederatedSettingsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFederatedSettings
+     * 
+     * `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var settings = MongodbatlasFunctions.getFederatedSettings(GetFederatedSettingsArgs.builder()
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFederatedSettingsResult> getFederatedSettings(GetFederatedSettingsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettings:getFederatedSettings", TypeShape.of(GetFederatedSettingsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -13519,6 +16656,65 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetFederatedSettingsIdentityProviderResult> getFederatedSettingsIdentityProvider(GetFederatedSettingsIdentityProviderArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", TypeShape.of(GetFederatedSettingsIdentityProviderResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FederatedSettingsIdentityProvider
+     * 
+     * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProvider;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
+     *             .federationSettingsId("627a9687f7f7f7f774de306f14")
+     *             .name("mongodb_federation_test")
+     *             .associatedDomains("yourdomain.com")
+     *             .ssoDebugEnabled(true)
+     *             .status("ACTIVE")
+     *             .ssoUrl("https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml")
+     *             .issuerUri("http://www.okta.com/exk17f7f7f7f7p50h8")
+     *             .requestBinding("HTTP-POST")
+     *             .responseSignatureAlgorithm("SHA-256")
+     *             .build());
+     * 
+     *         final var identityProviderDs = MongodbatlasFunctions.getFederatedSettingsIdentityProvider(GetFederatedSettingsIdentityProviderArgs.builder()
+     *             .federationSettingsId(identityProvider.id())
+     *             .identityProviderId("0oad4fas87jL5Xnk12971234")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFederatedSettingsIdentityProviderResult> getFederatedSettingsIdentityProvider(GetFederatedSettingsIdentityProviderArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", TypeShape.of(GetFederatedSettingsIdentityProviderResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -13809,6 +17005,64 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", TypeShape.of(GetFederatedSettingsIdentityProvidersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFederatedSettingsIdentityProviders
+     * 
+     * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+     * 
+     * Note: This implementation returns a maximum of 100 results.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProvider;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProvidersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
+     *             .federationSettingsId("627a9687f7f7f7f774de306f")
+     *             .name("mongodb_federation_test")
+     *             .associatedDomains("yourdomain.com")
+     *             .ssoDebugEnabled(true)
+     *             .status("ACTIVE")
+     *             .build());
+     * 
+     *         final var identittyProvider = MongodbatlasFunctions.getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs.builder()
+     *             .federationSettingsId(identityProvider.id())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProvidersPlain(GetFederatedSettingsIdentityProvidersPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", TypeShape.of(GetFederatedSettingsIdentityProvidersInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -14037,6 +17291,63 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetFederatedSettingsOrgConfigResult> getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", TypeShape.of(GetFederatedSettingsOrgConfigResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FederatedSettingsOrgConfig
+     * 
+     * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
+     *             .federationSettingsId("627a9687f7f7f7f774de306f14")
+     *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
+     *             .domainRestrictionEnabled(false)
+     *             .domainAllowLists("mydomain.com")
+     *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
+     *             .build());
+     * 
+     *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetFederatedSettingsOrgConfigResult> getFederatedSettingsOrgConfigPlain(GetFederatedSettingsOrgConfigPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", TypeShape.of(GetFederatedSettingsOrgConfigResult.class), args, Utilities.withVersion(options));
     }
@@ -14206,6 +17517,62 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetFederatedSettingsOrgConfigsInvokeResult> getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", TypeShape.of(GetFederatedSettingsOrgConfigsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFederatedSettingsOrgConfigs
+     * 
+     * `mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
+     *             .federationSettingsId("627a9687f7f7f7f774de306f14")
+     *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
+     *             .domainRestrictionEnabled(false)
+     *             .domainAllowLists("mydomain.com")
+     *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
+     *             .build());
+     * 
+     *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFederatedSettingsOrgConfigsInvokeResult> getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", TypeShape.of(GetFederatedSettingsOrgConfigsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -14581,6 +17948,86 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetFederatedSettingsOrgRoleMappingResult> getFederatedSettingsOrgRoleMapping(GetFederatedSettingsOrgRoleMappingArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", TypeShape.of(GetFederatedSettingsOrgRoleMappingResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FederatedSettingsOrgRoleMapping
+     * 
+     * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
+     * import com.pulumi.mongodbatlas.inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
+     *             .federationSettingsId(federatedSettings.id())
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .externalGroupName("myGrouptest")
+     *             .roleAssignments(            
+     *                 FederatedSettingsOrgRoleMappingRoleAssignmentArgs.builder()
+     *                     .orgId("627a9683e7f7f7ff7fe306f14")
+     *                     .roles(                    
+     *                         "ORG_MEMBER",
+     *                         "ORG_GROUP_CREATOR",
+     *                         "ORG_BILLING_ADMIN")
+     *                     .build(),
+     *                 FederatedSettingsOrgRoleMappingRoleAssignmentArgs.builder()
+     *                     .groupId("628aa20db7f7f7f98b81b8")
+     *                     .roles(                    
+     *                         "GROUP_OWNER",
+     *                         "GROUP_DATA_ACCESS_ADMIN",
+     *                         "GROUP_SEARCH_INDEX_EDITOR",
+     *                         "GROUP_DATA_ACCESS_READ_ONLY")
+     *                     .build(),
+     *                 FederatedSettingsOrgRoleMappingRoleAssignmentArgs.builder()
+     *                     .groupId("62b477f7f7f7f5e741489c")
+     *                     .roles(                    
+     *                         "GROUP_OWNER",
+     *                         "GROUP_DATA_ACCESS_ADMIN",
+     *                         "GROUP_SEARCH_INDEX_EDITOR",
+     *                         "GROUP_DATA_ACCESS_READ_ONLY",
+     *                         "GROUP_DATA_ACCESS_READ_WRITE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var roleMapping = MongodbatlasFunctions.getFederatedSettingsOrgRoleMapping(GetFederatedSettingsOrgRoleMappingArgs.builder()
+     *             .federationSettingsId(orgGroupRoleMappingImport.id())
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .roleMappingId("627a9673e7f7f7ff7fe306f14")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetFederatedSettingsOrgRoleMappingResult> getFederatedSettingsOrgRoleMappingPlain(GetFederatedSettingsOrgRoleMappingPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", TypeShape.of(GetFederatedSettingsOrgRoleMappingResult.class), args, Utilities.withVersion(options));
     }
@@ -14624,6 +18071,20 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", TypeShape.of(GetFederatedSettingsOrgRoleMappingsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFederatedSettingsOrgRoleMappings
+     * 
+     * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", TypeShape.of(GetFederatedSettingsOrgRoleMappingsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -15133,6 +18594,130 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetGlobalClusterConfigResult> getGlobalClusterConfig(GetGlobalClusterConfigArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", TypeShape.of(GetGlobalClusterConfigResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.GlobalClusterConfig
+     * 
+     * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.GlobalClusterConfig;
+     * import com.pulumi.mongodbatlas.GlobalClusterConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigCustomZoneMappingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("<CLUSTER-NAME>")
+     *             .clusterType("GEOSHARDED")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(            
+     *                 AdvancedClusterReplicationSpecArgs.builder()
+     *                     .zoneName("Zone 1")
+     *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                             .instanceSize("M30")
+     *                             .nodeCount(3)
+     *                             .build())
+     *                         .providerName("AWS")
+     *                         .priority(7)
+     *                         .regionName("EU_CENTRAL_1")
+     *                         .build())
+     *                     .build(),
+     *                 AdvancedClusterReplicationSpecArgs.builder()
+     *                     .zoneName("Zone 1")
+     *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                             .instanceSize("M30")
+     *                             .nodeCount(3)
+     *                             .build())
+     *                         .providerName("AWS")
+     *                         .priority(7)
+     *                         .regionName("EU_CENTRAL_1")
+     *                         .build())
+     *                     .build(),
+     *                 AdvancedClusterReplicationSpecArgs.builder()
+     *                     .zoneName("Zone 2")
+     *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                             .instanceSize("M30")
+     *                             .nodeCount(3)
+     *                             .build())
+     *                         .providerName("AWS")
+     *                         .priority(7)
+     *                         .regionName("US_EAST_2")
+     *                         .build())
+     *                     .build(),
+     *                 AdvancedClusterReplicationSpecArgs.builder()
+     *                     .zoneName("Zone 2")
+     *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                             .instanceSize("M30")
+     *                             .nodeCount(3)
+     *                             .build())
+     *                         .providerName("AWS")
+     *                         .priority(7)
+     *                         .regionName("US_EAST_2")
+     *                         .build())
+     *                     .build())
+     *             .build());
+     * 
+     *         var configGlobalClusterConfig = new GlobalClusterConfig("configGlobalClusterConfig", GlobalClusterConfigArgs.builder()
+     *             .projectId(test.projectId())
+     *             .clusterName(test.name())
+     *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()
+     *                 .db("mydata")
+     *                 .collection("publishers")
+     *                 .customShardKey("city")
+     *                 .build())
+     *             .customZoneMappings(GlobalClusterConfigCustomZoneMappingArgs.builder()
+     *                 .location("CA")
+     *                 .zone("Zone 1")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var config = MongodbatlasFunctions.getGlobalClusterConfig(GetGlobalClusterConfigArgs.builder()
+     *             .projectId(configGlobalClusterConfig.projectId())
+     *             .clusterName(configGlobalClusterConfig.clusterName())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetGlobalClusterConfigResult> getGlobalClusterConfigPlain(GetGlobalClusterConfigPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", TypeShape.of(GetGlobalClusterConfigResult.class), args, Utilities.withVersion(options));
     }
@@ -15326,6 +18911,70 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetLdapConfigurationResult> getLdapConfiguration(GetLdapConfigurationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", TypeShape.of(GetLdapConfigurationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.LdapConfiguration
+     * 
+     * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.LdapConfiguration;
+     * import com.pulumi.mongodbatlas.LdapConfigurationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetLdapConfigurationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
+     *             .name("NAME OF THE PROJECT")
+     *             .orgId("ORG ID")
+     *             .build());
+     * 
+     *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()
+     *             .projectId(testProject.id())
+     *             .authenticationEnabled(true)
+     *             .hostname("HOSTNAME")
+     *             .port(636)
+     *             .bindUsername("USERNAME")
+     *             .bindPassword("PASSWORD")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getLdapConfiguration(GetLdapConfigurationArgs.builder()
+     *             .projectId(testLdapConfiguration.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetLdapConfigurationResult> getLdapConfiguration(GetLdapConfigurationArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", TypeShape.of(GetLdapConfigurationResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -15654,6 +19303,94 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetLdapVerifyResult> getLdapVerify(GetLdapVerifyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getLdapVerify:getLdapVerify", TypeShape.of(GetLdapVerifyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.LdapVerify
+     * 
+     * `mongodbatlas.LdapVerify` describes a LDAP Verify.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.LdapVerify;
+     * import com.pulumi.mongodbatlas.LdapVerifyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetLdapVerifyArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
+     *             .name("NAME OF THE PROJECT")
+     *             .orgId("ORG ID")
+     *             .build());
+     * 
+     *         var testAdvancedCluster = new AdvancedCluster("testAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId(testProject.id())
+     *             .name("ClusterName")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()
+     *             .projectId(testProject.id())
+     *             .hostname("HOSTNAME")
+     *             .port(636)
+     *             .bindUsername("USERNAME")
+     *             .bindPassword("PASSWORD")
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(testAdvancedCluster)
+     *                 .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getLdapVerify(GetLdapVerifyArgs.builder()
+     *             .projectId(testLdapVerify.projectId())
+     *             .requestId(testLdapVerify.requestId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetLdapVerifyResult> getLdapVerify(GetLdapVerifyArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getLdapVerify:getLdapVerify", TypeShape.of(GetLdapVerifyResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -16121,6 +19858,101 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetMaintenanceWindowResult> getMaintenanceWindow(GetMaintenanceWindowArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", TypeShape.of(GetMaintenanceWindowResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.MaintenanceWindow
+     * 
+     * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Examples Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MaintenanceWindow;
+     * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
+     *             .projectId("<your-project-id>")
+     *             .dayOfWeek(3)
+     *             .hourOfDay(4)
+     *             .autoDeferOnceEnabled(true)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getMaintenanceWindow(GetMaintenanceWindowArgs.builder()
+     *             .projectId(testMaintenanceWindow.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MaintenanceWindow;
+     * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
+     *             .projectId("<your-project-id>")
+     *             .startAsap(true)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getMaintenanceWindow(GetMaintenanceWindowArgs.builder()
+     *             .projectId(testMaintenanceWindow.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetMaintenanceWindowResult> getMaintenanceWindowPlain(GetMaintenanceWindowPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", TypeShape.of(GetMaintenanceWindowResult.class), args, Utilities.withVersion(options));
     }
@@ -16293,6 +20125,63 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetMongodbEmployeeAccessGrantResult> getMongodbEmployeeAccessGrant(GetMongodbEmployeeAccessGrantArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", TypeShape.of(GetMongodbEmployeeAccessGrantResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
+     * 
+     * `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrant;
+     * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new MongodbEmployeeAccessGrant("example", MongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .grantType("CLUSTER_INFRASTRUCTURE_AND_APP_SERVICES_SYNC_DATA")
+     *             .expirationTime("2025-01-01T12:00:00Z")
+     *             .build());
+     * 
+     *         final var dsExample = MongodbatlasFunctions.getMongodbEmployeeAccessGrant(GetMongodbEmployeeAccessGrantArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .build());
+     * 
+     *         ctx.export("grantType", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.grantType()));
+     *         ctx.export("expirationTime", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.expirationTime()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMongodbEmployeeAccessGrantResult> getMongodbEmployeeAccessGrant(GetMongodbEmployeeAccessGrantArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", TypeShape.of(GetMongodbEmployeeAccessGrantResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -16589,6 +20478,66 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetNetworkContainerResult> getNetworkContainer(GetNetworkContainerArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getNetworkContainer:getNetworkContainer", TypeShape.of(GetNetworkContainerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.NetworkContainer
+     * 
+     * `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
+     * 
+     * &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### Basic Example.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.NetworkContainer;
+     * import com.pulumi.mongodbatlas.NetworkContainerArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetNetworkContainerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .atlasCidrBlock("10.8.0.0/21")
+     *             .providerName("AWS")
+     *             .regionName("US_EAST_1")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getNetworkContainer(GetNetworkContainerArgs.builder()
+     *             .projectId(testNetworkContainer.projectId())
+     *             .containerId(testNetworkContainer.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetNetworkContainerResult> getNetworkContainerPlain(GetNetworkContainerPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getNetworkContainer:getNetworkContainer", TypeShape.of(GetNetworkContainerResult.class), args, Utilities.withVersion(options));
     }
@@ -16764,6 +20713,64 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetNetworkContainersInvokeResult> getNetworkContainers(GetNetworkContainersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getNetworkContainers:getNetworkContainers", TypeShape.of(GetNetworkContainersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getNetworkContainers
+     * 
+     * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### Basic Example.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.NetworkContainer;
+     * import com.pulumi.mongodbatlas.NetworkContainerArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetNetworkContainersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .atlasCidrBlock("10.8.0.0/21")
+     *             .providerName("AWS")
+     *             .regionName("US_EAST_1")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
+     *             .projectId(testNetworkContainer.projectId())
+     *             .providerName(testNetworkContainer.providerName())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNetworkContainersInvokeResult> getNetworkContainers(GetNetworkContainersArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getNetworkContainers:getNetworkContainers", TypeShape.of(GetNetworkContainersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -17065,6 +21072,67 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetNetworkPeeringResult> getNetworkPeering(GetNetworkPeeringArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getNetworkPeering:getNetworkPeering", TypeShape.of(GetNetworkPeeringResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.NetworkPeering
+     * 
+     * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### Basic Example (AWS).
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.NetworkPeering;
+     * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
+     *             .accepterRegionName("us-east-1")
+     *             .projectId("<YOUR-PROJEC-ID>")
+     *             .containerId("507f1f77bcf86cd799439011")
+     *             .providerName("AWS")
+     *             .routeTableCidrBlock("192.168.0.0/24")
+     *             .vpcId("vpc-abc123abc123")
+     *             .awsAccountId("abc123abc123")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getNetworkPeering(GetNetworkPeeringArgs.builder()
+     *             .projectId(testNetworkPeering.projectId())
+     *             .peeringId(testNetworkPeering.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetNetworkPeeringResult> getNetworkPeeringPlain(GetNetworkPeeringPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getNetworkPeering:getNetworkPeering", TypeShape.of(GetNetworkPeeringResult.class), args, Utilities.withVersion(options));
     }
@@ -17246,6 +21314,66 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetNetworkPeeringsInvokeResult> getNetworkPeerings(GetNetworkPeeringsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", TypeShape.of(GetNetworkPeeringsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getNetworkPeerings
+     * 
+     * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### Basic Example (AWS).
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.NetworkPeering;
+     * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
+     *             .accepterRegionName("us-east-1")
+     *             .projectId("<YOUR-PROJEC-ID>")
+     *             .containerId("507f1f77bcf86cd799439011")
+     *             .providerName("AWS")
+     *             .routeTableCidrBlock("192.168.0.0/24")
+     *             .vpcId("vpc-abc123abc123")
+     *             .awsAccountId("abc123abc123")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getNetworkPeerings(GetNetworkPeeringsArgs.builder()
+     *             .projectId(testNetworkPeering.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNetworkPeeringsInvokeResult> getNetworkPeerings(GetNetworkPeeringsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", TypeShape.of(GetNetworkPeeringsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -17533,6 +21661,63 @@ public final class MongodbatlasFunctions {
      * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
      * 
      */
+    public static Output<GetOnlineArchiveResult> getOnlineArchive(GetOnlineArchiveArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOnlineArchive:getOnlineArchive", TypeShape.of(GetOnlineArchiveResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.OnlineArchive
+     * 
+     * `mongodbatlas.OnlineArchive` describes an Online Archive
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ## Attributes reference
+     * 
+     * * `db_name`          -  Name of the database that contains the collection.
+     * * `coll_name`        -  Name of the collection.
+     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
+     * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+     * 
+     * ### Criteria
+     * * `type`          - Type of criteria (DATE, CUSTOM)
+     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+     * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * 
+     * ### Data Process Region
+     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * 
+     * ### Schedule
+     * 
+     * * `type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
+     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
+     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `day_of_month`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
+     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
+     * 
+     * ### Partition
+     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
+     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * 
+     * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
+     * 
+     */
     public static CompletableFuture<GetOnlineArchiveResult> getOnlineArchivePlain(GetOnlineArchivePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOnlineArchive:getOnlineArchive", TypeShape.of(GetOnlineArchiveResult.class), args, Utilities.withVersion(options));
     }
@@ -17753,6 +21938,61 @@ public final class MongodbatlasFunctions {
      * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      */
+    public static Output<GetOnlineArchivesInvokeResult> getOnlineArchives(GetOnlineArchivesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOnlineArchives:getOnlineArchives", TypeShape.of(GetOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.OnlineArchive
+     * 
+     * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ## Attributes reference
+     * 
+     * * `db_name` - Name of the database that contains the collection.
+     * * `coll_name` -  Name of the collection.
+     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
+     * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+     * 
+     * ### Criteria
+     * * `type` - Type of criteria (DATE, CUSTOM)
+     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+     * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * 
+     * ### Data Process Region
+     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * 
+     * ### Schedule
+     * 
+     * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
+     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `day_of_month` - Day of the month when the scheduled archive starts.
+     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * 
+     * ### Partition
+     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
+     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * 
+     */
     public static CompletableFuture<GetOnlineArchivesInvokeResult> getOnlineArchivesPlain(GetOnlineArchivesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOnlineArchives:getOnlineArchives", TypeShape.of(GetOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -17781,6 +22021,15 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetOrgInvitationResult> getOrgInvitation(GetOrgInvitationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrgInvitation:getOrgInvitation", TypeShape.of(GetOrgInvitationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.OrgInvitation
+     * 
+     * `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
+     * 
+     */
+    public static Output<GetOrgInvitationResult> getOrgInvitation(GetOrgInvitationArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getOrgInvitation:getOrgInvitation", TypeShape.of(GetOrgInvitationResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -17925,6 +22174,51 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetOrganizationResult> getOrganization(GetOrganizationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrganization:getOrganization", TypeShape.of(GetOrganizationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.Organization
+     * 
+     * `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
+     * 
+     * ## Example Usage
+     * 
+     * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrganizationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getOrganization(GetOrganizationArgs.builder()
+     *             .orgId("<org_id>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetOrganizationResult> getOrganization(GetOrganizationArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getOrganization:getOrganization", TypeShape.of(GetOrganizationResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -18239,6 +22533,51 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetOrganizationsInvokeResult> getOrganizations(GetOrganizationsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrganizations:getOrganizations", TypeShape.of(GetOrganizationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getOrganizations
+     * 
+     * `mongodbatlas.getOrganizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrganizationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getOrganizations(GetOrganizationsArgs.builder()
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetOrganizationsInvokeResult> getOrganizationsPlain(GetOrganizationsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOrganizations:getOrganizations", TypeShape.of(GetOrganizationsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -18273,6 +22612,17 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalMode(GetPrivateEndpointRegionalModeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", TypeShape.of(GetPrivateEndpointRegionalModeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: private_endpoint_regional_mode
+     * 
+     * `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     */
+    public static Output<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalMode(GetPrivateEndpointRegionalModeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", TypeShape.of(GetPrivateEndpointRegionalModeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -18461,6 +22811,65 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetPrivateLinkEndpointResult> getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", TypeShape.of(GetPrivateLinkEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.PrivateLinkEndpoint
+     * 
+     * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .providerName("AWS")
+     *             .region("US_EAST_1")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
+     *             .projectId(testPrivateLinkEndpoint.projectId())
+     *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
+    public static Output<GetPrivateLinkEndpointResult> getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", TypeShape.of(GetPrivateLinkEndpointResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -19091,6 +23500,149 @@ public final class MongodbatlasFunctions {
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
+    public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", TypeShape.of(GetPrivateLinkEndpointServiceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.PrivateLinkEndpointService
+     * 
+     * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+     * import com.pulumi.aws.vpcEndpoint;
+     * import com.pulumi.aws.VpcEndpointArgs;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .providerName("AWS")
+     *             .region("US_EAST_1")
+     *             .build());
+     * 
+     *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
+     *             .vpcId("vpc-7fc0a543")
+     *             .serviceName(testPrivateLinkEndpoint.endpointServiceName())
+     *             .vpcEndpointType("Interface")
+     *             .subnetIds("subnet-de0406d2")
+     *             .securityGroupIds("sg-3f238186")
+     *             .build());
+     * 
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+     *             .projectId(testPrivateLinkEndpoint.projectId())
+     *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+     *             .endpointServiceId(ptfeService.id())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
+     *             .projectId(testPrivateLinkEndpointService.projectId())
+     *             .privateLinkId(testPrivateLinkEndpointService.privateLinkId())
+     *             .interfaceEndpointId(testPrivateLinkEndpointService.interfaceEndpointId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example with Azure
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+     * import com.pulumi.azurerm.privateEndpoint;
+     * import com.pulumi.azurerm.PrivateEndpointArgs;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AZURE")
+     *             .region("eastus2")
+     *             .build());
+     * 
+     *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
+     *             .name("endpoint-test")
+     *             .location(testAzurermResourceGroup.location())
+     *             .resourceGroupName(resourceGroupName)
+     *             .subnetId(testAzurermSubnet.id())
+     *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *             .build());
+     * 
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+     *             .projectId(testPrivateLinkEndpoint.projectId())
+     *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+     *             .endpointServiceId(testPrivateEndpoint.id())
+     *             .privateEndpointIpAddress(testPrivateEndpoint.privateServiceConnection()[0].privateIpAddress())
+     *             .providerName("AZURE")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
+     *             .projectId(testPrivateLinkEndpointService.projectId())
+     *             .privateLinkId(testPrivateLinkEndpointService.privateLinkId())
+     *             .interfaceEndpointId(testPrivateLinkEndpointService.interfaceEndpointId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", TypeShape.of(GetPrivateLinkEndpointServiceResult.class), args, Utilities.withVersion(options));
     }
@@ -19351,6 +23903,71 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> getPrivatelinkEndpointServiceDataFederationOnlineArchive(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive
+     * 
+     * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
+     *             .orgId(atlasOrgId)
+     *             .name(atlasProjectName)
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .endpointId("vpce-046cf43c79424d4c9")
+     *             .providerName("AWS")
+     *             .comment("Test")
+     *             .region("US_EAST_1")
+     *             .customerEndpointDnsName("vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchive(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .endpointId(test.endpointId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivePlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult.class), args, Utilities.withVersion(options));
     }
@@ -19544,6 +24161,70 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives
+     * 
+     * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
+     *             .orgId(atlasOrgId)
+     *             .name(atlasProjectName)
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .endpointId("vpce-046cf43c79424d4c9")
+     *             .providerName("AWS")
+     *             .comment("Test")
+     *             .region("US_EAST_1")
+     *             .customerEndpointDnsName("vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -20191,6 +24872,152 @@ public final class MongodbatlasFunctions {
      * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
      * 
      */
+    public static Output<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", TypeShape.of(GetPrivatelinkEndpointServiceServerlessResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
+     * 
+     * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .name("test-db")
+     *             .providerSettingsBackingProviderName("AWS")
+     *             .providerSettingsProviderName("SERVERLESS")
+     *             .providerSettingsRegionName("US_EAST_1")
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName("test-db")
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName("AWS")
+     *             .comment("New serverless endpoint")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .name("test-db")
+     *             .providerSettingsBackingProviderName("AZURE")
+     *             .providerSettingsProviderName("SERVERLESS")
+     *             .providerSettingsRegionName("US_EAST")
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName("AZURE")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName("test-db")
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName("AZURE")
+     *             .comment("New serverless endpoint")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+     * 
+     */
     public static CompletableFuture<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerlessPlain(GetPrivatelinkEndpointServiceServerlessPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", TypeShape.of(GetPrivatelinkEndpointServiceServerlessResult.class), args, Utilities.withVersion(options));
     }
@@ -20615,6 +25442,147 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", TypeShape.of(GetPrivatelinkEndpointsServiceServerlessInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
+     * 
+     * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .name("test-db")
+     *             .providerSettingsBackingProviderName("AWS")
+     *             .providerSettingsProviderName("SERVERLESS")
+     *             .providerSettingsRegionName("US_EAST_1")
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName("test-db")
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName("AWS")
+     *             .comment("New serverless endpoint")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .name("test-db")
+     *             .providerSettingsBackingProviderName("AZURE")
+     *             .providerSettingsProviderName("SERVERLESS")
+     *             .providerSettingsRegionName("US_EAST")
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName("AZURE")
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName("test-db")
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName("AZURE")
+     *             .comment("New serverless endpoint")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", TypeShape.of(GetPrivatelinkEndpointsServiceServerlessInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -21541,6 +26509,137 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetProjectResult> getProject(GetProjectArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProject:getProject", TypeShape.of(GetProjectResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.Project
+     * 
+     * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getRolesOrgId();
+     * 
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
+     *             .name("project-name")
+     *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId("5e0fa8c99ccf641c722fe645")
+     *                     .roleNames("GROUP_OWNER")
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId("5e1dd7b4f2a30ba80a70cd4rw")
+     *                     .roleNames(                    
+     *                         "GROUP_READ_ONLY",
+     *                         "GROUP_DATA_ACCESS_READ_WRITE")
+     *                     .build())
+     *             .limits(ProjectLimitArgs.builder()
+     *                 .name("atlas.project.deployment.clusters")
+     *                 .value(26)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var testGetProject = MongodbatlasFunctions.getProject(GetProjectArgs.builder()
+     *             .projectId(testProject.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Using name attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
+     *             .name("project-name")
+     *             .orgId("<ORG_ID>")
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId("5e0fa8c99ccf641c722fe645")
+     *                     .roleNames("GROUP_OWNER")
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId("5e1dd7b4f2a30ba80a70cd4rw")
+     *                     .roleNames(                    
+     *                         "GROUP_READ_ONLY",
+     *                         "GROUP_DATA_ACCESS_READ_WRITE")
+     *                     .build())
+     *             .limits(ProjectLimitArgs.builder()
+     *                 .name("atlas.project.deployment.clusters")
+     *                 .value(26)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getProject(GetProjectArgs.builder()
+     *             .name(testProject.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetProjectResult> getProjectPlain(GetProjectPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProject:getProject", TypeShape.of(GetProjectResult.class), args, Utilities.withVersion(options));
     }
@@ -21701,6 +26800,59 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetProjectApiKeyResult> getProjectApiKey(GetProjectApiKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKey:getProjectApiKey", TypeShape.of(GetProjectApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Using project_id and api_key_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectApiKey;
+     * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProjectApiKey = new ProjectApiKey("testProjectApiKey", ProjectApiKeyArgs.builder()
+     *             .description("Description of your API key")
+     *             .projectAssignments(ProjectApiKeyProjectAssignmentArgs.builder()
+     *                 .projectId("64259ee860c43338194b0f8e")
+     *                 .roleNames("GROUP_READ_ONLY")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getProjectApiKey(GetProjectApiKeyArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .apiKeyId(testMongodbatlasApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetProjectApiKeyResult> getProjectApiKey(GetProjectApiKeyArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKey:getProjectApiKey", TypeShape.of(GetProjectApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -21921,6 +27073,48 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetProjectApiKeysInvokeResult> getProjectApiKeys(GetProjectApiKeysArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", TypeShape.of(GetProjectApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .projectId("32b6e34b3d91647abb20e7b8")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetProjectApiKeysInvokeResult> getProjectApiKeysPlain(GetProjectApiKeysPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", TypeShape.of(GetProjectApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -22093,6 +27287,63 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetProjectInvitationResult> getProjectInvitation(GetProjectInvitationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectInvitation:getProjectInvitation", TypeShape.of(GetProjectInvitationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.ProjectInvitation
+     * 
+     * `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectInvitation;
+     * import com.pulumi.mongodbatlas.ProjectInvitationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectInvitationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProjectInvitation = new ProjectInvitation("testProjectInvitation", ProjectInvitationArgs.builder()
+     *             .username("test-acc-username")
+     *             .projectId("<PROJECT-ID>")
+     *             .roles("GROUP_DATA_ACCESS_READ_WRITE")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getProjectInvitation(GetProjectInvitationArgs.builder()
+     *             .projectId(testProjectInvitation.projectId())
+     *             .username(testProjectInvitation.username())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetProjectInvitationResult> getProjectInvitation(GetProjectInvitationArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectInvitation:getProjectInvitation", TypeShape.of(GetProjectInvitationResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -22833,6 +28084,177 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
      * 
      */
+    public static Output<GetProjectIpAccessListResult> getProjectIpAccessList(GetProjectIpAccessListArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", TypeShape.of(GetProjectIpAccessListResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.ProjectIpAccessList
+     * 
+     * `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+     * 
+     * ## Example Usage
+     * 
+     * ### Using CIDR Block
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectIpAccessList;
+     * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .cidrBlock("1.2.3.4/32")
+     *             .comment("cidr block for tf acc testing")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(testProjectIpAccessList.projectId())
+     *             .cidrBlock(testProjectIpAccessList.cidrBlock())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Using IP Address
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectIpAccessList;
+     * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .comment("ip address for tf acc testing")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(testProjectIpAccessList.projectId())
+     *             .ipAddress(testProjectIpAccessList.ipAddress())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Using an AWS Security Group
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.NetworkContainer;
+     * import com.pulumi.mongodbatlas.NetworkContainerArgs;
+     * import com.pulumi.mongodbatlas.NetworkPeering;
+     * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
+     * import com.pulumi.mongodbatlas.ProjectIpAccessList;
+     * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .atlasCidrBlock("192.168.208.0/21")
+     *             .providerName("AWS")
+     *             .regionName("US_EAST_1")
+     *             .build());
+     * 
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .containerId(testNetworkContainer.containerId())
+     *             .accepterRegionName("us-east-1")
+     *             .providerName("AWS")
+     *             .routeTableCidrBlock("172.31.0.0/16")
+     *             .vpcId("vpc-0d93d6f69f1578bd8")
+     *             .awsAccountId("232589400519")
+     *             .build());
+     * 
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .awsSecurityGroup("sg-0026348ec11780bd1")
+     *             .comment("TestAcc for awsSecurityGroup")
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(testNetworkPeering)
+     *                 .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(testProjectIpAccessList.projectId())
+     *             .awsSecurityGroup(testProjectIpAccessList.awsSecurityGroup())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
+     * 
+     */
     public static CompletableFuture<GetProjectIpAccessListResult> getProjectIpAccessListPlain(GetProjectIpAccessListPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", TypeShape.of(GetProjectIpAccessListResult.class), args, Utilities.withVersion(options));
     }
@@ -22972,6 +28394,52 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetProjectIpAddressesResult> getProjectIpAddresses(GetProjectIpAddressesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", TypeShape.of(GetProjectIpAddressesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getProjectIpAddresses
+     * 
+     * `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getProjectIpAddresses(GetProjectIpAddressesArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("projectServices", test.applyValue(getProjectIpAddressesResult -> getProjectIpAddressesResult.services()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetProjectIpAddressesResult> getProjectIpAddresses(GetProjectIpAddressesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", TypeShape.of(GetProjectIpAddressesResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -23455,6 +28923,79 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetProjectsInvokeResult> getProjects(GetProjectsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjects:getProjects", TypeShape.of(GetProjectsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getProjects
+     * 
+     * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getRolesOrgId();
+     * 
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
+     *             .name("project-name")
+     *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId("5e0fa8c99ccf641c722fe645")
+     *                     .roleNames("GROUP_OWNER")
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId("5e1dd7b4f2a30ba80a70cd4rw")
+     *                     .roleNames(                    
+     *                         "GROUP_READ_ONLY",
+     *                         "GROUP_DATA_ACCESS_READ_WRITE")
+     *                     .build())
+     *             .limits(ProjectLimitArgs.builder()
+     *                 .name("atlas.project.deployment.clusters")
+     *                 .value(26)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var testGetProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetProjectsInvokeResult> getProjectsPlain(GetProjectsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjects:getProjects", TypeShape.of(GetProjectsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -23783,6 +29324,88 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetPushBasedLogExportResult> getPushBasedLogExport(GetPushBasedLogExportArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", TypeShape.of(GetPushBasedLogExportResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.PushBasedLogExport
+     * 
+     * `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.PushBasedLogExport;
+     * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var project_tf = new Project("project-tf", ProjectArgs.builder()
+     *             .name(atlasProjectName)
+     *             .orgId(atlasOrgId)
+     *             .build());
+     * 
+     *         // Set up cloud provider access in Atlas using the created IAM role
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+     *             .projectId(project_tf.id())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+     *             .projectId(project_tf.id())
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         // Set up push-based log export with authorized IAM role
+     *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
+     *             .projectId(project_tf.id())
+     *             .bucketName(logBucket.bucket())
+     *             .iamRoleId(authRole.roleId())
+     *             .prefixPath("push-based-log-test")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPushBasedLogExport(GetPushBasedLogExportArgs.builder()
+     *             .projectId(testPushBasedLogExport.projectId())
+     *             .build());
+     * 
+     *         ctx.export("test", test.applyValue(getPushBasedLogExportResult -> getPushBasedLogExportResult).applyValue(test -> test.applyValue(getPushBasedLogExportResult -> getPushBasedLogExportResult.prefixPath())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetPushBasedLogExportResult> getPushBasedLogExportPlain(GetPushBasedLogExportPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", TypeShape.of(GetPushBasedLogExportResult.class), args, Utilities.withVersion(options));
     }
@@ -23999,6 +29622,49 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetRolesOrgIdResult> getRolesOrgId(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getRolesOrgId:getRolesOrgId", TypeShape.of(GetRolesOrgIdResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getRolesOrgId
+     * 
+     * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * 
+     * ## Example Usage
+     * 
+     * ### Using data source to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getRolesOrgId();
+     * 
+     *         ctx.export("orgId", test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetRolesOrgIdResult> getRolesOrgId(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getRolesOrgId:getRolesOrgId", TypeShape.of(GetRolesOrgIdResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -24385,6 +30051,92 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetSearchDeploymentResult> getSearchDeployment(GetSearchDeploymentArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSearchDeployment:getSearchDeployment", TypeShape.of(GetSearchDeploymentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.SearchDeployment
+     * 
+     * `mongodbatlas.SearchDeployment` describes a search node deployment.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.SearchDeployment;
+     * import com.pulumi.mongodbatlas.SearchDeploymentArgs;
+     * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()
+     *             .name("project-name")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId(exampleProject.id())
+     *             .name("ClusterExample")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .providerName("AWS")
+     *                     .priority(7)
+     *                     .regionName("US_EAST_1")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()
+     *             .projectId(exampleProject.id())
+     *             .clusterName(exampleAdvancedCluster.name())
+     *             .specs(SearchDeploymentSpecArgs.builder()
+     *                 .instance_size("S20_HIGHCPU_NVME")
+     *                 .node_count(2)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
+     *             .projectId(exampleSearchDeployment.projectId())
+     *             .clusterName(exampleSearchDeployment.clusterName())
+     *             .build());
+     * 
+     *         ctx.export("mongodbatlasSearchDeploymentId", example.applyValue(getSearchDeploymentResult -> getSearchDeploymentResult).applyValue(example -> example.applyValue(getSearchDeploymentResult -> getSearchDeploymentResult.id())));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetSearchDeploymentResult> getSearchDeploymentPlain(GetSearchDeploymentPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSearchDeployment:getSearchDeployment", TypeShape.of(GetSearchDeploymentResult.class), args, Utilities.withVersion(options));
     }
@@ -24530,6 +30282,54 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetSearchIndexResult> getSearchIndex(GetSearchIndexArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSearchIndex:getSearchIndex", TypeShape.of(GetSearchIndexResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.SearchIndex
+     * 
+     * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchIndex(GetSearchIndexArgs.builder()
+     *             .indexId("<INDEX_ID")
+     *             .projectId("<PROJECT_ID>")
+     *             .clusterName("<CLUSTER_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetSearchIndexResult> getSearchIndex(GetSearchIndexArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSearchIndex:getSearchIndex", TypeShape.of(GetSearchIndexResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -24725,6 +30525,55 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", TypeShape.of(GetSearchIndexesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getSearchIndexes
+     * 
+     * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .clusterName("<CLUSTER_NAME>")
+     *             .databaseName("<DATABASE_NAME>")
+     *             .collectionName("<COLLECTION_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", TypeShape.of(GetSearchIndexesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -25009,6 +30858,65 @@ public final class MongodbatlasFunctions {
      * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
      * 
      */
+    public static Output<GetServerlessInstanceResult> getServerlessInstance(GetServerlessInstanceArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServerlessInstance:getServerlessInstance", TypeShape.of(GetServerlessInstanceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.ServerlessInstance
+     * 
+     * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
+     * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### Basic
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var testTwo = MongodbatlasFunctions.getServerlessInstance(GetServerlessInstanceArgs.builder()
+     *             .name("<SERVERLESS_INSTANCE_NAME>")
+     *             .projectId("<PROJECT_ID >")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
+     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * 
+     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
+     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * 
+     * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+     * 
+     */
     public static CompletableFuture<GetServerlessInstanceResult> getServerlessInstancePlain(GetServerlessInstancePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServerlessInstance:getServerlessInstance", TypeShape.of(GetServerlessInstanceResult.class), args, Utilities.withVersion(options));
     }
@@ -25205,6 +31113,55 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetServerlessInstancesInvokeResult> getServerlessInstances(GetServerlessInstancesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServerlessInstances:getServerlessInstances", TypeShape.of(GetServerlessInstancesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getServerlessInstances
+     * 
+     * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
+     * 
+     * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var dataServerless = MongodbatlasFunctions.getServerlessInstances(GetServerlessInstancesArgs.builder()
+     *             .projectId("<PROJECT_ID")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetServerlessInstancesInvokeResult> getServerlessInstancesPlain(GetServerlessInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServerlessInstances:getServerlessInstances", TypeShape.of(GetServerlessInstancesInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -25215,6 +31172,9 @@ public final class MongodbatlasFunctions {
         return getSharedTierRestoreJobPlain(args, InvokeOptions.Empty);
     }
     public static Output<GetSharedTierRestoreJobResult> getSharedTierRestoreJob(GetSharedTierRestoreJobArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", TypeShape.of(GetSharedTierRestoreJobResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetSharedTierRestoreJobResult> getSharedTierRestoreJob(GetSharedTierRestoreJobArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", TypeShape.of(GetSharedTierRestoreJobResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetSharedTierRestoreJobResult> getSharedTierRestoreJobPlain(GetSharedTierRestoreJobPlainArgs args, InvokeOptions options) {
@@ -25229,6 +31189,9 @@ public final class MongodbatlasFunctions {
     public static Output<GetSharedTierRestoreJobsInvokeResult> getSharedTierRestoreJobs(GetSharedTierRestoreJobsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs", TypeShape.of(GetSharedTierRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
     }
+    public static Output<GetSharedTierRestoreJobsInvokeResult> getSharedTierRestoreJobs(GetSharedTierRestoreJobsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs", TypeShape.of(GetSharedTierRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
     public static CompletableFuture<GetSharedTierRestoreJobsInvokeResult> getSharedTierRestoreJobsPlain(GetSharedTierRestoreJobsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs", TypeShape.of(GetSharedTierRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -25241,6 +31204,9 @@ public final class MongodbatlasFunctions {
     public static Output<GetSharedTierSnapshotResult> getSharedTierSnapshot(GetSharedTierSnapshotArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", TypeShape.of(GetSharedTierSnapshotResult.class), args, Utilities.withVersion(options));
     }
+    public static Output<GetSharedTierSnapshotResult> getSharedTierSnapshot(GetSharedTierSnapshotArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", TypeShape.of(GetSharedTierSnapshotResult.class), args, Utilities.withVersion(options));
+    }
     public static CompletableFuture<GetSharedTierSnapshotResult> getSharedTierSnapshotPlain(GetSharedTierSnapshotPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", TypeShape.of(GetSharedTierSnapshotResult.class), args, Utilities.withVersion(options));
     }
@@ -25251,6 +31217,9 @@ public final class MongodbatlasFunctions {
         return getSharedTierSnapshotsPlain(args, InvokeOptions.Empty);
     }
     public static Output<GetSharedTierSnapshotsInvokeResult> getSharedTierSnapshots(GetSharedTierSnapshotsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", TypeShape.of(GetSharedTierSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetSharedTierSnapshotsInvokeResult> getSharedTierSnapshots(GetSharedTierSnapshotsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", TypeShape.of(GetSharedTierSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetSharedTierSnapshotsInvokeResult> getSharedTierSnapshotsPlain(GetSharedTierSnapshotsPlainArgs args, InvokeOptions options) {
@@ -25392,6 +31361,52 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetStreamConnectionResult> getStreamConnection(GetStreamConnectionArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamConnection:getStreamConnection", TypeShape.of(GetStreamConnectionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamConnection
+     * 
+     * `mongodbatlas.StreamConnection` describes a stream connection.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamConnection(GetStreamConnectionArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName("<INSTANCE_NAME>")
+     *             .connectionName("<CONNECTION_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamConnectionResult> getStreamConnection(GetStreamConnectionArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamConnection:getStreamConnection", TypeShape.of(GetStreamConnectionResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -25617,6 +31632,51 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetStreamConnectionsInvokeResult> getStreamConnections(GetStreamConnectionsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamConnections:getStreamConnections", TypeShape.of(GetStreamConnectionsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamConnections
+     * 
+     * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamConnections(GetStreamConnectionsArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName("<INSTANCE_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetStreamConnectionsInvokeResult> getStreamConnectionsPlain(GetStreamConnectionsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamConnections:getStreamConnections", TypeShape.of(GetStreamConnectionsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -25797,6 +31857,51 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetStreamInstanceResult> getStreamInstance(GetStreamInstanceArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamInstance:getStreamInstance", TypeShape.of(GetStreamInstanceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamInstance
+     * 
+     * `mongodbatlas.StreamInstance` describes a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamInstance(GetStreamInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .instanceName("<INSTANCE_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetStreamInstanceResult> getStreamInstancePlain(GetStreamInstancePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamInstance:getStreamInstance", TypeShape.of(GetStreamInstanceResult.class), args, Utilities.withVersion(options));
     }
@@ -25930,6 +32035,50 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetStreamInstancesInvokeResult> getStreamInstances(GetStreamInstancesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamInstances:getStreamInstances", TypeShape.of(GetStreamInstancesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamInstances
+     * 
+     * `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamInstances(GetStreamInstancesArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamInstancesInvokeResult> getStreamInstances(GetStreamInstancesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamInstances:getStreamInstances", TypeShape.of(GetStreamInstancesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -26550,6 +32699,198 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetStreamProcessorResult> getStreamProcessor(GetStreamProcessorArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamProcessor:getStreamProcessor", TypeShape.of(GetStreamProcessorResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamProcessor
+     * 
+     * `mongodbatlas.StreamProcessor` describes a stream processor.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamProcessorResult> getStreamProcessor(GetStreamProcessorArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamProcessor:getStreamProcessor", TypeShape.of(GetStreamProcessorResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -27509,6 +33850,198 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetStreamProcessorsInvokeResult> getStreamProcessors(GetStreamProcessorsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamProcessors:getStreamProcessors", TypeShape.of(GetStreamProcessorsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamProcessors
+     * 
+     * `mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.StreamInstance;
+     * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+     * import com.pulumi.mongodbatlas.StreamConnection;
+     * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+     * import com.pulumi.mongodbatlas.StreamProcessor;
+     * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName("InstanceName")
+     *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+     *                 .region("VIRGINIA_USA")
+     *                 .cloud_provider("AWS")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("sample_stream_solar")
+     *             .type("Sample")
+     *             .build());
+     * 
+     *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("ClusterConnection")
+     *             .type("Cluster")
+     *             .clusterName(clusterName)
+     *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+     *                 .role("atlasAdmin")
+     *                 .type("BUILT_IN")
+     *                 .build())
+     *             .build());
+     * 
+     *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .connectionName("KafkaPlaintextConnection")
+     *             .type("Kafka")
+     *             .authentication(StreamConnectionAuthenticationArgs.builder()
+     *                 .mechanism("PLAIN")
+     *                 .username(kafkaUsername)
+     *                 .password(kafkaPassword)
+     *                 .build())
+     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .config(Map.of("auto.offset.reset", "earliest"))
+     *             .security(StreamConnectionSecurityArgs.builder()
+     *                 .protocol("PLAINTEXT")
+     *                 .build())
+     *             .build());
+     * 
+     *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("sampleProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "sample"),
+     *                             jsonProperty("coll", "solar"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "_ts")
+     *                             ))
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("STARTED")
+     *             .build());
+     * 
+     *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("clusterProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_from_cluster")
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .build());
+     * 
+     *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName("kafkaProcessorName")
+     *             .pipeline(serializeJson(
+     *                 jsonArray(
+     *                     jsonObject(
+     *                         jsonProperty("$source", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+     *                             jsonProperty("topic", "topic_source")
+     *                         ))
+     *                     ), 
+     *                     jsonObject(
+     *                         jsonProperty("$emit", jsonObject(
+     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+     *                             jsonProperty("db", "kafka"),
+     *                             jsonProperty("coll", "topic_source"),
+     *                             jsonProperty("timeseries", jsonObject(
+     *                                 jsonProperty("timeField", "ts")
+     *                             ))
+     *                         ))
+     *                     )
+     *                 )))
+     *             .state("CREATED")
+     *             .options(StreamProcessorOptionsArgs.builder()
+     *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+     *                     .coll("exampleColumn")
+     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .db("exampleDb")
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .build());
+     * 
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .instanceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
+     * 
+     *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(example_stream_processor -> example_stream_processor.state()));
+     *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(example_stream_processors -> example_stream_processors.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetStreamProcessorsInvokeResult> getStreamProcessorsPlain(GetStreamProcessorsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamProcessors:getStreamProcessors", TypeShape.of(GetStreamProcessorsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -27921,6 +34454,109 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetTeamResult> getTeam(GetTeamArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getTeam:getTeam", TypeShape.of(GetTeamResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.Team
+     * 
+     * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testTeam = new Team("testTeam", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(testTeam.orgId())
+     *             .teamId(testTeam.teamId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new Team("test", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test2 = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(test.orgId())
+     *             .name(test.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetTeamResult> getTeamPlain(GetTeamPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getTeam:getTeam", TypeShape.of(GetTeamResult.class), args, Utilities.withVersion(options));
     }
@@ -27955,6 +34591,17 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetTeamsResult> getTeams(GetTeamsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getTeams:getTeams", TypeShape.of(GetTeamsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * **WARNING:** This datasource is deprecated, use `mongodbatlas.Team`
+     * 
+     * This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
+     * 
+     * In the future this data source will define a new implementation capable of fetching all teams in one organization.
+     * 
+     */
+    public static Output<GetTeamsResult> getTeams(GetTeamsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getTeams:getTeams", TypeShape.of(GetTeamsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -28134,6 +34781,62 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetThirdPartyIntegrationResult> getThirdPartyIntegration(GetThirdPartyIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", TypeShape.of(GetThirdPartyIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.ThirdPartyIntegration
+     * 
+     * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ThirdPartyIntegration;
+     * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .type("DATADOG")
+     *             .apiKey("<API-KEY>")
+     *             .region("<REGION>")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
+     *             .projectId(testDatadog.projectId())
+     *             .type("DATADOG")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetThirdPartyIntegrationResult> getThirdPartyIntegration(GetThirdPartyIntegrationArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", TypeShape.of(GetThirdPartyIntegrationResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -28437,6 +35140,68 @@ public final class MongodbatlasFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetThirdPartyIntegrationsInvokeResult> getThirdPartyIntegrations(GetThirdPartyIntegrationsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", TypeShape.of(GetThirdPartyIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getThirdPartyIntegrations
+     * 
+     * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
+     * applied across the project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ThirdPartyIntegration;
+     * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testPagerDuty = new ThirdPartyIntegration("testPagerDuty", ThirdPartyIntegrationArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .type("PAGER_DUTY")
+     *             .serviceKey("<PAGER-DUTY-SERVICE-KEY>")
+     *             .build());
+     * 
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .type("DATADOG")
+     *             .apiKey("<API-KEY>")
+     *             .region("<REGION>")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getThirdPartyIntegrations(GetThirdPartyIntegrationsArgs.builder()
+     *             .projectId(testPagerDuty.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetThirdPartyIntegrationsInvokeResult> getThirdPartyIntegrationsPlain(GetThirdPartyIntegrationsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", TypeShape.of(GetThirdPartyIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -28669,6 +35434,83 @@ public final class MongodbatlasFunctions {
      * 
      */
     public static Output<GetX509AuthenticationDatabaseUserResult> getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", TypeShape.of(GetX509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
+     * 
+     * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .customerX509Cas("""
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
+     *             """)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetX509AuthenticationDatabaseUserResult> getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", TypeShape.of(GetX509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
     }
     /**

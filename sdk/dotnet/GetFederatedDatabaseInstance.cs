@@ -130,6 +130,66 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetFederatedDatabaseInstanceResult> Invoke(GetFederatedDatabaseInstanceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedDatabaseInstanceResult>("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", args ?? new GetFederatedDatabaseInstanceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+        /// 
+        /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### S With MongoDB Atlas Cluster As Storage Database
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// 
+        /// ### S With Amazon S3 Bucket As Storage Database
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
+        ///         {
+        ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
+        ///             {
+        ///                 TestS3Bucket = "Amazon S3 Bucket Name",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetFederatedDatabaseInstanceResult> Invoke(GetFederatedDatabaseInstanceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFederatedDatabaseInstanceResult>("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", args ?? new GetFederatedDatabaseInstanceInvokeArgs(), options.WithDefaults());
     }
 
 

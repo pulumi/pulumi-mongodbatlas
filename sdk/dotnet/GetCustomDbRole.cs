@@ -134,6 +134,68 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetCustomDbRoleResult> Invoke(GetCustomDbRoleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.CustomDbRole
+        /// 
+        /// `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         RoleName = "myCustomRole",
+        ///         Actions = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+        ///             {
+        ///                 Action = "UPDATE",
+        ///                 Resources = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+        ///                     {
+        ///                         CollectionName = "",
+        ///                         DatabaseName = "anyDatabase",
+        ///                     },
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+        ///             {
+        ///                 Action = "INSERT",
+        ///                 Resources = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+        ///                     {
+        ///                         CollectionName = "",
+        ///                         DatabaseName = "anyDatabase",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCustomDbRole.Invoke(new()
+        ///     {
+        ///         ProjectId = testRole.ProjectId,
+        ///         RoleName = testRole.RoleName,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetCustomDbRoleResult> Invoke(GetCustomDbRoleInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleInvokeArgs(), options.WithDefaults());
     }
 
 

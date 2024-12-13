@@ -104,6 +104,53 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetFederatedSettingsOrgConfigsResult> Invoke(GetFederatedSettingsOrgConfigsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgConfigsResult>("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", args ?? new GetFederatedSettingsOrgConfigsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getFederatedSettingsOrgConfigs
+        /// 
+        /// `mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var orgConnection = new Mongodbatlas.FederatedSettingsOrgConfig("org_connection", new()
+        ///     {
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///         DataAccessIdentityProviderIds = new[]
+        ///         {
+        ///             "64d613677e1ad50839cce4db",
+        ///         },
+        ///         DomainRestrictionEnabled = false,
+        ///         DomainAllowLists = new[]
+        ///         {
+        ///             "mydomain.com",
+        ///         },
+        ///         PostAuthRoleGrants = new[]
+        ///         {
+        ///             "ORG_MEMBER",
+        ///         },
+        ///         IdentityProviderId = "0oaqyt9fc2ySTWnA0357",
+        ///     });
+        /// 
+        ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgConnectionMongodbatlasFederatedSettingsOrgConfig.FederationSettingsId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetFederatedSettingsOrgConfigsResult> Invoke(GetFederatedSettingsOrgConfigsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgConfigsResult>("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", args ?? new GetFederatedSettingsOrgConfigsInvokeArgs(), options.WithDefaults());
     }
 
 

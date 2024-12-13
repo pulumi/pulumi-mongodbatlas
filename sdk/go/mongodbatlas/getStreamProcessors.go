@@ -46,21 +46,11 @@ type LookupStreamProcessorsResult struct {
 }
 
 func LookupStreamProcessorsOutput(ctx *pulumi.Context, args LookupStreamProcessorsOutputArgs, opts ...pulumi.InvokeOption) LookupStreamProcessorsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupStreamProcessorsResultOutput, error) {
 			args := v.(LookupStreamProcessorsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupStreamProcessorsResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getStreamProcessors:getStreamProcessors", args, &rv, "", opts...)
-			if err != nil {
-				return LookupStreamProcessorsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupStreamProcessorsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupStreamProcessorsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getStreamProcessors:getStreamProcessors", args, LookupStreamProcessorsResultOutput{}, options).(LookupStreamProcessorsResultOutput), nil
 		}).(LookupStreamProcessorsResultOutput)
 }
 

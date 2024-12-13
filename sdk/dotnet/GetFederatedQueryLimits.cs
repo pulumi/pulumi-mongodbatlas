@@ -74,6 +74,38 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetFederatedQueryLimitsResult> Invoke(GetFederatedQueryLimitsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedQueryLimitsResult>("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", args ?? new GetFederatedQueryLimitsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getFederatedQueryLimits
+        /// 
+        /// `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/. 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### S
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedQueryLimits.Invoke(new()
+        ///     {
+        ///         ProjectId = "PROJECT_ID",
+        ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetFederatedQueryLimitsResult> Invoke(GetFederatedQueryLimitsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFederatedQueryLimitsResult>("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", args ?? new GetFederatedQueryLimitsInvokeArgs(), options.WithDefaults());
     }
 
 

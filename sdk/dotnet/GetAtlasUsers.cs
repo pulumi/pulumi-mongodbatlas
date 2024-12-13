@@ -144,6 +144,73 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetAtlasUsersResult> Invoke(GetAtlasUsersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAtlasUsersResult>("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args ?? new GetAtlasUsersInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: atlas_users
+        /// 
+        /// `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Using org_id attribute to query Organization Atlas Users
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     {
+        ///         OrgId = "&lt;ORG_ID&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Using project_id attribute to query Project Atlas Users
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Using team_id and org_id attribute to query Team Atlas Users
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     {
+        ///         TeamId = "&lt;TEAM_ID&gt;",
+        ///         OrgId = "&lt;ORG_ID&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAtlasUsersResult> Invoke(GetAtlasUsersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAtlasUsersResult>("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args ?? new GetAtlasUsersInvokeArgs(), options.WithDefaults());
     }
 
 

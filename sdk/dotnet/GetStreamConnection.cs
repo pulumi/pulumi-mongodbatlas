@@ -66,6 +66,34 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetStreamConnectionResult> Invoke(GetStreamConnectionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamConnectionResult>("mongodbatlas:index/getStreamConnection:getStreamConnection", args ?? new GetStreamConnectionInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.StreamConnection
+        /// 
+        /// `mongodbatlas.StreamConnection` describes a stream connection.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///         ConnectionName = "&lt;CONNECTION_NAME&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetStreamConnectionResult> Invoke(GetStreamConnectionInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetStreamConnectionResult>("mongodbatlas:index/getStreamConnection:getStreamConnection", args ?? new GetStreamConnectionInvokeArgs(), options.WithDefaults());
     }
 
 

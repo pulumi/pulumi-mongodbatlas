@@ -84,6 +84,43 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportBucketsResult> Invoke(GetCloudBackupSnapshotExportBucketsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportBucketsResult>("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args ?? new GetCloudBackupSnapshotExportBucketsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportBuckets
+        /// 
+        /// `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
+        ///         BucketName = "example-bucket",
+        ///         CloudProvider = "AWS",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetCloudBackupSnapshotExportBucketsResult> Invoke(GetCloudBackupSnapshotExportBucketsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportBucketsResult>("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args ?? new GetCloudBackupSnapshotExportBucketsInvokeArgs(), options.WithDefaults());
     }
 
 

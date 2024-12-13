@@ -99,21 +99,11 @@ type LookupLdapConfigurationResult struct {
 }
 
 func LookupLdapConfigurationOutput(ctx *pulumi.Context, args LookupLdapConfigurationOutputArgs, opts ...pulumi.InvokeOption) LookupLdapConfigurationResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupLdapConfigurationResultOutput, error) {
 			args := v.(LookupLdapConfigurationArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupLdapConfigurationResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args, &rv, "", opts...)
-			if err != nil {
-				return LookupLdapConfigurationResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupLdapConfigurationResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupLdapConfigurationResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args, LookupLdapConfigurationResultOutput{}, options).(LookupLdapConfigurationResultOutput), nil
 		}).(LookupLdapConfigurationResultOutput)
 }
 

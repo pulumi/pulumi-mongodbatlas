@@ -83,21 +83,11 @@ type LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResult struct {
 }
 
 func LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput(ctx *pulumi.Context, args LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesOutputArgs, opts ...pulumi.InvokeOption) LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput, error) {
 			args := v.(LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", args, &rv, "", opts...)
-			if err != nil {
-				return LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", args, LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput{}, options).(LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput), nil
 		}).(LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput)
 }
 

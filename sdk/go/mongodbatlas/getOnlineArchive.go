@@ -102,21 +102,11 @@ type LookupOnlineArchiveResult struct {
 }
 
 func LookupOnlineArchiveOutput(ctx *pulumi.Context, args LookupOnlineArchiveOutputArgs, opts ...pulumi.InvokeOption) LookupOnlineArchiveResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupOnlineArchiveResultOutput, error) {
 			args := v.(LookupOnlineArchiveArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupOnlineArchiveResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args, &rv, "", opts...)
-			if err != nil {
-				return LookupOnlineArchiveResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupOnlineArchiveResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupOnlineArchiveResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args, LookupOnlineArchiveResultOutput{}, options).(LookupOnlineArchiveResultOutput), nil
 		}).(LookupOnlineArchiveResultOutput)
 }
 

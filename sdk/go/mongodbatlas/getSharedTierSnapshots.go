@@ -38,21 +38,11 @@ type LookupSharedTierSnapshotsResult struct {
 }
 
 func LookupSharedTierSnapshotsOutput(ctx *pulumi.Context, args LookupSharedTierSnapshotsOutputArgs, opts ...pulumi.InvokeOption) LookupSharedTierSnapshotsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupSharedTierSnapshotsResultOutput, error) {
 			args := v.(LookupSharedTierSnapshotsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupSharedTierSnapshotsResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", args, &rv, "", opts...)
-			if err != nil {
-				return LookupSharedTierSnapshotsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupSharedTierSnapshotsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupSharedTierSnapshotsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", args, LookupSharedTierSnapshotsResultOutput{}, options).(LookupSharedTierSnapshotsResultOutput), nil
 		}).(LookupSharedTierSnapshotsResultOutput)
 }
 

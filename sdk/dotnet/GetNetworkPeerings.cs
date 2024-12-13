@@ -94,6 +94,48 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetNetworkPeeringsResult> Invoke(GetNetworkPeeringsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkPeeringsResult>("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args ?? new GetNetworkPeeringsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getNetworkPeerings
+        /// 
+        /// `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Basic Example (AWS).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
+        ///     {
+        ///         AccepterRegionName = "us-east-1",
+        ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
+        ///         ContainerId = "507f1f77bcf86cd799439011",
+        ///         ProviderName = "AWS",
+        ///         RouteTableCidrBlock = "192.168.0.0/24",
+        ///         VpcId = "vpc-abc123abc123",
+        ///         AwsAccountId = "abc123abc123",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetNetworkPeerings.Invoke(new()
+        ///     {
+        ///         ProjectId = testNetworkPeering.ProjectId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNetworkPeeringsResult> Invoke(GetNetworkPeeringsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNetworkPeeringsResult>("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args ?? new GetNetworkPeeringsInvokeArgs(), options.WithDefaults());
     }
 
 

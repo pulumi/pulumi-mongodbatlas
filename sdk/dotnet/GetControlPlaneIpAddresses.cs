@@ -66,6 +66,34 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetControlPlaneIpAddressesResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetControlPlaneIpAddressesResult>("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getControlPlaneIpAddresses
+        /// 
+        /// `mongodbatlas.getControlPlaneIpAddresses` returns all control plane IP addresses.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetControlPlaneIpAddresses.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["outbound-aws-ip-addresses"] = test.Apply(getControlPlaneIpAddressesResult =&gt; getControlPlaneIpAddressesResult.Outbound?.Aws),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetControlPlaneIpAddressesResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetControlPlaneIpAddressesResult>("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -92,21 +92,11 @@ type LookupFederatedSettingsOrgConfigsResult struct {
 }
 
 func LookupFederatedSettingsOrgConfigsOutput(ctx *pulumi.Context, args LookupFederatedSettingsOrgConfigsOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedSettingsOrgConfigsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupFederatedSettingsOrgConfigsResultOutput, error) {
 			args := v.(LookupFederatedSettingsOrgConfigsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupFederatedSettingsOrgConfigsResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", args, &rv, "", opts...)
-			if err != nil {
-				return LookupFederatedSettingsOrgConfigsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupFederatedSettingsOrgConfigsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupFederatedSettingsOrgConfigsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", args, LookupFederatedSettingsOrgConfigsResultOutput{}, options).(LookupFederatedSettingsOrgConfigsResultOutput), nil
 		}).(LookupFederatedSettingsOrgConfigsResultOutput)
 }
 

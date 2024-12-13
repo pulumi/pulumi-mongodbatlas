@@ -32,6 +32,17 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetDataLakePipelineRunsResult> Invoke(GetDataLakePipelineRunsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataLakePipelineRunsResult>("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", args ?? new GetDataLakePipelineRunsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// **WARNING:** Data Lake is deprecated. To learn more, see &lt;https://dochub.mongodb.org/core/data-lake-deprecation&gt;
+        /// 
+        /// `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// </summary>
+        public static Output<GetDataLakePipelineRunsResult> Invoke(GetDataLakePipelineRunsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDataLakePipelineRunsResult>("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", args ?? new GetDataLakePipelineRunsInvokeArgs(), options.WithDefaults());
     }
 
 

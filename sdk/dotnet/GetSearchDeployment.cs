@@ -30,6 +30,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetSearchDeploymentResult> Invoke(GetSearchDeploymentInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSearchDeploymentResult>("mongodbatlas:index/getSearchDeployment:getSearchDeployment", args ?? new GetSearchDeploymentInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.SearchDeployment
+        /// 
+        /// `mongodbatlas.SearchDeployment` describes a search node deployment.
+        /// 
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetSearchDeploymentResult> Invoke(GetSearchDeploymentInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSearchDeploymentResult>("mongodbatlas:index/getSearchDeployment:getSearchDeployment", args ?? new GetSearchDeploymentInvokeArgs(), options.WithDefaults());
     }
 
 

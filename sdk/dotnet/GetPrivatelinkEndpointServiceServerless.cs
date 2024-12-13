@@ -220,6 +220,111 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetPrivatelinkEndpointServiceServerlessResult> Invoke(GetPrivatelinkEndpointServiceServerlessInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceServerlessResult>("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", args ?? new GetPrivatelinkEndpointServiceServerlessInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
+        /// 
+        /// `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// ## Example with AWS
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
+        ///         ProviderSettingsBackingProviderName = "AWS",
+        ///         ProviderSettingsProviderName = "SERVERLESS",
+        ///         ProviderSettingsRegionName = "US_EAST_1",
+        ///         ContinuousBackupEnabled = true,
+        ///     });
+        /// 
+        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = testServerlessInstance.Name,
+        ///         ProviderName = "AWS",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetPrivatelinkEndpointServiceServerless.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = testServerlessInstance.Name,
+        ///         EndpointId = testPrivatelinkEndpointServerless.EndpointId,
+        ///     });
+        /// 
+        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = "test-db",
+        ///         EndpointId = testPrivatelinkEndpointServerless.EndpointId,
+        ///         ProviderName = "AWS",
+        ///         Comment = "New serverless endpoint",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Example with AZURE
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
+        ///         ProviderSettingsBackingProviderName = "AZURE",
+        ///         ProviderSettingsProviderName = "SERVERLESS",
+        ///         ProviderSettingsRegionName = "US_EAST",
+        ///         ContinuousBackupEnabled = true,
+        ///     });
+        /// 
+        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = testServerlessInstance.Name,
+        ///         ProviderName = "AZURE",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetPrivatelinkEndpointServiceServerless.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = testServerlessInstance.Name,
+        ///         EndpointId = testPrivatelinkEndpointServerless.EndpointId,
+        ///     });
+        /// 
+        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = "test-db",
+        ///         EndpointId = testPrivatelinkEndpointServerless.EndpointId,
+        ///         ProviderName = "AZURE",
+        ///         Comment = "New serverless endpoint",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Available complete examples
+        /// - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+        /// </summary>
+        public static Output<GetPrivatelinkEndpointServiceServerlessResult> Invoke(GetPrivatelinkEndpointServiceServerlessInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceServerlessResult>("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", args ?? new GetPrivatelinkEndpointServiceServerlessInvokeArgs(), options.WithDefaults());
     }
 
 

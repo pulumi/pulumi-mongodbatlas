@@ -64,6 +64,33 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetOrganizationResult> Invoke(GetOrganizationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationResult>("mongodbatlas:index/getOrganization:getOrganization", args ?? new GetOrganizationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.Organization
+        /// 
+        /// `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Using project_id attribute to query
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetOrganization.Invoke(new()
+        ///     {
+        ///         OrgId = "&lt;org_id&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetOrganizationResult> Invoke(GetOrganizationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationResult>("mongodbatlas:index/getOrganization:getOrganization", args ?? new GetOrganizationInvokeArgs(), options.WithDefaults());
     }
 
 

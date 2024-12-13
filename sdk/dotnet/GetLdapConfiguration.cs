@@ -100,6 +100,51 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetLdapConfigurationResult> Invoke(GetLdapConfigurationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLdapConfigurationResult>("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args ?? new GetLdapConfigurationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.LdapConfiguration
+        /// 
+        /// `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "NAME OF THE PROJECT",
+        ///         OrgId = "ORG ID",
+        ///     });
+        /// 
+        ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///         AuthenticationEnabled = true,
+        ///         Hostname = "HOSTNAME",
+        ///         Port = 636,
+        ///         BindUsername = "USERNAME",
+        ///         BindPassword = "PASSWORD",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetLdapConfiguration.Invoke(new()
+        ///     {
+        ///         ProjectId = testLdapConfiguration.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLdapConfigurationResult> Invoke(GetLdapConfigurationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLdapConfigurationResult>("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args ?? new GetLdapConfigurationInvokeArgs(), options.WithDefaults());
     }
 
 

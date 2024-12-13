@@ -72,6 +72,37 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetProjectIpAddressesResult> Invoke(GetProjectIpAddressesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectIpAddressesResult>("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", args ?? new GetProjectIpAddressesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getProjectIpAddresses
+        /// 
+        /// `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetProjectIpAddresses.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["projectServices"] = test.Apply(getProjectIpAddressesResult =&gt; getProjectIpAddressesResult.Services),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetProjectIpAddressesResult> Invoke(GetProjectIpAddressesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetProjectIpAddressesResult>("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", args ?? new GetProjectIpAddressesInvokeArgs(), options.WithDefaults());
     }
 
 

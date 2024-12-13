@@ -95,21 +95,11 @@ type LookupClustersResult struct {
 }
 
 func LookupClustersOutput(ctx *pulumi.Context, args LookupClustersOutputArgs, opts ...pulumi.InvokeOption) LookupClustersResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupClustersResultOutput, error) {
 			args := v.(LookupClustersArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupClustersResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getClusters:getClusters", args, &rv, "", opts...)
-			if err != nil {
-				return LookupClustersResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupClustersResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupClustersResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getClusters:getClusters", args, LookupClustersResultOutput{}, options).(LookupClustersResultOutput), nil
 		}).(LookupClustersResultOutput)
 }
 

@@ -164,21 +164,11 @@ type LookupGlobalClusterConfigResult struct {
 }
 
 func LookupGlobalClusterConfigOutput(ctx *pulumi.Context, args LookupGlobalClusterConfigOutputArgs, opts ...pulumi.InvokeOption) LookupGlobalClusterConfigResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupGlobalClusterConfigResultOutput, error) {
 			args := v.(LookupGlobalClusterConfigArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupGlobalClusterConfigResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args, &rv, "", opts...)
-			if err != nil {
-				return LookupGlobalClusterConfigResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupGlobalClusterConfigResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupGlobalClusterConfigResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args, LookupGlobalClusterConfigResultOutput{}, options).(LookupGlobalClusterConfigResultOutput), nil
 		}).(LookupGlobalClusterConfigResultOutput)
 }
 
