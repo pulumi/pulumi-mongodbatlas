@@ -26,6 +26,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetEventTriggerResult> Invoke(GetEventTriggerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEventTriggerResult>("mongodbatlas:index/getEventTrigger:getEventTrigger", args ?? new GetEventTriggerInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.EventTrigger
+        /// 
+        /// `mongodbatlas.EventTrigger` describes an Event Trigger. 
+        /// </summary>
+        public static Output<GetEventTriggerResult> Invoke(GetEventTriggerInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetEventTriggerResult>("mongodbatlas:index/getEventTrigger:getEventTrigger", args ?? new GetEventTriggerInvokeArgs(), options.WithDefaults());
     }
 
 

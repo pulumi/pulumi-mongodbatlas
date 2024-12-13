@@ -100,6 +100,51 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> Invoke(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive
+        /// 
+        /// `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
+        ///     {
+        ///         OrgId = atlasOrgId,
+        ///         Name = atlasProjectName,
+        ///     });
+        /// 
+        ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///         EndpointId = "vpce-046cf43c79424d4c9",
+        ///         ProviderName = "AWS",
+        ///         Comment = "Test",
+        ///         Region = "US_EAST_1",
+        ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
+        ///     });
+        /// 
+        ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchive.Invoke(new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///         EndpointId = test.EndpointId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> Invoke(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -154,6 +154,78 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetFederatedSettingsOrgRoleMappingResult> Invoke(GetFederatedSettingsOrgRoleMappingInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.FederatedSettingsOrgRoleMapping
+        /// 
+        /// `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
+        ///     {
+        ///         FederationSettingsId = federatedSettings.Id,
+        ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///         ExternalGroupName = "myGrouptest",
+        ///         RoleAssignments = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
+        ///             {
+        ///                 OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///                 Roles = new[]
+        ///                 {
+        ///                     "ORG_MEMBER",
+        ///                     "ORG_GROUP_CREATOR",
+        ///                     "ORG_BILLING_ADMIN",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
+        ///             {
+        ///                 GroupId = "628aa20db7f7f7f98b81b8",
+        ///                 Roles = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                     "GROUP_DATA_ACCESS_ADMIN",
+        ///                     "GROUP_SEARCH_INDEX_EDITOR",
+        ///                     "GROUP_DATA_ACCESS_READ_ONLY",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
+        ///             {
+        ///                 GroupId = "62b477f7f7f7f5e741489c",
+        ///                 Roles = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                     "GROUP_DATA_ACCESS_ADMIN",
+        ///                     "GROUP_SEARCH_INDEX_EDITOR",
+        ///                     "GROUP_DATA_ACCESS_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var roleMapping = Mongodbatlas.GetFederatedSettingsOrgRoleMapping.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgGroupRoleMappingImport.Id,
+        ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///         RoleMappingId = "627a9673e7f7f7ff7fe306f14",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetFederatedSettingsOrgRoleMappingResult> Invoke(GetFederatedSettingsOrgRoleMappingInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -94,6 +94,48 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetNetworkContainerResult> Invoke(GetNetworkContainerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.NetworkContainer
+        /// 
+        /// `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
+        /// 
+        /// &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Basic Example.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("test", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         AtlasCidrBlock = "10.8.0.0/21",
+        ///         ProviderName = "AWS",
+        ///         RegionName = "US_EAST_1",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetNetworkContainer.Invoke(new()
+        ///     {
+        ///         ProjectId = testNetworkContainer.ProjectId,
+        ///         ContainerId = testNetworkContainer.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNetworkContainerResult> Invoke(GetNetworkContainerInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerInvokeArgs(), options.WithDefaults());
     }
 
 

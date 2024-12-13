@@ -74,6 +74,38 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetServerlessInstancesResult> Invoke(GetServerlessInstancesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServerlessInstancesResult>("mongodbatlas:index/getServerlessInstances:getServerlessInstances", args ?? new GetServerlessInstancesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getServerlessInstances
+        /// 
+        /// `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
+        /// 
+        /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+        /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var dataServerless = Mongodbatlas.GetServerlessInstances.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetServerlessInstancesResult> Invoke(GetServerlessInstancesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetServerlessInstancesResult>("mongodbatlas:index/getServerlessInstances:getServerlessInstances", args ?? new GetServerlessInstancesInvokeArgs(), options.WithDefaults());
     }
 
 

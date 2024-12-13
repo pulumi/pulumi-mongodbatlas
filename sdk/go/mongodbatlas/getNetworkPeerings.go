@@ -79,21 +79,11 @@ type LookupNetworkPeeringsResult struct {
 }
 
 func LookupNetworkPeeringsOutput(ctx *pulumi.Context, args LookupNetworkPeeringsOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkPeeringsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupNetworkPeeringsResultOutput, error) {
 			args := v.(LookupNetworkPeeringsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupNetworkPeeringsResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args, &rv, "", opts...)
-			if err != nil {
-				return LookupNetworkPeeringsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupNetworkPeeringsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupNetworkPeeringsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args, LookupNetworkPeeringsResultOutput{}, options).(LookupNetworkPeeringsResultOutput), nil
 		}).(LookupNetworkPeeringsResultOutput)
 }
 

@@ -84,6 +84,43 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetThirdPartyIntegrationResult> Invoke(GetThirdPartyIntegrationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.ThirdPartyIntegration
+        /// 
+        /// `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "DATADOG",
+        ///         ApiKey = "&lt;API-KEY&gt;",
+        ///         Region = "&lt;REGION&gt;",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+        ///     {
+        ///         ProjectId = testDatadog.ProjectId,
+        ///         Type = "DATADOG",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetThirdPartyIntegrationResult> Invoke(GetThirdPartyIntegrationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationInvokeArgs(), options.WithDefaults());
     }
 
 

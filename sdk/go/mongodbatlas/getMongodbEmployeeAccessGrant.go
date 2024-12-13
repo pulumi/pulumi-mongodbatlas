@@ -84,21 +84,11 @@ type LookupMongodbEmployeeAccessGrantResult struct {
 }
 
 func LookupMongodbEmployeeAccessGrantOutput(ctx *pulumi.Context, args LookupMongodbEmployeeAccessGrantOutputArgs, opts ...pulumi.InvokeOption) LookupMongodbEmployeeAccessGrantResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupMongodbEmployeeAccessGrantResultOutput, error) {
 			args := v.(LookupMongodbEmployeeAccessGrantArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupMongodbEmployeeAccessGrantResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", args, &rv, "", opts...)
-			if err != nil {
-				return LookupMongodbEmployeeAccessGrantResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupMongodbEmployeeAccessGrantResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupMongodbEmployeeAccessGrantResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", args, LookupMongodbEmployeeAccessGrantResultOutput{}, options).(LookupMongodbEmployeeAccessGrantResultOutput), nil
 		}).(LookupMongodbEmployeeAccessGrantResultOutput)
 }
 

@@ -30,6 +30,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetTeamsResult> Invoke(GetTeamsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// **WARNING:** This datasource is deprecated, use `mongodbatlas.Team`
+        /// 
+        /// This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
+        /// 
+        /// In the future this data source will define a new implementation capable of fetching all teams in one organization.
+        /// </summary>
+        public static Output<GetTeamsResult> Invoke(GetTeamsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
     }
 
 

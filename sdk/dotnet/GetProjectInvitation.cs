@@ -92,6 +92,47 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetProjectInvitationResult> Invoke(GetProjectInvitationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.ProjectInvitation
+        /// 
+        /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### S
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testProjectInvitation = new Mongodbatlas.ProjectInvitation("test", new()
+        ///     {
+        ///         Username = "test-acc-username",
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Roles = new[]
+        ///         {
+        ///             "GROUP_DATA_ACCESS_READ_WRITE",
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetProjectInvitation.Invoke(new()
+        ///     {
+        ///         ProjectId = testProjectInvitation.ProjectId,
+        ///         Username = testProjectInvitation.Username,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetProjectInvitationResult> Invoke(GetProjectInvitationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationInvokeArgs(), options.WithDefaults());
     }
 
 

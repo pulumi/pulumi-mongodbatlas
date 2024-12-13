@@ -98,6 +98,50 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetThirdPartyIntegrationsResult> Invoke(GetThirdPartyIntegrationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationsResult>("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args ?? new GetThirdPartyIntegrationsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getThirdPartyIntegrations
+        /// 
+        /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
+        /// applied across the project. 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("test_pager_duty", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "PAGER_DUTY",
+        ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
+        ///     });
+        /// 
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "DATADOG",
+        ///         ApiKey = "&lt;API-KEY&gt;",
+        ///         Region = "&lt;REGION&gt;",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new()
+        ///     {
+        ///         ProjectId = testPagerDuty.ProjectId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetThirdPartyIntegrationsResult> Invoke(GetThirdPartyIntegrationsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationsResult>("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args ?? new GetThirdPartyIntegrationsInvokeArgs(), options.WithDefaults());
     }
 
 

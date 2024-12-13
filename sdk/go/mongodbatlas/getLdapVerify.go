@@ -123,21 +123,11 @@ type LookupLdapVerifyResult struct {
 }
 
 func LookupLdapVerifyOutput(ctx *pulumi.Context, args LookupLdapVerifyOutputArgs, opts ...pulumi.InvokeOption) LookupLdapVerifyResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupLdapVerifyResultOutput, error) {
 			args := v.(LookupLdapVerifyArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupLdapVerifyResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getLdapVerify:getLdapVerify", args, &rv, "", opts...)
-			if err != nil {
-				return LookupLdapVerifyResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupLdapVerifyResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupLdapVerifyResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getLdapVerify:getLdapVerify", args, LookupLdapVerifyResultOutput{}, options).(LookupLdapVerifyResultOutput), nil
 		}).(LookupLdapVerifyResultOutput)
 }
 

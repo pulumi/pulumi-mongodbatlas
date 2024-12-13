@@ -90,6 +90,46 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetPrivateLinkEndpointResult> Invoke(GetPrivateLinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.PrivateLinkEndpoint
+        /// 
+        /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProviderName = "AWS",
+        ///         Region = "US_EAST_1",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
+        ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+        ///         ProviderName = "AWS",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Available complete examples
+        /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        /// </summary>
+        public static Output<GetPrivateLinkEndpointResult> Invoke(GetPrivateLinkEndpointInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointInvokeArgs(), options.WithDefaults());
     }
 
 

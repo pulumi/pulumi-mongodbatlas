@@ -88,6 +88,45 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetEncryptionAtRestPrivateEndpointResult> Invoke(GetEncryptionAtRestPrivateEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEncryptionAtRestPrivateEndpointResult>("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", args ?? new GetEncryptionAtRestPrivateEndpointInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.EncryptionAtRestPrivateEndpoint
+        /// 
+        /// `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
+        /// 
+        /// &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager. 
+        /// To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### S
+        /// 
+        /// &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = atlasProjectId,
+        ///         CloudProvider = "AZURE",
+        ///         Id = endpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["endpointConnectionName"] = single.Apply(getEncryptionAtRestPrivateEndpointResult =&gt; getEncryptionAtRestPrivateEndpointResult.PrivateEndpointConnectionName),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetEncryptionAtRestPrivateEndpointResult> Invoke(GetEncryptionAtRestPrivateEndpointInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetEncryptionAtRestPrivateEndpointResult>("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", args ?? new GetEncryptionAtRestPrivateEndpointInvokeArgs(), options.WithDefaults());
     }
 
 

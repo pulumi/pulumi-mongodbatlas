@@ -218,21 +218,11 @@ type LookupEncryptionAtRestResult struct {
 }
 
 func LookupEncryptionAtRestOutput(ctx *pulumi.Context, args LookupEncryptionAtRestOutputArgs, opts ...pulumi.InvokeOption) LookupEncryptionAtRestResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupEncryptionAtRestResultOutput, error) {
 			args := v.(LookupEncryptionAtRestArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupEncryptionAtRestResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", args, &rv, "", opts...)
-			if err != nil {
-				return LookupEncryptionAtRestResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupEncryptionAtRestResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupEncryptionAtRestResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", args, LookupEncryptionAtRestResultOutput{}, options).(LookupEncryptionAtRestResultOutput), nil
 		}).(LookupEncryptionAtRestResultOutput)
 }
 

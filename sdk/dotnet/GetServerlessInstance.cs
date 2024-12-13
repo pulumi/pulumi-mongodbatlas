@@ -94,6 +94,48 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetServerlessInstanceResult> Invoke(GetServerlessInstanceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServerlessInstanceResult>("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args ?? new GetServerlessInstanceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.ServerlessInstance
+        /// 
+        /// `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
+        /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+        /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+        ///  
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Basic
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testTwo = Mongodbatlas.GetServerlessInstance.Invoke(new()
+        ///     {
+        ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
+        ///         ProjectId = "&lt;PROJECT_ID &gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+        /// That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
+        /// and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+        /// 
+        /// Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
+        /// When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+        /// 
+        /// Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+        /// </summary>
+        public static Output<GetServerlessInstanceResult> Invoke(GetServerlessInstanceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetServerlessInstanceResult>("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args ?? new GetServerlessInstanceInvokeArgs(), options.WithDefaults());
     }
 
 

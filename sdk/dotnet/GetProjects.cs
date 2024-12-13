@@ -140,6 +140,71 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetProjectsResult> Invoke(GetProjectsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectsResult>("mongodbatlas:index/getProjects:getProjects", args ?? new GetProjectsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getProjects
+        /// 
+        /// `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+        /// 
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "project-name",
+        ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+        ///         Teams = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
+        ///         Limits = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+        ///             {
+        ///                 Name = "atlas.project.deployment.clusters",
+        ///                 Value = 26,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testGetProjects = Mongodbatlas.GetProjects.Invoke(new()
+        ///     {
+        ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetProjectsResult> Invoke(GetProjectsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetProjectsResult>("mongodbatlas:index/getProjects:getProjects", args ?? new GetProjectsInvokeArgs(), options.WithDefaults());
     }
 
 

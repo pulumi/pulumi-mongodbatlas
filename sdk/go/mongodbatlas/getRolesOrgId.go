@@ -60,18 +60,8 @@ type GetRolesOrgIdResult struct {
 
 func GetRolesOrgIdOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetRolesOrgIdResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetRolesOrgIdResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetRolesOrgIdResult
-		secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getRolesOrgId:getRolesOrgId", nil, &rv, "", opts...)
-		if err != nil {
-			return GetRolesOrgIdResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetRolesOrgIdResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetRolesOrgIdResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("mongodbatlas:index/getRolesOrgId:getRolesOrgId", nil, GetRolesOrgIdResultOutput{}, options).(GetRolesOrgIdResultOutput), nil
 	}).(GetRolesOrgIdResultOutput)
 }
 

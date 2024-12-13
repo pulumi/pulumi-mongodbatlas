@@ -30,6 +30,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetAlertConfigurationsResult> Invoke(GetAlertConfigurationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getAlertConfigurations
+        /// 
+        /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// </summary>
+        public static Output<GetAlertConfigurationsResult> Invoke(GetAlertConfigurationsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsInvokeArgs(), options.WithDefaults());
     }
 
 

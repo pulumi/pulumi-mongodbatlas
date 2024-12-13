@@ -90,6 +90,46 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetNetworkContainersResult> Invoke(GetNetworkContainersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkContainersResult>("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args ?? new GetNetworkContainersInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.getNetworkContainers
+        /// 
+        /// `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Basic Example.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("test", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         AtlasCidrBlock = "10.8.0.0/21",
+        ///         ProviderName = "AWS",
+        ///         RegionName = "US_EAST_1",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetNetworkContainers.Invoke(new()
+        ///     {
+        ///         ProjectId = testNetworkContainer.ProjectId,
+        ///         ProviderName = testNetworkContainer.ProviderName,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNetworkContainersResult> Invoke(GetNetworkContainersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNetworkContainersResult>("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args ?? new GetNetworkContainersInvokeArgs(), options.WithDefaults());
     }
 
 

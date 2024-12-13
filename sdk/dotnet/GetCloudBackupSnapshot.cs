@@ -86,6 +86,44 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetCloudBackupSnapshotResult> Invoke(GetCloudBackupSnapshotInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotResult>("mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot", args ?? new GetCloudBackupSnapshotInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## # Data Source: mongodbatlas.CloudBackupSnapshot
+        /// 
+        /// `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("test", new()
+        ///     {
+        ///         ProjectId = "5d0f1f73cf09a29120e173cf",
+        ///         ClusterName = "MyClusterTest",
+        ///         Description = "SomeDescription",
+        ///         RetentionInDays = 1,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshot.Invoke(new()
+        ///     {
+        ///         SnapshotId = "5d1285acd5ec13b6c2d1726a",
+        ///         ProjectId = testCloudBackupSnapshot.ProjectId,
+        ///         ClusterName = testCloudBackupSnapshot.ClusterName,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetCloudBackupSnapshotResult> Invoke(GetCloudBackupSnapshotInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotResult>("mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot", args ?? new GetCloudBackupSnapshotInvokeArgs(), options.WithDefaults());
     }
 
 

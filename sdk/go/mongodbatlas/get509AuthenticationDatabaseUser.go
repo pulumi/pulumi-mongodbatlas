@@ -99,21 +99,11 @@ type Get509AuthenticationDatabaseUserResult struct {
 }
 
 func Get509AuthenticationDatabaseUserOutput(ctx *pulumi.Context, args Get509AuthenticationDatabaseUserOutputArgs, opts ...pulumi.InvokeOption) Get509AuthenticationDatabaseUserResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (Get509AuthenticationDatabaseUserResultOutput, error) {
 			args := v.(Get509AuthenticationDatabaseUserArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv Get509AuthenticationDatabaseUserResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args, &rv, "", opts...)
-			if err != nil {
-				return Get509AuthenticationDatabaseUserResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(Get509AuthenticationDatabaseUserResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(Get509AuthenticationDatabaseUserResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args, Get509AuthenticationDatabaseUserResultOutput{}, options).(Get509AuthenticationDatabaseUserResultOutput), nil
 		}).(Get509AuthenticationDatabaseUserResultOutput)
 }
 

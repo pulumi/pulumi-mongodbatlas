@@ -80,21 +80,11 @@ type LookupAuditingResult struct {
 }
 
 func LookupAuditingOutput(ctx *pulumi.Context, args LookupAuditingOutputArgs, opts ...pulumi.InvokeOption) LookupAuditingResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupAuditingResultOutput, error) {
 			args := v.(LookupAuditingArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupAuditingResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getAuditing:getAuditing", args, &rv, "", opts...)
-			if err != nil {
-				return LookupAuditingResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupAuditingResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupAuditingResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getAuditing:getAuditing", args, LookupAuditingResultOutput{}, options).(LookupAuditingResultOutput), nil
 		}).(LookupAuditingResultOutput)
 }
 

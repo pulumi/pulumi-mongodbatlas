@@ -74,21 +74,11 @@ type LookupCloudBackupSnapshotRestoreJobResult struct {
 }
 
 func LookupCloudBackupSnapshotRestoreJobOutput(ctx *pulumi.Context, args LookupCloudBackupSnapshotRestoreJobOutputArgs, opts ...pulumi.InvokeOption) LookupCloudBackupSnapshotRestoreJobResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupCloudBackupSnapshotRestoreJobResultOutput, error) {
 			args := v.(LookupCloudBackupSnapshotRestoreJobArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupCloudBackupSnapshotRestoreJobResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", args, &rv, "", opts...)
-			if err != nil {
-				return LookupCloudBackupSnapshotRestoreJobResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupCloudBackupSnapshotRestoreJobResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupCloudBackupSnapshotRestoreJobResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", args, LookupCloudBackupSnapshotRestoreJobResultOutput{}, options).(LookupCloudBackupSnapshotRestoreJobResultOutput), nil
 		}).(LookupCloudBackupSnapshotRestoreJobResultOutput)
 }
 

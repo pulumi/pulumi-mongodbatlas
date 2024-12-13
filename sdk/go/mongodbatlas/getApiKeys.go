@@ -43,21 +43,11 @@ type LookupApiKeysResult struct {
 }
 
 func LookupApiKeysOutput(ctx *pulumi.Context, args LookupApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupApiKeysResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupApiKeysResultOutput, error) {
 			args := v.(LookupApiKeysArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupApiKeysResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getApiKeys:getApiKeys", args, &rv, "", opts...)
-			if err != nil {
-				return LookupApiKeysResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupApiKeysResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupApiKeysResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getApiKeys:getApiKeys", args, LookupApiKeysResultOutput{}, options).(LookupApiKeysResultOutput), nil
 		}).(LookupApiKeysResultOutput)
 }
 

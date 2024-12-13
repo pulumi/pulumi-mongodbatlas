@@ -22,6 +22,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Output<GetApiKeysResult> Invoke(GetApiKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetApiKeysResult>("mongodbatlas:index/getApiKeys:getApiKeys", args ?? new GetApiKeysInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetApiKeysResult> Invoke(GetApiKeysInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetApiKeysResult>("mongodbatlas:index/getApiKeys:getApiKeys", args ?? new GetApiKeysInvokeArgs(), options.WithDefaults());
     }
 
 

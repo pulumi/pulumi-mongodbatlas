@@ -86,21 +86,11 @@ type LookupCloudBackupSnapshotExportBucketsResult struct {
 }
 
 func LookupCloudBackupSnapshotExportBucketsOutput(ctx *pulumi.Context, args LookupCloudBackupSnapshotExportBucketsOutputArgs, opts ...pulumi.InvokeOption) LookupCloudBackupSnapshotExportBucketsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupCloudBackupSnapshotExportBucketsResultOutput, error) {
 			args := v.(LookupCloudBackupSnapshotExportBucketsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupCloudBackupSnapshotExportBucketsResult
-			secret, err := ctx.InvokePackageRaw("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args, &rv, "", opts...)
-			if err != nil {
-				return LookupCloudBackupSnapshotExportBucketsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupCloudBackupSnapshotExportBucketsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupCloudBackupSnapshotExportBucketsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args, LookupCloudBackupSnapshotExportBucketsResultOutput{}, options).(LookupCloudBackupSnapshotExportBucketsResultOutput), nil
 		}).(LookupCloudBackupSnapshotExportBucketsResultOutput)
 }
 
