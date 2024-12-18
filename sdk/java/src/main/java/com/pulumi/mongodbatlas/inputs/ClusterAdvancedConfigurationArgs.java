@@ -33,6 +33,13 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
         return Optional.ofNullable(this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds);
     }
 
+    @Import(name="defaultMaxTimeMs")
+    private @Nullable Output<Integer> defaultMaxTimeMs;
+
+    public Optional<Output<Integer>> defaultMaxTimeMs() {
+        return Optional.ofNullable(this.defaultMaxTimeMs);
+    }
+
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      * 
@@ -228,6 +235,7 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
 
     private ClusterAdvancedConfigurationArgs(ClusterAdvancedConfigurationArgs $) {
         this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = $.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        this.defaultMaxTimeMs = $.defaultMaxTimeMs;
         this.defaultReadConcern = $.defaultReadConcern;
         this.defaultWriteConcern = $.defaultWriteConcern;
         this.failIndexKeyTooLong = $.failIndexKeyTooLong;
@@ -278,6 +286,15 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
          */
         public Builder changeStreamOptionsPreAndPostImagesExpireAfterSeconds(Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds) {
             return changeStreamOptionsPreAndPostImagesExpireAfterSeconds(Output.of(changeStreamOptionsPreAndPostImagesExpireAfterSeconds));
+        }
+
+        public Builder defaultMaxTimeMs(@Nullable Output<Integer> defaultMaxTimeMs) {
+            $.defaultMaxTimeMs = defaultMaxTimeMs;
+            return this;
+        }
+
+        public Builder defaultMaxTimeMs(Integer defaultMaxTimeMs) {
+            return defaultMaxTimeMs(Output.of(defaultMaxTimeMs));
         }
 
         /**

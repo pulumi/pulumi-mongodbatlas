@@ -16,6 +16,8 @@ var _ = internal.GetEnvOrDefault
 type AdvancedClusterAdvancedConfiguration struct {
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	DefaultMaxTimeMs *int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -63,6 +65,8 @@ type AdvancedClusterAdvancedConfigurationInput interface {
 type AdvancedClusterAdvancedConfigurationArgs struct {
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntPtrInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	DefaultMaxTimeMs pulumi.IntPtrInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -180,6 +184,11 @@ func (o AdvancedClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPos
 	}).(pulumi.IntPtrOutput)
 }
 
+// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+func (o AdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.DefaultMaxTimeMs }).(pulumi.IntPtrOutput)
+}
+
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -275,6 +284,16 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) ChangeStreamOptionsPreAnd
 			return nil
 		}
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultMaxTimeMs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultMaxTimeMs
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -1109,11 +1128,167 @@ func (o AdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) AdvancedCluste
 	}).(AdvancedClusterLabelOutput)
 }
 
+type AdvancedClusterPinnedFcv struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+	ExpirationDate string `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version *string `pulumi:"version"`
+}
+
+// AdvancedClusterPinnedFcvInput is an input type that accepts AdvancedClusterPinnedFcvArgs and AdvancedClusterPinnedFcvOutput values.
+// You can construct a concrete instance of `AdvancedClusterPinnedFcvInput` via:
+//
+//	AdvancedClusterPinnedFcvArgs{...}
+type AdvancedClusterPinnedFcvInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterPinnedFcvOutput() AdvancedClusterPinnedFcvOutput
+	ToAdvancedClusterPinnedFcvOutputWithContext(context.Context) AdvancedClusterPinnedFcvOutput
+}
+
+type AdvancedClusterPinnedFcvArgs struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+	ExpirationDate pulumi.StringInput `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (AdvancedClusterPinnedFcvArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterPinnedFcv)(nil)).Elem()
+}
+
+func (i AdvancedClusterPinnedFcvArgs) ToAdvancedClusterPinnedFcvOutput() AdvancedClusterPinnedFcvOutput {
+	return i.ToAdvancedClusterPinnedFcvOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterPinnedFcvArgs) ToAdvancedClusterPinnedFcvOutputWithContext(ctx context.Context) AdvancedClusterPinnedFcvOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterPinnedFcvOutput)
+}
+
+func (i AdvancedClusterPinnedFcvArgs) ToAdvancedClusterPinnedFcvPtrOutput() AdvancedClusterPinnedFcvPtrOutput {
+	return i.ToAdvancedClusterPinnedFcvPtrOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterPinnedFcvArgs) ToAdvancedClusterPinnedFcvPtrOutputWithContext(ctx context.Context) AdvancedClusterPinnedFcvPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterPinnedFcvOutput).ToAdvancedClusterPinnedFcvPtrOutputWithContext(ctx)
+}
+
+// AdvancedClusterPinnedFcvPtrInput is an input type that accepts AdvancedClusterPinnedFcvArgs, AdvancedClusterPinnedFcvPtr and AdvancedClusterPinnedFcvPtrOutput values.
+// You can construct a concrete instance of `AdvancedClusterPinnedFcvPtrInput` via:
+//
+//	        AdvancedClusterPinnedFcvArgs{...}
+//
+//	or:
+//
+//	        nil
+type AdvancedClusterPinnedFcvPtrInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterPinnedFcvPtrOutput() AdvancedClusterPinnedFcvPtrOutput
+	ToAdvancedClusterPinnedFcvPtrOutputWithContext(context.Context) AdvancedClusterPinnedFcvPtrOutput
+}
+
+type advancedClusterPinnedFcvPtrType AdvancedClusterPinnedFcvArgs
+
+func AdvancedClusterPinnedFcvPtr(v *AdvancedClusterPinnedFcvArgs) AdvancedClusterPinnedFcvPtrInput {
+	return (*advancedClusterPinnedFcvPtrType)(v)
+}
+
+func (*advancedClusterPinnedFcvPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterPinnedFcv)(nil)).Elem()
+}
+
+func (i *advancedClusterPinnedFcvPtrType) ToAdvancedClusterPinnedFcvPtrOutput() AdvancedClusterPinnedFcvPtrOutput {
+	return i.ToAdvancedClusterPinnedFcvPtrOutputWithContext(context.Background())
+}
+
+func (i *advancedClusterPinnedFcvPtrType) ToAdvancedClusterPinnedFcvPtrOutputWithContext(ctx context.Context) AdvancedClusterPinnedFcvPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterPinnedFcvPtrOutput)
+}
+
+type AdvancedClusterPinnedFcvOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterPinnedFcvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterPinnedFcv)(nil)).Elem()
+}
+
+func (o AdvancedClusterPinnedFcvOutput) ToAdvancedClusterPinnedFcvOutput() AdvancedClusterPinnedFcvOutput {
+	return o
+}
+
+func (o AdvancedClusterPinnedFcvOutput) ToAdvancedClusterPinnedFcvOutputWithContext(ctx context.Context) AdvancedClusterPinnedFcvOutput {
+	return o
+}
+
+func (o AdvancedClusterPinnedFcvOutput) ToAdvancedClusterPinnedFcvPtrOutput() AdvancedClusterPinnedFcvPtrOutput {
+	return o.ToAdvancedClusterPinnedFcvPtrOutputWithContext(context.Background())
+}
+
+func (o AdvancedClusterPinnedFcvOutput) ToAdvancedClusterPinnedFcvPtrOutputWithContext(ctx context.Context) AdvancedClusterPinnedFcvPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AdvancedClusterPinnedFcv) *AdvancedClusterPinnedFcv {
+		return &v
+	}).(AdvancedClusterPinnedFcvPtrOutput)
+}
+
+// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+func (o AdvancedClusterPinnedFcvOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v AdvancedClusterPinnedFcv) string { return v.ExpirationDate }).(pulumi.StringOutput)
+}
+
+// Feature compatibility version of the cluster.
+func (o AdvancedClusterPinnedFcvOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterPinnedFcv) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type AdvancedClusterPinnedFcvPtrOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterPinnedFcvPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterPinnedFcv)(nil)).Elem()
+}
+
+func (o AdvancedClusterPinnedFcvPtrOutput) ToAdvancedClusterPinnedFcvPtrOutput() AdvancedClusterPinnedFcvPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterPinnedFcvPtrOutput) ToAdvancedClusterPinnedFcvPtrOutputWithContext(ctx context.Context) AdvancedClusterPinnedFcvPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterPinnedFcvPtrOutput) Elem() AdvancedClusterPinnedFcvOutput {
+	return o.ApplyT(func(v *AdvancedClusterPinnedFcv) AdvancedClusterPinnedFcv {
+		if v != nil {
+			return *v
+		}
+		var ret AdvancedClusterPinnedFcv
+		return ret
+	}).(AdvancedClusterPinnedFcvOutput)
+}
+
+// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+func (o AdvancedClusterPinnedFcvPtrOutput) ExpirationDate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterPinnedFcv) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ExpirationDate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Feature compatibility version of the cluster.
+func (o AdvancedClusterPinnedFcvPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterPinnedFcv) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
 type AdvancedClusterReplicationSpec struct {
 	ContainerId map[string]string `pulumi:"containerId"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
 	ExternalId *string `pulumi:"externalId"`
-	// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+	// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id *string `pulumi:"id"`
@@ -1145,7 +1320,7 @@ type AdvancedClusterReplicationSpecArgs struct {
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
 	ExternalId pulumi.StringPtrInput `pulumi:"externalId"`
-	// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+	// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -1222,7 +1397,7 @@ func (o AdvancedClusterReplicationSpecOutput) ExternalId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
 }
 
-// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o AdvancedClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
@@ -1275,11 +1450,11 @@ func (o AdvancedClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) Adva
 }
 
 type AdvancedClusterReplicationSpecRegionConfig struct {
-	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
+	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 	AnalyticsAutoScaling *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScaling"`
 	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
 	AnalyticsSpecs *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
-	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
+	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 	AutoScaling *AdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
 	BackingProviderName *string `pulumi:"backingProviderName"`
@@ -1315,11 +1490,11 @@ type AdvancedClusterReplicationSpecRegionConfigInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigArgs struct {
-	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
+	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 	AnalyticsAutoScaling AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrInput `pulumi:"analyticsAutoScaling"`
 	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
 	AnalyticsSpecs AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
-	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
+	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 	AutoScaling AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput `pulumi:"autoScaling"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
 	BackingProviderName pulumi.StringPtrInput `pulumi:"backingProviderName"`
@@ -1394,7 +1569,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) ToAdvancedClusterRepli
 	return o
 }
 
-// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
+// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsAutoScaling() AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
 		return v.AnalyticsAutoScaling
@@ -1408,7 +1583,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() Advan
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
 }
 
-// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
+// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) AutoScaling() AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAutoScaling {
 		return v.AutoScaling
@@ -1921,7 +2096,8 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 	ComputeMinInstanceSize *string `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
 	ComputeScaleDownEnabled *bool `pulumi:"computeScaleDownEnabled"`
-	DiskGbEnabled           *bool `pulumi:"diskGbEnabled"`
+	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+	DiskGbEnabled *bool `pulumi:"diskGbEnabled"`
 }
 
 // AdvancedClusterReplicationSpecRegionConfigAutoScalingInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs and AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput values.
@@ -1943,7 +2119,8 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
 	ComputeMinInstanceSize pulumi.StringPtrInput `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
 	ComputeScaleDownEnabled pulumi.BoolPtrInput `pulumi:"computeScaleDownEnabled"`
-	DiskGbEnabled           pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
+	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+	DiskGbEnabled pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
 }
 
 func (AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ElementType() reflect.Type {
@@ -2042,6 +2219,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeScal
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.ComputeScaleDownEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.DiskGbEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -2109,6 +2287,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeS
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool {
 		if v == nil {
@@ -6923,6 +7102,7 @@ func (o CloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInput)
 type ClusterAdvancedConfiguration struct {
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	DefaultMaxTimeMs                                      *int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -6970,6 +7150,7 @@ type ClusterAdvancedConfigurationInput interface {
 type ClusterAdvancedConfigurationArgs struct {
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntPtrInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	DefaultMaxTimeMs                                      pulumi.IntPtrInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -7087,6 +7268,10 @@ func (o ClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesE
 	}).(pulumi.IntPtrOutput)
 }
 
+func (o ClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.DefaultMaxTimeMs }).(pulumi.IntPtrOutput)
+}
+
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -7182,6 +7367,15 @@ func (o ClusterAdvancedConfigurationPtrOutput) ChangeStreamOptionsPreAndPostImag
 			return nil
 		}
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ClusterAdvancedConfigurationPtrOutput) DefaultMaxTimeMs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultMaxTimeMs
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -8140,6 +8334,162 @@ func (o ClusterOutageSimulationOutageFilterArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterOutageSimulationOutageFilter {
 		return vs[0].([]ClusterOutageSimulationOutageFilter)[vs[1].(int)]
 	}).(ClusterOutageSimulationOutageFilterOutput)
+}
+
+type ClusterPinnedFcv struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+	ExpirationDate string `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version *string `pulumi:"version"`
+}
+
+// ClusterPinnedFcvInput is an input type that accepts ClusterPinnedFcvArgs and ClusterPinnedFcvOutput values.
+// You can construct a concrete instance of `ClusterPinnedFcvInput` via:
+//
+//	ClusterPinnedFcvArgs{...}
+type ClusterPinnedFcvInput interface {
+	pulumi.Input
+
+	ToClusterPinnedFcvOutput() ClusterPinnedFcvOutput
+	ToClusterPinnedFcvOutputWithContext(context.Context) ClusterPinnedFcvOutput
+}
+
+type ClusterPinnedFcvArgs struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+	ExpirationDate pulumi.StringInput `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (ClusterPinnedFcvArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterPinnedFcv)(nil)).Elem()
+}
+
+func (i ClusterPinnedFcvArgs) ToClusterPinnedFcvOutput() ClusterPinnedFcvOutput {
+	return i.ToClusterPinnedFcvOutputWithContext(context.Background())
+}
+
+func (i ClusterPinnedFcvArgs) ToClusterPinnedFcvOutputWithContext(ctx context.Context) ClusterPinnedFcvOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPinnedFcvOutput)
+}
+
+func (i ClusterPinnedFcvArgs) ToClusterPinnedFcvPtrOutput() ClusterPinnedFcvPtrOutput {
+	return i.ToClusterPinnedFcvPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterPinnedFcvArgs) ToClusterPinnedFcvPtrOutputWithContext(ctx context.Context) ClusterPinnedFcvPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPinnedFcvOutput).ToClusterPinnedFcvPtrOutputWithContext(ctx)
+}
+
+// ClusterPinnedFcvPtrInput is an input type that accepts ClusterPinnedFcvArgs, ClusterPinnedFcvPtr and ClusterPinnedFcvPtrOutput values.
+// You can construct a concrete instance of `ClusterPinnedFcvPtrInput` via:
+//
+//	        ClusterPinnedFcvArgs{...}
+//
+//	or:
+//
+//	        nil
+type ClusterPinnedFcvPtrInput interface {
+	pulumi.Input
+
+	ToClusterPinnedFcvPtrOutput() ClusterPinnedFcvPtrOutput
+	ToClusterPinnedFcvPtrOutputWithContext(context.Context) ClusterPinnedFcvPtrOutput
+}
+
+type clusterPinnedFcvPtrType ClusterPinnedFcvArgs
+
+func ClusterPinnedFcvPtr(v *ClusterPinnedFcvArgs) ClusterPinnedFcvPtrInput {
+	return (*clusterPinnedFcvPtrType)(v)
+}
+
+func (*clusterPinnedFcvPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterPinnedFcv)(nil)).Elem()
+}
+
+func (i *clusterPinnedFcvPtrType) ToClusterPinnedFcvPtrOutput() ClusterPinnedFcvPtrOutput {
+	return i.ToClusterPinnedFcvPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterPinnedFcvPtrType) ToClusterPinnedFcvPtrOutputWithContext(ctx context.Context) ClusterPinnedFcvPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPinnedFcvPtrOutput)
+}
+
+type ClusterPinnedFcvOutput struct{ *pulumi.OutputState }
+
+func (ClusterPinnedFcvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterPinnedFcv)(nil)).Elem()
+}
+
+func (o ClusterPinnedFcvOutput) ToClusterPinnedFcvOutput() ClusterPinnedFcvOutput {
+	return o
+}
+
+func (o ClusterPinnedFcvOutput) ToClusterPinnedFcvOutputWithContext(ctx context.Context) ClusterPinnedFcvOutput {
+	return o
+}
+
+func (o ClusterPinnedFcvOutput) ToClusterPinnedFcvPtrOutput() ClusterPinnedFcvPtrOutput {
+	return o.ToClusterPinnedFcvPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterPinnedFcvOutput) ToClusterPinnedFcvPtrOutputWithContext(ctx context.Context) ClusterPinnedFcvPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClusterPinnedFcv) *ClusterPinnedFcv {
+		return &v
+	}).(ClusterPinnedFcvPtrOutput)
+}
+
+// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+func (o ClusterPinnedFcvOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v ClusterPinnedFcv) string { return v.ExpirationDate }).(pulumi.StringOutput)
+}
+
+// Feature compatibility version of the cluster.
+func (o ClusterPinnedFcvOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterPinnedFcv) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type ClusterPinnedFcvPtrOutput struct{ *pulumi.OutputState }
+
+func (ClusterPinnedFcvPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterPinnedFcv)(nil)).Elem()
+}
+
+func (o ClusterPinnedFcvPtrOutput) ToClusterPinnedFcvPtrOutput() ClusterPinnedFcvPtrOutput {
+	return o
+}
+
+func (o ClusterPinnedFcvPtrOutput) ToClusterPinnedFcvPtrOutputWithContext(ctx context.Context) ClusterPinnedFcvPtrOutput {
+	return o
+}
+
+func (o ClusterPinnedFcvPtrOutput) Elem() ClusterPinnedFcvOutput {
+	return o.ApplyT(func(v *ClusterPinnedFcv) ClusterPinnedFcv {
+		if v != nil {
+			return *v
+		}
+		var ret ClusterPinnedFcv
+		return ret
+	}).(ClusterPinnedFcvOutput)
+}
+
+// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+func (o ClusterPinnedFcvPtrOutput) ExpirationDate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterPinnedFcv) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ExpirationDate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Feature compatibility version of the cluster.
+func (o ClusterPinnedFcvPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterPinnedFcv) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterReplicationSpec struct {
@@ -18345,6 +18695,8 @@ func (o GetAccessListApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetAcces
 type GetAdvancedClusterAdvancedConfiguration struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -18387,6 +18739,8 @@ type GetAdvancedClusterAdvancedConfigurationInput interface {
 type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -18471,6 +18825,11 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAnd
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
 	}).(pulumi.IntOutput)
+}
+
+// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -19152,6 +19511,112 @@ func (o GetAdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) GetAdvanced
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterLabel {
 		return vs[0].([]GetAdvancedClusterLabel)[vs[1].(int)]
 	}).(GetAdvancedClusterLabelOutput)
+}
+
+type GetAdvancedClusterPinnedFcv struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+	ExpirationDate string `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version string `pulumi:"version"`
+}
+
+// GetAdvancedClusterPinnedFcvInput is an input type that accepts GetAdvancedClusterPinnedFcvArgs and GetAdvancedClusterPinnedFcvOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterPinnedFcvInput` via:
+//
+//	GetAdvancedClusterPinnedFcvArgs{...}
+type GetAdvancedClusterPinnedFcvInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterPinnedFcvOutput() GetAdvancedClusterPinnedFcvOutput
+	ToGetAdvancedClusterPinnedFcvOutputWithContext(context.Context) GetAdvancedClusterPinnedFcvOutput
+}
+
+type GetAdvancedClusterPinnedFcvArgs struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+	ExpirationDate pulumi.StringInput `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetAdvancedClusterPinnedFcvArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterPinnedFcv)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterPinnedFcvArgs) ToGetAdvancedClusterPinnedFcvOutput() GetAdvancedClusterPinnedFcvOutput {
+	return i.ToGetAdvancedClusterPinnedFcvOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterPinnedFcvArgs) ToGetAdvancedClusterPinnedFcvOutputWithContext(ctx context.Context) GetAdvancedClusterPinnedFcvOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterPinnedFcvOutput)
+}
+
+// GetAdvancedClusterPinnedFcvArrayInput is an input type that accepts GetAdvancedClusterPinnedFcvArray and GetAdvancedClusterPinnedFcvArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterPinnedFcvArrayInput` via:
+//
+//	GetAdvancedClusterPinnedFcvArray{ GetAdvancedClusterPinnedFcvArgs{...} }
+type GetAdvancedClusterPinnedFcvArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterPinnedFcvArrayOutput() GetAdvancedClusterPinnedFcvArrayOutput
+	ToGetAdvancedClusterPinnedFcvArrayOutputWithContext(context.Context) GetAdvancedClusterPinnedFcvArrayOutput
+}
+
+type GetAdvancedClusterPinnedFcvArray []GetAdvancedClusterPinnedFcvInput
+
+func (GetAdvancedClusterPinnedFcvArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterPinnedFcv)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterPinnedFcvArray) ToGetAdvancedClusterPinnedFcvArrayOutput() GetAdvancedClusterPinnedFcvArrayOutput {
+	return i.ToGetAdvancedClusterPinnedFcvArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterPinnedFcvArray) ToGetAdvancedClusterPinnedFcvArrayOutputWithContext(ctx context.Context) GetAdvancedClusterPinnedFcvArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterPinnedFcvArrayOutput)
+}
+
+type GetAdvancedClusterPinnedFcvOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterPinnedFcvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterPinnedFcv)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterPinnedFcvOutput) ToGetAdvancedClusterPinnedFcvOutput() GetAdvancedClusterPinnedFcvOutput {
+	return o
+}
+
+func (o GetAdvancedClusterPinnedFcvOutput) ToGetAdvancedClusterPinnedFcvOutputWithContext(ctx context.Context) GetAdvancedClusterPinnedFcvOutput {
+	return o
+}
+
+// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+func (o GetAdvancedClusterPinnedFcvOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterPinnedFcv) string { return v.ExpirationDate }).(pulumi.StringOutput)
+}
+
+// Feature compatibility version of the cluster.
+func (o GetAdvancedClusterPinnedFcvOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterPinnedFcv) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClusterPinnedFcvArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterPinnedFcvArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterPinnedFcv)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterPinnedFcvArrayOutput) ToGetAdvancedClusterPinnedFcvArrayOutput() GetAdvancedClusterPinnedFcvArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterPinnedFcvArrayOutput) ToGetAdvancedClusterPinnedFcvArrayOutputWithContext(ctx context.Context) GetAdvancedClusterPinnedFcvArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterPinnedFcvArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterPinnedFcvOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterPinnedFcv {
+		return vs[0].([]GetAdvancedClusterPinnedFcv)[vs[1].(int)]
+	}).(GetAdvancedClusterPinnedFcvOutput)
 }
 
 type GetAdvancedClusterReplicationSpec struct {
@@ -20198,6 +20663,8 @@ type GetAdvancedClustersResult struct {
 	Name           string `pulumi:"name"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused bool `pulumi:"paused"`
+	// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+	PinnedFcvs []GetAdvancedClustersResultPinnedFcv `pulumi:"pinnedFcvs"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
 	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
@@ -20261,6 +20728,8 @@ type GetAdvancedClustersResultArgs struct {
 	Name           pulumi.StringInput `pulumi:"name"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused pulumi.BoolInput `pulumi:"paused"`
+	// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+	PinnedFcvs GetAdvancedClustersResultPinnedFcvArrayInput `pulumi:"pinnedFcvs"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
 	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
@@ -20417,6 +20886,11 @@ func (o GetAdvancedClustersResultOutput) Paused() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.Paused }).(pulumi.BoolOutput)
 }
 
+// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+func (o GetAdvancedClustersResultOutput) PinnedFcvs() GetAdvancedClustersResultPinnedFcvArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultPinnedFcv { return v.PinnedFcvs }).(GetAdvancedClustersResultPinnedFcvArrayOutput)
+}
+
 // Flag that indicates if the cluster uses Continuous Cloud Backup.
 func (o GetAdvancedClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
@@ -20487,6 +20961,8 @@ func (o GetAdvancedClustersResultArrayOutput) Index(i pulumi.IntInput) GetAdvanc
 type GetAdvancedClustersResultAdvancedConfiguration struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -20529,6 +21005,8 @@ type GetAdvancedClustersResultAdvancedConfigurationInput interface {
 type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -20613,6 +21091,11 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ChangeStreamOption
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
 	}).(pulumi.IntOutput)
+}
+
+// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -21294,6 +21777,112 @@ func (o GetAdvancedClustersResultLabelArrayOutput) Index(i pulumi.IntInput) GetA
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultLabel {
 		return vs[0].([]GetAdvancedClustersResultLabel)[vs[1].(int)]
 	}).(GetAdvancedClustersResultLabelOutput)
+}
+
+type GetAdvancedClustersResultPinnedFcv struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+	ExpirationDate string `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version string `pulumi:"version"`
+}
+
+// GetAdvancedClustersResultPinnedFcvInput is an input type that accepts GetAdvancedClustersResultPinnedFcvArgs and GetAdvancedClustersResultPinnedFcvOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultPinnedFcvInput` via:
+//
+//	GetAdvancedClustersResultPinnedFcvArgs{...}
+type GetAdvancedClustersResultPinnedFcvInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultPinnedFcvOutput() GetAdvancedClustersResultPinnedFcvOutput
+	ToGetAdvancedClustersResultPinnedFcvOutputWithContext(context.Context) GetAdvancedClustersResultPinnedFcvOutput
+}
+
+type GetAdvancedClustersResultPinnedFcvArgs struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+	ExpirationDate pulumi.StringInput `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetAdvancedClustersResultPinnedFcvArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultPinnedFcv)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultPinnedFcvArgs) ToGetAdvancedClustersResultPinnedFcvOutput() GetAdvancedClustersResultPinnedFcvOutput {
+	return i.ToGetAdvancedClustersResultPinnedFcvOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultPinnedFcvArgs) ToGetAdvancedClustersResultPinnedFcvOutputWithContext(ctx context.Context) GetAdvancedClustersResultPinnedFcvOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultPinnedFcvOutput)
+}
+
+// GetAdvancedClustersResultPinnedFcvArrayInput is an input type that accepts GetAdvancedClustersResultPinnedFcvArray and GetAdvancedClustersResultPinnedFcvArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultPinnedFcvArrayInput` via:
+//
+//	GetAdvancedClustersResultPinnedFcvArray{ GetAdvancedClustersResultPinnedFcvArgs{...} }
+type GetAdvancedClustersResultPinnedFcvArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultPinnedFcvArrayOutput() GetAdvancedClustersResultPinnedFcvArrayOutput
+	ToGetAdvancedClustersResultPinnedFcvArrayOutputWithContext(context.Context) GetAdvancedClustersResultPinnedFcvArrayOutput
+}
+
+type GetAdvancedClustersResultPinnedFcvArray []GetAdvancedClustersResultPinnedFcvInput
+
+func (GetAdvancedClustersResultPinnedFcvArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultPinnedFcv)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultPinnedFcvArray) ToGetAdvancedClustersResultPinnedFcvArrayOutput() GetAdvancedClustersResultPinnedFcvArrayOutput {
+	return i.ToGetAdvancedClustersResultPinnedFcvArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultPinnedFcvArray) ToGetAdvancedClustersResultPinnedFcvArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultPinnedFcvArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultPinnedFcvArrayOutput)
+}
+
+type GetAdvancedClustersResultPinnedFcvOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultPinnedFcvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultPinnedFcv)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultPinnedFcvOutput) ToGetAdvancedClustersResultPinnedFcvOutput() GetAdvancedClustersResultPinnedFcvOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultPinnedFcvOutput) ToGetAdvancedClustersResultPinnedFcvOutputWithContext(ctx context.Context) GetAdvancedClustersResultPinnedFcvOutput {
+	return o
+}
+
+// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+func (o GetAdvancedClustersResultPinnedFcvOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultPinnedFcv) string { return v.ExpirationDate }).(pulumi.StringOutput)
+}
+
+// Feature compatibility version of the cluster.
+func (o GetAdvancedClustersResultPinnedFcvOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultPinnedFcv) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClustersResultPinnedFcvArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultPinnedFcvArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultPinnedFcv)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultPinnedFcvArrayOutput) ToGetAdvancedClustersResultPinnedFcvArrayOutput() GetAdvancedClustersResultPinnedFcvArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultPinnedFcvArrayOutput) ToGetAdvancedClustersResultPinnedFcvArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultPinnedFcvArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultPinnedFcvArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultPinnedFcvOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultPinnedFcv {
+		return vs[0].([]GetAdvancedClustersResultPinnedFcv)[vs[1].(int)]
+	}).(GetAdvancedClustersResultPinnedFcvOutput)
 }
 
 type GetAdvancedClustersResultReplicationSpec struct {
@@ -28421,6 +29010,7 @@ func (o GetCloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInp
 type GetClusterAdvancedConfiguration struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	DefaultMaxTimeMs                                      int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -28463,6 +29053,7 @@ type GetClusterAdvancedConfigurationInput interface {
 type GetClusterAdvancedConfigurationArgs struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	DefaultMaxTimeMs                                      pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -28547,6 +29138,10 @@ func (o GetClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImag
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
 	}).(pulumi.IntOutput)
+}
+
+func (o GetClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -29364,6 +29959,112 @@ func (o GetClusterOutageSimulationOutageFilterArrayOutput) Index(i pulumi.IntInp
 	}).(GetClusterOutageSimulationOutageFilterOutput)
 }
 
+type GetClusterPinnedFcv struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+	ExpirationDate string `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version string `pulumi:"version"`
+}
+
+// GetClusterPinnedFcvInput is an input type that accepts GetClusterPinnedFcvArgs and GetClusterPinnedFcvOutput values.
+// You can construct a concrete instance of `GetClusterPinnedFcvInput` via:
+//
+//	GetClusterPinnedFcvArgs{...}
+type GetClusterPinnedFcvInput interface {
+	pulumi.Input
+
+	ToGetClusterPinnedFcvOutput() GetClusterPinnedFcvOutput
+	ToGetClusterPinnedFcvOutputWithContext(context.Context) GetClusterPinnedFcvOutput
+}
+
+type GetClusterPinnedFcvArgs struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+	ExpirationDate pulumi.StringInput `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetClusterPinnedFcvArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterPinnedFcv)(nil)).Elem()
+}
+
+func (i GetClusterPinnedFcvArgs) ToGetClusterPinnedFcvOutput() GetClusterPinnedFcvOutput {
+	return i.ToGetClusterPinnedFcvOutputWithContext(context.Background())
+}
+
+func (i GetClusterPinnedFcvArgs) ToGetClusterPinnedFcvOutputWithContext(ctx context.Context) GetClusterPinnedFcvOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterPinnedFcvOutput)
+}
+
+// GetClusterPinnedFcvArrayInput is an input type that accepts GetClusterPinnedFcvArray and GetClusterPinnedFcvArrayOutput values.
+// You can construct a concrete instance of `GetClusterPinnedFcvArrayInput` via:
+//
+//	GetClusterPinnedFcvArray{ GetClusterPinnedFcvArgs{...} }
+type GetClusterPinnedFcvArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterPinnedFcvArrayOutput() GetClusterPinnedFcvArrayOutput
+	ToGetClusterPinnedFcvArrayOutputWithContext(context.Context) GetClusterPinnedFcvArrayOutput
+}
+
+type GetClusterPinnedFcvArray []GetClusterPinnedFcvInput
+
+func (GetClusterPinnedFcvArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterPinnedFcv)(nil)).Elem()
+}
+
+func (i GetClusterPinnedFcvArray) ToGetClusterPinnedFcvArrayOutput() GetClusterPinnedFcvArrayOutput {
+	return i.ToGetClusterPinnedFcvArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterPinnedFcvArray) ToGetClusterPinnedFcvArrayOutputWithContext(ctx context.Context) GetClusterPinnedFcvArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterPinnedFcvArrayOutput)
+}
+
+type GetClusterPinnedFcvOutput struct{ *pulumi.OutputState }
+
+func (GetClusterPinnedFcvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterPinnedFcv)(nil)).Elem()
+}
+
+func (o GetClusterPinnedFcvOutput) ToGetClusterPinnedFcvOutput() GetClusterPinnedFcvOutput {
+	return o
+}
+
+func (o GetClusterPinnedFcvOutput) ToGetClusterPinnedFcvOutputWithContext(ctx context.Context) GetClusterPinnedFcvOutput {
+	return o
+}
+
+// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+func (o GetClusterPinnedFcvOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterPinnedFcv) string { return v.ExpirationDate }).(pulumi.StringOutput)
+}
+
+// Feature compatibility version of the cluster.
+func (o GetClusterPinnedFcvOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterPinnedFcv) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetClusterPinnedFcvArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterPinnedFcvArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterPinnedFcv)(nil)).Elem()
+}
+
+func (o GetClusterPinnedFcvArrayOutput) ToGetClusterPinnedFcvArrayOutput() GetClusterPinnedFcvArrayOutput {
+	return o
+}
+
+func (o GetClusterPinnedFcvArrayOutput) ToGetClusterPinnedFcvArrayOutputWithContext(ctx context.Context) GetClusterPinnedFcvArrayOutput {
+	return o
+}
+
+func (o GetClusterPinnedFcvArrayOutput) Index(i pulumi.IntInput) GetClusterPinnedFcvOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterPinnedFcv {
+		return vs[0].([]GetClusterPinnedFcv)[vs[1].(int)]
+	}).(GetClusterPinnedFcvOutput)
+}
+
 type GetClusterReplicationSpec struct {
 	// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
 	Id string `pulumi:"id"`
@@ -30132,6 +30833,8 @@ type GetClustersResult struct {
 	NumShards int `pulumi:"numShards"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused bool `pulumi:"paused"`
+	// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+	PinnedFcvs []GetClustersResultPinnedFcv `pulumi:"pinnedFcvs"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
 	// Maximum instance size to which your cluster can automatically scale.
@@ -30235,6 +30938,8 @@ type GetClustersResultArgs struct {
 	NumShards pulumi.IntInput `pulumi:"numShards"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused pulumi.BoolInput `pulumi:"paused"`
+	// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+	PinnedFcvs GetClustersResultPinnedFcvArrayInput `pulumi:"pinnedFcvs"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
 	// Maximum instance size to which your cluster can automatically scale.
@@ -30440,6 +31145,11 @@ func (o GetClustersResultOutput) Paused() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResult) bool { return v.Paused }).(pulumi.BoolOutput)
 }
 
+// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+func (o GetClustersResultOutput) PinnedFcvs() GetClustersResultPinnedFcvArrayOutput {
+	return o.ApplyT(func(v GetClustersResult) []GetClustersResultPinnedFcv { return v.PinnedFcvs }).(GetClustersResultPinnedFcvArrayOutput)
+}
+
 // Flag that indicates if the cluster uses Continuous Cloud Backup.
 func (o GetClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
@@ -30570,6 +31280,7 @@ func (o GetClustersResultArrayOutput) Index(i pulumi.IntInput) GetClustersResult
 type GetClustersResultAdvancedConfiguration struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	DefaultMaxTimeMs                                      int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -30611,6 +31322,7 @@ type GetClustersResultAdvancedConfigurationInput interface {
 type GetClustersResultAdvancedConfigurationArgs struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	DefaultMaxTimeMs                                      pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -30694,6 +31406,10 @@ func (o GetClustersResultAdvancedConfigurationOutput) ChangeStreamOptionsPreAndP
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
 	}).(pulumi.IntOutput)
+}
+
+func (o GetClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -31383,6 +32099,112 @@ func (o GetClustersResultLabelArrayOutput) Index(i pulumi.IntInput) GetClustersR
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultLabel {
 		return vs[0].([]GetClustersResultLabel)[vs[1].(int)]
 	}).(GetClustersResultLabelOutput)
+}
+
+type GetClustersResultPinnedFcv struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+	ExpirationDate string `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version string `pulumi:"version"`
+}
+
+// GetClustersResultPinnedFcvInput is an input type that accepts GetClustersResultPinnedFcvArgs and GetClustersResultPinnedFcvOutput values.
+// You can construct a concrete instance of `GetClustersResultPinnedFcvInput` via:
+//
+//	GetClustersResultPinnedFcvArgs{...}
+type GetClustersResultPinnedFcvInput interface {
+	pulumi.Input
+
+	ToGetClustersResultPinnedFcvOutput() GetClustersResultPinnedFcvOutput
+	ToGetClustersResultPinnedFcvOutputWithContext(context.Context) GetClustersResultPinnedFcvOutput
+}
+
+type GetClustersResultPinnedFcvArgs struct {
+	// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+	ExpirationDate pulumi.StringInput `pulumi:"expirationDate"`
+	// Feature compatibility version of the cluster.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetClustersResultPinnedFcvArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultPinnedFcv)(nil)).Elem()
+}
+
+func (i GetClustersResultPinnedFcvArgs) ToGetClustersResultPinnedFcvOutput() GetClustersResultPinnedFcvOutput {
+	return i.ToGetClustersResultPinnedFcvOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultPinnedFcvArgs) ToGetClustersResultPinnedFcvOutputWithContext(ctx context.Context) GetClustersResultPinnedFcvOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultPinnedFcvOutput)
+}
+
+// GetClustersResultPinnedFcvArrayInput is an input type that accepts GetClustersResultPinnedFcvArray and GetClustersResultPinnedFcvArrayOutput values.
+// You can construct a concrete instance of `GetClustersResultPinnedFcvArrayInput` via:
+//
+//	GetClustersResultPinnedFcvArray{ GetClustersResultPinnedFcvArgs{...} }
+type GetClustersResultPinnedFcvArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersResultPinnedFcvArrayOutput() GetClustersResultPinnedFcvArrayOutput
+	ToGetClustersResultPinnedFcvArrayOutputWithContext(context.Context) GetClustersResultPinnedFcvArrayOutput
+}
+
+type GetClustersResultPinnedFcvArray []GetClustersResultPinnedFcvInput
+
+func (GetClustersResultPinnedFcvArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultPinnedFcv)(nil)).Elem()
+}
+
+func (i GetClustersResultPinnedFcvArray) ToGetClustersResultPinnedFcvArrayOutput() GetClustersResultPinnedFcvArrayOutput {
+	return i.ToGetClustersResultPinnedFcvArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultPinnedFcvArray) ToGetClustersResultPinnedFcvArrayOutputWithContext(ctx context.Context) GetClustersResultPinnedFcvArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultPinnedFcvArrayOutput)
+}
+
+type GetClustersResultPinnedFcvOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultPinnedFcvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultPinnedFcv)(nil)).Elem()
+}
+
+func (o GetClustersResultPinnedFcvOutput) ToGetClustersResultPinnedFcvOutput() GetClustersResultPinnedFcvOutput {
+	return o
+}
+
+func (o GetClustersResultPinnedFcvOutput) ToGetClustersResultPinnedFcvOutputWithContext(ctx context.Context) GetClustersResultPinnedFcvOutput {
+	return o
+}
+
+// Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z").
+func (o GetClustersResultPinnedFcvOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultPinnedFcv) string { return v.ExpirationDate }).(pulumi.StringOutput)
+}
+
+// Feature compatibility version of the cluster.
+func (o GetClustersResultPinnedFcvOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultPinnedFcv) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetClustersResultPinnedFcvArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultPinnedFcvArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultPinnedFcv)(nil)).Elem()
+}
+
+func (o GetClustersResultPinnedFcvArrayOutput) ToGetClustersResultPinnedFcvArrayOutput() GetClustersResultPinnedFcvArrayOutput {
+	return o
+}
+
+func (o GetClustersResultPinnedFcvArrayOutput) ToGetClustersResultPinnedFcvArrayOutputWithContext(ctx context.Context) GetClustersResultPinnedFcvArrayOutput {
+	return o
+}
+
+func (o GetClustersResultPinnedFcvArrayOutput) Index(i pulumi.IntInput) GetClustersResultPinnedFcvOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultPinnedFcv {
+		return vs[0].([]GetClustersResultPinnedFcv)[vs[1].(int)]
+	}).(GetClustersResultPinnedFcvOutput)
 }
 
 type GetClustersResultReplicationSpec struct {
@@ -50619,6 +51441,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput)(nil)).Elem(), AdvancedClusterConnectionStringPrivateEndpointEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterLabelInput)(nil)).Elem(), AdvancedClusterLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterLabelArrayInput)(nil)).Elem(), AdvancedClusterLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterPinnedFcvInput)(nil)).Elem(), AdvancedClusterPinnedFcvArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterPinnedFcvPtrInput)(nil)).Elem(), AdvancedClusterPinnedFcvArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecInput)(nil)).Elem(), AdvancedClusterReplicationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecArrayInput)(nil)).Elem(), AdvancedClusterReplicationSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigArgs{})
@@ -50701,6 +51525,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLabelArrayInput)(nil)).Elem(), ClusterLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterOutageSimulationOutageFilterInput)(nil)).Elem(), ClusterOutageSimulationOutageFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterOutageSimulationOutageFilterArrayInput)(nil)).Elem(), ClusterOutageSimulationOutageFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPinnedFcvInput)(nil)).Elem(), ClusterPinnedFcvArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPinnedFcvPtrInput)(nil)).Elem(), ClusterPinnedFcvArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterReplicationSpecInput)(nil)).Elem(), ClusterReplicationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterReplicationSpecArrayInput)(nil)).Elem(), ClusterReplicationSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterReplicationSpecRegionsConfigInput)(nil)).Elem(), ClusterReplicationSpecRegionsConfigArgs{})
@@ -50855,6 +51681,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput)(nil)).Elem(), GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterLabelInput)(nil)).Elem(), GetAdvancedClusterLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterLabelArrayInput)(nil)).Elem(), GetAdvancedClusterLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterPinnedFcvInput)(nil)).Elem(), GetAdvancedClusterPinnedFcvArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterPinnedFcvArrayInput)(nil)).Elem(), GetAdvancedClusterPinnedFcvArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecArrayInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigArgs{})
@@ -50882,6 +51710,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayInput)(nil)).Elem(), GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultLabelInput)(nil)).Elem(), GetAdvancedClustersResultLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultLabelArrayInput)(nil)).Elem(), GetAdvancedClustersResultLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultPinnedFcvInput)(nil)).Elem(), GetAdvancedClustersResultPinnedFcvArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultPinnedFcvArrayInput)(nil)).Elem(), GetAdvancedClustersResultPinnedFcvArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecArrayInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigArgs{})
@@ -50992,6 +51822,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterLabelArrayInput)(nil)).Elem(), GetClusterLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOutageSimulationOutageFilterInput)(nil)).Elem(), GetClusterOutageSimulationOutageFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOutageSimulationOutageFilterArrayInput)(nil)).Elem(), GetClusterOutageSimulationOutageFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPinnedFcvInput)(nil)).Elem(), GetClusterPinnedFcvArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPinnedFcvArrayInput)(nil)).Elem(), GetClusterPinnedFcvArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterReplicationSpecInput)(nil)).Elem(), GetClusterReplicationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterReplicationSpecArrayInput)(nil)).Elem(), GetClusterReplicationSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterReplicationSpecRegionsConfigInput)(nil)).Elem(), GetClusterReplicationSpecRegionsConfigArgs{})
@@ -51018,6 +51850,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultConnectionStringPrivateEndpointEndpointArrayInput)(nil)).Elem(), GetClustersResultConnectionStringPrivateEndpointEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultLabelInput)(nil)).Elem(), GetClustersResultLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultLabelArrayInput)(nil)).Elem(), GetClustersResultLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultPinnedFcvInput)(nil)).Elem(), GetClustersResultPinnedFcvArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultPinnedFcvArrayInput)(nil)).Elem(), GetClustersResultPinnedFcvArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultReplicationSpecInput)(nil)).Elem(), GetClustersResultReplicationSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultReplicationSpecArrayInput)(nil)).Elem(), GetClustersResultReplicationSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultReplicationSpecRegionsConfigInput)(nil)).Elem(), GetClustersResultReplicationSpecRegionsConfigArgs{})
@@ -51323,6 +52157,8 @@ func init() {
 	pulumi.RegisterOutputType(AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterLabelOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterLabelArrayOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterPinnedFcvOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterPinnedFcvPtrOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecArrayOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigOutput{})
@@ -51405,6 +52241,8 @@ func init() {
 	pulumi.RegisterOutputType(ClusterLabelArrayOutput{})
 	pulumi.RegisterOutputType(ClusterOutageSimulationOutageFilterOutput{})
 	pulumi.RegisterOutputType(ClusterOutageSimulationOutageFilterArrayOutput{})
+	pulumi.RegisterOutputType(ClusterPinnedFcvOutput{})
+	pulumi.RegisterOutputType(ClusterPinnedFcvPtrOutput{})
 	pulumi.RegisterOutputType(ClusterReplicationSpecOutput{})
 	pulumi.RegisterOutputType(ClusterReplicationSpecArrayOutput{})
 	pulumi.RegisterOutputType(ClusterReplicationSpecRegionsConfigOutput{})
@@ -51559,6 +52397,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterLabelOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterPinnedFcvOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterPinnedFcvArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigOutput{})
@@ -51586,6 +52426,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultLabelOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultPinnedFcvOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultPinnedFcvArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigOutput{})
@@ -51696,6 +52538,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterOutageSimulationOutageFilterOutput{})
 	pulumi.RegisterOutputType(GetClusterOutageSimulationOutageFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterPinnedFcvOutput{})
+	pulumi.RegisterOutputType(GetClusterPinnedFcvArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterReplicationSpecOutput{})
 	pulumi.RegisterOutputType(GetClusterReplicationSpecArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterReplicationSpecRegionsConfigOutput{})
@@ -51722,6 +52566,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultLabelOutput{})
 	pulumi.RegisterOutputType(GetClustersResultLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersResultPinnedFcvOutput{})
+	pulumi.RegisterOutputType(GetClustersResultPinnedFcvArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultReplicationSpecOutput{})
 	pulumi.RegisterOutputType(GetClustersResultReplicationSpecArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultReplicationSpecRegionsConfigOutput{})

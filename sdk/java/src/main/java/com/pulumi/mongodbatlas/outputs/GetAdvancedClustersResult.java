@@ -9,6 +9,7 @@ import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultAdvancedConfigur
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultBiConnectorConfig;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultConnectionString;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultLabel;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultPinnedFcv;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpec;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultTag;
 import java.lang.Boolean;
@@ -91,6 +92,11 @@ public final class GetAdvancedClustersResult {
      * 
      */
     private Boolean paused;
+    /**
+     * @return The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+     * 
+     */
+    private List<GetAdvancedClustersResultPinnedFcv> pinnedFcvs;
     /**
      * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
@@ -243,6 +249,13 @@ public final class GetAdvancedClustersResult {
         return this.paused;
     }
     /**
+     * @return The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+     * 
+     */
+    public List<GetAdvancedClustersResultPinnedFcv> pinnedFcvs() {
+        return this.pinnedFcvs;
+    }
+    /**
      * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
      */
@@ -331,6 +344,7 @@ public final class GetAdvancedClustersResult {
         private String mongoDbVersion;
         private String name;
         private Boolean paused;
+        private List<GetAdvancedClustersResultPinnedFcv> pinnedFcvs;
         private Boolean pitEnabled;
         private Boolean redactClientLogData;
         private String replicaSetScalingStrategy;
@@ -359,6 +373,7 @@ public final class GetAdvancedClustersResult {
     	      this.mongoDbVersion = defaults.mongoDbVersion;
     	      this.name = defaults.name;
     	      this.paused = defaults.paused;
+    	      this.pinnedFcvs = defaults.pinnedFcvs;
     	      this.pitEnabled = defaults.pitEnabled;
     	      this.redactClientLogData = defaults.redactClientLogData;
     	      this.replicaSetScalingStrategy = defaults.replicaSetScalingStrategy;
@@ -511,6 +526,17 @@ public final class GetAdvancedClustersResult {
             return this;
         }
         @CustomType.Setter
+        public Builder pinnedFcvs(List<GetAdvancedClustersResultPinnedFcv> pinnedFcvs) {
+            if (pinnedFcvs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResult", "pinnedFcvs");
+            }
+            this.pinnedFcvs = pinnedFcvs;
+            return this;
+        }
+        public Builder pinnedFcvs(GetAdvancedClustersResultPinnedFcv... pinnedFcvs) {
+            return pinnedFcvs(List.of(pinnedFcvs));
+        }
+        @CustomType.Setter
         public Builder pitEnabled(Boolean pitEnabled) {
             if (pitEnabled == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClustersResult", "pitEnabled");
@@ -606,6 +632,7 @@ public final class GetAdvancedClustersResult {
             _resultValue.mongoDbVersion = mongoDbVersion;
             _resultValue.name = name;
             _resultValue.paused = paused;
+            _resultValue.pinnedFcvs = pinnedFcvs;
             _resultValue.pitEnabled = pitEnabled;
             _resultValue.redactClientLogData = redactClientLogData;
             _resultValue.replicaSetScalingStrategy = replicaSetScalingStrategy;

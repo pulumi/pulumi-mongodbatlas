@@ -17,6 +17,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         /// </summary>
         public readonly int ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        public readonly int DefaultMaxTimeMs;
         /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         /// </summary>
@@ -63,6 +64,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         private GetClustersResultAdvancedConfigurationResult(
             int changeStreamOptionsPreAndPostImagesExpireAfterSeconds,
 
+            int defaultMaxTimeMs,
+
             string defaultReadConcern,
 
             string defaultWriteConcern,
@@ -86,6 +89,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             int transactionLifetimeLimitSeconds)
         {
             ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            DefaultMaxTimeMs = defaultMaxTimeMs;
             DefaultReadConcern = defaultReadConcern;
             DefaultWriteConcern = defaultWriteConcern;
             FailIndexKeyTooLong = failIndexKeyTooLong;

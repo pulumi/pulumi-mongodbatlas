@@ -11,6 +11,10 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: pulumi.Input<number>;
     /**
+     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     */
+    defaultMaxTimeMs?: pulumi.Input<number>;
+    /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -152,6 +156,17 @@ export interface AdvancedClusterLabel {
     value?: pulumi.Input<string>;
 }
 
+export interface AdvancedClusterPinnedFcv {
+    /**
+     * Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+     */
+    expirationDate: pulumi.Input<string>;
+    /**
+     * Feature compatibility version of the cluster.
+     */
+    version?: pulumi.Input<string>;
+}
+
 export interface AdvancedClusterReplicationSpec {
     containerId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -159,7 +174,7 @@ export interface AdvancedClusterReplicationSpec {
      */
     externalId?: pulumi.Input<string>;
     /**
-     * **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
@@ -187,7 +202,7 @@ export interface AdvancedClusterReplicationSpec {
 
 export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
-     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
+     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
      */
     analyticsAutoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling>;
     /**
@@ -195,7 +210,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     analyticsSpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs>;
     /**
-     * Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
+     * Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
      */
     autoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling>;
     /**
@@ -291,6 +306,9 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
      * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
      */
     computeScaleDownEnabled?: pulumi.Input<boolean>;
+    /**
+     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+     */
     diskGbEnabled?: pulumi.Input<boolean>;
 }
 
@@ -911,6 +929,7 @@ export interface ClusterAdvancedConfiguration {
      * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: pulumi.Input<number>;
+    defaultMaxTimeMs?: pulumi.Input<number>;
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      *
@@ -1071,6 +1090,17 @@ export interface ClusterOutageSimulationOutageFilter {
      * * `REGION` - Simulates a cluster outage for a region
      */
     type?: pulumi.Input<string>;
+}
+
+export interface ClusterPinnedFcv {
+    /**
+     * Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+     */
+    expirationDate: pulumi.Input<string>;
+    /**
+     * Feature compatibility version of the cluster.
+     */
+    version?: pulumi.Input<string>;
 }
 
 export interface ClusterReplicationSpec {

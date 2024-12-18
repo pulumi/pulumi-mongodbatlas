@@ -9,6 +9,7 @@ import com.pulumi.mongodbatlas.outputs.GetClustersResultAdvancedConfiguration;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultBiConnectorConfig;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultConnectionString;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultLabel;
+import com.pulumi.mongodbatlas.outputs.GetClustersResultPinnedFcv;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultReplicationSpec;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultSnapshotBackupPolicy;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultTag;
@@ -126,6 +127,11 @@ public final class GetClustersResult {
      * 
      */
     private Boolean paused;
+    /**
+     * @return The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+     * 
+     */
+    private List<GetClustersResultPinnedFcv> pinnedFcvs;
     /**
      * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
@@ -383,6 +389,13 @@ public final class GetClustersResult {
         return this.paused;
     }
     /**
+     * @return The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+     * 
+     */
+    public List<GetClustersResultPinnedFcv> pinnedFcvs() {
+        return this.pinnedFcvs;
+    }
+    /**
      * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
      */
@@ -560,6 +573,7 @@ public final class GetClustersResult {
         private String name;
         private Integer numShards;
         private Boolean paused;
+        private List<GetClustersResultPinnedFcv> pinnedFcvs;
         private Boolean pitEnabled;
         private String providerAutoScalingComputeMaxInstanceSize;
         private String providerAutoScalingComputeMinInstanceSize;
@@ -604,6 +618,7 @@ public final class GetClustersResult {
     	      this.name = defaults.name;
     	      this.numShards = defaults.numShards;
     	      this.paused = defaults.paused;
+    	      this.pinnedFcvs = defaults.pinnedFcvs;
     	      this.pitEnabled = defaults.pitEnabled;
     	      this.providerAutoScalingComputeMaxInstanceSize = defaults.providerAutoScalingComputeMaxInstanceSize;
     	      this.providerAutoScalingComputeMinInstanceSize = defaults.providerAutoScalingComputeMinInstanceSize;
@@ -807,6 +822,17 @@ public final class GetClustersResult {
             return this;
         }
         @CustomType.Setter
+        public Builder pinnedFcvs(List<GetClustersResultPinnedFcv> pinnedFcvs) {
+            if (pinnedFcvs == null) {
+              throw new MissingRequiredPropertyException("GetClustersResult", "pinnedFcvs");
+            }
+            this.pinnedFcvs = pinnedFcvs;
+            return this;
+        }
+        public Builder pinnedFcvs(GetClustersResultPinnedFcv... pinnedFcvs) {
+            return pinnedFcvs(List.of(pinnedFcvs));
+        }
+        @CustomType.Setter
         public Builder pitEnabled(Boolean pitEnabled) {
             if (pitEnabled == null) {
               throw new MissingRequiredPropertyException("GetClustersResult", "pitEnabled");
@@ -998,6 +1024,7 @@ public final class GetClustersResult {
             _resultValue.name = name;
             _resultValue.numShards = numShards;
             _resultValue.paused = paused;
+            _resultValue.pinnedFcvs = pinnedFcvs;
             _resultValue.pitEnabled = pitEnabled;
             _resultValue.providerAutoScalingComputeMaxInstanceSize = providerAutoScalingComputeMaxInstanceSize;
             _resultValue.providerAutoScalingComputeMinInstanceSize = providerAutoScalingComputeMinInstanceSize;

@@ -44,7 +44,7 @@ export function getEncryptionAtRestPrivateEndpoints(args: GetEncryptionAtRestPri
  */
 export interface GetEncryptionAtRestPrivateEndpointsArgs {
     /**
-     * Label that identifies the cloud provider of the private endpoint.
+     * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      */
     cloudProvider: string;
     /**
@@ -58,7 +58,7 @@ export interface GetEncryptionAtRestPrivateEndpointsArgs {
  */
 export interface GetEncryptionAtRestPrivateEndpointsResult {
     /**
-     * Label that identifies the cloud provider of the private endpoint.
+     * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      */
     readonly cloudProvider: string;
     /**
@@ -70,7 +70,7 @@ export interface GetEncryptionAtRestPrivateEndpointsResult {
      */
     readonly projectId: string;
     /**
-     * List of returned documents that MongoDB Cloud providers when completing this request.
+     * List of documents that MongoDB Cloud returns for this request.
      */
     readonly results: outputs.GetEncryptionAtRestPrivateEndpointsResult[];
 }
@@ -112,7 +112,7 @@ export function getEncryptionAtRestPrivateEndpointsOutput(args: GetEncryptionAtR
  */
 export interface GetEncryptionAtRestPrivateEndpointsOutputArgs {
     /**
-     * Label that identifies the cloud provider of the private endpoint.
+     * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      */
     cloudProvider: pulumi.Input<string>;
     /**

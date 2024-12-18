@@ -33,6 +33,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("computeScaleDownEnabled")]
         public Input<bool>? ComputeScaleDownEnabled { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+        /// </summary>
         [Input("diskGbEnabled")]
         public Input<bool>? DiskGbEnabled { get; set; }
 

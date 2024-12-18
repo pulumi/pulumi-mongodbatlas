@@ -36,6 +36,7 @@ class AdvancedClusterArgs:
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
+                 pinned_fcv: Optional[pulumi.Input['AdvancedClusterPinnedFcvArgs']] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  redact_client_log_data: Optional[pulumi.Input[bool]] = None,
                  replica_set_scaling_strategy: Optional[pulumi.Input[str]] = None,
@@ -71,6 +72,7 @@ class AdvancedClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input['AdvancedClusterPinnedFcvArgs'] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
@@ -112,6 +114,8 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "name", name)
         if paused is not None:
             pulumi.set(__self__, "paused", paused)
+        if pinned_fcv is not None:
+            pulumi.set(__self__, "pinned_fcv", pinned_fcv)
         if pit_enabled is not None:
             pulumi.set(__self__, "pit_enabled", pit_enabled)
         if redact_client_log_data is not None:
@@ -317,6 +321,18 @@ class AdvancedClusterArgs:
         pulumi.set(self, "paused", value)
 
     @property
+    @pulumi.getter(name="pinnedFcv")
+    def pinned_fcv(self) -> Optional[pulumi.Input['AdvancedClusterPinnedFcvArgs']]:
+        """
+        Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        """
+        return pulumi.get(self, "pinned_fcv")
+
+    @pinned_fcv.setter
+    def pinned_fcv(self, value: Optional[pulumi.Input['AdvancedClusterPinnedFcvArgs']]):
+        pulumi.set(self, "pinned_fcv", value)
+
+    @property
     @pulumi.getter(name="pitEnabled")
     def pit_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -436,6 +452,7 @@ class _AdvancedClusterState:
                  mongo_db_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
+                 pinned_fcv: Optional[pulumi.Input['AdvancedClusterPinnedFcvArgs']] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  redact_client_log_data: Optional[pulumi.Input[bool]] = None,
@@ -476,6 +493,7 @@ class _AdvancedClusterState:
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input['AdvancedClusterPinnedFcvArgs'] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
@@ -536,6 +554,8 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "name", name)
         if paused is not None:
             pulumi.set(__self__, "paused", paused)
+        if pinned_fcv is not None:
+            pulumi.set(__self__, "pinned_fcv", pinned_fcv)
         if pit_enabled is not None:
             pulumi.set(__self__, "pit_enabled", pit_enabled)
         if project_id is not None:
@@ -780,6 +800,18 @@ class _AdvancedClusterState:
         pulumi.set(self, "paused", value)
 
     @property
+    @pulumi.getter(name="pinnedFcv")
+    def pinned_fcv(self) -> Optional[pulumi.Input['AdvancedClusterPinnedFcvArgs']]:
+        """
+        Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        """
+        return pulumi.get(self, "pinned_fcv")
+
+    @pinned_fcv.setter
+    def pinned_fcv(self, value: Optional[pulumi.Input['AdvancedClusterPinnedFcvArgs']]):
+        pulumi.set(self, "pinned_fcv", value)
+
+    @property
     @pulumi.getter(name="pitEnabled")
     def pit_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -939,6 +971,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
+                 pinned_fcv: Optional[pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  redact_client_log_data: Optional[pulumi.Input[bool]] = None,
@@ -1294,6 +1327,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
@@ -1660,6 +1694,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
+                 pinned_fcv: Optional[pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  redact_client_log_data: Optional[pulumi.Input[bool]] = None,
@@ -1694,6 +1729,7 @@ class AdvancedCluster(pulumi.CustomResource):
             __props__.__dict__["mongo_db_major_version"] = mongo_db_major_version
             __props__.__dict__["name"] = name
             __props__.__dict__["paused"] = paused
+            __props__.__dict__["pinned_fcv"] = pinned_fcv
             __props__.__dict__["pit_enabled"] = pit_enabled
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
@@ -1742,6 +1778,7 @@ class AdvancedCluster(pulumi.CustomResource):
             mongo_db_version: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             paused: Optional[pulumi.Input[bool]] = None,
+            pinned_fcv: Optional[pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']]] = None,
             pit_enabled: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             redact_client_log_data: Optional[pulumi.Input[bool]] = None,
@@ -1787,6 +1824,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
@@ -1830,6 +1868,7 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["mongo_db_version"] = mongo_db_version
         __props__.__dict__["name"] = name
         __props__.__dict__["paused"] = paused
+        __props__.__dict__["pinned_fcv"] = pinned_fcv
         __props__.__dict__["pit_enabled"] = pit_enabled
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["redact_client_log_data"] = redact_client_log_data
@@ -1990,6 +2029,14 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter
     def paused(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "paused")
+
+    @property
+    @pulumi.getter(name="pinnedFcv")
+    def pinned_fcv(self) -> pulumi.Output[Optional['outputs.AdvancedClusterPinnedFcv']]:
+        """
+        Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        """
+        return pulumi.get(self, "pinned_fcv")
 
     @property
     @pulumi.getter(name="pitEnabled")

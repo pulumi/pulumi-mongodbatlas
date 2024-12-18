@@ -61,7 +61,7 @@ func LookupEncryptionAtRestPrivateEndpoints(ctx *pulumi.Context, args *LookupEnc
 
 // A collection of arguments for invoking getEncryptionAtRestPrivateEndpoints.
 type LookupEncryptionAtRestPrivateEndpointsArgs struct {
-	// Label that identifies the cloud provider of the private endpoint.
+	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
@@ -69,13 +69,13 @@ type LookupEncryptionAtRestPrivateEndpointsArgs struct {
 
 // A collection of values returned by getEncryptionAtRestPrivateEndpoints.
 type LookupEncryptionAtRestPrivateEndpointsResult struct {
-	// Label that identifies the cloud provider of the private endpoint.
+	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
-	// List of returned documents that MongoDB Cloud providers when completing this request.
+	// List of documents that MongoDB Cloud returns for this request.
 	Results []GetEncryptionAtRestPrivateEndpointsResult `pulumi:"results"`
 }
 
@@ -90,7 +90,7 @@ func LookupEncryptionAtRestPrivateEndpointsOutput(ctx *pulumi.Context, args Look
 
 // A collection of arguments for invoking getEncryptionAtRestPrivateEndpoints.
 type LookupEncryptionAtRestPrivateEndpointsOutputArgs struct {
-	// Label that identifies the cloud provider of the private endpoint.
+	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -115,7 +115,7 @@ func (o LookupEncryptionAtRestPrivateEndpointsResultOutput) ToLookupEncryptionAt
 	return o
 }
 
-// Label that identifies the cloud provider of the private endpoint.
+// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 func (o LookupEncryptionAtRestPrivateEndpointsResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointsResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -130,7 +130,7 @@ func (o LookupEncryptionAtRestPrivateEndpointsResultOutput) ProjectId() pulumi.S
 	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// List of returned documents that MongoDB Cloud providers when completing this request.
+// List of documents that MongoDB Cloud returns for this request.
 func (o LookupEncryptionAtRestPrivateEndpointsResultOutput) Results() GetEncryptionAtRestPrivateEndpointsResultArrayOutput {
 	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointsResult) []GetEncryptionAtRestPrivateEndpointsResult {
 		return v.Results

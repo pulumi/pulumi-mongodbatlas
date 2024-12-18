@@ -34,6 +34,21 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
+     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * 
+     */
+    @Import(name="defaultMaxTimeMs")
+    private @Nullable Output<Integer> defaultMaxTimeMs;
+
+    /**
+     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * 
+     */
+    public Optional<Output<Integer>> defaultMaxTimeMs() {
+        return Optional.ofNullable(this.defaultMaxTimeMs);
+    }
+
+    /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      * 
      * @deprecated
@@ -228,6 +243,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
 
     private AdvancedClusterAdvancedConfigurationArgs(AdvancedClusterAdvancedConfigurationArgs $) {
         this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = $.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        this.defaultMaxTimeMs = $.defaultMaxTimeMs;
         this.defaultReadConcern = $.defaultReadConcern;
         this.defaultWriteConcern = $.defaultWriteConcern;
         this.failIndexKeyTooLong = $.failIndexKeyTooLong;
@@ -278,6 +294,27 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
          */
         public Builder changeStreamOptionsPreAndPostImagesExpireAfterSeconds(Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds) {
             return changeStreamOptionsPreAndPostImagesExpireAfterSeconds(Output.of(changeStreamOptionsPreAndPostImagesExpireAfterSeconds));
+        }
+
+        /**
+         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultMaxTimeMs(@Nullable Output<Integer> defaultMaxTimeMs) {
+            $.defaultMaxTimeMs = defaultMaxTimeMs;
+            return this;
+        }
+
+        /**
+         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultMaxTimeMs(Integer defaultMaxTimeMs) {
+            return defaultMaxTimeMs(Output.of(defaultMaxTimeMs));
         }
 
         /**

@@ -19,6 +19,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<int>? ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds { get; set; }
 
         /// <summary>
+        /// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+        /// </summary>
+        [Input("defaultMaxTimeMs")]
+        public Input<int>? DefaultMaxTimeMs { get; set; }
+
+        /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         /// </summary>
         [Input("defaultReadConcern")]

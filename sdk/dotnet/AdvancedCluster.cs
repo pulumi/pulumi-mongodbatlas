@@ -585,6 +585,12 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> Paused { get; private set; } = null!;
 
         /// <summary>
+        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        /// </summary>
+        [Output("pinnedFcv")]
+        public Output<Outputs.AdvancedClusterPinnedFcv?> PinnedFcv { get; private set; } = null!;
+
+        /// <summary>
         /// Flag that indicates if the cluster uses Continuous Cloud Backup.
         /// </summary>
         [Output("pitEnabled")]
@@ -796,6 +802,12 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Paused { get; set; }
 
         /// <summary>
+        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        /// </summary>
+        [Input("pinnedFcv")]
+        public Input<Inputs.AdvancedClusterPinnedFcvArgs>? PinnedFcv { get; set; }
+
+        /// <summary>
         /// Flag that indicates if the cluster uses Continuous Cloud Backup.
         /// </summary>
         [Input("pitEnabled")]
@@ -999,6 +1011,12 @@ namespace Pulumi.Mongodbatlas
 
         [Input("paused")]
         public Input<bool>? Paused { get; set; }
+
+        /// <summary>
+        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        /// </summary>
+        [Input("pinnedFcv")]
+        public Input<Inputs.AdvancedClusterPinnedFcvGetArgs>? PinnedFcv { get; set; }
 
         /// <summary>
         /// Flag that indicates if the cluster uses Continuous Cloud Backup.

@@ -13,7 +13,7 @@ import java.util.Objects;
 @CustomType
 public final class GetEncryptionAtRestPrivateEndpointsInvokeResult {
     /**
-     * @return Label that identifies the cloud provider of the private endpoint.
+     * @return Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      * 
      */
     private String cloudProvider;
@@ -28,14 +28,14 @@ public final class GetEncryptionAtRestPrivateEndpointsInvokeResult {
      */
     private String projectId;
     /**
-     * @return List of returned documents that MongoDB Cloud providers when completing this request.
+     * @return List of documents that MongoDB Cloud returns for this request.
      * 
      */
     private List<GetEncryptionAtRestPrivateEndpointsResult> results;
 
     private GetEncryptionAtRestPrivateEndpointsInvokeResult() {}
     /**
-     * @return Label that identifies the cloud provider of the private endpoint.
+     * @return Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      * 
      */
     public String cloudProvider() {
@@ -56,7 +56,7 @@ public final class GetEncryptionAtRestPrivateEndpointsInvokeResult {
         return this.projectId;
     }
     /**
-     * @return List of returned documents that MongoDB Cloud providers when completing this request.
+     * @return List of documents that MongoDB Cloud returns for this request.
      * 
      */
     public List<GetEncryptionAtRestPrivateEndpointsResult> results() {
