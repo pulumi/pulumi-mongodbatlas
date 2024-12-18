@@ -35,6 +35,9 @@
                     "labels": {
                         "maxItemsOne": false
                     },
+                    "pinned_fcv": {
+                        "maxItemsOne": true
+                    },
                     "replication_specs": {
                         "maxItemsOne": false,
                         "elem": {
@@ -261,6 +264,9 @@
                     },
                     "labels": {
                         "maxItemsOne": false
+                    },
+                    "pinned_fcv": {
+                        "maxItemsOne": true
                     },
                     "replication_specs": {
                         "maxItemsOne": false,
@@ -884,6 +890,9 @@
                     "labels": {
                         "maxItemsOne": false
                     },
+                    "pinned_fcv": {
+                        "maxItemsOne": false
+                    },
                     "replication_specs": {
                         "maxItemsOne": false,
                         "elem": {
@@ -950,6 +959,9 @@
                                     }
                                 },
                                 "labels": {
+                                    "maxItemsOne": false
+                                },
+                                "pinned_fcv": {
                                     "maxItemsOne": false
                                 },
                                 "replication_specs": {
@@ -1324,6 +1336,9 @@
                     "labels": {
                         "maxItemsOne": false
                     },
+                    "pinned_fcv": {
+                        "maxItemsOne": false
+                    },
                     "replication_specs": {
                         "maxItemsOne": false,
                         "elem": {
@@ -1397,6 +1412,9 @@
                                     }
                                 },
                                 "labels": {
+                                    "maxItemsOne": false
+                                },
+                                "pinned_fcv": {
                                     "maxItemsOne": false
                                 },
                                 "replication_specs": {

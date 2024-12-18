@@ -155,6 +155,10 @@
                     "type": "integer",
                     "description": "The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.\n"
                 },
+                "defaultMaxTimeMs": {
+                    "type": "integer",
+                    "description": "Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.\n"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.\n",
@@ -351,6 +355,30 @@
             },
             "type": "object"
         },
+        "mongodbatlas:index/AdvancedClusterPinnedFcv:AdvancedClusterPinnedFcv": {
+            "properties": {
+                "expirationDate": {
+                    "type": "string",
+                    "description": "Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. \"2024-12-04T16:25:00Z\"). Note that this field cannot exceed 4 weeks from the pinned date.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Feature compatibility version of the cluster.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "expirationDate"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "expirationDate",
+                        "version"
+                    ]
+                }
+            }
+        },
         "mongodbatlas:index/AdvancedClusterReplicationSpec:AdvancedClusterReplicationSpec": {
             "properties": {
                 "containerId": {
@@ -365,7 +393,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "**(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.\n",
+                    "description": "**(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.\n",
                     "deprecationMessage": "This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown"
                 },
                 "numShards": {
@@ -409,7 +437,7 @@
             "properties": {
                 "analyticsAutoScaling": {
                     "$ref": "#/types/mongodbatlas:index/AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling:AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling",
-                    "description": "Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below\n"
+                    "description": "Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below\n"
                 },
                 "analyticsSpecs": {
                     "$ref": "#/types/mongodbatlas:index/AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs:AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs",
@@ -417,7 +445,7 @@
                 },
                 "autoScaling": {
                     "$ref": "#/types/mongodbatlas:index/AdvancedClusterReplicationSpecRegionConfigAutoScaling:AdvancedClusterReplicationSpecRegionConfigAutoScaling",
-                    "description": "Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below\n"
+                    "description": "Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below\n"
                 },
                 "backingProviderName": {
                     "type": "string",
@@ -556,7 +584,8 @@
                     "description": "Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.\n"
                 },
                 "diskGbEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.\n"
                 }
             },
             "type": "object",
@@ -1592,6 +1621,9 @@
                     "type": "integer",
                     "description": "The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.\n"
                 },
+                "defaultMaxTimeMs": {
+                    "type": "integer"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).\n",
@@ -1814,6 +1846,30 @@
                         "cloudProvider",
                         "regionName",
                         "type"
+                    ]
+                }
+            }
+        },
+        "mongodbatlas:index/ClusterPinnedFcv:ClusterPinnedFcv": {
+            "properties": {
+                "expirationDate": {
+                    "type": "string",
+                    "description": "Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. \"2024-12-04T16:25:00Z\"). Note that this field cannot exceed 4 weeks from the pinned date.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Feature compatibility version of the cluster.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "expirationDate"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "expirationDate",
+                        "version"
                     ]
                 }
             }
@@ -3685,6 +3741,10 @@
                     "type": "integer",
                     "description": "(Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).\n"
                 },
+                "defaultMaxTimeMs": {
+                    "type": "integer",
+                    "description": "Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.\n"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.\n",
@@ -3735,6 +3795,7 @@
             "type": "object",
             "required": [
                 "changeStreamOptionsPreAndPostImagesExpireAfterSeconds",
+                "defaultMaxTimeMs",
                 "defaultReadConcern",
                 "defaultWriteConcern",
                 "failIndexKeyTooLong",
@@ -3890,6 +3951,28 @@
             "required": [
                 "key",
                 "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getAdvancedClusterPinnedFcv:getAdvancedClusterPinnedFcv": {
+            "properties": {
+                "expirationDate": {
+                    "type": "string",
+                    "description": "Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. \"2024-12-04T16:25:00Z\").\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Feature compatibility version of the cluster.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "expirationDate",
+                "version"
             ],
             "language": {
                 "nodejs": {
@@ -4294,6 +4377,13 @@
                     "type": "boolean",
                     "description": "Flag that indicates whether the cluster is paused or not.\n"
                 },
+                "pinnedFcvs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/getAdvancedClustersResultPinnedFcv:getAdvancedClustersResultPinnedFcv"
+                    },
+                    "description": "The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.\n"
+                },
                 "pitEnabled": {
                     "type": "boolean",
                     "description": "Flag that indicates if the cluster uses Continuous Cloud Backup.\n"
@@ -4355,6 +4445,7 @@
                 "mongoDbVersion",
                 "name",
                 "paused",
+                "pinnedFcvs",
                 "pitEnabled",
                 "redactClientLogData",
                 "replicaSetScalingStrategy",
@@ -4376,6 +4467,10 @@
                 "changeStreamOptionsPreAndPostImagesExpireAfterSeconds": {
                     "type": "integer",
                     "description": "(Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).\n"
+                },
+                "defaultMaxTimeMs": {
+                    "type": "integer",
+                    "description": "Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.\n"
                 },
                 "defaultReadConcern": {
                     "type": "string",
@@ -4427,6 +4522,7 @@
             "type": "object",
             "required": [
                 "changeStreamOptionsPreAndPostImagesExpireAfterSeconds",
+                "defaultMaxTimeMs",
                 "defaultReadConcern",
                 "defaultWriteConcern",
                 "failIndexKeyTooLong",
@@ -4582,6 +4678,28 @@
             "required": [
                 "key",
                 "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getAdvancedClustersResultPinnedFcv:getAdvancedClustersResultPinnedFcv": {
+            "properties": {
+                "expirationDate": {
+                    "type": "string",
+                    "description": "Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. \"2024-12-04T16:25:00Z\").\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Feature compatibility version of the cluster.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "expirationDate",
+                "version"
             ],
             "language": {
                 "nodejs": {
@@ -6710,6 +6828,9 @@
                     "type": "integer",
                     "description": "(Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).\n"
                 },
+                "defaultMaxTimeMs": {
+                    "type": "integer"
+                },
                 "defaultReadConcern": {
                     "type": "string",
                     "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).\n",
@@ -6760,6 +6881,7 @@
             "type": "object",
             "required": [
                 "changeStreamOptionsPreAndPostImagesExpireAfterSeconds",
+                "defaultMaxTimeMs",
                 "defaultReadConcern",
                 "defaultWriteConcern",
                 "failIndexKeyTooLong",
@@ -6955,6 +7077,28 @@
                 "cloudProvider",
                 "regionName",
                 "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getClusterPinnedFcv:getClusterPinnedFcv": {
+            "properties": {
+                "expirationDate": {
+                    "type": "string",
+                    "description": "Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. \"2024-12-04T16:25:00Z\").\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Feature compatibility version of the cluster.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "expirationDate",
+                "version"
             ],
             "language": {
                 "nodejs": {
@@ -7258,6 +7402,13 @@
                     "type": "boolean",
                     "description": "Flag that indicates whether the cluster is paused or not.\n"
                 },
+                "pinnedFcvs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultPinnedFcv:getClustersResultPinnedFcv"
+                    },
+                    "description": "The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.\n"
+                },
                 "pitEnabled": {
                     "type": "boolean",
                     "description": "Flag that indicates if the cluster uses Continuous Cloud Backup.\n"
@@ -7371,6 +7522,7 @@
                 "name",
                 "numShards",
                 "paused",
+                "pinnedFcvs",
                 "pitEnabled",
                 "providerAutoScalingComputeMaxInstanceSize",
                 "providerAutoScalingComputeMinInstanceSize",
@@ -7403,6 +7555,9 @@
                 "changeStreamOptionsPreAndPostImagesExpireAfterSeconds": {
                     "type": "integer",
                     "description": "(Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).\n"
+                },
+                "defaultMaxTimeMs": {
+                    "type": "integer"
                 },
                 "defaultReadConcern": {
                     "type": "string",
@@ -7453,6 +7608,7 @@
             "type": "object",
             "required": [
                 "changeStreamOptionsPreAndPostImagesExpireAfterSeconds",
+                "defaultMaxTimeMs",
                 "defaultReadConcern",
                 "defaultWriteConcern",
                 "failIndexKeyTooLong",
@@ -7621,6 +7777,28 @@
             "required": [
                 "key",
                 "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getClustersResultPinnedFcv:getClustersResultPinnedFcv": {
+            "properties": {
+                "expirationDate": {
+                    "type": "string",
+                    "description": "Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. \"2024-12-04T16:25:00Z\").\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Feature compatibility version of the cluster.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "expirationDate",
+                "version"
             ],
             "language": {
                 "nodejs": {
@@ -13533,6 +13711,10 @@
                 "paused": {
                     "type": "boolean"
                 },
+                "pinnedFcv": {
+                    "$ref": "#/types/mongodbatlas:index/AdvancedClusterPinnedFcv:AdvancedClusterPinnedFcv",
+                    "description": "Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.\n"
+                },
                 "pitEnabled": {
                     "type": "boolean",
                     "description": "Flag that indicates if the cluster uses Continuous Cloud Backup.\n"
@@ -13667,6 +13849,10 @@
                 "paused": {
                     "type": "boolean"
                 },
+                "pinnedFcv": {
+                    "$ref": "#/types/mongodbatlas:index/AdvancedClusterPinnedFcv:AdvancedClusterPinnedFcv",
+                    "description": "Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.\n"
+                },
                 "pitEnabled": {
                     "type": "boolean",
                     "description": "Flag that indicates if the cluster uses Continuous Cloud Backup.\n"
@@ -13799,6 +13985,10 @@
                     },
                     "paused": {
                         "type": "boolean"
+                    },
+                    "pinnedFcv": {
+                        "$ref": "#/types/mongodbatlas:index/AdvancedClusterPinnedFcv:AdvancedClusterPinnedFcv",
+                        "description": "Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.\n"
                     },
                     "pitEnabled": {
                         "type": "boolean",
@@ -15609,6 +15799,10 @@
                 "paused": {
                     "type": "boolean"
                 },
+                "pinnedFcv": {
+                    "$ref": "#/types/mongodbatlas:index/ClusterPinnedFcv:ClusterPinnedFcv",
+                    "description": "Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.\n"
+                },
                 "pitEnabled": {
                     "type": "boolean",
                     "description": "Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.\n"
@@ -15820,6 +16014,10 @@
                 "paused": {
                     "type": "boolean"
                 },
+                "pinnedFcv": {
+                    "$ref": "#/types/mongodbatlas:index/ClusterPinnedFcv:ClusterPinnedFcv",
+                    "description": "Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.\n"
+                },
                 "pitEnabled": {
                     "type": "boolean",
                     "description": "Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.\n"
@@ -16006,6 +16204,10 @@
                     },
                     "paused": {
                         "type": "boolean"
+                    },
+                    "pinnedFcv": {
+                        "$ref": "#/types/mongodbatlas:index/ClusterPinnedFcv:ClusterPinnedFcv",
+                        "description": "Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.\n"
                     },
                     "pitEnabled": {
                         "type": "boolean",
@@ -22596,6 +22798,13 @@
                         "description": "Flag that indicates whether the cluster is paused or not.\n",
                         "type": "boolean"
                     },
+                    "pinnedFcvs": {
+                        "description": "The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.\n",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/getAdvancedClusterPinnedFcv:getAdvancedClusterPinnedFcv"
+                        },
+                        "type": "array"
+                    },
                     "pitEnabled": {
                         "description": "Flag that indicates if the cluster uses Continuous Cloud Backup.\n",
                         "type": "boolean"
@@ -22662,6 +22871,7 @@
                     "mongoDbVersion",
                     "name",
                     "paused",
+                    "pinnedFcvs",
                     "pitEnabled",
                     "projectId",
                     "redactClientLogData",
@@ -24391,6 +24601,13 @@
                         "description": "Flag that indicates whether the cluster is paused or not.\n",
                         "type": "boolean"
                     },
+                    "pinnedFcvs": {
+                        "description": "The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.\n",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/getClusterPinnedFcv:getClusterPinnedFcv"
+                        },
+                        "type": "array"
+                    },
                     "pitEnabled": {
                         "description": "Flag that indicates if the cluster uses Continuous Cloud Backup.\n",
                         "type": "boolean"
@@ -24508,6 +24725,7 @@
                     "name",
                     "numShards",
                     "paused",
+                    "pinnedFcvs",
                     "pitEnabled",
                     "projectId",
                     "providerAutoScalingComputeMaxInstanceSize",
@@ -25356,7 +25574,7 @@
                 "properties": {
                     "cloudProvider": {
                         "type": "string",
-                        "description": "Label that identifies the cloud provider of the private endpoint.\n"
+                        "description": "Label that identifies the cloud provider for the Encryption At Rest private endpoint.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -25373,7 +25591,7 @@
                 "description": "A collection of values returned by getEncryptionAtRestPrivateEndpoints.\n",
                 "properties": {
                     "cloudProvider": {
-                        "description": "Label that identifies the cloud provider of the private endpoint.\n",
+                        "description": "Label that identifies the cloud provider for the Encryption At Rest private endpoint.\n",
                         "type": "string"
                     },
                     "id": {
@@ -25385,7 +25603,7 @@
                         "type": "string"
                     },
                     "results": {
-                        "description": "List of returned documents that MongoDB Cloud providers when completing this request.\n",
+                        "description": "List of documents that MongoDB Cloud returns for this request.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getEncryptionAtRestPrivateEndpointsResult:getEncryptionAtRestPrivateEndpointsResult"
                         },
