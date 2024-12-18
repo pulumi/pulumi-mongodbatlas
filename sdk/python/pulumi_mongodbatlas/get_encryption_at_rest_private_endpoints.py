@@ -45,7 +45,7 @@ class GetEncryptionAtRestPrivateEndpointsResult:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> str:
         """
-        Label that identifies the cloud provider of the private endpoint.
+        Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -69,7 +69,7 @@ class GetEncryptionAtRestPrivateEndpointsResult:
     @pulumi.getter
     def results(self) -> Sequence['outputs.GetEncryptionAtRestPrivateEndpointsResultResult']:
         """
-        List of returned documents that MongoDB Cloud providers when completing this request.
+        List of documents that MongoDB Cloud returns for this request.
         """
         return pulumi.get(self, "results")
 
@@ -113,7 +113,7 @@ def get_encryption_at_rest_private_endpoints(cloud_provider: Optional[str] = Non
     ```
 
 
-    :param str cloud_provider: Label that identifies the cloud provider of the private endpoint.
+    :param str cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     __args__ = dict()
@@ -154,7 +154,7 @@ def get_encryption_at_rest_private_endpoints_output(cloud_provider: Optional[pul
     ```
 
 
-    :param str cloud_provider: Label that identifies the cloud provider of the private endpoint.
+    :param str cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     __args__ = dict()

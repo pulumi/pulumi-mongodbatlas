@@ -27,7 +27,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcvs=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -79,6 +79,9 @@ class GetAdvancedClusterResult:
         if paused and not isinstance(paused, bool):
             raise TypeError("Expected argument 'paused' to be a bool")
         pulumi.set(__self__, "paused", paused)
+        if pinned_fcvs and not isinstance(pinned_fcvs, list):
+            raise TypeError("Expected argument 'pinned_fcvs' to be a list")
+        pulumi.set(__self__, "pinned_fcvs", pinned_fcvs)
         if pit_enabled and not isinstance(pit_enabled, bool):
             raise TypeError("Expected argument 'pit_enabled' to be a bool")
         pulumi.set(__self__, "pit_enabled", pit_enabled)
@@ -242,6 +245,14 @@ class GetAdvancedClusterResult:
         return pulumi.get(self, "paused")
 
     @property
+    @pulumi.getter(name="pinnedFcvs")
+    def pinned_fcvs(self) -> Sequence['outputs.GetAdvancedClusterPinnedFcvResult']:
+        """
+        The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+        """
+        return pulumi.get(self, "pinned_fcvs")
+
+    @property
     @pulumi.getter(name="pitEnabled")
     def pit_enabled(self) -> bool:
         """
@@ -347,6 +358,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             mongo_db_version=self.mongo_db_version,
             name=self.name,
             paused=self.paused,
+            pinned_fcvs=self.pinned_fcvs,
             pit_enabled=self.pit_enabled,
             project_id=self.project_id,
             redact_client_log_data=self.redact_client_log_data,
@@ -477,6 +489,7 @@ def get_advanced_cluster(name: Optional[str] = None,
         mongo_db_version=pulumi.get(__ret__, 'mongo_db_version'),
         name=pulumi.get(__ret__, 'name'),
         paused=pulumi.get(__ret__, 'paused'),
+        pinned_fcvs=pulumi.get(__ret__, 'pinned_fcvs'),
         pit_enabled=pulumi.get(__ret__, 'pit_enabled'),
         project_id=pulumi.get(__ret__, 'project_id'),
         redact_client_log_data=pulumi.get(__ret__, 'redact_client_log_data'),
@@ -604,6 +617,7 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
         mongo_db_version=pulumi.get(__response__, 'mongo_db_version'),
         name=pulumi.get(__response__, 'name'),
         paused=pulumi.get(__response__, 'paused'),
+        pinned_fcvs=pulumi.get(__response__, 'pinned_fcvs'),
         pit_enabled=pulumi.get(__response__, 'pit_enabled'),
         project_id=pulumi.get(__response__, 'project_id'),
         redact_client_log_data=pulumi.get(__response__, 'redact_client_log_data'),

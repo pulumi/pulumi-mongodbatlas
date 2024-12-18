@@ -98,6 +98,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool Paused;
         /// <summary>
+        /// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetClustersResultPinnedFcvResult> PinnedFcvs;
+        /// <summary>
         /// Flag that indicates if the cluster uses Continuous Cloud Backup.
         /// </summary>
         public readonly bool PitEnabled;
@@ -229,6 +233,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool paused,
 
+            ImmutableArray<Outputs.GetClustersResultPinnedFcvResult> pinnedFcvs,
+
             bool pitEnabled,
 
             string providerAutoScalingComputeMaxInstanceSize,
@@ -290,6 +296,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Name = name;
             NumShards = numShards;
             Paused = paused;
+            PinnedFcvs = pinnedFcvs;
             PitEnabled = pitEnabled;
             ProviderAutoScalingComputeMaxInstanceSize = providerAutoScalingComputeMaxInstanceSize;
             ProviderAutoScalingComputeMinInstanceSize = providerAutoScalingComputeMinInstanceSize;

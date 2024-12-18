@@ -18,6 +18,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("changeStreamOptionsPreAndPostImagesExpireAfterSeconds")]
         public Input<int>? ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds { get; set; }
 
+        [Input("defaultMaxTimeMs")]
+        public Input<int>? DefaultMaxTimeMs { get; set; }
+
         /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         /// </summary>

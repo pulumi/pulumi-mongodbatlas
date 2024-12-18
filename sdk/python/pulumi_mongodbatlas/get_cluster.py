@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, advanced_configurations=None, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, redact_client_log_data=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None, tags=None, termination_protection_enabled=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pinned_fcvs=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, redact_client_log_data=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None, tags=None, termination_protection_enabled=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -94,6 +94,9 @@ class GetClusterResult:
         if paused and not isinstance(paused, bool):
             raise TypeError("Expected argument 'paused' to be a bool")
         pulumi.set(__self__, "paused", paused)
+        if pinned_fcvs and not isinstance(pinned_fcvs, list):
+            raise TypeError("Expected argument 'pinned_fcvs' to be a list")
+        pulumi.set(__self__, "pinned_fcvs", pinned_fcvs)
         if pit_enabled and not isinstance(pit_enabled, bool):
             raise TypeError("Expected argument 'pit_enabled' to be a bool")
         pulumi.set(__self__, "pit_enabled", pit_enabled)
@@ -338,6 +341,14 @@ class GetClusterResult:
         return pulumi.get(self, "paused")
 
     @property
+    @pulumi.getter(name="pinnedFcvs")
+    def pinned_fcvs(self) -> Sequence['outputs.GetClusterPinnedFcvResult']:
+        """
+        The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+        """
+        return pulumi.get(self, "pinned_fcvs")
+
+    @property
     @pulumi.getter(name="pitEnabled")
     def pit_enabled(self) -> bool:
         """
@@ -540,6 +551,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             name=self.name,
             num_shards=self.num_shards,
             paused=self.paused,
+            pinned_fcvs=self.pinned_fcvs,
             pit_enabled=self.pit_enabled,
             project_id=self.project_id,
             provider_auto_scaling_compute_max_instance_size=self.provider_auto_scaling_compute_max_instance_size,
@@ -639,6 +651,7 @@ def get_cluster(name: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         num_shards=pulumi.get(__ret__, 'num_shards'),
         paused=pulumi.get(__ret__, 'paused'),
+        pinned_fcvs=pulumi.get(__ret__, 'pinned_fcvs'),
         pit_enabled=pulumi.get(__ret__, 'pit_enabled'),
         project_id=pulumi.get(__ret__, 'project_id'),
         provider_auto_scaling_compute_max_instance_size=pulumi.get(__ret__, 'provider_auto_scaling_compute_max_instance_size'),
@@ -735,6 +748,7 @@ def get_cluster_output(name: Optional[pulumi.Input[str]] = None,
         name=pulumi.get(__response__, 'name'),
         num_shards=pulumi.get(__response__, 'num_shards'),
         paused=pulumi.get(__response__, 'paused'),
+        pinned_fcvs=pulumi.get(__response__, 'pinned_fcvs'),
         pit_enabled=pulumi.get(__response__, 'pit_enabled'),
         project_id=pulumi.get(__response__, 'project_id'),
         provider_auto_scaling_compute_max_instance_size=pulumi.get(__response__, 'provider_auto_scaling_compute_max_instance_size'),

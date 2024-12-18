@@ -190,6 +190,8 @@ type LookupAdvancedClusterResult struct {
 	Name           string `pulumi:"name"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused bool `pulumi:"paused"`
+	// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+	PinnedFcvs []GetAdvancedClusterPinnedFcv `pulumi:"pinnedFcvs"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
@@ -336,6 +338,11 @@ func (o LookupAdvancedClusterResultOutput) Name() pulumi.StringOutput {
 // Flag that indicates whether the cluster is paused or not.
 func (o LookupAdvancedClusterResultOutput) Paused() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.Paused }).(pulumi.BoolOutput)
+}
+
+// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+func (o LookupAdvancedClusterResultOutput) PinnedFcvs() GetAdvancedClusterPinnedFcvArrayOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterPinnedFcv { return v.PinnedFcvs }).(GetAdvancedClusterPinnedFcvArrayOutput)
 }
 
 // Flag that indicates if the cluster uses Continuous Cloud Backup.

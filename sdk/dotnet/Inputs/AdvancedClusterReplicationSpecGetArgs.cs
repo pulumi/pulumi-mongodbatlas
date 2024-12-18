@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? ExternalId { get; set; }
 
         /// <summary>
-        /// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        /// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

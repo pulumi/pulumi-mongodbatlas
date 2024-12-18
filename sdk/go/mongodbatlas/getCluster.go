@@ -134,6 +134,8 @@ type LookupClusterResult struct {
 	NumShards int `pulumi:"numShards"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused bool `pulumi:"paused"`
+	// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+	PinnedFcvs []GetClusterPinnedFcv `pulumi:"pinnedFcvs"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
@@ -328,6 +330,11 @@ func (o LookupClusterResultOutput) NumShards() pulumi.IntOutput {
 // Flag that indicates whether the cluster is paused or not.
 func (o LookupClusterResultOutput) Paused() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.Paused }).(pulumi.BoolOutput)
+}
+
+// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+func (o LookupClusterResultOutput) PinnedFcvs() GetClusterPinnedFcvArrayOutput {
+	return o.ApplyT(func(v LookupClusterResult) []GetClusterPinnedFcv { return v.PinnedFcvs }).(GetClusterPinnedFcvArrayOutput)
 }
 
 // Flag that indicates if the cluster uses Continuous Cloud Backup.

@@ -18,6 +18,7 @@ public final class GetClusterAdvancedConfiguration {
      * 
      */
     private Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+    private Integer defaultMaxTimeMs;
     /**
      * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      * 
@@ -89,6 +90,9 @@ public final class GetClusterAdvancedConfiguration {
      */
     public Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
         return this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+    }
+    public Integer defaultMaxTimeMs() {
+        return this.defaultMaxTimeMs;
     }
     /**
      * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -186,6 +190,7 @@ public final class GetClusterAdvancedConfiguration {
     @CustomType.Builder
     public static final class Builder {
         private Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        private Integer defaultMaxTimeMs;
         private String defaultReadConcern;
         private String defaultWriteConcern;
         private Boolean failIndexKeyTooLong;
@@ -201,6 +206,7 @@ public final class GetClusterAdvancedConfiguration {
         public Builder(GetClusterAdvancedConfiguration defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = defaults.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+    	      this.defaultMaxTimeMs = defaults.defaultMaxTimeMs;
     	      this.defaultReadConcern = defaults.defaultReadConcern;
     	      this.defaultWriteConcern = defaults.defaultWriteConcern;
     	      this.failIndexKeyTooLong = defaults.failIndexKeyTooLong;
@@ -220,6 +226,14 @@ public final class GetClusterAdvancedConfiguration {
               throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "changeStreamOptionsPreAndPostImagesExpireAfterSeconds");
             }
             this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder defaultMaxTimeMs(Integer defaultMaxTimeMs) {
+            if (defaultMaxTimeMs == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "defaultMaxTimeMs");
+            }
+            this.defaultMaxTimeMs = defaultMaxTimeMs;
             return this;
         }
         @CustomType.Setter
@@ -313,6 +327,7 @@ public final class GetClusterAdvancedConfiguration {
         public GetClusterAdvancedConfiguration build() {
             final var _resultValue = new GetClusterAdvancedConfiguration();
             _resultValue.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            _resultValue.defaultMaxTimeMs = defaultMaxTimeMs;
             _resultValue.defaultReadConcern = defaultReadConcern;
             _resultValue.defaultWriteConcern = defaultWriteConcern;
             _resultValue.failIndexKeyTooLong = failIndexKeyTooLong;

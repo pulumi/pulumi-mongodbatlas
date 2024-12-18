@@ -27,6 +27,8 @@ __all__ = [
     'AdvancedClusterConnectionStringPrivateEndpointEndpointArgsDict',
     'AdvancedClusterLabelArgs',
     'AdvancedClusterLabelArgsDict',
+    'AdvancedClusterPinnedFcvArgs',
+    'AdvancedClusterPinnedFcvArgsDict',
     'AdvancedClusterReplicationSpecArgs',
     'AdvancedClusterReplicationSpecArgsDict',
     'AdvancedClusterReplicationSpecRegionConfigArgs',
@@ -109,6 +111,8 @@ __all__ = [
     'ClusterLabelArgsDict',
     'ClusterOutageSimulationOutageFilterArgs',
     'ClusterOutageSimulationOutageFilterArgsDict',
+    'ClusterPinnedFcvArgs',
+    'ClusterPinnedFcvArgsDict',
     'ClusterReplicationSpecArgs',
     'ClusterReplicationSpecArgsDict',
     'ClusterReplicationSpecRegionsConfigArgs',
@@ -273,6 +277,10 @@ if not MYPY:
         """
         The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         """
+        default_max_time_ms: NotRequired[pulumi.Input[int]]
+        """
+        Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+        """
         default_read_concern: NotRequired[pulumi.Input[str]]
         """
         [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -329,6 +337,7 @@ elif False:
 class AdvancedClusterAdvancedConfigurationArgs:
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: Optional[pulumi.Input[int]] = None,
+                 default_max_time_ms: Optional[pulumi.Input[int]] = None,
                  default_read_concern: Optional[pulumi.Input[str]] = None,
                  default_write_concern: Optional[pulumi.Input[str]] = None,
                  fail_index_key_too_long: Optional[pulumi.Input[bool]] = None,
@@ -342,6 +351,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
                  transaction_lifetime_limit_seconds: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        :param pulumi.Input[int] default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
         :param pulumi.Input[str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param pulumi.Input[str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param pulumi.Input[bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
@@ -361,6 +371,8 @@ class AdvancedClusterAdvancedConfigurationArgs:
         """
         if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
             pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        if default_max_time_ms is not None:
+            pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         if default_read_concern is not None:
             warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
             pulumi.log.warn("""default_read_concern is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
@@ -401,6 +413,18 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @change_stream_options_pre_and_post_images_expire_after_seconds.setter
     def change_stream_options_pre_and_post_images_expire_after_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "change_stream_options_pre_and_post_images_expire_after_seconds", value)
+
+    @property
+    @pulumi.getter(name="defaultMaxTimeMs")
+    def default_max_time_ms(self) -> Optional[pulumi.Input[int]]:
+        """
+        Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+        """
+        return pulumi.get(self, "default_max_time_ms")
+
+    @default_max_time_ms.setter
+    def default_max_time_ms(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_max_time_ms", value)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -967,6 +991,57 @@ class AdvancedClusterLabelArgs:
 
 
 if not MYPY:
+    class AdvancedClusterPinnedFcvArgsDict(TypedDict):
+        expiration_date: pulumi.Input[str]
+        """
+        Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+        """
+        version: NotRequired[pulumi.Input[str]]
+        """
+        Feature compatibility version of the cluster.
+        """
+elif False:
+    AdvancedClusterPinnedFcvArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AdvancedClusterPinnedFcvArgs:
+    def __init__(__self__, *,
+                 expiration_date: pulumi.Input[str],
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] expiration_date: Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+        :param pulumi.Input[str] version: Feature compatibility version of the cluster.
+        """
+        pulumi.set(__self__, "expiration_date", expiration_date)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="expirationDate")
+    def expiration_date(self) -> pulumi.Input[str]:
+        """
+        Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+        """
+        return pulumi.get(self, "expiration_date")
+
+    @expiration_date.setter
+    def expiration_date(self, value: pulumi.Input[str]):
+        pulumi.set(self, "expiration_date", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Feature compatibility version of the cluster.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+if not MYPY:
     class AdvancedClusterReplicationSpecArgsDict(TypedDict):
         region_configs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgsDict']]]
         """
@@ -979,7 +1054,7 @@ if not MYPY:
         """
         id: NotRequired[pulumi.Input[str]]
         """
-        **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
         """
         num_shards: NotRequired[pulumi.Input[int]]
         """
@@ -1010,7 +1085,7 @@ class AdvancedClusterReplicationSpecArgs:
         """
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         :param pulumi.Input[str] external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
-        :param pulumi.Input[str] id: **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        :param pulumi.Input[str] id: **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
         :param pulumi.Input[int] num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
                If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
         :param pulumi.Input[str] zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
@@ -1074,7 +1149,7 @@ class AdvancedClusterReplicationSpecArgs:
     @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
         """
         return pulumi.get(self, "id")
 
@@ -1145,7 +1220,7 @@ if not MYPY:
         """
         analytics_auto_scaling: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgsDict']]
         """
-        Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
+        Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         """
         analytics_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict']]
         """
@@ -1153,7 +1228,7 @@ if not MYPY:
         """
         auto_scaling: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgsDict']]
         """
-        Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
+        Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         """
         backing_provider_name: NotRequired[pulumi.Input[str]]
         """
@@ -1194,9 +1269,9 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
                - `AZURE` - Microsoft Azure
                - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param pulumi.Input[str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
+        :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs'] analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
-        :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scaling: Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
+        :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs'] electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs'] read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
@@ -1265,7 +1340,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
     @pulumi.getter(name="analyticsAutoScaling")
     def analytics_auto_scaling(self) -> Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs']]:
         """
-        Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
+        Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         """
         return pulumi.get(self, "analytics_auto_scaling")
 
@@ -1289,7 +1364,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs']]:
         """
-        Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
+        Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         """
         return pulumi.get(self, "auto_scaling")
 
@@ -1572,6 +1647,9 @@ if not MYPY:
         Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
         """
         disk_gb_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+        """
 elif False:
     AdvancedClusterReplicationSpecRegionConfigAutoScalingArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -1587,6 +1665,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
         :param pulumi.Input[str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
         :param pulumi.Input[str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
         :param pulumi.Input[bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        :param pulumi.Input[bool] disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         if compute_enabled is not None:
             pulumi.set(__self__, "compute_enabled", compute_enabled)
@@ -1647,6 +1726,9 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     @property
     @pulumi.getter(name="diskGbEnabled")
     def disk_gb_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+        """
         return pulumi.get(self, "disk_gb_enabled")
 
     @disk_gb_enabled.setter
@@ -4662,6 +4744,7 @@ if not MYPY:
         """
         The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         """
+        default_max_time_ms: NotRequired[pulumi.Input[int]]
         default_read_concern: NotRequired[pulumi.Input[str]]
         """
         [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -4718,6 +4801,7 @@ elif False:
 class ClusterAdvancedConfigurationArgs:
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: Optional[pulumi.Input[int]] = None,
+                 default_max_time_ms: Optional[pulumi.Input[int]] = None,
                  default_read_concern: Optional[pulumi.Input[str]] = None,
                  default_write_concern: Optional[pulumi.Input[str]] = None,
                  fail_index_key_too_long: Optional[pulumi.Input[bool]] = None,
@@ -4750,6 +4834,8 @@ class ClusterAdvancedConfigurationArgs:
         """
         if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
             pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        if default_max_time_ms is not None:
+            pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         if default_read_concern is not None:
             warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
             pulumi.log.warn("""default_read_concern is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
@@ -4790,6 +4876,15 @@ class ClusterAdvancedConfigurationArgs:
     @change_stream_options_pre_and_post_images_expire_after_seconds.setter
     def change_stream_options_pre_and_post_images_expire_after_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "change_stream_options_pre_and_post_images_expire_after_seconds", value)
+
+    @property
+    @pulumi.getter(name="defaultMaxTimeMs")
+    def default_max_time_ms(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "default_max_time_ms")
+
+    @default_max_time_ms.setter
+    def default_max_time_ms(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_max_time_ms", value)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -5438,6 +5533,57 @@ class ClusterOutageSimulationOutageFilterArgs:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+
+if not MYPY:
+    class ClusterPinnedFcvArgsDict(TypedDict):
+        expiration_date: pulumi.Input[str]
+        """
+        Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+        """
+        version: NotRequired[pulumi.Input[str]]
+        """
+        Feature compatibility version of the cluster.
+        """
+elif False:
+    ClusterPinnedFcvArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ClusterPinnedFcvArgs:
+    def __init__(__self__, *,
+                 expiration_date: pulumi.Input[str],
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] expiration_date: Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+        :param pulumi.Input[str] version: Feature compatibility version of the cluster.
+        """
+        pulumi.set(__self__, "expiration_date", expiration_date)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="expirationDate")
+    def expiration_date(self) -> pulumi.Input[str]:
+        """
+        Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
+        """
+        return pulumi.get(self, "expiration_date")
+
+    @expiration_date.setter
+    def expiration_date(self, value: pulumi.Input[str]):
+        pulumi.set(self, "expiration_date", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Feature compatibility version of the cluster.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
 
 
 if not MYPY:

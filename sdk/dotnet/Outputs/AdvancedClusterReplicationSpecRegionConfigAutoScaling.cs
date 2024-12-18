@@ -26,6 +26,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
         /// </summary>
         public readonly bool? ComputeScaleDownEnabled;
+        /// <summary>
+        /// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+        /// </summary>
         public readonly bool? DiskGbEnabled;
 
         [OutputConstructor]

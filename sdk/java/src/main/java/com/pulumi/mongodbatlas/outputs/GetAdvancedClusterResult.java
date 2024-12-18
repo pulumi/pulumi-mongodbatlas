@@ -9,6 +9,7 @@ import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterAdvancedConfiguration;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterBiConnectorConfig;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterConnectionString;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterLabel;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterPinnedFcv;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpec;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterTag;
 import java.lang.Boolean;
@@ -98,6 +99,11 @@ public final class GetAdvancedClusterResult {
      * 
      */
     private Boolean paused;
+    /**
+     * @return The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+     * 
+     */
+    private List<GetAdvancedClusterPinnedFcv> pinnedFcvs;
     /**
      * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
@@ -259,6 +265,13 @@ public final class GetAdvancedClusterResult {
         return this.paused;
     }
     /**
+     * @return The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+     * 
+     */
+    public List<GetAdvancedClusterPinnedFcv> pinnedFcvs() {
+        return this.pinnedFcvs;
+    }
+    /**
      * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
      */
@@ -354,6 +367,7 @@ public final class GetAdvancedClusterResult {
         private String mongoDbVersion;
         private String name;
         private Boolean paused;
+        private List<GetAdvancedClusterPinnedFcv> pinnedFcvs;
         private Boolean pitEnabled;
         private String projectId;
         private Boolean redactClientLogData;
@@ -385,6 +399,7 @@ public final class GetAdvancedClusterResult {
     	      this.mongoDbVersion = defaults.mongoDbVersion;
     	      this.name = defaults.name;
     	      this.paused = defaults.paused;
+    	      this.pinnedFcvs = defaults.pinnedFcvs;
     	      this.pitEnabled = defaults.pitEnabled;
     	      this.projectId = defaults.projectId;
     	      this.redactClientLogData = defaults.redactClientLogData;
@@ -547,6 +562,17 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder pinnedFcvs(List<GetAdvancedClusterPinnedFcv> pinnedFcvs) {
+            if (pinnedFcvs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "pinnedFcvs");
+            }
+            this.pinnedFcvs = pinnedFcvs;
+            return this;
+        }
+        public Builder pinnedFcvs(GetAdvancedClusterPinnedFcv... pinnedFcvs) {
+            return pinnedFcvs(List.of(pinnedFcvs));
+        }
+        @CustomType.Setter
         public Builder pitEnabled(Boolean pitEnabled) {
             if (pitEnabled == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "pitEnabled");
@@ -657,6 +683,7 @@ public final class GetAdvancedClusterResult {
             _resultValue.mongoDbVersion = mongoDbVersion;
             _resultValue.name = name;
             _resultValue.paused = paused;
+            _resultValue.pinnedFcvs = pinnedFcvs;
             _resultValue.pitEnabled = pitEnabled;
             _resultValue.projectId = projectId;
             _resultValue.redactClientLogData = redactClientLogData;

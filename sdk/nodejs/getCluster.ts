@@ -163,6 +163,10 @@ export interface GetClusterResult {
      */
     readonly paused: boolean;
     /**
+     * The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+     */
+    readonly pinnedFcvs: outputs.GetClusterPinnedFcv[];
+    /**
      * Flag that indicates if the cluster uses Continuous Cloud Backup.
      */
     readonly pitEnabled: boolean;
