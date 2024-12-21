@@ -18,6 +18,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int? ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         /// <summary>
+        /// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        /// </summary>
+        public readonly ImmutableArray<string> CustomOpensslCipherConfigTls12s;
+        /// <summary>
         /// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
         /// </summary>
         public readonly int? DefaultMaxTimeMs;
@@ -67,6 +71,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int? SampleSizeBiConnector;
         /// <summary>
+        /// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+        /// </summary>
+        public readonly string? TlsCipherConfigMode;
+        /// <summary>
         /// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         /// </summary>
         public readonly int? TransactionLifetimeLimitSeconds;
@@ -74,6 +82,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         [OutputConstructor]
         private AdvancedClusterAdvancedConfiguration(
             int? changeStreamOptionsPreAndPostImagesExpireAfterSeconds,
+
+            ImmutableArray<string> customOpensslCipherConfigTls12s,
 
             int? defaultMaxTimeMs,
 
@@ -97,9 +107,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             int? sampleSizeBiConnector,
 
+            string? tlsCipherConfigMode,
+
             int? transactionLifetimeLimitSeconds)
         {
             ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            CustomOpensslCipherConfigTls12s = customOpensslCipherConfigTls12s;
             DefaultMaxTimeMs = defaultMaxTimeMs;
             DefaultReadConcern = defaultReadConcern;
             DefaultWriteConcern = defaultWriteConcern;
@@ -111,6 +124,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             OplogSizeMb = oplogSizeMb;
             SampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             SampleSizeBiConnector = sampleSizeBiConnector;
+            TlsCipherConfigMode = tlsCipherConfigMode;
             TransactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
         }
     }

@@ -11,6 +11,10 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: number;
     /**
+     * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     */
+    customOpensslCipherConfigTls12s?: string[];
+    /**
      * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      */
     defaultMaxTimeMs?: number;
@@ -63,6 +67,10 @@ export interface AdvancedClusterAdvancedConfiguration {
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
     sampleSizeBiConnector: number;
+    /**
+     * The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+     */
+    tlsCipherConfigMode: string;
     /**
      * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
      */
@@ -929,6 +937,10 @@ export interface ClusterAdvancedConfiguration {
      * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: number;
+    /**
+     * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     */
+    customOpensslCipherConfigTls12s?: string[];
     defaultMaxTimeMs?: number;
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -979,6 +991,10 @@ export interface ClusterAdvancedConfiguration {
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
     sampleSizeBiConnector: number;
+    /**
+     * The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+     */
+    tlsCipherConfigMode: string;
     /**
      * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
      */
@@ -1669,6 +1685,10 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
+     * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     */
+    customOpensslCipherConfigTls12s: string[];
+    /**
      * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      */
     defaultMaxTimeMs: number;
@@ -1716,6 +1736,10 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
     sampleSizeBiConnector: number;
+    /**
+     * The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+     */
+    tlsCipherConfigMode: string;
     /**
      * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
      */
@@ -2115,6 +2139,10 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
+     * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     */
+    customOpensslCipherConfigTls12s: string[];
+    /**
      * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      */
     defaultMaxTimeMs: number;
@@ -2162,6 +2190,10 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
     sampleSizeBiConnector: number;
+    /**
+     * The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+     */
+    tlsCipherConfigMode: string;
     /**
      * (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
      */
@@ -3593,6 +3625,10 @@ export interface GetClusterAdvancedConfiguration {
      * (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
+    /**
+     * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     */
+    customOpensslCipherConfigTls12s: string[];
     defaultMaxTimeMs: number;
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -3638,6 +3674,10 @@ export interface GetClusterAdvancedConfiguration {
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
     sampleSizeBiConnector: number;
+    /**
+     * The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+     */
+    tlsCipherConfigMode: string;
     /**
      * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
      */
@@ -4009,6 +4049,10 @@ export interface GetClustersResultAdvancedConfiguration {
      * (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
+    /**
+     * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     */
+    customOpensslCipherConfigTls12s: string[];
     defaultMaxTimeMs: number;
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -4054,6 +4098,10 @@ export interface GetClustersResultAdvancedConfiguration {
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
     sampleSizeBiConnector: number;
+    /**
+     * The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+     */
+    tlsCipherConfigMode: string;
     transactionLifetimeLimitSeconds: number;
 }
 

@@ -17,6 +17,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         /// </summary>
         public readonly int? ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        /// <summary>
+        /// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        /// </summary>
+        public readonly ImmutableArray<string> CustomOpensslCipherConfigTls12s;
         public readonly int? DefaultMaxTimeMs;
         /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -64,6 +68,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int? SampleSizeBiConnector;
         /// <summary>
+        /// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+        /// </summary>
+        public readonly string? TlsCipherConfigMode;
+        /// <summary>
         /// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         /// </summary>
         public readonly int? TransactionLifetimeLimitSeconds;
@@ -71,6 +79,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         [OutputConstructor]
         private ClusterAdvancedConfiguration(
             int? changeStreamOptionsPreAndPostImagesExpireAfterSeconds,
+
+            ImmutableArray<string> customOpensslCipherConfigTls12s,
 
             int? defaultMaxTimeMs,
 
@@ -94,9 +104,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             int? sampleSizeBiConnector,
 
+            string? tlsCipherConfigMode,
+
             int? transactionLifetimeLimitSeconds)
         {
             ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            CustomOpensslCipherConfigTls12s = customOpensslCipherConfigTls12s;
             DefaultMaxTimeMs = defaultMaxTimeMs;
             DefaultReadConcern = defaultReadConcern;
             DefaultWriteConcern = defaultWriteConcern;
@@ -108,6 +121,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             OplogSizeMb = oplogSizeMb;
             SampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             SampleSizeBiConnector = sampleSizeBiConnector;
+            TlsCipherConfigMode = tlsCipherConfigMode;
             TransactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
         }
     }
