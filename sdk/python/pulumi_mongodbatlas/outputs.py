@@ -399,6 +399,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
         suggest = None
         if key == "changeStreamOptionsPreAndPostImagesExpireAfterSeconds":
             suggest = "change_stream_options_pre_and_post_images_expire_after_seconds"
+        elif key == "customOpensslCipherConfigTls12s":
+            suggest = "custom_openssl_cipher_config_tls12s"
         elif key == "defaultMaxTimeMs":
             suggest = "default_max_time_ms"
         elif key == "defaultReadConcern":
@@ -421,6 +423,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
             suggest = "sample_refresh_interval_bi_connector"
         elif key == "sampleSizeBiConnector":
             suggest = "sample_size_bi_connector"
+        elif key == "tlsCipherConfigMode":
+            suggest = "tls_cipher_config_mode"
         elif key == "transactionLifetimeLimitSeconds":
             suggest = "transaction_lifetime_limit_seconds"
 
@@ -437,6 +441,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
 
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: Optional[int] = None,
+                 custom_openssl_cipher_config_tls12s: Optional[Sequence[str]] = None,
                  default_max_time_ms: Optional[int] = None,
                  default_read_concern: Optional[str] = None,
                  default_write_concern: Optional[str] = None,
@@ -448,9 +453,11 @@ class AdvancedClusterAdvancedConfiguration(dict):
                  oplog_size_mb: Optional[int] = None,
                  sample_refresh_interval_bi_connector: Optional[int] = None,
                  sample_size_bi_connector: Optional[int] = None,
+                 tls_cipher_config_mode: Optional[str] = None,
                  transaction_lifetime_limit_seconds: Optional[int] = None):
         """
         :param int change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        :param Sequence[str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -467,10 +474,13 @@ class AdvancedClusterAdvancedConfiguration(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param str tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
             pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        if custom_openssl_cipher_config_tls12s is not None:
+            pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
         if default_max_time_ms is not None:
             pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         if default_read_concern is not None:
@@ -493,6 +503,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
             pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
             pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        if tls_cipher_config_mode is not None:
+            pulumi.set(__self__, "tls_cipher_config_mode", tls_cipher_config_mode)
         if transaction_lifetime_limit_seconds is not None:
             pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
@@ -503,6 +515,14 @@ class AdvancedClusterAdvancedConfiguration(dict):
         The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
+
+    @property
+    @pulumi.getter(name="customOpensslCipherConfigTls12s")
+    def custom_openssl_cipher_config_tls12s(self) -> Optional[Sequence[str]]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @property
     @pulumi.getter(name="defaultMaxTimeMs")
@@ -598,6 +618,14 @@ class AdvancedClusterAdvancedConfiguration(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="tlsCipherConfigMode")
+    def tls_cipher_config_mode(self) -> Optional[str]:
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+        """
+        return pulumi.get(self, "tls_cipher_config_mode")
 
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
@@ -3933,6 +3961,8 @@ class ClusterAdvancedConfiguration(dict):
         suggest = None
         if key == "changeStreamOptionsPreAndPostImagesExpireAfterSeconds":
             suggest = "change_stream_options_pre_and_post_images_expire_after_seconds"
+        elif key == "customOpensslCipherConfigTls12s":
+            suggest = "custom_openssl_cipher_config_tls12s"
         elif key == "defaultMaxTimeMs":
             suggest = "default_max_time_ms"
         elif key == "defaultReadConcern":
@@ -3955,6 +3985,8 @@ class ClusterAdvancedConfiguration(dict):
             suggest = "sample_refresh_interval_bi_connector"
         elif key == "sampleSizeBiConnector":
             suggest = "sample_size_bi_connector"
+        elif key == "tlsCipherConfigMode":
+            suggest = "tls_cipher_config_mode"
         elif key == "transactionLifetimeLimitSeconds":
             suggest = "transaction_lifetime_limit_seconds"
 
@@ -3971,6 +4003,7 @@ class ClusterAdvancedConfiguration(dict):
 
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: Optional[int] = None,
+                 custom_openssl_cipher_config_tls12s: Optional[Sequence[str]] = None,
                  default_max_time_ms: Optional[int] = None,
                  default_read_concern: Optional[str] = None,
                  default_write_concern: Optional[str] = None,
@@ -3982,9 +4015,11 @@ class ClusterAdvancedConfiguration(dict):
                  oplog_size_mb: Optional[int] = None,
                  sample_refresh_interval_bi_connector: Optional[int] = None,
                  sample_size_bi_connector: Optional[int] = None,
+                 tls_cipher_config_mode: Optional[str] = None,
                  transaction_lifetime_limit_seconds: Optional[int] = None):
         """
         :param int change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        :param Sequence[str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -4000,10 +4035,13 @@ class ClusterAdvancedConfiguration(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param str tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
             pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        if custom_openssl_cipher_config_tls12s is not None:
+            pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
         if default_max_time_ms is not None:
             pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         if default_read_concern is not None:
@@ -4026,6 +4064,8 @@ class ClusterAdvancedConfiguration(dict):
             pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
             pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        if tls_cipher_config_mode is not None:
+            pulumi.set(__self__, "tls_cipher_config_mode", tls_cipher_config_mode)
         if transaction_lifetime_limit_seconds is not None:
             pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
@@ -4036,6 +4076,14 @@ class ClusterAdvancedConfiguration(dict):
         The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
+
+    @property
+    @pulumi.getter(name="customOpensslCipherConfigTls12s")
+    def custom_openssl_cipher_config_tls12s(self) -> Optional[Sequence[str]]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @property
     @pulumi.getter(name="defaultMaxTimeMs")
@@ -4128,6 +4176,14 @@ class ClusterAdvancedConfiguration(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="tlsCipherConfigMode")
+    def tls_cipher_config_mode(self) -> Optional[str]:
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+        """
+        return pulumi.get(self, "tls_cipher_config_mode")
 
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
@@ -8628,6 +8684,7 @@ class GetAccessListApiKeysResultResult(dict):
 class GetAdvancedClusterAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: int,
+                 custom_openssl_cipher_config_tls12s: Sequence[str],
                  default_max_time_ms: int,
                  default_read_concern: str,
                  default_write_concern: str,
@@ -8639,9 +8696,11 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
                  sample_size_bi_connector: int,
+                 tls_cipher_config_mode: str,
                  transaction_lifetime_limit_seconds: int):
         """
         :param int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+        :param Sequence[str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -8653,9 +8712,11 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param str tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
         pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
@@ -8667,6 +8728,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "tls_cipher_config_mode", tls_cipher_config_mode)
         pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
@@ -8676,6 +8738,14 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
+
+    @property
+    @pulumi.getter(name="customOpensslCipherConfigTls12s")
+    def custom_openssl_cipher_config_tls12s(self) -> Sequence[str]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @property
     @pulumi.getter(name="defaultMaxTimeMs")
@@ -8766,6 +8836,14 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="tlsCipherConfigMode")
+    def tls_cipher_config_mode(self) -> str:
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+        """
+        return pulumi.get(self, "tls_cipher_config_mode")
 
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
@@ -9845,6 +9923,7 @@ class GetAdvancedClustersResultResult(dict):
 class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: int,
+                 custom_openssl_cipher_config_tls12s: Sequence[str],
                  default_max_time_ms: int,
                  default_read_concern: str,
                  default_write_concern: str,
@@ -9856,9 +9935,11 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
                  sample_size_bi_connector: int,
+                 tls_cipher_config_mode: str,
                  transaction_lifetime_limit_seconds: int):
         """
         :param int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+        :param Sequence[str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -9870,9 +9951,11 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param str tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
         :param int transaction_lifetime_limit_seconds: (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
         pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
@@ -9884,6 +9967,7 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "tls_cipher_config_mode", tls_cipher_config_mode)
         pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
@@ -9893,6 +9977,14 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
+
+    @property
+    @pulumi.getter(name="customOpensslCipherConfigTls12s")
+    def custom_openssl_cipher_config_tls12s(self) -> Sequence[str]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @property
     @pulumi.getter(name="defaultMaxTimeMs")
@@ -9983,6 +10075,14 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="tlsCipherConfigMode")
+    def tls_cipher_config_mode(self) -> str:
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+        """
+        return pulumi.get(self, "tls_cipher_config_mode")
 
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
@@ -13885,6 +13985,7 @@ class GetCloudProviderAccessSetupAzureConfigResult(dict):
 class GetClusterAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: int,
+                 custom_openssl_cipher_config_tls12s: Sequence[str],
                  default_max_time_ms: int,
                  default_read_concern: str,
                  default_write_concern: str,
@@ -13896,9 +13997,11 @@ class GetClusterAdvancedConfigurationResult(dict):
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
                  sample_size_bi_connector: int,
+                 tls_cipher_config_mode: str,
                  transaction_lifetime_limit_seconds: int):
         """
         :param int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+        :param Sequence[str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -13909,9 +14012,11 @@ class GetClusterAdvancedConfigurationResult(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param str tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
         pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
@@ -13923,6 +14028,7 @@ class GetClusterAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "tls_cipher_config_mode", tls_cipher_config_mode)
         pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
@@ -13932,6 +14038,14 @@ class GetClusterAdvancedConfigurationResult(dict):
         (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
+
+    @property
+    @pulumi.getter(name="customOpensslCipherConfigTls12s")
+    def custom_openssl_cipher_config_tls12s(self) -> Sequence[str]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @property
     @pulumi.getter(name="defaultMaxTimeMs")
@@ -14019,6 +14133,14 @@ class GetClusterAdvancedConfigurationResult(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="tlsCipherConfigMode")
+    def tls_cipher_config_mode(self) -> str:
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+        """
+        return pulumi.get(self, "tls_cipher_config_mode")
 
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
@@ -15085,6 +15207,7 @@ class GetClustersResultResult(dict):
 class GetClustersResultAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: int,
+                 custom_openssl_cipher_config_tls12s: Sequence[str],
                  default_max_time_ms: int,
                  default_read_concern: str,
                  default_write_concern: str,
@@ -15096,9 +15219,11 @@ class GetClustersResultAdvancedConfigurationResult(dict):
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
                  sample_size_bi_connector: int,
+                 tls_cipher_config_mode: str,
                  transaction_lifetime_limit_seconds: int):
         """
         :param int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+        :param Sequence[str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -15109,8 +15234,10 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param str tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
         """
         pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
         pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
@@ -15122,6 +15249,7 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "tls_cipher_config_mode", tls_cipher_config_mode)
         pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
@@ -15131,6 +15259,14 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
+
+    @property
+    @pulumi.getter(name="customOpensslCipherConfigTls12s")
+    def custom_openssl_cipher_config_tls12s(self) -> Sequence[str]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @property
     @pulumi.getter(name="defaultMaxTimeMs")
@@ -15218,6 +15354,14 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="tlsCipherConfigMode")
+    def tls_cipher_config_mode(self) -> str:
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+        """
+        return pulumi.get(self, "tls_cipher_config_mode")
 
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")

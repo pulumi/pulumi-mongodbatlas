@@ -277,6 +277,10 @@ if not MYPY:
         """
         The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         """
+        custom_openssl_cipher_config_tls12s: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
         default_max_time_ms: NotRequired[pulumi.Input[int]]
         """
         Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
@@ -326,6 +330,10 @@ if not MYPY:
         """
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
+        tls_cipher_config_mode: NotRequired[pulumi.Input[str]]
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+        """
         transaction_lifetime_limit_seconds: NotRequired[pulumi.Input[int]]
         """
         Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
@@ -337,6 +345,7 @@ elif False:
 class AdvancedClusterAdvancedConfigurationArgs:
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: Optional[pulumi.Input[int]] = None,
+                 custom_openssl_cipher_config_tls12s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_max_time_ms: Optional[pulumi.Input[int]] = None,
                  default_read_concern: Optional[pulumi.Input[str]] = None,
                  default_write_concern: Optional[pulumi.Input[str]] = None,
@@ -348,9 +357,11 @@ class AdvancedClusterAdvancedConfigurationArgs:
                  oplog_size_mb: Optional[pulumi.Input[int]] = None,
                  sample_refresh_interval_bi_connector: Optional[pulumi.Input[int]] = None,
                  sample_size_bi_connector: Optional[pulumi.Input[int]] = None,
+                 tls_cipher_config_mode: Optional[pulumi.Input[str]] = None,
                  transaction_lifetime_limit_seconds: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param pulumi.Input[int] default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
         :param pulumi.Input[str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param pulumi.Input[str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -367,10 +378,13 @@ class AdvancedClusterAdvancedConfigurationArgs:
         :param pulumi.Input[int] oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param pulumi.Input[int] sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param pulumi.Input[int] sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param pulumi.Input[str] tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
         :param pulumi.Input[int] transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
             pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        if custom_openssl_cipher_config_tls12s is not None:
+            pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
         if default_max_time_ms is not None:
             pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         if default_read_concern is not None:
@@ -399,6 +413,8 @@ class AdvancedClusterAdvancedConfigurationArgs:
             pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
             pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        if tls_cipher_config_mode is not None:
+            pulumi.set(__self__, "tls_cipher_config_mode", tls_cipher_config_mode)
         if transaction_lifetime_limit_seconds is not None:
             pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
@@ -413,6 +429,18 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @change_stream_options_pre_and_post_images_expire_after_seconds.setter
     def change_stream_options_pre_and_post_images_expire_after_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "change_stream_options_pre_and_post_images_expire_after_seconds", value)
+
+    @property
+    @pulumi.getter(name="customOpensslCipherConfigTls12s")
+    def custom_openssl_cipher_config_tls12s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
+
+    @custom_openssl_cipher_config_tls12s.setter
+    def custom_openssl_cipher_config_tls12s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "custom_openssl_cipher_config_tls12s", value)
 
     @property
     @pulumi.getter(name="defaultMaxTimeMs")
@@ -552,6 +580,18 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @sample_size_bi_connector.setter
     def sample_size_bi_connector(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "sample_size_bi_connector", value)
+
+    @property
+    @pulumi.getter(name="tlsCipherConfigMode")
+    def tls_cipher_config_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+        """
+        return pulumi.get(self, "tls_cipher_config_mode")
+
+    @tls_cipher_config_mode.setter
+    def tls_cipher_config_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_cipher_config_mode", value)
 
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
@@ -4744,6 +4784,10 @@ if not MYPY:
         """
         The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         """
+        custom_openssl_cipher_config_tls12s: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
         default_max_time_ms: NotRequired[pulumi.Input[int]]
         default_read_concern: NotRequired[pulumi.Input[str]]
         """
@@ -4790,6 +4834,10 @@ if not MYPY:
         """
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
+        tls_cipher_config_mode: NotRequired[pulumi.Input[str]]
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+        """
         transaction_lifetime_limit_seconds: NotRequired[pulumi.Input[int]]
         """
         Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
@@ -4801,6 +4849,7 @@ elif False:
 class ClusterAdvancedConfigurationArgs:
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: Optional[pulumi.Input[int]] = None,
+                 custom_openssl_cipher_config_tls12s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_max_time_ms: Optional[pulumi.Input[int]] = None,
                  default_read_concern: Optional[pulumi.Input[str]] = None,
                  default_write_concern: Optional[pulumi.Input[str]] = None,
@@ -4812,9 +4861,11 @@ class ClusterAdvancedConfigurationArgs:
                  oplog_size_mb: Optional[pulumi.Input[int]] = None,
                  sample_refresh_interval_bi_connector: Optional[pulumi.Input[int]] = None,
                  sample_size_bi_connector: Optional[pulumi.Input[int]] = None,
+                 tls_cipher_config_mode: Optional[pulumi.Input[str]] = None,
                  transaction_lifetime_limit_seconds: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param pulumi.Input[str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param pulumi.Input[str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param pulumi.Input[bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -4830,10 +4881,13 @@ class ClusterAdvancedConfigurationArgs:
         :param pulumi.Input[int] oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param pulumi.Input[int] sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param pulumi.Input[int] sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param pulumi.Input[str] tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
         :param pulumi.Input[int] transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
             pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
+        if custom_openssl_cipher_config_tls12s is not None:
+            pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
         if default_max_time_ms is not None:
             pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         if default_read_concern is not None:
@@ -4862,6 +4916,8 @@ class ClusterAdvancedConfigurationArgs:
             pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
             pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        if tls_cipher_config_mode is not None:
+            pulumi.set(__self__, "tls_cipher_config_mode", tls_cipher_config_mode)
         if transaction_lifetime_limit_seconds is not None:
             pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
@@ -4876,6 +4932,18 @@ class ClusterAdvancedConfigurationArgs:
     @change_stream_options_pre_and_post_images_expire_after_seconds.setter
     def change_stream_options_pre_and_post_images_expire_after_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "change_stream_options_pre_and_post_images_expire_after_seconds", value)
+
+    @property
+    @pulumi.getter(name="customOpensslCipherConfigTls12s")
+    def custom_openssl_cipher_config_tls12s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
+
+    @custom_openssl_cipher_config_tls12s.setter
+    def custom_openssl_cipher_config_tls12s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "custom_openssl_cipher_config_tls12s", value)
 
     @property
     @pulumi.getter(name="defaultMaxTimeMs")
@@ -5012,6 +5080,18 @@ class ClusterAdvancedConfigurationArgs:
     @sample_size_bi_connector.setter
     def sample_size_bi_connector(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "sample_size_bi_connector", value)
+
+    @property
+    @pulumi.getter(name="tlsCipherConfigMode")
+    def tls_cipher_config_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+        """
+        return pulumi.get(self, "tls_cipher_config_mode")
+
+    @tls_cipher_config_mode.setter
+    def tls_cipher_config_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_cipher_config_mode", value)
 
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")

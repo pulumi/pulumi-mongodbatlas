@@ -18,6 +18,18 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("changeStreamOptionsPreAndPostImagesExpireAfterSeconds")]
         public Input<int>? ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds { get; set; }
 
+        [Input("customOpensslCipherConfigTls12s")]
+        private InputList<string>? _customOpensslCipherConfigTls12s;
+
+        /// <summary>
+        /// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        /// </summary>
+        public InputList<string> CustomOpensslCipherConfigTls12s
+        {
+            get => _customOpensslCipherConfigTls12s ?? (_customOpensslCipherConfigTls12s = new InputList<string>());
+            set => _customOpensslCipherConfigTls12s = value;
+        }
+
         [Input("defaultMaxTimeMs")]
         public Input<int>? DefaultMaxTimeMs { get; set; }
 
@@ -85,6 +97,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// </summary>
         [Input("sampleSizeBiConnector")]
         public Input<int>? SampleSizeBiConnector { get; set; }
+
+        /// <summary>
+        /// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+        /// </summary>
+        [Input("tlsCipherConfigMode")]
+        public Input<string>? TlsCipherConfigMode { get; set; }
 
         /// <summary>
         /// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.

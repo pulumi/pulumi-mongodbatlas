@@ -9,6 +9,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 
 @CustomType
@@ -18,6 +19,11 @@ public final class GetClusterAdvancedConfiguration {
      * 
      */
     private Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+    /**
+     * @return The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+     * 
+     */
+    private List<String> customOpensslCipherConfigTls12s;
     private Integer defaultMaxTimeMs;
     /**
      * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -78,6 +84,11 @@ public final class GetClusterAdvancedConfiguration {
      */
     private Integer sampleSizeBiConnector;
     /**
+     * @return The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+     * 
+     */
+    private String tlsCipherConfigMode;
+    /**
      * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
      * 
      */
@@ -90,6 +101,13 @@ public final class GetClusterAdvancedConfiguration {
      */
     public Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
         return this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+    }
+    /**
+     * @return The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+     * 
+     */
+    public List<String> customOpensslCipherConfigTls12s() {
+        return this.customOpensslCipherConfigTls12s;
     }
     public Integer defaultMaxTimeMs() {
         return this.defaultMaxTimeMs;
@@ -173,6 +191,13 @@ public final class GetClusterAdvancedConfiguration {
         return this.sampleSizeBiConnector;
     }
     /**
+     * @return The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+     * 
+     */
+    public String tlsCipherConfigMode() {
+        return this.tlsCipherConfigMode;
+    }
+    /**
      * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
      * 
      */
@@ -190,6 +215,7 @@ public final class GetClusterAdvancedConfiguration {
     @CustomType.Builder
     public static final class Builder {
         private Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        private List<String> customOpensslCipherConfigTls12s;
         private Integer defaultMaxTimeMs;
         private String defaultReadConcern;
         private String defaultWriteConcern;
@@ -201,11 +227,13 @@ public final class GetClusterAdvancedConfiguration {
         private Integer oplogSizeMb;
         private Integer sampleRefreshIntervalBiConnector;
         private Integer sampleSizeBiConnector;
+        private String tlsCipherConfigMode;
         private Integer transactionLifetimeLimitSeconds;
         public Builder() {}
         public Builder(GetClusterAdvancedConfiguration defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = defaults.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+    	      this.customOpensslCipherConfigTls12s = defaults.customOpensslCipherConfigTls12s;
     	      this.defaultMaxTimeMs = defaults.defaultMaxTimeMs;
     	      this.defaultReadConcern = defaults.defaultReadConcern;
     	      this.defaultWriteConcern = defaults.defaultWriteConcern;
@@ -217,6 +245,7 @@ public final class GetClusterAdvancedConfiguration {
     	      this.oplogSizeMb = defaults.oplogSizeMb;
     	      this.sampleRefreshIntervalBiConnector = defaults.sampleRefreshIntervalBiConnector;
     	      this.sampleSizeBiConnector = defaults.sampleSizeBiConnector;
+    	      this.tlsCipherConfigMode = defaults.tlsCipherConfigMode;
     	      this.transactionLifetimeLimitSeconds = defaults.transactionLifetimeLimitSeconds;
         }
 
@@ -227,6 +256,17 @@ public final class GetClusterAdvancedConfiguration {
             }
             this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
             return this;
+        }
+        @CustomType.Setter
+        public Builder customOpensslCipherConfigTls12s(List<String> customOpensslCipherConfigTls12s) {
+            if (customOpensslCipherConfigTls12s == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "customOpensslCipherConfigTls12s");
+            }
+            this.customOpensslCipherConfigTls12s = customOpensslCipherConfigTls12s;
+            return this;
+        }
+        public Builder customOpensslCipherConfigTls12s(String... customOpensslCipherConfigTls12s) {
+            return customOpensslCipherConfigTls12s(List.of(customOpensslCipherConfigTls12s));
         }
         @CustomType.Setter
         public Builder defaultMaxTimeMs(Integer defaultMaxTimeMs) {
@@ -317,6 +357,14 @@ public final class GetClusterAdvancedConfiguration {
             return this;
         }
         @CustomType.Setter
+        public Builder tlsCipherConfigMode(String tlsCipherConfigMode) {
+            if (tlsCipherConfigMode == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "tlsCipherConfigMode");
+            }
+            this.tlsCipherConfigMode = tlsCipherConfigMode;
+            return this;
+        }
+        @CustomType.Setter
         public Builder transactionLifetimeLimitSeconds(Integer transactionLifetimeLimitSeconds) {
             if (transactionLifetimeLimitSeconds == null) {
               throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "transactionLifetimeLimitSeconds");
@@ -327,6 +375,7 @@ public final class GetClusterAdvancedConfiguration {
         public GetClusterAdvancedConfiguration build() {
             final var _resultValue = new GetClusterAdvancedConfiguration();
             _resultValue.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            _resultValue.customOpensslCipherConfigTls12s = customOpensslCipherConfigTls12s;
             _resultValue.defaultMaxTimeMs = defaultMaxTimeMs;
             _resultValue.defaultReadConcern = defaultReadConcern;
             _resultValue.defaultWriteConcern = defaultWriteConcern;
@@ -338,6 +387,7 @@ public final class GetClusterAdvancedConfiguration {
             _resultValue.oplogSizeMb = oplogSizeMb;
             _resultValue.sampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             _resultValue.sampleSizeBiConnector = sampleSizeBiConnector;
+            _resultValue.tlsCipherConfigMode = tlsCipherConfigMode;
             _resultValue.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
             return _resultValue;
         }
