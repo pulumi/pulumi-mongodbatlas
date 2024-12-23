@@ -16,6 +16,8 @@ var _ = internal.GetEnvOrDefault
 type AdvancedClusterAdvancedConfiguration struct {
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs *int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -47,6 +49,8 @@ type AdvancedClusterAdvancedConfiguration struct {
 	SampleRefreshIntervalBiConnector *int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector *int `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+	TlsCipherConfigMode *string `pulumi:"tlsCipherConfigMode"`
 	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds *int `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -65,6 +69,8 @@ type AdvancedClusterAdvancedConfigurationInput interface {
 type AdvancedClusterAdvancedConfigurationArgs struct {
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntPtrInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntPtrInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -96,6 +102,8 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	SampleRefreshIntervalBiConnector pulumi.IntPtrInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector pulumi.IntPtrInput `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+	TlsCipherConfigMode pulumi.StringPtrInput `pulumi:"tlsCipherConfigMode"`
 	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds pulumi.IntPtrInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -184,6 +192,11 @@ func (o AdvancedClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPos
 	}).(pulumi.IntPtrOutput)
 }
 
+// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+func (o AdvancedClusterAdvancedConfigurationOutput) CustomOpensslCipherConfigTls12s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) []string { return v.CustomOpensslCipherConfigTls12s }).(pulumi.StringArrayOutput)
+}
+
 // Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 func (o AdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.DefaultMaxTimeMs }).(pulumi.IntPtrOutput)
@@ -248,6 +261,11 @@ func (o AdvancedClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulu
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.SampleSizeBiConnector }).(pulumi.IntPtrOutput)
 }
 
+// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+func (o AdvancedClusterAdvancedConfigurationOutput) TlsCipherConfigMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.TlsCipherConfigMode }).(pulumi.StringPtrOutput)
+}
+
 // Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 func (o AdvancedClusterAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntPtrOutput)
@@ -285,6 +303,16 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) ChangeStreamOptionsPreAnd
 		}
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
 	}).(pulumi.IntPtrOutput)
+}
+
+// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) CustomOpensslCipherConfigTls12s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) []string {
+		if v == nil {
+			return nil
+		}
+		return v.CustomOpensslCipherConfigTls12s
+	}).(pulumi.StringArrayOutput)
 }
 
 // Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
@@ -404,6 +432,16 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() p
 		}
 		return v.SampleSizeBiConnector
 	}).(pulumi.IntPtrOutput)
+}
+
+// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) TlsCipherConfigMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCipherConfigMode
+	}).(pulumi.StringPtrOutput)
 }
 
 // Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
@@ -7102,7 +7140,9 @@ func (o CloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInput)
 type ClusterAdvancedConfiguration struct {
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
-	DefaultMaxTimeMs                                      *int `pulumi:"defaultMaxTimeMs"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
+	DefaultMaxTimeMs                *int     `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -7132,6 +7172,8 @@ type ClusterAdvancedConfiguration struct {
 	SampleRefreshIntervalBiConnector *int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector *int `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+	TlsCipherConfigMode *string `pulumi:"tlsCipherConfigMode"`
 	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds *int `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -7150,7 +7192,9 @@ type ClusterAdvancedConfigurationInput interface {
 type ClusterAdvancedConfigurationArgs struct {
 	// The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntPtrInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
-	DefaultMaxTimeMs                                      pulumi.IntPtrInput `pulumi:"defaultMaxTimeMs"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
+	DefaultMaxTimeMs                pulumi.IntPtrInput      `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -7180,6 +7224,8 @@ type ClusterAdvancedConfigurationArgs struct {
 	SampleRefreshIntervalBiConnector pulumi.IntPtrInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector pulumi.IntPtrInput `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+	TlsCipherConfigMode pulumi.StringPtrInput `pulumi:"tlsCipherConfigMode"`
 	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds pulumi.IntPtrInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -7268,6 +7314,11 @@ func (o ClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesE
 	}).(pulumi.IntPtrOutput)
 }
 
+// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+func (o ClusterAdvancedConfigurationOutput) CustomOpensslCipherConfigTls12s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ClusterAdvancedConfiguration) []string { return v.CustomOpensslCipherConfigTls12s }).(pulumi.StringArrayOutput)
+}
+
 func (o ClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.DefaultMaxTimeMs }).(pulumi.IntPtrOutput)
 }
@@ -7331,6 +7382,11 @@ func (o ClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntPt
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.SampleSizeBiConnector }).(pulumi.IntPtrOutput)
 }
 
+// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+func (o ClusterAdvancedConfigurationOutput) TlsCipherConfigMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.TlsCipherConfigMode }).(pulumi.StringPtrOutput)
+}
+
 // Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 func (o ClusterAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntPtrOutput)
@@ -7368,6 +7424,16 @@ func (o ClusterAdvancedConfigurationPtrOutput) ChangeStreamOptionsPreAndPostImag
 		}
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
 	}).(pulumi.IntPtrOutput)
+}
+
+// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+func (o ClusterAdvancedConfigurationPtrOutput) CustomOpensslCipherConfigTls12s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) []string {
+		if v == nil {
+			return nil
+		}
+		return v.CustomOpensslCipherConfigTls12s
+	}).(pulumi.StringArrayOutput)
 }
 
 func (o ClusterAdvancedConfigurationPtrOutput) DefaultMaxTimeMs() pulumi.IntPtrOutput {
@@ -7486,6 +7552,16 @@ func (o ClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() pulumi.In
 		}
 		return v.SampleSizeBiConnector
 	}).(pulumi.IntPtrOutput)
+}
+
+// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+func (o ClusterAdvancedConfigurationPtrOutput) TlsCipherConfigMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCipherConfigMode
+	}).(pulumi.StringPtrOutput)
 }
 
 // Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
@@ -18695,6 +18771,8 @@ func (o GetAccessListApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetAcces
 type GetAdvancedClusterAdvancedConfiguration struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -18721,6 +18799,8 @@ type GetAdvancedClusterAdvancedConfiguration struct {
 	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+	TlsCipherConfigMode string `pulumi:"tlsCipherConfigMode"`
 	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds int `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -18739,6 +18819,8 @@ type GetAdvancedClusterAdvancedConfigurationInput interface {
 type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -18765,6 +18847,8 @@ type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+	TlsCipherConfigMode pulumi.StringInput `pulumi:"tlsCipherConfigMode"`
 	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds pulumi.IntInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -18827,6 +18911,11 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAnd
 	}).(pulumi.IntOutput)
 }
 
+// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) CustomOpensslCipherConfigTls12s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) []string { return v.CustomOpensslCipherConfigTls12s }).(pulumi.StringArrayOutput)
+}
+
 // Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
@@ -18884,6 +18973,11 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) SampleRefreshIntervalBiCo
 // Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o GetAdvancedClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) TlsCipherConfigMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.TlsCipherConfigMode }).(pulumi.StringOutput)
 }
 
 // Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
@@ -20961,6 +21055,8 @@ func (o GetAdvancedClustersResultArrayOutput) Index(i pulumi.IntInput) GetAdvanc
 type GetAdvancedClustersResultAdvancedConfiguration struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -20987,6 +21083,8 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+	TlsCipherConfigMode string `pulumi:"tlsCipherConfigMode"`
 	// (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds int `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -21005,6 +21103,8 @@ type GetAdvancedClustersResultAdvancedConfigurationInput interface {
 type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
@@ -21031,6 +21131,8 @@ type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+	TlsCipherConfigMode pulumi.StringInput `pulumi:"tlsCipherConfigMode"`
 	// (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds pulumi.IntInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -21093,6 +21195,13 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ChangeStreamOption
 	}).(pulumi.IntOutput)
 }
 
+// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) CustomOpensslCipherConfigTls12s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) []string {
+		return v.CustomOpensslCipherConfigTls12s
+	}).(pulumi.StringArrayOutput)
+}
+
 // Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
@@ -21150,6 +21259,11 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) SampleRefreshInter
 // Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) TlsCipherConfigMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.TlsCipherConfigMode }).(pulumi.StringOutput)
 }
 
 // (Optional) Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
@@ -29010,7 +29124,9 @@ func (o GetCloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInp
 type GetClusterAdvancedConfiguration struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
-	DefaultMaxTimeMs                                      int `pulumi:"defaultMaxTimeMs"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
+	DefaultMaxTimeMs                int      `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -29035,6 +29151,8 @@ type GetClusterAdvancedConfiguration struct {
 	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+	TlsCipherConfigMode string `pulumi:"tlsCipherConfigMode"`
 	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds int `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -29053,7 +29171,9 @@ type GetClusterAdvancedConfigurationInput interface {
 type GetClusterAdvancedConfigurationArgs struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
-	DefaultMaxTimeMs                                      pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
+	DefaultMaxTimeMs                pulumi.IntInput         `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -29078,6 +29198,8 @@ type GetClusterAdvancedConfigurationArgs struct {
 	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+	TlsCipherConfigMode pulumi.StringInput `pulumi:"tlsCipherConfigMode"`
 	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 	TransactionLifetimeLimitSeconds pulumi.IntInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
@@ -29140,6 +29262,11 @@ func (o GetClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImag
 	}).(pulumi.IntOutput)
 }
 
+// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+func (o GetClusterAdvancedConfigurationOutput) CustomOpensslCipherConfigTls12s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) []string { return v.CustomOpensslCipherConfigTls12s }).(pulumi.StringArrayOutput)
+}
+
 func (o GetClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
@@ -29196,6 +29323,11 @@ func (o GetClusterAdvancedConfigurationOutput) SampleRefreshIntervalBiConnector(
 // Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o GetClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+func (o GetClusterAdvancedConfigurationOutput) TlsCipherConfigMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.TlsCipherConfigMode }).(pulumi.StringOutput)
 }
 
 // Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
@@ -31280,7 +31412,9 @@ func (o GetClustersResultArrayOutput) Index(i pulumi.IntInput) GetClustersResult
 type GetClustersResultAdvancedConfiguration struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
-	DefaultMaxTimeMs                                      int `pulumi:"defaultMaxTimeMs"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
+	DefaultMaxTimeMs                int      `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -31304,8 +31438,10 @@ type GetClustersResultAdvancedConfiguration struct {
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector           int `pulumi:"sampleSizeBiConnector"`
-	TransactionLifetimeLimitSeconds int `pulumi:"transactionLifetimeLimitSeconds"`
+	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+	TlsCipherConfigMode             string `pulumi:"tlsCipherConfigMode"`
+	TransactionLifetimeLimitSeconds int    `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 // GetClustersResultAdvancedConfigurationInput is an input type that accepts GetClustersResultAdvancedConfigurationArgs and GetClustersResultAdvancedConfigurationOutput values.
@@ -31322,7 +31458,9 @@ type GetClustersResultAdvancedConfigurationInput interface {
 type GetClustersResultAdvancedConfigurationArgs struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
-	DefaultMaxTimeMs                                      pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
+	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
+	DefaultMaxTimeMs                pulumi.IntInput         `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
@@ -31346,8 +31484,10 @@ type GetClustersResultAdvancedConfigurationArgs struct {
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector           pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
-	TransactionLifetimeLimitSeconds pulumi.IntInput `pulumi:"transactionLifetimeLimitSeconds"`
+	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+	TlsCipherConfigMode             pulumi.StringInput `pulumi:"tlsCipherConfigMode"`
+	TransactionLifetimeLimitSeconds pulumi.IntInput    `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 func (GetClustersResultAdvancedConfigurationArgs) ElementType() reflect.Type {
@@ -31408,6 +31548,11 @@ func (o GetClustersResultAdvancedConfigurationOutput) ChangeStreamOptionsPreAndP
 	}).(pulumi.IntOutput)
 }
 
+// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+func (o GetClustersResultAdvancedConfigurationOutput) CustomOpensslCipherConfigTls12s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) []string { return v.CustomOpensslCipherConfigTls12s }).(pulumi.StringArrayOutput)
+}
+
 func (o GetClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
@@ -31464,6 +31609,11 @@ func (o GetClustersResultAdvancedConfigurationOutput) SampleRefreshIntervalBiCon
 // Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o GetClustersResultAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+func (o GetClustersResultAdvancedConfigurationOutput) TlsCipherConfigMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.TlsCipherConfigMode }).(pulumi.StringOutput)
 }
 
 func (o GetClustersResultAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntOutput {

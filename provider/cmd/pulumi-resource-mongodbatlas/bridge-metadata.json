@@ -10,7 +10,14 @@
                 "majorVersion": 3,
                 "fields": {
                     "advanced_configuration": {
-                        "maxItemsOne": true
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "custom_openssl_cipher_config_tls12": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "bi_connector_config": {
                         "maxItemsOne": true
@@ -240,7 +247,14 @@
                 "majorVersion": 3,
                 "fields": {
                     "advanced_configuration": {
-                        "maxItemsOne": true
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "custom_openssl_cipher_config_tls12": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "bi_connector_config": {
                         "maxItemsOne": true
@@ -865,7 +879,14 @@
                 "majorVersion": 3,
                 "fields": {
                     "advanced_configuration": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "custom_openssl_cipher_config_tls12": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "bi_connector_config": {
                         "maxItemsOne": false
@@ -936,7 +957,14 @@
                         "elem": {
                             "fields": {
                                 "advanced_configuration": {
-                                    "maxItemsOne": false
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "custom_openssl_cipher_config_tls12": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
                                 },
                                 "bi_connector_config": {
                                     "maxItemsOne": false
@@ -1311,7 +1339,14 @@
                 "majorVersion": 3,
                 "fields": {
                     "advanced_configuration": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "custom_openssl_cipher_config_tls12": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "bi_connector_config": {
                         "maxItemsOne": false
@@ -1389,7 +1424,14 @@
                         "elem": {
                             "fields": {
                                 "advanced_configuration": {
-                                    "maxItemsOne": false
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "custom_openssl_cipher_config_tls12": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
                                 },
                                 "bi_connector_config": {
                                     "maxItemsOne": false

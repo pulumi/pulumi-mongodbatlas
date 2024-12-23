@@ -9,6 +9,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -31,6 +32,21 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
      */
     public Optional<Output<Integer>> changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
         return Optional.ofNullable(this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds);
+    }
+
+    /**
+     * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+     * 
+     */
+    @Import(name="customOpensslCipherConfigTls12s")
+    private @Nullable Output<List<String>> customOpensslCipherConfigTls12s;
+
+    /**
+     * @return The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+     * 
+     */
+    public Optional<Output<List<String>>> customOpensslCipherConfigTls12s() {
+        return Optional.ofNullable(this.customOpensslCipherConfigTls12s);
     }
 
     @Import(name="defaultMaxTimeMs")
@@ -217,6 +233,21 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
     }
 
     /**
+     * The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+     * 
+     */
+    @Import(name="tlsCipherConfigMode")
+    private @Nullable Output<String> tlsCipherConfigMode;
+
+    /**
+     * @return The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+     * 
+     */
+    public Optional<Output<String>> tlsCipherConfigMode() {
+        return Optional.ofNullable(this.tlsCipherConfigMode);
+    }
+
+    /**
      * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
      * 
      */
@@ -235,6 +266,7 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
 
     private ClusterAdvancedConfigurationArgs(ClusterAdvancedConfigurationArgs $) {
         this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = $.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        this.customOpensslCipherConfigTls12s = $.customOpensslCipherConfigTls12s;
         this.defaultMaxTimeMs = $.defaultMaxTimeMs;
         this.defaultReadConcern = $.defaultReadConcern;
         this.defaultWriteConcern = $.defaultWriteConcern;
@@ -246,6 +278,7 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
         this.oplogSizeMb = $.oplogSizeMb;
         this.sampleRefreshIntervalBiConnector = $.sampleRefreshIntervalBiConnector;
         this.sampleSizeBiConnector = $.sampleSizeBiConnector;
+        this.tlsCipherConfigMode = $.tlsCipherConfigMode;
         this.transactionLifetimeLimitSeconds = $.transactionLifetimeLimitSeconds;
     }
 
@@ -286,6 +319,37 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
          */
         public Builder changeStreamOptionsPreAndPostImagesExpireAfterSeconds(Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds) {
             return changeStreamOptionsPreAndPostImagesExpireAfterSeconds(Output.of(changeStreamOptionsPreAndPostImagesExpireAfterSeconds));
+        }
+
+        /**
+         * @param customOpensslCipherConfigTls12s The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customOpensslCipherConfigTls12s(@Nullable Output<List<String>> customOpensslCipherConfigTls12s) {
+            $.customOpensslCipherConfigTls12s = customOpensslCipherConfigTls12s;
+            return this;
+        }
+
+        /**
+         * @param customOpensslCipherConfigTls12s The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customOpensslCipherConfigTls12s(List<String> customOpensslCipherConfigTls12s) {
+            return customOpensslCipherConfigTls12s(Output.of(customOpensslCipherConfigTls12s));
+        }
+
+        /**
+         * @param customOpensslCipherConfigTls12s The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customOpensslCipherConfigTls12s(String... customOpensslCipherConfigTls12s) {
+            return customOpensslCipherConfigTls12s(List.of(customOpensslCipherConfigTls12s));
         }
 
         public Builder defaultMaxTimeMs(@Nullable Output<Integer> defaultMaxTimeMs) {
@@ -531,6 +595,27 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
          */
         public Builder sampleSizeBiConnector(Integer sampleSizeBiConnector) {
             return sampleSizeBiConnector(Output.of(sampleSizeBiConnector));
+        }
+
+        /**
+         * @param tlsCipherConfigMode The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCipherConfigMode(@Nullable Output<String> tlsCipherConfigMode) {
+            $.tlsCipherConfigMode = tlsCipherConfigMode;
+            return this;
+        }
+
+        /**
+         * @param tlsCipherConfigMode The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCipherConfigMode(String tlsCipherConfigMode) {
+            return tlsCipherConfigMode(Output.of(tlsCipherConfigMode));
         }
 
         /**

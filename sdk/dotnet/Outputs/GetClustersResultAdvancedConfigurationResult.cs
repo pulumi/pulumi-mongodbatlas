@@ -17,6 +17,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         /// </summary>
         public readonly int ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+        /// <summary>
+        /// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        /// </summary>
+        public readonly ImmutableArray<string> CustomOpensslCipherConfigTls12s;
         public readonly int DefaultMaxTimeMs;
         /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -58,11 +62,17 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         /// </summary>
         public readonly int SampleSizeBiConnector;
+        /// <summary>
+        /// The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3.
+        /// </summary>
+        public readonly string TlsCipherConfigMode;
         public readonly int TransactionLifetimeLimitSeconds;
 
         [OutputConstructor]
         private GetClustersResultAdvancedConfigurationResult(
             int changeStreamOptionsPreAndPostImagesExpireAfterSeconds,
+
+            ImmutableArray<string> customOpensslCipherConfigTls12s,
 
             int defaultMaxTimeMs,
 
@@ -86,9 +96,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             int sampleSizeBiConnector,
 
+            string tlsCipherConfigMode,
+
             int transactionLifetimeLimitSeconds)
         {
             ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
+            CustomOpensslCipherConfigTls12s = customOpensslCipherConfigTls12s;
             DefaultMaxTimeMs = defaultMaxTimeMs;
             DefaultReadConcern = defaultReadConcern;
             DefaultWriteConcern = defaultWriteConcern;
@@ -100,6 +113,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             OplogSizeMb = oplogSizeMb;
             SampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             SampleSizeBiConnector = sampleSizeBiConnector;
+            TlsCipherConfigMode = tlsCipherConfigMode;
             TransactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
         }
     }
