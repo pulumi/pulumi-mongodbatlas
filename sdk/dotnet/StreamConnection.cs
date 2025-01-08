@@ -116,6 +116,9 @@ namespace Pulumi.Mongodbatlas
         [Output("instanceName")]
         public Output<string> InstanceName { get; private set; } = null!;
 
+        [Output("networking")]
+        public Output<Outputs.StreamConnectionNetworking> Networking { get; private set; } = null!;
+
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
@@ -209,6 +212,9 @@ namespace Pulumi.Mongodbatlas
         [Input("instanceName", required: true)]
         public Input<string> InstanceName { get; set; } = null!;
 
+        [Input("networking")]
+        public Input<Inputs.StreamConnectionNetworkingArgs>? Networking { get; set; }
+
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
@@ -263,6 +269,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
+
+        [Input("networking")]
+        public Input<Inputs.StreamConnectionNetworkingGetArgs>? Networking { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.

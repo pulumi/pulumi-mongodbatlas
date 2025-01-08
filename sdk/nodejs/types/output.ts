@@ -3422,6 +3422,7 @@ export interface GetCloudBackupSnapshotExportJobsResult {
      * * `InProgress` - indicates that the snapshot is being exported
      * * `Successful` - indicates that the export job has completed successfully
      * * `Failed` - indicates that the export job has failed
+     * * `Cancelled` - indicates that the export job has cancelled
      */
     state: string;
 }
@@ -6208,6 +6209,14 @@ export interface GetProjectIpAddressesServicesCluster {
      */
     clusterName: string;
     /**
+     * List of future inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+     */
+    futureInbounds: string[];
+    /**
+     * List of future outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+     */
+    futureOutbounds: string[];
+    /**
      * List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
      */
     inbounds: string[];
@@ -6298,8 +6307,6 @@ export interface GetProjectsResult {
     isSchemaAdvisorEnabled: boolean;
     /**
      * Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.24.0.
      */
     isSlowOperationThresholdingEnabled: boolean;
     /**
@@ -6612,7 +6619,21 @@ export interface GetStreamConnectionDbRoleToExecute {
      */
     role: string;
     /**
-     * Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionNetworking {
+    /**
+     * Information about the networking access. See access.
+     */
+    access: outputs.GetStreamConnectionNetworkingAccess;
+}
+
+export interface GetStreamConnectionNetworkingAccess {
+    /**
+     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
      */
     type: string;
 }
@@ -6659,6 +6680,10 @@ export interface GetStreamConnectionsResult {
      */
     instanceName: string;
     /**
+     * Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     */
+    networking: outputs.GetStreamConnectionsResultNetworking;
+    /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: string;
@@ -6667,7 +6692,7 @@ export interface GetStreamConnectionsResult {
      */
     security: outputs.GetStreamConnectionsResultSecurity;
     /**
-     * Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
      */
     type: string;
 }
@@ -6693,7 +6718,21 @@ export interface GetStreamConnectionsResultDbRoleToExecute {
      */
     role: string;
     /**
-     * Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionsResultNetworking {
+    /**
+     * Information about the networking access. See access.
+     */
+    access: outputs.GetStreamConnectionsResultNetworkingAccess;
+}
+
+export interface GetStreamConnectionsResultNetworkingAccess {
+    /**
+     * Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
      */
     type: string;
 }
@@ -7241,6 +7280,20 @@ export interface StreamConnectionDbRoleToExecute {
     role: string;
     /**
      * Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     */
+    type: string;
+}
+
+export interface StreamConnectionNetworking {
+    /**
+     * Information about the networking access. See access.
+     */
+    access: outputs.StreamConnectionNetworkingAccess;
+}
+
+export interface StreamConnectionNetworkingAccess {
+    /**
+     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
      */
     type: string;
 }

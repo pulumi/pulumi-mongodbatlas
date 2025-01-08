@@ -171,6 +171,7 @@ type CloudBackupSnapshotExportJob struct {
 	// * `InProgress` - indicates that the snapshot is being exported
 	// * `Successful` - indicates that the export job has completed successfully
 	// * `Failed` - indicates that the export job has failed
+	// * `Cancelled` - indicates that the export job has cancelled
 	State pulumi.StringOutput `pulumi:"state"`
 }
 
@@ -183,9 +184,6 @@ func NewCloudBackupSnapshotExportJob(ctx *pulumi.Context,
 
 	if args.ClusterName == nil {
 		return nil, errors.New("invalid value for required argument 'ClusterName'")
-	}
-	if args.CustomDatas == nil {
-		return nil, errors.New("invalid value for required argument 'CustomDatas'")
 	}
 	if args.ExportBucketId == nil {
 		return nil, errors.New("invalid value for required argument 'ExportBucketId'")
@@ -246,6 +244,7 @@ type cloudBackupSnapshotExportJobState struct {
 	// * `InProgress` - indicates that the snapshot is being exported
 	// * `Successful` - indicates that the export job has completed successfully
 	// * `Failed` - indicates that the export job has failed
+	// * `Cancelled` - indicates that the export job has cancelled
 	State *string `pulumi:"state"`
 }
 
@@ -277,6 +276,7 @@ type CloudBackupSnapshotExportJobState struct {
 	// * `InProgress` - indicates that the snapshot is being exported
 	// * `Successful` - indicates that the export job has completed successfully
 	// * `Failed` - indicates that the export job has failed
+	// * `Cancelled` - indicates that the export job has cancelled
 	State pulumi.StringPtrInput
 }
 
@@ -465,6 +465,7 @@ func (o CloudBackupSnapshotExportJobOutput) SnapshotId() pulumi.StringOutput {
 // * `InProgress` - indicates that the snapshot is being exported
 // * `Successful` - indicates that the export job has completed successfully
 // * `Failed` - indicates that the export job has failed
+// * `Cancelled` - indicates that the export job has cancelled
 func (o CloudBackupSnapshotExportJobOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }

@@ -18,6 +18,14 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ClusterName;
         /// <summary>
+        /// List of future inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+        /// </summary>
+        public readonly ImmutableArray<string> FutureInbounds;
+        /// <summary>
+        /// List of future outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+        /// </summary>
+        public readonly ImmutableArray<string> FutureOutbounds;
+        /// <summary>
         /// List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
         /// </summary>
         public readonly ImmutableArray<string> Inbounds;
@@ -30,11 +38,17 @@ namespace Pulumi.Mongodbatlas.Outputs
         private GetProjectIpAddressesServicesClusterResult(
             string clusterName,
 
+            ImmutableArray<string> futureInbounds,
+
+            ImmutableArray<string> futureOutbounds,
+
             ImmutableArray<string> inbounds,
 
             ImmutableArray<string> outbounds)
         {
             ClusterName = clusterName;
+            FutureInbounds = futureInbounds;
+            FutureOutbounds = futureOutbounds;
             Inbounds = inbounds;
             Outbounds = outbounds;
         }

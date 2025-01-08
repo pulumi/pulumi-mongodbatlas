@@ -239,6 +239,10 @@ __all__ = [
     'StreamConnectionAuthenticationArgsDict',
     'StreamConnectionDbRoleToExecuteArgs',
     'StreamConnectionDbRoleToExecuteArgsDict',
+    'StreamConnectionNetworkingArgs',
+    'StreamConnectionNetworkingArgsDict',
+    'StreamConnectionNetworkingAccessArgs',
+    'StreamConnectionNetworkingAccessArgsDict',
     'StreamConnectionSecurityArgs',
     'StreamConnectionSecurityArgsDict',
     'StreamInstanceDataProcessRegionArgs',
@@ -10542,6 +10546,68 @@ class StreamConnectionDbRoleToExecuteArgs:
     def type(self) -> pulumi.Input[str]:
         """
         Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+
+if not MYPY:
+    class StreamConnectionNetworkingArgsDict(TypedDict):
+        access: pulumi.Input['StreamConnectionNetworkingAccessArgsDict']
+        """
+        Information about the networking access. See access.
+        """
+elif False:
+    StreamConnectionNetworkingArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class StreamConnectionNetworkingArgs:
+    def __init__(__self__, *,
+                 access: pulumi.Input['StreamConnectionNetworkingAccessArgs']):
+        """
+        :param pulumi.Input['StreamConnectionNetworkingAccessArgs'] access: Information about the networking access. See access.
+        """
+        pulumi.set(__self__, "access", access)
+
+    @property
+    @pulumi.getter
+    def access(self) -> pulumi.Input['StreamConnectionNetworkingAccessArgs']:
+        """
+        Information about the networking access. See access.
+        """
+        return pulumi.get(self, "access")
+
+    @access.setter
+    def access(self, value: pulumi.Input['StreamConnectionNetworkingAccessArgs']):
+        pulumi.set(self, "access", value)
+
+
+if not MYPY:
+    class StreamConnectionNetworkingAccessArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        """
+elif False:
+    StreamConnectionNetworkingAccessArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class StreamConnectionNetworkingAccessArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] type: Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 

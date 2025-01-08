@@ -111,7 +111,8 @@ type StreamConnection struct {
 	ConnectionName  pulumi.StringOutput                      `pulumi:"connectionName"`
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrOutput `pulumi:"dbRoleToExecute"`
 	// Human-readable label that identifies the stream instance.
-	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
+	InstanceName pulumi.StringOutput              `pulumi:"instanceName"`
+	Networking   StreamConnectionNetworkingOutput `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput               `pulumi:"projectId"`
 	Security  StreamConnectionSecurityPtrOutput `pulumi:"security"`
@@ -169,7 +170,8 @@ type streamConnectionState struct {
 	ConnectionName  *string                          `pulumi:"connectionName"`
 	DbRoleToExecute *StreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	// Human-readable label that identifies the stream instance.
-	InstanceName *string `pulumi:"instanceName"`
+	InstanceName *string                     `pulumi:"instanceName"`
+	Networking   *StreamConnectionNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string                   `pulumi:"projectId"`
 	Security  *StreamConnectionSecurity `pulumi:"security"`
@@ -187,6 +189,7 @@ type StreamConnectionState struct {
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrInput
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringPtrInput
+	Networking   StreamConnectionNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 	Security  StreamConnectionSecurityPtrInput
@@ -207,7 +210,8 @@ type streamConnectionArgs struct {
 	ConnectionName  string                           `pulumi:"connectionName"`
 	DbRoleToExecute *StreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	// Human-readable label that identifies the stream instance.
-	InstanceName string `pulumi:"instanceName"`
+	InstanceName string                      `pulumi:"instanceName"`
+	Networking   *StreamConnectionNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string                    `pulumi:"projectId"`
 	Security  *StreamConnectionSecurity `pulumi:"security"`
@@ -226,6 +230,7 @@ type StreamConnectionArgs struct {
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrInput
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringInput
+	Networking   StreamConnectionNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	Security  StreamConnectionSecurityPtrInput
@@ -348,6 +353,10 @@ func (o StreamConnectionOutput) DbRoleToExecute() StreamConnectionDbRoleToExecut
 // Human-readable label that identifies the stream instance.
 func (o StreamConnectionOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+func (o StreamConnectionOutput) Networking() StreamConnectionNetworkingOutput {
+	return o.ApplyT(func(v *StreamConnection) StreamConnectionNetworkingOutput { return v.Networking }).(StreamConnectionNetworkingOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project.

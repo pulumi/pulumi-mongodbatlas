@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Role;
         /// <summary>
-        /// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        /// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
         /// </summary>
         public readonly string Type;
 

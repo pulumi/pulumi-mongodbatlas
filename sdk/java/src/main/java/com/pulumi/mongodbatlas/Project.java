@@ -242,11 +242,7 @@ public class Project extends com.pulumi.resources.CustomResource {
     /**
      * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.24.0.
-     * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.24.0. */
     @Export(name="isSlowOperationThresholdingEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isSlowOperationThresholdingEnabled;
 

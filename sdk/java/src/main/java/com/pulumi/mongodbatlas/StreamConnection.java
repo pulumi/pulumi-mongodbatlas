@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionState;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionAuthentication;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionDbRoleToExecute;
+import com.pulumi.mongodbatlas.outputs.StreamConnectionNetworking;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionSecurity;
 import java.lang.String;
 import java.util.Map;
@@ -237,6 +238,12 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
      */
     public Output<String> instanceName() {
         return this.instanceName;
+    }
+    @Export(name="networking", refs={StreamConnectionNetworking.class}, tree="[0]")
+    private Output<StreamConnectionNetworking> networking;
+
+    public Output<StreamConnectionNetworking> networking() {
+        return this.networking;
     }
     /**
      * Unique 24-hexadecimal digit string that identifies your project.

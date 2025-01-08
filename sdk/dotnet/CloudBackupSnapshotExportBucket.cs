@@ -54,7 +54,6 @@ namespace Pulumi.Mongodbatlas
     ///         ProjectId = "{PROJECT_ID}",
     ///         RoleId = "{ROLE_ID}",
     ///         ServiceUrl = "{SERVICE_URL}",
-    ///         TenantId = "{TENANT_ID}",
     ///         BucketName = "example-bucket",
     ///         CloudProvider = "AZURE",
     ///     });
@@ -69,6 +68,7 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     /// $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
     /// ```
+    /// 
     /// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket")]
@@ -117,10 +117,10 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> ServiceUrl { get; private set; } = null!;
 
         /// <summary>
-        /// UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        /// This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         /// </summary>
         [Output("tenantId")]
-        public Output<string?> TenantId { get; private set; } = null!;
+        public Output<string> TenantId { get; private set; } = null!;
 
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ServiceUrl { get; set; }
 
         /// <summary>
-        /// UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        /// This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         /// </summary>
         [Input("tenantId")]
         public Input<string>? TenantId { get; set; }
@@ -261,7 +261,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ServiceUrl { get; set; }
 
         /// <summary>
-        /// UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        /// This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         /// </summary>
         [Input("tenantId")]
         public Input<string>? TenantId { get; set; }

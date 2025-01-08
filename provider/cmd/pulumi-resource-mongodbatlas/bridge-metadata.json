@@ -2486,6 +2486,12 @@
                                 "maxItemsOne": false,
                                 "elem": {
                                     "fields": {
+                                        "future_inbound": {
+                                            "maxItemsOne": false
+                                        },
+                                        "future_outbound": {
+                                            "maxItemsOne": false
+                                        },
                                         "inbound": {
                                             "maxItemsOne": false
                                         },

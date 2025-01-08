@@ -204,6 +204,7 @@ namespace Pulumi.Mongodbatlas
         /// * `InProgress` - indicates that the snapshot is being exported
         /// * `Successful` - indicates that the export job has completed successfully
         /// * `Failed` - indicates that the export job has failed
+        /// * `Cancelled` - indicates that the export job has cancelled
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -260,7 +261,7 @@ namespace Pulumi.Mongodbatlas
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
-        [Input("customDatas", required: true)]
+        [Input("customDatas")]
         private InputList<Inputs.CloudBackupSnapshotExportJobCustomDataArgs>? _customDatas;
 
         /// <summary>
@@ -380,6 +381,7 @@ namespace Pulumi.Mongodbatlas
         /// * `InProgress` - indicates that the snapshot is being exported
         /// * `Successful` - indicates that the export job has completed successfully
         /// * `Failed` - indicates that the export job has failed
+        /// * `Cancelled` - indicates that the export job has cancelled
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }

@@ -130,12 +130,19 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.
+ * Database users can be imported using project ID, username, and auth database name in the format:
+ *
+ * 1. `project_id`-`username`-`auth_database_name` Only works if no `-` are used for `username`/`auth_database_name`. For example `my-username` should use (2).
+ *
+ * 2.  `project_id`/`username`/`auth_database_name` Works in all cases (introduced after (1))
  *
  * ```sh
- * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
+ * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
  * ```
- * ~> __NOTE:__ Terraform will want to change the password after importing the user if a `password` argument is specified.
+ *
+ * ```sh
+ * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
+ * ```
  */
 export class DatabaseUser extends pulumi.CustomResource {
     /**

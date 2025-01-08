@@ -113,6 +113,7 @@ type LookupCloudBackupSnapshotExportJobResult struct {
 	// * `InProgress` - indicates that the snapshot is being exported
 	// * `Successful` - indicates that the export job has completed successfully
 	// * `Failed` - indicates that the export job has failed
+	// * `Cancelled` - indicates that the export job has cancelled
 	State string `pulumi:"state"`
 }
 
@@ -223,6 +224,7 @@ func (o LookupCloudBackupSnapshotExportJobResultOutput) SnapshotId() pulumi.Stri
 // * `InProgress` - indicates that the snapshot is being exported
 // * `Successful` - indicates that the export job has completed successfully
 // * `Failed` - indicates that the export job has failed
+// * `Cancelled` - indicates that the export job has cancelled
 func (o LookupCloudBackupSnapshotExportJobResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) string { return v.State }).(pulumi.StringOutput)
 }

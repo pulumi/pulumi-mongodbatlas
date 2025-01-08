@@ -16,7 +16,7 @@ public final class GetStreamConnectionDbRoleToExecute {
      */
     private String role;
     /**
-     * @return Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
      * 
      */
     private String type;
@@ -30,7 +30,7 @@ public final class GetStreamConnectionDbRoleToExecute {
         return this.role;
     }
     /**
-     * @return Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
      * 
      */
     public String type() {

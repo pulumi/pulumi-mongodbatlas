@@ -138,7 +138,7 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
     /**
      * Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      */
-    public readonly customDatas!: pulumi.Output<outputs.CloudBackupSnapshotExportJobCustomData[]>;
+    public readonly customDatas!: pulumi.Output<outputs.CloudBackupSnapshotExportJobCustomData[] | undefined>;
     /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */
@@ -169,6 +169,7 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      * * `InProgress` - indicates that the snapshot is being exported
      * * `Successful` - indicates that the export job has completed successfully
      * * `Failed` - indicates that the export job has failed
+     * * `Cancelled` - indicates that the export job has cancelled
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
 
@@ -202,9 +203,6 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
             const args = argsOrState as CloudBackupSnapshotExportJobArgs | undefined;
             if ((!args || args.clusterName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
-            }
-            if ((!args || args.customDatas === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'customDatas'");
             }
             if ((!args || args.exportBucketId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'exportBucketId'");
@@ -284,6 +282,7 @@ export interface CloudBackupSnapshotExportJobState {
      * * `InProgress` - indicates that the snapshot is being exported
      * * `Successful` - indicates that the export job has completed successfully
      * * `Failed` - indicates that the export job has failed
+     * * `Cancelled` - indicates that the export job has cancelled
      */
     state?: pulumi.Input<string>;
 }
@@ -299,7 +298,7 @@ export interface CloudBackupSnapshotExportJobArgs {
     /**
      * Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      */
-    customDatas: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[]>;
+    customDatas?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[]>;
     /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */

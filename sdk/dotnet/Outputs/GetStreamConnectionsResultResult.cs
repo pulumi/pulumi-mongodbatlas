@@ -43,6 +43,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string InstanceName;
         /// <summary>
+        /// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+        /// </summary>
+        public readonly Outputs.GetStreamConnectionsResultNetworkingResult Networking;
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         public readonly string ProjectId;
@@ -51,7 +55,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultSecurityResult Security;
         /// <summary>
-        /// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        /// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
         /// </summary>
         public readonly string Type;
 
@@ -73,6 +77,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string instanceName,
 
+            Outputs.GetStreamConnectionsResultNetworkingResult networking,
+
             string projectId,
 
             Outputs.GetStreamConnectionsResultSecurityResult security,
@@ -87,6 +93,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             DbRoleToExecute = dbRoleToExecute;
             Id = id;
             InstanceName = instanceName;
+            Networking = networking;
             ProjectId = projectId;
             Security = security;
             Type = type;
