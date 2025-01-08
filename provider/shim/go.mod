@@ -5,7 +5,7 @@ go 1.23.4
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.13.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.35.0
-	github.com/mongodb/terraform-provider-mongodbatlas v1.24.0
+	github.com/mongodb/terraform-provider-mongodbatlas v1.25.0
 )
 
 require (
@@ -71,13 +71,13 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/mongodb-forks/digest v1.1.0 // indirect
-	github.com/mongodb/atlas-sdk-go v1.0.1-0.20241216083848-a48e58d34867 // indirect
+	github.com/mongodb/atlas-sdk-go v1.0.1-0.20241230083710-6269ca486ddc // indirect
 	github.com/oklog/run v1.0.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/shopspring/decimal v1.2.0 // indirect
 	github.com/spf13/afero v1.9.2 // indirect
-	github.com/spf13/cast v1.6.0 // indirect
+	github.com/spf13/cast v1.7.1 // indirect
 	github.com/tidwall/gjson v1.18.0 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
@@ -92,7 +92,7 @@ require (
 	go.mongodb.org/atlas v0.37.0 // indirect
 	go.mongodb.org/atlas-sdk/v20240530005 v20240530005.0.0 // indirect
 	go.mongodb.org/atlas-sdk/v20240805005 v20240805005.0.0 // indirect
-	go.mongodb.org/atlas-sdk/v20241113003 v20241113003.0.0 // indirect
+	go.mongodb.org/atlas-sdk/v20241113004 v20241113004.1.0 // indirect
 	go.mongodb.org/realm v0.1.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.47.0 // indirect
