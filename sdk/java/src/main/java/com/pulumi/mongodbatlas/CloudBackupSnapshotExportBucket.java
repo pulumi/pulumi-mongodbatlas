@@ -90,7 +90,6 @@ import javax.annotation.Nullable;
  *             .projectId("{PROJECT_ID}")
  *             .roleId("{ROLE_ID}")
  *             .serviceUrl("{SERVICE_URL}")
- *             .tenantId("{TENANT_ID}")
  *             .bucketName("example-bucket")
  *             .cloudProvider("AZURE")
  *             .build());
@@ -108,6 +107,7 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
  * ```
+ * 
  * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
  * 
  */
@@ -212,18 +212,18 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
         return Codegen.optional(this.serviceUrl);
     }
     /**
-     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+     * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      * 
      */
     @Export(name="tenantId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> tenantId;
+    private Output<String> tenantId;
 
     /**
-     * @return UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+     * @return This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      * 
      */
-    public Output<Optional<String>> tenantId() {
-        return Codegen.optional(this.tenantId);
+    public Output<String> tenantId() {
+        return this.tenantId;
     }
 
     /**

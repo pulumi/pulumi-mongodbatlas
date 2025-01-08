@@ -78,13 +78,17 @@ export interface GetStreamConnectionResult {
     readonly dbRoleToExecute: outputs.GetStreamConnectionDbRoleToExecute;
     readonly id: string;
     readonly instanceName: string;
+    /**
+     * Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     */
+    readonly networking: outputs.GetStreamConnectionNetworking;
     readonly projectId: string;
     /**
      * Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
      */
     readonly security: outputs.GetStreamConnectionSecurity;
     /**
-     * Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
      */
     readonly type: string;
 }

@@ -17,6 +17,16 @@ public final class GetProjectIpAddressesServicesCluster {
      */
     private String clusterName;
     /**
+     * @return List of future inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+     * 
+     */
+    private List<String> futureInbounds;
+    /**
+     * @return List of future outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+     * 
+     */
+    private List<String> futureOutbounds;
+    /**
      * @return List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
      * 
      */
@@ -34,6 +44,20 @@ public final class GetProjectIpAddressesServicesCluster {
      */
     public String clusterName() {
         return this.clusterName;
+    }
+    /**
+     * @return List of future inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+     * 
+     */
+    public List<String> futureInbounds() {
+        return this.futureInbounds;
+    }
+    /**
+     * @return List of future outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+     * 
+     */
+    public List<String> futureOutbounds() {
+        return this.futureOutbounds;
     }
     /**
      * @return List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
@@ -60,12 +84,16 @@ public final class GetProjectIpAddressesServicesCluster {
     @CustomType.Builder
     public static final class Builder {
         private String clusterName;
+        private List<String> futureInbounds;
+        private List<String> futureOutbounds;
         private List<String> inbounds;
         private List<String> outbounds;
         public Builder() {}
         public Builder(GetProjectIpAddressesServicesCluster defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clusterName = defaults.clusterName;
+    	      this.futureInbounds = defaults.futureInbounds;
+    	      this.futureOutbounds = defaults.futureOutbounds;
     	      this.inbounds = defaults.inbounds;
     	      this.outbounds = defaults.outbounds;
         }
@@ -77,6 +105,28 @@ public final class GetProjectIpAddressesServicesCluster {
             }
             this.clusterName = clusterName;
             return this;
+        }
+        @CustomType.Setter
+        public Builder futureInbounds(List<String> futureInbounds) {
+            if (futureInbounds == null) {
+              throw new MissingRequiredPropertyException("GetProjectIpAddressesServicesCluster", "futureInbounds");
+            }
+            this.futureInbounds = futureInbounds;
+            return this;
+        }
+        public Builder futureInbounds(String... futureInbounds) {
+            return futureInbounds(List.of(futureInbounds));
+        }
+        @CustomType.Setter
+        public Builder futureOutbounds(List<String> futureOutbounds) {
+            if (futureOutbounds == null) {
+              throw new MissingRequiredPropertyException("GetProjectIpAddressesServicesCluster", "futureOutbounds");
+            }
+            this.futureOutbounds = futureOutbounds;
+            return this;
+        }
+        public Builder futureOutbounds(String... futureOutbounds) {
+            return futureOutbounds(List.of(futureOutbounds));
         }
         @CustomType.Setter
         public Builder inbounds(List<String> inbounds) {
@@ -103,6 +153,8 @@ public final class GetProjectIpAddressesServicesCluster {
         public GetProjectIpAddressesServicesCluster build() {
             final var _resultValue = new GetProjectIpAddressesServicesCluster();
             _resultValue.clusterName = clusterName;
+            _resultValue.futureInbounds = futureInbounds;
+            _resultValue.futureOutbounds = futureOutbounds;
             _resultValue.inbounds = inbounds;
             _resultValue.outbounds = outbounds;
             return _resultValue;

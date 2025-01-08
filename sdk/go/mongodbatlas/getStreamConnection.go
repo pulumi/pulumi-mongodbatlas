@@ -77,10 +77,12 @@ type LookupStreamConnectionResult struct {
 	DbRoleToExecute GetStreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	Id              string                             `pulumi:"id"`
 	InstanceName    string                             `pulumi:"instanceName"`
-	ProjectId       string                             `pulumi:"projectId"`
+	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+	Networking GetStreamConnectionNetworking `pulumi:"networking"`
+	ProjectId  string                        `pulumi:"projectId"`
 	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionSecurity `pulumi:"security"`
-	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -159,6 +161,11 @@ func (o LookupStreamConnectionResultOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
+// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+func (o LookupStreamConnectionResultOutput) Networking() GetStreamConnectionNetworkingOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionNetworking { return v.Networking }).(GetStreamConnectionNetworkingOutput)
+}
+
 func (o LookupStreamConnectionResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -168,7 +175,7 @@ func (o LookupStreamConnectionResultOutput) Security() GetStreamConnectionSecuri
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionSecurity { return v.Security }).(GetStreamConnectionSecurityOutput)
 }
 
-// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
 func (o LookupStreamConnectionResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.Type }).(pulumi.StringOutput)
 }

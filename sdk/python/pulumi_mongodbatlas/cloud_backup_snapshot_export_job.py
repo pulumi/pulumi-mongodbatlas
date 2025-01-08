@@ -22,23 +22,24 @@ __all__ = ['CloudBackupSnapshotExportJobArgs', 'CloudBackupSnapshotExportJob']
 class CloudBackupSnapshotExportJobArgs:
     def __init__(__self__, *,
                  cluster_name: pulumi.Input[str],
-                 custom_datas: pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]],
                  export_bucket_id: pulumi.Input[str],
                  project_id: pulumi.Input[str],
-                 snapshot_id: pulumi.Input[str]):
+                 snapshot_id: pulumi.Input[str],
+                 custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshotExportJob resource.
         :param pulumi.Input[str] cluster_name: Name of the Atlas cluster whose snapshot you want to export.
-        :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+        :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "custom_datas", custom_datas)
         pulumi.set(__self__, "export_bucket_id", export_bucket_id)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if custom_datas is not None:
+            pulumi.set(__self__, "custom_datas", custom_datas)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -51,18 +52,6 @@ class CloudBackupSnapshotExportJobArgs:
     @cluster_name.setter
     def cluster_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "cluster_name", value)
-
-    @property
-    @pulumi.getter(name="customDatas")
-    def custom_datas(self) -> pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]:
-        """
-        Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
-        """
-        return pulumi.get(self, "custom_datas")
-
-    @custom_datas.setter
-    def custom_datas(self, value: pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]):
-        pulumi.set(self, "custom_datas", value)
 
     @property
     @pulumi.getter(name="exportBucketId")
@@ -100,6 +89,18 @@ class CloudBackupSnapshotExportJobArgs:
     def snapshot_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "snapshot_id", value)
 
+    @property
+    @pulumi.getter(name="customDatas")
+    def custom_datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]:
+        """
+        Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+        """
+        return pulumi.get(self, "custom_datas")
+
+    @custom_datas.setter
+    def custom_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]):
+        pulumi.set(self, "custom_datas", value)
+
 
 @pulumi.input_type
 class _CloudBackupSnapshotExportJobState:
@@ -134,6 +135,7 @@ class _CloudBackupSnapshotExportJobState:
                * `InProgress` - indicates that the snapshot is being exported
                * `Successful` - indicates that the export job has completed successfully
                * `Failed` - indicates that the export job has failed
+               * `Cancelled` - indicates that the export job has cancelled
         """
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
@@ -307,6 +309,7 @@ class _CloudBackupSnapshotExportJobState:
         * `InProgress` - indicates that the snapshot is being exported
         * `Successful` - indicates that the export job has completed successfully
         * `Failed` - indicates that the export job has failed
+        * `Cancelled` - indicates that the export job has cancelled
         """
         return pulumi.get(self, "state")
 
@@ -542,8 +545,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
-            if custom_datas is None and not opts.urn:
-                raise TypeError("Missing required property 'custom_datas'")
             __props__.__dict__["custom_datas"] = custom_datas
             if export_bucket_id is None and not opts.urn:
                 raise TypeError("Missing required property 'export_bucket_id'")
@@ -607,6 +608,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                * `InProgress` - indicates that the snapshot is being exported
                * `Successful` - indicates that the export job has completed successfully
                * `Failed` - indicates that the export job has failed
+               * `Cancelled` - indicates that the export job has cancelled
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -653,7 +655,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="customDatas")
-    def custom_datas(self) -> pulumi.Output[Sequence['outputs.CloudBackupSnapshotExportJobCustomData']]:
+    def custom_datas(self) -> pulumi.Output[Optional[Sequence['outputs.CloudBackupSnapshotExportJobCustomData']]]:
         """
         Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         """
@@ -724,6 +726,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         * `InProgress` - indicates that the snapshot is being exported
         * `Successful` - indicates that the export job has completed successfully
         * `Failed` - indicates that the export job has failed
+        * `Cancelled` - indicates that the export job has cancelled
         """
         return pulumi.get(self, "state")
 

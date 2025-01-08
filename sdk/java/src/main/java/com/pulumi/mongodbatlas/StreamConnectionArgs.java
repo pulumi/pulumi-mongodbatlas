@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
 import java.lang.String;
 import java.util.Map;
@@ -85,6 +86,13 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         return this.instanceName;
     }
 
+    @Import(name="networking")
+    private @Nullable Output<StreamConnectionNetworkingArgs> networking;
+
+    public Optional<Output<StreamConnectionNetworkingArgs>> networking() {
+        return Optional.ofNullable(this.networking);
+    }
+
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      * 
@@ -132,6 +140,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         this.connectionName = $.connectionName;
         this.dbRoleToExecute = $.dbRoleToExecute;
         this.instanceName = $.instanceName;
+        this.networking = $.networking;
         this.projectId = $.projectId;
         this.security = $.security;
         this.type = $.type;
@@ -240,6 +249,15 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder instanceName(String instanceName) {
             return instanceName(Output.of(instanceName));
+        }
+
+        public Builder networking(@Nullable Output<StreamConnectionNetworkingArgs> networking) {
+            $.networking = networking;
+            return this;
+        }
+
+        public Builder networking(StreamConnectionNetworkingArgs networking) {
+            return networking(Output.of(networking));
         }
 
         /**

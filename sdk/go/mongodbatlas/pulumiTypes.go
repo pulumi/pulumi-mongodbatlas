@@ -17641,6 +17641,280 @@ func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+type StreamConnectionNetworking struct {
+	// Information about the networking access. See access.
+	Access StreamConnectionNetworkingAccess `pulumi:"access"`
+}
+
+// StreamConnectionNetworkingInput is an input type that accepts StreamConnectionNetworkingArgs and StreamConnectionNetworkingOutput values.
+// You can construct a concrete instance of `StreamConnectionNetworkingInput` via:
+//
+//	StreamConnectionNetworkingArgs{...}
+type StreamConnectionNetworkingInput interface {
+	pulumi.Input
+
+	ToStreamConnectionNetworkingOutput() StreamConnectionNetworkingOutput
+	ToStreamConnectionNetworkingOutputWithContext(context.Context) StreamConnectionNetworkingOutput
+}
+
+type StreamConnectionNetworkingArgs struct {
+	// Information about the networking access. See access.
+	Access StreamConnectionNetworkingAccessInput `pulumi:"access"`
+}
+
+func (StreamConnectionNetworkingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionNetworking)(nil)).Elem()
+}
+
+func (i StreamConnectionNetworkingArgs) ToStreamConnectionNetworkingOutput() StreamConnectionNetworkingOutput {
+	return i.ToStreamConnectionNetworkingOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionNetworkingArgs) ToStreamConnectionNetworkingOutputWithContext(ctx context.Context) StreamConnectionNetworkingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionNetworkingOutput)
+}
+
+func (i StreamConnectionNetworkingArgs) ToStreamConnectionNetworkingPtrOutput() StreamConnectionNetworkingPtrOutput {
+	return i.ToStreamConnectionNetworkingPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionNetworkingArgs) ToStreamConnectionNetworkingPtrOutputWithContext(ctx context.Context) StreamConnectionNetworkingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionNetworkingOutput).ToStreamConnectionNetworkingPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionNetworkingPtrInput is an input type that accepts StreamConnectionNetworkingArgs, StreamConnectionNetworkingPtr and StreamConnectionNetworkingPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionNetworkingPtrInput` via:
+//
+//	        StreamConnectionNetworkingArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionNetworkingPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionNetworkingPtrOutput() StreamConnectionNetworkingPtrOutput
+	ToStreamConnectionNetworkingPtrOutputWithContext(context.Context) StreamConnectionNetworkingPtrOutput
+}
+
+type streamConnectionNetworkingPtrType StreamConnectionNetworkingArgs
+
+func StreamConnectionNetworkingPtr(v *StreamConnectionNetworkingArgs) StreamConnectionNetworkingPtrInput {
+	return (*streamConnectionNetworkingPtrType)(v)
+}
+
+func (*streamConnectionNetworkingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionNetworking)(nil)).Elem()
+}
+
+func (i *streamConnectionNetworkingPtrType) ToStreamConnectionNetworkingPtrOutput() StreamConnectionNetworkingPtrOutput {
+	return i.ToStreamConnectionNetworkingPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionNetworkingPtrType) ToStreamConnectionNetworkingPtrOutputWithContext(ctx context.Context) StreamConnectionNetworkingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionNetworkingPtrOutput)
+}
+
+type StreamConnectionNetworkingOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionNetworkingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionNetworking)(nil)).Elem()
+}
+
+func (o StreamConnectionNetworkingOutput) ToStreamConnectionNetworkingOutput() StreamConnectionNetworkingOutput {
+	return o
+}
+
+func (o StreamConnectionNetworkingOutput) ToStreamConnectionNetworkingOutputWithContext(ctx context.Context) StreamConnectionNetworkingOutput {
+	return o
+}
+
+func (o StreamConnectionNetworkingOutput) ToStreamConnectionNetworkingPtrOutput() StreamConnectionNetworkingPtrOutput {
+	return o.ToStreamConnectionNetworkingPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionNetworkingOutput) ToStreamConnectionNetworkingPtrOutputWithContext(ctx context.Context) StreamConnectionNetworkingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionNetworking) *StreamConnectionNetworking {
+		return &v
+	}).(StreamConnectionNetworkingPtrOutput)
+}
+
+// Information about the networking access. See access.
+func (o StreamConnectionNetworkingOutput) Access() StreamConnectionNetworkingAccessOutput {
+	return o.ApplyT(func(v StreamConnectionNetworking) StreamConnectionNetworkingAccess { return v.Access }).(StreamConnectionNetworkingAccessOutput)
+}
+
+type StreamConnectionNetworkingPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionNetworkingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionNetworking)(nil)).Elem()
+}
+
+func (o StreamConnectionNetworkingPtrOutput) ToStreamConnectionNetworkingPtrOutput() StreamConnectionNetworkingPtrOutput {
+	return o
+}
+
+func (o StreamConnectionNetworkingPtrOutput) ToStreamConnectionNetworkingPtrOutputWithContext(ctx context.Context) StreamConnectionNetworkingPtrOutput {
+	return o
+}
+
+func (o StreamConnectionNetworkingPtrOutput) Elem() StreamConnectionNetworkingOutput {
+	return o.ApplyT(func(v *StreamConnectionNetworking) StreamConnectionNetworking {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionNetworking
+		return ret
+	}).(StreamConnectionNetworkingOutput)
+}
+
+// Information about the networking access. See access.
+func (o StreamConnectionNetworkingPtrOutput) Access() StreamConnectionNetworkingAccessPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionNetworking) *StreamConnectionNetworkingAccess {
+		if v == nil {
+			return nil
+		}
+		return &v.Access
+	}).(StreamConnectionNetworkingAccessPtrOutput)
+}
+
+type StreamConnectionNetworkingAccess struct {
+	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	Type string `pulumi:"type"`
+}
+
+// StreamConnectionNetworkingAccessInput is an input type that accepts StreamConnectionNetworkingAccessArgs and StreamConnectionNetworkingAccessOutput values.
+// You can construct a concrete instance of `StreamConnectionNetworkingAccessInput` via:
+//
+//	StreamConnectionNetworkingAccessArgs{...}
+type StreamConnectionNetworkingAccessInput interface {
+	pulumi.Input
+
+	ToStreamConnectionNetworkingAccessOutput() StreamConnectionNetworkingAccessOutput
+	ToStreamConnectionNetworkingAccessOutputWithContext(context.Context) StreamConnectionNetworkingAccessOutput
+}
+
+type StreamConnectionNetworkingAccessArgs struct {
+	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (StreamConnectionNetworkingAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionNetworkingAccess)(nil)).Elem()
+}
+
+func (i StreamConnectionNetworkingAccessArgs) ToStreamConnectionNetworkingAccessOutput() StreamConnectionNetworkingAccessOutput {
+	return i.ToStreamConnectionNetworkingAccessOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionNetworkingAccessArgs) ToStreamConnectionNetworkingAccessOutputWithContext(ctx context.Context) StreamConnectionNetworkingAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionNetworkingAccessOutput)
+}
+
+func (i StreamConnectionNetworkingAccessArgs) ToStreamConnectionNetworkingAccessPtrOutput() StreamConnectionNetworkingAccessPtrOutput {
+	return i.ToStreamConnectionNetworkingAccessPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionNetworkingAccessArgs) ToStreamConnectionNetworkingAccessPtrOutputWithContext(ctx context.Context) StreamConnectionNetworkingAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionNetworkingAccessOutput).ToStreamConnectionNetworkingAccessPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionNetworkingAccessPtrInput is an input type that accepts StreamConnectionNetworkingAccessArgs, StreamConnectionNetworkingAccessPtr and StreamConnectionNetworkingAccessPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionNetworkingAccessPtrInput` via:
+//
+//	        StreamConnectionNetworkingAccessArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionNetworkingAccessPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionNetworkingAccessPtrOutput() StreamConnectionNetworkingAccessPtrOutput
+	ToStreamConnectionNetworkingAccessPtrOutputWithContext(context.Context) StreamConnectionNetworkingAccessPtrOutput
+}
+
+type streamConnectionNetworkingAccessPtrType StreamConnectionNetworkingAccessArgs
+
+func StreamConnectionNetworkingAccessPtr(v *StreamConnectionNetworkingAccessArgs) StreamConnectionNetworkingAccessPtrInput {
+	return (*streamConnectionNetworkingAccessPtrType)(v)
+}
+
+func (*streamConnectionNetworkingAccessPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionNetworkingAccess)(nil)).Elem()
+}
+
+func (i *streamConnectionNetworkingAccessPtrType) ToStreamConnectionNetworkingAccessPtrOutput() StreamConnectionNetworkingAccessPtrOutput {
+	return i.ToStreamConnectionNetworkingAccessPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionNetworkingAccessPtrType) ToStreamConnectionNetworkingAccessPtrOutputWithContext(ctx context.Context) StreamConnectionNetworkingAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionNetworkingAccessPtrOutput)
+}
+
+type StreamConnectionNetworkingAccessOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionNetworkingAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionNetworkingAccess)(nil)).Elem()
+}
+
+func (o StreamConnectionNetworkingAccessOutput) ToStreamConnectionNetworkingAccessOutput() StreamConnectionNetworkingAccessOutput {
+	return o
+}
+
+func (o StreamConnectionNetworkingAccessOutput) ToStreamConnectionNetworkingAccessOutputWithContext(ctx context.Context) StreamConnectionNetworkingAccessOutput {
+	return o
+}
+
+func (o StreamConnectionNetworkingAccessOutput) ToStreamConnectionNetworkingAccessPtrOutput() StreamConnectionNetworkingAccessPtrOutput {
+	return o.ToStreamConnectionNetworkingAccessPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionNetworkingAccessOutput) ToStreamConnectionNetworkingAccessPtrOutputWithContext(ctx context.Context) StreamConnectionNetworkingAccessPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionNetworkingAccess) *StreamConnectionNetworkingAccess {
+		return &v
+	}).(StreamConnectionNetworkingAccessPtrOutput)
+}
+
+// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+func (o StreamConnectionNetworkingAccessOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type StreamConnectionNetworkingAccessPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionNetworkingAccessPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionNetworkingAccess)(nil)).Elem()
+}
+
+func (o StreamConnectionNetworkingAccessPtrOutput) ToStreamConnectionNetworkingAccessPtrOutput() StreamConnectionNetworkingAccessPtrOutput {
+	return o
+}
+
+func (o StreamConnectionNetworkingAccessPtrOutput) ToStreamConnectionNetworkingAccessPtrOutputWithContext(ctx context.Context) StreamConnectionNetworkingAccessPtrOutput {
+	return o
+}
+
+func (o StreamConnectionNetworkingAccessPtrOutput) Elem() StreamConnectionNetworkingAccessOutput {
+	return o.ApplyT(func(v *StreamConnectionNetworkingAccess) StreamConnectionNetworkingAccess {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionNetworkingAccess
+		return ret
+	}).(StreamConnectionNetworkingAccessOutput)
+}
+
+// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+func (o StreamConnectionNetworkingAccessPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionNetworkingAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
 type StreamConnectionSecurity struct {
 	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
 	BrokerPublicCertificate *string `pulumi:"brokerPublicCertificate"`
@@ -27848,6 +28122,7 @@ type GetCloudBackupSnapshotExportJobsResult struct {
 	// * `InProgress` - indicates that the snapshot is being exported
 	// * `Successful` - indicates that the export job has completed successfully
 	// * `Failed` - indicates that the export job has failed
+	// * `Cancelled` - indicates that the export job has cancelled
 	State string `pulumi:"state"`
 }
 
@@ -27886,6 +28161,7 @@ type GetCloudBackupSnapshotExportJobsResultArgs struct {
 	// * `InProgress` - indicates that the snapshot is being exported
 	// * `Successful` - indicates that the export job has completed successfully
 	// * `Failed` - indicates that the export job has failed
+	// * `Cancelled` - indicates that the export job has cancelled
 	State pulumi.StringInput `pulumi:"state"`
 }
 
@@ -27997,6 +28273,7 @@ func (o GetCloudBackupSnapshotExportJobsResultOutput) SnapshotId() pulumi.String
 // * `InProgress` - indicates that the snapshot is being exported
 // * `Successful` - indicates that the export job has completed successfully
 // * `Failed` - indicates that the export job has failed
+// * `Cancelled` - indicates that the export job has cancelled
 func (o GetCloudBackupSnapshotExportJobsResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.State }).(pulumi.StringOutput)
 }
@@ -47325,6 +47602,10 @@ func (o GetProjectIpAddressesServicesOutput) Clusters() GetProjectIpAddressesSer
 type GetProjectIpAddressesServicesCluster struct {
 	// Human-readable label that identifies the cluster.
 	ClusterName string `pulumi:"clusterName"`
+	// List of future inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+	FutureInbounds []string `pulumi:"futureInbounds"`
+	// List of future outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+	FutureOutbounds []string `pulumi:"futureOutbounds"`
 	// List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
 	Inbounds []string `pulumi:"inbounds"`
 	// List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
@@ -47345,6 +47626,10 @@ type GetProjectIpAddressesServicesClusterInput interface {
 type GetProjectIpAddressesServicesClusterArgs struct {
 	// Human-readable label that identifies the cluster.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// List of future inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+	FutureInbounds pulumi.StringArrayInput `pulumi:"futureInbounds"`
+	// List of future outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+	FutureOutbounds pulumi.StringArrayInput `pulumi:"futureOutbounds"`
 	// List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
 	Inbounds pulumi.StringArrayInput `pulumi:"inbounds"`
 	// List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
@@ -47405,6 +47690,16 @@ func (o GetProjectIpAddressesServicesClusterOutput) ToGetProjectIpAddressesServi
 // Human-readable label that identifies the cluster.
 func (o GetProjectIpAddressesServicesClusterOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectIpAddressesServicesCluster) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// List of future inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+func (o GetProjectIpAddressesServicesClusterOutput) FutureInbounds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProjectIpAddressesServicesCluster) []string { return v.FutureInbounds }).(pulumi.StringArrayOutput)
+}
+
+// List of future outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+func (o GetProjectIpAddressesServicesClusterOutput) FutureOutbounds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProjectIpAddressesServicesCluster) []string { return v.FutureOutbounds }).(pulumi.StringArrayOutput)
 }
 
 // List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
@@ -47706,8 +48001,6 @@ type GetProjectsResult struct {
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
 	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.24.0.
 	IsSlowOperationThresholdingEnabled bool `pulumi:"isSlowOperationThresholdingEnabled"`
 	// The limits for the specified project. See Limits.
 	Limits []GetProjectsResultLimit `pulumi:"limits"`
@@ -47758,8 +48051,6 @@ type GetProjectsResultArgs struct {
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
 	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.24.0.
 	IsSlowOperationThresholdingEnabled pulumi.BoolInput `pulumi:"isSlowOperationThresholdingEnabled"`
 	// The limits for the specified project. See Limits.
 	Limits GetProjectsResultLimitArrayInput `pulumi:"limits"`
@@ -47879,8 +48170,6 @@ func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 }
 
 // Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
-//
-// Deprecated: This parameter is deprecated and will be removed in version 1.24.0.
 func (o GetProjectsResultOutput) IsSlowOperationThresholdingEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSlowOperationThresholdingEnabled }).(pulumi.BoolOutput)
 }
@@ -49952,7 +50241,7 @@ func (o GetStreamConnectionAuthenticationOutput) Username() pulumi.StringOutput 
 type GetStreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
-	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -49970,7 +50259,7 @@ type GetStreamConnectionDbRoleToExecuteInput interface {
 type GetStreamConnectionDbRoleToExecuteArgs struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -50005,9 +50294,113 @@ func (o GetStreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
 func (o GetStreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionNetworking struct {
+	// Information about the networking access. See access.
+	Access GetStreamConnectionNetworkingAccess `pulumi:"access"`
+}
+
+// GetStreamConnectionNetworkingInput is an input type that accepts GetStreamConnectionNetworkingArgs and GetStreamConnectionNetworkingOutput values.
+// You can construct a concrete instance of `GetStreamConnectionNetworkingInput` via:
+//
+//	GetStreamConnectionNetworkingArgs{...}
+type GetStreamConnectionNetworkingInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionNetworkingOutput() GetStreamConnectionNetworkingOutput
+	ToGetStreamConnectionNetworkingOutputWithContext(context.Context) GetStreamConnectionNetworkingOutput
+}
+
+type GetStreamConnectionNetworkingArgs struct {
+	// Information about the networking access. See access.
+	Access GetStreamConnectionNetworkingAccessInput `pulumi:"access"`
+}
+
+func (GetStreamConnectionNetworkingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionNetworking)(nil)).Elem()
+}
+
+func (i GetStreamConnectionNetworkingArgs) ToGetStreamConnectionNetworkingOutput() GetStreamConnectionNetworkingOutput {
+	return i.ToGetStreamConnectionNetworkingOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionNetworkingArgs) ToGetStreamConnectionNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionNetworkingOutput)
+}
+
+type GetStreamConnectionNetworkingOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionNetworkingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionNetworking)(nil)).Elem()
+}
+
+func (o GetStreamConnectionNetworkingOutput) ToGetStreamConnectionNetworkingOutput() GetStreamConnectionNetworkingOutput {
+	return o
+}
+
+func (o GetStreamConnectionNetworkingOutput) ToGetStreamConnectionNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingOutput {
+	return o
+}
+
+// Information about the networking access. See access.
+func (o GetStreamConnectionNetworkingOutput) Access() GetStreamConnectionNetworkingAccessOutput {
+	return o.ApplyT(func(v GetStreamConnectionNetworking) GetStreamConnectionNetworkingAccess { return v.Access }).(GetStreamConnectionNetworkingAccessOutput)
+}
+
+type GetStreamConnectionNetworkingAccess struct {
+	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionNetworkingAccessInput is an input type that accepts GetStreamConnectionNetworkingAccessArgs and GetStreamConnectionNetworkingAccessOutput values.
+// You can construct a concrete instance of `GetStreamConnectionNetworkingAccessInput` via:
+//
+//	GetStreamConnectionNetworkingAccessArgs{...}
+type GetStreamConnectionNetworkingAccessInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionNetworkingAccessOutput() GetStreamConnectionNetworkingAccessOutput
+	ToGetStreamConnectionNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionNetworkingAccessOutput
+}
+
+type GetStreamConnectionNetworkingAccessArgs struct {
+	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionNetworkingAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionNetworkingAccess)(nil)).Elem()
+}
+
+func (i GetStreamConnectionNetworkingAccessArgs) ToGetStreamConnectionNetworkingAccessOutput() GetStreamConnectionNetworkingAccessOutput {
+	return i.ToGetStreamConnectionNetworkingAccessOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionNetworkingAccessArgs) ToGetStreamConnectionNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionNetworkingAccessOutput)
+}
+
+type GetStreamConnectionNetworkingAccessOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionNetworkingAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionNetworkingAccess)(nil)).Elem()
+}
+
+func (o GetStreamConnectionNetworkingAccessOutput) ToGetStreamConnectionNetworkingAccessOutput() GetStreamConnectionNetworkingAccessOutput {
+	return o
+}
+
+func (o GetStreamConnectionNetworkingAccessOutput) ToGetStreamConnectionNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingAccessOutput {
+	return o
+}
+
+// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+func (o GetStreamConnectionNetworkingAccessOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionSecurity struct {
@@ -50087,11 +50480,13 @@ type GetStreamConnectionsResult struct {
 	Id              string                                    `pulumi:"id"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName string `pulumi:"instanceName"`
+	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+	Networking GetStreamConnectionsResultNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionsResultSecurity `pulumi:"security"`
-	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -50122,11 +50517,13 @@ type GetStreamConnectionsResultArgs struct {
 	Id              pulumi.StringInput                             `pulumi:"id"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+	Networking GetStreamConnectionsResultNetworkingInput `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionsResultSecurityInput `pulumi:"security"`
-	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -50220,6 +50617,11 @@ func (o GetStreamConnectionsResultOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
+// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+func (o GetStreamConnectionsResultOutput) Networking() GetStreamConnectionsResultNetworkingOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultNetworking { return v.Networking }).(GetStreamConnectionsResultNetworkingOutput)
+}
+
 // Unique 24-hexadecimal digit string that identifies your project.
 func (o GetStreamConnectionsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
@@ -50230,7 +50632,7 @@ func (o GetStreamConnectionsResultOutput) Security() GetStreamConnectionsResultS
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSecurity { return v.Security }).(GetStreamConnectionsResultSecurityOutput)
 }
 
-// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
 func (o GetStreamConnectionsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -50328,7 +50730,7 @@ func (o GetStreamConnectionsResultAuthenticationOutput) Username() pulumi.String
 type GetStreamConnectionsResultDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
-	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -50346,7 +50748,7 @@ type GetStreamConnectionsResultDbRoleToExecuteInput interface {
 type GetStreamConnectionsResultDbRoleToExecuteArgs struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -50381,9 +50783,115 @@ func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Role() pulumi.StringOut
 	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
 func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultNetworking struct {
+	// Information about the networking access. See access.
+	Access GetStreamConnectionsResultNetworkingAccess `pulumi:"access"`
+}
+
+// GetStreamConnectionsResultNetworkingInput is an input type that accepts GetStreamConnectionsResultNetworkingArgs and GetStreamConnectionsResultNetworkingOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultNetworkingInput` via:
+//
+//	GetStreamConnectionsResultNetworkingArgs{...}
+type GetStreamConnectionsResultNetworkingInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultNetworkingOutput() GetStreamConnectionsResultNetworkingOutput
+	ToGetStreamConnectionsResultNetworkingOutputWithContext(context.Context) GetStreamConnectionsResultNetworkingOutput
+}
+
+type GetStreamConnectionsResultNetworkingArgs struct {
+	// Information about the networking access. See access.
+	Access GetStreamConnectionsResultNetworkingAccessInput `pulumi:"access"`
+}
+
+func (GetStreamConnectionsResultNetworkingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultNetworking)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultNetworkingArgs) ToGetStreamConnectionsResultNetworkingOutput() GetStreamConnectionsResultNetworkingOutput {
+	return i.ToGetStreamConnectionsResultNetworkingOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultNetworkingArgs) ToGetStreamConnectionsResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultNetworkingOutput)
+}
+
+type GetStreamConnectionsResultNetworkingOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultNetworkingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultNetworking)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultNetworkingOutput) ToGetStreamConnectionsResultNetworkingOutput() GetStreamConnectionsResultNetworkingOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultNetworkingOutput) ToGetStreamConnectionsResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingOutput {
+	return o
+}
+
+// Information about the networking access. See access.
+func (o GetStreamConnectionsResultNetworkingOutput) Access() GetStreamConnectionsResultNetworkingAccessOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultNetworking) GetStreamConnectionsResultNetworkingAccess {
+		return v.Access
+	}).(GetStreamConnectionsResultNetworkingAccessOutput)
+}
+
+type GetStreamConnectionsResultNetworkingAccess struct {
+	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionsResultNetworkingAccessInput is an input type that accepts GetStreamConnectionsResultNetworkingAccessArgs and GetStreamConnectionsResultNetworkingAccessOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultNetworkingAccessInput` via:
+//
+//	GetStreamConnectionsResultNetworkingAccessArgs{...}
+type GetStreamConnectionsResultNetworkingAccessInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultNetworkingAccessOutput() GetStreamConnectionsResultNetworkingAccessOutput
+	ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionsResultNetworkingAccessOutput
+}
+
+type GetStreamConnectionsResultNetworkingAccessArgs struct {
+	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionsResultNetworkingAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccess)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultNetworkingAccessArgs) ToGetStreamConnectionsResultNetworkingAccessOutput() GetStreamConnectionsResultNetworkingAccessOutput {
+	return i.ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultNetworkingAccessArgs) ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultNetworkingAccessOutput)
+}
+
+type GetStreamConnectionsResultNetworkingAccessOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultNetworkingAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccess)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultNetworkingAccessOutput) ToGetStreamConnectionsResultNetworkingAccessOutput() GetStreamConnectionsResultNetworkingAccessOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultNetworkingAccessOutput) ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingAccessOutput {
+	return o
+}
+
+// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+func (o GetStreamConnectionsResultNetworkingAccessOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionsResultSecurity struct {
@@ -51803,6 +52311,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationPtrInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecuteInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecutePtrInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingInput)(nil)).Elem(), StreamConnectionNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingPtrInput)(nil)).Elem(), StreamConnectionNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingAccessInput)(nil)).Elem(), StreamConnectionNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingAccessPtrInput)(nil)).Elem(), StreamConnectionNetworkingAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityPtrInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceDataProcessRegionInput)(nil)).Elem(), StreamInstanceDataProcessRegionArgs{})
@@ -52273,11 +52785,15 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultArrayInput)(nil)).Elem(), GetSharedTierSnapshotsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAuthenticationInput)(nil)).Elem(), GetStreamConnectionAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingInput)(nil)).Elem(), GetStreamConnectionNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionNetworkingAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSecurityInput)(nil)).Elem(), GetStreamConnectionSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultInput)(nil)).Elem(), GetStreamConnectionsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSecurityInput)(nil)).Elem(), GetStreamConnectionsResultSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceDataProcessRegionInput)(nil)).Elem(), GetStreamInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceStreamConfigInput)(nil)).Elem(), GetStreamInstanceStreamConfigArgs{})
@@ -52519,6 +53035,10 @@ func init() {
 	pulumi.RegisterOutputType(StreamConnectionAuthenticationPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecutePtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionNetworkingOutput{})
+	pulumi.RegisterOutputType(StreamConnectionNetworkingPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionNetworkingAccessOutput{})
+	pulumi.RegisterOutputType(StreamConnectionNetworkingAccessPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionSecurityOutput{})
 	pulumi.RegisterOutputType(StreamConnectionSecurityPtrOutput{})
 	pulumi.RegisterOutputType(StreamInstanceDataProcessRegionOutput{})
@@ -52989,11 +53509,15 @@ func init() {
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionAuthenticationOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionNetworkingOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionNetworkingAccessOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionSecurityOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingAccessOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultSecurityOutput{})
 	pulumi.RegisterOutputType(GetStreamInstanceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetStreamInstanceStreamConfigOutput{})

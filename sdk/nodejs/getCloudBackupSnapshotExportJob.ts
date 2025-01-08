@@ -114,6 +114,7 @@ export interface GetCloudBackupSnapshotExportJobResult {
      * * `InProgress` - indicates that the snapshot is being exported
      * * `Successful` - indicates that the export job has completed successfully
      * * `Failed` - indicates that the export job has failed
+     * * `Cancelled` - indicates that the export job has cancelled
      */
     readonly state: string;
 }

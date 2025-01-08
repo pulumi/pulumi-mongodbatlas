@@ -37,7 +37,6 @@ import * as utilities from "./utilities";
  *     projectId: "{PROJECT_ID}",
  *     roleId: "{ROLE_ID}",
  *     serviceUrl: "{SERVICE_URL}",
- *     tenantId: "{TENANT_ID}",
  *     bucketName: "example-bucket",
  *     cloudProvider: "AZURE",
  * });
@@ -50,6 +49,7 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
  * ```
+ *
  * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
  */
 export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
@@ -109,9 +109,9 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
      */
     public readonly serviceUrl!: pulumi.Output<string | undefined>;
     /**
-     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+     * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      */
-    public readonly tenantId!: pulumi.Output<string | undefined>;
+    public readonly tenantId!: pulumi.Output<string>;
 
     /**
      * Create a CloudBackupSnapshotExportBucket resource with the given unique name, arguments, and options.
@@ -192,7 +192,7 @@ export interface CloudBackupSnapshotExportBucketState {
      */
     serviceUrl?: pulumi.Input<string>;
     /**
-     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+     * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      */
     tenantId?: pulumi.Input<string>;
 }
@@ -226,7 +226,7 @@ export interface CloudBackupSnapshotExportBucketArgs {
      */
     serviceUrl?: pulumi.Input<string>;
     /**
-     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+     * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      */
     tenantId?: pulumi.Input<string>;
 }

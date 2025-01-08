@@ -107,6 +107,7 @@ export class StreamConnection extends pulumi.CustomResource {
      * Human-readable label that identifies the stream instance.
      */
     public readonly instanceName!: pulumi.Output<string>;
+    public readonly networking!: pulumi.Output<outputs.StreamConnectionNetworking>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
@@ -137,6 +138,7 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["connectionName"] = state ? state.connectionName : undefined;
             resourceInputs["dbRoleToExecute"] = state ? state.dbRoleToExecute : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
+            resourceInputs["networking"] = state ? state.networking : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["security"] = state ? state.security : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -161,6 +163,7 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["connectionName"] = args ? args.connectionName : undefined;
             resourceInputs["dbRoleToExecute"] = args ? args.dbRoleToExecute : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
+            resourceInputs["networking"] = args ? args.networking : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["security"] = args ? args.security : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -187,6 +190,7 @@ export interface StreamConnectionState {
      * Human-readable label that identifies the stream instance.
      */
     instanceName?: pulumi.Input<string>;
+    networking?: pulumi.Input<inputs.StreamConnectionNetworking>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
@@ -215,6 +219,7 @@ export interface StreamConnectionArgs {
      * Human-readable label that identifies the stream instance.
      */
     instanceName: pulumi.Input<string>;
+    networking?: pulumi.Input<inputs.StreamConnectionNetworking>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */

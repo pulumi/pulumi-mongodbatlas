@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionAuthentication;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionDbRoleToExecute;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionNetworking;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionSecurity;
 import java.lang.String;
 import java.util.Map;
@@ -42,6 +43,11 @@ public final class GetStreamConnectionResult {
     private GetStreamConnectionDbRoleToExecute dbRoleToExecute;
     private String id;
     private String instanceName;
+    /**
+     * @return Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     * 
+     */
+    private GetStreamConnectionNetworking networking;
     private String projectId;
     /**
      * @return Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
@@ -49,7 +55,7 @@ public final class GetStreamConnectionResult {
      */
     private GetStreamConnectionSecurity security;
     /**
-     * @return Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
      * 
      */
     private String type;
@@ -99,6 +105,13 @@ public final class GetStreamConnectionResult {
     public String instanceName() {
         return this.instanceName;
     }
+    /**
+     * @return Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     * 
+     */
+    public GetStreamConnectionNetworking networking() {
+        return this.networking;
+    }
     public String projectId() {
         return this.projectId;
     }
@@ -110,7 +123,7 @@ public final class GetStreamConnectionResult {
         return this.security;
     }
     /**
-     * @return Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
      * 
      */
     public String type() {
@@ -134,6 +147,7 @@ public final class GetStreamConnectionResult {
         private GetStreamConnectionDbRoleToExecute dbRoleToExecute;
         private String id;
         private String instanceName;
+        private GetStreamConnectionNetworking networking;
         private String projectId;
         private GetStreamConnectionSecurity security;
         private String type;
@@ -148,6 +162,7 @@ public final class GetStreamConnectionResult {
     	      this.dbRoleToExecute = defaults.dbRoleToExecute;
     	      this.id = defaults.id;
     	      this.instanceName = defaults.instanceName;
+    	      this.networking = defaults.networking;
     	      this.projectId = defaults.projectId;
     	      this.security = defaults.security;
     	      this.type = defaults.type;
@@ -218,6 +233,14 @@ public final class GetStreamConnectionResult {
             return this;
         }
         @CustomType.Setter
+        public Builder networking(GetStreamConnectionNetworking networking) {
+            if (networking == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionResult", "networking");
+            }
+            this.networking = networking;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetStreamConnectionResult", "projectId");
@@ -251,6 +274,7 @@ public final class GetStreamConnectionResult {
             _resultValue.dbRoleToExecute = dbRoleToExecute;
             _resultValue.id = id;
             _resultValue.instanceName = instanceName;
+            _resultValue.networking = networking;
             _resultValue.projectId = projectId;
             _resultValue.security = security;
             _resultValue.type = type;

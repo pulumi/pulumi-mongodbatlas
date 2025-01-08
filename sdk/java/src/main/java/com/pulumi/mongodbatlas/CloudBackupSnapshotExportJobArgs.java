@@ -10,6 +10,8 @@ import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class CloudBackupSnapshotExportJobArgs extends com.pulumi.resources.ResourceArgs {
@@ -35,15 +37,15 @@ public final class CloudBackupSnapshotExportJobArgs extends com.pulumi.resources
      * Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      * 
      */
-    @Import(name="customDatas", required=true)
-    private Output<List<CloudBackupSnapshotExportJobCustomDataArgs>> customDatas;
+    @Import(name="customDatas")
+    private @Nullable Output<List<CloudBackupSnapshotExportJobCustomDataArgs>> customDatas;
 
     /**
      * @return Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      * 
      */
-    public Output<List<CloudBackupSnapshotExportJobCustomDataArgs>> customDatas() {
-        return this.customDatas;
+    public Optional<Output<List<CloudBackupSnapshotExportJobCustomDataArgs>>> customDatas() {
+        return Optional.ofNullable(this.customDatas);
     }
 
     /**
@@ -146,7 +148,7 @@ public final class CloudBackupSnapshotExportJobArgs extends com.pulumi.resources
          * @return builder
          * 
          */
-        public Builder customDatas(Output<List<CloudBackupSnapshotExportJobCustomDataArgs>> customDatas) {
+        public Builder customDatas(@Nullable Output<List<CloudBackupSnapshotExportJobCustomDataArgs>> customDatas) {
             $.customDatas = customDatas;
             return this;
         }
@@ -237,9 +239,6 @@ public final class CloudBackupSnapshotExportJobArgs extends com.pulumi.resources
         public CloudBackupSnapshotExportJobArgs build() {
             if ($.clusterName == null) {
                 throw new MissingRequiredPropertyException("CloudBackupSnapshotExportJobArgs", "clusterName");
-            }
-            if ($.customDatas == null) {
-                throw new MissingRequiredPropertyException("CloudBackupSnapshotExportJobArgs", "customDatas");
             }
             if ($.exportBucketId == null) {
                 throw new MissingRequiredPropertyException("CloudBackupSnapshotExportJobArgs", "exportBucketId");

@@ -127,6 +127,8 @@ __all__ = [
     'ServerlessInstanceTag',
     'StreamConnectionAuthentication',
     'StreamConnectionDbRoleToExecute',
+    'StreamConnectionNetworking',
+    'StreamConnectionNetworkingAccess',
     'StreamConnectionSecurity',
     'StreamInstanceDataProcessRegion',
     'StreamInstanceStreamConfig',
@@ -373,10 +375,14 @@ __all__ = [
     'GetSharedTierSnapshotsResultResult',
     'GetStreamConnectionAuthenticationResult',
     'GetStreamConnectionDbRoleToExecuteResult',
+    'GetStreamConnectionNetworkingResult',
+    'GetStreamConnectionNetworkingAccessResult',
     'GetStreamConnectionSecurityResult',
     'GetStreamConnectionsResultResult',
     'GetStreamConnectionsResultAuthenticationResult',
     'GetStreamConnectionsResultDbRoleToExecuteResult',
+    'GetStreamConnectionsResultNetworkingResult',
+    'GetStreamConnectionsResultNetworkingAccessResult',
     'GetStreamConnectionsResultSecurityResult',
     'GetStreamInstanceDataProcessRegionResult',
     'GetStreamInstanceStreamConfigResult',
@@ -8330,6 +8336,42 @@ class StreamConnectionDbRoleToExecute(dict):
 
 
 @pulumi.output_type
+class StreamConnectionNetworking(dict):
+    def __init__(__self__, *,
+                 access: 'outputs.StreamConnectionNetworkingAccess'):
+        """
+        :param 'StreamConnectionNetworkingAccessArgs' access: Information about the networking access. See access.
+        """
+        pulumi.set(__self__, "access", access)
+
+    @property
+    @pulumi.getter
+    def access(self) -> 'outputs.StreamConnectionNetworkingAccess':
+        """
+        Information about the networking access. See access.
+        """
+        return pulumi.get(self, "access")
+
+
+@pulumi.output_type
+class StreamConnectionNetworkingAccess(dict):
+    def __init__(__self__, *,
+                 type: str):
+        """
+        :param str type: Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class StreamConnectionSecurity(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -13349,6 +13391,7 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
                * `InProgress` - indicates that the snapshot is being exported
                * `Successful` - indicates that the export job has completed successfully
                * `Failed` - indicates that the export job has failed
+               * `Cancelled` - indicates that the export job has cancelled
         """
         pulumi.set(__self__, "components", components)
         pulumi.set(__self__, "created_at", created_at)
@@ -13443,6 +13486,7 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
         * `InProgress` - indicates that the snapshot is being exported
         * `Successful` - indicates that the export job has completed successfully
         * `Failed` - indicates that the export job has failed
+        * `Cancelled` - indicates that the export job has cancelled
         """
         return pulumi.get(self, "state")
 
@@ -21777,14 +21821,20 @@ class GetProjectIpAddressesServicesResult(dict):
 class GetProjectIpAddressesServicesClusterResult(dict):
     def __init__(__self__, *,
                  cluster_name: str,
+                 future_inbounds: Sequence[str],
+                 future_outbounds: Sequence[str],
                  inbounds: Sequence[str],
                  outbounds: Sequence[str]):
         """
         :param str cluster_name: Human-readable label that identifies the cluster.
+        :param Sequence[str] future_inbounds: List of future inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+        :param Sequence[str] future_outbounds: List of future outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
         :param Sequence[str] inbounds: List of inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
         :param Sequence[str] outbounds: List of outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "future_inbounds", future_inbounds)
+        pulumi.set(__self__, "future_outbounds", future_outbounds)
         pulumi.set(__self__, "inbounds", inbounds)
         pulumi.set(__self__, "outbounds", outbounds)
 
@@ -21795,6 +21845,22 @@ class GetProjectIpAddressesServicesClusterResult(dict):
         Human-readable label that identifies the cluster.
         """
         return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="futureInbounds")
+    def future_inbounds(self) -> Sequence[str]:
+        """
+        List of future inbound IP addresses associated with the cluster. If your network allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your application can connect to your Atlas cluster.
+        """
+        return pulumi.get(self, "future_inbounds")
+
+    @property
+    @pulumi.getter(name="futureOutbounds")
+    def future_outbounds(self) -> Sequence[str]:
+        """
+        List of future outbound IP addresses associated with the cluster. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that your Atlas cluster can communicate with your webhooks and KMS.
+        """
+        return pulumi.get(self, "future_outbounds")
 
     @property
     @pulumi.getter
@@ -22049,7 +22115,6 @@ class GetProjectsResultResult(dict):
 
     @property
     @pulumi.getter(name="isSlowOperationThresholdingEnabled")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.24.0.""")
     def is_slow_operation_thresholding_enabled(self) -> bool:
         """
         Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
@@ -22982,7 +23047,7 @@ class GetStreamConnectionDbRoleToExecuteResult(dict):
                  type: str):
         """
         :param str role: The name of the role to use. Can be a built in role or a custom role.
-        :param str type: Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        :param str type: Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -22999,7 +23064,43 @@ class GetStreamConnectionDbRoleToExecuteResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionNetworkingResult(dict):
+    def __init__(__self__, *,
+                 access: 'outputs.GetStreamConnectionNetworkingAccessResult'):
+        """
+        :param 'GetStreamConnectionNetworkingAccessArgs' access: Information about the networking access. See access.
+        """
+        pulumi.set(__self__, "access", access)
+
+    @property
+    @pulumi.getter
+    def access(self) -> 'outputs.GetStreamConnectionNetworkingAccessResult':
+        """
+        Information about the networking access. See access.
+        """
+        return pulumi.get(self, "access")
+
+
+@pulumi.output_type
+class GetStreamConnectionNetworkingAccessResult(dict):
+    def __init__(__self__, *,
+                 type: str):
+        """
+        :param str type: Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 
@@ -23044,6 +23145,7 @@ class GetStreamConnectionsResultResult(dict):
                  db_role_to_execute: 'outputs.GetStreamConnectionsResultDbRoleToExecuteResult',
                  id: str,
                  instance_name: str,
+                 networking: 'outputs.GetStreamConnectionsResultNetworkingResult',
                  project_id: str,
                  security: 'outputs.GetStreamConnectionsResultSecurityResult',
                  type: str):
@@ -23055,9 +23157,10 @@ class GetStreamConnectionsResultResult(dict):
         :param str connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param 'GetStreamConnectionsResultDbRoleToExecuteArgs' db_role_to_execute: The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
         :param str instance_name: Human-readable label that identifies the stream instance.
+        :param 'GetStreamConnectionsResultNetworkingArgs' networking: Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
         :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param 'GetStreamConnectionsResultSecurityArgs' security: Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
-        :param str type: Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        :param str type: Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
         """
         pulumi.set(__self__, "authentication", authentication)
         pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
@@ -23067,6 +23170,7 @@ class GetStreamConnectionsResultResult(dict):
         pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "networking", networking)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "security", security)
         pulumi.set(__self__, "type", type)
@@ -23133,6 +23237,14 @@ class GetStreamConnectionsResultResult(dict):
         return pulumi.get(self, "instance_name")
 
     @property
+    @pulumi.getter
+    def networking(self) -> 'outputs.GetStreamConnectionsResultNetworkingResult':
+        """
+        Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+        """
+        return pulumi.get(self, "networking")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
@@ -23152,7 +23264,7 @@ class GetStreamConnectionsResultResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
         """
         return pulumi.get(self, "type")
 
@@ -23204,7 +23316,7 @@ class GetStreamConnectionsResultDbRoleToExecuteResult(dict):
                  type: str):
         """
         :param str role: The name of the role to use. Can be a built in role or a custom role.
-        :param str type: Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        :param str type: Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -23221,7 +23333,43 @@ class GetStreamConnectionsResultDbRoleToExecuteResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionsResultNetworkingResult(dict):
+    def __init__(__self__, *,
+                 access: 'outputs.GetStreamConnectionsResultNetworkingAccessResult'):
+        """
+        :param 'GetStreamConnectionsResultNetworkingAccessArgs' access: Information about the networking access. See access.
+        """
+        pulumi.set(__self__, "access", access)
+
+    @property
+    @pulumi.getter
+    def access(self) -> 'outputs.GetStreamConnectionsResultNetworkingAccessResult':
+        """
+        Information about the networking access. See access.
+        """
+        return pulumi.get(self, "access")
+
+
+@pulumi.output_type
+class GetStreamConnectionsResultNetworkingAccessResult(dict):
+    def __init__(__self__, *,
+                 type: str):
+        """
+        :param str type: Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
         """
         return pulumi.get(self, "type")
 

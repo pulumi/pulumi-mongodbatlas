@@ -15,6 +15,7 @@ import com.pulumi.mongodbatlas.outputs.CloudBackupSnapshotExportJobCustomData;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -216,14 +217,14 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * 
      */
     @Export(name="customDatas", refs={List.class,CloudBackupSnapshotExportJobCustomData.class}, tree="[0,1]")
-    private Output<List<CloudBackupSnapshotExportJobCustomData>> customDatas;
+    private Output</* @Nullable */ List<CloudBackupSnapshotExportJobCustomData>> customDatas;
 
     /**
      * @return Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      * 
      */
-    public Output<List<CloudBackupSnapshotExportJobCustomData>> customDatas() {
-        return this.customDatas;
+    public Output<Optional<List<CloudBackupSnapshotExportJobCustomData>>> customDatas() {
+        return Codegen.optional(this.customDatas);
     }
     /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
@@ -321,6 +322,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * * `InProgress` - indicates that the snapshot is being exported
      * * `Successful` - indicates that the export job has completed successfully
      * * `Failed` - indicates that the export job has failed
+     * * `Cancelled` - indicates that the export job has cancelled
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
@@ -332,6 +334,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * * `InProgress` - indicates that the snapshot is being exported
      * * `Successful` - indicates that the export job has completed successfully
      * * `Failed` - indicates that the export job has failed
+     * * `Cancelled` - indicates that the export job has cancelled
      * 
      */
     public Output<String> state() {

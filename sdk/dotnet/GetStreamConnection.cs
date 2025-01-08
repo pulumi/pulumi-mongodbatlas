@@ -176,13 +176,17 @@ namespace Pulumi.Mongodbatlas
         public readonly Outputs.GetStreamConnectionDbRoleToExecuteResult DbRoleToExecute;
         public readonly string Id;
         public readonly string InstanceName;
+        /// <summary>
+        /// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+        /// </summary>
+        public readonly Outputs.GetStreamConnectionNetworkingResult Networking;
         public readonly string ProjectId;
         /// <summary>
         /// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
         /// </summary>
         public readonly Outputs.GetStreamConnectionSecurityResult Security;
         /// <summary>
-        /// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        /// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
         /// </summary>
         public readonly string Type;
 
@@ -204,6 +208,8 @@ namespace Pulumi.Mongodbatlas
 
             string instanceName,
 
+            Outputs.GetStreamConnectionNetworkingResult networking,
+
             string projectId,
 
             Outputs.GetStreamConnectionSecurityResult security,
@@ -218,6 +224,7 @@ namespace Pulumi.Mongodbatlas
             DbRoleToExecute = dbRoleToExecute;
             Id = id;
             InstanceName = instanceName;
+            Networking = networking;
             ProjectId = projectId;
             Security = security;
             Type = type;

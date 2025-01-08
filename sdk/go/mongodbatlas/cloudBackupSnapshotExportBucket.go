@@ -67,7 +67,6 @@ import (
 //				ProjectId:     pulumi.String("{PROJECT_ID}"),
 //				RoleId:        pulumi.String("{ROLE_ID}"),
 //				ServiceUrl:    pulumi.String("{SERVICE_URL}"),
-//				TenantId:      pulumi.String("{TENANT_ID}"),
 //				BucketName:    pulumi.String("example-bucket"),
 //				CloudProvider: pulumi.String("AZURE"),
 //			})
@@ -87,6 +86,7 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
 // ```
+//
 // For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
 type CloudBackupSnapshotExportBucket struct {
 	pulumi.CustomResourceState
@@ -105,8 +105,8 @@ type CloudBackupSnapshotExportBucket struct {
 	RoleId pulumi.StringPtrOutput `pulumi:"roleId"`
 	// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
 	ServiceUrl pulumi.StringPtrOutput `pulumi:"serviceUrl"`
-	// UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
-	TenantId pulumi.StringPtrOutput `pulumi:"tenantId"`
+	// This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
+	TenantId pulumi.StringOutput `pulumi:"tenantId"`
 }
 
 // NewCloudBackupSnapshotExportBucket registers a new resource with the given unique name, arguments, and options.
@@ -162,7 +162,7 @@ type cloudBackupSnapshotExportBucketState struct {
 	RoleId *string `pulumi:"roleId"`
 	// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
 	ServiceUrl *string `pulumi:"serviceUrl"`
-	// UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+	// This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
 	TenantId *string `pulumi:"tenantId"`
 }
 
@@ -181,7 +181,7 @@ type CloudBackupSnapshotExportBucketState struct {
 	RoleId pulumi.StringPtrInput
 	// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
 	ServiceUrl pulumi.StringPtrInput
-	// UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+	// This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
 	TenantId pulumi.StringPtrInput
 }
 
@@ -202,7 +202,7 @@ type cloudBackupSnapshotExportBucketArgs struct {
 	RoleId *string `pulumi:"roleId"`
 	// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
 	ServiceUrl *string `pulumi:"serviceUrl"`
-	// UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+	// This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
 	TenantId *string `pulumi:"tenantId"`
 }
 
@@ -220,7 +220,7 @@ type CloudBackupSnapshotExportBucketArgs struct {
 	RoleId pulumi.StringPtrInput
 	// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
 	ServiceUrl pulumi.StringPtrInput
-	// UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+	// This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
 	TenantId pulumi.StringPtrInput
 }
 
@@ -346,9 +346,9 @@ func (o CloudBackupSnapshotExportBucketOutput) ServiceUrl() pulumi.StringPtrOutp
 	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringPtrOutput { return v.ServiceUrl }).(pulumi.StringPtrOutput)
 }
 
-// UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
-func (o CloudBackupSnapshotExportBucketOutput) TenantId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringPtrOutput { return v.TenantId }).(pulumi.StringPtrOutput)
+// This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
+func (o CloudBackupSnapshotExportBucketOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
 }
 
 type CloudBackupSnapshotExportBucketArrayOutput struct{ *pulumi.OutputState }

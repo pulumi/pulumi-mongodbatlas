@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultAuthentication;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultDbRoleToExecute;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultNetworking;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultSecurity;
 import java.lang.String;
 import java.util.Map;
@@ -51,6 +52,11 @@ public final class GetStreamConnectionsResult {
      */
     private String instanceName;
     /**
+     * @return Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     * 
+     */
+    private GetStreamConnectionsResultNetworking networking;
+    /**
      * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
@@ -61,7 +67,7 @@ public final class GetStreamConnectionsResult {
      */
     private GetStreamConnectionsResultSecurity security;
     /**
-     * @return Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * @return Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
      * 
      */
     private String type;
@@ -120,6 +126,13 @@ public final class GetStreamConnectionsResult {
         return this.instanceName;
     }
     /**
+     * @return Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     * 
+     */
+    public GetStreamConnectionsResultNetworking networking() {
+        return this.networking;
+    }
+    /**
      * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
@@ -134,7 +147,7 @@ public final class GetStreamConnectionsResult {
         return this.security;
     }
     /**
-     * @return Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     * @return Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
      * 
      */
     public String type() {
@@ -158,6 +171,7 @@ public final class GetStreamConnectionsResult {
         private GetStreamConnectionsResultDbRoleToExecute dbRoleToExecute;
         private String id;
         private String instanceName;
+        private GetStreamConnectionsResultNetworking networking;
         private String projectId;
         private GetStreamConnectionsResultSecurity security;
         private String type;
@@ -172,6 +186,7 @@ public final class GetStreamConnectionsResult {
     	      this.dbRoleToExecute = defaults.dbRoleToExecute;
     	      this.id = defaults.id;
     	      this.instanceName = defaults.instanceName;
+    	      this.networking = defaults.networking;
     	      this.projectId = defaults.projectId;
     	      this.security = defaults.security;
     	      this.type = defaults.type;
@@ -242,6 +257,14 @@ public final class GetStreamConnectionsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder networking(GetStreamConnectionsResultNetworking networking) {
+            if (networking == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "networking");
+            }
+            this.networking = networking;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "projectId");
@@ -275,6 +298,7 @@ public final class GetStreamConnectionsResult {
             _resultValue.dbRoleToExecute = dbRoleToExecute;
             _resultValue.id = id;
             _resultValue.instanceName = instanceName;
+            _resultValue.networking = networking;
             _resultValue.projectId = projectId;
             _resultValue.security = security;
             _resultValue.type = type;

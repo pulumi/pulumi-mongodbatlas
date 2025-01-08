@@ -34,7 +34,7 @@ class CloudBackupSnapshotExportBucketArgs:
         :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
         :param pulumi.Input[str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
-        :param pulumi.Input[str] tenant_id: UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] tenant_id: This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -124,7 +124,7 @@ class CloudBackupSnapshotExportBucketArgs:
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> Optional[pulumi.Input[str]]:
         """
-        UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         """
         return pulumi.get(self, "tenant_id")
 
@@ -153,7 +153,7 @@ class _CloudBackupSnapshotExportBucketState:
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
-        :param pulumi.Input[str] tenant_id: UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] tenant_id: This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         """
         if bucket_name is not None:
             pulumi.set(__self__, "bucket_name", bucket_name)
@@ -260,7 +260,7 @@ class _CloudBackupSnapshotExportBucketState:
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> Optional[pulumi.Input[str]]:
         """
-        UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         """
         return pulumi.get(self, "tenant_id")
 
@@ -314,7 +314,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             project_id="{PROJECT_ID}",
             role_id="{ROLE_ID}",
             service_url="{SERVICE_URL}",
-            tenant_id="{TENANT_ID}",
             bucket_name="example-bucket",
             cloud_provider="AZURE")
         ```
@@ -326,6 +325,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
 
         :param str resource_name: The name of the resource.
@@ -336,7 +336,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
-        :param pulumi.Input[str] tenant_id: UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] tenant_id: This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         """
         ...
     @overload
@@ -376,7 +376,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             project_id="{PROJECT_ID}",
             role_id="{ROLE_ID}",
             service_url="{SERVICE_URL}",
-            tenant_id="{TENANT_ID}",
             bucket_name="example-bucket",
             cloud_provider="AZURE")
         ```
@@ -388,6 +387,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
 
         :param str resource_name: The name of the resource.
@@ -467,7 +467,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
-        :param pulumi.Input[str] tenant_id: UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] tenant_id: This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -541,9 +541,9 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> pulumi.Output[Optional[str]]:
+    def tenant_id(self) -> pulumi.Output[str]:
         """
-        UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
         """
         return pulumi.get(self, "tenant_id")
 

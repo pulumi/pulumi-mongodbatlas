@@ -2221,6 +2221,20 @@ export interface StreamConnectionDbRoleToExecute {
     type: pulumi.Input<string>;
 }
 
+export interface StreamConnectionNetworking {
+    /**
+     * Information about the networking access. See access.
+     */
+    access: pulumi.Input<inputs.StreamConnectionNetworkingAccess>;
+}
+
+export interface StreamConnectionNetworkingAccess {
+    /**
+     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface StreamConnectionSecurity {
     /**
      * A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.

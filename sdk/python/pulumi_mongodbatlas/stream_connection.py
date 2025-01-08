@@ -30,6 +30,7 @@ class StreamConnectionArgs:
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
+                 networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
                  security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None):
         """
         The set of arguments for constructing a StreamConnection resource.
@@ -52,6 +53,8 @@ class StreamConnectionArgs:
             pulumi.set(__self__, "config", config)
         if db_role_to_execute is not None:
             pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        if networking is not None:
+            pulumi.set(__self__, "networking", networking)
         if security is not None:
             pulumi.set(__self__, "security", security)
 
@@ -150,6 +153,15 @@ class StreamConnectionArgs:
 
     @property
     @pulumi.getter
+    def networking(self) -> Optional[pulumi.Input['StreamConnectionNetworkingArgs']]:
+        return pulumi.get(self, "networking")
+
+    @networking.setter
+    def networking(self, value: Optional[pulumi.Input['StreamConnectionNetworkingArgs']]):
+        pulumi.set(self, "networking", value)
+
+    @property
+    @pulumi.getter
     def security(self) -> Optional[pulumi.Input['StreamConnectionSecurityArgs']]:
         return pulumi.get(self, "security")
 
@@ -168,6 +180,7 @@ class _StreamConnectionState:
                  connection_name: Optional[pulumi.Input[str]] = None,
                  db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
                  type: Optional[pulumi.Input[str]] = None):
@@ -192,6 +205,8 @@ class _StreamConnectionState:
             pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
+        if networking is not None:
+            pulumi.set(__self__, "networking", networking)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if security is not None:
@@ -269,6 +284,15 @@ class _StreamConnectionState:
         pulumi.set(self, "instance_name", value)
 
     @property
+    @pulumi.getter
+    def networking(self) -> Optional[pulumi.Input['StreamConnectionNetworkingArgs']]:
+        return pulumi.get(self, "networking")
+
+    @networking.setter
+    def networking(self, value: Optional[pulumi.Input['StreamConnectionNetworkingArgs']]):
+        pulumi.set(self, "networking", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -314,6 +338,7 @@ class StreamConnection(pulumi.CustomResource):
                  connection_name: Optional[pulumi.Input[str]] = None,
                  db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -469,6 +494,7 @@ class StreamConnection(pulumi.CustomResource):
                  connection_name: Optional[pulumi.Input[str]] = None,
                  db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -492,6 +518,7 @@ class StreamConnection(pulumi.CustomResource):
             if instance_name is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_name'")
             __props__.__dict__["instance_name"] = instance_name
+            __props__.__dict__["networking"] = networking
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -516,6 +543,7 @@ class StreamConnection(pulumi.CustomResource):
             connection_name: Optional[pulumi.Input[str]] = None,
             db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
+            networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'StreamConnection':
@@ -542,6 +570,7 @@ class StreamConnection(pulumi.CustomResource):
         __props__.__dict__["connection_name"] = connection_name
         __props__.__dict__["db_role_to_execute"] = db_role_to_execute
         __props__.__dict__["instance_name"] = instance_name
+        __props__.__dict__["networking"] = networking
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["security"] = security
         __props__.__dict__["type"] = type
@@ -587,6 +616,11 @@ class StreamConnection(pulumi.CustomResource):
         Human-readable label that identifies the stream instance.
         """
         return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter
+    def networking(self) -> pulumi.Output['outputs.StreamConnectionNetworking']:
+        return pulumi.get(self, "networking")
 
     @property
     @pulumi.getter(name="projectId")

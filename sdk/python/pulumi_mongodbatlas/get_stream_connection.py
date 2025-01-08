@@ -27,7 +27,7 @@ class GetStreamConnectionResult:
     """
     A collection of values returned by getStreamConnection.
     """
-    def __init__(__self__, authentication=None, bootstrap_servers=None, cluster_name=None, config=None, connection_name=None, db_role_to_execute=None, id=None, instance_name=None, project_id=None, security=None, type=None):
+    def __init__(__self__, authentication=None, bootstrap_servers=None, cluster_name=None, config=None, connection_name=None, db_role_to_execute=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None):
         if authentication and not isinstance(authentication, dict):
             raise TypeError("Expected argument 'authentication' to be a dict")
         pulumi.set(__self__, "authentication", authentication)
@@ -52,6 +52,9 @@ class GetStreamConnectionResult:
         if instance_name and not isinstance(instance_name, str):
             raise TypeError("Expected argument 'instance_name' to be a str")
         pulumi.set(__self__, "instance_name", instance_name)
+        if networking and not isinstance(networking, dict):
+            raise TypeError("Expected argument 'networking' to be a dict")
+        pulumi.set(__self__, "networking", networking)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -118,6 +121,14 @@ class GetStreamConnectionResult:
         return pulumi.get(self, "instance_name")
 
     @property
+    @pulumi.getter
+    def networking(self) -> 'outputs.GetStreamConnectionNetworkingResult':
+        """
+        Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+        """
+        return pulumi.get(self, "networking")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
@@ -134,7 +145,7 @@ class GetStreamConnectionResult:
     @pulumi.getter
     def type(self) -> str:
         """
-        Type of the DB role. Can be either BUILT_IN or CUSTOM.
+        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 
@@ -153,6 +164,7 @@ class AwaitableGetStreamConnectionResult(GetStreamConnectionResult):
             db_role_to_execute=self.db_role_to_execute,
             id=self.id,
             instance_name=self.instance_name,
+            networking=self.networking,
             project_id=self.project_id,
             security=self.security,
             type=self.type)
@@ -199,6 +211,7 @@ def get_stream_connection(connection_name: Optional[str] = None,
         db_role_to_execute=pulumi.get(__ret__, 'db_role_to_execute'),
         id=pulumi.get(__ret__, 'id'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
+        networking=pulumi.get(__ret__, 'networking'),
         project_id=pulumi.get(__ret__, 'project_id'),
         security=pulumi.get(__ret__, 'security'),
         type=pulumi.get(__ret__, 'type'))
@@ -242,6 +255,7 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[str]] = 
         db_role_to_execute=pulumi.get(__response__, 'db_role_to_execute'),
         id=pulumi.get(__response__, 'id'),
         instance_name=pulumi.get(__response__, 'instance_name'),
+        networking=pulumi.get(__response__, 'networking'),
         project_id=pulumi.get(__response__, 'project_id'),
         security=pulumi.get(__response__, 'security'),
         type=pulumi.get(__response__, 'type')))

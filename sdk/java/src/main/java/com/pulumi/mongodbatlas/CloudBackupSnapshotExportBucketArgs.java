@@ -107,14 +107,14 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
     }
 
     /**
-     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+     * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      * 
      */
     @Import(name="tenantId")
     private @Nullable Output<String> tenantId;
 
     /**
-     * @return UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+     * @return This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      * 
      */
     public Optional<Output<String>> tenantId() {
@@ -278,7 +278,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param tenantId UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+         * @param tenantId This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
          * 
          * @return builder
          * 
@@ -289,7 +289,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param tenantId UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+         * @param tenantId This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
          * 
          * @return builder
          * 
