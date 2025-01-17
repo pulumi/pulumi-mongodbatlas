@@ -157,6 +157,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		EnableZeroDefaultSchemaVersion: true,
+		EnableAccurateBridgePreview:    true,
 	}
 
 	prov.MustComputeTokens(tks.SingleModule("mongodbatlas_", mainMod,
