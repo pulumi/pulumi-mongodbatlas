@@ -27,6 +27,7 @@ import (
 //
 // import (
 //
+//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -41,13 +42,27 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			test, err := aws.NewVpcEndpoint(ctx, "test", &aws.VpcEndpointArgs{
+//				VpcId:           "vpc-7fc0a543",
+//				ServiceName:     "<SERVICE-NAME>",
+//				VpcEndpointType: "Interface",
+//				SubnetIds: []string{
+//					"subnet-de0406d2",
+//				},
+//				SecurityGroupIds: []string{
+//					"sg-3f238186",
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = mongodbatlas.NewPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs{
 //				ProjectId:               atlas_project.ID(),
-//				EndpointId:              pulumi.String("vpce-046cf43c79424d4c9"),
+//				EndpointId:              test.Id,
 //				ProviderName:            pulumi.String("AWS"),
 //				Comment:                 pulumi.String("Test"),
 //				Region:                  pulumi.String("US_EAST_1"),
-//				CustomerEndpointDnsName: pulumi.String("vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com"),
+//				CustomerEndpointDnsName: test.DnsEntry[0].DnsName,
 //			})
 //			if err != nil {
 //				return err
@@ -57,6 +72,8 @@ import (
 //	}
 //
 // ```
+//
+// The `serviceName` value for the region in question can be found in the [MongoDB Atlas Administration](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) documentation.
 //
 // ## Import
 //

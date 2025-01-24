@@ -13,7 +13,13 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class StreamConnectionNetworkingAccessArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        /// Id of the Private Link connection when type is `PRIVATE_LINK`.
+        /// </summary>
+        [Input("connectionId")]
+        public Input<string>? ConnectionId { get; set; }
+
+        /// <summary>
+        /// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

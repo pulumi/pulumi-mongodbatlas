@@ -145,7 +145,7 @@ class GetStreamConnectionResult:
     @pulumi.getter
     def type(self) -> str:
         """
-        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 

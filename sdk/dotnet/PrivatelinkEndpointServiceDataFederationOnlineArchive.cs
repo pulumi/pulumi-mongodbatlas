@@ -24,6 +24,7 @@ namespace Pulumi.Mongodbatlas
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -34,18 +35,35 @@ namespace Pulumi.Mongodbatlas
     ///         Name = atlasProjectName,
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+    ///     var test = new Aws.Index.VpcEndpoint("test", new()
+    ///     {
+    ///         VpcId = "vpc-7fc0a543",
+    ///         ServiceName = "&lt;SERVICE-NAME&gt;",
+    ///         VpcEndpointType = "Interface",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             "subnet-de0406d2",
+    ///         },
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             "sg-3f238186",
+    ///         },
+    ///     });
+    /// 
+    ///     var testPrivatelinkEndpointServiceDataFederationOnlineArchive = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
     ///     {
     ///         ProjectId = atlas_project.Id,
-    ///         EndpointId = "vpce-046cf43c79424d4c9",
+    ///         EndpointId = test.Id,
     ///         ProviderName = "AWS",
     ///         Comment = "Test",
     ///         Region = "US_EAST_1",
-    ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
+    ///         CustomerEndpointDnsName = test.DnsEntry[0].DnsName,
     ///     });
     /// 
     /// });
     /// ```
+    /// 
+    /// The `service_name` value for the region in question can be found in the [MongoDB Atlas Administration](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) documentation.
     /// 
     /// ## Import
     /// 

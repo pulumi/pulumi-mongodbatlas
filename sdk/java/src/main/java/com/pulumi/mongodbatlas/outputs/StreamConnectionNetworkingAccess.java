@@ -7,18 +7,32 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class StreamConnectionNetworkingAccess {
     /**
-     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * @return Id of the Private Link connection when type is `PRIVATE_LINK`.
+     * 
+     */
+    private @Nullable String connectionId;
+    /**
+     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     private String type;
 
     private StreamConnectionNetworkingAccess() {}
     /**
-     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * @return Id of the Private Link connection when type is `PRIVATE_LINK`.
+     * 
+     */
+    public Optional<String> connectionId() {
+        return Optional.ofNullable(this.connectionId);
+    }
+    /**
+     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     public String type() {
@@ -34,13 +48,21 @@ public final class StreamConnectionNetworkingAccess {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String connectionId;
         private String type;
         public Builder() {}
         public Builder(StreamConnectionNetworkingAccess defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.connectionId = defaults.connectionId;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
+        public Builder connectionId(@Nullable String connectionId) {
+
+            this.connectionId = connectionId;
+            return this;
+        }
         @CustomType.Setter
         public Builder type(String type) {
             if (type == null) {
@@ -51,6 +73,7 @@ public final class StreamConnectionNetworkingAccess {
         }
         public StreamConnectionNetworkingAccess build() {
             final var _resultValue = new StreamConnectionNetworkingAccess();
+            _resultValue.connectionId = connectionId;
             _resultValue.type = type;
             return _resultValue;
         }

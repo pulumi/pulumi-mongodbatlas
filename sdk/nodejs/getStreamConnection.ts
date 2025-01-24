@@ -88,7 +88,7 @@ export interface GetStreamConnectionResult {
      */
     readonly security: outputs.GetStreamConnectionSecurity;
     /**
-     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     readonly type: string;
 }

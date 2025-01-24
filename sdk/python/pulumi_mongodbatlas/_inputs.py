@@ -3703,7 +3703,7 @@ if not MYPY:
         """
         frequency_type: NotRequired[pulumi.Input[str]]
         """
-        Frequency associated with the export snapshot item.
+        Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
         """
 elif False:
     CloudBackupScheduleExportArgsDict: TypeAlias = Mapping[str, Any]
@@ -3715,7 +3715,7 @@ class CloudBackupScheduleExportArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the export snapshot item.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
         """
         if export_bucket_id is not None:
             pulumi.set(__self__, "export_bucket_id", export_bucket_id)
@@ -3738,7 +3738,7 @@ class CloudBackupScheduleExportArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the export snapshot item.
+        Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
         """
         return pulumi.get(self, "frequency_type")
 
@@ -10589,7 +10589,11 @@ if not MYPY:
     class StreamConnectionNetworkingAccessArgsDict(TypedDict):
         type: pulumi.Input[str]
         """
-        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        """
+        connection_id: NotRequired[pulumi.Input[str]]
+        """
+        Id of the Private Link connection when type is `PRIVATE_LINK`.
         """
 elif False:
     StreamConnectionNetworkingAccessArgsDict: TypeAlias = Mapping[str, Any]
@@ -10597,23 +10601,39 @@ elif False:
 @pulumi.input_type
 class StreamConnectionNetworkingAccessArgs:
     def __init__(__self__, *,
-                 type: pulumi.Input[str]):
+                 type: pulumi.Input[str],
+                 connection_id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] type: Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        :param pulumi.Input[str] type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        :param pulumi.Input[str] connection_id: Id of the Private Link connection when type is `PRIVATE_LINK`.
         """
         pulumi.set(__self__, "type", type)
+        if connection_id is not None:
+            pulumi.set(__self__, "connection_id", connection_id)
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Id of the Private Link connection when type is `PRIVATE_LINK`.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @connection_id.setter
+    def connection_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connection_id", value)
 
 
 if not MYPY:

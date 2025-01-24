@@ -127,6 +127,8 @@ from .get_stream_connection import *
 from .get_stream_connections import *
 from .get_stream_instance import *
 from .get_stream_instances import *
+from .get_stream_privatelink_endpoint import *
+from .get_stream_privatelink_endpoints import *
 from .get_stream_processor import *
 from .get_stream_processors import *
 from .get_team import *
@@ -161,6 +163,7 @@ from .search_index import *
 from .serverless_instance import *
 from .stream_connection import *
 from .stream_instance import *
+from .stream_privatelink_endpoint import *
 from .stream_processor import *
 from .team import *
 from .teams import *
@@ -601,6 +604,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/streamInstance:StreamInstance": "StreamInstance"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/streamPrivatelinkEndpoint",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint": "StreamPrivatelinkEndpoint"
   }
  },
  {

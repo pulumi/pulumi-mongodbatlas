@@ -124,7 +124,7 @@ import javax.annotation.Nullable;
  *             .autoExportEnabled(true)
  *             .export(CloudBackupScheduleExportArgs.builder()
  *                 .exportBucketId(export.exportBucketId())
- *                 .frequencyType("daily")
+ *                 .frequencyType("weekly")
  *                 .build())
  *             .useOrgAndGroupNamesInExportPrefix(true)
  *             .referenceHourOfDay(7)

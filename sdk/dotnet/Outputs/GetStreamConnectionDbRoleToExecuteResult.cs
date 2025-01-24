@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Role;
         /// <summary>
-        /// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        /// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         /// </summary>
         public readonly string Type;
 

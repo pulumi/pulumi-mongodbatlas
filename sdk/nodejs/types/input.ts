@@ -732,7 +732,7 @@ export interface CloudBackupScheduleExport {
      */
     exportBucketId?: pulumi.Input<string>;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
      */
     frequencyType?: pulumi.Input<string>;
 }
@@ -2230,7 +2230,11 @@ export interface StreamConnectionNetworking {
 
 export interface StreamConnectionNetworkingAccess {
     /**
-     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * Id of the Private Link connection when type is `PRIVATE_LINK`.
+     */
+    connectionId?: pulumi.Input<string>;
+    /**
+     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: pulumi.Input<string>;
 }

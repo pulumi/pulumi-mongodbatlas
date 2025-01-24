@@ -732,7 +732,7 @@ export interface CloudBackupScheduleExport {
      */
     exportBucketId: string;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
      */
     frequencyType: string;
 }
@@ -6619,7 +6619,7 @@ export interface GetStreamConnectionDbRoleToExecute {
      */
     role: string;
     /**
-     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: string;
 }
@@ -6633,7 +6633,11 @@ export interface GetStreamConnectionNetworking {
 
 export interface GetStreamConnectionNetworkingAccess {
     /**
-     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * Id of the Private Link connection when type is `PRIVATE_LINK`.
+     */
+    connectionId: string;
+    /**
+     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: string;
 }
@@ -6692,7 +6696,7 @@ export interface GetStreamConnectionsResult {
      */
     security: outputs.GetStreamConnectionsResultSecurity;
     /**
-     * Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: string;
 }
@@ -6718,7 +6722,7 @@ export interface GetStreamConnectionsResultDbRoleToExecute {
      */
     role: string;
     /**
-     * Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: string;
 }
@@ -6732,7 +6736,11 @@ export interface GetStreamConnectionsResultNetworking {
 
 export interface GetStreamConnectionsResultNetworkingAccess {
     /**
-     * Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+     * Id of the Private Link connection when type is `PRIVATE_LINK`.
+     */
+    connectionId: string;
+    /**
+     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: string;
 }
@@ -6806,6 +6814,49 @@ export interface GetStreamInstancesResultStreamConfig {
      * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      */
     tier: string;
+}
+
+export interface GetStreamPrivatelinkEndpointsResult {
+    /**
+     * Domain name of Privatelink connected cluster.
+     */
+    dnsDomain: string;
+    /**
+     * Sub-Domain name of Confluent cluster. These are typically your availability zones.
+     */
+    dnsSubDomains: string[];
+    /**
+     * The ID of the Private Link connection.
+     */
+    id: string;
+    /**
+     * Interface endpoint ID that is created from the specified service endpoint ID.
+     */
+    interfaceEndpointId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     */
+    projectId: string;
+    /**
+     * Provider where the Kafka cluster is deployed.
+     */
+    providerName: string;
+    /**
+     * Domain name of Confluent cluster.
+     */
+    region: string;
+    /**
+     * Service Endpoint ID.
+     */
+    serviceEndpointId: string;
+    /**
+     * Status of the connection.
+     */
+    state: string;
+    /**
+     * Vendor who manages the Kafka cluster.
+     */
+    vendor: string;
 }
 
 export interface GetStreamProcessorOptions {
@@ -7293,7 +7344,11 @@ export interface StreamConnectionNetworking {
 
 export interface StreamConnectionNetworkingAccess {
     /**
-     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * Id of the Private Link connection when type is `PRIVATE_LINK`.
+     */
+    connectionId?: string;
+    /**
+     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: string;
 }

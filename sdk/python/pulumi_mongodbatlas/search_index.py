@@ -39,7 +39,7 @@ class SearchIndexArgs:
         """
         The set of arguments for constructing a SearchIndex resource.
         :param pulumi.Input[str] cluster_name: The name of the cluster where you want to create the search index within.
-        :param pulumi.Input[str] collection_name: Name of the collection the index is on.
+        :param pulumi.Input[str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -117,7 +117,7 @@ class SearchIndexArgs:
     @pulumi.getter(name="collectionName")
     def collection_name(self) -> pulumi.Input[str]:
         """
-        Name of the collection the index is on.
+        Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         """
         return pulumi.get(self, "collection_name")
 
@@ -346,7 +346,7 @@ class _SearchIndexState:
                EOF
                ```
         :param pulumi.Input[str] cluster_name: The name of the cluster where you want to create the search index within.
-        :param pulumi.Input[str] collection_name: Name of the collection the index is on.
+        :param pulumi.Input[str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[str] index_id: The unique identifier of the Atlas Search index.
@@ -456,7 +456,7 @@ class _SearchIndexState:
     @pulumi.getter(name="collectionName")
     def collection_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the collection the index is on.
+        Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         """
         return pulumi.get(self, "collection_name")
 
@@ -778,7 +778,7 @@ class SearchIndex(pulumi.CustomResource):
                EOF
                ```
         :param pulumi.Input[str] cluster_name: The name of the cluster where you want to create the search index within.
-        :param pulumi.Input[str] collection_name: Name of the collection the index is on.
+        :param pulumi.Input[str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
@@ -1031,7 +1031,7 @@ class SearchIndex(pulumi.CustomResource):
                EOF
                ```
         :param pulumi.Input[str] cluster_name: The name of the cluster where you want to create the search index within.
-        :param pulumi.Input[str] collection_name: Name of the collection the index is on.
+        :param pulumi.Input[str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[str] index_id: The unique identifier of the Atlas Search index.
@@ -1117,7 +1117,7 @@ class SearchIndex(pulumi.CustomResource):
     @pulumi.getter(name="collectionName")
     def collection_name(self) -> pulumi.Output[str]:
         """
-        Name of the collection the index is on.
+        Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         """
         return pulumi.get(self, "collection_name")
 

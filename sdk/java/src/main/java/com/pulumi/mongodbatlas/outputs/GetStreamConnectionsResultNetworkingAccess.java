@@ -11,14 +11,26 @@ import java.util.Objects;
 @CustomType
 public final class GetStreamConnectionsResultNetworkingAccess {
     /**
-     * @return Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+     * @return Id of the Private Link connection when type is `PRIVATE_LINK`.
+     * 
+     */
+    private String connectionId;
+    /**
+     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     private String type;
 
     private GetStreamConnectionsResultNetworkingAccess() {}
     /**
-     * @return Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+     * @return Id of the Private Link connection when type is `PRIVATE_LINK`.
+     * 
+     */
+    public String connectionId() {
+        return this.connectionId;
+    }
+    /**
+     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     public String type() {
@@ -34,13 +46,23 @@ public final class GetStreamConnectionsResultNetworkingAccess {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String connectionId;
         private String type;
         public Builder() {}
         public Builder(GetStreamConnectionsResultNetworkingAccess defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.connectionId = defaults.connectionId;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
+        public Builder connectionId(String connectionId) {
+            if (connectionId == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResultNetworkingAccess", "connectionId");
+            }
+            this.connectionId = connectionId;
+            return this;
+        }
         @CustomType.Setter
         public Builder type(String type) {
             if (type == null) {
@@ -51,6 +73,7 @@ public final class GetStreamConnectionsResultNetworkingAccess {
         }
         public GetStreamConnectionsResultNetworkingAccess build() {
             final var _resultValue = new GetStreamConnectionsResultNetworkingAccess();
+            _resultValue.connectionId = connectionId;
             _resultValue.type = type;
             return _resultValue;
         }

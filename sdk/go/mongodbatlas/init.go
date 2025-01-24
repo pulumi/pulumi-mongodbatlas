@@ -127,6 +127,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &StreamConnection{}
 	case "mongodbatlas:index/streamInstance:StreamInstance":
 		r = &StreamInstance{}
+	case "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint":
+		r = &StreamPrivatelinkEndpoint{}
 	case "mongodbatlas:index/streamProcessor:StreamProcessor":
 		r = &StreamProcessor{}
 	case "mongodbatlas:index/team:Team":
@@ -431,6 +433,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/streamInstance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/streamPrivatelinkEndpoint",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

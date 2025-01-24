@@ -255,14 +255,14 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
         return this.clusterName;
     }
     /**
-     * Name of the collection the index is on.
+     * Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
      * 
      */
     @Export(name="collectionName", refs={String.class}, tree="[0]")
     private Output<String> collectionName;
 
     /**
-     * @return Name of the collection the index is on.
+     * @return Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
      * 
      */
     public Output<String> collectionName() {

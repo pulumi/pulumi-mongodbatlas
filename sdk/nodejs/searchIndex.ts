@@ -184,7 +184,7 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
-     * Name of the collection the index is on.
+     * Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
      */
     public readonly collectionName!: pulumi.Output<string>;
     /**
@@ -342,7 +342,7 @@ export interface SearchIndexState {
      */
     clusterName?: pulumi.Input<string>;
     /**
-     * Name of the collection the index is on.
+     * Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
      */
     collectionName?: pulumi.Input<string>;
     /**
@@ -434,7 +434,7 @@ export interface SearchIndexArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * Name of the collection the index is on.
+     * Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
      */
     collectionName: pulumi.Input<string>;
     /**

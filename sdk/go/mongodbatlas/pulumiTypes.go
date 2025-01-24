@@ -4984,7 +4984,7 @@ func (o CloudBackupScheduleCopySettingArrayOutput) Index(i pulumi.IntInput) Clou
 type CloudBackupScheduleExport struct {
 	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
 	ExportBucketId *string `pulumi:"exportBucketId"`
-	// Frequency associated with the export snapshot item.
+	// Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
 	FrequencyType *string `pulumi:"frequencyType"`
 }
 
@@ -5002,7 +5002,7 @@ type CloudBackupScheduleExportInput interface {
 type CloudBackupScheduleExportArgs struct {
 	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
 	ExportBucketId pulumi.StringPtrInput `pulumi:"exportBucketId"`
-	// Frequency associated with the export snapshot item.
+	// Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 }
 
@@ -5088,7 +5088,7 @@ func (o CloudBackupScheduleExportOutput) ExportBucketId() pulumi.StringPtrOutput
 	return o.ApplyT(func(v CloudBackupScheduleExport) *string { return v.ExportBucketId }).(pulumi.StringPtrOutput)
 }
 
-// Frequency associated with the export snapshot item.
+// Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
 func (o CloudBackupScheduleExportOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleExport) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -5127,7 +5127,7 @@ func (o CloudBackupScheduleExportPtrOutput) ExportBucketId() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Frequency associated with the export snapshot item.
+// Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
 func (o CloudBackupScheduleExportPtrOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupScheduleExport) *string {
 		if v == nil {
@@ -17779,7 +17779,9 @@ func (o StreamConnectionNetworkingPtrOutput) Access() StreamConnectionNetworking
 }
 
 type StreamConnectionNetworkingAccess struct {
-	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId *string `pulumi:"connectionId"`
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -17795,7 +17797,9 @@ type StreamConnectionNetworkingAccessInput interface {
 }
 
 type StreamConnectionNetworkingAccessArgs struct {
-	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId pulumi.StringPtrInput `pulumi:"connectionId"`
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -17876,7 +17880,12 @@ func (o StreamConnectionNetworkingAccessOutput) ToStreamConnectionNetworkingAcce
 	}).(StreamConnectionNetworkingAccessPtrOutput)
 }
 
-// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+// Id of the Private Link connection when type is `PRIVATE_LINK`.
+func (o StreamConnectionNetworkingAccessOutput) ConnectionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionNetworkingAccess) *string { return v.ConnectionId }).(pulumi.StringPtrOutput)
+}
+
+// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o StreamConnectionNetworkingAccessOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -17905,7 +17914,17 @@ func (o StreamConnectionNetworkingAccessPtrOutput) Elem() StreamConnectionNetwor
 	}).(StreamConnectionNetworkingAccessOutput)
 }
 
-// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+// Id of the Private Link connection when type is `PRIVATE_LINK`.
+func (o StreamConnectionNetworkingAccessPtrOutput) ConnectionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionNetworkingAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ConnectionId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o StreamConnectionNetworkingAccessPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionNetworkingAccess) *string {
 		if v == nil {
@@ -50241,7 +50260,7 @@ func (o GetStreamConnectionAuthenticationOutput) Username() pulumi.StringOutput 
 type GetStreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
-	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -50259,7 +50278,7 @@ type GetStreamConnectionDbRoleToExecuteInput interface {
 type GetStreamConnectionDbRoleToExecuteArgs struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -50294,7 +50313,7 @@ func (o GetStreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o GetStreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -50352,7 +50371,9 @@ func (o GetStreamConnectionNetworkingOutput) Access() GetStreamConnectionNetwork
 }
 
 type GetStreamConnectionNetworkingAccess struct {
-	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId string `pulumi:"connectionId"`
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -50368,7 +50389,9 @@ type GetStreamConnectionNetworkingAccessInput interface {
 }
 
 type GetStreamConnectionNetworkingAccessArgs struct {
-	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -50398,7 +50421,12 @@ func (o GetStreamConnectionNetworkingAccessOutput) ToGetStreamConnectionNetworki
 	return o
 }
 
-// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+// Id of the Private Link connection when type is `PRIVATE_LINK`.
+func (o GetStreamConnectionNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
+}
+
+// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o GetStreamConnectionNetworkingAccessOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -50486,7 +50514,7 @@ type GetStreamConnectionsResult struct {
 	ProjectId string `pulumi:"projectId"`
 	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionsResultSecurity `pulumi:"security"`
-	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -50523,7 +50551,7 @@ type GetStreamConnectionsResultArgs struct {
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionsResultSecurityInput `pulumi:"security"`
-	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -50632,7 +50660,7 @@ func (o GetStreamConnectionsResultOutput) Security() GetStreamConnectionsResultS
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSecurity { return v.Security }).(GetStreamConnectionsResultSecurityOutput)
 }
 
-// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o GetStreamConnectionsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -50730,7 +50758,7 @@ func (o GetStreamConnectionsResultAuthenticationOutput) Username() pulumi.String
 type GetStreamConnectionsResultDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
-	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -50748,7 +50776,7 @@ type GetStreamConnectionsResultDbRoleToExecuteInput interface {
 type GetStreamConnectionsResultDbRoleToExecuteArgs struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -50783,7 +50811,7 @@ func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Role() pulumi.StringOut
 	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -50843,7 +50871,9 @@ func (o GetStreamConnectionsResultNetworkingOutput) Access() GetStreamConnection
 }
 
 type GetStreamConnectionsResultNetworkingAccess struct {
-	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId string `pulumi:"connectionId"`
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -50859,7 +50889,9 @@ type GetStreamConnectionsResultNetworkingAccessInput interface {
 }
 
 type GetStreamConnectionsResultNetworkingAccessArgs struct {
-	// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -50889,7 +50921,12 @@ func (o GetStreamConnectionsResultNetworkingAccessOutput) ToGetStreamConnections
 	return o
 }
 
-// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+// Id of the Private Link connection when type is `PRIVATE_LINK`.
+func (o GetStreamConnectionsResultNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
+}
+
+// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o GetStreamConnectionsResultNetworkingAccessOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -51318,6 +51355,184 @@ func (o GetStreamInstancesResultStreamConfigOutput) ToGetStreamInstancesResultSt
 // Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
 func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamInstancesResultStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
+}
+
+type GetStreamPrivatelinkEndpointsResult struct {
+	// Domain name of Privatelink connected cluster.
+	DnsDomain string `pulumi:"dnsDomain"`
+	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
+	DnsSubDomains []string `pulumi:"dnsSubDomains"`
+	// The ID of the Private Link connection.
+	Id string `pulumi:"id"`
+	// Interface endpoint ID that is created from the specified service endpoint ID.
+	InterfaceEndpointId string `pulumi:"interfaceEndpointId"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId string `pulumi:"projectId"`
+	// Provider where the Kafka cluster is deployed.
+	ProviderName string `pulumi:"providerName"`
+	// Domain name of Confluent cluster.
+	Region string `pulumi:"region"`
+	// Service Endpoint ID.
+	ServiceEndpointId string `pulumi:"serviceEndpointId"`
+	// Status of the connection.
+	State string `pulumi:"state"`
+	// Vendor who manages the Kafka cluster.
+	Vendor string `pulumi:"vendor"`
+}
+
+// GetStreamPrivatelinkEndpointsResultInput is an input type that accepts GetStreamPrivatelinkEndpointsResultArgs and GetStreamPrivatelinkEndpointsResultOutput values.
+// You can construct a concrete instance of `GetStreamPrivatelinkEndpointsResultInput` via:
+//
+//	GetStreamPrivatelinkEndpointsResultArgs{...}
+type GetStreamPrivatelinkEndpointsResultInput interface {
+	pulumi.Input
+
+	ToGetStreamPrivatelinkEndpointsResultOutput() GetStreamPrivatelinkEndpointsResultOutput
+	ToGetStreamPrivatelinkEndpointsResultOutputWithContext(context.Context) GetStreamPrivatelinkEndpointsResultOutput
+}
+
+type GetStreamPrivatelinkEndpointsResultArgs struct {
+	// Domain name of Privatelink connected cluster.
+	DnsDomain pulumi.StringInput `pulumi:"dnsDomain"`
+	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
+	DnsSubDomains pulumi.StringArrayInput `pulumi:"dnsSubDomains"`
+	// The ID of the Private Link connection.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Interface endpoint ID that is created from the specified service endpoint ID.
+	InterfaceEndpointId pulumi.StringInput `pulumi:"interfaceEndpointId"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Provider where the Kafka cluster is deployed.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Domain name of Confluent cluster.
+	Region pulumi.StringInput `pulumi:"region"`
+	// Service Endpoint ID.
+	ServiceEndpointId pulumi.StringInput `pulumi:"serviceEndpointId"`
+	// Status of the connection.
+	State pulumi.StringInput `pulumi:"state"`
+	// Vendor who manages the Kafka cluster.
+	Vendor pulumi.StringInput `pulumi:"vendor"`
+}
+
+func (GetStreamPrivatelinkEndpointsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (i GetStreamPrivatelinkEndpointsResultArgs) ToGetStreamPrivatelinkEndpointsResultOutput() GetStreamPrivatelinkEndpointsResultOutput {
+	return i.ToGetStreamPrivatelinkEndpointsResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamPrivatelinkEndpointsResultArgs) ToGetStreamPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamPrivatelinkEndpointsResultOutput)
+}
+
+// GetStreamPrivatelinkEndpointsResultArrayInput is an input type that accepts GetStreamPrivatelinkEndpointsResultArray and GetStreamPrivatelinkEndpointsResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamPrivatelinkEndpointsResultArrayInput` via:
+//
+//	GetStreamPrivatelinkEndpointsResultArray{ GetStreamPrivatelinkEndpointsResultArgs{...} }
+type GetStreamPrivatelinkEndpointsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamPrivatelinkEndpointsResultArrayOutput() GetStreamPrivatelinkEndpointsResultArrayOutput
+	ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(context.Context) GetStreamPrivatelinkEndpointsResultArrayOutput
+}
+
+type GetStreamPrivatelinkEndpointsResultArray []GetStreamPrivatelinkEndpointsResultInput
+
+func (GetStreamPrivatelinkEndpointsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (i GetStreamPrivatelinkEndpointsResultArray) ToGetStreamPrivatelinkEndpointsResultArrayOutput() GetStreamPrivatelinkEndpointsResultArrayOutput {
+	return i.ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamPrivatelinkEndpointsResultArray) ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamPrivatelinkEndpointsResultArrayOutput)
+}
+
+type GetStreamPrivatelinkEndpointsResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamPrivatelinkEndpointsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (o GetStreamPrivatelinkEndpointsResultOutput) ToGetStreamPrivatelinkEndpointsResultOutput() GetStreamPrivatelinkEndpointsResultOutput {
+	return o
+}
+
+func (o GetStreamPrivatelinkEndpointsResultOutput) ToGetStreamPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultOutput {
+	return o
+}
+
+// Domain name of Privatelink connected cluster.
+func (o GetStreamPrivatelinkEndpointsResultOutput) DnsDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.DnsDomain }).(pulumi.StringOutput)
+}
+
+// Sub-Domain name of Confluent cluster. These are typically your availability zones.
+func (o GetStreamPrivatelinkEndpointsResultOutput) DnsSubDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) []string { return v.DnsSubDomains }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the Private Link connection.
+func (o GetStreamPrivatelinkEndpointsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Interface endpoint ID that is created from the specified service endpoint ID.
+func (o GetStreamPrivatelinkEndpointsResultOutput) InterfaceEndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.InterfaceEndpointId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Provider where the Kafka cluster is deployed.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Domain name of Confluent cluster.
+func (o GetStreamPrivatelinkEndpointsResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Service Endpoint ID.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceEndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ServiceEndpointId }).(pulumi.StringOutput)
+}
+
+// Status of the connection.
+func (o GetStreamPrivatelinkEndpointsResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+// Vendor who manages the Kafka cluster.
+func (o GetStreamPrivatelinkEndpointsResultOutput) Vendor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Vendor }).(pulumi.StringOutput)
+}
+
+type GetStreamPrivatelinkEndpointsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamPrivatelinkEndpointsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (o GetStreamPrivatelinkEndpointsResultArrayOutput) ToGetStreamPrivatelinkEndpointsResultArrayOutput() GetStreamPrivatelinkEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamPrivatelinkEndpointsResultArrayOutput) ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamPrivatelinkEndpointsResultArrayOutput) Index(i pulumi.IntInput) GetStreamPrivatelinkEndpointsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamPrivatelinkEndpointsResult {
+		return vs[0].([]GetStreamPrivatelinkEndpointsResult)[vs[1].(int)]
+	}).(GetStreamPrivatelinkEndpointsResultOutput)
 }
 
 type GetStreamProcessorOptions struct {
@@ -52801,6 +53016,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultArrayInput)(nil)).Elem(), GetStreamInstancesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultDataProcessRegionInput)(nil)).Elem(), GetStreamInstancesResultDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultStreamConfigInput)(nil)).Elem(), GetStreamInstancesResultStreamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamPrivatelinkEndpointsResultInput)(nil)).Elem(), GetStreamPrivatelinkEndpointsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamPrivatelinkEndpointsResultArrayInput)(nil)).Elem(), GetStreamPrivatelinkEndpointsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsInput)(nil)).Elem(), GetStreamProcessorOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsDlqInput)(nil)).Elem(), GetStreamProcessorOptionsDlqArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultInput)(nil)).Elem(), GetStreamProcessorsResultArgs{})
@@ -53525,6 +53742,8 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamInstancesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamInstancesResultDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetStreamInstancesResultStreamConfigOutput{})
+	pulumi.RegisterOutputType(GetStreamPrivatelinkEndpointsResultOutput{})
+	pulumi.RegisterOutputType(GetStreamPrivatelinkEndpointsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorOptionsOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorOptionsDlqOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorsResultOutput{})

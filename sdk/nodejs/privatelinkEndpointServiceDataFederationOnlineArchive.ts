@@ -17,21 +17,31 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const atlas_project = new mongodbatlas.Project("atlas-project", {
  *     orgId: atlasOrgId,
  *     name: atlasProjectName,
  * });
- * const test = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
+ * const test = new aws.index.VpcEndpoint("test", {
+ *     vpcId: "vpc-7fc0a543",
+ *     serviceName: "<SERVICE-NAME>",
+ *     vpcEndpointType: "Interface",
+ *     subnetIds: ["subnet-de0406d2"],
+ *     securityGroupIds: ["sg-3f238186"],
+ * });
+ * const testPrivatelinkEndpointServiceDataFederationOnlineArchive = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
  *     projectId: atlas_project.id,
- *     endpointId: "vpce-046cf43c79424d4c9",
+ *     endpointId: test.id,
  *     providerName: "AWS",
  *     comment: "Test",
  *     region: "US_EAST_1",
- *     customerEndpointDnsName: "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
+ *     customerEndpointDnsName: test.dnsEntry[0].dnsName,
  * });
  * ```
+ *
+ * The `serviceName` value for the region in question can be found in the [MongoDB Atlas Administration](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) documentation.
  *
  * ## Import
  *

@@ -190,6 +190,12 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
         pulumi.export("expirationTime", ds_example.expiration_time)
         ```
 
+        ## Import
+
+        The resource can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+
+        For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/grantMongoDBEmployeeAccess).
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Human-readable label that identifies this cluster.
@@ -226,6 +232,12 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
         pulumi.export("grantType", ds_example.grant_type)
         pulumi.export("expirationTime", ds_example.expiration_time)
         ```
+
+        ## Import
+
+        The resource can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+
+        For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/grantMongoDBEmployeeAccess).
 
         :param str resource_name: The name of the resource.
         :param MongodbEmployeeAccessGrantArgs args: The arguments to use to populate this resource's properties.

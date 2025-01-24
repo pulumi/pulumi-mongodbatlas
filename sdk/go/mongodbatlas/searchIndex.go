@@ -192,7 +192,7 @@ type SearchIndex struct {
 	Analyzers pulumi.StringPtrOutput `pulumi:"analyzers"`
 	// The name of the cluster where you want to create the search index within.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
-	// Name of the collection the index is on.
+	// Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
 	CollectionName pulumi.StringOutput `pulumi:"collectionName"`
 	// Name of the database the collection is in.
 	Database pulumi.StringOutput `pulumi:"database"`
@@ -269,7 +269,7 @@ type searchIndexState struct {
 	Analyzers *string `pulumi:"analyzers"`
 	// The name of the cluster where you want to create the search index within.
 	ClusterName *string `pulumi:"clusterName"`
-	// Name of the collection the index is on.
+	// Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
 	CollectionName *string `pulumi:"collectionName"`
 	// Name of the database the collection is in.
 	Database *string `pulumi:"database"`
@@ -305,7 +305,7 @@ type SearchIndexState struct {
 	Analyzers pulumi.StringPtrInput
 	// The name of the cluster where you want to create the search index within.
 	ClusterName pulumi.StringPtrInput
-	// Name of the collection the index is on.
+	// Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
 	CollectionName pulumi.StringPtrInput
 	// Name of the database the collection is in.
 	Database pulumi.StringPtrInput
@@ -345,7 +345,7 @@ type searchIndexArgs struct {
 	Analyzers *string `pulumi:"analyzers"`
 	// The name of the cluster where you want to create the search index within.
 	ClusterName string `pulumi:"clusterName"`
-	// Name of the collection the index is on.
+	// Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
 	CollectionName string `pulumi:"collectionName"`
 	// Name of the database the collection is in.
 	Database string `pulumi:"database"`
@@ -378,7 +378,7 @@ type SearchIndexArgs struct {
 	Analyzers pulumi.StringPtrInput
 	// The name of the cluster where you want to create the search index within.
 	ClusterName pulumi.StringInput
-	// Name of the collection the index is on.
+	// Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
 	CollectionName pulumi.StringInput
 	// Name of the database the collection is in.
 	Database pulumi.StringInput
@@ -505,7 +505,7 @@ func (o SearchIndexOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
-// Name of the collection the index is on.
+// Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
 func (o SearchIndexOutput) CollectionName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.CollectionName }).(pulumi.StringOutput)
 }

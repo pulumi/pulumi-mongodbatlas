@@ -193,7 +193,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ClusterName { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the collection the index is on.
+        /// Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         /// </summary>
         [Output("collectionName")]
         public Output<string> CollectionName { get; private set; } = null!;
@@ -359,7 +359,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// Name of the collection the index is on.
+        /// Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         /// </summary>
         [Input("collectionName", required: true)]
         public Input<string> CollectionName { get; set; } = null!;
@@ -481,7 +481,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ClusterName { get; set; }
 
         /// <summary>
-        /// Name of the collection the index is on.
+        /// Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         /// </summary>
         [Input("collectionName")]
         public Input<string>? CollectionName { get; set; }

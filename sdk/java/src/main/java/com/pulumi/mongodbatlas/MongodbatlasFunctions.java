@@ -195,6 +195,10 @@ import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamInstancePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamInstancesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamProcessorPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
@@ -304,6 +308,8 @@ import com.pulumi.mongodbatlas.outputs.GetStreamConnectionResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamInstanceResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamInstancesInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamPrivatelinkEndpointResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamPrivatelinkEndpointsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamProcessorResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamProcessorsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamResult;
@@ -32124,6 +32130,116 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetStreamInstancesInvokeResult> getStreamInstancesPlain(GetStreamInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamInstances:getStreamInstances", TypeShape.of(GetStreamInstancesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
+     * 
+     * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args) {
+        return getStreamPrivatelinkEndpoint(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
+     * 
+     * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpointPlain(GetStreamPrivatelinkEndpointPlainArgs args) {
+        return getStreamPrivatelinkEndpointPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
+     * 
+     * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", TypeShape.of(GetStreamPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
+     * 
+     * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", TypeShape.of(GetStreamPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
+     * 
+     * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpointPlain(GetStreamPrivatelinkEndpointPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", TypeShape.of(GetStreamPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamPrivatelinkEndpoints
+     * 
+     * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args) {
+        return getStreamPrivatelinkEndpoints(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamPrivatelinkEndpoints
+     * 
+     * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpointsPlain(GetStreamPrivatelinkEndpointsPlainArgs args) {
+        return getStreamPrivatelinkEndpointsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamPrivatelinkEndpoints
+     * 
+     * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", TypeShape.of(GetStreamPrivatelinkEndpointsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamPrivatelinkEndpoints
+     * 
+     * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", TypeShape.of(GetStreamPrivatelinkEndpointsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamPrivatelinkEndpoints
+     * 
+     * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpointsPlain(GetStreamPrivatelinkEndpointsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", TypeShape.of(GetStreamPrivatelinkEndpointsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## # Data Source: mongodbatlas.StreamProcessor
