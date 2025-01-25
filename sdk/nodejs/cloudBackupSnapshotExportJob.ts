@@ -57,7 +57,7 @@ import * as utilities from "./utilities";
  *     autoExportEnabled: true,
  *     "export": {
  *         exportBucketId: _export.exportBucketId,
- *         frequencyType: "daily",
+ *         frequencyType: "weekly",
  *     },
  *     useOrgAndGroupNamesInExportPrefix: true,
  *     referenceHourOfDay: 7,

@@ -82,7 +82,7 @@ type LookupStreamConnectionResult struct {
 	ProjectId  string                        `pulumi:"projectId"`
 	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionSecurity `pulumi:"security"`
-	// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 }
 
@@ -175,7 +175,7 @@ func (o LookupStreamConnectionResultOutput) Security() GetStreamConnectionSecuri
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionSecurity { return v.Security }).(GetStreamConnectionSecurityOutput)
 }
 
-// Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o LookupStreamConnectionResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.Type }).(pulumi.StringOutput)
 }

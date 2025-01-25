@@ -377,7 +377,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             auto_export_enabled=True,
             export={
                 "export_bucket_id": export.export_bucket_id,
-                "frequency_type": "daily",
+                "frequency_type": "weekly",
             },
             use_org_and_group_names_in_export_prefix=True,
             reference_hour_of_day=7,
@@ -476,7 +476,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             auto_export_enabled=True,
             export={
                 "export_bucket_id": export.export_bucket_id,
-                "frequency_type": "daily",
+                "frequency_type": "weekly",
             },
             use_org_and_group_names_in_export_prefix=True,
             reference_hour_of_day=7,

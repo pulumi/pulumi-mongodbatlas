@@ -258,6 +258,12 @@ class PushBasedLogExport(pulumi.CustomResource):
         pulumi.export("test", test.prefix_path)
         ```
 
+        ## Import
+
+        Push-based log export resource can be imported using the project ID, e.g.
+
+        For more information see: [MongoDB Atlas API - Push-Based Log Export](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Push-Based-Log-Export) Documentation.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket_name: The name of the bucket to which the agent sends the logs to.
@@ -302,6 +308,12 @@ class PushBasedLogExport(pulumi.CustomResource):
         test = mongodbatlas.get_push_based_log_export_output(project_id=test_push_based_log_export.project_id)
         pulumi.export("test", test.prefix_path)
         ```
+
+        ## Import
+
+        Push-based log export resource can be imported using the project ID, e.g.
+
+        For more information see: [MongoDB Atlas API - Push-Based Log Export](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Push-Based-Log-Export) Documentation.
 
         :param str resource_name: The name of the resource.
         :param PushBasedLogExportArgs args: The arguments to use to populate this resource's properties.

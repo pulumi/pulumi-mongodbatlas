@@ -35,6 +35,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.Project;
  * import com.pulumi.mongodbatlas.ProjectArgs;
+ * import com.pulumi.aws.vpcEndpoint;
+ * import com.pulumi.aws.VpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
  * import java.util.List;
@@ -55,13 +57,21 @@ import javax.annotation.Nullable;
  *             .name(atlasProjectName)
  *             .build());
  * 
- *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
+ *         var test = new VpcEndpoint("test", VpcEndpointArgs.builder()
+ *             .vpcId("vpc-7fc0a543")
+ *             .serviceName("<SERVICE-NAME>")
+ *             .vpcEndpointType("Interface")
+ *             .subnetIds("subnet-de0406d2")
+ *             .securityGroupIds("sg-3f238186")
+ *             .build());
+ * 
+ *         var testPrivatelinkEndpointServiceDataFederationOnlineArchive = new PrivatelinkEndpointServiceDataFederationOnlineArchive("testPrivatelinkEndpointServiceDataFederationOnlineArchive", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
  *             .projectId(atlas_project.id())
- *             .endpointId("vpce-046cf43c79424d4c9")
+ *             .endpointId(test.id())
  *             .providerName("AWS")
  *             .comment("Test")
  *             .region("US_EAST_1")
- *             .customerEndpointDnsName("vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
+ *             .customerEndpointDnsName(test.dnsEntry()[0].dnsName())
  *             .build());
  * 
  *     }
@@ -69,6 +79,8 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * The `service_name` value for the region in question can be found in the [MongoDB Atlas Administration](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) documentation.
  * 
  * ## Import
  * 

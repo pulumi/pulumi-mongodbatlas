@@ -104,6 +104,12 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
+ * 
+ * For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
+ * 
  */
 @ResourceType(type="mongodbatlas:index/searchDeployment:SearchDeployment")
 public class SearchDeployment extends com.pulumi.resources.CustomResource {

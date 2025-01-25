@@ -17,7 +17,7 @@ public final class CloudBackupScheduleExport {
      */
     private @Nullable String exportBucketId;
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
      * 
      */
     private @Nullable String frequencyType;
@@ -31,7 +31,7 @@ public final class CloudBackupScheduleExport {
         return Optional.ofNullable(this.exportBucketId);
     }
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
      * 
      */
     public Optional<String> frequencyType() {

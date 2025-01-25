@@ -64,14 +64,14 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Name of the collection the index is on.
+     * Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
      * 
      */
     @Import(name="collectionName")
     private @Nullable Output<String> collectionName;
 
     /**
-     * @return Name of the collection the index is on.
+     * @return Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
      * 
      */
     public Optional<Output<String>> collectionName() {
@@ -369,7 +369,7 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param collectionName Name of the collection the index is on.
+         * @param collectionName Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
          * 
          * @return builder
          * 
@@ -380,7 +380,7 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param collectionName Name of the collection the index is on.
+         * @param collectionName Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
          * 
          * @return builder
          * 

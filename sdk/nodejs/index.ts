@@ -615,6 +615,16 @@ export const getStreamInstances: typeof import("./getStreamInstances").getStream
 export const getStreamInstancesOutput: typeof import("./getStreamInstances").getStreamInstancesOutput = null as any;
 utilities.lazyLoad(exports, ["getStreamInstances","getStreamInstancesOutput"], () => require("./getStreamInstances"));
 
+export { GetStreamPrivatelinkEndpointArgs, GetStreamPrivatelinkEndpointResult, GetStreamPrivatelinkEndpointOutputArgs } from "./getStreamPrivatelinkEndpoint";
+export const getStreamPrivatelinkEndpoint: typeof import("./getStreamPrivatelinkEndpoint").getStreamPrivatelinkEndpoint = null as any;
+export const getStreamPrivatelinkEndpointOutput: typeof import("./getStreamPrivatelinkEndpoint").getStreamPrivatelinkEndpointOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamPrivatelinkEndpoint","getStreamPrivatelinkEndpointOutput"], () => require("./getStreamPrivatelinkEndpoint"));
+
+export { GetStreamPrivatelinkEndpointsArgs, GetStreamPrivatelinkEndpointsResult, GetStreamPrivatelinkEndpointsOutputArgs } from "./getStreamPrivatelinkEndpoints";
+export const getStreamPrivatelinkEndpoints: typeof import("./getStreamPrivatelinkEndpoints").getStreamPrivatelinkEndpoints = null as any;
+export const getStreamPrivatelinkEndpointsOutput: typeof import("./getStreamPrivatelinkEndpoints").getStreamPrivatelinkEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamPrivatelinkEndpoints","getStreamPrivatelinkEndpointsOutput"], () => require("./getStreamPrivatelinkEndpoints"));
+
 export { GetStreamProcessorArgs, GetStreamProcessorResult, GetStreamProcessorOutputArgs } from "./getStreamProcessor";
 export const getStreamProcessor: typeof import("./getStreamProcessor").getStreamProcessor = null as any;
 export const getStreamProcessorOutput: typeof import("./getStreamProcessor").getStreamProcessorOutput = null as any;
@@ -785,6 +795,11 @@ export type StreamInstance = import("./streamInstance").StreamInstance;
 export const StreamInstance: typeof import("./streamInstance").StreamInstance = null as any;
 utilities.lazyLoad(exports, ["StreamInstance"], () => require("./streamInstance"));
 
+export { StreamPrivatelinkEndpointArgs, StreamPrivatelinkEndpointState } from "./streamPrivatelinkEndpoint";
+export type StreamPrivatelinkEndpoint = import("./streamPrivatelinkEndpoint").StreamPrivatelinkEndpoint;
+export const StreamPrivatelinkEndpoint: typeof import("./streamPrivatelinkEndpoint").StreamPrivatelinkEndpoint = null as any;
+utilities.lazyLoad(exports, ["StreamPrivatelinkEndpoint"], () => require("./streamPrivatelinkEndpoint"));
+
 export { StreamProcessorArgs, StreamProcessorState } from "./streamProcessor";
 export type StreamProcessor = import("./streamProcessor").StreamProcessor;
 export const StreamProcessor: typeof import("./streamProcessor").StreamProcessor = null as any;
@@ -930,6 +945,8 @@ const _module = {
                 return new StreamConnection(name, <any>undefined, { urn })
             case "mongodbatlas:index/streamInstance:StreamInstance":
                 return new StreamInstance(name, <any>undefined, { urn })
+            case "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint":
+                return new StreamPrivatelinkEndpoint(name, <any>undefined, { urn })
             case "mongodbatlas:index/streamProcessor:StreamProcessor":
                 return new StreamProcessor(name, <any>undefined, { urn })
             case "mongodbatlas:index/team:Team":
@@ -998,6 +1015,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _modu
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/serverlessInstance", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamConnection", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamInstance", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamPrivatelinkEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamProcessor", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/teams", _module)

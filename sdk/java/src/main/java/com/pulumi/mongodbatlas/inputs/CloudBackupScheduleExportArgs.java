@@ -31,14 +31,14 @@ public final class CloudBackupScheduleExportArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
      * 
      */
     @Import(name="frequencyType")
     private @Nullable Output<String> frequencyType;
 
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
      * 
      */
     public Optional<Output<String>> frequencyType() {
@@ -92,7 +92,7 @@ public final class CloudBackupScheduleExportArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param frequencyType Frequency associated with the export snapshot item.
+         * @param frequencyType Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class CloudBackupScheduleExportArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param frequencyType Frequency associated with the export snapshot item.
+         * @param frequencyType Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
          * 
          * @return builder
          * 

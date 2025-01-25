@@ -188,6 +188,12 @@ class SearchDeployment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
+
+        For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
@@ -210,6 +216,12 @@ class SearchDeployment(pulumi.CustomResource):
         > **NOTE:** Only a single search deployment resource can be defined for each cluster.
 
         ## Example Usage
+
+        ## Import
+
+        Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
+
+        For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
 
         :param str resource_name: The name of the resource.
         :param SearchDeploymentArgs args: The arguments to use to populate this resource's properties.

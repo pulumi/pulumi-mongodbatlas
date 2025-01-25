@@ -14,13 +14,21 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetStreamConnectionsResultNetworkingAccessResult
     {
         /// <summary>
-        /// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        /// Id of the Private Link connection when type is `PRIVATE_LINK`.
+        /// </summary>
+        public readonly string ConnectionId;
+        /// <summary>
+        /// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
-        private GetStreamConnectionsResultNetworkingAccessResult(string type)
+        private GetStreamConnectionsResultNetworkingAccessResult(
+            string connectionId,
+
+            string type)
         {
+            ConnectionId = connectionId;
             Type = type;
         }
     }

@@ -81,7 +81,7 @@ namespace Pulumi.Mongodbatlas
     ///         Export = new Mongodbatlas.Inputs.CloudBackupScheduleExportArgs
     ///         {
     ///             ExportBucketId = export.ExportBucketId,
-    ///             FrequencyType = "daily",
+    ///             FrequencyType = "weekly",
     ///         },
     ///         UseOrgAndGroupNamesInExportPrefix = true,
     ///         ReferenceHourOfDay = 7,

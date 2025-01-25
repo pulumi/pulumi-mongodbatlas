@@ -389,6 +389,7 @@ __all__ = [
     'GetStreamInstancesResultResult',
     'GetStreamInstancesResultDataProcessRegionResult',
     'GetStreamInstancesResultStreamConfigResult',
+    'GetStreamPrivatelinkEndpointsResultResult',
     'GetStreamProcessorOptionsResult',
     'GetStreamProcessorOptionsDlqResult',
     'GetStreamProcessorsResultResult',
@@ -3051,7 +3052,7 @@ class CloudBackupScheduleExport(dict):
                  frequency_type: Optional[str] = None):
         """
         :param str export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
-        :param str frequency_type: Frequency associated with the export snapshot item.
+        :param str frequency_type: Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
         """
         if export_bucket_id is not None:
             pulumi.set(__self__, "export_bucket_id", export_bucket_id)
@@ -3070,7 +3071,7 @@ class CloudBackupScheduleExport(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
         """
-        Frequency associated with the export snapshot item.
+        Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
         """
         return pulumi.get(self, "frequency_type")
 
@@ -8355,20 +8356,49 @@ class StreamConnectionNetworking(dict):
 
 @pulumi.output_type
 class StreamConnectionNetworkingAccess(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionId":
+            suggest = "connection_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamConnectionNetworkingAccess. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamConnectionNetworkingAccess.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamConnectionNetworkingAccess.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 type: str):
+                 type: str,
+                 connection_id: Optional[str] = None):
         """
-        :param str type: Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        :param str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        :param str connection_id: Id of the Private Link connection when type is `PRIVATE_LINK`.
         """
         pulumi.set(__self__, "type", type)
+        if connection_id is not None:
+            pulumi.set(__self__, "connection_id", connection_id)
 
     @property
     @pulumi.getter
     def type(self) -> str:
         """
-        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> Optional[str]:
+        """
+        Id of the Private Link connection when type is `PRIVATE_LINK`.
+        """
+        return pulumi.get(self, "connection_id")
 
 
 @pulumi.output_type
@@ -23047,7 +23077,7 @@ class GetStreamConnectionDbRoleToExecuteResult(dict):
                  type: str):
         """
         :param str role: The name of the role to use. Can be a built in role or a custom role.
-        :param str type: Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        :param str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -23064,7 +23094,7 @@ class GetStreamConnectionDbRoleToExecuteResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 
@@ -23090,17 +23120,28 @@ class GetStreamConnectionNetworkingResult(dict):
 @pulumi.output_type
 class GetStreamConnectionNetworkingAccessResult(dict):
     def __init__(__self__, *,
+                 connection_id: str,
                  type: str):
         """
-        :param str type: Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        :param str connection_id: Id of the Private Link connection when type is `PRIVATE_LINK`.
+        :param str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
+        pulumi.set(__self__, "connection_id", connection_id)
         pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> str:
+        """
+        Id of the Private Link connection when type is `PRIVATE_LINK`.
+        """
+        return pulumi.get(self, "connection_id")
 
     @property
     @pulumi.getter
     def type(self) -> str:
         """
-        Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 
@@ -23160,7 +23201,7 @@ class GetStreamConnectionsResultResult(dict):
         :param 'GetStreamConnectionsResultNetworkingArgs' networking: Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
         :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param 'GetStreamConnectionsResultSecurityArgs' security: Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
-        :param str type: Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        :param str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         pulumi.set(__self__, "authentication", authentication)
         pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
@@ -23264,7 +23305,7 @@ class GetStreamConnectionsResultResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 
@@ -23316,7 +23357,7 @@ class GetStreamConnectionsResultDbRoleToExecuteResult(dict):
                  type: str):
         """
         :param str role: The name of the role to use. Can be a built in role or a custom role.
-        :param str type: Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        :param str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -23333,7 +23374,7 @@ class GetStreamConnectionsResultDbRoleToExecuteResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 
@@ -23359,17 +23400,28 @@ class GetStreamConnectionsResultNetworkingResult(dict):
 @pulumi.output_type
 class GetStreamConnectionsResultNetworkingAccessResult(dict):
     def __init__(__self__, *,
+                 connection_id: str,
                  type: str):
         """
-        :param str type: Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        :param str connection_id: Id of the Private Link connection when type is `PRIVATE_LINK`.
+        :param str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
+        pulumi.set(__self__, "connection_id", connection_id)
         pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> str:
+        """
+        Id of the Private Link connection when type is `PRIVATE_LINK`.
+        """
+        return pulumi.get(self, "connection_id")
 
     @property
     @pulumi.getter
     def type(self) -> str:
         """
-        Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
 
@@ -23564,6 +23616,123 @@ class GetStreamInstancesResultStreamConfigResult(dict):
         Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
         """
         return pulumi.get(self, "tier")
+
+
+@pulumi.output_type
+class GetStreamPrivatelinkEndpointsResultResult(dict):
+    def __init__(__self__, *,
+                 dns_domain: str,
+                 dns_sub_domains: Sequence[str],
+                 id: str,
+                 interface_endpoint_id: str,
+                 project_id: str,
+                 provider_name: str,
+                 region: str,
+                 service_endpoint_id: str,
+                 state: str,
+                 vendor: str):
+        """
+        :param str dns_domain: Domain name of Privatelink connected cluster.
+        :param Sequence[str] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones.
+        :param str id: The ID of the Private Link connection.
+        :param str interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
+        :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param str provider_name: Provider where the Kafka cluster is deployed.
+        :param str region: Domain name of Confluent cluster.
+        :param str service_endpoint_id: Service Endpoint ID.
+        :param str state: Status of the connection.
+        :param str vendor: Vendor who manages the Kafka cluster.
+        """
+        pulumi.set(__self__, "dns_domain", dns_domain)
+        pulumi.set(__self__, "dns_sub_domains", dns_sub_domains)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "service_endpoint_id", service_endpoint_id)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @property
+    @pulumi.getter(name="dnsDomain")
+    def dns_domain(self) -> str:
+        """
+        Domain name of Privatelink connected cluster.
+        """
+        return pulumi.get(self, "dns_domain")
+
+    @property
+    @pulumi.getter(name="dnsSubDomains")
+    def dns_sub_domains(self) -> Sequence[str]:
+        """
+        Sub-Domain name of Confluent cluster. These are typically your availability zones.
+        """
+        return pulumi.get(self, "dns_sub_domains")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Private Link connection.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="interfaceEndpointId")
+    def interface_endpoint_id(self) -> str:
+        """
+        Interface endpoint ID that is created from the specified service endpoint ID.
+        """
+        return pulumi.get(self, "interface_endpoint_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Provider where the Kafka cluster is deployed.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Domain name of Confluent cluster.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="serviceEndpointId")
+    def service_endpoint_id(self) -> str:
+        """
+        Service Endpoint ID.
+        """
+        return pulumi.get(self, "service_endpoint_id")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        Status of the connection.
+        """
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def vendor(self) -> str:
+        """
+        Vendor who manages the Kafka cluster.
+        """
+        return pulumi.get(self, "vendor")
 
 
 @pulumi.output_type

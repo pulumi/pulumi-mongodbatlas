@@ -93,7 +93,7 @@ import (
 //				AutoExportEnabled: pulumi.Bool(true),
 //				Export: &mongodbatlas.CloudBackupScheduleExportArgs{
 //					ExportBucketId: export.ExportBucketId,
-//					FrequencyType:  pulumi.String("daily"),
+//					FrequencyType:  pulumi.String("weekly"),
 //				},
 //				UseOrgAndGroupNamesInExportPrefix: pulumi.Bool(true),
 //				ReferenceHourOfDay:                pulumi.Int(7),

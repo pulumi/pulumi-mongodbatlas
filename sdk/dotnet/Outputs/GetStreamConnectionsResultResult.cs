@@ -55,7 +55,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultSecurityResult Security;
         /// <summary>
-        /// Networking type. Either `PUBLIC` or `VPC`. Default is `PUBLIC`.
+        /// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         /// </summary>
         public readonly string Type;
 

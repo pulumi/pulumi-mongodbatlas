@@ -824,6 +824,15 @@
                     }
                 }
             },
+            "mongodbatlas_stream_privatelink_endpoint": {
+                "current": "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint",
+                "majorVersion": 3,
+                "fields": {
+                    "dns_sub_domain": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_stream_processor": {
                 "current": "mongodbatlas:index/streamProcessor:StreamProcessor",
                 "majorVersion": 3
@@ -2695,6 +2704,31 @@
                     }
                 }
             },
+            "mongodbatlas_stream_privatelink_endpoint": {
+                "current": "mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint",
+                "majorVersion": 3,
+                "fields": {
+                    "dns_sub_domain": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_stream_privatelink_endpoints": {
+                "current": "mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dns_sub_domain": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "mongodbatlas_stream_processor": {
                 "current": "mongodbatlas:index/getStreamProcessor:getStreamProcessor",
                 "majorVersion": 3
@@ -2828,6 +2862,7 @@
             "mongodbatlas:index/serverlessInstance:ServerlessInstance": 0,
             "mongodbatlas:index/streamConnection:StreamConnection": 1,
             "mongodbatlas:index/streamInstance:StreamInstance": 1,
+            "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint": 1,
             "mongodbatlas:index/streamProcessor:StreamProcessor": 1,
             "mongodbatlas:index/team:Team": 0,
             "mongodbatlas:index/teams:Teams": 0,
@@ -2930,6 +2965,8 @@
             "mongodbatlas:index/getStreamConnections:getStreamConnections": 1,
             "mongodbatlas:index/getStreamInstance:getStreamInstance": 1,
             "mongodbatlas:index/getStreamInstances:getStreamInstances": 1,
+            "mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint": 1,
+            "mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints": 1,
             "mongodbatlas:index/getStreamProcessor:getStreamProcessor": 1,
             "mongodbatlas:index/getStreamProcessors:getStreamProcessors": 1,
             "mongodbatlas:index/getTeam:getTeam": 0,

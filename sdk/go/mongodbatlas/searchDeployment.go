@@ -21,6 +21,12 @@ import (
 // > **NOTE:** Only a single search deployment resource can be defined for each cluster.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
+//
+// For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
 type SearchDeployment struct {
 	pulumi.CustomResourceState
 

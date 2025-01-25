@@ -55,7 +55,7 @@ public final class GetStreamConnectionResult {
      */
     private GetStreamConnectionSecurity security;
     /**
-     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     private String type;
@@ -123,7 +123,7 @@ public final class GetStreamConnectionResult {
         return this.security;
     }
     /**
-     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     public String type() {

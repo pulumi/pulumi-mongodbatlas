@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class StreamConnectionNetworkingAccessArgs extends com.pulumi.resources.ResourceArgs {
@@ -15,14 +17,29 @@ public final class StreamConnectionNetworkingAccessArgs extends com.pulumi.resou
     public static final StreamConnectionNetworkingAccessArgs Empty = new StreamConnectionNetworkingAccessArgs();
 
     /**
-     * Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * Id of the Private Link connection when type is `PRIVATE_LINK`.
+     * 
+     */
+    @Import(name="connectionId")
+    private @Nullable Output<String> connectionId;
+
+    /**
+     * @return Id of the Private Link connection when type is `PRIVATE_LINK`.
+     * 
+     */
+    public Optional<Output<String>> connectionId() {
+        return Optional.ofNullable(this.connectionId);
+    }
+
+    /**
+     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     public Output<String> type() {
@@ -32,6 +49,7 @@ public final class StreamConnectionNetworkingAccessArgs extends com.pulumi.resou
     private StreamConnectionNetworkingAccessArgs() {}
 
     private StreamConnectionNetworkingAccessArgs(StreamConnectionNetworkingAccessArgs $) {
+        this.connectionId = $.connectionId;
         this.type = $.type;
     }
 
@@ -54,7 +72,28 @@ public final class StreamConnectionNetworkingAccessArgs extends com.pulumi.resou
         }
 
         /**
-         * @param type Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+         * @param connectionId Id of the Private Link connection when type is `PRIVATE_LINK`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionId(@Nullable Output<String> connectionId) {
+            $.connectionId = connectionId;
+            return this;
+        }
+
+        /**
+         * @param connectionId Id of the Private Link connection when type is `PRIVATE_LINK`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionId(String connectionId) {
+            return connectionId(Output.of(connectionId));
+        }
+
+        /**
+         * @param type Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
          * 
          * @return builder
          * 
@@ -65,7 +104,7 @@ public final class StreamConnectionNetworkingAccessArgs extends com.pulumi.resou
         }
 
         /**
-         * @param type Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+         * @param type Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
          * 
          * @return builder
          * 

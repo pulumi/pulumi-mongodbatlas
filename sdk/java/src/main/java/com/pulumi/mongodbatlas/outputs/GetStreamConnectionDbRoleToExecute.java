@@ -16,7 +16,7 @@ public final class GetStreamConnectionDbRoleToExecute {
      */
     private String role;
     /**
-     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     private String type;
@@ -30,7 +30,7 @@ public final class GetStreamConnectionDbRoleToExecute {
         return this.role;
     }
     /**
-     * @return Selected networking type. Either `PUBLIC` or `VPC`. Defaults to `PUBLIC`.
+     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      * 
      */
     public String type() {

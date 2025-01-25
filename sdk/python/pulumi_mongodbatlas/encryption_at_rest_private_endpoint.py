@@ -245,6 +245,14 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
             }))
         ```
 
+        ## Import
+
+        Encryption At Rest Private Endpoint resource can be imported using the project ID, cloud provider, and private endpoint ID. The format must be `{project_id}-{cloud_provider}-{private_endpoint_id}` e.g.
+
+        For more information see:
+        - [MongoDB Atlas API - Private Endpoint for Encryption at Rest Using Customer Key Management](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Encryption-at-Rest-using-Customer-Key-Management/operation/getEncryptionAtRestPrivateEndpoint) Documentation.
+        - [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/).
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
@@ -319,6 +327,14 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
                 },
             }))
         ```
+
+        ## Import
+
+        Encryption At Rest Private Endpoint resource can be imported using the project ID, cloud provider, and private endpoint ID. The format must be `{project_id}-{cloud_provider}-{private_endpoint_id}` e.g.
+
+        For more information see:
+        - [MongoDB Atlas API - Private Endpoint for Encryption at Rest Using Customer Key Management](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Encryption-at-Rest-using-Customer-Key-Management/operation/getEncryptionAtRestPrivateEndpoint) Documentation.
+        - [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/).
 
         :param str resource_name: The name of the resource.
         :param EncryptionAtRestPrivateEndpointArgs args: The arguments to use to populate this resource's properties.
