@@ -566,6 +566,10 @@
                     }
                 }
             },
+            "mongodbatlas_flex_cluster": {
+                "current": "mongodbatlas:index/flexCluster:FlexCluster",
+                "majorVersion": 3
+            },
             "mongodbatlas_global_cluster_config": {
                 "current": "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig",
                 "majorVersion": 3,
@@ -777,6 +781,15 @@
             "mongodbatlas_push_based_log_export": {
                 "current": "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport",
                 "majorVersion": 3
+            },
+            "mongodbatlas_resource_policy": {
+                "current": "mongodbatlas:index/resourcePolicy:ResourcePolicy",
+                "majorVersion": 3,
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "mongodbatlas_search_deployment": {
                 "current": "mongodbatlas:index/searchDeployment:SearchDeployment",
@@ -2174,6 +2187,19 @@
                     }
                 }
             },
+            "mongodbatlas_flex_cluster": {
+                "current": "mongodbatlas:index/getFlexCluster:getFlexCluster",
+                "majorVersion": 3
+            },
+            "mongodbatlas_flex_clusters": {
+                "current": "mongodbatlas:index/getFlexClusters:getFlexClusters",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_global_cluster_config": {
                 "current": "mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig",
                 "majorVersion": 3,
@@ -2565,6 +2591,41 @@
                 "current": "mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport",
                 "majorVersion": 3
             },
+            "mongodbatlas_resource_policies": {
+                "current": "mongodbatlas:index/getResourcePolicies:getResourcePolicies",
+                "majorVersion": 3,
+                "fields": {
+                    "resource_policies": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "policies": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "policies": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mongodbatlas_resource_policy": {
+                "current": "mongodbatlas:index/getResourcePolicy:getResourcePolicy",
+                "majorVersion": 3,
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_roles_org_id": {
                 "current": "mongodbatlas:index/getRolesOrgId:getRolesOrgId",
                 "majorVersion": 3
@@ -2836,6 +2897,7 @@
             "mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider": 0,
             "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig": 0,
             "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping": 0,
+            "mongodbatlas:index/flexCluster:FlexCluster": 1,
             "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig": 0,
             "mongodbatlas:index/ldapConfiguration:LdapConfiguration": 0,
             "mongodbatlas:index/ldapVerify:LdapVerify": 0,
@@ -2857,6 +2919,7 @@
             "mongodbatlas:index/projectInvitation:ProjectInvitation": 0,
             "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList": 1,
             "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport": 1,
+            "mongodbatlas:index/resourcePolicy:ResourcePolicy": 1,
             "mongodbatlas:index/searchDeployment:SearchDeployment": 1,
             "mongodbatlas:index/searchIndex:SearchIndex": 0,
             "mongodbatlas:index/serverlessInstance:ServerlessInstance": 0,
@@ -2922,6 +2985,8 @@
             "mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs": 0,
             "mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping": 0,
             "mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings": 0,
+            "mongodbatlas:index/getFlexCluster:getFlexCluster": 1,
+            "mongodbatlas:index/getFlexClusters:getFlexClusters": 1,
             "mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig": 0,
             "mongodbatlas:index/getLdapConfiguration:getLdapConfiguration": 0,
             "mongodbatlas:index/getLdapVerify:getLdapVerify": 0,
@@ -2951,6 +3016,8 @@
             "mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses": 1,
             "mongodbatlas:index/getProjects:getProjects": 1,
             "mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport": 1,
+            "mongodbatlas:index/getResourcePolicies:getResourcePolicies": 1,
+            "mongodbatlas:index/getResourcePolicy:getResourcePolicy": 1,
             "mongodbatlas:index/getRolesOrgId:getRolesOrgId": 0,
             "mongodbatlas:index/getSearchDeployment:getSearchDeployment": 1,
             "mongodbatlas:index/getSearchIndex:getSearchIndex": 0,
