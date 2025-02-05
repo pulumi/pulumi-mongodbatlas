@@ -75,6 +75,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FederatedSettingsOrgConfig{}
 	case "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping":
 		r = &FederatedSettingsOrgRoleMapping{}
+	case "mongodbatlas:index/flexCluster:FlexCluster":
+		r = &FlexCluster{}
 	case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
 		r = &GlobalClusterConfig{}
 	case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
@@ -117,6 +119,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ProjectIpAccessList{}
 	case "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport":
 		r = &PushBasedLogExport{}
+	case "mongodbatlas:index/resourcePolicy:ResourcePolicy":
+		r = &ResourcePolicy{}
 	case "mongodbatlas:index/searchDeployment:SearchDeployment":
 		r = &SearchDeployment{}
 	case "mongodbatlas:index/searchIndex:SearchIndex":
@@ -307,6 +311,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/flexCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/globalClusterConfig",
 		&module{version},
 	)
@@ -408,6 +417,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/pushBasedLogExport",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/resourcePolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

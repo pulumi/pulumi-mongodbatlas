@@ -1656,6 +1656,43 @@ export interface FederatedSettingsOrgRoleMappingRoleAssignment {
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface FlexClusterBackupSettings {
+    /**
+     * Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     */
+    enabled?: pulumi.Input<boolean>;
+}
+
+export interface FlexClusterConnectionStrings {
+    /**
+     * Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+     */
+    standard?: pulumi.Input<string>;
+    /**
+     * Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+     */
+    standardSrv?: pulumi.Input<string>;
+}
+
+export interface FlexClusterProviderSettings {
+    /**
+     * Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+     */
+    backingProviderName: pulumi.Input<string>;
+    /**
+     * Storage capacity available to the flex cluster expressed in gigabytes.
+     */
+    diskSizeGb?: pulumi.Input<number>;
+    /**
+     * Human-readable label that identifies the cloud service provider.
+     */
+    providerName?: pulumi.Input<string>;
+    /**
+     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     */
+    regionName: pulumi.Input<string>;
+}
+
 export interface GetAlertConfigurationOutput {
     label?: string;
     type: string;
@@ -2134,6 +2171,39 @@ export interface PushBasedLogExportTimeouts {
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
     update?: pulumi.Input<string>;
+}
+
+export interface ResourcePolicyCreatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name?: pulumi.Input<string>;
+}
+
+export interface ResourcePolicyLastUpdatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name?: pulumi.Input<string>;
+}
+
+export interface ResourcePolicyPolicy {
+    /**
+     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+     */
+    body: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal character string that identifies the policy.
+     */
+    id?: pulumi.Input<string>;
 }
 
 export interface SearchDeploymentSpec {

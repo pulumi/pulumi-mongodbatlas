@@ -1656,6 +1656,43 @@ export interface FederatedSettingsOrgRoleMappingRoleAssignment {
     roles?: string[];
 }
 
+export interface FlexClusterBackupSettings {
+    /**
+     * Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     */
+    enabled: boolean;
+}
+
+export interface FlexClusterConnectionStrings {
+    /**
+     * Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+     */
+    standard: string;
+    /**
+     * Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+     */
+    standardSrv: string;
+}
+
+export interface FlexClusterProviderSettings {
+    /**
+     * Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+     */
+    backingProviderName: string;
+    /**
+     * Storage capacity available to the flex cluster expressed in gigabytes.
+     */
+    diskSizeGb: number;
+    /**
+     * Human-readable label that identifies the cloud service provider.
+     */
+    providerName: string;
+    /**
+     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     */
+    regionName: string;
+}
+
 export interface Get509AuthenticationDatabaseUserCertificate {
     createdAt: string;
     groupId: string;
@@ -5767,6 +5804,135 @@ export interface GetFederatedSettingsOrgRoleMappingsResultRoleAssignment {
     role: string;
 }
 
+export interface GetFlexClusterBackupSettings {
+    /**
+     * Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     */
+    enabled: boolean;
+}
+
+export interface GetFlexClusterConnectionStrings {
+    /**
+     * Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+     */
+    standard: string;
+    /**
+     * Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+     */
+    standardSrv: string;
+}
+
+export interface GetFlexClusterProviderSettings {
+    /**
+     * Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+     */
+    backingProviderName: string;
+    /**
+     * Storage capacity available to the flex cluster expressed in gigabytes.
+     */
+    diskSizeGb: number;
+    /**
+     * Human-readable label that identifies the cloud service provider.
+     */
+    providerName: string;
+    /**
+     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     */
+    regionName: string;
+}
+
+export interface GetFlexClustersResult {
+    /**
+     * Flex backup configuration
+     */
+    backupSettings: outputs.GetFlexClustersResultBackupSettings;
+    /**
+     * Flex cluster topology.
+     */
+    clusterType: string;
+    /**
+     * Collection of Uniform Resource Locators that point to the MongoDB database.
+     */
+    connectionStrings: outputs.GetFlexClustersResultConnectionStrings;
+    /**
+     * Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
+     */
+    createDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the instance.
+     */
+    id: string;
+    /**
+     * Version of MongoDB that the instance runs.
+     */
+    mongoDbVersion: string;
+    /**
+     * Human-readable label that identifies the instance.
+     */
+    name: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies the project.
+     */
+    projectId: string;
+    /**
+     * Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+     */
+    providerSettings: outputs.GetFlexClustersResultProviderSettings;
+    /**
+     * Human-readable label that indicates the current operating condition of this instance.
+     */
+    stateName: string;
+    /**
+     * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
+     */
+    tags: {[key: string]: string};
+    /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled: boolean;
+    /**
+     * Method by which the cluster maintains the MongoDB versions.
+     */
+    versionReleaseSystem: string;
+}
+
+export interface GetFlexClustersResultBackupSettings {
+    /**
+     * Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     */
+    enabled: boolean;
+}
+
+export interface GetFlexClustersResultConnectionStrings {
+    /**
+     * Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+     */
+    standard: string;
+    /**
+     * Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+     */
+    standardSrv: string;
+}
+
+export interface GetFlexClustersResultProviderSettings {
+    /**
+     * Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+     */
+    backingProviderName: string;
+    /**
+     * Storage capacity available to the flex cluster expressed in gigabytes.
+     */
+    diskSizeGb: number;
+    /**
+     * Human-readable label that identifies the cloud service provider.
+     */
+    providerName: string;
+    /**
+     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     */
+    regionName: string;
+}
+
 export interface GetGlobalClusterConfigManagedNamespace {
     /**
      * (Required) The name of the collection associated with the managed namespace.
@@ -6379,6 +6545,183 @@ export interface GetProjectsResultTeam {
      * The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
      */
     teamId: string;
+}
+
+export interface GetResourcePoliciesResourcePolicy {
+    /**
+     * The user that last updated the Atlas resource policy.
+     */
+    createdByUser: outputs.GetResourcePoliciesResourcePolicyCreatedByUser;
+    /**
+     * Date and time in UTC when the Atlas resource policy was created.
+     */
+    createdDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
+     */
+    id: string;
+    /**
+     * The user that last updated the Atlas resource policy.
+     */
+    lastUpdatedByUser: outputs.GetResourcePoliciesResourcePolicyLastUpdatedByUser;
+    /**
+     * Date and time in UTC when the Atlas resource policy was last updated.
+     */
+    lastUpdatedDate: string;
+    /**
+     * Human-readable label that describes the Atlas resource policy.
+     */
+    name: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     */
+    orgId: string;
+    /**
+     * List of policies that make up the Atlas resource policy.
+     */
+    policies: outputs.GetResourcePoliciesResourcePolicyPolicy[];
+    /**
+     * A string that identifies the version of the Atlas resource policy.
+     */
+    version: string;
+}
+
+export interface GetResourcePoliciesResourcePolicyCreatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id: string;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name: string;
+}
+
+export interface GetResourcePoliciesResourcePolicyLastUpdatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id: string;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name: string;
+}
+
+export interface GetResourcePoliciesResourcePolicyPolicy {
+    /**
+     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+     */
+    body: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies the policy.
+     */
+    id: string;
+}
+
+export interface GetResourcePoliciesResult {
+    /**
+     * The user that last updated the Atlas resource policy.
+     */
+    createdByUser: outputs.GetResourcePoliciesResultCreatedByUser;
+    /**
+     * Date and time in UTC when the Atlas resource policy was created.
+     */
+    createdDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
+     */
+    id: string;
+    /**
+     * The user that last updated the Atlas resource policy.
+     */
+    lastUpdatedByUser: outputs.GetResourcePoliciesResultLastUpdatedByUser;
+    /**
+     * Date and time in UTC when the Atlas resource policy was last updated.
+     */
+    lastUpdatedDate: string;
+    /**
+     * Human-readable label that describes the Atlas resource policy.
+     */
+    name: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     */
+    orgId: string;
+    /**
+     * List of policies that make up the Atlas resource policy.
+     */
+    policies: outputs.GetResourcePoliciesResultPolicy[];
+    /**
+     * A string that identifies the version of the Atlas resource policy.
+     */
+    version: string;
+}
+
+export interface GetResourcePoliciesResultCreatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id: string;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name: string;
+}
+
+export interface GetResourcePoliciesResultLastUpdatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id: string;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name: string;
+}
+
+export interface GetResourcePoliciesResultPolicy {
+    /**
+     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+     */
+    body: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies the policy.
+     */
+    id: string;
+}
+
+export interface GetResourcePolicyCreatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id: string;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name: string;
+}
+
+export interface GetResourcePolicyLastUpdatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id: string;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name: string;
+}
+
+export interface GetResourcePolicyPolicy {
+    /**
+     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+     */
+    body: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies the policy.
+     */
+    id: string;
 }
 
 export interface GetSearchDeploymentSpec {
@@ -7248,6 +7591,39 @@ export interface PushBasedLogExportTimeouts {
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
     update?: string;
+}
+
+export interface ResourcePolicyCreatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id: string;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name: string;
+}
+
+export interface ResourcePolicyLastUpdatedByUser {
+    /**
+     * Unique 24-hexadecimal character string that identifies a user.
+     */
+    id: string;
+    /**
+     * Human-readable label that describes a user.
+     */
+    name: string;
+}
+
+export interface ResourcePolicyPolicy {
+    /**
+     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+     */
+    body: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies the policy.
+     */
+    id: string;
 }
 
 export interface SearchDeploymentSpec {

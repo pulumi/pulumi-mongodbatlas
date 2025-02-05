@@ -13809,6 +13809,493 @@ func (o FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) Index(i pulumi
 	}).(FederatedSettingsOrgRoleMappingRoleAssignmentOutput)
 }
 
+type FlexClusterBackupSettings struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled *bool `pulumi:"enabled"`
+}
+
+// FlexClusterBackupSettingsInput is an input type that accepts FlexClusterBackupSettingsArgs and FlexClusterBackupSettingsOutput values.
+// You can construct a concrete instance of `FlexClusterBackupSettingsInput` via:
+//
+//	FlexClusterBackupSettingsArgs{...}
+type FlexClusterBackupSettingsInput interface {
+	pulumi.Input
+
+	ToFlexClusterBackupSettingsOutput() FlexClusterBackupSettingsOutput
+	ToFlexClusterBackupSettingsOutputWithContext(context.Context) FlexClusterBackupSettingsOutput
+}
+
+type FlexClusterBackupSettingsArgs struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+}
+
+func (FlexClusterBackupSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (i FlexClusterBackupSettingsArgs) ToFlexClusterBackupSettingsOutput() FlexClusterBackupSettingsOutput {
+	return i.ToFlexClusterBackupSettingsOutputWithContext(context.Background())
+}
+
+func (i FlexClusterBackupSettingsArgs) ToFlexClusterBackupSettingsOutputWithContext(ctx context.Context) FlexClusterBackupSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterBackupSettingsOutput)
+}
+
+func (i FlexClusterBackupSettingsArgs) ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput {
+	return i.ToFlexClusterBackupSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i FlexClusterBackupSettingsArgs) ToFlexClusterBackupSettingsPtrOutputWithContext(ctx context.Context) FlexClusterBackupSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterBackupSettingsOutput).ToFlexClusterBackupSettingsPtrOutputWithContext(ctx)
+}
+
+// FlexClusterBackupSettingsPtrInput is an input type that accepts FlexClusterBackupSettingsArgs, FlexClusterBackupSettingsPtr and FlexClusterBackupSettingsPtrOutput values.
+// You can construct a concrete instance of `FlexClusterBackupSettingsPtrInput` via:
+//
+//	        FlexClusterBackupSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FlexClusterBackupSettingsPtrInput interface {
+	pulumi.Input
+
+	ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput
+	ToFlexClusterBackupSettingsPtrOutputWithContext(context.Context) FlexClusterBackupSettingsPtrOutput
+}
+
+type flexClusterBackupSettingsPtrType FlexClusterBackupSettingsArgs
+
+func FlexClusterBackupSettingsPtr(v *FlexClusterBackupSettingsArgs) FlexClusterBackupSettingsPtrInput {
+	return (*flexClusterBackupSettingsPtrType)(v)
+}
+
+func (*flexClusterBackupSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (i *flexClusterBackupSettingsPtrType) ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput {
+	return i.ToFlexClusterBackupSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *flexClusterBackupSettingsPtrType) ToFlexClusterBackupSettingsPtrOutputWithContext(ctx context.Context) FlexClusterBackupSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterBackupSettingsPtrOutput)
+}
+
+type FlexClusterBackupSettingsOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterBackupSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (o FlexClusterBackupSettingsOutput) ToFlexClusterBackupSettingsOutput() FlexClusterBackupSettingsOutput {
+	return o
+}
+
+func (o FlexClusterBackupSettingsOutput) ToFlexClusterBackupSettingsOutputWithContext(ctx context.Context) FlexClusterBackupSettingsOutput {
+	return o
+}
+
+func (o FlexClusterBackupSettingsOutput) ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput {
+	return o.ToFlexClusterBackupSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o FlexClusterBackupSettingsOutput) ToFlexClusterBackupSettingsPtrOutputWithContext(ctx context.Context) FlexClusterBackupSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FlexClusterBackupSettings) *FlexClusterBackupSettings {
+		return &v
+	}).(FlexClusterBackupSettingsPtrOutput)
+}
+
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+func (o FlexClusterBackupSettingsOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v FlexClusterBackupSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+type FlexClusterBackupSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterBackupSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (o FlexClusterBackupSettingsPtrOutput) ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput {
+	return o
+}
+
+func (o FlexClusterBackupSettingsPtrOutput) ToFlexClusterBackupSettingsPtrOutputWithContext(ctx context.Context) FlexClusterBackupSettingsPtrOutput {
+	return o
+}
+
+func (o FlexClusterBackupSettingsPtrOutput) Elem() FlexClusterBackupSettingsOutput {
+	return o.ApplyT(func(v *FlexClusterBackupSettings) FlexClusterBackupSettings {
+		if v != nil {
+			return *v
+		}
+		var ret FlexClusterBackupSettings
+		return ret
+	}).(FlexClusterBackupSettingsOutput)
+}
+
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+func (o FlexClusterBackupSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FlexClusterBackupSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+type FlexClusterConnectionStrings struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard *string `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv *string `pulumi:"standardSrv"`
+}
+
+// FlexClusterConnectionStringsInput is an input type that accepts FlexClusterConnectionStringsArgs and FlexClusterConnectionStringsOutput values.
+// You can construct a concrete instance of `FlexClusterConnectionStringsInput` via:
+//
+//	FlexClusterConnectionStringsArgs{...}
+type FlexClusterConnectionStringsInput interface {
+	pulumi.Input
+
+	ToFlexClusterConnectionStringsOutput() FlexClusterConnectionStringsOutput
+	ToFlexClusterConnectionStringsOutputWithContext(context.Context) FlexClusterConnectionStringsOutput
+}
+
+type FlexClusterConnectionStringsArgs struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard pulumi.StringPtrInput `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv pulumi.StringPtrInput `pulumi:"standardSrv"`
+}
+
+func (FlexClusterConnectionStringsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (i FlexClusterConnectionStringsArgs) ToFlexClusterConnectionStringsOutput() FlexClusterConnectionStringsOutput {
+	return i.ToFlexClusterConnectionStringsOutputWithContext(context.Background())
+}
+
+func (i FlexClusterConnectionStringsArgs) ToFlexClusterConnectionStringsOutputWithContext(ctx context.Context) FlexClusterConnectionStringsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterConnectionStringsOutput)
+}
+
+func (i FlexClusterConnectionStringsArgs) ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput {
+	return i.ToFlexClusterConnectionStringsPtrOutputWithContext(context.Background())
+}
+
+func (i FlexClusterConnectionStringsArgs) ToFlexClusterConnectionStringsPtrOutputWithContext(ctx context.Context) FlexClusterConnectionStringsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterConnectionStringsOutput).ToFlexClusterConnectionStringsPtrOutputWithContext(ctx)
+}
+
+// FlexClusterConnectionStringsPtrInput is an input type that accepts FlexClusterConnectionStringsArgs, FlexClusterConnectionStringsPtr and FlexClusterConnectionStringsPtrOutput values.
+// You can construct a concrete instance of `FlexClusterConnectionStringsPtrInput` via:
+//
+//	        FlexClusterConnectionStringsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FlexClusterConnectionStringsPtrInput interface {
+	pulumi.Input
+
+	ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput
+	ToFlexClusterConnectionStringsPtrOutputWithContext(context.Context) FlexClusterConnectionStringsPtrOutput
+}
+
+type flexClusterConnectionStringsPtrType FlexClusterConnectionStringsArgs
+
+func FlexClusterConnectionStringsPtr(v *FlexClusterConnectionStringsArgs) FlexClusterConnectionStringsPtrInput {
+	return (*flexClusterConnectionStringsPtrType)(v)
+}
+
+func (*flexClusterConnectionStringsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (i *flexClusterConnectionStringsPtrType) ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput {
+	return i.ToFlexClusterConnectionStringsPtrOutputWithContext(context.Background())
+}
+
+func (i *flexClusterConnectionStringsPtrType) ToFlexClusterConnectionStringsPtrOutputWithContext(ctx context.Context) FlexClusterConnectionStringsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterConnectionStringsPtrOutput)
+}
+
+type FlexClusterConnectionStringsOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterConnectionStringsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (o FlexClusterConnectionStringsOutput) ToFlexClusterConnectionStringsOutput() FlexClusterConnectionStringsOutput {
+	return o
+}
+
+func (o FlexClusterConnectionStringsOutput) ToFlexClusterConnectionStringsOutputWithContext(ctx context.Context) FlexClusterConnectionStringsOutput {
+	return o
+}
+
+func (o FlexClusterConnectionStringsOutput) ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput {
+	return o.ToFlexClusterConnectionStringsPtrOutputWithContext(context.Background())
+}
+
+func (o FlexClusterConnectionStringsOutput) ToFlexClusterConnectionStringsPtrOutputWithContext(ctx context.Context) FlexClusterConnectionStringsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FlexClusterConnectionStrings) *FlexClusterConnectionStrings {
+		return &v
+	}).(FlexClusterConnectionStringsPtrOutput)
+}
+
+// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+func (o FlexClusterConnectionStringsOutput) Standard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FlexClusterConnectionStrings) *string { return v.Standard }).(pulumi.StringPtrOutput)
+}
+
+// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+func (o FlexClusterConnectionStringsOutput) StandardSrv() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FlexClusterConnectionStrings) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
+}
+
+type FlexClusterConnectionStringsPtrOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterConnectionStringsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (o FlexClusterConnectionStringsPtrOutput) ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput {
+	return o
+}
+
+func (o FlexClusterConnectionStringsPtrOutput) ToFlexClusterConnectionStringsPtrOutputWithContext(ctx context.Context) FlexClusterConnectionStringsPtrOutput {
+	return o
+}
+
+func (o FlexClusterConnectionStringsPtrOutput) Elem() FlexClusterConnectionStringsOutput {
+	return o.ApplyT(func(v *FlexClusterConnectionStrings) FlexClusterConnectionStrings {
+		if v != nil {
+			return *v
+		}
+		var ret FlexClusterConnectionStrings
+		return ret
+	}).(FlexClusterConnectionStringsOutput)
+}
+
+// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+func (o FlexClusterConnectionStringsPtrOutput) Standard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterConnectionStrings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Standard
+	}).(pulumi.StringPtrOutput)
+}
+
+// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+func (o FlexClusterConnectionStringsPtrOutput) StandardSrv() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterConnectionStrings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StandardSrv
+	}).(pulumi.StringPtrOutput)
+}
+
+type FlexClusterProviderSettings struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName string `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName *string `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName string `pulumi:"regionName"`
+}
+
+// FlexClusterProviderSettingsInput is an input type that accepts FlexClusterProviderSettingsArgs and FlexClusterProviderSettingsOutput values.
+// You can construct a concrete instance of `FlexClusterProviderSettingsInput` via:
+//
+//	FlexClusterProviderSettingsArgs{...}
+type FlexClusterProviderSettingsInput interface {
+	pulumi.Input
+
+	ToFlexClusterProviderSettingsOutput() FlexClusterProviderSettingsOutput
+	ToFlexClusterProviderSettingsOutputWithContext(context.Context) FlexClusterProviderSettingsOutput
+}
+
+type FlexClusterProviderSettingsArgs struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (FlexClusterProviderSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (i FlexClusterProviderSettingsArgs) ToFlexClusterProviderSettingsOutput() FlexClusterProviderSettingsOutput {
+	return i.ToFlexClusterProviderSettingsOutputWithContext(context.Background())
+}
+
+func (i FlexClusterProviderSettingsArgs) ToFlexClusterProviderSettingsOutputWithContext(ctx context.Context) FlexClusterProviderSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterProviderSettingsOutput)
+}
+
+func (i FlexClusterProviderSettingsArgs) ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput {
+	return i.ToFlexClusterProviderSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i FlexClusterProviderSettingsArgs) ToFlexClusterProviderSettingsPtrOutputWithContext(ctx context.Context) FlexClusterProviderSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterProviderSettingsOutput).ToFlexClusterProviderSettingsPtrOutputWithContext(ctx)
+}
+
+// FlexClusterProviderSettingsPtrInput is an input type that accepts FlexClusterProviderSettingsArgs, FlexClusterProviderSettingsPtr and FlexClusterProviderSettingsPtrOutput values.
+// You can construct a concrete instance of `FlexClusterProviderSettingsPtrInput` via:
+//
+//	        FlexClusterProviderSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FlexClusterProviderSettingsPtrInput interface {
+	pulumi.Input
+
+	ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput
+	ToFlexClusterProviderSettingsPtrOutputWithContext(context.Context) FlexClusterProviderSettingsPtrOutput
+}
+
+type flexClusterProviderSettingsPtrType FlexClusterProviderSettingsArgs
+
+func FlexClusterProviderSettingsPtr(v *FlexClusterProviderSettingsArgs) FlexClusterProviderSettingsPtrInput {
+	return (*flexClusterProviderSettingsPtrType)(v)
+}
+
+func (*flexClusterProviderSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (i *flexClusterProviderSettingsPtrType) ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput {
+	return i.ToFlexClusterProviderSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *flexClusterProviderSettingsPtrType) ToFlexClusterProviderSettingsPtrOutputWithContext(ctx context.Context) FlexClusterProviderSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterProviderSettingsPtrOutput)
+}
+
+type FlexClusterProviderSettingsOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterProviderSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (o FlexClusterProviderSettingsOutput) ToFlexClusterProviderSettingsOutput() FlexClusterProviderSettingsOutput {
+	return o
+}
+
+func (o FlexClusterProviderSettingsOutput) ToFlexClusterProviderSettingsOutputWithContext(ctx context.Context) FlexClusterProviderSettingsOutput {
+	return o
+}
+
+func (o FlexClusterProviderSettingsOutput) ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput {
+	return o.ToFlexClusterProviderSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o FlexClusterProviderSettingsOutput) ToFlexClusterProviderSettingsPtrOutputWithContext(ctx context.Context) FlexClusterProviderSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FlexClusterProviderSettings) *FlexClusterProviderSettings {
+		return &v
+	}).(FlexClusterProviderSettingsPtrOutput)
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+func (o FlexClusterProviderSettingsOutput) BackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v FlexClusterProviderSettings) string { return v.BackingProviderName }).(pulumi.StringOutput)
+}
+
+// Storage capacity available to the flex cluster expressed in gigabytes.
+func (o FlexClusterProviderSettingsOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v FlexClusterProviderSettings) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
+}
+
+// Human-readable label that identifies the cloud service provider.
+func (o FlexClusterProviderSettingsOutput) ProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FlexClusterProviderSettings) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o FlexClusterProviderSettingsOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v FlexClusterProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type FlexClusterProviderSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterProviderSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (o FlexClusterProviderSettingsPtrOutput) ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput {
+	return o
+}
+
+func (o FlexClusterProviderSettingsPtrOutput) ToFlexClusterProviderSettingsPtrOutputWithContext(ctx context.Context) FlexClusterProviderSettingsPtrOutput {
+	return o
+}
+
+func (o FlexClusterProviderSettingsPtrOutput) Elem() FlexClusterProviderSettingsOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) FlexClusterProviderSettings {
+		if v != nil {
+			return *v
+		}
+		var ret FlexClusterProviderSettings
+		return ret
+	}).(FlexClusterProviderSettingsOutput)
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+func (o FlexClusterProviderSettingsPtrOutput) BackingProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BackingProviderName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Storage capacity available to the flex cluster expressed in gigabytes.
+func (o FlexClusterProviderSettingsPtrOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.DiskSizeGb
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Human-readable label that identifies the cloud service provider.
+func (o FlexClusterProviderSettingsPtrOutput) ProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProviderName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o FlexClusterProviderSettingsPtrOutput) RegionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RegionName
+	}).(pulumi.StringPtrOutput)
+}
+
 type GlobalClusterConfigCustomZoneMapping struct {
 	// The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
 	Location *string `pulumi:"location"`
@@ -16700,6 +17187,424 @@ func (o PushBasedLogExportTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
 		}
 		return v.Update
 	}).(pulumi.StringPtrOutput)
+}
+
+type ResourcePolicyCreatedByUser struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id *string `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name *string `pulumi:"name"`
+}
+
+// ResourcePolicyCreatedByUserInput is an input type that accepts ResourcePolicyCreatedByUserArgs and ResourcePolicyCreatedByUserOutput values.
+// You can construct a concrete instance of `ResourcePolicyCreatedByUserInput` via:
+//
+//	ResourcePolicyCreatedByUserArgs{...}
+type ResourcePolicyCreatedByUserInput interface {
+	pulumi.Input
+
+	ToResourcePolicyCreatedByUserOutput() ResourcePolicyCreatedByUserOutput
+	ToResourcePolicyCreatedByUserOutputWithContext(context.Context) ResourcePolicyCreatedByUserOutput
+}
+
+type ResourcePolicyCreatedByUserArgs struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ResourcePolicyCreatedByUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePolicyCreatedByUser)(nil)).Elem()
+}
+
+func (i ResourcePolicyCreatedByUserArgs) ToResourcePolicyCreatedByUserOutput() ResourcePolicyCreatedByUserOutput {
+	return i.ToResourcePolicyCreatedByUserOutputWithContext(context.Background())
+}
+
+func (i ResourcePolicyCreatedByUserArgs) ToResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyCreatedByUserOutput)
+}
+
+func (i ResourcePolicyCreatedByUserArgs) ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput {
+	return i.ToResourcePolicyCreatedByUserPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePolicyCreatedByUserArgs) ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyCreatedByUserOutput).ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx)
+}
+
+// ResourcePolicyCreatedByUserPtrInput is an input type that accepts ResourcePolicyCreatedByUserArgs, ResourcePolicyCreatedByUserPtr and ResourcePolicyCreatedByUserPtrOutput values.
+// You can construct a concrete instance of `ResourcePolicyCreatedByUserPtrInput` via:
+//
+//	        ResourcePolicyCreatedByUserArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePolicyCreatedByUserPtrInput interface {
+	pulumi.Input
+
+	ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput
+	ToResourcePolicyCreatedByUserPtrOutputWithContext(context.Context) ResourcePolicyCreatedByUserPtrOutput
+}
+
+type resourcePolicyCreatedByUserPtrType ResourcePolicyCreatedByUserArgs
+
+func ResourcePolicyCreatedByUserPtr(v *ResourcePolicyCreatedByUserArgs) ResourcePolicyCreatedByUserPtrInput {
+	return (*resourcePolicyCreatedByUserPtrType)(v)
+}
+
+func (*resourcePolicyCreatedByUserPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePolicyCreatedByUser)(nil)).Elem()
+}
+
+func (i *resourcePolicyCreatedByUserPtrType) ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput {
+	return i.ToResourcePolicyCreatedByUserPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePolicyCreatedByUserPtrType) ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyCreatedByUserPtrOutput)
+}
+
+type ResourcePolicyCreatedByUserOutput struct{ *pulumi.OutputState }
+
+func (ResourcePolicyCreatedByUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePolicyCreatedByUser)(nil)).Elem()
+}
+
+func (o ResourcePolicyCreatedByUserOutput) ToResourcePolicyCreatedByUserOutput() ResourcePolicyCreatedByUserOutput {
+	return o
+}
+
+func (o ResourcePolicyCreatedByUserOutput) ToResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserOutput {
+	return o
+}
+
+func (o ResourcePolicyCreatedByUserOutput) ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput {
+	return o.ToResourcePolicyCreatedByUserPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePolicyCreatedByUserOutput) ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePolicyCreatedByUser) *ResourcePolicyCreatedByUser {
+		return &v
+	}).(ResourcePolicyCreatedByUserPtrOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o ResourcePolicyCreatedByUserOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ResourcePolicyCreatedByUser) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that describes a user.
+func (o ResourcePolicyCreatedByUserOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ResourcePolicyCreatedByUser) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ResourcePolicyCreatedByUserPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePolicyCreatedByUserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePolicyCreatedByUser)(nil)).Elem()
+}
+
+func (o ResourcePolicyCreatedByUserPtrOutput) ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput {
+	return o
+}
+
+func (o ResourcePolicyCreatedByUserPtrOutput) ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserPtrOutput {
+	return o
+}
+
+func (o ResourcePolicyCreatedByUserPtrOutput) Elem() ResourcePolicyCreatedByUserOutput {
+	return o.ApplyT(func(v *ResourcePolicyCreatedByUser) ResourcePolicyCreatedByUser {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePolicyCreatedByUser
+		return ret
+	}).(ResourcePolicyCreatedByUserOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o ResourcePolicyCreatedByUserPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ResourcePolicyCreatedByUser) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that describes a user.
+func (o ResourcePolicyCreatedByUserPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ResourcePolicyCreatedByUser) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+type ResourcePolicyLastUpdatedByUser struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id *string `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name *string `pulumi:"name"`
+}
+
+// ResourcePolicyLastUpdatedByUserInput is an input type that accepts ResourcePolicyLastUpdatedByUserArgs and ResourcePolicyLastUpdatedByUserOutput values.
+// You can construct a concrete instance of `ResourcePolicyLastUpdatedByUserInput` via:
+//
+//	ResourcePolicyLastUpdatedByUserArgs{...}
+type ResourcePolicyLastUpdatedByUserInput interface {
+	pulumi.Input
+
+	ToResourcePolicyLastUpdatedByUserOutput() ResourcePolicyLastUpdatedByUserOutput
+	ToResourcePolicyLastUpdatedByUserOutputWithContext(context.Context) ResourcePolicyLastUpdatedByUserOutput
+}
+
+type ResourcePolicyLastUpdatedByUserArgs struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ResourcePolicyLastUpdatedByUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePolicyLastUpdatedByUser)(nil)).Elem()
+}
+
+func (i ResourcePolicyLastUpdatedByUserArgs) ToResourcePolicyLastUpdatedByUserOutput() ResourcePolicyLastUpdatedByUserOutput {
+	return i.ToResourcePolicyLastUpdatedByUserOutputWithContext(context.Background())
+}
+
+func (i ResourcePolicyLastUpdatedByUserArgs) ToResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyLastUpdatedByUserOutput)
+}
+
+func (i ResourcePolicyLastUpdatedByUserArgs) ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput {
+	return i.ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePolicyLastUpdatedByUserArgs) ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyLastUpdatedByUserOutput).ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx)
+}
+
+// ResourcePolicyLastUpdatedByUserPtrInput is an input type that accepts ResourcePolicyLastUpdatedByUserArgs, ResourcePolicyLastUpdatedByUserPtr and ResourcePolicyLastUpdatedByUserPtrOutput values.
+// You can construct a concrete instance of `ResourcePolicyLastUpdatedByUserPtrInput` via:
+//
+//	        ResourcePolicyLastUpdatedByUserArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePolicyLastUpdatedByUserPtrInput interface {
+	pulumi.Input
+
+	ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput
+	ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(context.Context) ResourcePolicyLastUpdatedByUserPtrOutput
+}
+
+type resourcePolicyLastUpdatedByUserPtrType ResourcePolicyLastUpdatedByUserArgs
+
+func ResourcePolicyLastUpdatedByUserPtr(v *ResourcePolicyLastUpdatedByUserArgs) ResourcePolicyLastUpdatedByUserPtrInput {
+	return (*resourcePolicyLastUpdatedByUserPtrType)(v)
+}
+
+func (*resourcePolicyLastUpdatedByUserPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePolicyLastUpdatedByUser)(nil)).Elem()
+}
+
+func (i *resourcePolicyLastUpdatedByUserPtrType) ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput {
+	return i.ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePolicyLastUpdatedByUserPtrType) ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyLastUpdatedByUserPtrOutput)
+}
+
+type ResourcePolicyLastUpdatedByUserOutput struct{ *pulumi.OutputState }
+
+func (ResourcePolicyLastUpdatedByUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePolicyLastUpdatedByUser)(nil)).Elem()
+}
+
+func (o ResourcePolicyLastUpdatedByUserOutput) ToResourcePolicyLastUpdatedByUserOutput() ResourcePolicyLastUpdatedByUserOutput {
+	return o
+}
+
+func (o ResourcePolicyLastUpdatedByUserOutput) ToResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserOutput {
+	return o
+}
+
+func (o ResourcePolicyLastUpdatedByUserOutput) ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput {
+	return o.ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePolicyLastUpdatedByUserOutput) ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePolicyLastUpdatedByUser) *ResourcePolicyLastUpdatedByUser {
+		return &v
+	}).(ResourcePolicyLastUpdatedByUserPtrOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o ResourcePolicyLastUpdatedByUserOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ResourcePolicyLastUpdatedByUser) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that describes a user.
+func (o ResourcePolicyLastUpdatedByUserOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ResourcePolicyLastUpdatedByUser) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ResourcePolicyLastUpdatedByUserPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePolicyLastUpdatedByUserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePolicyLastUpdatedByUser)(nil)).Elem()
+}
+
+func (o ResourcePolicyLastUpdatedByUserPtrOutput) ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput {
+	return o
+}
+
+func (o ResourcePolicyLastUpdatedByUserPtrOutput) ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserPtrOutput {
+	return o
+}
+
+func (o ResourcePolicyLastUpdatedByUserPtrOutput) Elem() ResourcePolicyLastUpdatedByUserOutput {
+	return o.ApplyT(func(v *ResourcePolicyLastUpdatedByUser) ResourcePolicyLastUpdatedByUser {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePolicyLastUpdatedByUser
+		return ret
+	}).(ResourcePolicyLastUpdatedByUserOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o ResourcePolicyLastUpdatedByUserPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ResourcePolicyLastUpdatedByUser) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that describes a user.
+func (o ResourcePolicyLastUpdatedByUserPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ResourcePolicyLastUpdatedByUser) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+type ResourcePolicyPolicy struct {
+	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+	Body string `pulumi:"body"`
+	// Unique 24-hexadecimal character string that identifies the policy.
+	Id *string `pulumi:"id"`
+}
+
+// ResourcePolicyPolicyInput is an input type that accepts ResourcePolicyPolicyArgs and ResourcePolicyPolicyOutput values.
+// You can construct a concrete instance of `ResourcePolicyPolicyInput` via:
+//
+//	ResourcePolicyPolicyArgs{...}
+type ResourcePolicyPolicyInput interface {
+	pulumi.Input
+
+	ToResourcePolicyPolicyOutput() ResourcePolicyPolicyOutput
+	ToResourcePolicyPolicyOutputWithContext(context.Context) ResourcePolicyPolicyOutput
+}
+
+type ResourcePolicyPolicyArgs struct {
+	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+	Body pulumi.StringInput `pulumi:"body"`
+	// Unique 24-hexadecimal character string that identifies the policy.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (ResourcePolicyPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (i ResourcePolicyPolicyArgs) ToResourcePolicyPolicyOutput() ResourcePolicyPolicyOutput {
+	return i.ToResourcePolicyPolicyOutputWithContext(context.Background())
+}
+
+func (i ResourcePolicyPolicyArgs) ToResourcePolicyPolicyOutputWithContext(ctx context.Context) ResourcePolicyPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyPolicyOutput)
+}
+
+// ResourcePolicyPolicyArrayInput is an input type that accepts ResourcePolicyPolicyArray and ResourcePolicyPolicyArrayOutput values.
+// You can construct a concrete instance of `ResourcePolicyPolicyArrayInput` via:
+//
+//	ResourcePolicyPolicyArray{ ResourcePolicyPolicyArgs{...} }
+type ResourcePolicyPolicyArrayInput interface {
+	pulumi.Input
+
+	ToResourcePolicyPolicyArrayOutput() ResourcePolicyPolicyArrayOutput
+	ToResourcePolicyPolicyArrayOutputWithContext(context.Context) ResourcePolicyPolicyArrayOutput
+}
+
+type ResourcePolicyPolicyArray []ResourcePolicyPolicyInput
+
+func (ResourcePolicyPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (i ResourcePolicyPolicyArray) ToResourcePolicyPolicyArrayOutput() ResourcePolicyPolicyArrayOutput {
+	return i.ToResourcePolicyPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i ResourcePolicyPolicyArray) ToResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) ResourcePolicyPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyPolicyArrayOutput)
+}
+
+type ResourcePolicyPolicyOutput struct{ *pulumi.OutputState }
+
+func (ResourcePolicyPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (o ResourcePolicyPolicyOutput) ToResourcePolicyPolicyOutput() ResourcePolicyPolicyOutput {
+	return o
+}
+
+func (o ResourcePolicyPolicyOutput) ToResourcePolicyPolicyOutputWithContext(ctx context.Context) ResourcePolicyPolicyOutput {
+	return o
+}
+
+// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+func (o ResourcePolicyPolicyOutput) Body() pulumi.StringOutput {
+	return o.ApplyT(func(v ResourcePolicyPolicy) string { return v.Body }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies the policy.
+func (o ResourcePolicyPolicyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ResourcePolicyPolicy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type ResourcePolicyPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (ResourcePolicyPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (o ResourcePolicyPolicyArrayOutput) ToResourcePolicyPolicyArrayOutput() ResourcePolicyPolicyArrayOutput {
+	return o
+}
+
+func (o ResourcePolicyPolicyArrayOutput) ToResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) ResourcePolicyPolicyArrayOutput {
+	return o
+}
+
+func (o ResourcePolicyPolicyArrayOutput) Index(i pulumi.IntInput) ResourcePolicyPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResourcePolicyPolicy {
+		return vs[0].([]ResourcePolicyPolicy)[vs[1].(int)]
+	}).(ResourcePolicyPolicyOutput)
 }
 
 type SearchDeploymentSpec struct {
@@ -44207,6 +45112,595 @@ func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput) Inde
 	}).(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput)
 }
 
+type GetFlexClusterBackupSettings struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled bool `pulumi:"enabled"`
+}
+
+// GetFlexClusterBackupSettingsInput is an input type that accepts GetFlexClusterBackupSettingsArgs and GetFlexClusterBackupSettingsOutput values.
+// You can construct a concrete instance of `GetFlexClusterBackupSettingsInput` via:
+//
+//	GetFlexClusterBackupSettingsArgs{...}
+type GetFlexClusterBackupSettingsInput interface {
+	pulumi.Input
+
+	ToGetFlexClusterBackupSettingsOutput() GetFlexClusterBackupSettingsOutput
+	ToGetFlexClusterBackupSettingsOutputWithContext(context.Context) GetFlexClusterBackupSettingsOutput
+}
+
+type GetFlexClusterBackupSettingsArgs struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (GetFlexClusterBackupSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (i GetFlexClusterBackupSettingsArgs) ToGetFlexClusterBackupSettingsOutput() GetFlexClusterBackupSettingsOutput {
+	return i.ToGetFlexClusterBackupSettingsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClusterBackupSettingsArgs) ToGetFlexClusterBackupSettingsOutputWithContext(ctx context.Context) GetFlexClusterBackupSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClusterBackupSettingsOutput)
+}
+
+type GetFlexClusterBackupSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClusterBackupSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (o GetFlexClusterBackupSettingsOutput) ToGetFlexClusterBackupSettingsOutput() GetFlexClusterBackupSettingsOutput {
+	return o
+}
+
+func (o GetFlexClusterBackupSettingsOutput) ToGetFlexClusterBackupSettingsOutputWithContext(ctx context.Context) GetFlexClusterBackupSettingsOutput {
+	return o
+}
+
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+func (o GetFlexClusterBackupSettingsOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFlexClusterBackupSettings) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type GetFlexClusterConnectionStrings struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard string `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv string `pulumi:"standardSrv"`
+}
+
+// GetFlexClusterConnectionStringsInput is an input type that accepts GetFlexClusterConnectionStringsArgs and GetFlexClusterConnectionStringsOutput values.
+// You can construct a concrete instance of `GetFlexClusterConnectionStringsInput` via:
+//
+//	GetFlexClusterConnectionStringsArgs{...}
+type GetFlexClusterConnectionStringsInput interface {
+	pulumi.Input
+
+	ToGetFlexClusterConnectionStringsOutput() GetFlexClusterConnectionStringsOutput
+	ToGetFlexClusterConnectionStringsOutputWithContext(context.Context) GetFlexClusterConnectionStringsOutput
+}
+
+type GetFlexClusterConnectionStringsArgs struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
+}
+
+func (GetFlexClusterConnectionStringsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (i GetFlexClusterConnectionStringsArgs) ToGetFlexClusterConnectionStringsOutput() GetFlexClusterConnectionStringsOutput {
+	return i.ToGetFlexClusterConnectionStringsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClusterConnectionStringsArgs) ToGetFlexClusterConnectionStringsOutputWithContext(ctx context.Context) GetFlexClusterConnectionStringsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClusterConnectionStringsOutput)
+}
+
+type GetFlexClusterConnectionStringsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClusterConnectionStringsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (o GetFlexClusterConnectionStringsOutput) ToGetFlexClusterConnectionStringsOutput() GetFlexClusterConnectionStringsOutput {
+	return o
+}
+
+func (o GetFlexClusterConnectionStringsOutput) ToGetFlexClusterConnectionStringsOutputWithContext(ctx context.Context) GetFlexClusterConnectionStringsOutput {
+	return o
+}
+
+// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+func (o GetFlexClusterConnectionStringsOutput) Standard() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterConnectionStrings) string { return v.Standard }).(pulumi.StringOutput)
+}
+
+// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+func (o GetFlexClusterConnectionStringsOutput) StandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterConnectionStrings) string { return v.StandardSrv }).(pulumi.StringOutput)
+}
+
+type GetFlexClusterProviderSettings struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName string `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName string `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetFlexClusterProviderSettingsInput is an input type that accepts GetFlexClusterProviderSettingsArgs and GetFlexClusterProviderSettingsOutput values.
+// You can construct a concrete instance of `GetFlexClusterProviderSettingsInput` via:
+//
+//	GetFlexClusterProviderSettingsArgs{...}
+type GetFlexClusterProviderSettingsInput interface {
+	pulumi.Input
+
+	ToGetFlexClusterProviderSettingsOutput() GetFlexClusterProviderSettingsOutput
+	ToGetFlexClusterProviderSettingsOutputWithContext(context.Context) GetFlexClusterProviderSettingsOutput
+}
+
+type GetFlexClusterProviderSettingsArgs struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetFlexClusterProviderSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (i GetFlexClusterProviderSettingsArgs) ToGetFlexClusterProviderSettingsOutput() GetFlexClusterProviderSettingsOutput {
+	return i.ToGetFlexClusterProviderSettingsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClusterProviderSettingsArgs) ToGetFlexClusterProviderSettingsOutputWithContext(ctx context.Context) GetFlexClusterProviderSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClusterProviderSettingsOutput)
+}
+
+type GetFlexClusterProviderSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClusterProviderSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (o GetFlexClusterProviderSettingsOutput) ToGetFlexClusterProviderSettingsOutput() GetFlexClusterProviderSettingsOutput {
+	return o
+}
+
+func (o GetFlexClusterProviderSettingsOutput) ToGetFlexClusterProviderSettingsOutputWithContext(ctx context.Context) GetFlexClusterProviderSettingsOutput {
+	return o
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+func (o GetFlexClusterProviderSettingsOutput) BackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterProviderSettings) string { return v.BackingProviderName }).(pulumi.StringOutput)
+}
+
+// Storage capacity available to the flex cluster expressed in gigabytes.
+func (o GetFlexClusterProviderSettingsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetFlexClusterProviderSettings) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
+}
+
+// Human-readable label that identifies the cloud service provider.
+func (o GetFlexClusterProviderSettingsOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterProviderSettings) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o GetFlexClusterProviderSettingsOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetFlexClustersResult struct {
+	// Flex backup configuration
+	BackupSettings GetFlexClustersResultBackupSettings `pulumi:"backupSettings"`
+	// Flex cluster topology.
+	ClusterType string `pulumi:"clusterType"`
+	// Collection of Uniform Resource Locators that point to the MongoDB database.
+	ConnectionStrings GetFlexClustersResultConnectionStrings `pulumi:"connectionStrings"`
+	// Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
+	CreateDate string `pulumi:"createDate"`
+	// Unique 24-hexadecimal digit string that identifies the instance.
+	Id string `pulumi:"id"`
+	// Version of MongoDB that the instance runs.
+	MongoDbVersion string `pulumi:"mongoDbVersion"`
+	// Human-readable label that identifies the instance.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal character string that identifies the project.
+	ProjectId string `pulumi:"projectId"`
+	// Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+	ProviderSettings GetFlexClustersResultProviderSettings `pulumi:"providerSettings"`
+	// Human-readable label that indicates the current operating condition of this instance.
+	StateName string `pulumi:"stateName"`
+	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
+	Tags map[string]string `pulumi:"tags"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
+	// Method by which the cluster maintains the MongoDB versions.
+	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
+}
+
+// GetFlexClustersResultInput is an input type that accepts GetFlexClustersResultArgs and GetFlexClustersResultOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultInput` via:
+//
+//	GetFlexClustersResultArgs{...}
+type GetFlexClustersResultInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultOutput() GetFlexClustersResultOutput
+	ToGetFlexClustersResultOutputWithContext(context.Context) GetFlexClustersResultOutput
+}
+
+type GetFlexClustersResultArgs struct {
+	// Flex backup configuration
+	BackupSettings GetFlexClustersResultBackupSettingsInput `pulumi:"backupSettings"`
+	// Flex cluster topology.
+	ClusterType pulumi.StringInput `pulumi:"clusterType"`
+	// Collection of Uniform Resource Locators that point to the MongoDB database.
+	ConnectionStrings GetFlexClustersResultConnectionStringsInput `pulumi:"connectionStrings"`
+	// Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// Unique 24-hexadecimal digit string that identifies the instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Version of MongoDB that the instance runs.
+	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
+	// Human-readable label that identifies the instance.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal character string that identifies the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+	ProviderSettings GetFlexClustersResultProviderSettingsInput `pulumi:"providerSettings"`
+	// Human-readable label that indicates the current operating condition of this instance.
+	StateName pulumi.StringInput `pulumi:"stateName"`
+	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
+	Tags pulumi.StringMapInput `pulumi:"tags"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled pulumi.BoolInput `pulumi:"terminationProtectionEnabled"`
+	// Method by which the cluster maintains the MongoDB versions.
+	VersionReleaseSystem pulumi.StringInput `pulumi:"versionReleaseSystem"`
+}
+
+func (GetFlexClustersResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResult)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultArgs) ToGetFlexClustersResultOutput() GetFlexClustersResultOutput {
+	return i.ToGetFlexClustersResultOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultArgs) ToGetFlexClustersResultOutputWithContext(ctx context.Context) GetFlexClustersResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultOutput)
+}
+
+// GetFlexClustersResultArrayInput is an input type that accepts GetFlexClustersResultArray and GetFlexClustersResultArrayOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultArrayInput` via:
+//
+//	GetFlexClustersResultArray{ GetFlexClustersResultArgs{...} }
+type GetFlexClustersResultArrayInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultArrayOutput() GetFlexClustersResultArrayOutput
+	ToGetFlexClustersResultArrayOutputWithContext(context.Context) GetFlexClustersResultArrayOutput
+}
+
+type GetFlexClustersResultArray []GetFlexClustersResultInput
+
+func (GetFlexClustersResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexClustersResult)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultArray) ToGetFlexClustersResultArrayOutput() GetFlexClustersResultArrayOutput {
+	return i.ToGetFlexClustersResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultArray) ToGetFlexClustersResultArrayOutputWithContext(ctx context.Context) GetFlexClustersResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultArrayOutput)
+}
+
+type GetFlexClustersResultOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResult)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultOutput) ToGetFlexClustersResultOutput() GetFlexClustersResultOutput {
+	return o
+}
+
+func (o GetFlexClustersResultOutput) ToGetFlexClustersResultOutputWithContext(ctx context.Context) GetFlexClustersResultOutput {
+	return o
+}
+
+// Flex backup configuration
+func (o GetFlexClustersResultOutput) BackupSettings() GetFlexClustersResultBackupSettingsOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) GetFlexClustersResultBackupSettings { return v.BackupSettings }).(GetFlexClustersResultBackupSettingsOutput)
+}
+
+// Flex cluster topology.
+func (o GetFlexClustersResultOutput) ClusterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.ClusterType }).(pulumi.StringOutput)
+}
+
+// Collection of Uniform Resource Locators that point to the MongoDB database.
+func (o GetFlexClustersResultOutput) ConnectionStrings() GetFlexClustersResultConnectionStringsOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) GetFlexClustersResultConnectionStrings { return v.ConnectionStrings }).(GetFlexClustersResultConnectionStringsOutput)
+}
+
+// Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
+func (o GetFlexClustersResultOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the instance.
+func (o GetFlexClustersResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Version of MongoDB that the instance runs.
+func (o GetFlexClustersResultOutput) MongoDbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.MongoDbVersion }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the instance.
+func (o GetFlexClustersResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies the project.
+func (o GetFlexClustersResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+func (o GetFlexClustersResultOutput) ProviderSettings() GetFlexClustersResultProviderSettingsOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) GetFlexClustersResultProviderSettings { return v.ProviderSettings }).(GetFlexClustersResultProviderSettingsOutput)
+}
+
+// Human-readable label that indicates the current operating condition of this instance.
+func (o GetFlexClustersResultOutput) StateName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
+func (o GetFlexClustersResultOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
+}
+
+// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+func (o GetFlexClustersResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
+}
+
+// Method by which the cluster maintains the MongoDB versions.
+func (o GetFlexClustersResultOutput) VersionReleaseSystem() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.VersionReleaseSystem }).(pulumi.StringOutput)
+}
+
+type GetFlexClustersResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexClustersResult)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultArrayOutput) ToGetFlexClustersResultArrayOutput() GetFlexClustersResultArrayOutput {
+	return o
+}
+
+func (o GetFlexClustersResultArrayOutput) ToGetFlexClustersResultArrayOutputWithContext(ctx context.Context) GetFlexClustersResultArrayOutput {
+	return o
+}
+
+func (o GetFlexClustersResultArrayOutput) Index(i pulumi.IntInput) GetFlexClustersResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlexClustersResult {
+		return vs[0].([]GetFlexClustersResult)[vs[1].(int)]
+	}).(GetFlexClustersResultOutput)
+}
+
+type GetFlexClustersResultBackupSettings struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled bool `pulumi:"enabled"`
+}
+
+// GetFlexClustersResultBackupSettingsInput is an input type that accepts GetFlexClustersResultBackupSettingsArgs and GetFlexClustersResultBackupSettingsOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultBackupSettingsInput` via:
+//
+//	GetFlexClustersResultBackupSettingsArgs{...}
+type GetFlexClustersResultBackupSettingsInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultBackupSettingsOutput() GetFlexClustersResultBackupSettingsOutput
+	ToGetFlexClustersResultBackupSettingsOutputWithContext(context.Context) GetFlexClustersResultBackupSettingsOutput
+}
+
+type GetFlexClustersResultBackupSettingsArgs struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (GetFlexClustersResultBackupSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultBackupSettings)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultBackupSettingsArgs) ToGetFlexClustersResultBackupSettingsOutput() GetFlexClustersResultBackupSettingsOutput {
+	return i.ToGetFlexClustersResultBackupSettingsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultBackupSettingsArgs) ToGetFlexClustersResultBackupSettingsOutputWithContext(ctx context.Context) GetFlexClustersResultBackupSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultBackupSettingsOutput)
+}
+
+type GetFlexClustersResultBackupSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultBackupSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultBackupSettings)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultBackupSettingsOutput) ToGetFlexClustersResultBackupSettingsOutput() GetFlexClustersResultBackupSettingsOutput {
+	return o
+}
+
+func (o GetFlexClustersResultBackupSettingsOutput) ToGetFlexClustersResultBackupSettingsOutputWithContext(ctx context.Context) GetFlexClustersResultBackupSettingsOutput {
+	return o
+}
+
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+func (o GetFlexClustersResultBackupSettingsOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFlexClustersResultBackupSettings) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type GetFlexClustersResultConnectionStrings struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard string `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv string `pulumi:"standardSrv"`
+}
+
+// GetFlexClustersResultConnectionStringsInput is an input type that accepts GetFlexClustersResultConnectionStringsArgs and GetFlexClustersResultConnectionStringsOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultConnectionStringsInput` via:
+//
+//	GetFlexClustersResultConnectionStringsArgs{...}
+type GetFlexClustersResultConnectionStringsInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultConnectionStringsOutput() GetFlexClustersResultConnectionStringsOutput
+	ToGetFlexClustersResultConnectionStringsOutputWithContext(context.Context) GetFlexClustersResultConnectionStringsOutput
+}
+
+type GetFlexClustersResultConnectionStringsArgs struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
+}
+
+func (GetFlexClustersResultConnectionStringsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultConnectionStrings)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultConnectionStringsArgs) ToGetFlexClustersResultConnectionStringsOutput() GetFlexClustersResultConnectionStringsOutput {
+	return i.ToGetFlexClustersResultConnectionStringsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultConnectionStringsArgs) ToGetFlexClustersResultConnectionStringsOutputWithContext(ctx context.Context) GetFlexClustersResultConnectionStringsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultConnectionStringsOutput)
+}
+
+type GetFlexClustersResultConnectionStringsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultConnectionStringsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultConnectionStrings)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultConnectionStringsOutput) ToGetFlexClustersResultConnectionStringsOutput() GetFlexClustersResultConnectionStringsOutput {
+	return o
+}
+
+func (o GetFlexClustersResultConnectionStringsOutput) ToGetFlexClustersResultConnectionStringsOutputWithContext(ctx context.Context) GetFlexClustersResultConnectionStringsOutput {
+	return o
+}
+
+// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+func (o GetFlexClustersResultConnectionStringsOutput) Standard() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultConnectionStrings) string { return v.Standard }).(pulumi.StringOutput)
+}
+
+// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+func (o GetFlexClustersResultConnectionStringsOutput) StandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultConnectionStrings) string { return v.StandardSrv }).(pulumi.StringOutput)
+}
+
+type GetFlexClustersResultProviderSettings struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName string `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName string `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetFlexClustersResultProviderSettingsInput is an input type that accepts GetFlexClustersResultProviderSettingsArgs and GetFlexClustersResultProviderSettingsOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultProviderSettingsInput` via:
+//
+//	GetFlexClustersResultProviderSettingsArgs{...}
+type GetFlexClustersResultProviderSettingsInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultProviderSettingsOutput() GetFlexClustersResultProviderSettingsOutput
+	ToGetFlexClustersResultProviderSettingsOutputWithContext(context.Context) GetFlexClustersResultProviderSettingsOutput
+}
+
+type GetFlexClustersResultProviderSettingsArgs struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetFlexClustersResultProviderSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultProviderSettings)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultProviderSettingsArgs) ToGetFlexClustersResultProviderSettingsOutput() GetFlexClustersResultProviderSettingsOutput {
+	return i.ToGetFlexClustersResultProviderSettingsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultProviderSettingsArgs) ToGetFlexClustersResultProviderSettingsOutputWithContext(ctx context.Context) GetFlexClustersResultProviderSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultProviderSettingsOutput)
+}
+
+type GetFlexClustersResultProviderSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultProviderSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultProviderSettings)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultProviderSettingsOutput) ToGetFlexClustersResultProviderSettingsOutput() GetFlexClustersResultProviderSettingsOutput {
+	return o
+}
+
+func (o GetFlexClustersResultProviderSettingsOutput) ToGetFlexClustersResultProviderSettingsOutputWithContext(ctx context.Context) GetFlexClustersResultProviderSettingsOutput {
+	return o
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+func (o GetFlexClustersResultProviderSettingsOutput) BackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) string { return v.BackingProviderName }).(pulumi.StringOutput)
+}
+
+// Storage capacity available to the flex cluster expressed in gigabytes.
+func (o GetFlexClustersResultProviderSettingsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
+}
+
+// Human-readable label that identifies the cloud service provider.
+func (o GetFlexClustersResultProviderSettingsOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o GetFlexClustersResultProviderSettingsOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
 type GetGlobalClusterConfigManagedNamespace struct {
 	// (Required) The name of the collection associated with the managed namespace.
 	Collection string `pulumi:"collection"`
@@ -48691,6 +50185,1034 @@ func (o GetProjectsResultTeamArrayOutput) Index(i pulumi.IntInput) GetProjectsRe
 	}).(GetProjectsResultTeamOutput)
 }
 
+type GetResourcePoliciesResourcePolicy struct {
+	// The user that last updated the Atlas resource policy.
+	CreatedByUser GetResourcePoliciesResourcePolicyCreatedByUser `pulumi:"createdByUser"`
+	// Date and time in UTC when the Atlas resource policy was created.
+	CreatedDate string `pulumi:"createdDate"`
+	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
+	Id string `pulumi:"id"`
+	// The user that last updated the Atlas resource policy.
+	LastUpdatedByUser GetResourcePoliciesResourcePolicyLastUpdatedByUser `pulumi:"lastUpdatedByUser"`
+	// Date and time in UTC when the Atlas resource policy was last updated.
+	LastUpdatedDate string `pulumi:"lastUpdatedDate"`
+	// Human-readable label that describes the Atlas resource policy.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	OrgId string `pulumi:"orgId"`
+	// List of policies that make up the Atlas resource policy.
+	Policies []GetResourcePoliciesResourcePolicyPolicy `pulumi:"policies"`
+	// A string that identifies the version of the Atlas resource policy.
+	Version string `pulumi:"version"`
+}
+
+// GetResourcePoliciesResourcePolicyInput is an input type that accepts GetResourcePoliciesResourcePolicyArgs and GetResourcePoliciesResourcePolicyOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyInput` via:
+//
+//	GetResourcePoliciesResourcePolicyArgs{...}
+type GetResourcePoliciesResourcePolicyInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResourcePolicyOutput() GetResourcePoliciesResourcePolicyOutput
+	ToGetResourcePoliciesResourcePolicyOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyOutput
+}
+
+type GetResourcePoliciesResourcePolicyArgs struct {
+	// The user that last updated the Atlas resource policy.
+	CreatedByUser GetResourcePoliciesResourcePolicyCreatedByUserInput `pulumi:"createdByUser"`
+	// Date and time in UTC when the Atlas resource policy was created.
+	CreatedDate pulumi.StringInput `pulumi:"createdDate"`
+	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The user that last updated the Atlas resource policy.
+	LastUpdatedByUser GetResourcePoliciesResourcePolicyLastUpdatedByUserInput `pulumi:"lastUpdatedByUser"`
+	// Date and time in UTC when the Atlas resource policy was last updated.
+	LastUpdatedDate pulumi.StringInput `pulumi:"lastUpdatedDate"`
+	// Human-readable label that describes the Atlas resource policy.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// List of policies that make up the Atlas resource policy.
+	Policies GetResourcePoliciesResourcePolicyPolicyArrayInput `pulumi:"policies"`
+	// A string that identifies the version of the Atlas resource policy.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetResourcePoliciesResourcePolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResourcePolicy)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResourcePolicyArgs) ToGetResourcePoliciesResourcePolicyOutput() GetResourcePoliciesResourcePolicyOutput {
+	return i.ToGetResourcePoliciesResourcePolicyOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResourcePolicyArgs) ToGetResourcePoliciesResourcePolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyOutput)
+}
+
+// GetResourcePoliciesResourcePolicyArrayInput is an input type that accepts GetResourcePoliciesResourcePolicyArray and GetResourcePoliciesResourcePolicyArrayOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyArrayInput` via:
+//
+//	GetResourcePoliciesResourcePolicyArray{ GetResourcePoliciesResourcePolicyArgs{...} }
+type GetResourcePoliciesResourcePolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResourcePolicyArrayOutput() GetResourcePoliciesResourcePolicyArrayOutput
+	ToGetResourcePoliciesResourcePolicyArrayOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyArrayOutput
+}
+
+type GetResourcePoliciesResourcePolicyArray []GetResourcePoliciesResourcePolicyInput
+
+func (GetResourcePoliciesResourcePolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePoliciesResourcePolicy)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResourcePolicyArray) ToGetResourcePoliciesResourcePolicyArrayOutput() GetResourcePoliciesResourcePolicyArrayOutput {
+	return i.ToGetResourcePoliciesResourcePolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResourcePolicyArray) ToGetResourcePoliciesResourcePolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyArrayOutput)
+}
+
+type GetResourcePoliciesResourcePolicyOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResourcePolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResourcePolicy)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResourcePolicyOutput) ToGetResourcePoliciesResourcePolicyOutput() GetResourcePoliciesResourcePolicyOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResourcePolicyOutput) ToGetResourcePoliciesResourcePolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyOutput {
+	return o
+}
+
+// The user that last updated the Atlas resource policy.
+func (o GetResourcePoliciesResourcePolicyOutput) CreatedByUser() GetResourcePoliciesResourcePolicyCreatedByUserOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) GetResourcePoliciesResourcePolicyCreatedByUser {
+		return v.CreatedByUser
+	}).(GetResourcePoliciesResourcePolicyCreatedByUserOutput)
+}
+
+// Date and time in UTC when the Atlas resource policy was created.
+func (o GetResourcePoliciesResourcePolicyOutput) CreatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
+func (o GetResourcePoliciesResourcePolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The user that last updated the Atlas resource policy.
+func (o GetResourcePoliciesResourcePolicyOutput) LastUpdatedByUser() GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) GetResourcePoliciesResourcePolicyLastUpdatedByUser {
+		return v.LastUpdatedByUser
+	}).(GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput)
+}
+
+// Date and time in UTC when the Atlas resource policy was last updated.
+func (o GetResourcePoliciesResourcePolicyOutput) LastUpdatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.LastUpdatedDate }).(pulumi.StringOutput)
+}
+
+// Human-readable label that describes the Atlas resource policy.
+func (o GetResourcePoliciesResourcePolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+func (o GetResourcePoliciesResourcePolicyOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// List of policies that make up the Atlas resource policy.
+func (o GetResourcePoliciesResourcePolicyOutput) Policies() GetResourcePoliciesResourcePolicyPolicyArrayOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) []GetResourcePoliciesResourcePolicyPolicy { return v.Policies }).(GetResourcePoliciesResourcePolicyPolicyArrayOutput)
+}
+
+// A string that identifies the version of the Atlas resource policy.
+func (o GetResourcePoliciesResourcePolicyOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetResourcePoliciesResourcePolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResourcePolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePoliciesResourcePolicy)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResourcePolicyArrayOutput) ToGetResourcePoliciesResourcePolicyArrayOutput() GetResourcePoliciesResourcePolicyArrayOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResourcePolicyArrayOutput) ToGetResourcePoliciesResourcePolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyArrayOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResourcePolicyArrayOutput) Index(i pulumi.IntInput) GetResourcePoliciesResourcePolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePoliciesResourcePolicy {
+		return vs[0].([]GetResourcePoliciesResourcePolicy)[vs[1].(int)]
+	}).(GetResourcePoliciesResourcePolicyOutput)
+}
+
+type GetResourcePoliciesResourcePolicyCreatedByUser struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id string `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name string `pulumi:"name"`
+}
+
+// GetResourcePoliciesResourcePolicyCreatedByUserInput is an input type that accepts GetResourcePoliciesResourcePolicyCreatedByUserArgs and GetResourcePoliciesResourcePolicyCreatedByUserOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyCreatedByUserInput` via:
+//
+//	GetResourcePoliciesResourcePolicyCreatedByUserArgs{...}
+type GetResourcePoliciesResourcePolicyCreatedByUserInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResourcePolicyCreatedByUserOutput() GetResourcePoliciesResourcePolicyCreatedByUserOutput
+	ToGetResourcePoliciesResourcePolicyCreatedByUserOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyCreatedByUserOutput
+}
+
+type GetResourcePoliciesResourcePolicyCreatedByUserArgs struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetResourcePoliciesResourcePolicyCreatedByUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyCreatedByUser)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResourcePolicyCreatedByUserArgs) ToGetResourcePoliciesResourcePolicyCreatedByUserOutput() GetResourcePoliciesResourcePolicyCreatedByUserOutput {
+	return i.ToGetResourcePoliciesResourcePolicyCreatedByUserOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResourcePolicyCreatedByUserArgs) ToGetResourcePoliciesResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyCreatedByUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyCreatedByUserOutput)
+}
+
+type GetResourcePoliciesResourcePolicyCreatedByUserOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResourcePolicyCreatedByUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyCreatedByUser)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResourcePolicyCreatedByUserOutput) ToGetResourcePoliciesResourcePolicyCreatedByUserOutput() GetResourcePoliciesResourcePolicyCreatedByUserOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResourcePolicyCreatedByUserOutput) ToGetResourcePoliciesResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyCreatedByUserOutput {
+	return o
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o GetResourcePoliciesResourcePolicyCreatedByUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyCreatedByUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that describes a user.
+func (o GetResourcePoliciesResourcePolicyCreatedByUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyCreatedByUser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetResourcePoliciesResourcePolicyLastUpdatedByUser struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id string `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name string `pulumi:"name"`
+}
+
+// GetResourcePoliciesResourcePolicyLastUpdatedByUserInput is an input type that accepts GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs and GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyLastUpdatedByUserInput` via:
+//
+//	GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs{...}
+type GetResourcePoliciesResourcePolicyLastUpdatedByUserInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutput() GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput
+	ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput
+}
+
+type GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyLastUpdatedByUser)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs) ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutput() GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
+	return i.ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs) ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput)
+}
+
+type GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyLastUpdatedByUser)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutput() GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
+	return o
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyLastUpdatedByUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that describes a user.
+func (o GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyLastUpdatedByUser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetResourcePoliciesResourcePolicyPolicy struct {
+	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+	Body string `pulumi:"body"`
+	// Unique 24-hexadecimal character string that identifies the policy.
+	Id string `pulumi:"id"`
+}
+
+// GetResourcePoliciesResourcePolicyPolicyInput is an input type that accepts GetResourcePoliciesResourcePolicyPolicyArgs and GetResourcePoliciesResourcePolicyPolicyOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyPolicyInput` via:
+//
+//	GetResourcePoliciesResourcePolicyPolicyArgs{...}
+type GetResourcePoliciesResourcePolicyPolicyInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResourcePolicyPolicyOutput() GetResourcePoliciesResourcePolicyPolicyOutput
+	ToGetResourcePoliciesResourcePolicyPolicyOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyPolicyOutput
+}
+
+type GetResourcePoliciesResourcePolicyPolicyArgs struct {
+	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+	Body pulumi.StringInput `pulumi:"body"`
+	// Unique 24-hexadecimal character string that identifies the policy.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetResourcePoliciesResourcePolicyPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResourcePolicyPolicyArgs) ToGetResourcePoliciesResourcePolicyPolicyOutput() GetResourcePoliciesResourcePolicyPolicyOutput {
+	return i.ToGetResourcePoliciesResourcePolicyPolicyOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResourcePolicyPolicyArgs) ToGetResourcePoliciesResourcePolicyPolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyPolicyOutput)
+}
+
+// GetResourcePoliciesResourcePolicyPolicyArrayInput is an input type that accepts GetResourcePoliciesResourcePolicyPolicyArray and GetResourcePoliciesResourcePolicyPolicyArrayOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyPolicyArrayInput` via:
+//
+//	GetResourcePoliciesResourcePolicyPolicyArray{ GetResourcePoliciesResourcePolicyPolicyArgs{...} }
+type GetResourcePoliciesResourcePolicyPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResourcePolicyPolicyArrayOutput() GetResourcePoliciesResourcePolicyPolicyArrayOutput
+	ToGetResourcePoliciesResourcePolicyPolicyArrayOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyPolicyArrayOutput
+}
+
+type GetResourcePoliciesResourcePolicyPolicyArray []GetResourcePoliciesResourcePolicyPolicyInput
+
+func (GetResourcePoliciesResourcePolicyPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePoliciesResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResourcePolicyPolicyArray) ToGetResourcePoliciesResourcePolicyPolicyArrayOutput() GetResourcePoliciesResourcePolicyPolicyArrayOutput {
+	return i.ToGetResourcePoliciesResourcePolicyPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResourcePolicyPolicyArray) ToGetResourcePoliciesResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyPolicyArrayOutput)
+}
+
+type GetResourcePoliciesResourcePolicyPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResourcePolicyPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResourcePolicyPolicyOutput) ToGetResourcePoliciesResourcePolicyPolicyOutput() GetResourcePoliciesResourcePolicyPolicyOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResourcePolicyPolicyOutput) ToGetResourcePoliciesResourcePolicyPolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyPolicyOutput {
+	return o
+}
+
+// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+func (o GetResourcePoliciesResourcePolicyPolicyOutput) Body() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyPolicy) string { return v.Body }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies the policy.
+func (o GetResourcePoliciesResourcePolicyPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetResourcePoliciesResourcePolicyPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResourcePolicyPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePoliciesResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResourcePolicyPolicyArrayOutput) ToGetResourcePoliciesResourcePolicyPolicyArrayOutput() GetResourcePoliciesResourcePolicyPolicyArrayOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResourcePolicyPolicyArrayOutput) ToGetResourcePoliciesResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyPolicyArrayOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResourcePolicyPolicyArrayOutput) Index(i pulumi.IntInput) GetResourcePoliciesResourcePolicyPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePoliciesResourcePolicyPolicy {
+		return vs[0].([]GetResourcePoliciesResourcePolicyPolicy)[vs[1].(int)]
+	}).(GetResourcePoliciesResourcePolicyPolicyOutput)
+}
+
+type GetResourcePoliciesResult struct {
+	// The user that last updated the Atlas resource policy.
+	CreatedByUser GetResourcePoliciesResultCreatedByUser `pulumi:"createdByUser"`
+	// Date and time in UTC when the Atlas resource policy was created.
+	CreatedDate string `pulumi:"createdDate"`
+	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
+	Id string `pulumi:"id"`
+	// The user that last updated the Atlas resource policy.
+	LastUpdatedByUser GetResourcePoliciesResultLastUpdatedByUser `pulumi:"lastUpdatedByUser"`
+	// Date and time in UTC when the Atlas resource policy was last updated.
+	LastUpdatedDate string `pulumi:"lastUpdatedDate"`
+	// Human-readable label that describes the Atlas resource policy.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	OrgId string `pulumi:"orgId"`
+	// List of policies that make up the Atlas resource policy.
+	Policies []GetResourcePoliciesResultPolicy `pulumi:"policies"`
+	// A string that identifies the version of the Atlas resource policy.
+	Version string `pulumi:"version"`
+}
+
+// GetResourcePoliciesResultInput is an input type that accepts GetResourcePoliciesResultArgs and GetResourcePoliciesResultOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResultInput` via:
+//
+//	GetResourcePoliciesResultArgs{...}
+type GetResourcePoliciesResultInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResultOutput() GetResourcePoliciesResultOutput
+	ToGetResourcePoliciesResultOutputWithContext(context.Context) GetResourcePoliciesResultOutput
+}
+
+type GetResourcePoliciesResultArgs struct {
+	// The user that last updated the Atlas resource policy.
+	CreatedByUser GetResourcePoliciesResultCreatedByUserInput `pulumi:"createdByUser"`
+	// Date and time in UTC when the Atlas resource policy was created.
+	CreatedDate pulumi.StringInput `pulumi:"createdDate"`
+	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The user that last updated the Atlas resource policy.
+	LastUpdatedByUser GetResourcePoliciesResultLastUpdatedByUserInput `pulumi:"lastUpdatedByUser"`
+	// Date and time in UTC when the Atlas resource policy was last updated.
+	LastUpdatedDate pulumi.StringInput `pulumi:"lastUpdatedDate"`
+	// Human-readable label that describes the Atlas resource policy.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// List of policies that make up the Atlas resource policy.
+	Policies GetResourcePoliciesResultPolicyArrayInput `pulumi:"policies"`
+	// A string that identifies the version of the Atlas resource policy.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetResourcePoliciesResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResult)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResultArgs) ToGetResourcePoliciesResultOutput() GetResourcePoliciesResultOutput {
+	return i.ToGetResourcePoliciesResultOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResultArgs) ToGetResourcePoliciesResultOutputWithContext(ctx context.Context) GetResourcePoliciesResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultOutput)
+}
+
+// GetResourcePoliciesResultArrayInput is an input type that accepts GetResourcePoliciesResultArray and GetResourcePoliciesResultArrayOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResultArrayInput` via:
+//
+//	GetResourcePoliciesResultArray{ GetResourcePoliciesResultArgs{...} }
+type GetResourcePoliciesResultArrayInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResultArrayOutput() GetResourcePoliciesResultArrayOutput
+	ToGetResourcePoliciesResultArrayOutputWithContext(context.Context) GetResourcePoliciesResultArrayOutput
+}
+
+type GetResourcePoliciesResultArray []GetResourcePoliciesResultInput
+
+func (GetResourcePoliciesResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePoliciesResult)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResultArray) ToGetResourcePoliciesResultArrayOutput() GetResourcePoliciesResultArrayOutput {
+	return i.ToGetResourcePoliciesResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResultArray) ToGetResourcePoliciesResultArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultArrayOutput)
+}
+
+type GetResourcePoliciesResultOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResult)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResultOutput) ToGetResourcePoliciesResultOutput() GetResourcePoliciesResultOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResultOutput) ToGetResourcePoliciesResultOutputWithContext(ctx context.Context) GetResourcePoliciesResultOutput {
+	return o
+}
+
+// The user that last updated the Atlas resource policy.
+func (o GetResourcePoliciesResultOutput) CreatedByUser() GetResourcePoliciesResultCreatedByUserOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) GetResourcePoliciesResultCreatedByUser { return v.CreatedByUser }).(GetResourcePoliciesResultCreatedByUserOutput)
+}
+
+// Date and time in UTC when the Atlas resource policy was created.
+func (o GetResourcePoliciesResultOutput) CreatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
+func (o GetResourcePoliciesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The user that last updated the Atlas resource policy.
+func (o GetResourcePoliciesResultOutput) LastUpdatedByUser() GetResourcePoliciesResultLastUpdatedByUserOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) GetResourcePoliciesResultLastUpdatedByUser {
+		return v.LastUpdatedByUser
+	}).(GetResourcePoliciesResultLastUpdatedByUserOutput)
+}
+
+// Date and time in UTC when the Atlas resource policy was last updated.
+func (o GetResourcePoliciesResultOutput) LastUpdatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.LastUpdatedDate }).(pulumi.StringOutput)
+}
+
+// Human-readable label that describes the Atlas resource policy.
+func (o GetResourcePoliciesResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+func (o GetResourcePoliciesResultOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// List of policies that make up the Atlas resource policy.
+func (o GetResourcePoliciesResultOutput) Policies() GetResourcePoliciesResultPolicyArrayOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) []GetResourcePoliciesResultPolicy { return v.Policies }).(GetResourcePoliciesResultPolicyArrayOutput)
+}
+
+// A string that identifies the version of the Atlas resource policy.
+func (o GetResourcePoliciesResultOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetResourcePoliciesResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePoliciesResult)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResultArrayOutput) ToGetResourcePoliciesResultArrayOutput() GetResourcePoliciesResultArrayOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResultArrayOutput) ToGetResourcePoliciesResultArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResultArrayOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResultArrayOutput) Index(i pulumi.IntInput) GetResourcePoliciesResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePoliciesResult {
+		return vs[0].([]GetResourcePoliciesResult)[vs[1].(int)]
+	}).(GetResourcePoliciesResultOutput)
+}
+
+type GetResourcePoliciesResultCreatedByUser struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id string `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name string `pulumi:"name"`
+}
+
+// GetResourcePoliciesResultCreatedByUserInput is an input type that accepts GetResourcePoliciesResultCreatedByUserArgs and GetResourcePoliciesResultCreatedByUserOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResultCreatedByUserInput` via:
+//
+//	GetResourcePoliciesResultCreatedByUserArgs{...}
+type GetResourcePoliciesResultCreatedByUserInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResultCreatedByUserOutput() GetResourcePoliciesResultCreatedByUserOutput
+	ToGetResourcePoliciesResultCreatedByUserOutputWithContext(context.Context) GetResourcePoliciesResultCreatedByUserOutput
+}
+
+type GetResourcePoliciesResultCreatedByUserArgs struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetResourcePoliciesResultCreatedByUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResultCreatedByUser)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResultCreatedByUserArgs) ToGetResourcePoliciesResultCreatedByUserOutput() GetResourcePoliciesResultCreatedByUserOutput {
+	return i.ToGetResourcePoliciesResultCreatedByUserOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResultCreatedByUserArgs) ToGetResourcePoliciesResultCreatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResultCreatedByUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultCreatedByUserOutput)
+}
+
+type GetResourcePoliciesResultCreatedByUserOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResultCreatedByUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResultCreatedByUser)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResultCreatedByUserOutput) ToGetResourcePoliciesResultCreatedByUserOutput() GetResourcePoliciesResultCreatedByUserOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResultCreatedByUserOutput) ToGetResourcePoliciesResultCreatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResultCreatedByUserOutput {
+	return o
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o GetResourcePoliciesResultCreatedByUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResultCreatedByUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that describes a user.
+func (o GetResourcePoliciesResultCreatedByUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResultCreatedByUser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetResourcePoliciesResultLastUpdatedByUser struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id string `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name string `pulumi:"name"`
+}
+
+// GetResourcePoliciesResultLastUpdatedByUserInput is an input type that accepts GetResourcePoliciesResultLastUpdatedByUserArgs and GetResourcePoliciesResultLastUpdatedByUserOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResultLastUpdatedByUserInput` via:
+//
+//	GetResourcePoliciesResultLastUpdatedByUserArgs{...}
+type GetResourcePoliciesResultLastUpdatedByUserInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResultLastUpdatedByUserOutput() GetResourcePoliciesResultLastUpdatedByUserOutput
+	ToGetResourcePoliciesResultLastUpdatedByUserOutputWithContext(context.Context) GetResourcePoliciesResultLastUpdatedByUserOutput
+}
+
+type GetResourcePoliciesResultLastUpdatedByUserArgs struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetResourcePoliciesResultLastUpdatedByUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResultLastUpdatedByUser)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResultLastUpdatedByUserArgs) ToGetResourcePoliciesResultLastUpdatedByUserOutput() GetResourcePoliciesResultLastUpdatedByUserOutput {
+	return i.ToGetResourcePoliciesResultLastUpdatedByUserOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResultLastUpdatedByUserArgs) ToGetResourcePoliciesResultLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResultLastUpdatedByUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultLastUpdatedByUserOutput)
+}
+
+type GetResourcePoliciesResultLastUpdatedByUserOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResultLastUpdatedByUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResultLastUpdatedByUser)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResultLastUpdatedByUserOutput) ToGetResourcePoliciesResultLastUpdatedByUserOutput() GetResourcePoliciesResultLastUpdatedByUserOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResultLastUpdatedByUserOutput) ToGetResourcePoliciesResultLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResultLastUpdatedByUserOutput {
+	return o
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o GetResourcePoliciesResultLastUpdatedByUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResultLastUpdatedByUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that describes a user.
+func (o GetResourcePoliciesResultLastUpdatedByUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResultLastUpdatedByUser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetResourcePoliciesResultPolicy struct {
+	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+	Body string `pulumi:"body"`
+	// Unique 24-hexadecimal character string that identifies the policy.
+	Id string `pulumi:"id"`
+}
+
+// GetResourcePoliciesResultPolicyInput is an input type that accepts GetResourcePoliciesResultPolicyArgs and GetResourcePoliciesResultPolicyOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResultPolicyInput` via:
+//
+//	GetResourcePoliciesResultPolicyArgs{...}
+type GetResourcePoliciesResultPolicyInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResultPolicyOutput() GetResourcePoliciesResultPolicyOutput
+	ToGetResourcePoliciesResultPolicyOutputWithContext(context.Context) GetResourcePoliciesResultPolicyOutput
+}
+
+type GetResourcePoliciesResultPolicyArgs struct {
+	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+	Body pulumi.StringInput `pulumi:"body"`
+	// Unique 24-hexadecimal character string that identifies the policy.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetResourcePoliciesResultPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResultPolicy)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResultPolicyArgs) ToGetResourcePoliciesResultPolicyOutput() GetResourcePoliciesResultPolicyOutput {
+	return i.ToGetResourcePoliciesResultPolicyOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResultPolicyArgs) ToGetResourcePoliciesResultPolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResultPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultPolicyOutput)
+}
+
+// GetResourcePoliciesResultPolicyArrayInput is an input type that accepts GetResourcePoliciesResultPolicyArray and GetResourcePoliciesResultPolicyArrayOutput values.
+// You can construct a concrete instance of `GetResourcePoliciesResultPolicyArrayInput` via:
+//
+//	GetResourcePoliciesResultPolicyArray{ GetResourcePoliciesResultPolicyArgs{...} }
+type GetResourcePoliciesResultPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetResourcePoliciesResultPolicyArrayOutput() GetResourcePoliciesResultPolicyArrayOutput
+	ToGetResourcePoliciesResultPolicyArrayOutputWithContext(context.Context) GetResourcePoliciesResultPolicyArrayOutput
+}
+
+type GetResourcePoliciesResultPolicyArray []GetResourcePoliciesResultPolicyInput
+
+func (GetResourcePoliciesResultPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePoliciesResultPolicy)(nil)).Elem()
+}
+
+func (i GetResourcePoliciesResultPolicyArray) ToGetResourcePoliciesResultPolicyArrayOutput() GetResourcePoliciesResultPolicyArrayOutput {
+	return i.ToGetResourcePoliciesResultPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetResourcePoliciesResultPolicyArray) ToGetResourcePoliciesResultPolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResultPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultPolicyArrayOutput)
+}
+
+type GetResourcePoliciesResultPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResultPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePoliciesResultPolicy)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResultPolicyOutput) ToGetResourcePoliciesResultPolicyOutput() GetResourcePoliciesResultPolicyOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResultPolicyOutput) ToGetResourcePoliciesResultPolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResultPolicyOutput {
+	return o
+}
+
+// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+func (o GetResourcePoliciesResultPolicyOutput) Body() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResultPolicy) string { return v.Body }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies the policy.
+func (o GetResourcePoliciesResultPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResultPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetResourcePoliciesResultPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePoliciesResultPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePoliciesResultPolicy)(nil)).Elem()
+}
+
+func (o GetResourcePoliciesResultPolicyArrayOutput) ToGetResourcePoliciesResultPolicyArrayOutput() GetResourcePoliciesResultPolicyArrayOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResultPolicyArrayOutput) ToGetResourcePoliciesResultPolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResultPolicyArrayOutput {
+	return o
+}
+
+func (o GetResourcePoliciesResultPolicyArrayOutput) Index(i pulumi.IntInput) GetResourcePoliciesResultPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePoliciesResultPolicy {
+		return vs[0].([]GetResourcePoliciesResultPolicy)[vs[1].(int)]
+	}).(GetResourcePoliciesResultPolicyOutput)
+}
+
+type GetResourcePolicyCreatedByUser struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id string `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name string `pulumi:"name"`
+}
+
+// GetResourcePolicyCreatedByUserInput is an input type that accepts GetResourcePolicyCreatedByUserArgs and GetResourcePolicyCreatedByUserOutput values.
+// You can construct a concrete instance of `GetResourcePolicyCreatedByUserInput` via:
+//
+//	GetResourcePolicyCreatedByUserArgs{...}
+type GetResourcePolicyCreatedByUserInput interface {
+	pulumi.Input
+
+	ToGetResourcePolicyCreatedByUserOutput() GetResourcePolicyCreatedByUserOutput
+	ToGetResourcePolicyCreatedByUserOutputWithContext(context.Context) GetResourcePolicyCreatedByUserOutput
+}
+
+type GetResourcePolicyCreatedByUserArgs struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetResourcePolicyCreatedByUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePolicyCreatedByUser)(nil)).Elem()
+}
+
+func (i GetResourcePolicyCreatedByUserArgs) ToGetResourcePolicyCreatedByUserOutput() GetResourcePolicyCreatedByUserOutput {
+	return i.ToGetResourcePolicyCreatedByUserOutputWithContext(context.Background())
+}
+
+func (i GetResourcePolicyCreatedByUserArgs) ToGetResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) GetResourcePolicyCreatedByUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePolicyCreatedByUserOutput)
+}
+
+type GetResourcePolicyCreatedByUserOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePolicyCreatedByUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePolicyCreatedByUser)(nil)).Elem()
+}
+
+func (o GetResourcePolicyCreatedByUserOutput) ToGetResourcePolicyCreatedByUserOutput() GetResourcePolicyCreatedByUserOutput {
+	return o
+}
+
+func (o GetResourcePolicyCreatedByUserOutput) ToGetResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) GetResourcePolicyCreatedByUserOutput {
+	return o
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o GetResourcePolicyCreatedByUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePolicyCreatedByUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that describes a user.
+func (o GetResourcePolicyCreatedByUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePolicyCreatedByUser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetResourcePolicyLastUpdatedByUser struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id string `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name string `pulumi:"name"`
+}
+
+// GetResourcePolicyLastUpdatedByUserInput is an input type that accepts GetResourcePolicyLastUpdatedByUserArgs and GetResourcePolicyLastUpdatedByUserOutput values.
+// You can construct a concrete instance of `GetResourcePolicyLastUpdatedByUserInput` via:
+//
+//	GetResourcePolicyLastUpdatedByUserArgs{...}
+type GetResourcePolicyLastUpdatedByUserInput interface {
+	pulumi.Input
+
+	ToGetResourcePolicyLastUpdatedByUserOutput() GetResourcePolicyLastUpdatedByUserOutput
+	ToGetResourcePolicyLastUpdatedByUserOutputWithContext(context.Context) GetResourcePolicyLastUpdatedByUserOutput
+}
+
+type GetResourcePolicyLastUpdatedByUserArgs struct {
+	// Unique 24-hexadecimal character string that identifies a user.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Human-readable label that describes a user.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetResourcePolicyLastUpdatedByUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePolicyLastUpdatedByUser)(nil)).Elem()
+}
+
+func (i GetResourcePolicyLastUpdatedByUserArgs) ToGetResourcePolicyLastUpdatedByUserOutput() GetResourcePolicyLastUpdatedByUserOutput {
+	return i.ToGetResourcePolicyLastUpdatedByUserOutputWithContext(context.Background())
+}
+
+func (i GetResourcePolicyLastUpdatedByUserArgs) ToGetResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePolicyLastUpdatedByUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePolicyLastUpdatedByUserOutput)
+}
+
+type GetResourcePolicyLastUpdatedByUserOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePolicyLastUpdatedByUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePolicyLastUpdatedByUser)(nil)).Elem()
+}
+
+func (o GetResourcePolicyLastUpdatedByUserOutput) ToGetResourcePolicyLastUpdatedByUserOutput() GetResourcePolicyLastUpdatedByUserOutput {
+	return o
+}
+
+func (o GetResourcePolicyLastUpdatedByUserOutput) ToGetResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePolicyLastUpdatedByUserOutput {
+	return o
+}
+
+// Unique 24-hexadecimal character string that identifies a user.
+func (o GetResourcePolicyLastUpdatedByUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePolicyLastUpdatedByUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that describes a user.
+func (o GetResourcePolicyLastUpdatedByUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePolicyLastUpdatedByUser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetResourcePolicyPolicy struct {
+	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+	Body string `pulumi:"body"`
+	// Unique 24-hexadecimal character string that identifies the policy.
+	Id string `pulumi:"id"`
+}
+
+// GetResourcePolicyPolicyInput is an input type that accepts GetResourcePolicyPolicyArgs and GetResourcePolicyPolicyOutput values.
+// You can construct a concrete instance of `GetResourcePolicyPolicyInput` via:
+//
+//	GetResourcePolicyPolicyArgs{...}
+type GetResourcePolicyPolicyInput interface {
+	pulumi.Input
+
+	ToGetResourcePolicyPolicyOutput() GetResourcePolicyPolicyOutput
+	ToGetResourcePolicyPolicyOutputWithContext(context.Context) GetResourcePolicyPolicyOutput
+}
+
+type GetResourcePolicyPolicyArgs struct {
+	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+	Body pulumi.StringInput `pulumi:"body"`
+	// Unique 24-hexadecimal character string that identifies the policy.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetResourcePolicyPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (i GetResourcePolicyPolicyArgs) ToGetResourcePolicyPolicyOutput() GetResourcePolicyPolicyOutput {
+	return i.ToGetResourcePolicyPolicyOutputWithContext(context.Background())
+}
+
+func (i GetResourcePolicyPolicyArgs) ToGetResourcePolicyPolicyOutputWithContext(ctx context.Context) GetResourcePolicyPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePolicyPolicyOutput)
+}
+
+// GetResourcePolicyPolicyArrayInput is an input type that accepts GetResourcePolicyPolicyArray and GetResourcePolicyPolicyArrayOutput values.
+// You can construct a concrete instance of `GetResourcePolicyPolicyArrayInput` via:
+//
+//	GetResourcePolicyPolicyArray{ GetResourcePolicyPolicyArgs{...} }
+type GetResourcePolicyPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetResourcePolicyPolicyArrayOutput() GetResourcePolicyPolicyArrayOutput
+	ToGetResourcePolicyPolicyArrayOutputWithContext(context.Context) GetResourcePolicyPolicyArrayOutput
+}
+
+type GetResourcePolicyPolicyArray []GetResourcePolicyPolicyInput
+
+func (GetResourcePolicyPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (i GetResourcePolicyPolicyArray) ToGetResourcePolicyPolicyArrayOutput() GetResourcePolicyPolicyArrayOutput {
+	return i.ToGetResourcePolicyPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetResourcePolicyPolicyArray) ToGetResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) GetResourcePolicyPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePolicyPolicyArrayOutput)
+}
+
+type GetResourcePolicyPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePolicyPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (o GetResourcePolicyPolicyOutput) ToGetResourcePolicyPolicyOutput() GetResourcePolicyPolicyOutput {
+	return o
+}
+
+func (o GetResourcePolicyPolicyOutput) ToGetResourcePolicyPolicyOutputWithContext(ctx context.Context) GetResourcePolicyPolicyOutput {
+	return o
+}
+
+// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
+func (o GetResourcePolicyPolicyOutput) Body() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePolicyPolicy) string { return v.Body }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies the policy.
+func (o GetResourcePolicyPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePolicyPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetResourcePolicyPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetResourcePolicyPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetResourcePolicyPolicy)(nil)).Elem()
+}
+
+func (o GetResourcePolicyPolicyArrayOutput) ToGetResourcePolicyPolicyArrayOutput() GetResourcePolicyPolicyArrayOutput {
+	return o
+}
+
+func (o GetResourcePolicyPolicyArrayOutput) ToGetResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) GetResourcePolicyPolicyArrayOutput {
+	return o
+}
+
+func (o GetResourcePolicyPolicyArrayOutput) Index(i pulumi.IntInput) GetResourcePolicyPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePolicyPolicy {
+		return vs[0].([]GetResourcePolicyPolicy)[vs[1].(int)]
+	}).(GetResourcePolicyPolicyOutput)
+}
+
 type GetSearchDeploymentSpec struct {
 	// Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
 	InstanceSize string `pulumi:"instanceSize"`
@@ -52472,6 +54994,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgConfigUserConflictArrayInput)(nil)).Elem(), FederatedSettingsOrgConfigUserConflictArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterBackupSettingsInput)(nil)).Elem(), FlexClusterBackupSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterBackupSettingsPtrInput)(nil)).Elem(), FlexClusterBackupSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterConnectionStringsInput)(nil)).Elem(), FlexClusterConnectionStringsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterConnectionStringsPtrInput)(nil)).Elem(), FlexClusterConnectionStringsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterProviderSettingsInput)(nil)).Elem(), FlexClusterProviderSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterProviderSettingsPtrInput)(nil)).Elem(), FlexClusterProviderSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigCustomZoneMappingInput)(nil)).Elem(), GlobalClusterConfigCustomZoneMappingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigCustomZoneMappingArrayInput)(nil)).Elem(), GlobalClusterConfigCustomZoneMappingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigManagedNamespaceInput)(nil)).Elem(), GlobalClusterConfigManagedNamespaceArgs{})
@@ -52512,6 +55040,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRolePtrInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PushBasedLogExportTimeoutsInput)(nil)).Elem(), PushBasedLogExportTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PushBasedLogExportTimeoutsPtrInput)(nil)).Elem(), PushBasedLogExportTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyCreatedByUserInput)(nil)).Elem(), ResourcePolicyCreatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyCreatedByUserPtrInput)(nil)).Elem(), ResourcePolicyCreatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyLastUpdatedByUserInput)(nil)).Elem(), ResourcePolicyLastUpdatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyLastUpdatedByUserPtrInput)(nil)).Elem(), ResourcePolicyLastUpdatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyPolicyInput)(nil)).Elem(), ResourcePolicyPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyPolicyArrayInput)(nil)).Elem(), ResourcePolicyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecInput)(nil)).Elem(), SearchDeploymentSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecArrayInput)(nil)).Elem(), SearchDeploymentSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentTimeoutsInput)(nil)).Elem(), SearchDeploymentTimeoutsArgs{})
@@ -52906,6 +55440,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultArrayInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClusterBackupSettingsInput)(nil)).Elem(), GetFlexClusterBackupSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClusterConnectionStringsInput)(nil)).Elem(), GetFlexClusterConnectionStringsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClusterProviderSettingsInput)(nil)).Elem(), GetFlexClusterProviderSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultInput)(nil)).Elem(), GetFlexClustersResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultArrayInput)(nil)).Elem(), GetFlexClustersResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultBackupSettingsInput)(nil)).Elem(), GetFlexClustersResultBackupSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultConnectionStringsInput)(nil)).Elem(), GetFlexClustersResultConnectionStringsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultProviderSettingsInput)(nil)).Elem(), GetFlexClustersResultProviderSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalClusterConfigManagedNamespaceInput)(nil)).Elem(), GetGlobalClusterConfigManagedNamespaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalClusterConfigManagedNamespaceArrayInput)(nil)).Elem(), GetGlobalClusterConfigManagedNamespaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapConfigurationUserToDnMappingInput)(nil)).Elem(), GetLdapConfigurationUserToDnMappingArgs{})
@@ -52976,6 +55518,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultLimitArrayInput)(nil)).Elem(), GetProjectsResultLimitArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamInput)(nil)).Elem(), GetProjectsResultTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamArrayInput)(nil)).Elem(), GetProjectsResultTeamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyArrayInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyCreatedByUserInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyCreatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyLastUpdatedByUserInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyPolicyInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyPolicyArrayInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultInput)(nil)).Elem(), GetResourcePoliciesResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultArrayInput)(nil)).Elem(), GetResourcePoliciesResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultCreatedByUserInput)(nil)).Elem(), GetResourcePoliciesResultCreatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultLastUpdatedByUserInput)(nil)).Elem(), GetResourcePoliciesResultLastUpdatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultPolicyInput)(nil)).Elem(), GetResourcePoliciesResultPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultPolicyArrayInput)(nil)).Elem(), GetResourcePoliciesResultPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePolicyCreatedByUserInput)(nil)).Elem(), GetResourcePolicyCreatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePolicyLastUpdatedByUserInput)(nil)).Elem(), GetResourcePolicyLastUpdatedByUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePolicyPolicyInput)(nil)).Elem(), GetResourcePolicyPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePolicyPolicyArrayInput)(nil)).Elem(), GetResourcePolicyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchDeploymentSpecInput)(nil)).Elem(), GetSearchDeploymentSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchDeploymentSpecArrayInput)(nil)).Elem(), GetSearchDeploymentSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexSynonymInput)(nil)).Elem(), GetSearchIndexSynonymArgs{})
@@ -53198,6 +55756,12 @@ func init() {
 	pulumi.RegisterOutputType(FederatedSettingsOrgConfigUserConflictArrayOutput{})
 	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentOutput{})
 	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(FlexClusterBackupSettingsOutput{})
+	pulumi.RegisterOutputType(FlexClusterBackupSettingsPtrOutput{})
+	pulumi.RegisterOutputType(FlexClusterConnectionStringsOutput{})
+	pulumi.RegisterOutputType(FlexClusterConnectionStringsPtrOutput{})
+	pulumi.RegisterOutputType(FlexClusterProviderSettingsOutput{})
+	pulumi.RegisterOutputType(FlexClusterProviderSettingsPtrOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingArrayOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigManagedNamespaceOutput{})
@@ -53238,6 +55802,12 @@ func init() {
 	pulumi.RegisterOutputType(ProviderAssumeRolePtrOutput{})
 	pulumi.RegisterOutputType(PushBasedLogExportTimeoutsOutput{})
 	pulumi.RegisterOutputType(PushBasedLogExportTimeoutsPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePolicyCreatedByUserOutput{})
+	pulumi.RegisterOutputType(ResourcePolicyCreatedByUserPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePolicyLastUpdatedByUserOutput{})
+	pulumi.RegisterOutputType(ResourcePolicyLastUpdatedByUserPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePolicyPolicyOutput{})
+	pulumi.RegisterOutputType(ResourcePolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentSpecOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentSpecArrayOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentTimeoutsOutput{})
@@ -53632,6 +56202,14 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput{})
 	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetFlexClusterBackupSettingsOutput{})
+	pulumi.RegisterOutputType(GetFlexClusterConnectionStringsOutput{})
+	pulumi.RegisterOutputType(GetFlexClusterProviderSettingsOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultArrayOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultBackupSettingsOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultConnectionStringsOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultProviderSettingsOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceArrayOutput{})
 	pulumi.RegisterOutputType(GetLdapConfigurationUserToDnMappingOutput{})
@@ -53702,6 +56280,22 @@ func init() {
 	pulumi.RegisterOutputType(GetProjectsResultLimitArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamArrayOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyCreatedByUserOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyPolicyOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResultOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResultArrayOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResultCreatedByUserOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResultLastUpdatedByUserOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResultPolicyOutput{})
+	pulumi.RegisterOutputType(GetResourcePoliciesResultPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetResourcePolicyCreatedByUserOutput{})
+	pulumi.RegisterOutputType(GetResourcePolicyLastUpdatedByUserOutput{})
+	pulumi.RegisterOutputType(GetResourcePolicyPolicyOutput{})
+	pulumi.RegisterOutputType(GetResourcePolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchDeploymentSpecOutput{})
 	pulumi.RegisterOutputType(GetSearchDeploymentSpecArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexSynonymOutput{})

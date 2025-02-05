@@ -111,6 +111,10 @@ import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingPlainArg
 import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
 import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexClusterArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexClusterPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexClustersArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexClustersPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigArgs;
 import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetLdapConfigurationArgs;
@@ -169,6 +173,10 @@ import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
 import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetResourcePoliciesArgs;
+import com.pulumi.mongodbatlas.inputs.GetResourcePoliciesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetResourcePolicyArgs;
+import com.pulumi.mongodbatlas.inputs.GetResourcePolicyPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
 import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
@@ -265,6 +273,8 @@ import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsOrgConfigsInvokeResul
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsOrgRoleMappingResult;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsOrgRoleMappingsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsResult;
+import com.pulumi.mongodbatlas.outputs.GetFlexClusterResult;
+import com.pulumi.mongodbatlas.outputs.GetFlexClustersInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetGlobalClusterConfigResult;
 import com.pulumi.mongodbatlas.outputs.GetLdapConfigurationResult;
 import com.pulumi.mongodbatlas.outputs.GetLdapVerifyResult;
@@ -294,6 +304,8 @@ import com.pulumi.mongodbatlas.outputs.GetProjectIpAddressesResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetPushBasedLogExportResult;
+import com.pulumi.mongodbatlas.outputs.GetResourcePoliciesInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetResourcePolicyResult;
 import com.pulumi.mongodbatlas.outputs.GetRolesOrgIdResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchDeploymentResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexResult;
@@ -18108,6 +18120,136 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", TypeShape.of(GetFederatedSettingsOrgRoleMappingsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.FlexCluster
+     * 
+     * `mongodbatlas.FlexCluster` describes a flex cluster.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClusterResult> getFlexCluster(GetFlexClusterArgs args) {
+        return getFlexCluster(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FlexCluster
+     * 
+     * `mongodbatlas.FlexCluster` describes a flex cluster.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetFlexClusterResult> getFlexClusterPlain(GetFlexClusterPlainArgs args) {
+        return getFlexClusterPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FlexCluster
+     * 
+     * `mongodbatlas.FlexCluster` describes a flex cluster.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClusterResult> getFlexCluster(GetFlexClusterArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexCluster:getFlexCluster", TypeShape.of(GetFlexClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FlexCluster
+     * 
+     * `mongodbatlas.FlexCluster` describes a flex cluster.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClusterResult> getFlexCluster(GetFlexClusterArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexCluster:getFlexCluster", TypeShape.of(GetFlexClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FlexCluster
+     * 
+     * `mongodbatlas.FlexCluster` describes a flex cluster.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetFlexClusterResult> getFlexClusterPlain(GetFlexClusterPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexCluster:getFlexCluster", TypeShape.of(GetFlexClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexClusters
+     * 
+     * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClustersInvokeResult> getFlexClusters(GetFlexClustersArgs args) {
+        return getFlexClusters(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexClusters
+     * 
+     * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetFlexClustersInvokeResult> getFlexClustersPlain(GetFlexClustersPlainArgs args) {
+        return getFlexClustersPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexClusters
+     * 
+     * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClustersInvokeResult> getFlexClusters(GetFlexClustersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexClusters:getFlexClusters", TypeShape.of(GetFlexClustersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexClusters
+     * 
+     * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClustersInvokeResult> getFlexClusters(GetFlexClustersArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexClusters:getFlexClusters", TypeShape.of(GetFlexClustersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexClusters
+     * 
+     * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
+     * 
+     * **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetFlexClustersInvokeResult> getFlexClustersPlain(GetFlexClustersPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexClusters:getFlexClusters", TypeShape.of(GetFlexClustersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * ## # Data Source: mongodbatlas.GlobalClusterConfig
      * 
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
@@ -29414,6 +29556,76 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetPushBasedLogExportResult> getPushBasedLogExportPlain(GetPushBasedLogExportPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", TypeShape.of(GetPushBasedLogExportResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetResourcePoliciesInvokeResult> getResourcePolicies(GetResourcePoliciesArgs args) {
+        return getResourcePolicies(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetResourcePoliciesInvokeResult> getResourcePoliciesPlain(GetResourcePoliciesPlainArgs args) {
+        return getResourcePoliciesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetResourcePoliciesInvokeResult> getResourcePolicies(GetResourcePoliciesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getResourcePolicies:getResourcePolicies", TypeShape.of(GetResourcePoliciesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetResourcePoliciesInvokeResult> getResourcePolicies(GetResourcePoliciesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getResourcePolicies:getResourcePolicies", TypeShape.of(GetResourcePoliciesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetResourcePoliciesInvokeResult> getResourcePoliciesPlain(GetResourcePoliciesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getResourcePolicies:getResourcePolicies", TypeShape.of(GetResourcePoliciesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetResourcePolicyResult> getResourcePolicy(GetResourcePolicyArgs args) {
+        return getResourcePolicy(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetResourcePolicyResult> getResourcePolicyPlain(GetResourcePolicyPlainArgs args) {
+        return getResourcePolicyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetResourcePolicyResult> getResourcePolicy(GetResourcePolicyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getResourcePolicy:getResourcePolicy", TypeShape.of(GetResourcePolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetResourcePolicyResult> getResourcePolicy(GetResourcePolicyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getResourcePolicy:getResourcePolicy", TypeShape.of(GetResourcePolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetResourcePolicyResult> getResourcePolicyPlain(GetResourcePolicyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getResourcePolicy:getResourcePolicy", TypeShape.of(GetResourcePolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## # Data Source: mongodbatlas.getRolesOrgId
