@@ -32,7 +32,6 @@ from .federated_query_limit import *
 from .federated_settings_identity_provider import *
 from .federated_settings_org_config import *
 from .federated_settings_org_role_mapping import *
-from .flex_cluster import *
 from .get509_authentication_database_user import *
 from .get_access_list_api_key import *
 from .get_access_list_api_keys import *
@@ -85,8 +84,6 @@ from .get_federated_settings_org_config import *
 from .get_federated_settings_org_configs import *
 from .get_federated_settings_org_role_mapping import *
 from .get_federated_settings_org_role_mappings import *
-from .get_flex_cluster import *
-from .get_flex_clusters import *
 from .get_global_cluster_config import *
 from .get_ldap_configuration import *
 from .get_ldap_verify import *
@@ -116,8 +113,6 @@ from .get_project_ip_access_list import *
 from .get_project_ip_addresses import *
 from .get_projects import *
 from .get_push_based_log_export import *
-from .get_resource_policies import *
-from .get_resource_policy import *
 from .get_roles_org_id import *
 from .get_search_deployment import *
 from .get_search_index import *
@@ -163,7 +158,6 @@ from .project_invitation import *
 from .project_ip_access_list import *
 from .provider import *
 from .push_based_log_export import *
-from .resource_policy import *
 from .search_deployment import *
 from .search_index import *
 from .serverless_instance import *
@@ -406,14 +400,6 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
-  "mod": "index/flexCluster",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/flexCluster:FlexCluster": "FlexCluster"
-  }
- },
- {
-  "pkg": "mongodbatlas",
   "mod": "index/globalClusterConfig",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -578,14 +564,6 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport": "PushBasedLogExport"
-  }
- },
- {
-  "pkg": "mongodbatlas",
-  "mod": "index/resourcePolicy",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/resourcePolicy:ResourcePolicy": "ResourcePolicy"
   }
  },
  {
