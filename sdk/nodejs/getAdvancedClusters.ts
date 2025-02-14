@@ -84,7 +84,7 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const example-asym = mongodbatlas.getAdvancedClusterOutput({
+ * const example_asym = mongodbatlas.getAdvancedClusterOutput({
  *     projectId: example.projectId,
  *     name: example.name,
  *     useReplicationSpecPerShard: true,
@@ -206,7 +206,7 @@ export interface GetAdvancedClustersResult {
  *         },
  *     ],
  * });
- * const example-asym = mongodbatlas.getAdvancedClusterOutput({
+ * const example_asym = mongodbatlas.getAdvancedClusterOutput({
  *     projectId: example.projectId,
  *     name: example.name,
  *     useReplicationSpecPerShard: true,
