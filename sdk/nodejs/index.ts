@@ -140,11 +140,6 @@ export type FederatedSettingsOrgRoleMapping = import("./federatedSettingsOrgRole
 export const FederatedSettingsOrgRoleMapping: typeof import("./federatedSettingsOrgRoleMapping").FederatedSettingsOrgRoleMapping = null as any;
 utilities.lazyLoad(exports, ["FederatedSettingsOrgRoleMapping"], () => require("./federatedSettingsOrgRoleMapping"));
 
-export { FlexClusterArgs, FlexClusterState } from "./flexCluster";
-export type FlexCluster = import("./flexCluster").FlexCluster;
-export const FlexCluster: typeof import("./flexCluster").FlexCluster = null as any;
-utilities.lazyLoad(exports, ["FlexCluster"], () => require("./flexCluster"));
-
 export { Get509AuthenticationDatabaseUserArgs, Get509AuthenticationDatabaseUserResult, Get509AuthenticationDatabaseUserOutputArgs } from "./get509AuthenticationDatabaseUser";
 export const get509AuthenticationDatabaseUser: typeof import("./get509AuthenticationDatabaseUser").get509AuthenticationDatabaseUser = null as any;
 export const get509AuthenticationDatabaseUserOutput: typeof import("./get509AuthenticationDatabaseUser").get509AuthenticationDatabaseUserOutput = null as any;
@@ -405,16 +400,6 @@ export const getFederatedSettingsOrgRoleMappings: typeof import("./getFederatedS
 export const getFederatedSettingsOrgRoleMappingsOutput: typeof import("./getFederatedSettingsOrgRoleMappings").getFederatedSettingsOrgRoleMappingsOutput = null as any;
 utilities.lazyLoad(exports, ["getFederatedSettingsOrgRoleMappings","getFederatedSettingsOrgRoleMappingsOutput"], () => require("./getFederatedSettingsOrgRoleMappings"));
 
-export { GetFlexClusterArgs, GetFlexClusterResult, GetFlexClusterOutputArgs } from "./getFlexCluster";
-export const getFlexCluster: typeof import("./getFlexCluster").getFlexCluster = null as any;
-export const getFlexClusterOutput: typeof import("./getFlexCluster").getFlexClusterOutput = null as any;
-utilities.lazyLoad(exports, ["getFlexCluster","getFlexClusterOutput"], () => require("./getFlexCluster"));
-
-export { GetFlexClustersArgs, GetFlexClustersResult, GetFlexClustersOutputArgs } from "./getFlexClusters";
-export const getFlexClusters: typeof import("./getFlexClusters").getFlexClusters = null as any;
-export const getFlexClustersOutput: typeof import("./getFlexClusters").getFlexClustersOutput = null as any;
-utilities.lazyLoad(exports, ["getFlexClusters","getFlexClustersOutput"], () => require("./getFlexClusters"));
-
 export { GetGlobalClusterConfigArgs, GetGlobalClusterConfigResult, GetGlobalClusterConfigOutputArgs } from "./getGlobalClusterConfig";
 export const getGlobalClusterConfig: typeof import("./getGlobalClusterConfig").getGlobalClusterConfig = null as any;
 export const getGlobalClusterConfigOutput: typeof import("./getGlobalClusterConfig").getGlobalClusterConfigOutput = null as any;
@@ -559,16 +544,6 @@ export { GetPushBasedLogExportArgs, GetPushBasedLogExportResult, GetPushBasedLog
 export const getPushBasedLogExport: typeof import("./getPushBasedLogExport").getPushBasedLogExport = null as any;
 export const getPushBasedLogExportOutput: typeof import("./getPushBasedLogExport").getPushBasedLogExportOutput = null as any;
 utilities.lazyLoad(exports, ["getPushBasedLogExport","getPushBasedLogExportOutput"], () => require("./getPushBasedLogExport"));
-
-export { GetResourcePoliciesArgs, GetResourcePoliciesResult, GetResourcePoliciesOutputArgs } from "./getResourcePolicies";
-export const getResourcePolicies: typeof import("./getResourcePolicies").getResourcePolicies = null as any;
-export const getResourcePoliciesOutput: typeof import("./getResourcePolicies").getResourcePoliciesOutput = null as any;
-utilities.lazyLoad(exports, ["getResourcePolicies","getResourcePoliciesOutput"], () => require("./getResourcePolicies"));
-
-export { GetResourcePolicyArgs, GetResourcePolicyResult, GetResourcePolicyOutputArgs } from "./getResourcePolicy";
-export const getResourcePolicy: typeof import("./getResourcePolicy").getResourcePolicy = null as any;
-export const getResourcePolicyOutput: typeof import("./getResourcePolicy").getResourcePolicyOutput = null as any;
-utilities.lazyLoad(exports, ["getResourcePolicy","getResourcePolicyOutput"], () => require("./getResourcePolicy"));
 
 export { GetRolesOrgIdResult } from "./getRolesOrgId";
 export const getRolesOrgId: typeof import("./getRolesOrgId").getRolesOrgId = null as any;
@@ -795,11 +770,6 @@ export type PushBasedLogExport = import("./pushBasedLogExport").PushBasedLogExpo
 export const PushBasedLogExport: typeof import("./pushBasedLogExport").PushBasedLogExport = null as any;
 utilities.lazyLoad(exports, ["PushBasedLogExport"], () => require("./pushBasedLogExport"));
 
-export { ResourcePolicyArgs, ResourcePolicyState } from "./resourcePolicy";
-export type ResourcePolicy = import("./resourcePolicy").ResourcePolicy;
-export const ResourcePolicy: typeof import("./resourcePolicy").ResourcePolicy = null as any;
-utilities.lazyLoad(exports, ["ResourcePolicy"], () => require("./resourcePolicy"));
-
 export { SearchDeploymentArgs, SearchDeploymentState } from "./searchDeployment";
 export type SearchDeployment = import("./searchDeployment").SearchDeployment;
 export const SearchDeployment: typeof import("./searchDeployment").SearchDeployment = null as any;
@@ -923,8 +893,6 @@ const _module = {
                 return new FederatedSettingsOrgConfig(name, <any>undefined, { urn })
             case "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping":
                 return new FederatedSettingsOrgRoleMapping(name, <any>undefined, { urn })
-            case "mongodbatlas:index/flexCluster:FlexCluster":
-                return new FlexCluster(name, <any>undefined, { urn })
             case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
                 return new GlobalClusterConfig(name, <any>undefined, { urn })
             case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
@@ -967,8 +935,6 @@ const _module = {
                 return new ProjectIpAccessList(name, <any>undefined, { urn })
             case "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport":
                 return new PushBasedLogExport(name, <any>undefined, { urn })
-            case "mongodbatlas:index/resourcePolicy:ResourcePolicy":
-                return new ResourcePolicy(name, <any>undefined, { urn })
             case "mongodbatlas:index/searchDeployment:SearchDeployment":
                 return new SearchDeployment(name, <any>undefined, { urn })
             case "mongodbatlas:index/searchIndex:SearchIndex":
@@ -1023,7 +989,6 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedQueryLimit
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedSettingsIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedSettingsOrgConfig", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedSettingsOrgRoleMapping", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/flexCluster", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/globalClusterConfig", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapVerify", _module)
@@ -1045,7 +1010,6 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectApiKey", _mo
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/pushBasedLogExport", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/resourcePolicy", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchDeployment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/serverlessInstance", _module)
