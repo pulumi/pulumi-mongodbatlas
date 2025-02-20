@@ -742,12 +742,7 @@ class EventTrigger(pulumi.CustomResource):
             config_database="DATABASE NAME",
             config_collection="COLLECTION NAME",
             config_service_id="SERVICE ID",
-            config_match=\"\"\"{
-          "updateDescription.updatedFields": {
-            "status": "blocked"
-          }
-        }
-        \"\"\",
+            config_match="{  \\\\\\"updateDescription.updatedFields\\\\\\": {    \\\\\\"status\\\\\\": \\\\\\"blocked\\\\\\"  }}\\n",
             config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
             config_full_document=False,
             config_full_document_before=False,
@@ -893,12 +888,7 @@ class EventTrigger(pulumi.CustomResource):
             config_database="DATABASE NAME",
             config_collection="COLLECTION NAME",
             config_service_id="SERVICE ID",
-            config_match=\"\"\"{
-          "updateDescription.updatedFields": {
-            "status": "blocked"
-          }
-        }
-        \"\"\",
+            config_match="{  \\\\\\"updateDescription.updatedFields\\\\\\": {    \\\\\\"status\\\\\\": \\\\\\"blocked\\\\\\"  }}\\n",
             config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
             config_full_document=False,
             config_full_document_before=False,

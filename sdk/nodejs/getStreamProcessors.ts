@@ -12,6 +12,140 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example = new mongodbatlas.StreamInstance("example", {
+ *     projectId: projectId,
+ *     instanceName: "InstanceName",
+ *     dataProcessRegion: {
+ *         region: "VIRGINIA_USA",
+ *         cloudProvider: "AWS",
+ *     },
+ * });
+ * const example_sample = new mongodbatlas.StreamConnection("example-sample", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     connectionName: "sample_stream_solar",
+ *     type: "Sample",
+ * });
+ * const example_cluster = new mongodbatlas.StreamConnection("example-cluster", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     connectionName: "ClusterConnection",
+ *     type: "Cluster",
+ *     clusterName: clusterName,
+ *     dbRoleToExecute: {
+ *         role: "atlasAdmin",
+ *         type: "BUILT_IN",
+ *     },
+ * });
+ * const example_kafka = new mongodbatlas.StreamConnection("example-kafka", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     connectionName: "KafkaPlaintextConnection",
+ *     type: "Kafka",
+ *     authentication: {
+ *         mechanism: "PLAIN",
+ *         username: kafkaUsername,
+ *         password: kafkaPassword,
+ *     },
+ *     bootstrapServers: "localhost:9092,localhost:9092",
+ *     config: {
+ *         "auto.offset.reset": "earliest",
+ *     },
+ *     security: {
+ *         protocol: "PLAINTEXT",
+ *     },
+ * });
+ * const stream_processor_sample_example = new mongodbatlas.StreamProcessor("stream-processor-sample-example", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     processorName: "sampleProcessorName",
+ *     pipeline: JSON.stringify([
+ *         {
+ *             $source: {
+ *                 connectionName: mongodbatlasStreamConnection["example-sample"].connectionName,
+ *             },
+ *         },
+ *         {
+ *             $emit: {
+ *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *                 db: "sample",
+ *                 coll: "solar",
+ *                 timeseries: {
+ *                     timeField: "_ts",
+ *                 },
+ *             },
+ *         },
+ *     ]),
+ *     state: "STARTED",
+ * });
+ * const stream_processor_cluster_to_kafka_example = new mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     processorName: "clusterProcessorName",
+ *     pipeline: JSON.stringify([
+ *         {
+ *             $source: {
+ *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *             },
+ *         },
+ *         {
+ *             $emit: {
+ *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
+ *                 topic: "topic_from_cluster",
+ *             },
+ *         },
+ *     ]),
+ *     state: "CREATED",
+ * });
+ * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     processorName: "kafkaProcessorName",
+ *     pipeline: JSON.stringify([
+ *         {
+ *             $source: {
+ *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
+ *                 topic: "topic_source",
+ *             },
+ *         },
+ *         {
+ *             $emit: {
+ *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *                 db: "kafka",
+ *                 coll: "topic_source",
+ *                 timeseries: {
+ *                     timeField: "ts",
+ *                 },
+ *             },
+ *         },
+ *     ]),
+ *     state: "CREATED",
+ *     options: {
+ *         dlq: {
+ *             coll: "exampleColumn",
+ *             connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *             db: "exampleDb",
+ *         },
+ *     },
+ * });
+ * const example_stream_processors = example.instanceName.apply(instanceName => mongodbatlas.getStreamProcessorsOutput({
+ *     projectId: projectId,
+ *     instanceName: instanceName,
+ * }));
+ * const example_stream_processor = pulumi.all([example.instanceName, stream_processor_sample_example.processorName]).apply(([instanceName, processorName]) => mongodbatlas.getStreamProcessorOutput({
+ *     projectId: projectId,
+ *     instanceName: instanceName,
+ *     processorName: processorName,
+ * }));
+ * export const streamProcessorsState = example_stream_processor.apply(example_stream_processor => example_stream_processor.state);
+ * export const streamProcessorsResults = example_stream_processors.apply(example_stream_processors => example_stream_processors.results);
+ * ```
  */
 export function getStreamProcessors(args: GetStreamProcessorsArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamProcessorsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -59,6 +193,140 @@ export interface GetStreamProcessorsResult {
  * `mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example = new mongodbatlas.StreamInstance("example", {
+ *     projectId: projectId,
+ *     instanceName: "InstanceName",
+ *     dataProcessRegion: {
+ *         region: "VIRGINIA_USA",
+ *         cloudProvider: "AWS",
+ *     },
+ * });
+ * const example_sample = new mongodbatlas.StreamConnection("example-sample", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     connectionName: "sample_stream_solar",
+ *     type: "Sample",
+ * });
+ * const example_cluster = new mongodbatlas.StreamConnection("example-cluster", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     connectionName: "ClusterConnection",
+ *     type: "Cluster",
+ *     clusterName: clusterName,
+ *     dbRoleToExecute: {
+ *         role: "atlasAdmin",
+ *         type: "BUILT_IN",
+ *     },
+ * });
+ * const example_kafka = new mongodbatlas.StreamConnection("example-kafka", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     connectionName: "KafkaPlaintextConnection",
+ *     type: "Kafka",
+ *     authentication: {
+ *         mechanism: "PLAIN",
+ *         username: kafkaUsername,
+ *         password: kafkaPassword,
+ *     },
+ *     bootstrapServers: "localhost:9092,localhost:9092",
+ *     config: {
+ *         "auto.offset.reset": "earliest",
+ *     },
+ *     security: {
+ *         protocol: "PLAINTEXT",
+ *     },
+ * });
+ * const stream_processor_sample_example = new mongodbatlas.StreamProcessor("stream-processor-sample-example", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     processorName: "sampleProcessorName",
+ *     pipeline: JSON.stringify([
+ *         {
+ *             $source: {
+ *                 connectionName: mongodbatlasStreamConnection["example-sample"].connectionName,
+ *             },
+ *         },
+ *         {
+ *             $emit: {
+ *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *                 db: "sample",
+ *                 coll: "solar",
+ *                 timeseries: {
+ *                     timeField: "_ts",
+ *                 },
+ *             },
+ *         },
+ *     ]),
+ *     state: "STARTED",
+ * });
+ * const stream_processor_cluster_to_kafka_example = new mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     processorName: "clusterProcessorName",
+ *     pipeline: JSON.stringify([
+ *         {
+ *             $source: {
+ *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *             },
+ *         },
+ *         {
+ *             $emit: {
+ *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
+ *                 topic: "topic_from_cluster",
+ *             },
+ *         },
+ *     ]),
+ *     state: "CREATED",
+ * });
+ * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     processorName: "kafkaProcessorName",
+ *     pipeline: JSON.stringify([
+ *         {
+ *             $source: {
+ *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
+ *                 topic: "topic_source",
+ *             },
+ *         },
+ *         {
+ *             $emit: {
+ *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *                 db: "kafka",
+ *                 coll: "topic_source",
+ *                 timeseries: {
+ *                     timeField: "ts",
+ *                 },
+ *             },
+ *         },
+ *     ]),
+ *     state: "CREATED",
+ *     options: {
+ *         dlq: {
+ *             coll: "exampleColumn",
+ *             connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *             db: "exampleDb",
+ *         },
+ *     },
+ * });
+ * const example_stream_processors = example.instanceName.apply(instanceName => mongodbatlas.getStreamProcessorsOutput({
+ *     projectId: projectId,
+ *     instanceName: instanceName,
+ * }));
+ * const example_stream_processor = pulumi.all([example.instanceName, stream_processor_sample_example.processorName]).apply(([instanceName, processorName]) => mongodbatlas.getStreamProcessorOutput({
+ *     projectId: projectId,
+ *     instanceName: instanceName,
+ *     processorName: processorName,
+ * }));
+ * export const streamProcessorsState = example_stream_processor.apply(example_stream_processor => example_stream_processor.state);
+ * export const streamProcessorsResults = example_stream_processors.apply(example_stream_processors => example_stream_processors.results);
+ * ```
  */
 export function getStreamProcessorsOutput(args: GetStreamProcessorsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamProcessorsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

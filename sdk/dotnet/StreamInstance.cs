@@ -14,6 +14,30 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// `mongodbatlas.StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.StreamInstance("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         InstanceName = "InstanceName",
+    ///         DataProcessRegion = new Mongodbatlas.Inputs.StreamInstanceDataProcessRegionArgs
+    ///         {
+    ///             Region = "VIRGINIA_USA",
+    ///             CloudProvider = "AWS",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// You can import stream instance resource using the project ID and instance name, in the format `PROJECT_ID-INSTANCE_NAME`. For example:

@@ -36,12 +36,7 @@ import * as utilities from "./utilities";
  *     configDatabase: "DATABASE NAME",
  *     configCollection: "COLLECTION NAME",
  *     configServiceId: "SERVICE ID",
- *     configMatch: `{
- *   "updateDescription.updatedFields": {
- *     "status": "blocked"
- *   }
- * }
- * `,
+ *     configMatch: "{  \\\"updateDescription.updatedFields\\\": {    \\\"status\\\": \\\"blocked\\\"  }}\n",
  *     configProject: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
  *     configFullDocument: false,
  *     configFullDocumentBefore: false,

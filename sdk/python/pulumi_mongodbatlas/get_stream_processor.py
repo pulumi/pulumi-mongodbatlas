@@ -130,6 +130,134 @@ def get_stream_processor(instance_name: Optional[str] = None,
 
     ## Example Usage
 
+    ### S
+    ```python
+    import pulumi
+    import json
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example = mongodbatlas.StreamInstance("example",
+        project_id=project_id,
+        instance_name="InstanceName",
+        data_process_region={
+            "region": "VIRGINIA_USA",
+            "cloud_provider": "AWS",
+        })
+    example_sample = mongodbatlas.StreamConnection("example-sample",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        connection_name="sample_stream_solar",
+        type="Sample")
+    example_cluster = mongodbatlas.StreamConnection("example-cluster",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        connection_name="ClusterConnection",
+        type="Cluster",
+        cluster_name=cluster_name,
+        db_role_to_execute={
+            "role": "atlasAdmin",
+            "type": "BUILT_IN",
+        })
+    example_kafka = mongodbatlas.StreamConnection("example-kafka",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        connection_name="KafkaPlaintextConnection",
+        type="Kafka",
+        authentication={
+            "mechanism": "PLAIN",
+            "username": kafka_username,
+            "password": kafka_password,
+        },
+        bootstrap_servers="localhost:9092,localhost:9092",
+        config={
+            "auto.offset.reset": "earliest",
+        },
+        security={
+            "protocol": "PLAINTEXT",
+        })
+    stream_processor_sample_example = mongodbatlas.StreamProcessor("stream-processor-sample-example",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        processor_name="sampleProcessorName",
+        pipeline=json.dumps([
+            {
+                "$source": {
+                    "connectionName": mongodbatlas_stream_connection["example-sample"]["connectionName"],
+                },
+            },
+            {
+                "$emit": {
+                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                    "db": "sample",
+                    "coll": "solar",
+                    "timeseries": {
+                        "timeField": "_ts",
+                    },
+                },
+            },
+        ]),
+        state="STARTED")
+    stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        processor_name="clusterProcessorName",
+        pipeline=json.dumps([
+            {
+                "$source": {
+                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                },
+            },
+            {
+                "$emit": {
+                    "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
+                    "topic": "topic_from_cluster",
+                },
+            },
+        ]),
+        state="CREATED")
+    stream_processor_kafka_to_cluster_example = mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        processor_name="kafkaProcessorName",
+        pipeline=json.dumps([
+            {
+                "$source": {
+                    "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
+                    "topic": "topic_source",
+                },
+            },
+            {
+                "$emit": {
+                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                    "db": "kafka",
+                    "coll": "topic_source",
+                    "timeseries": {
+                        "timeField": "ts",
+                    },
+                },
+            },
+        ]),
+        state="CREATED",
+        options={
+            "dlq": {
+                "coll": "exampleColumn",
+                "connection_name": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                "db": "exampleDb",
+            },
+        })
+    example_stream_processors = example.instance_name.apply(lambda instance_name: mongodbatlas.get_stream_processors_output(project_id=project_id,
+        instance_name=instance_name))
+    example_stream_processor = pulumi.Output.all(
+        instance_name=example.instance_name,
+        processor_name=stream_processor_sample_example.processor_name
+    ).apply(lambda resolved_outputs: mongodbatlas.get_stream_processor_output(project_id=project_id,
+        instance_name=resolved_outputs['instance_name'],
+        processor_name=resolved_outputs['processor_name']))
+
+    pulumi.export("streamProcessorsState", example_stream_processor.state)
+    pulumi.export("streamProcessorsResults", example_stream_processors.results)
+    ```
+
 
     :param str instance_name: Human-readable label that identifies the stream instance.
     :param str processor_name: Human-readable label that identifies the stream processor.
@@ -161,6 +289,134 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[str]] = Non
     `StreamProcessor` describes a stream processor.
 
     ## Example Usage
+
+    ### S
+    ```python
+    import pulumi
+    import json
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example = mongodbatlas.StreamInstance("example",
+        project_id=project_id,
+        instance_name="InstanceName",
+        data_process_region={
+            "region": "VIRGINIA_USA",
+            "cloud_provider": "AWS",
+        })
+    example_sample = mongodbatlas.StreamConnection("example-sample",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        connection_name="sample_stream_solar",
+        type="Sample")
+    example_cluster = mongodbatlas.StreamConnection("example-cluster",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        connection_name="ClusterConnection",
+        type="Cluster",
+        cluster_name=cluster_name,
+        db_role_to_execute={
+            "role": "atlasAdmin",
+            "type": "BUILT_IN",
+        })
+    example_kafka = mongodbatlas.StreamConnection("example-kafka",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        connection_name="KafkaPlaintextConnection",
+        type="Kafka",
+        authentication={
+            "mechanism": "PLAIN",
+            "username": kafka_username,
+            "password": kafka_password,
+        },
+        bootstrap_servers="localhost:9092,localhost:9092",
+        config={
+            "auto.offset.reset": "earliest",
+        },
+        security={
+            "protocol": "PLAINTEXT",
+        })
+    stream_processor_sample_example = mongodbatlas.StreamProcessor("stream-processor-sample-example",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        processor_name="sampleProcessorName",
+        pipeline=json.dumps([
+            {
+                "$source": {
+                    "connectionName": mongodbatlas_stream_connection["example-sample"]["connectionName"],
+                },
+            },
+            {
+                "$emit": {
+                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                    "db": "sample",
+                    "coll": "solar",
+                    "timeseries": {
+                        "timeField": "_ts",
+                    },
+                },
+            },
+        ]),
+        state="STARTED")
+    stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        processor_name="clusterProcessorName",
+        pipeline=json.dumps([
+            {
+                "$source": {
+                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                },
+            },
+            {
+                "$emit": {
+                    "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
+                    "topic": "topic_from_cluster",
+                },
+            },
+        ]),
+        state="CREATED")
+    stream_processor_kafka_to_cluster_example = mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example",
+        project_id=project_id,
+        instance_name=example.instance_name,
+        processor_name="kafkaProcessorName",
+        pipeline=json.dumps([
+            {
+                "$source": {
+                    "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
+                    "topic": "topic_source",
+                },
+            },
+            {
+                "$emit": {
+                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                    "db": "kafka",
+                    "coll": "topic_source",
+                    "timeseries": {
+                        "timeField": "ts",
+                    },
+                },
+            },
+        ]),
+        state="CREATED",
+        options={
+            "dlq": {
+                "coll": "exampleColumn",
+                "connection_name": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                "db": "exampleDb",
+            },
+        })
+    example_stream_processors = example.instance_name.apply(lambda instance_name: mongodbatlas.get_stream_processors_output(project_id=project_id,
+        instance_name=instance_name))
+    example_stream_processor = pulumi.Output.all(
+        instance_name=example.instance_name,
+        processor_name=stream_processor_sample_example.processor_name
+    ).apply(lambda resolved_outputs: mongodbatlas.get_stream_processor_output(project_id=project_id,
+        instance_name=resolved_outputs['instance_name'],
+        processor_name=resolved_outputs['processor_name']))
+
+    pulumi.export("streamProcessorsState", example_stream_processor.state)
+    pulumi.export("streamProcessorsResults", example_stream_processors.results)
+    ```
 
 
     :param str instance_name: Human-readable label that identifies the stream instance.

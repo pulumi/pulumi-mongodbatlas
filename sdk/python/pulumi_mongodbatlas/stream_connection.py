@@ -391,6 +391,32 @@ class StreamConnection(pulumi.CustomResource):
             bootstrap_servers="localhost:9091,localhost:9092")
         ```
 
+        ### Example Kafka SSL Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            instance_name="NewInstance",
+            connection_name="KafkaConnection",
+            type="Kafka",
+            authentication={
+                "mechanism": "PLAIN",
+                "username": "user",
+                "password": "somepassword",
+            },
+            security={
+                "protocol": "SSL",
+                "broker_public_certificate": "-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----",
+            },
+            config={
+                "auto.offset.reset": "latest",
+            },
+            bootstrap_servers="localhost:9091,localhost:9092")
+        ```
+
         ## Import
 
         You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -455,6 +481,32 @@ class StreamConnection(pulumi.CustomResource):
             },
             security={
                 "protocol": "PLAINTEXT",
+            },
+            config={
+                "auto.offset.reset": "latest",
+            },
+            bootstrap_servers="localhost:9091,localhost:9092")
+        ```
+
+        ### Example Kafka SSL Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            instance_name="NewInstance",
+            connection_name="KafkaConnection",
+            type="Kafka",
+            authentication={
+                "mechanism": "PLAIN",
+                "username": "user",
+                "password": "somepassword",
+            },
+            security={
+                "protocol": "SSL",
+                "broker_public_certificate": "-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----",
             },
             config={
                 "auto.offset.reset": "latest",
