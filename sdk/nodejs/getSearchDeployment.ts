@@ -12,6 +12,46 @@ import * as utilities from "./utilities";
  * `mongodbatlas.SearchDeployment` describes a search node deployment.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const exampleProject = new mongodbatlas.Project("example", {
+ *     name: "project-name",
+ *     orgId: orgId,
+ * });
+ * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: exampleProject.id,
+ *     name: "ClusterExample",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *             providerName: "AWS",
+ *             priority: 7,
+ *             regionName: "US_EAST_1",
+ *         }],
+ *     }],
+ * });
+ * const exampleSearchDeployment = new mongodbatlas.SearchDeployment("example", {
+ *     projectId: exampleProject.id,
+ *     clusterName: exampleAdvancedCluster.name,
+ *     specs: [{
+ *         instanceSize: "S20_HIGHCPU_NVME",
+ *         nodeCount: 2,
+ *     }],
+ * });
+ * const example = mongodbatlas.getSearchDeploymentOutput({
+ *     projectId: exampleSearchDeployment.projectId,
+ *     clusterName: exampleSearchDeployment.clusterName,
+ * });
+ * export const mongodbatlasSearchDeploymentId = example.apply(example => example.id);
+ * ```
  */
 export function getSearchDeployment(args: GetSearchDeploymentArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchDeploymentResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -66,6 +106,46 @@ export interface GetSearchDeploymentResult {
  * `mongodbatlas.SearchDeployment` describes a search node deployment.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const exampleProject = new mongodbatlas.Project("example", {
+ *     name: "project-name",
+ *     orgId: orgId,
+ * });
+ * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: exampleProject.id,
+ *     name: "ClusterExample",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *             providerName: "AWS",
+ *             priority: 7,
+ *             regionName: "US_EAST_1",
+ *         }],
+ *     }],
+ * });
+ * const exampleSearchDeployment = new mongodbatlas.SearchDeployment("example", {
+ *     projectId: exampleProject.id,
+ *     clusterName: exampleAdvancedCluster.name,
+ *     specs: [{
+ *         instanceSize: "S20_HIGHCPU_NVME",
+ *         nodeCount: 2,
+ *     }],
+ * });
+ * const example = mongodbatlas.getSearchDeploymentOutput({
+ *     projectId: exampleSearchDeployment.projectId,
+ *     clusterName: exampleSearchDeployment.clusterName,
+ * });
+ * export const mongodbatlasSearchDeploymentId = example.apply(example => example.id);
+ * ```
  */
 export function getSearchDeploymentOutput(args: GetSearchDeploymentOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSearchDeploymentResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

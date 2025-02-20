@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
  * import com.pulumi.mongodbatlas.EncryptionAtRestPrivateEndpoint;
  * import com.pulumi.mongodbatlas.EncryptionAtRestPrivateEndpointArgs;
- * import com.pulumi.azapi.updateResource;
+ * import com.pulumi.azapi.UpdateResource;
  * import com.pulumi.azapi.UpdateResourceArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.List;

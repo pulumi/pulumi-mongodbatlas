@@ -56,12 +56,7 @@ namespace Pulumi.Mongodbatlas
     ///         CollectionName = "collection_test",
     ///         Database = "database_test",
     ///         Type = "vectorSearch",
-    ///         Fields = @"[{
-    ///       ""type"": ""vector"",
-    ///       ""path"": ""plot_embedding"",
-    ///       ""numDimensions"": 1536,
-    ///       ""similarity"": ""euclidean""
-    /// }]
+    ///         Fields = @"[{      \""type\"": \""vector\"",      \""path\"": \""plot_embedding\"",      \""numDimensions\"": 1536,      \""similarity\"": \""euclidean\""}]
     /// ",
     ///     });
     /// 
@@ -85,56 +80,11 @@ namespace Pulumi.Mongodbatlas
     ///         CollectionName = "collection_test",
     ///         Database = "database_test",
     ///         MappingsDynamic = false,
-    ///         MappingsFields = @"{
-    ///       ""address"": {
-    ///         ""type"": ""document"",
-    ///         ""fields"": {
-    ///           ""city"": {
-    ///             ""type"": ""string"",
-    ///             ""analyzer"": ""lucene.simple"",
-    ///             ""ignoreAbove"": 255
-    ///           },
-    ///           ""state"": {
-    ///             ""type"": ""string"",
-    ///             ""analyzer"": ""lucene.english""
-    ///           }
-    ///         }
-    ///       },
-    ///       ""company"": {
-    ///         ""type"": ""string"",
-    ///         ""analyzer"": ""lucene.whitespace"",
-    ///         ""multi"": {
-    ///           ""mySecondaryAnalyzer"": {
-    ///             ""type"": ""string"",
-    ///             ""analyzer"": ""lucene.french""
-    ///           }
-    ///         }
-    ///       },
-    ///       ""employees"": {
-    ///         ""type"": ""string"",
-    ///         ""analyzer"": ""lucene.standard""
-    ///       }
-    /// }
+    ///         MappingsFields = @"{      \""address\"": {        \""type\"": \""document\"",        \""fields\"": {          \""city\"": {            \""type\"": \""string\"",            \""analyzer\"": \""lucene.simple\"",            \""ignoreAbove\"": 255          },          \""state\"": {            \""type\"": \""string\"",            \""analyzer\"": \""lucene.english\""          }        }      },      \""company\"": {        \""type\"": \""string\"",        \""analyzer\"": \""lucene.whitespace\"",        \""multi\"": {          \""mySecondaryAnalyzer\"": {            \""type\"": \""string\"",            \""analyzer\"": \""lucene.french\""          }        }      },      \""employees\"": {        \""type\"": \""string\"",        \""analyzer\"": \""lucene.standard\""      }}
     /// ",
     ///         Name = "test-advanced-search-index",
     ///         SearchAnalyzer = "lucene.standard",
-    ///         Analyzers = @" [{
-    ///  ""name"": ""index_analyzer_test_name"",
-    ///  ""charFilters"": [{
-    /// ""type"": ""mapping"",
-    /// ""mappings"": {""\\"" : ""/""}
-    ///    	}],
-    ///  ""tokenizer"": {
-    ///  ""type"": ""nGram"",
-    ///  ""minGram"": 2,
-    ///  ""maxGram"": 5
-    /// 	},
-    ///  ""tokenFilters"": [{
-    /// ""type"": ""length"",
-    /// ""min"": 20,
-    /// ""max"": 33
-    ///    	}]
-    ///  }]
+    ///         Analyzers = @"[{ \""name\"": \""index_analyzer_test_name\"", \""charFilters\"": [{\""type\"": \""mapping\"",\""mappings\"": {\""\\\\\"" : \""/\""}   \t}], \""tokenizer\"": { \""type\"": \""nGram\"", \""minGram\"": 2, \""maxGram\"": 5\t}, \""tokenFilters\"": [{\""type\"": \""length\"",\""min\"": 20,\""max\"": 33   \t}] }]
     /// ",
     ///         Synonyms = new[]
     ///         {

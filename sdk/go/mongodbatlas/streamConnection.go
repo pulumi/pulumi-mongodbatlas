@@ -91,6 +91,48 @@ import (
 //
 // ```
 //
+// ### Example Kafka SSL Connection
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "test", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:      pulumi.Any(projectId),
+//				InstanceName:   pulumi.String("NewInstance"),
+//				ConnectionName: pulumi.String("KafkaConnection"),
+//				Type:           pulumi.String("Kafka"),
+//				Authentication: &mongodbatlas.StreamConnectionAuthenticationArgs{
+//					Mechanism: pulumi.String("PLAIN"),
+//					Username:  pulumi.String("user"),
+//					Password:  pulumi.String("somepassword"),
+//				},
+//				Security: &mongodbatlas.StreamConnectionSecurityArgs{
+//					Protocol:                pulumi.String("SSL"),
+//					BrokerPublicCertificate: pulumi.String("-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----"),
+//				},
+//				Config: pulumi.StringMap{
+//					"auto.offset.reset": pulumi.String("latest"),
+//				},
+//				BootstrapServers: pulumi.String("localhost:9091,localhost:9092"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:

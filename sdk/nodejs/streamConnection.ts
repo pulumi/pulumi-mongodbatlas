@@ -56,6 +56,33 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example Kafka SSL Connection
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.StreamConnection("test", {
+ *     projectId: projectId,
+ *     instanceName: "NewInstance",
+ *     connectionName: "KafkaConnection",
+ *     type: "Kafka",
+ *     authentication: {
+ *         mechanism: "PLAIN",
+ *         username: "user",
+ *         password: "somepassword",
+ *     },
+ *     security: {
+ *         protocol: "SSL",
+ *         brokerPublicCertificate: "-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----",
+ *     },
+ *     config: {
+ *         "auto.offset.reset": "latest",
+ *     },
+ *     bootstrapServers: "localhost:9091,localhost:9092",
+ * });
+ * ```
+ *
  * ## Import
  *
  * You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:

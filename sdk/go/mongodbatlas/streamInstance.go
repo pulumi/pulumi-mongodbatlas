@@ -16,6 +16,37 @@ import (
 //
 // `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamInstance(ctx, "test", &mongodbatlas.StreamInstanceArgs{
+//				ProjectId:    pulumi.Any(projectId),
+//				InstanceName: pulumi.String("InstanceName"),
+//				DataProcessRegion: &mongodbatlas.StreamInstanceDataProcessRegionArgs{
+//					Region:        pulumi.String("VIRGINIA_USA"),
+//					CloudProvider: pulumi.String("AWS"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // You can import stream instance resource using the project ID and instance name, in the format `PROJECT_ID-INSTANCE_NAME`. For example:
