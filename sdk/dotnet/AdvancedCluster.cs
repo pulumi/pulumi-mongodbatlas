@@ -99,11 +99,126 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// **NOTE:** There can only be one M0 cluster per project.
     /// 
-    /// **NOTE**: Upgrading the shared tier is supported. Any change from a shared tier cluster (a tenant) to a different instance size will be considered a tenant upgrade. When upgrading from the shared tier, change the `provider_name` from "TENANT" to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below. You can upgrade a shared tier cluster only to a single provider on an M10-tier cluster or greater.
+    /// **NOTE**: Upgrading the tenant cluster to a Flex cluster or a dedicated cluster is supported. When upgrading to a Flex cluster, change the `provider_name` from "TENANT" to "FLEX". See Example Tenant Cluster Upgrade to Flex below. When upgrading to a dedicated cluster, change the `provider_name` to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below. You can upgrade a tenant cluster only to a single provider on an M10-tier cluster or greater.
     /// 
-    /// When upgrading from the shared tier, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+    /// When upgrading from the tenant, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
     /// 
     /// ### Example Tenant Cluster Upgrade
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         Name = "NAME OF CLUSTER",
+    ///         ClusterType = "REPLICASET",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                         },
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "US_EAST_1",
+    ///                         Priority = 7,
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example Tenant Cluster Upgrade to Flex
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example_flex = new Mongodbatlas.AdvancedCluster("example-flex", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         Name = "NAME OF CLUSTER",
+    ///         ClusterType = "REPLICASET",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         ProviderName = "FLEX",
+    ///                         BackingProviderName = "AWS",
+    ///                         RegionName = "US_EAST_1",
+    ///                         Priority = 7,
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example Flex Cluster
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example_flex = new Mongodbatlas.AdvancedCluster("example-flex", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         Name = "NAME OF CLUSTER",
+    ///         ClusterType = "REPLICASET",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         ProviderName = "FLEX",
+    ///                         BackingProviderName = "AWS",
+    ///                         RegionName = "US_EAST_1",
+    ///                         Priority = 7,
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// **NOTE**: Upgrading the Flex cluster is supported. When upgrading from a Flex cluster, change the `provider_name` from "TENANT" to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Flex Cluster Upgrade below. You can upgrade a Flex cluster only to a single provider on an M10-tier cluster or greater.
+    /// 
+    /// When upgrading from a flex cluster, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+    /// 
+    /// ### Example Flex Cluster Upgrade
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -488,7 +603,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// Backup uses:
         /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-        /// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+        /// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
         /// If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
         /// 
         /// This parameter defaults to false.
@@ -726,7 +841,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// Backup uses:
         /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-        /// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+        /// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
         /// If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
         /// 
         /// This parameter defaults to false.
@@ -904,7 +1019,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// Backup uses:
         /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-        /// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+        /// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
         /// If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
         /// 
         /// This parameter defaults to false.
