@@ -566,6 +566,10 @@
                     }
                 }
             },
+            "mongodbatlas_flex_cluster": {
+                "current": "mongodbatlas:index/flexCluster:FlexCluster",
+                "majorVersion": 3
+            },
             "mongodbatlas_global_cluster_config": {
                 "current": "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig",
                 "majorVersion": 3,
@@ -2174,6 +2178,45 @@
                     }
                 }
             },
+            "mongodbatlas_flex_cluster": {
+                "current": "mongodbatlas:index/getFlexCluster:getFlexCluster",
+                "majorVersion": 3
+            },
+            "mongodbatlas_flex_clusters": {
+                "current": "mongodbatlas:index/getFlexClusters:getFlexClusters",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_flex_restore_job": {
+                "current": "mongodbatlas:index/getFlexRestoreJob:getFlexRestoreJob",
+                "majorVersion": 3
+            },
+            "mongodbatlas_flex_restore_jobs": {
+                "current": "mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_flex_snapshot": {
+                "current": "mongodbatlas:index/getFlexSnapshot:getFlexSnapshot",
+                "majorVersion": 3
+            },
+            "mongodbatlas_flex_snapshots": {
+                "current": "mongodbatlas:index/getFlexSnapshots:getFlexSnapshots",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_global_cluster_config": {
                 "current": "mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig",
                 "majorVersion": 3,
@@ -2836,6 +2879,7 @@
             "mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider": 0,
             "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig": 0,
             "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping": 0,
+            "mongodbatlas:index/flexCluster:FlexCluster": 1,
             "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig": 0,
             "mongodbatlas:index/ldapConfiguration:LdapConfiguration": 0,
             "mongodbatlas:index/ldapVerify:LdapVerify": 0,
@@ -2922,6 +2966,12 @@
             "mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs": 0,
             "mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping": 0,
             "mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings": 0,
+            "mongodbatlas:index/getFlexCluster:getFlexCluster": 1,
+            "mongodbatlas:index/getFlexClusters:getFlexClusters": 1,
+            "mongodbatlas:index/getFlexRestoreJob:getFlexRestoreJob": 1,
+            "mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs": 1,
+            "mongodbatlas:index/getFlexSnapshot:getFlexSnapshot": 1,
+            "mongodbatlas:index/getFlexSnapshots:getFlexSnapshots": 1,
             "mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig": 0,
             "mongodbatlas:index/getLdapConfiguration:getLdapConfiguration": 0,
             "mongodbatlas:index/getLdapVerify:getLdapVerify": 0,
