@@ -935,7 +935,7 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpoint struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
@@ -959,7 +959,7 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -1025,7 +1025,7 @@ func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
-// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
@@ -1494,7 +1494,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	AnalyticsSpecs *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
 	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 	AutoScaling *AdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
-	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
 	BackingProviderName *string `pulumi:"backingProviderName"`
 	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
 	ElectableSpecs *AdvancedClusterReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
@@ -1508,7 +1508,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
@@ -1534,7 +1534,7 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	AnalyticsSpecs AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
 	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 	AutoScaling AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput `pulumi:"autoScaling"`
-	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
 	BackingProviderName pulumi.StringPtrInput `pulumi:"backingProviderName"`
 	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
 	ElectableSpecs AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
@@ -1548,7 +1548,7 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
@@ -1628,7 +1628,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) AutoScaling() Advanced
 	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput)
 }
 
-// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) BackingProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *string { return v.BackingProviderName }).(pulumi.StringPtrOutput)
 }
@@ -1653,7 +1653,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) Priority() pulumi.IntO
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
-// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
@@ -8052,7 +8052,7 @@ type ClusterConnectionStringPrivateEndpointEndpoint struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
@@ -8077,7 +8077,7 @@ type ClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -8144,7 +8144,7 @@ func (o ClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulum
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
-// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 func (o ClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
@@ -13807,6 +13807,493 @@ func (o FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) Index(i pulumi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FederatedSettingsOrgRoleMappingRoleAssignment {
 		return vs[0].([]FederatedSettingsOrgRoleMappingRoleAssignment)[vs[1].(int)]
 	}).(FederatedSettingsOrgRoleMappingRoleAssignmentOutput)
+}
+
+type FlexClusterBackupSettings struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled *bool `pulumi:"enabled"`
+}
+
+// FlexClusterBackupSettingsInput is an input type that accepts FlexClusterBackupSettingsArgs and FlexClusterBackupSettingsOutput values.
+// You can construct a concrete instance of `FlexClusterBackupSettingsInput` via:
+//
+//	FlexClusterBackupSettingsArgs{...}
+type FlexClusterBackupSettingsInput interface {
+	pulumi.Input
+
+	ToFlexClusterBackupSettingsOutput() FlexClusterBackupSettingsOutput
+	ToFlexClusterBackupSettingsOutputWithContext(context.Context) FlexClusterBackupSettingsOutput
+}
+
+type FlexClusterBackupSettingsArgs struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+}
+
+func (FlexClusterBackupSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (i FlexClusterBackupSettingsArgs) ToFlexClusterBackupSettingsOutput() FlexClusterBackupSettingsOutput {
+	return i.ToFlexClusterBackupSettingsOutputWithContext(context.Background())
+}
+
+func (i FlexClusterBackupSettingsArgs) ToFlexClusterBackupSettingsOutputWithContext(ctx context.Context) FlexClusterBackupSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterBackupSettingsOutput)
+}
+
+func (i FlexClusterBackupSettingsArgs) ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput {
+	return i.ToFlexClusterBackupSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i FlexClusterBackupSettingsArgs) ToFlexClusterBackupSettingsPtrOutputWithContext(ctx context.Context) FlexClusterBackupSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterBackupSettingsOutput).ToFlexClusterBackupSettingsPtrOutputWithContext(ctx)
+}
+
+// FlexClusterBackupSettingsPtrInput is an input type that accepts FlexClusterBackupSettingsArgs, FlexClusterBackupSettingsPtr and FlexClusterBackupSettingsPtrOutput values.
+// You can construct a concrete instance of `FlexClusterBackupSettingsPtrInput` via:
+//
+//	        FlexClusterBackupSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FlexClusterBackupSettingsPtrInput interface {
+	pulumi.Input
+
+	ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput
+	ToFlexClusterBackupSettingsPtrOutputWithContext(context.Context) FlexClusterBackupSettingsPtrOutput
+}
+
+type flexClusterBackupSettingsPtrType FlexClusterBackupSettingsArgs
+
+func FlexClusterBackupSettingsPtr(v *FlexClusterBackupSettingsArgs) FlexClusterBackupSettingsPtrInput {
+	return (*flexClusterBackupSettingsPtrType)(v)
+}
+
+func (*flexClusterBackupSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (i *flexClusterBackupSettingsPtrType) ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput {
+	return i.ToFlexClusterBackupSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *flexClusterBackupSettingsPtrType) ToFlexClusterBackupSettingsPtrOutputWithContext(ctx context.Context) FlexClusterBackupSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterBackupSettingsPtrOutput)
+}
+
+type FlexClusterBackupSettingsOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterBackupSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (o FlexClusterBackupSettingsOutput) ToFlexClusterBackupSettingsOutput() FlexClusterBackupSettingsOutput {
+	return o
+}
+
+func (o FlexClusterBackupSettingsOutput) ToFlexClusterBackupSettingsOutputWithContext(ctx context.Context) FlexClusterBackupSettingsOutput {
+	return o
+}
+
+func (o FlexClusterBackupSettingsOutput) ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput {
+	return o.ToFlexClusterBackupSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o FlexClusterBackupSettingsOutput) ToFlexClusterBackupSettingsPtrOutputWithContext(ctx context.Context) FlexClusterBackupSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FlexClusterBackupSettings) *FlexClusterBackupSettings {
+		return &v
+	}).(FlexClusterBackupSettingsPtrOutput)
+}
+
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+func (o FlexClusterBackupSettingsOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v FlexClusterBackupSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+type FlexClusterBackupSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterBackupSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (o FlexClusterBackupSettingsPtrOutput) ToFlexClusterBackupSettingsPtrOutput() FlexClusterBackupSettingsPtrOutput {
+	return o
+}
+
+func (o FlexClusterBackupSettingsPtrOutput) ToFlexClusterBackupSettingsPtrOutputWithContext(ctx context.Context) FlexClusterBackupSettingsPtrOutput {
+	return o
+}
+
+func (o FlexClusterBackupSettingsPtrOutput) Elem() FlexClusterBackupSettingsOutput {
+	return o.ApplyT(func(v *FlexClusterBackupSettings) FlexClusterBackupSettings {
+		if v != nil {
+			return *v
+		}
+		var ret FlexClusterBackupSettings
+		return ret
+	}).(FlexClusterBackupSettingsOutput)
+}
+
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+func (o FlexClusterBackupSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FlexClusterBackupSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+type FlexClusterConnectionStrings struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard *string `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv *string `pulumi:"standardSrv"`
+}
+
+// FlexClusterConnectionStringsInput is an input type that accepts FlexClusterConnectionStringsArgs and FlexClusterConnectionStringsOutput values.
+// You can construct a concrete instance of `FlexClusterConnectionStringsInput` via:
+//
+//	FlexClusterConnectionStringsArgs{...}
+type FlexClusterConnectionStringsInput interface {
+	pulumi.Input
+
+	ToFlexClusterConnectionStringsOutput() FlexClusterConnectionStringsOutput
+	ToFlexClusterConnectionStringsOutputWithContext(context.Context) FlexClusterConnectionStringsOutput
+}
+
+type FlexClusterConnectionStringsArgs struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard pulumi.StringPtrInput `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv pulumi.StringPtrInput `pulumi:"standardSrv"`
+}
+
+func (FlexClusterConnectionStringsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (i FlexClusterConnectionStringsArgs) ToFlexClusterConnectionStringsOutput() FlexClusterConnectionStringsOutput {
+	return i.ToFlexClusterConnectionStringsOutputWithContext(context.Background())
+}
+
+func (i FlexClusterConnectionStringsArgs) ToFlexClusterConnectionStringsOutputWithContext(ctx context.Context) FlexClusterConnectionStringsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterConnectionStringsOutput)
+}
+
+func (i FlexClusterConnectionStringsArgs) ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput {
+	return i.ToFlexClusterConnectionStringsPtrOutputWithContext(context.Background())
+}
+
+func (i FlexClusterConnectionStringsArgs) ToFlexClusterConnectionStringsPtrOutputWithContext(ctx context.Context) FlexClusterConnectionStringsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterConnectionStringsOutput).ToFlexClusterConnectionStringsPtrOutputWithContext(ctx)
+}
+
+// FlexClusterConnectionStringsPtrInput is an input type that accepts FlexClusterConnectionStringsArgs, FlexClusterConnectionStringsPtr and FlexClusterConnectionStringsPtrOutput values.
+// You can construct a concrete instance of `FlexClusterConnectionStringsPtrInput` via:
+//
+//	        FlexClusterConnectionStringsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FlexClusterConnectionStringsPtrInput interface {
+	pulumi.Input
+
+	ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput
+	ToFlexClusterConnectionStringsPtrOutputWithContext(context.Context) FlexClusterConnectionStringsPtrOutput
+}
+
+type flexClusterConnectionStringsPtrType FlexClusterConnectionStringsArgs
+
+func FlexClusterConnectionStringsPtr(v *FlexClusterConnectionStringsArgs) FlexClusterConnectionStringsPtrInput {
+	return (*flexClusterConnectionStringsPtrType)(v)
+}
+
+func (*flexClusterConnectionStringsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (i *flexClusterConnectionStringsPtrType) ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput {
+	return i.ToFlexClusterConnectionStringsPtrOutputWithContext(context.Background())
+}
+
+func (i *flexClusterConnectionStringsPtrType) ToFlexClusterConnectionStringsPtrOutputWithContext(ctx context.Context) FlexClusterConnectionStringsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterConnectionStringsPtrOutput)
+}
+
+type FlexClusterConnectionStringsOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterConnectionStringsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (o FlexClusterConnectionStringsOutput) ToFlexClusterConnectionStringsOutput() FlexClusterConnectionStringsOutput {
+	return o
+}
+
+func (o FlexClusterConnectionStringsOutput) ToFlexClusterConnectionStringsOutputWithContext(ctx context.Context) FlexClusterConnectionStringsOutput {
+	return o
+}
+
+func (o FlexClusterConnectionStringsOutput) ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput {
+	return o.ToFlexClusterConnectionStringsPtrOutputWithContext(context.Background())
+}
+
+func (o FlexClusterConnectionStringsOutput) ToFlexClusterConnectionStringsPtrOutputWithContext(ctx context.Context) FlexClusterConnectionStringsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FlexClusterConnectionStrings) *FlexClusterConnectionStrings {
+		return &v
+	}).(FlexClusterConnectionStringsPtrOutput)
+}
+
+// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+func (o FlexClusterConnectionStringsOutput) Standard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FlexClusterConnectionStrings) *string { return v.Standard }).(pulumi.StringPtrOutput)
+}
+
+// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+func (o FlexClusterConnectionStringsOutput) StandardSrv() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FlexClusterConnectionStrings) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
+}
+
+type FlexClusterConnectionStringsPtrOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterConnectionStringsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (o FlexClusterConnectionStringsPtrOutput) ToFlexClusterConnectionStringsPtrOutput() FlexClusterConnectionStringsPtrOutput {
+	return o
+}
+
+func (o FlexClusterConnectionStringsPtrOutput) ToFlexClusterConnectionStringsPtrOutputWithContext(ctx context.Context) FlexClusterConnectionStringsPtrOutput {
+	return o
+}
+
+func (o FlexClusterConnectionStringsPtrOutput) Elem() FlexClusterConnectionStringsOutput {
+	return o.ApplyT(func(v *FlexClusterConnectionStrings) FlexClusterConnectionStrings {
+		if v != nil {
+			return *v
+		}
+		var ret FlexClusterConnectionStrings
+		return ret
+	}).(FlexClusterConnectionStringsOutput)
+}
+
+// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+func (o FlexClusterConnectionStringsPtrOutput) Standard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterConnectionStrings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Standard
+	}).(pulumi.StringPtrOutput)
+}
+
+// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+func (o FlexClusterConnectionStringsPtrOutput) StandardSrv() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterConnectionStrings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StandardSrv
+	}).(pulumi.StringPtrOutput)
+}
+
+type FlexClusterProviderSettings struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName string `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName *string `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName string `pulumi:"regionName"`
+}
+
+// FlexClusterProviderSettingsInput is an input type that accepts FlexClusterProviderSettingsArgs and FlexClusterProviderSettingsOutput values.
+// You can construct a concrete instance of `FlexClusterProviderSettingsInput` via:
+//
+//	FlexClusterProviderSettingsArgs{...}
+type FlexClusterProviderSettingsInput interface {
+	pulumi.Input
+
+	ToFlexClusterProviderSettingsOutput() FlexClusterProviderSettingsOutput
+	ToFlexClusterProviderSettingsOutputWithContext(context.Context) FlexClusterProviderSettingsOutput
+}
+
+type FlexClusterProviderSettingsArgs struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (FlexClusterProviderSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (i FlexClusterProviderSettingsArgs) ToFlexClusterProviderSettingsOutput() FlexClusterProviderSettingsOutput {
+	return i.ToFlexClusterProviderSettingsOutputWithContext(context.Background())
+}
+
+func (i FlexClusterProviderSettingsArgs) ToFlexClusterProviderSettingsOutputWithContext(ctx context.Context) FlexClusterProviderSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterProviderSettingsOutput)
+}
+
+func (i FlexClusterProviderSettingsArgs) ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput {
+	return i.ToFlexClusterProviderSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i FlexClusterProviderSettingsArgs) ToFlexClusterProviderSettingsPtrOutputWithContext(ctx context.Context) FlexClusterProviderSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterProviderSettingsOutput).ToFlexClusterProviderSettingsPtrOutputWithContext(ctx)
+}
+
+// FlexClusterProviderSettingsPtrInput is an input type that accepts FlexClusterProviderSettingsArgs, FlexClusterProviderSettingsPtr and FlexClusterProviderSettingsPtrOutput values.
+// You can construct a concrete instance of `FlexClusterProviderSettingsPtrInput` via:
+//
+//	        FlexClusterProviderSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FlexClusterProviderSettingsPtrInput interface {
+	pulumi.Input
+
+	ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput
+	ToFlexClusterProviderSettingsPtrOutputWithContext(context.Context) FlexClusterProviderSettingsPtrOutput
+}
+
+type flexClusterProviderSettingsPtrType FlexClusterProviderSettingsArgs
+
+func FlexClusterProviderSettingsPtr(v *FlexClusterProviderSettingsArgs) FlexClusterProviderSettingsPtrInput {
+	return (*flexClusterProviderSettingsPtrType)(v)
+}
+
+func (*flexClusterProviderSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (i *flexClusterProviderSettingsPtrType) ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput {
+	return i.ToFlexClusterProviderSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *flexClusterProviderSettingsPtrType) ToFlexClusterProviderSettingsPtrOutputWithContext(ctx context.Context) FlexClusterProviderSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexClusterProviderSettingsPtrOutput)
+}
+
+type FlexClusterProviderSettingsOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterProviderSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (o FlexClusterProviderSettingsOutput) ToFlexClusterProviderSettingsOutput() FlexClusterProviderSettingsOutput {
+	return o
+}
+
+func (o FlexClusterProviderSettingsOutput) ToFlexClusterProviderSettingsOutputWithContext(ctx context.Context) FlexClusterProviderSettingsOutput {
+	return o
+}
+
+func (o FlexClusterProviderSettingsOutput) ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput {
+	return o.ToFlexClusterProviderSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o FlexClusterProviderSettingsOutput) ToFlexClusterProviderSettingsPtrOutputWithContext(ctx context.Context) FlexClusterProviderSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FlexClusterProviderSettings) *FlexClusterProviderSettings {
+		return &v
+	}).(FlexClusterProviderSettingsPtrOutput)
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+func (o FlexClusterProviderSettingsOutput) BackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v FlexClusterProviderSettings) string { return v.BackingProviderName }).(pulumi.StringOutput)
+}
+
+// Storage capacity available to the flex cluster expressed in gigabytes.
+func (o FlexClusterProviderSettingsOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v FlexClusterProviderSettings) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
+}
+
+// Human-readable label that identifies the cloud service provider.
+func (o FlexClusterProviderSettingsOutput) ProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FlexClusterProviderSettings) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o FlexClusterProviderSettingsOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v FlexClusterProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type FlexClusterProviderSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (FlexClusterProviderSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (o FlexClusterProviderSettingsPtrOutput) ToFlexClusterProviderSettingsPtrOutput() FlexClusterProviderSettingsPtrOutput {
+	return o
+}
+
+func (o FlexClusterProviderSettingsPtrOutput) ToFlexClusterProviderSettingsPtrOutputWithContext(ctx context.Context) FlexClusterProviderSettingsPtrOutput {
+	return o
+}
+
+func (o FlexClusterProviderSettingsPtrOutput) Elem() FlexClusterProviderSettingsOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) FlexClusterProviderSettings {
+		if v != nil {
+			return *v
+		}
+		var ret FlexClusterProviderSettings
+		return ret
+	}).(FlexClusterProviderSettingsOutput)
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+func (o FlexClusterProviderSettingsPtrOutput) BackingProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BackingProviderName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Storage capacity available to the flex cluster expressed in gigabytes.
+func (o FlexClusterProviderSettingsPtrOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.DiskSizeGb
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Human-readable label that identifies the cloud service provider.
+func (o FlexClusterProviderSettingsPtrOutput) ProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProviderName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o FlexClusterProviderSettingsPtrOutput) RegionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexClusterProviderSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RegionName
+	}).(pulumi.StringPtrOutput)
 }
 
 type GlobalClusterConfigCustomZoneMapping struct {
@@ -44207,6 +44694,969 @@ func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput) Inde
 	}).(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput)
 }
 
+type GetFlexClusterBackupSettings struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled bool `pulumi:"enabled"`
+}
+
+// GetFlexClusterBackupSettingsInput is an input type that accepts GetFlexClusterBackupSettingsArgs and GetFlexClusterBackupSettingsOutput values.
+// You can construct a concrete instance of `GetFlexClusterBackupSettingsInput` via:
+//
+//	GetFlexClusterBackupSettingsArgs{...}
+type GetFlexClusterBackupSettingsInput interface {
+	pulumi.Input
+
+	ToGetFlexClusterBackupSettingsOutput() GetFlexClusterBackupSettingsOutput
+	ToGetFlexClusterBackupSettingsOutputWithContext(context.Context) GetFlexClusterBackupSettingsOutput
+}
+
+type GetFlexClusterBackupSettingsArgs struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (GetFlexClusterBackupSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (i GetFlexClusterBackupSettingsArgs) ToGetFlexClusterBackupSettingsOutput() GetFlexClusterBackupSettingsOutput {
+	return i.ToGetFlexClusterBackupSettingsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClusterBackupSettingsArgs) ToGetFlexClusterBackupSettingsOutputWithContext(ctx context.Context) GetFlexClusterBackupSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClusterBackupSettingsOutput)
+}
+
+type GetFlexClusterBackupSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClusterBackupSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterBackupSettings)(nil)).Elem()
+}
+
+func (o GetFlexClusterBackupSettingsOutput) ToGetFlexClusterBackupSettingsOutput() GetFlexClusterBackupSettingsOutput {
+	return o
+}
+
+func (o GetFlexClusterBackupSettingsOutput) ToGetFlexClusterBackupSettingsOutputWithContext(ctx context.Context) GetFlexClusterBackupSettingsOutput {
+	return o
+}
+
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+func (o GetFlexClusterBackupSettingsOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFlexClusterBackupSettings) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type GetFlexClusterConnectionStrings struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard string `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv string `pulumi:"standardSrv"`
+}
+
+// GetFlexClusterConnectionStringsInput is an input type that accepts GetFlexClusterConnectionStringsArgs and GetFlexClusterConnectionStringsOutput values.
+// You can construct a concrete instance of `GetFlexClusterConnectionStringsInput` via:
+//
+//	GetFlexClusterConnectionStringsArgs{...}
+type GetFlexClusterConnectionStringsInput interface {
+	pulumi.Input
+
+	ToGetFlexClusterConnectionStringsOutput() GetFlexClusterConnectionStringsOutput
+	ToGetFlexClusterConnectionStringsOutputWithContext(context.Context) GetFlexClusterConnectionStringsOutput
+}
+
+type GetFlexClusterConnectionStringsArgs struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
+}
+
+func (GetFlexClusterConnectionStringsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (i GetFlexClusterConnectionStringsArgs) ToGetFlexClusterConnectionStringsOutput() GetFlexClusterConnectionStringsOutput {
+	return i.ToGetFlexClusterConnectionStringsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClusterConnectionStringsArgs) ToGetFlexClusterConnectionStringsOutputWithContext(ctx context.Context) GetFlexClusterConnectionStringsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClusterConnectionStringsOutput)
+}
+
+type GetFlexClusterConnectionStringsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClusterConnectionStringsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterConnectionStrings)(nil)).Elem()
+}
+
+func (o GetFlexClusterConnectionStringsOutput) ToGetFlexClusterConnectionStringsOutput() GetFlexClusterConnectionStringsOutput {
+	return o
+}
+
+func (o GetFlexClusterConnectionStringsOutput) ToGetFlexClusterConnectionStringsOutputWithContext(ctx context.Context) GetFlexClusterConnectionStringsOutput {
+	return o
+}
+
+// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+func (o GetFlexClusterConnectionStringsOutput) Standard() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterConnectionStrings) string { return v.Standard }).(pulumi.StringOutput)
+}
+
+// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+func (o GetFlexClusterConnectionStringsOutput) StandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterConnectionStrings) string { return v.StandardSrv }).(pulumi.StringOutput)
+}
+
+type GetFlexClusterProviderSettings struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName string `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName string `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetFlexClusterProviderSettingsInput is an input type that accepts GetFlexClusterProviderSettingsArgs and GetFlexClusterProviderSettingsOutput values.
+// You can construct a concrete instance of `GetFlexClusterProviderSettingsInput` via:
+//
+//	GetFlexClusterProviderSettingsArgs{...}
+type GetFlexClusterProviderSettingsInput interface {
+	pulumi.Input
+
+	ToGetFlexClusterProviderSettingsOutput() GetFlexClusterProviderSettingsOutput
+	ToGetFlexClusterProviderSettingsOutputWithContext(context.Context) GetFlexClusterProviderSettingsOutput
+}
+
+type GetFlexClusterProviderSettingsArgs struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetFlexClusterProviderSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (i GetFlexClusterProviderSettingsArgs) ToGetFlexClusterProviderSettingsOutput() GetFlexClusterProviderSettingsOutput {
+	return i.ToGetFlexClusterProviderSettingsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClusterProviderSettingsArgs) ToGetFlexClusterProviderSettingsOutputWithContext(ctx context.Context) GetFlexClusterProviderSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClusterProviderSettingsOutput)
+}
+
+type GetFlexClusterProviderSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClusterProviderSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClusterProviderSettings)(nil)).Elem()
+}
+
+func (o GetFlexClusterProviderSettingsOutput) ToGetFlexClusterProviderSettingsOutput() GetFlexClusterProviderSettingsOutput {
+	return o
+}
+
+func (o GetFlexClusterProviderSettingsOutput) ToGetFlexClusterProviderSettingsOutputWithContext(ctx context.Context) GetFlexClusterProviderSettingsOutput {
+	return o
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+func (o GetFlexClusterProviderSettingsOutput) BackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterProviderSettings) string { return v.BackingProviderName }).(pulumi.StringOutput)
+}
+
+// Storage capacity available to the flex cluster expressed in gigabytes.
+func (o GetFlexClusterProviderSettingsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetFlexClusterProviderSettings) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
+}
+
+// Human-readable label that identifies the cloud service provider.
+func (o GetFlexClusterProviderSettingsOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterProviderSettings) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o GetFlexClusterProviderSettingsOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClusterProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetFlexClustersResult struct {
+	// Flex backup configuration
+	BackupSettings GetFlexClustersResultBackupSettings `pulumi:"backupSettings"`
+	// Flex cluster topology.
+	ClusterType string `pulumi:"clusterType"`
+	// Collection of Uniform Resource Locators that point to the MongoDB database.
+	ConnectionStrings GetFlexClustersResultConnectionStrings `pulumi:"connectionStrings"`
+	// Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
+	CreateDate string `pulumi:"createDate"`
+	// Unique 24-hexadecimal digit string that identifies the instance.
+	Id string `pulumi:"id"`
+	// Version of MongoDB that the instance runs.
+	MongoDbVersion string `pulumi:"mongoDbVersion"`
+	// Human-readable label that identifies the instance.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal character string that identifies the project.
+	ProjectId string `pulumi:"projectId"`
+	// Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+	ProviderSettings GetFlexClustersResultProviderSettings `pulumi:"providerSettings"`
+	// Human-readable label that indicates the current operating condition of this instance.
+	StateName string `pulumi:"stateName"`
+	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
+	Tags map[string]string `pulumi:"tags"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
+	// Method by which the cluster maintains the MongoDB versions.
+	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
+}
+
+// GetFlexClustersResultInput is an input type that accepts GetFlexClustersResultArgs and GetFlexClustersResultOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultInput` via:
+//
+//	GetFlexClustersResultArgs{...}
+type GetFlexClustersResultInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultOutput() GetFlexClustersResultOutput
+	ToGetFlexClustersResultOutputWithContext(context.Context) GetFlexClustersResultOutput
+}
+
+type GetFlexClustersResultArgs struct {
+	// Flex backup configuration
+	BackupSettings GetFlexClustersResultBackupSettingsInput `pulumi:"backupSettings"`
+	// Flex cluster topology.
+	ClusterType pulumi.StringInput `pulumi:"clusterType"`
+	// Collection of Uniform Resource Locators that point to the MongoDB database.
+	ConnectionStrings GetFlexClustersResultConnectionStringsInput `pulumi:"connectionStrings"`
+	// Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// Unique 24-hexadecimal digit string that identifies the instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Version of MongoDB that the instance runs.
+	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
+	// Human-readable label that identifies the instance.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal character string that identifies the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+	ProviderSettings GetFlexClustersResultProviderSettingsInput `pulumi:"providerSettings"`
+	// Human-readable label that indicates the current operating condition of this instance.
+	StateName pulumi.StringInput `pulumi:"stateName"`
+	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
+	Tags pulumi.StringMapInput `pulumi:"tags"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled pulumi.BoolInput `pulumi:"terminationProtectionEnabled"`
+	// Method by which the cluster maintains the MongoDB versions.
+	VersionReleaseSystem pulumi.StringInput `pulumi:"versionReleaseSystem"`
+}
+
+func (GetFlexClustersResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResult)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultArgs) ToGetFlexClustersResultOutput() GetFlexClustersResultOutput {
+	return i.ToGetFlexClustersResultOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultArgs) ToGetFlexClustersResultOutputWithContext(ctx context.Context) GetFlexClustersResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultOutput)
+}
+
+// GetFlexClustersResultArrayInput is an input type that accepts GetFlexClustersResultArray and GetFlexClustersResultArrayOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultArrayInput` via:
+//
+//	GetFlexClustersResultArray{ GetFlexClustersResultArgs{...} }
+type GetFlexClustersResultArrayInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultArrayOutput() GetFlexClustersResultArrayOutput
+	ToGetFlexClustersResultArrayOutputWithContext(context.Context) GetFlexClustersResultArrayOutput
+}
+
+type GetFlexClustersResultArray []GetFlexClustersResultInput
+
+func (GetFlexClustersResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexClustersResult)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultArray) ToGetFlexClustersResultArrayOutput() GetFlexClustersResultArrayOutput {
+	return i.ToGetFlexClustersResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultArray) ToGetFlexClustersResultArrayOutputWithContext(ctx context.Context) GetFlexClustersResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultArrayOutput)
+}
+
+type GetFlexClustersResultOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResult)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultOutput) ToGetFlexClustersResultOutput() GetFlexClustersResultOutput {
+	return o
+}
+
+func (o GetFlexClustersResultOutput) ToGetFlexClustersResultOutputWithContext(ctx context.Context) GetFlexClustersResultOutput {
+	return o
+}
+
+// Flex backup configuration
+func (o GetFlexClustersResultOutput) BackupSettings() GetFlexClustersResultBackupSettingsOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) GetFlexClustersResultBackupSettings { return v.BackupSettings }).(GetFlexClustersResultBackupSettingsOutput)
+}
+
+// Flex cluster topology.
+func (o GetFlexClustersResultOutput) ClusterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.ClusterType }).(pulumi.StringOutput)
+}
+
+// Collection of Uniform Resource Locators that point to the MongoDB database.
+func (o GetFlexClustersResultOutput) ConnectionStrings() GetFlexClustersResultConnectionStringsOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) GetFlexClustersResultConnectionStrings { return v.ConnectionStrings }).(GetFlexClustersResultConnectionStringsOutput)
+}
+
+// Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
+func (o GetFlexClustersResultOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the instance.
+func (o GetFlexClustersResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Version of MongoDB that the instance runs.
+func (o GetFlexClustersResultOutput) MongoDbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.MongoDbVersion }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the instance.
+func (o GetFlexClustersResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies the project.
+func (o GetFlexClustersResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+func (o GetFlexClustersResultOutput) ProviderSettings() GetFlexClustersResultProviderSettingsOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) GetFlexClustersResultProviderSettings { return v.ProviderSettings }).(GetFlexClustersResultProviderSettingsOutput)
+}
+
+// Human-readable label that indicates the current operating condition of this instance.
+func (o GetFlexClustersResultOutput) StateName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
+func (o GetFlexClustersResultOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
+}
+
+// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+func (o GetFlexClustersResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
+}
+
+// Method by which the cluster maintains the MongoDB versions.
+func (o GetFlexClustersResultOutput) VersionReleaseSystem() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResult) string { return v.VersionReleaseSystem }).(pulumi.StringOutput)
+}
+
+type GetFlexClustersResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexClustersResult)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultArrayOutput) ToGetFlexClustersResultArrayOutput() GetFlexClustersResultArrayOutput {
+	return o
+}
+
+func (o GetFlexClustersResultArrayOutput) ToGetFlexClustersResultArrayOutputWithContext(ctx context.Context) GetFlexClustersResultArrayOutput {
+	return o
+}
+
+func (o GetFlexClustersResultArrayOutput) Index(i pulumi.IntInput) GetFlexClustersResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlexClustersResult {
+		return vs[0].([]GetFlexClustersResult)[vs[1].(int)]
+	}).(GetFlexClustersResultOutput)
+}
+
+type GetFlexClustersResultBackupSettings struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled bool `pulumi:"enabled"`
+}
+
+// GetFlexClustersResultBackupSettingsInput is an input type that accepts GetFlexClustersResultBackupSettingsArgs and GetFlexClustersResultBackupSettingsOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultBackupSettingsInput` via:
+//
+//	GetFlexClustersResultBackupSettingsArgs{...}
+type GetFlexClustersResultBackupSettingsInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultBackupSettingsOutput() GetFlexClustersResultBackupSettingsOutput
+	ToGetFlexClustersResultBackupSettingsOutputWithContext(context.Context) GetFlexClustersResultBackupSettingsOutput
+}
+
+type GetFlexClustersResultBackupSettingsArgs struct {
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (GetFlexClustersResultBackupSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultBackupSettings)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultBackupSettingsArgs) ToGetFlexClustersResultBackupSettingsOutput() GetFlexClustersResultBackupSettingsOutput {
+	return i.ToGetFlexClustersResultBackupSettingsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultBackupSettingsArgs) ToGetFlexClustersResultBackupSettingsOutputWithContext(ctx context.Context) GetFlexClustersResultBackupSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultBackupSettingsOutput)
+}
+
+type GetFlexClustersResultBackupSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultBackupSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultBackupSettings)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultBackupSettingsOutput) ToGetFlexClustersResultBackupSettingsOutput() GetFlexClustersResultBackupSettingsOutput {
+	return o
+}
+
+func (o GetFlexClustersResultBackupSettingsOutput) ToGetFlexClustersResultBackupSettingsOutputWithContext(ctx context.Context) GetFlexClustersResultBackupSettingsOutput {
+	return o
+}
+
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+func (o GetFlexClustersResultBackupSettingsOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFlexClustersResultBackupSettings) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type GetFlexClustersResultConnectionStrings struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard string `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv string `pulumi:"standardSrv"`
+}
+
+// GetFlexClustersResultConnectionStringsInput is an input type that accepts GetFlexClustersResultConnectionStringsArgs and GetFlexClustersResultConnectionStringsOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultConnectionStringsInput` via:
+//
+//	GetFlexClustersResultConnectionStringsArgs{...}
+type GetFlexClustersResultConnectionStringsInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultConnectionStringsOutput() GetFlexClustersResultConnectionStringsOutput
+	ToGetFlexClustersResultConnectionStringsOutputWithContext(context.Context) GetFlexClustersResultConnectionStringsOutput
+}
+
+type GetFlexClustersResultConnectionStringsArgs struct {
+	// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
+}
+
+func (GetFlexClustersResultConnectionStringsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultConnectionStrings)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultConnectionStringsArgs) ToGetFlexClustersResultConnectionStringsOutput() GetFlexClustersResultConnectionStringsOutput {
+	return i.ToGetFlexClustersResultConnectionStringsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultConnectionStringsArgs) ToGetFlexClustersResultConnectionStringsOutputWithContext(ctx context.Context) GetFlexClustersResultConnectionStringsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultConnectionStringsOutput)
+}
+
+type GetFlexClustersResultConnectionStringsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultConnectionStringsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultConnectionStrings)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultConnectionStringsOutput) ToGetFlexClustersResultConnectionStringsOutput() GetFlexClustersResultConnectionStringsOutput {
+	return o
+}
+
+func (o GetFlexClustersResultConnectionStringsOutput) ToGetFlexClustersResultConnectionStringsOutputWithContext(ctx context.Context) GetFlexClustersResultConnectionStringsOutput {
+	return o
+}
+
+// Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+func (o GetFlexClustersResultConnectionStringsOutput) Standard() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultConnectionStrings) string { return v.Standard }).(pulumi.StringOutput)
+}
+
+// Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+func (o GetFlexClustersResultConnectionStringsOutput) StandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultConnectionStrings) string { return v.StandardSrv }).(pulumi.StringOutput)
+}
+
+type GetFlexClustersResultProviderSettings struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName string `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName string `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetFlexClustersResultProviderSettingsInput is an input type that accepts GetFlexClustersResultProviderSettingsArgs and GetFlexClustersResultProviderSettingsOutput values.
+// You can construct a concrete instance of `GetFlexClustersResultProviderSettingsInput` via:
+//
+//	GetFlexClustersResultProviderSettingsArgs{...}
+type GetFlexClustersResultProviderSettingsInput interface {
+	pulumi.Input
+
+	ToGetFlexClustersResultProviderSettingsOutput() GetFlexClustersResultProviderSettingsOutput
+	ToGetFlexClustersResultProviderSettingsOutputWithContext(context.Context) GetFlexClustersResultProviderSettingsOutput
+}
+
+type GetFlexClustersResultProviderSettingsArgs struct {
+	// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
+	// Storage capacity available to the flex cluster expressed in gigabytes.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
+	// Human-readable label that identifies the cloud service provider.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetFlexClustersResultProviderSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultProviderSettings)(nil)).Elem()
+}
+
+func (i GetFlexClustersResultProviderSettingsArgs) ToGetFlexClustersResultProviderSettingsOutput() GetFlexClustersResultProviderSettingsOutput {
+	return i.ToGetFlexClustersResultProviderSettingsOutputWithContext(context.Background())
+}
+
+func (i GetFlexClustersResultProviderSettingsArgs) ToGetFlexClustersResultProviderSettingsOutputWithContext(ctx context.Context) GetFlexClustersResultProviderSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexClustersResultProviderSettingsOutput)
+}
+
+type GetFlexClustersResultProviderSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetFlexClustersResultProviderSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexClustersResultProviderSettings)(nil)).Elem()
+}
+
+func (o GetFlexClustersResultProviderSettingsOutput) ToGetFlexClustersResultProviderSettingsOutput() GetFlexClustersResultProviderSettingsOutput {
+	return o
+}
+
+func (o GetFlexClustersResultProviderSettingsOutput) ToGetFlexClustersResultProviderSettingsOutputWithContext(ctx context.Context) GetFlexClustersResultProviderSettingsOutput {
+	return o
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+func (o GetFlexClustersResultProviderSettingsOutput) BackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) string { return v.BackingProviderName }).(pulumi.StringOutput)
+}
+
+// Storage capacity available to the flex cluster expressed in gigabytes.
+func (o GetFlexClustersResultProviderSettingsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
+}
+
+// Human-readable label that identifies the cloud service provider.
+func (o GetFlexClustersResultProviderSettingsOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o GetFlexClustersResultProviderSettingsOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetFlexRestoreJobsResult struct {
+	// Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+	DeliveryType string `pulumi:"deliveryType"`
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpirationDate string `pulumi:"expirationDate"`
+	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId string `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreFinishedDate string `pulumi:"restoreFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the restore job.
+	RestoreJobId string `pulumi:"restoreJobId"`
+	// Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreScheduledDate string `pulumi:"restoreScheduledDate"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	SnapshotFinishedDate string `pulumi:"snapshotFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+	SnapshotUrl string `pulumi:"snapshotUrl"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status string `pulumi:"status"`
+	// Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+	TargetDeploymentItemName string `pulumi:"targetDeploymentItemName"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+	TargetProjectId string `pulumi:"targetProjectId"`
+}
+
+// GetFlexRestoreJobsResultInput is an input type that accepts GetFlexRestoreJobsResultArgs and GetFlexRestoreJobsResultOutput values.
+// You can construct a concrete instance of `GetFlexRestoreJobsResultInput` via:
+//
+//	GetFlexRestoreJobsResultArgs{...}
+type GetFlexRestoreJobsResultInput interface {
+	pulumi.Input
+
+	ToGetFlexRestoreJobsResultOutput() GetFlexRestoreJobsResultOutput
+	ToGetFlexRestoreJobsResultOutputWithContext(context.Context) GetFlexRestoreJobsResultOutput
+}
+
+type GetFlexRestoreJobsResultArgs struct {
+	// Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+	DeliveryType pulumi.StringInput `pulumi:"deliveryType"`
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpirationDate pulumi.StringInput `pulumi:"expirationDate"`
+	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreFinishedDate pulumi.StringInput `pulumi:"restoreFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the restore job.
+	RestoreJobId pulumi.StringInput `pulumi:"restoreJobId"`
+	// Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreScheduledDate pulumi.StringInput `pulumi:"restoreScheduledDate"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	SnapshotFinishedDate pulumi.StringInput `pulumi:"snapshotFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+	SnapshotUrl pulumi.StringInput `pulumi:"snapshotUrl"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+	TargetDeploymentItemName pulumi.StringInput `pulumi:"targetDeploymentItemName"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+	TargetProjectId pulumi.StringInput `pulumi:"targetProjectId"`
+}
+
+func (GetFlexRestoreJobsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetFlexRestoreJobsResultArgs) ToGetFlexRestoreJobsResultOutput() GetFlexRestoreJobsResultOutput {
+	return i.ToGetFlexRestoreJobsResultOutputWithContext(context.Background())
+}
+
+func (i GetFlexRestoreJobsResultArgs) ToGetFlexRestoreJobsResultOutputWithContext(ctx context.Context) GetFlexRestoreJobsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexRestoreJobsResultOutput)
+}
+
+// GetFlexRestoreJobsResultArrayInput is an input type that accepts GetFlexRestoreJobsResultArray and GetFlexRestoreJobsResultArrayOutput values.
+// You can construct a concrete instance of `GetFlexRestoreJobsResultArrayInput` via:
+//
+//	GetFlexRestoreJobsResultArray{ GetFlexRestoreJobsResultArgs{...} }
+type GetFlexRestoreJobsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetFlexRestoreJobsResultArrayOutput() GetFlexRestoreJobsResultArrayOutput
+	ToGetFlexRestoreJobsResultArrayOutputWithContext(context.Context) GetFlexRestoreJobsResultArrayOutput
+}
+
+type GetFlexRestoreJobsResultArray []GetFlexRestoreJobsResultInput
+
+func (GetFlexRestoreJobsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetFlexRestoreJobsResultArray) ToGetFlexRestoreJobsResultArrayOutput() GetFlexRestoreJobsResultArrayOutput {
+	return i.ToGetFlexRestoreJobsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlexRestoreJobsResultArray) ToGetFlexRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetFlexRestoreJobsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexRestoreJobsResultArrayOutput)
+}
+
+type GetFlexRestoreJobsResultOutput struct{ *pulumi.OutputState }
+
+func (GetFlexRestoreJobsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetFlexRestoreJobsResultOutput) ToGetFlexRestoreJobsResultOutput() GetFlexRestoreJobsResultOutput {
+	return o
+}
+
+func (o GetFlexRestoreJobsResultOutput) ToGetFlexRestoreJobsResultOutputWithContext(ctx context.Context) GetFlexRestoreJobsResultOutput {
+	return o
+}
+
+// Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+func (o GetFlexRestoreJobsResultOutput) DeliveryType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.DeliveryType }).(pulumi.StringOutput)
+}
+
+// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexRestoreJobsResultOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.ExpirationDate }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+func (o GetFlexRestoreJobsResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+func (o GetFlexRestoreJobsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexRestoreJobsResultOutput) RestoreFinishedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.RestoreFinishedDate }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the restore job.
+func (o GetFlexRestoreJobsResultOutput) RestoreJobId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.RestoreJobId }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexRestoreJobsResultOutput) RestoreScheduledDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.RestoreScheduledDate }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexRestoreJobsResultOutput) SnapshotFinishedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.SnapshotFinishedDate }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+func (o GetFlexRestoreJobsResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+func (o GetFlexRestoreJobsResultOutput) SnapshotUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.SnapshotUrl }).(pulumi.StringOutput)
+}
+
+// Phase of the restore workflow for this job at the time this resource made this request.
+func (o GetFlexRestoreJobsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+func (o GetFlexRestoreJobsResultOutput) TargetDeploymentItemName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.TargetDeploymentItemName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+func (o GetFlexRestoreJobsResultOutput) TargetProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.TargetProjectId }).(pulumi.StringOutput)
+}
+
+type GetFlexRestoreJobsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlexRestoreJobsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetFlexRestoreJobsResultArrayOutput) ToGetFlexRestoreJobsResultArrayOutput() GetFlexRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetFlexRestoreJobsResultArrayOutput) ToGetFlexRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetFlexRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetFlexRestoreJobsResultArrayOutput) Index(i pulumi.IntInput) GetFlexRestoreJobsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlexRestoreJobsResult {
+		return vs[0].([]GetFlexRestoreJobsResult)[vs[1].(int)]
+	}).(GetFlexRestoreJobsResultOutput)
+}
+
+type GetFlexSnapshotsResult struct {
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	Expiration string `pulumi:"expiration"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	FinishTime string `pulumi:"finishTime"`
+	// MongoDB host version that the snapshot runs.
+	MongoDbVersion string `pulumi:"mongoDbVersion"`
+	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId string `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ScheduledTime string `pulumi:"scheduledTime"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	StartTime string `pulumi:"startTime"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status string `pulumi:"status"`
+}
+
+// GetFlexSnapshotsResultInput is an input type that accepts GetFlexSnapshotsResultArgs and GetFlexSnapshotsResultOutput values.
+// You can construct a concrete instance of `GetFlexSnapshotsResultInput` via:
+//
+//	GetFlexSnapshotsResultArgs{...}
+type GetFlexSnapshotsResultInput interface {
+	pulumi.Input
+
+	ToGetFlexSnapshotsResultOutput() GetFlexSnapshotsResultOutput
+	ToGetFlexSnapshotsResultOutputWithContext(context.Context) GetFlexSnapshotsResultOutput
+}
+
+type GetFlexSnapshotsResultArgs struct {
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	Expiration pulumi.StringInput `pulumi:"expiration"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	FinishTime pulumi.StringInput `pulumi:"finishTime"`
+	// MongoDB host version that the snapshot runs.
+	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
+	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ScheduledTime pulumi.StringInput `pulumi:"scheduledTime"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetFlexSnapshotsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexSnapshotsResult)(nil)).Elem()
+}
+
+func (i GetFlexSnapshotsResultArgs) ToGetFlexSnapshotsResultOutput() GetFlexSnapshotsResultOutput {
+	return i.ToGetFlexSnapshotsResultOutputWithContext(context.Background())
+}
+
+func (i GetFlexSnapshotsResultArgs) ToGetFlexSnapshotsResultOutputWithContext(ctx context.Context) GetFlexSnapshotsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexSnapshotsResultOutput)
+}
+
+// GetFlexSnapshotsResultArrayInput is an input type that accepts GetFlexSnapshotsResultArray and GetFlexSnapshotsResultArrayOutput values.
+// You can construct a concrete instance of `GetFlexSnapshotsResultArrayInput` via:
+//
+//	GetFlexSnapshotsResultArray{ GetFlexSnapshotsResultArgs{...} }
+type GetFlexSnapshotsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetFlexSnapshotsResultArrayOutput() GetFlexSnapshotsResultArrayOutput
+	ToGetFlexSnapshotsResultArrayOutputWithContext(context.Context) GetFlexSnapshotsResultArrayOutput
+}
+
+type GetFlexSnapshotsResultArray []GetFlexSnapshotsResultInput
+
+func (GetFlexSnapshotsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexSnapshotsResult)(nil)).Elem()
+}
+
+func (i GetFlexSnapshotsResultArray) ToGetFlexSnapshotsResultArrayOutput() GetFlexSnapshotsResultArrayOutput {
+	return i.ToGetFlexSnapshotsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlexSnapshotsResultArray) ToGetFlexSnapshotsResultArrayOutputWithContext(ctx context.Context) GetFlexSnapshotsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexSnapshotsResultArrayOutput)
+}
+
+type GetFlexSnapshotsResultOutput struct{ *pulumi.OutputState }
+
+func (GetFlexSnapshotsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexSnapshotsResult)(nil)).Elem()
+}
+
+func (o GetFlexSnapshotsResultOutput) ToGetFlexSnapshotsResultOutput() GetFlexSnapshotsResultOutput {
+	return o
+}
+
+func (o GetFlexSnapshotsResultOutput) ToGetFlexSnapshotsResultOutputWithContext(ctx context.Context) GetFlexSnapshotsResultOutput {
+	return o
+}
+
+// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexSnapshotsResultOutput) Expiration() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.Expiration }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexSnapshotsResultOutput) FinishTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.FinishTime }).(pulumi.StringOutput)
+}
+
+// MongoDB host version that the snapshot runs.
+func (o GetFlexSnapshotsResultOutput) MongoDbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.MongoDbVersion }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+func (o GetFlexSnapshotsResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+func (o GetFlexSnapshotsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexSnapshotsResultOutput) ScheduledTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.ScheduledTime }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+func (o GetFlexSnapshotsResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexSnapshotsResultOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// Phase of the restore workflow for this job at the time this resource made this request.
+func (o GetFlexSnapshotsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetFlexSnapshotsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlexSnapshotsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexSnapshotsResult)(nil)).Elem()
+}
+
+func (o GetFlexSnapshotsResultArrayOutput) ToGetFlexSnapshotsResultArrayOutput() GetFlexSnapshotsResultArrayOutput {
+	return o
+}
+
+func (o GetFlexSnapshotsResultArrayOutput) ToGetFlexSnapshotsResultArrayOutputWithContext(ctx context.Context) GetFlexSnapshotsResultArrayOutput {
+	return o
+}
+
+func (o GetFlexSnapshotsResultArrayOutput) Index(i pulumi.IntInput) GetFlexSnapshotsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlexSnapshotsResult {
+		return vs[0].([]GetFlexSnapshotsResult)[vs[1].(int)]
+	}).(GetFlexSnapshotsResultOutput)
+}
+
 type GetGlobalClusterConfigManagedNamespace struct {
 	// (Required) The name of the collection associated with the managed namespace.
 	Collection string `pulumi:"collection"`
@@ -52472,6 +53922,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgConfigUserConflictArrayInput)(nil)).Elem(), FederatedSettingsOrgConfigUserConflictArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterBackupSettingsInput)(nil)).Elem(), FlexClusterBackupSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterBackupSettingsPtrInput)(nil)).Elem(), FlexClusterBackupSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterConnectionStringsInput)(nil)).Elem(), FlexClusterConnectionStringsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterConnectionStringsPtrInput)(nil)).Elem(), FlexClusterConnectionStringsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterProviderSettingsInput)(nil)).Elem(), FlexClusterProviderSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlexClusterProviderSettingsPtrInput)(nil)).Elem(), FlexClusterProviderSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigCustomZoneMappingInput)(nil)).Elem(), GlobalClusterConfigCustomZoneMappingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigCustomZoneMappingArrayInput)(nil)).Elem(), GlobalClusterConfigCustomZoneMappingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigManagedNamespaceInput)(nil)).Elem(), GlobalClusterConfigManagedNamespaceArgs{})
@@ -52906,6 +54362,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultArrayInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClusterBackupSettingsInput)(nil)).Elem(), GetFlexClusterBackupSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClusterConnectionStringsInput)(nil)).Elem(), GetFlexClusterConnectionStringsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClusterProviderSettingsInput)(nil)).Elem(), GetFlexClusterProviderSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultInput)(nil)).Elem(), GetFlexClustersResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultArrayInput)(nil)).Elem(), GetFlexClustersResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultBackupSettingsInput)(nil)).Elem(), GetFlexClustersResultBackupSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultConnectionStringsInput)(nil)).Elem(), GetFlexClustersResultConnectionStringsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultProviderSettingsInput)(nil)).Elem(), GetFlexClustersResultProviderSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexRestoreJobsResultInput)(nil)).Elem(), GetFlexRestoreJobsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexRestoreJobsResultArrayInput)(nil)).Elem(), GetFlexRestoreJobsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexSnapshotsResultInput)(nil)).Elem(), GetFlexSnapshotsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexSnapshotsResultArrayInput)(nil)).Elem(), GetFlexSnapshotsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalClusterConfigManagedNamespaceInput)(nil)).Elem(), GetGlobalClusterConfigManagedNamespaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalClusterConfigManagedNamespaceArrayInput)(nil)).Elem(), GetGlobalClusterConfigManagedNamespaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapConfigurationUserToDnMappingInput)(nil)).Elem(), GetLdapConfigurationUserToDnMappingArgs{})
@@ -53198,6 +54666,12 @@ func init() {
 	pulumi.RegisterOutputType(FederatedSettingsOrgConfigUserConflictArrayOutput{})
 	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentOutput{})
 	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(FlexClusterBackupSettingsOutput{})
+	pulumi.RegisterOutputType(FlexClusterBackupSettingsPtrOutput{})
+	pulumi.RegisterOutputType(FlexClusterConnectionStringsOutput{})
+	pulumi.RegisterOutputType(FlexClusterConnectionStringsPtrOutput{})
+	pulumi.RegisterOutputType(FlexClusterProviderSettingsOutput{})
+	pulumi.RegisterOutputType(FlexClusterProviderSettingsPtrOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingArrayOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigManagedNamespaceOutput{})
@@ -53632,6 +55106,18 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput{})
 	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetFlexClusterBackupSettingsOutput{})
+	pulumi.RegisterOutputType(GetFlexClusterConnectionStringsOutput{})
+	pulumi.RegisterOutputType(GetFlexClusterProviderSettingsOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultArrayOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultBackupSettingsOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultConnectionStringsOutput{})
+	pulumi.RegisterOutputType(GetFlexClustersResultProviderSettingsOutput{})
+	pulumi.RegisterOutputType(GetFlexRestoreJobsResultOutput{})
+	pulumi.RegisterOutputType(GetFlexRestoreJobsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetFlexSnapshotsResultOutput{})
+	pulumi.RegisterOutputType(GetFlexSnapshotsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceArrayOutput{})
 	pulumi.RegisterOutputType(GetLdapConfigurationUserToDnMappingOutput{})

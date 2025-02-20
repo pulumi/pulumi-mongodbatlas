@@ -190,21 +190,6 @@ class StreamInstance(pulumi.CustomResource):
 
         `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.StreamInstance("test",
-            project_id=project_id,
-            instance_name="InstanceName",
-            data_process_region={
-                "region": "VIRGINIA_USA",
-                "cloud_provider": "AWS",
-            })
-        ```
-
         ## Import
 
         You can import stream instance resource using the project ID and instance name, in the format `PROJECT_ID-INSTANCE_NAME`. For example:
@@ -232,21 +217,6 @@ class StreamInstance(pulumi.CustomResource):
         ## # Resource: StreamInstance
 
         `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.StreamInstance("test",
-            project_id=project_id,
-            instance_name="InstanceName",
-            data_process_region={
-                "region": "VIRGINIA_USA",
-                "cloud_provider": "AWS",
-            })
-        ```
 
         ## Import
 

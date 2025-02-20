@@ -185,6 +185,12 @@ __all__ = [
     'FederatedSettingsOrgConfigUserConflictArgsDict',
     'FederatedSettingsOrgRoleMappingRoleAssignmentArgs',
     'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict',
+    'FlexClusterBackupSettingsArgs',
+    'FlexClusterBackupSettingsArgsDict',
+    'FlexClusterConnectionStringsArgs',
+    'FlexClusterConnectionStringsArgsDict',
+    'FlexClusterProviderSettingsArgs',
+    'FlexClusterProviderSettingsArgsDict',
     'GlobalClusterConfigCustomZoneMappingArgs',
     'GlobalClusterConfigCustomZoneMappingArgsDict',
     'GlobalClusterConfigManagedNamespaceArgs',
@@ -911,7 +917,7 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         region: NotRequired[pulumi.Input[str]]
 elif False:
@@ -930,7 +936,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -958,7 +964,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1256,7 +1262,7 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         region_name: pulumi.Input[str]
         """
@@ -1276,7 +1282,7 @@ if not MYPY:
         """
         backing_provider_name: NotRequired[pulumi.Input[str]]
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         """
         electable_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict']]
         """
@@ -1311,12 +1317,12 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param pulumi.Input[str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs'] analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
-        :param pulumi.Input[str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        :param pulumi.Input[str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs'] electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs'] read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
         """
@@ -1360,7 +1366,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1420,7 +1426,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
     @pulumi.getter(name="backingProviderName")
     def backing_provider_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         """
         return pulumi.get(self, "backing_provider_name")
 
@@ -5412,7 +5418,7 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         region: NotRequired[pulumi.Input[str]]
 elif False:
@@ -5432,7 +5438,7 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -5461,7 +5467,7 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         return pulumi.get(self, "provider_name")
 
@@ -8745,6 +8751,180 @@ class FederatedSettingsOrgRoleMappingRoleAssignmentArgs:
     @roles.setter
     def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "roles", value)
+
+
+if not MYPY:
+    class FlexClusterBackupSettingsArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        """
+elif False:
+    FlexClusterBackupSettingsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class FlexClusterBackupSettingsArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+if not MYPY:
+    class FlexClusterConnectionStringsArgsDict(TypedDict):
+        standard: NotRequired[pulumi.Input[str]]
+        """
+        Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+        """
+        standard_srv: NotRequired[pulumi.Input[str]]
+        """
+        Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+        """
+elif False:
+    FlexClusterConnectionStringsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class FlexClusterConnectionStringsArgs:
+    def __init__(__self__, *,
+                 standard: Optional[pulumi.Input[str]] = None,
+                 standard_srv: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] standard: Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+        :param pulumi.Input[str] standard_srv: Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+        """
+        if standard is not None:
+            pulumi.set(__self__, "standard", standard)
+        if standard_srv is not None:
+            pulumi.set(__self__, "standard_srv", standard_srv)
+
+    @property
+    @pulumi.getter
+    def standard(self) -> Optional[pulumi.Input[str]]:
+        """
+        Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+        """
+        return pulumi.get(self, "standard")
+
+    @standard.setter
+    def standard(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "standard", value)
+
+    @property
+    @pulumi.getter(name="standardSrv")
+    def standard_srv(self) -> Optional[pulumi.Input[str]]:
+        """
+        Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+        """
+        return pulumi.get(self, "standard_srv")
+
+    @standard_srv.setter
+    def standard_srv(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "standard_srv", value)
+
+
+if not MYPY:
+    class FlexClusterProviderSettingsArgsDict(TypedDict):
+        backing_provider_name: pulumi.Input[str]
+        """
+        Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+        """
+        region_name: pulumi.Input[str]
+        """
+        Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        disk_size_gb: NotRequired[pulumi.Input[float]]
+        """
+        Storage capacity available to the flex cluster expressed in gigabytes.
+        """
+        provider_name: NotRequired[pulumi.Input[str]]
+        """
+        Human-readable label that identifies the cloud service provider.
+        """
+elif False:
+    FlexClusterProviderSettingsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class FlexClusterProviderSettingsArgs:
+    def __init__(__self__, *,
+                 backing_provider_name: pulumi.Input[str],
+                 region_name: pulumi.Input[str],
+                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 provider_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+        :param pulumi.Input[str] region_name: Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        :param pulumi.Input[float] disk_size_gb: Storage capacity available to the flex cluster expressed in gigabytes.
+        :param pulumi.Input[str] provider_name: Human-readable label that identifies the cloud service provider.
+        """
+        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "region_name", region_name)
+        if disk_size_gb is not None:
+            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        if provider_name is not None:
+            pulumi.set(__self__, "provider_name", provider_name)
+
+    @property
+    @pulumi.getter(name="backingProviderName")
+    def backing_provider_name(self) -> pulumi.Input[str]:
+        """
+        Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+        """
+        return pulumi.get(self, "backing_provider_name")
+
+    @backing_provider_name.setter
+    def backing_provider_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backing_provider_name", value)
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> pulumi.Input[str]:
+        """
+        Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region_name")
+
+    @region_name.setter
+    def region_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region_name", value)
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> Optional[pulumi.Input[float]]:
+        """
+        Storage capacity available to the flex cluster expressed in gigabytes.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @disk_size_gb.setter
+    def disk_size_gb(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "disk_size_gb", value)
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable label that identifies the cloud service provider.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @provider_name.setter
+    def provider_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_name", value)
 
 
 if not MYPY:

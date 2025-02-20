@@ -75,6 +75,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FederatedSettingsOrgConfig{}
 	case "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping":
 		r = &FederatedSettingsOrgRoleMapping{}
+	case "mongodbatlas:index/flexCluster:FlexCluster":
+		r = &FlexCluster{}
 	case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
 		r = &GlobalClusterConfig{}
 	case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
@@ -303,6 +305,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/federatedSettingsOrgRoleMapping",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/flexCluster",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

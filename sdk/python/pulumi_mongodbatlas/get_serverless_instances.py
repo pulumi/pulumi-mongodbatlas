@@ -74,7 +74,7 @@ class AwaitableGetServerlessInstancesResult(GetServerlessInstancesResult):
 def get_serverless_instances(project_id: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerlessInstancesResult:
     """
-    ## # Data Source: get_serverless_instances
+    **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 
     `get_serverless_instances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 
@@ -107,7 +107,7 @@ def get_serverless_instances(project_id: Optional[str] = None,
 def get_serverless_instances_output(project_id: Optional[pulumi.Input[str]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerlessInstancesResult]:
     """
-    ## # Data Source: get_serverless_instances
+    **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 
     `get_serverless_instances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 

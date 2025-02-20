@@ -156,7 +156,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .security(StreamConnectionSecurityArgs.builder()
  *                 .protocol("SSL")
- *                 .brokerPublicCertificate("-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----")
+ *                 .broker_public_certificate("-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----")
  *                 .build())
  *             .config(Map.of("auto.offset.reset", "latest"))
  *             .bootstrapServers("localhost:9091,localhost:9092")

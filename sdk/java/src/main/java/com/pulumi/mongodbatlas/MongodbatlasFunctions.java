@@ -110,6 +110,18 @@ import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingPlainArg
 import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
 import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexClusterArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexClusterPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexClustersArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexClustersPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexRestoreJobArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexRestoreJobPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexRestoreJobsArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexRestoreJobsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexSnapshotArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexSnapshotPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexSnapshotsArgs;
+import com.pulumi.mongodbatlas.inputs.GetFlexSnapshotsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigArgs;
 import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetLdapConfigurationArgs;
@@ -264,6 +276,12 @@ import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsOrgConfigsInvokeResul
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsOrgRoleMappingResult;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsOrgRoleMappingsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsResult;
+import com.pulumi.mongodbatlas.outputs.GetFlexClusterResult;
+import com.pulumi.mongodbatlas.outputs.GetFlexClustersInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetFlexRestoreJobResult;
+import com.pulumi.mongodbatlas.outputs.GetFlexRestoreJobsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetFlexSnapshotResult;
+import com.pulumi.mongodbatlas.outputs.GetFlexSnapshotsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetGlobalClusterConfigResult;
 import com.pulumi.mongodbatlas.outputs.GetLdapConfigurationResult;
 import com.pulumi.mongodbatlas.outputs.GetLdapVerifyResult;
@@ -364,7 +382,22 @@ public final class MongodbatlasFunctions {
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
-     * -----BEGIN CERTIFICATE-----MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRlc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqGSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQyMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwFVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxpc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWArcURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/OFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5Aiul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz-----END CERTIFICATE-----\"
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
      *             """)
      *             .build());
      * 
@@ -430,7 +463,22 @@ public final class MongodbatlasFunctions {
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
-     * -----BEGIN CERTIFICATE-----MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRlc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqGSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQyMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwFVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxpc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWArcURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/OFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5Aiul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz-----END CERTIFICATE-----\"
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
      *             """)
      *             .build());
      * 
@@ -496,7 +544,22 @@ public final class MongodbatlasFunctions {
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
-     * -----BEGIN CERTIFICATE-----MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRlc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqGSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQyMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwFVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxpc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWArcURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/OFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5Aiul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz-----END CERTIFICATE-----\"
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
      *             """)
      *             .build());
      * 
@@ -562,7 +625,22 @@ public final class MongodbatlasFunctions {
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
-     * -----BEGIN CERTIFICATE-----MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRlc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqGSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQyMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwFVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxpc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWArcURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/OFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5Aiul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz-----END CERTIFICATE-----\"
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
      *             """)
      *             .build());
      * 
@@ -715,6 +793,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -837,6 +917,59 @@ public final class MongodbatlasFunctions {
      *             .projectId(exampleAdvancedCluster.projectId())
      *             .name(exampleAdvancedCluster.name())
      *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example using Flex cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("flex-cluster")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .providerName("FLEX")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedCluster(GetAdvancedClusterArgs.builder()
+     *             .projectId(example_flex.projectId())
+     *             .name(example_flex.name())
      *             .build());
      * 
      *     }
@@ -860,6 +993,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -982,6 +1117,59 @@ public final class MongodbatlasFunctions {
      *             .projectId(exampleAdvancedCluster.projectId())
      *             .name(exampleAdvancedCluster.name())
      *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example using Flex cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("flex-cluster")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .providerName("FLEX")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedCluster(GetAdvancedClusterArgs.builder()
+     *             .projectId(example_flex.projectId())
+     *             .name(example_flex.name())
      *             .build());
      * 
      *     }
@@ -1005,6 +1193,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1127,6 +1317,59 @@ public final class MongodbatlasFunctions {
      *             .projectId(exampleAdvancedCluster.projectId())
      *             .name(exampleAdvancedCluster.name())
      *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example using Flex cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("flex-cluster")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .providerName("FLEX")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedCluster(GetAdvancedClusterArgs.builder()
+     *             .projectId(example_flex.projectId())
+     *             .name(example_flex.name())
      *             .build());
      * 
      *     }
@@ -1150,6 +1393,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1272,6 +1517,59 @@ public final class MongodbatlasFunctions {
      *             .projectId(exampleAdvancedCluster.projectId())
      *             .name(exampleAdvancedCluster.name())
      *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example using Flex cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("flex-cluster")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .providerName("FLEX")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedCluster(GetAdvancedClusterArgs.builder()
+     *             .projectId(example_flex.projectId())
+     *             .name(example_flex.name())
      *             .build());
      * 
      *     }
@@ -1295,6 +1593,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1416,6 +1716,58 @@ public final class MongodbatlasFunctions {
      *             .projectId(example.projectId())
      *             .name(example.name())
      *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example using Flex cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("flex-cluster")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .providerName("FLEX")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedClusters(GetAdvancedClustersArgs.builder()
+     *             .projectId(example_flex.projectId())
      *             .build());
      * 
      *     }
@@ -1439,6 +1791,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1560,6 +1914,58 @@ public final class MongodbatlasFunctions {
      *             .projectId(example.projectId())
      *             .name(example.name())
      *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example using Flex cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("flex-cluster")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .providerName("FLEX")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedClusters(GetAdvancedClustersArgs.builder()
+     *             .projectId(example_flex.projectId())
      *             .build());
      * 
      *     }
@@ -1583,6 +1989,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1704,6 +2112,58 @@ public final class MongodbatlasFunctions {
      *             .projectId(example.projectId())
      *             .name(example.name())
      *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example using Flex cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("flex-cluster")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .providerName("FLEX")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedClusters(GetAdvancedClustersArgs.builder()
+     *             .projectId(example_flex.projectId())
      *             .build());
      * 
      *     }
@@ -1727,6 +2187,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1848,6 +2310,58 @@ public final class MongodbatlasFunctions {
      *             .projectId(example.projectId())
      *             .name(example.name())
      *             .useReplicationSpecPerShard(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Example using Flex cluster
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+     *             .projectId("<YOUR-PROJECT-ID>")
+     *             .name("flex-cluster")
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .providerName("FLEX")
+     *                     .backingProviderName("AWS")
+     *                     .regionName("US_EAST_1")
+     *                     .priority(7)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var example = MongodbatlasFunctions.getAdvancedClusters(GetAdvancedClustersArgs.builder()
+     *             .projectId(example_flex.projectId())
      *             .build());
      * 
      *     }
@@ -6413,7 +6927,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.cloudBackupSnapshots;
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
@@ -6471,7 +6985,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.cloudBackupSnapshots;
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
@@ -6529,7 +7043,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.cloudBackupSnapshots;
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
@@ -6587,7 +7101,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.cloudBackupSnapshots;
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
@@ -14587,6 +15101,350 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", TypeShape.of(GetFederatedSettingsOrgRoleMappingsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.FlexCluster
+     * 
+     * `mongodbatlas.FlexCluster` describes a flex cluster.
+     * 
+     * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` data source instead of `mongodbatlas.FlexCluster` data source to retrieve Flex clusters. The `mongodbatlas.AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClusterResult> getFlexCluster(GetFlexClusterArgs args) {
+        return getFlexCluster(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FlexCluster
+     * 
+     * `mongodbatlas.FlexCluster` describes a flex cluster.
+     * 
+     * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` data source instead of `mongodbatlas.FlexCluster` data source to retrieve Flex clusters. The `mongodbatlas.AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetFlexClusterResult> getFlexClusterPlain(GetFlexClusterPlainArgs args) {
+        return getFlexClusterPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FlexCluster
+     * 
+     * `mongodbatlas.FlexCluster` describes a flex cluster.
+     * 
+     * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` data source instead of `mongodbatlas.FlexCluster` data source to retrieve Flex clusters. The `mongodbatlas.AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClusterResult> getFlexCluster(GetFlexClusterArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexCluster:getFlexCluster", TypeShape.of(GetFlexClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.FlexCluster
+     * 
+     * `mongodbatlas.FlexCluster` describes a flex cluster.
+     * 
+     * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` data source instead of `mongodbatlas.FlexCluster` data source to retrieve Flex clusters. The `mongodbatlas.AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetFlexClusterResult> getFlexClusterPlain(GetFlexClusterPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexCluster:getFlexCluster", TypeShape.of(GetFlexClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexClusters
+     * 
+     * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
+     * 
+     * **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClustersInvokeResult> getFlexClusters(GetFlexClustersArgs args) {
+        return getFlexClusters(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexClusters
+     * 
+     * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
+     * 
+     * **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetFlexClustersInvokeResult> getFlexClustersPlain(GetFlexClustersPlainArgs args) {
+        return getFlexClustersPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexClusters
+     * 
+     * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
+     * 
+     * **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetFlexClustersInvokeResult> getFlexClusters(GetFlexClustersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexClusters:getFlexClusters", TypeShape.of(GetFlexClustersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexClusters
+     * 
+     * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
+     * 
+     * **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetFlexClustersInvokeResult> getFlexClustersPlain(GetFlexClustersPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexClusters:getFlexClusters", TypeShape.of(GetFlexClustersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexRestoreJob
+     * 
+     * `mongodbatlas.getFlexRestoreJob` describes a flex restore job.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFlexRestoreJobResult> getFlexRestoreJob(GetFlexRestoreJobArgs args) {
+        return getFlexRestoreJob(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexRestoreJob
+     * 
+     * `mongodbatlas.getFlexRestoreJob` describes a flex restore job.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetFlexRestoreJobResult> getFlexRestoreJobPlain(GetFlexRestoreJobPlainArgs args) {
+        return getFlexRestoreJobPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexRestoreJob
+     * 
+     * `mongodbatlas.getFlexRestoreJob` describes a flex restore job.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFlexRestoreJobResult> getFlexRestoreJob(GetFlexRestoreJobArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexRestoreJob:getFlexRestoreJob", TypeShape.of(GetFlexRestoreJobResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexRestoreJob
+     * 
+     * `mongodbatlas.getFlexRestoreJob` describes a flex restore job.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetFlexRestoreJobResult> getFlexRestoreJobPlain(GetFlexRestoreJobPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexRestoreJob:getFlexRestoreJob", TypeShape.of(GetFlexRestoreJobResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexRestoreJobs
+     * 
+     * `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFlexRestoreJobsInvokeResult> getFlexRestoreJobs(GetFlexRestoreJobsArgs args) {
+        return getFlexRestoreJobs(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexRestoreJobs
+     * 
+     * `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetFlexRestoreJobsInvokeResult> getFlexRestoreJobsPlain(GetFlexRestoreJobsPlainArgs args) {
+        return getFlexRestoreJobsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexRestoreJobs
+     * 
+     * `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFlexRestoreJobsInvokeResult> getFlexRestoreJobs(GetFlexRestoreJobsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs", TypeShape.of(GetFlexRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexRestoreJobs
+     * 
+     * `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetFlexRestoreJobsInvokeResult> getFlexRestoreJobsPlain(GetFlexRestoreJobsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs", TypeShape.of(GetFlexRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexSnapshot
+     * 
+     * `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFlexSnapshotResult> getFlexSnapshot(GetFlexSnapshotArgs args) {
+        return getFlexSnapshot(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexSnapshot
+     * 
+     * `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetFlexSnapshotResult> getFlexSnapshotPlain(GetFlexSnapshotPlainArgs args) {
+        return getFlexSnapshotPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexSnapshot
+     * 
+     * `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFlexSnapshotResult> getFlexSnapshot(GetFlexSnapshotArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexSnapshot:getFlexSnapshot", TypeShape.of(GetFlexSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexSnapshot
+     * 
+     * `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetFlexSnapshotResult> getFlexSnapshotPlain(GetFlexSnapshotPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexSnapshot:getFlexSnapshot", TypeShape.of(GetFlexSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexSnapshots
+     * 
+     * `mongodbatlas.getFlexSnapshots` returns all snapshots of a flex cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFlexSnapshotsInvokeResult> getFlexSnapshots(GetFlexSnapshotsArgs args) {
+        return getFlexSnapshots(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexSnapshots
+     * 
+     * `mongodbatlas.getFlexSnapshots` returns all snapshots of a flex cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetFlexSnapshotsInvokeResult> getFlexSnapshotsPlain(GetFlexSnapshotsPlainArgs args) {
+        return getFlexSnapshotsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexSnapshots
+     * 
+     * `mongodbatlas.getFlexSnapshots` returns all snapshots of a flex cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetFlexSnapshotsInvokeResult> getFlexSnapshots(GetFlexSnapshotsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getFlexSnapshots:getFlexSnapshots", TypeShape.of(GetFlexSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getFlexSnapshots
+     * 
+     * `mongodbatlas.getFlexSnapshots` returns all snapshots of a flex cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetFlexSnapshotsInvokeResult> getFlexSnapshotsPlain(GetFlexSnapshotsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexSnapshots:getFlexSnapshots", TypeShape.of(GetFlexSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * ## # Data Source: mongodbatlas.GlobalClusterConfig
      * 
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
@@ -18487,7 +19345,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
-     * import com.pulumi.aws.VpcEndpoint;
+     * import com.pulumi.aws.vpcEndpoint;
      * import com.pulumi.aws.VpcEndpointArgs;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
@@ -18551,7 +19409,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
-     * import com.pulumi.azurerm.PrivateEndpoint;
+     * import com.pulumi.azurerm.privateEndpoint;
      * import com.pulumi.azurerm.PrivateEndpointArgs;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
@@ -18630,7 +19488,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
-     * import com.pulumi.aws.VpcEndpoint;
+     * import com.pulumi.aws.vpcEndpoint;
      * import com.pulumi.aws.VpcEndpointArgs;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
@@ -18694,7 +19552,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
-     * import com.pulumi.azurerm.PrivateEndpoint;
+     * import com.pulumi.azurerm.privateEndpoint;
      * import com.pulumi.azurerm.PrivateEndpointArgs;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
@@ -18773,7 +19631,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
-     * import com.pulumi.aws.VpcEndpoint;
+     * import com.pulumi.aws.vpcEndpoint;
      * import com.pulumi.aws.VpcEndpointArgs;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
@@ -18837,7 +19695,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
-     * import com.pulumi.azurerm.PrivateEndpoint;
+     * import com.pulumi.azurerm.privateEndpoint;
      * import com.pulumi.azurerm.PrivateEndpointArgs;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
@@ -18916,7 +19774,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
-     * import com.pulumi.aws.VpcEndpoint;
+     * import com.pulumi.aws.vpcEndpoint;
      * import com.pulumi.aws.VpcEndpointArgs;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
@@ -18980,7 +19838,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
-     * import com.pulumi.azurerm.PrivateEndpoint;
+     * import com.pulumi.azurerm.privateEndpoint;
      * import com.pulumi.azurerm.PrivateEndpointArgs;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
@@ -24055,8 +24913,8 @@ public final class MongodbatlasFunctions {
      *             .projectId(exampleProject.id())
      *             .clusterName(exampleAdvancedCluster.name())
      *             .specs(SearchDeploymentSpecArgs.builder()
-     *                 .instanceSize("S20_HIGHCPU_NVME")
-     *                 .nodeCount(2)
+     *                 .instance_size("S20_HIGHCPU_NVME")
+     *                 .node_count(2)
      *                 .build())
      *             .build());
      * 
@@ -24141,8 +24999,8 @@ public final class MongodbatlasFunctions {
      *             .projectId(exampleProject.id())
      *             .clusterName(exampleAdvancedCluster.name())
      *             .specs(SearchDeploymentSpecArgs.builder()
-     *                 .instanceSize("S20_HIGHCPU_NVME")
-     *                 .nodeCount(2)
+     *                 .instance_size("S20_HIGHCPU_NVME")
+     *                 .node_count(2)
      *                 .build())
      *             .build());
      * 
@@ -24227,8 +25085,8 @@ public final class MongodbatlasFunctions {
      *             .projectId(exampleProject.id())
      *             .clusterName(exampleAdvancedCluster.name())
      *             .specs(SearchDeploymentSpecArgs.builder()
-     *                 .instanceSize("S20_HIGHCPU_NVME")
-     *                 .nodeCount(2)
+     *                 .instance_size("S20_HIGHCPU_NVME")
+     *                 .node_count(2)
      *                 .build())
      *             .build());
      * 
@@ -24313,8 +25171,8 @@ public final class MongodbatlasFunctions {
      *             .projectId(exampleProject.id())
      *             .clusterName(exampleAdvancedCluster.name())
      *             .specs(SearchDeploymentSpecArgs.builder()
-     *                 .instanceSize("S20_HIGHCPU_NVME")
-     *                 .nodeCount(2)
+     *                 .instance_size("S20_HIGHCPU_NVME")
+     *                 .node_count(2)
      *                 .build())
      *             .build());
      * 
@@ -24723,7 +25581,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSearchIndexes:getSearchIndexes", TypeShape.of(GetSearchIndexesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.ServerlessInstance
+     * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
      * 
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -24782,7 +25640,7 @@ public final class MongodbatlasFunctions {
         return getServerlessInstance(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.ServerlessInstance
+     * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
      * 
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -24841,7 +25699,7 @@ public final class MongodbatlasFunctions {
         return getServerlessInstancePlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.ServerlessInstance
+     * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
      * 
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -24900,7 +25758,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServerlessInstance:getServerlessInstance", TypeShape.of(GetServerlessInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.ServerlessInstance
+     * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
      * 
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -24959,7 +25817,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServerlessInstance:getServerlessInstance", TypeShape.of(GetServerlessInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.getServerlessInstances
+     * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
      * 
      * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
      * 
@@ -25008,7 +25866,7 @@ public final class MongodbatlasFunctions {
         return getServerlessInstances(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.getServerlessInstances
+     * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
      * 
      * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
      * 
@@ -25057,7 +25915,7 @@ public final class MongodbatlasFunctions {
         return getServerlessInstancesPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: mongodbatlas.getServerlessInstances
+     * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
      * 
      * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
      * 
@@ -25106,7 +25964,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServerlessInstances:getServerlessInstances", TypeShape.of(GetServerlessInstancesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: mongodbatlas.getServerlessInstances
+     * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
      * 
      * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
      * 
@@ -26060,7 +26918,7 @@ public final class MongodbatlasFunctions {
      *             .instanceName("InstanceName")
      *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
      *                 .region("VIRGINIA_USA")
-     *                 .cloudProvider("AWS")
+     *                 .cloud_provider("AWS")
      *                 .build())
      *             .build());
      * 
@@ -26252,7 +27110,7 @@ public final class MongodbatlasFunctions {
      *             .instanceName("InstanceName")
      *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
      *                 .region("VIRGINIA_USA")
-     *                 .cloudProvider("AWS")
+     *                 .cloud_provider("AWS")
      *                 .build())
      *             .build());
      * 
@@ -26444,7 +27302,7 @@ public final class MongodbatlasFunctions {
      *             .instanceName("InstanceName")
      *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
      *                 .region("VIRGINIA_USA")
-     *                 .cloudProvider("AWS")
+     *                 .cloud_provider("AWS")
      *                 .build())
      *             .build());
      * 
@@ -26636,7 +27494,7 @@ public final class MongodbatlasFunctions {
      *             .instanceName("InstanceName")
      *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
      *                 .region("VIRGINIA_USA")
-     *                 .cloudProvider("AWS")
+     *                 .cloud_provider("AWS")
      *                 .build())
      *             .build());
      * 
@@ -26828,7 +27686,7 @@ public final class MongodbatlasFunctions {
      *             .instanceName("InstanceName")
      *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
      *                 .region("VIRGINIA_USA")
-     *                 .cloudProvider("AWS")
+     *                 .cloud_provider("AWS")
      *                 .build())
      *             .build());
      * 
@@ -27020,7 +27878,7 @@ public final class MongodbatlasFunctions {
      *             .instanceName("InstanceName")
      *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
      *                 .region("VIRGINIA_USA")
-     *                 .cloudProvider("AWS")
+     *                 .cloud_provider("AWS")
      *                 .build())
      *             .build());
      * 
@@ -27212,7 +28070,7 @@ public final class MongodbatlasFunctions {
      *             .instanceName("InstanceName")
      *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
      *                 .region("VIRGINIA_USA")
-     *                 .cloudProvider("AWS")
+     *                 .cloud_provider("AWS")
      *                 .build())
      *             .build());
      * 
@@ -27404,7 +28262,7 @@ public final class MongodbatlasFunctions {
      *             .instanceName("InstanceName")
      *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
      *                 .region("VIRGINIA_USA")
-     *                 .cloudProvider("AWS")
+     *                 .cloud_provider("AWS")
      *                 .build())
      *             .build());
      * 
@@ -28518,7 +29376,22 @@ public final class MongodbatlasFunctions {
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
-     * -----BEGIN CERTIFICATE-----MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRlc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqGSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQyMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwFVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxpc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWArcURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/OFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5Aiul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz-----END CERTIFICATE-----\"
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
      *             """)
      *             .build());
      * 
@@ -28580,7 +29453,22 @@ public final class MongodbatlasFunctions {
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
-     * -----BEGIN CERTIFICATE-----MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRlc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqGSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQyMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwFVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxpc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWArcURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/OFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5Aiul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz-----END CERTIFICATE-----\"
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
      *             """)
      *             .build());
      * 
@@ -28642,7 +29530,22 @@ public final class MongodbatlasFunctions {
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
-     * -----BEGIN CERTIFICATE-----MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRlc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqGSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQyMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwFVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxpc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWArcURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/OFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5Aiul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz-----END CERTIFICATE-----\"
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
      *             """)
      *             .build());
      * 
@@ -28704,7 +29607,22 @@ public final class MongodbatlasFunctions {
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
-     * -----BEGIN CERTIFICATE-----MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRlc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqGSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQyMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwFVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxpc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWArcURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/OFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5Aiul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz-----END CERTIFICATE-----\"
+     * -----BEGIN CERTIFICATE-----
+     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+     * -----END CERTIFICATE-----"
      *             """)
      *             .build());
      * 

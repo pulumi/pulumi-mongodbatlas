@@ -83,7 +83,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      * 
-     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
      * 
      * The possible values are:
      * 
@@ -98,7 +98,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      * 
-     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
      * 
      * The possible values are:
      * 
@@ -557,7 +557,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      * 
      */
     @Import(name="providerName")
@@ -571,7 +571,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      * 
      */
     public Optional<Output<String>> providerName() {
@@ -922,7 +922,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param backingProviderName Cloud service provider on which the server for a multi-tenant cluster is provisioned.
          * 
-         * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+         * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
          * 
          * The possible values are:
          * 
@@ -941,7 +941,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param backingProviderName Cloud service provider on which the server for a multi-tenant cluster is provisioned.
          * 
-         * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+         * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
          * 
          * The possible values are:
          * 
@@ -1578,7 +1578,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * - `AWS` - Amazon AWS
          * - `GCP` - Google Cloud Platform
          * - `AZURE` - Microsoft Azure
-         * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+         * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
          * 
          * @return builder
          * 
@@ -1596,7 +1596,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * - `AWS` - Amazon AWS
          * - `GCP` - Google Cloud Platform
          * - `AZURE` - Microsoft Azure
-         * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+         * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
          * 
          * @return builder
          * 

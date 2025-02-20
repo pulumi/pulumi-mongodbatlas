@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.Project;
  * import com.pulumi.mongodbatlas.ProjectArgs;
- * import com.pulumi.aws.VpcEndpoint;
+ * import com.pulumi.aws.vpcEndpoint;
  * import com.pulumi.aws.VpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;

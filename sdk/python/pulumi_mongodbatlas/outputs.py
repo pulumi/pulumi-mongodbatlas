@@ -101,6 +101,9 @@ __all__ = [
     'FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag',
     'FederatedSettingsOrgConfigUserConflict',
     'FederatedSettingsOrgRoleMappingRoleAssignment',
+    'FlexClusterBackupSettings',
+    'FlexClusterConnectionStrings',
+    'FlexClusterProviderSettings',
     'GlobalClusterConfigCustomZoneMapping',
     'GlobalClusterConfigManagedNamespace',
     'LdapConfigurationUserToDnMapping',
@@ -325,6 +328,15 @@ __all__ = [
     'GetFederatedSettingsOrgRoleMappingRoleAssignmentResult',
     'GetFederatedSettingsOrgRoleMappingsResultResult',
     'GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult',
+    'GetFlexClusterBackupSettingsResult',
+    'GetFlexClusterConnectionStringsResult',
+    'GetFlexClusterProviderSettingsResult',
+    'GetFlexClustersResultResult',
+    'GetFlexClustersResultBackupSettingsResult',
+    'GetFlexClustersResultConnectionStringsResult',
+    'GetFlexClustersResultProviderSettingsResult',
+    'GetFlexRestoreJobsResultResult',
+    'GetFlexSnapshotsResultResult',
     'GetGlobalClusterConfigManagedNamespaceResult',
     'GetLdapConfigurationUserToDnMappingResult',
     'GetLdapVerifyLinkResult',
@@ -911,7 +923,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -935,7 +947,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1197,12 +1209,12 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
-        :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
         """
@@ -1242,7 +1254,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1282,7 +1294,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
     @pulumi.getter(name="backingProviderName")
     def backing_provider_name(self) -> Optional[str]:
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         """
         return pulumi.get(self, "backing_provider_name")
 
@@ -4470,7 +4482,7 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -4495,7 +4507,7 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         return pulumi.get(self, "provider_name")
 
@@ -7092,6 +7104,149 @@ class FederatedSettingsOrgRoleMappingRoleAssignment(dict):
         Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
         """
         return pulumi.get(self, "roles")
+
+
+@pulumi.output_type
+class FlexClusterBackupSettings(dict):
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None):
+        """
+        :param bool enabled: Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        """
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
+class FlexClusterConnectionStrings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "standardSrv":
+            suggest = "standard_srv"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FlexClusterConnectionStrings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FlexClusterConnectionStrings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FlexClusterConnectionStrings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 standard: Optional[str] = None,
+                 standard_srv: Optional[str] = None):
+        """
+        :param str standard: Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+        :param str standard_srv: Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+        """
+        if standard is not None:
+            pulumi.set(__self__, "standard", standard)
+        if standard_srv is not None:
+            pulumi.set(__self__, "standard_srv", standard_srv)
+
+    @property
+    @pulumi.getter
+    def standard(self) -> Optional[str]:
+        """
+        Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+        """
+        return pulumi.get(self, "standard")
+
+    @property
+    @pulumi.getter(name="standardSrv")
+    def standard_srv(self) -> Optional[str]:
+        """
+        Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+        """
+        return pulumi.get(self, "standard_srv")
+
+
+@pulumi.output_type
+class FlexClusterProviderSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "backingProviderName":
+            suggest = "backing_provider_name"
+        elif key == "regionName":
+            suggest = "region_name"
+        elif key == "diskSizeGb":
+            suggest = "disk_size_gb"
+        elif key == "providerName":
+            suggest = "provider_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FlexClusterProviderSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FlexClusterProviderSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FlexClusterProviderSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 backing_provider_name: str,
+                 region_name: str,
+                 disk_size_gb: Optional[float] = None,
+                 provider_name: Optional[str] = None):
+        """
+        :param str backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+        :param str region_name: Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        :param float disk_size_gb: Storage capacity available to the flex cluster expressed in gigabytes.
+        :param str provider_name: Human-readable label that identifies the cloud service provider.
+        """
+        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "region_name", region_name)
+        if disk_size_gb is not None:
+            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        if provider_name is not None:
+            pulumi.set(__self__, "provider_name", provider_name)
+
+    @property
+    @pulumi.getter(name="backingProviderName")
+    def backing_provider_name(self) -> str:
+        """
+        Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+        """
+        return pulumi.get(self, "backing_provider_name")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> Optional[float]:
+        """
+        Storage capacity available to the flex cluster expressed in gigabytes.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[str]:
+        """
+        Human-readable label that identifies the cloud service provider.
+        """
+        return pulumi.get(self, "provider_name")
 
 
 @pulumi.output_type
@@ -20445,6 +20600,608 @@ class GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult(dict):
         Specifies the Role that is attached to the Role Mapping.
         """
         return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetFlexClusterBackupSettingsResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool):
+        """
+        :param bool enabled: Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        """
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
+class GetFlexClusterConnectionStringsResult(dict):
+    def __init__(__self__, *,
+                 standard: str,
+                 standard_srv: str):
+        """
+        :param str standard: Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+        :param str standard_srv: Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+        """
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "standard_srv", standard_srv)
+
+    @property
+    @pulumi.getter
+    def standard(self) -> str:
+        """
+        Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+        """
+        return pulumi.get(self, "standard")
+
+    @property
+    @pulumi.getter(name="standardSrv")
+    def standard_srv(self) -> str:
+        """
+        Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+        """
+        return pulumi.get(self, "standard_srv")
+
+
+@pulumi.output_type
+class GetFlexClusterProviderSettingsResult(dict):
+    def __init__(__self__, *,
+                 backing_provider_name: str,
+                 disk_size_gb: float,
+                 provider_name: str,
+                 region_name: str):
+        """
+        :param str backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+        :param float disk_size_gb: Storage capacity available to the flex cluster expressed in gigabytes.
+        :param str provider_name: Human-readable label that identifies the cloud service provider.
+        :param str region_name: Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region_name", region_name)
+
+    @property
+    @pulumi.getter(name="backingProviderName")
+    def backing_provider_name(self) -> str:
+        """
+        Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+        """
+        return pulumi.get(self, "backing_provider_name")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Storage capacity available to the flex cluster expressed in gigabytes.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Human-readable label that identifies the cloud service provider.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class GetFlexClustersResultResult(dict):
+    def __init__(__self__, *,
+                 backup_settings: 'outputs.GetFlexClustersResultBackupSettingsResult',
+                 cluster_type: str,
+                 connection_strings: 'outputs.GetFlexClustersResultConnectionStringsResult',
+                 create_date: str,
+                 id: str,
+                 mongo_db_version: str,
+                 name: str,
+                 project_id: str,
+                 provider_settings: 'outputs.GetFlexClustersResultProviderSettingsResult',
+                 state_name: str,
+                 tags: Mapping[str, str],
+                 termination_protection_enabled: bool,
+                 version_release_system: str):
+        """
+        :param 'GetFlexClustersResultBackupSettingsArgs' backup_settings: Flex backup configuration
+        :param str cluster_type: Flex cluster topology.
+        :param 'GetFlexClustersResultConnectionStringsArgs' connection_strings: Collection of Uniform Resource Locators that point to the MongoDB database.
+        :param str create_date: Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
+        :param str id: Unique 24-hexadecimal digit string that identifies the instance.
+        :param str mongo_db_version: Version of MongoDB that the instance runs.
+        :param str name: Human-readable label that identifies the instance.
+        :param str project_id: Unique 24-hexadecimal character string that identifies the project.
+        :param 'GetFlexClustersResultProviderSettingsArgs' provider_settings: Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+        :param str state_name: Human-readable label that indicates the current operating condition of this instance.
+        :param Mapping[str, str] tags: Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
+        :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+        :param str version_release_system: Method by which the cluster maintains the MongoDB versions.
+        """
+        pulumi.set(__self__, "backup_settings", backup_settings)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "connection_strings", connection_strings)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider_settings", provider_settings)
+        pulumi.set(__self__, "state_name", state_name)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+        pulumi.set(__self__, "version_release_system", version_release_system)
+
+    @property
+    @pulumi.getter(name="backupSettings")
+    def backup_settings(self) -> 'outputs.GetFlexClustersResultBackupSettingsResult':
+        """
+        Flex backup configuration
+        """
+        return pulumi.get(self, "backup_settings")
+
+    @property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> str:
+        """
+        Flex cluster topology.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @property
+    @pulumi.getter(name="connectionStrings")
+    def connection_strings(self) -> 'outputs.GetFlexClustersResultConnectionStringsResult':
+        """
+        Collection of Uniform Resource Locators that point to the MongoDB database.
+        """
+        return pulumi.get(self, "connection_strings")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="mongoDbVersion")
+    def mongo_db_version(self) -> str:
+        """
+        Version of MongoDB that the instance runs.
+        """
+        return pulumi.get(self, "mongo_db_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Human-readable label that identifies the instance.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal character string that identifies the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="providerSettings")
+    def provider_settings(self) -> 'outputs.GetFlexClustersResultProviderSettingsResult':
+        """
+        Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+        """
+        return pulumi.get(self, "provider_settings")
+
+    @property
+    @pulumi.getter(name="stateName")
+    def state_name(self) -> str:
+        """
+        Human-readable label that indicates the current operating condition of this instance.
+        """
+        return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        """
+        Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> bool:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
+
+    @property
+    @pulumi.getter(name="versionReleaseSystem")
+    def version_release_system(self) -> str:
+        """
+        Method by which the cluster maintains the MongoDB versions.
+        """
+        return pulumi.get(self, "version_release_system")
+
+
+@pulumi.output_type
+class GetFlexClustersResultBackupSettingsResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool):
+        """
+        :param bool enabled: Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        """
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
+class GetFlexClustersResultConnectionStringsResult(dict):
+    def __init__(__self__, *,
+                 standard: str,
+                 standard_srv: str):
+        """
+        :param str standard: Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+        :param str standard_srv: Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+        """
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "standard_srv", standard_srv)
+
+    @property
+    @pulumi.getter
+    def standard(self) -> str:
+        """
+        Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+        """
+        return pulumi.get(self, "standard")
+
+    @property
+    @pulumi.getter(name="standardSrv")
+    def standard_srv(self) -> str:
+        """
+        Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+        """
+        return pulumi.get(self, "standard_srv")
+
+
+@pulumi.output_type
+class GetFlexClustersResultProviderSettingsResult(dict):
+    def __init__(__self__, *,
+                 backing_provider_name: str,
+                 disk_size_gb: float,
+                 provider_name: str,
+                 region_name: str):
+        """
+        :param str backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+        :param float disk_size_gb: Storage capacity available to the flex cluster expressed in gigabytes.
+        :param str provider_name: Human-readable label that identifies the cloud service provider.
+        :param str region_name: Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region_name", region_name)
+
+    @property
+    @pulumi.getter(name="backingProviderName")
+    def backing_provider_name(self) -> str:
+        """
+        Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+        """
+        return pulumi.get(self, "backing_provider_name")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Storage capacity available to the flex cluster expressed in gigabytes.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Human-readable label that identifies the cloud service provider.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class GetFlexRestoreJobsResultResult(dict):
+    def __init__(__self__, *,
+                 delivery_type: str,
+                 expiration_date: str,
+                 name: str,
+                 project_id: str,
+                 restore_finished_date: str,
+                 restore_job_id: str,
+                 restore_scheduled_date: str,
+                 snapshot_finished_date: str,
+                 snapshot_id: str,
+                 snapshot_url: str,
+                 status: str,
+                 target_deployment_item_name: str,
+                 target_project_id: str):
+        """
+        :param str delivery_type: Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+        :param str expiration_date: Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param str restore_finished_date: Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str restore_job_id: Unique 24-hexadecimal digit string that identifies the restore job.
+        :param str restore_scheduled_date: Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str snapshot_finished_date: Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        :param str snapshot_url: Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+        :param str status: Phase of the restore workflow for this job at the time this resource made this request.
+        :param str target_deployment_item_name: Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+        :param str target_project_id: Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+        """
+        pulumi.set(__self__, "delivery_type", delivery_type)
+        pulumi.set(__self__, "expiration_date", expiration_date)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "restore_finished_date", restore_finished_date)
+        pulumi.set(__self__, "restore_job_id", restore_job_id)
+        pulumi.set(__self__, "restore_scheduled_date", restore_scheduled_date)
+        pulumi.set(__self__, "snapshot_finished_date", snapshot_finished_date)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "snapshot_url", snapshot_url)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "target_deployment_item_name", target_deployment_item_name)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+
+    @property
+    @pulumi.getter(name="deliveryType")
+    def delivery_type(self) -> str:
+        """
+        Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+        """
+        return pulumi.get(self, "delivery_type")
+
+    @property
+    @pulumi.getter(name="expirationDate")
+    def expiration_date(self) -> str:
+        """
+        Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expiration_date")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="restoreFinishedDate")
+    def restore_finished_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "restore_finished_date")
+
+    @property
+    @pulumi.getter(name="restoreJobId")
+    def restore_job_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the restore job.
+        """
+        return pulumi.get(self, "restore_job_id")
+
+    @property
+    @pulumi.getter(name="restoreScheduledDate")
+    def restore_scheduled_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "restore_scheduled_date")
+
+    @property
+    @pulumi.getter(name="snapshotFinishedDate")
+    def snapshot_finished_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "snapshot_finished_date")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="snapshotUrl")
+    def snapshot_url(self) -> str:
+        """
+        Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+        """
+        return pulumi.get(self, "snapshot_url")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Phase of the restore workflow for this job at the time this resource made this request.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="targetDeploymentItemName")
+    def target_deployment_item_name(self) -> str:
+        """
+        Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+        """
+        return pulumi.get(self, "target_deployment_item_name")
+
+    @property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+        """
+        return pulumi.get(self, "target_project_id")
+
+
+@pulumi.output_type
+class GetFlexSnapshotsResultResult(dict):
+    def __init__(__self__, *,
+                 expiration: str,
+                 finish_time: str,
+                 mongo_db_version: str,
+                 name: str,
+                 project_id: str,
+                 scheduled_time: str,
+                 snapshot_id: str,
+                 start_time: str,
+                 status: str):
+        """
+        :param str expiration: Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str finish_time: Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str mongo_db_version: MongoDB host version that the snapshot runs.
+        :param str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param str scheduled_time: Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        :param str start_time: Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str status: Phase of the restore workflow for this job at the time this resource made this request.
+        """
+        pulumi.set(__self__, "expiration", expiration)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "scheduled_time", scheduled_time)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def expiration(self) -> str:
+        """
+        Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expiration")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter(name="mongoDbVersion")
+    def mongo_db_version(self) -> str:
+        """
+        MongoDB host version that the snapshot runs.
+        """
+        return pulumi.get(self, "mongo_db_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="scheduledTime")
+    def scheduled_time(self) -> str:
+        """
+        Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "scheduled_time")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Phase of the restore workflow for this job at the time this resource made this request.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type

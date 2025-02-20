@@ -68,7 +68,11 @@ import javax.annotation.Nullable;
  *             .configCollection("COLLECTION NAME")
  *             .configServiceId("SERVICE ID")
  *             .configMatch("""
- * {  \"updateDescription.updatedFields\": {    \"status\": \"blocked\"  }}
+ * {
+ *   "updateDescription.updatedFields": {
+ *     "status": "blocked"
+ *   }
+ * }
  *             """)
  *             .configProject("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
  *             .configFullDocument(false)

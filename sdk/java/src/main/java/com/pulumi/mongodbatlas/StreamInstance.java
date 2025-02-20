@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *             .instanceName("InstanceName")
  *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
  *                 .region("VIRGINIA_USA")
- *                 .cloudProvider("AWS")
+ *                 .cloud_provider("AWS")
  *                 .build())
  *             .build());
  * 

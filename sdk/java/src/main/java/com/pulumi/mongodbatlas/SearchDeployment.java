@@ -87,8 +87,8 @@ import javax.annotation.Nullable;
  *             .projectId(exampleProject.id())
  *             .clusterName(exampleAdvancedCluster.name())
  *             .specs(SearchDeploymentSpecArgs.builder()
- *                 .instanceSize("S20_HIGHCPU_NVME")
- *                 .nodeCount(2)
+ *                 .instance_size("S20_HIGHCPU_NVME")
+ *                 .node_count(2)
  *                 .build())
  *             .build());
  * 

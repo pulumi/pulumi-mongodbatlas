@@ -140,6 +140,11 @@ export type FederatedSettingsOrgRoleMapping = import("./federatedSettingsOrgRole
 export const FederatedSettingsOrgRoleMapping: typeof import("./federatedSettingsOrgRoleMapping").FederatedSettingsOrgRoleMapping = null as any;
 utilities.lazyLoad(exports, ["FederatedSettingsOrgRoleMapping"], () => require("./federatedSettingsOrgRoleMapping"));
 
+export { FlexClusterArgs, FlexClusterState } from "./flexCluster";
+export type FlexCluster = import("./flexCluster").FlexCluster;
+export const FlexCluster: typeof import("./flexCluster").FlexCluster = null as any;
+utilities.lazyLoad(exports, ["FlexCluster"], () => require("./flexCluster"));
+
 export { Get509AuthenticationDatabaseUserArgs, Get509AuthenticationDatabaseUserResult, Get509AuthenticationDatabaseUserOutputArgs } from "./get509AuthenticationDatabaseUser";
 export const get509AuthenticationDatabaseUser: typeof import("./get509AuthenticationDatabaseUser").get509AuthenticationDatabaseUser = null as any;
 export const get509AuthenticationDatabaseUserOutput: typeof import("./get509AuthenticationDatabaseUser").get509AuthenticationDatabaseUserOutput = null as any;
@@ -399,6 +404,36 @@ export { GetFederatedSettingsOrgRoleMappingsArgs, GetFederatedSettingsOrgRoleMap
 export const getFederatedSettingsOrgRoleMappings: typeof import("./getFederatedSettingsOrgRoleMappings").getFederatedSettingsOrgRoleMappings = null as any;
 export const getFederatedSettingsOrgRoleMappingsOutput: typeof import("./getFederatedSettingsOrgRoleMappings").getFederatedSettingsOrgRoleMappingsOutput = null as any;
 utilities.lazyLoad(exports, ["getFederatedSettingsOrgRoleMappings","getFederatedSettingsOrgRoleMappingsOutput"], () => require("./getFederatedSettingsOrgRoleMappings"));
+
+export { GetFlexClusterArgs, GetFlexClusterResult, GetFlexClusterOutputArgs } from "./getFlexCluster";
+export const getFlexCluster: typeof import("./getFlexCluster").getFlexCluster = null as any;
+export const getFlexClusterOutput: typeof import("./getFlexCluster").getFlexClusterOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexCluster","getFlexClusterOutput"], () => require("./getFlexCluster"));
+
+export { GetFlexClustersArgs, GetFlexClustersResult, GetFlexClustersOutputArgs } from "./getFlexClusters";
+export const getFlexClusters: typeof import("./getFlexClusters").getFlexClusters = null as any;
+export const getFlexClustersOutput: typeof import("./getFlexClusters").getFlexClustersOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexClusters","getFlexClustersOutput"], () => require("./getFlexClusters"));
+
+export { GetFlexRestoreJobArgs, GetFlexRestoreJobResult, GetFlexRestoreJobOutputArgs } from "./getFlexRestoreJob";
+export const getFlexRestoreJob: typeof import("./getFlexRestoreJob").getFlexRestoreJob = null as any;
+export const getFlexRestoreJobOutput: typeof import("./getFlexRestoreJob").getFlexRestoreJobOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexRestoreJob","getFlexRestoreJobOutput"], () => require("./getFlexRestoreJob"));
+
+export { GetFlexRestoreJobsArgs, GetFlexRestoreJobsResult, GetFlexRestoreJobsOutputArgs } from "./getFlexRestoreJobs";
+export const getFlexRestoreJobs: typeof import("./getFlexRestoreJobs").getFlexRestoreJobs = null as any;
+export const getFlexRestoreJobsOutput: typeof import("./getFlexRestoreJobs").getFlexRestoreJobsOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexRestoreJobs","getFlexRestoreJobsOutput"], () => require("./getFlexRestoreJobs"));
+
+export { GetFlexSnapshotArgs, GetFlexSnapshotResult, GetFlexSnapshotOutputArgs } from "./getFlexSnapshot";
+export const getFlexSnapshot: typeof import("./getFlexSnapshot").getFlexSnapshot = null as any;
+export const getFlexSnapshotOutput: typeof import("./getFlexSnapshot").getFlexSnapshotOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexSnapshot","getFlexSnapshotOutput"], () => require("./getFlexSnapshot"));
+
+export { GetFlexSnapshotsArgs, GetFlexSnapshotsResult, GetFlexSnapshotsOutputArgs } from "./getFlexSnapshots";
+export const getFlexSnapshots: typeof import("./getFlexSnapshots").getFlexSnapshots = null as any;
+export const getFlexSnapshotsOutput: typeof import("./getFlexSnapshots").getFlexSnapshotsOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexSnapshots","getFlexSnapshotsOutput"], () => require("./getFlexSnapshots"));
 
 export { GetGlobalClusterConfigArgs, GetGlobalClusterConfigResult, GetGlobalClusterConfigOutputArgs } from "./getGlobalClusterConfig";
 export const getGlobalClusterConfig: typeof import("./getGlobalClusterConfig").getGlobalClusterConfig = null as any;
@@ -893,6 +928,8 @@ const _module = {
                 return new FederatedSettingsOrgConfig(name, <any>undefined, { urn })
             case "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping":
                 return new FederatedSettingsOrgRoleMapping(name, <any>undefined, { urn })
+            case "mongodbatlas:index/flexCluster:FlexCluster":
+                return new FlexCluster(name, <any>undefined, { urn })
             case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
                 return new GlobalClusterConfig(name, <any>undefined, { urn })
             case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
@@ -989,6 +1026,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedQueryLimit
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedSettingsIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedSettingsOrgConfig", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedSettingsOrgRoleMapping", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/flexCluster", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/globalClusterConfig", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapVerify", _module)

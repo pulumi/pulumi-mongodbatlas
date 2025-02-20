@@ -76,43 +76,6 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### Example Kafka SSL Connection
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Mongodbatlas.StreamConnection("test", new()
-    ///     {
-    ///         ProjectId = projectId,
-    ///         InstanceName = "NewInstance",
-    ///         ConnectionName = "KafkaConnection",
-    ///         Type = "Kafka",
-    ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
-    ///         {
-    ///             Mechanism = "PLAIN",
-    ///             Username = "user",
-    ///             Password = "somepassword",
-    ///         },
-    ///         Security = new Mongodbatlas.Inputs.StreamConnectionSecurityArgs
-    ///         {
-    ///             Protocol = "SSL",
-    ///             BrokerPublicCertificate = "-----BEGIN CERTIFICATE-----&lt;CONTENT&gt;-----END CERTIFICATE-----",
-    ///         },
-    ///         Config = 
-    ///         {
-    ///             { "auto.offset.reset", "latest" },
-    ///         },
-    ///         BootstrapServers = "localhost:9091,localhost:9092",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:

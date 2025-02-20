@@ -45,7 +45,11 @@ namespace Pulumi.Mongodbatlas
     ///         ConfigDatabase = "DATABASE NAME",
     ///         ConfigCollection = "COLLECTION NAME",
     ///         ConfigServiceId = "SERVICE ID",
-    ///         ConfigMatch = @"{  \""updateDescription.updatedFields\"": {    \""status\"": \""blocked\""  }}
+    ///         ConfigMatch = @"{
+    ///   ""updateDescription.updatedFields"": {
+    ///     ""status"": ""blocked""
+    ///   }
+    /// }
     /// ",
     ///         ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
     ///         ConfigFullDocument = false,

@@ -145,7 +145,7 @@ export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -222,7 +222,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     autoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling>;
     /**
-     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
      */
     backingProviderName?: pulumi.Input<string>;
     /**
@@ -242,7 +242,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: pulumi.Input<string>;
     /**
@@ -1070,7 +1070,7 @@ export interface ClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
     providerName?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -1654,6 +1654,43 @@ export interface FederatedSettingsOrgRoleMappingRoleAssignment {
      * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface FlexClusterBackupSettings {
+    /**
+     * Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     */
+    enabled?: pulumi.Input<boolean>;
+}
+
+export interface FlexClusterConnectionStrings {
+    /**
+     * Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
+     */
+    standard?: pulumi.Input<string>;
+    /**
+     * Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
+     */
+    standardSrv?: pulumi.Input<string>;
+}
+
+export interface FlexClusterProviderSettings {
+    /**
+     * Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
+     */
+    backingProviderName: pulumi.Input<string>;
+    /**
+     * Storage capacity available to the flex cluster expressed in gigabytes.
+     */
+    diskSizeGb?: pulumi.Input<number>;
+    /**
+     * Human-readable label that identifies the cloud service provider.
+     */
+    providerName?: pulumi.Input<string>;
+    /**
+     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     */
+    regionName: pulumi.Input<string>;
 }
 
 export interface GetAlertConfigurationOutput {
