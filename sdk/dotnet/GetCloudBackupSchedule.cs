@@ -100,9 +100,9 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetCloudBackupScheduleResult
     {
         /// <summary>
-        /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        /// * true - enables automatic export of cloud backup snapshots to the AWS bucket
-        /// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
+        /// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+        /// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         /// </summary>
         public readonly bool AutoExportEnabled;
         /// <summary>
@@ -164,7 +164,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly int RestoreWindowDays;
         /// <summary>
-        /// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        /// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         /// </summary>
         public readonly bool UseOrgAndGroupNamesInExportPrefix;
         public readonly bool? UseZoneIdForCopySettings;

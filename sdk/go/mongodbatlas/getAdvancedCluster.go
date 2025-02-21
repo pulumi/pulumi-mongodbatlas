@@ -21,6 +21,8 @@ import (
 // <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
 // <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 //
+// > **NOTE:** This data source also includes Flex clusters.
+//
 // ## Example Usage
 //
 // ```go
@@ -127,6 +129,50 @@ import (
 //				ProjectId:                  exampleAdvancedCluster.ProjectId,
 //				Name:                       exampleAdvancedCluster.Name,
 //				UseReplicationSpecPerShard: pulumi.Bool(true),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example using Flex cluster
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example_flex, err := mongodbatlas.NewAdvancedCluster(ctx, "example-flex", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:        pulumi.String("flex-cluster"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ProviderName:        pulumi.String("FLEX"),
+//								BackingProviderName: pulumi.String("AWS"),
+//								RegionName:          pulumi.String("US_EAST_1"),
+//								Priority:            pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//				ProjectId: example_flex.ProjectId,
+//				Name:      example_flex.Name,
 //			}, nil)
 //			return nil
 //		})

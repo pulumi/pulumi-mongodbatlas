@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
+ * &gt; **NOTE:** To prevent errors during resource destruction, ensure that no `mongodbatlas.CloudBackupSchedule` resource that defines an automatic export policy references this resource. If you must update related `mongodbatlas.CloudBackupSchedule` resources, make these updates in isolated `pulumi up` operations first, then run the operation that destroys the `mongodbatlas.CloudBackupSnapshotExportBucket` resource.
+ * 
  * ## Example Usage
  * 
  * ### AWS Example

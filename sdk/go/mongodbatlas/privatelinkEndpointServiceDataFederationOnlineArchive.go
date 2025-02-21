@@ -35,7 +35,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewProject(ctx, "atlas-project", &mongodbatlas.ProjectArgs{
+//			atlas_project, err := mongodbatlas.NewProject(ctx, "atlas-project", &mongodbatlas.ProjectArgs{
 //				OrgId: pulumi.Any(atlasOrgId),
 //				Name:  pulumi.Any(atlasProjectName),
 //			})

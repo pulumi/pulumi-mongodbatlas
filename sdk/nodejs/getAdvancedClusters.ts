@@ -17,6 +17,8 @@ import * as utilities from "./utilities";
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  *
+ * > **NOTE:** This data source also includes Flex clusters.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -84,10 +86,34 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const example-asym = mongodbatlas.getAdvancedClusterOutput({
+ * const example_asym = mongodbatlas.getAdvancedClusterOutput({
  *     projectId: example.projectId,
  *     name: example.name,
  *     useReplicationSpecPerShard: true,
+ * });
+ * ```
+ *
+ * ## Example using Flex cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example_flex = new mongodbatlas.AdvancedCluster("example-flex", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "flex-cluster",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             providerName: "FLEX",
+ *             backingProviderName: "AWS",
+ *             regionName: "US_EAST_1",
+ *             priority: 7,
+ *         }],
+ *     }],
+ * });
+ * const example = mongodbatlas.getAdvancedClustersOutput({
+ *     projectId: example_flex.projectId,
  * });
  * ```
  */
@@ -139,6 +165,8 @@ export interface GetAdvancedClustersResult {
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  *
+ * > **NOTE:** This data source also includes Flex clusters.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -206,10 +234,34 @@ export interface GetAdvancedClustersResult {
  *         },
  *     ],
  * });
- * const example-asym = mongodbatlas.getAdvancedClusterOutput({
+ * const example_asym = mongodbatlas.getAdvancedClusterOutput({
  *     projectId: example.projectId,
  *     name: example.name,
  *     useReplicationSpecPerShard: true,
+ * });
+ * ```
+ *
+ * ## Example using Flex cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example_flex = new mongodbatlas.AdvancedCluster("example-flex", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "flex-cluster",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             providerName: "FLEX",
+ *             backingProviderName: "AWS",
+ *             regionName: "US_EAST_1",
+ *             priority: 7,
+ *         }],
+ *     }],
+ * });
+ * const example = mongodbatlas.getAdvancedClustersOutput({
+ *     projectId: example_flex.projectId,
  * });
  * ```
  */
