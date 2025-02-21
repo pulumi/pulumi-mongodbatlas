@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.ServerlessInstance
+ * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
  *
  * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -142,7 +142,7 @@ export interface GetServerlessInstanceResult {
     readonly terminationProtectionEnabled: boolean;
 }
 /**
- * ## # Data Source: mongodbatlas.ServerlessInstance
+ * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
  *
  * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
