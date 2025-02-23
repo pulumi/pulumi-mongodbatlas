@@ -131,11 +131,155 @@ import javax.annotation.Nullable;
  * 
  * **NOTE:** There can only be one M0 cluster per project.
  * 
- * **NOTE**: Upgrading the shared tier is supported. Any change from a shared tier cluster (a tenant) to a different instance size will be considered a tenant upgrade. When upgrading from the shared tier, change the `provider_name` from &#34;TENANT&#34; to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below. You can upgrade a shared tier cluster only to a single provider on an M10-tier cluster or greater.
+ * **NOTE**: Upgrading the tenant cluster to a Flex cluster or a dedicated cluster is supported. When upgrading to a Flex cluster, change the `provider_name` from &#34;TENANT&#34; to &#34;FLEX&#34;. See Example Tenant Cluster Upgrade to Flex below. When upgrading to a dedicated cluster, change the `provider_name` to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below. You can upgrade a tenant cluster only to a single provider on an M10-tier cluster or greater.
  * 
- * When upgrading from the shared tier, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+ * When upgrading from the tenant, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
  * 
  * ### Example Tenant Cluster Upgrade
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .build())
+ *                     .providerName("AWS")
+ *                     .regionName("US_EAST_1")
+ *                     .priority(7)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Example Tenant Cluster Upgrade to Flex
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .providerName("FLEX")
+ *                     .backingProviderName("AWS")
+ *                     .regionName("US_EAST_1")
+ *                     .priority(7)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Example Flex Cluster
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example_flex = new AdvancedCluster("example-flex", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .providerName("FLEX")
+ *                     .backingProviderName("AWS")
+ *                     .regionName("US_EAST_1")
+ *                     .priority(7)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * **NOTE**: Upgrading the Flex cluster is supported. When upgrading from a Flex cluster, change the `provider_name` from &#34;TENANT&#34; to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Flex Cluster Upgrade below. You can upgrade a Flex cluster only to a single provider on an M10-tier cluster or greater.
+ * 
+ * When upgrading from a flex cluster, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+ * 
+ * ### Example Flex Cluster Upgrade
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -565,7 +709,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * 
      * Backup uses:
      * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-     * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+     * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
      * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
      * 
      * This parameter defaults to false.
@@ -580,7 +724,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * 
      * Backup uses:
      * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-     * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+     * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
      * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
      * 
      * This parameter defaults to false.

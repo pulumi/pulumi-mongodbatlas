@@ -123,9 +123,6 @@ __all__ = [
     'ProjectLimit',
     'ProjectTeam',
     'PushBasedLogExportTimeouts',
-    'ResourcePolicyCreatedByUser',
-    'ResourcePolicyLastUpdatedByUser',
-    'ResourcePolicyPolicy',
     'SearchDeploymentSpec',
     'SearchDeploymentTimeouts',
     'SearchIndexSynonym',
@@ -338,6 +335,8 @@ __all__ = [
     'GetFlexClustersResultBackupSettingsResult',
     'GetFlexClustersResultConnectionStringsResult',
     'GetFlexClustersResultProviderSettingsResult',
+    'GetFlexRestoreJobsResultResult',
+    'GetFlexSnapshotsResultResult',
     'GetGlobalClusterConfigManagedNamespaceResult',
     'GetLdapConfigurationUserToDnMappingResult',
     'GetLdapVerifyLinkResult',
@@ -375,17 +374,6 @@ __all__ = [
     'GetProjectsResultIpAddressesServicesClusterResult',
     'GetProjectsResultLimitResult',
     'GetProjectsResultTeamResult',
-    'GetResourcePoliciesResourcePolicyResult',
-    'GetResourcePoliciesResourcePolicyCreatedByUserResult',
-    'GetResourcePoliciesResourcePolicyLastUpdatedByUserResult',
-    'GetResourcePoliciesResourcePolicyPolicyResult',
-    'GetResourcePoliciesResultResult',
-    'GetResourcePoliciesResultCreatedByUserResult',
-    'GetResourcePoliciesResultLastUpdatedByUserResult',
-    'GetResourcePoliciesResultPolicyResult',
-    'GetResourcePolicyCreatedByUserResult',
-    'GetResourcePolicyLastUpdatedByUserResult',
-    'GetResourcePolicyPolicyResult',
     'GetSearchDeploymentSpecResult',
     'GetSearchIndexSynonymResult',
     'GetSearchIndexesResultResult',
@@ -935,7 +923,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -959,7 +947,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1221,12 +1209,12 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
-        :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
         """
@@ -1266,7 +1254,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1306,7 +1294,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
     @pulumi.getter(name="backingProviderName")
     def backing_provider_name(self) -> Optional[str]:
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         """
         return pulumi.get(self, "backing_provider_name")
 
@@ -4494,7 +4482,7 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -4519,7 +4507,7 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         return pulumi.get(self, "provider_name")
 
@@ -8227,98 +8215,6 @@ class PushBasedLogExportTimeouts(dict):
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         return pulumi.get(self, "update")
-
-
-@pulumi.output_type
-class ResourcePolicyCreatedByUser(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None):
-        """
-        :param str id: Unique 24-hexadecimal character string that identifies a user.
-        :param str name: Human-readable label that describes a user.
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class ResourcePolicyLastUpdatedByUser(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None):
-        """
-        :param str id: Unique 24-hexadecimal character string that identifies a user.
-        :param str name: Human-readable label that describes a user.
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class ResourcePolicyPolicy(dict):
-    def __init__(__self__, *,
-                 body: str,
-                 id: Optional[str] = None):
-        """
-        :param str body: A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        :param str id: Unique 24-hexadecimal character string that identifies the policy.
-        """
-        pulumi.set(__self__, "body", body)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-
-    @property
-    @pulumi.getter
-    def body(self) -> str:
-        """
-        A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        """
-        return pulumi.get(self, "body")
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        Unique 24-hexadecimal character string that identifies the policy.
-        """
-        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -21053,6 +20949,262 @@ class GetFlexClustersResultProviderSettingsResult(dict):
 
 
 @pulumi.output_type
+class GetFlexRestoreJobsResultResult(dict):
+    def __init__(__self__, *,
+                 delivery_type: str,
+                 expiration_date: str,
+                 name: str,
+                 project_id: str,
+                 restore_finished_date: str,
+                 restore_job_id: str,
+                 restore_scheduled_date: str,
+                 snapshot_finished_date: str,
+                 snapshot_id: str,
+                 snapshot_url: str,
+                 status: str,
+                 target_deployment_item_name: str,
+                 target_project_id: str):
+        """
+        :param str delivery_type: Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+        :param str expiration_date: Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param str restore_finished_date: Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str restore_job_id: Unique 24-hexadecimal digit string that identifies the restore job.
+        :param str restore_scheduled_date: Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str snapshot_finished_date: Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        :param str snapshot_url: Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+        :param str status: Phase of the restore workflow for this job at the time this resource made this request.
+        :param str target_deployment_item_name: Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+        :param str target_project_id: Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+        """
+        pulumi.set(__self__, "delivery_type", delivery_type)
+        pulumi.set(__self__, "expiration_date", expiration_date)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "restore_finished_date", restore_finished_date)
+        pulumi.set(__self__, "restore_job_id", restore_job_id)
+        pulumi.set(__self__, "restore_scheduled_date", restore_scheduled_date)
+        pulumi.set(__self__, "snapshot_finished_date", snapshot_finished_date)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "snapshot_url", snapshot_url)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "target_deployment_item_name", target_deployment_item_name)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+
+    @property
+    @pulumi.getter(name="deliveryType")
+    def delivery_type(self) -> str:
+        """
+        Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+        """
+        return pulumi.get(self, "delivery_type")
+
+    @property
+    @pulumi.getter(name="expirationDate")
+    def expiration_date(self) -> str:
+        """
+        Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expiration_date")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="restoreFinishedDate")
+    def restore_finished_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "restore_finished_date")
+
+    @property
+    @pulumi.getter(name="restoreJobId")
+    def restore_job_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the restore job.
+        """
+        return pulumi.get(self, "restore_job_id")
+
+    @property
+    @pulumi.getter(name="restoreScheduledDate")
+    def restore_scheduled_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "restore_scheduled_date")
+
+    @property
+    @pulumi.getter(name="snapshotFinishedDate")
+    def snapshot_finished_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "snapshot_finished_date")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="snapshotUrl")
+    def snapshot_url(self) -> str:
+        """
+        Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+        """
+        return pulumi.get(self, "snapshot_url")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Phase of the restore workflow for this job at the time this resource made this request.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="targetDeploymentItemName")
+    def target_deployment_item_name(self) -> str:
+        """
+        Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+        """
+        return pulumi.get(self, "target_deployment_item_name")
+
+    @property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+        """
+        return pulumi.get(self, "target_project_id")
+
+
+@pulumi.output_type
+class GetFlexSnapshotsResultResult(dict):
+    def __init__(__self__, *,
+                 expiration: str,
+                 finish_time: str,
+                 mongo_db_version: str,
+                 name: str,
+                 project_id: str,
+                 scheduled_time: str,
+                 snapshot_id: str,
+                 start_time: str,
+                 status: str):
+        """
+        :param str expiration: Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str finish_time: Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str mongo_db_version: MongoDB host version that the snapshot runs.
+        :param str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param str scheduled_time: Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        :param str start_time: Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str status: Phase of the restore workflow for this job at the time this resource made this request.
+        """
+        pulumi.set(__self__, "expiration", expiration)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "scheduled_time", scheduled_time)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def expiration(self) -> str:
+        """
+        Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expiration")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter(name="mongoDbVersion")
+    def mongo_db_version(self) -> str:
+        """
+        MongoDB host version that the snapshot runs.
+        """
+        return pulumi.get(self, "mongo_db_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="scheduledTime")
+    def scheduled_time(self) -> str:
+        """
+        Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "scheduled_time")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Phase of the restore workflow for this job at the time this resource made this request.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetGlobalClusterConfigManagedNamespaceResult(dict):
     def __init__(__self__, *,
                  collection: str,
@@ -22946,479 +23098,6 @@ class GetProjectsResultTeamResult(dict):
         The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         """
         return pulumi.get(self, "team_id")
-
-
-@pulumi.output_type
-class GetResourcePoliciesResourcePolicyResult(dict):
-    def __init__(__self__, *,
-                 created_by_user: 'outputs.GetResourcePoliciesResourcePolicyCreatedByUserResult',
-                 created_date: str,
-                 id: str,
-                 last_updated_by_user: 'outputs.GetResourcePoliciesResourcePolicyLastUpdatedByUserResult',
-                 last_updated_date: str,
-                 name: str,
-                 org_id: str,
-                 policies: Sequence['outputs.GetResourcePoliciesResourcePolicyPolicyResult'],
-                 version: str):
-        """
-        :param 'GetResourcePoliciesResourcePolicyCreatedByUserArgs' created_by_user: The user that last updated the Atlas resource policy.
-        :param str created_date: Date and time in UTC when the Atlas resource policy was created.
-        :param str id: Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-        :param 'GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs' last_updated_by_user: The user that last updated the Atlas resource policy.
-        :param str last_updated_date: Date and time in UTC when the Atlas resource policy was last updated.
-        :param str name: Human-readable label that describes the Atlas resource policy.
-        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-        :param Sequence['GetResourcePoliciesResourcePolicyPolicyArgs'] policies: List of policies that make up the Atlas resource policy.
-        :param str version: A string that identifies the version of the Atlas resource policy.
-        """
-        pulumi.set(__self__, "created_by_user", created_by_user)
-        pulumi.set(__self__, "created_date", created_date)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "last_updated_by_user", last_updated_by_user)
-        pulumi.set(__self__, "last_updated_date", last_updated_date)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "policies", policies)
-        pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="createdByUser")
-    def created_by_user(self) -> 'outputs.GetResourcePoliciesResourcePolicyCreatedByUserResult':
-        """
-        The user that last updated the Atlas resource policy.
-        """
-        return pulumi.get(self, "created_by_user")
-
-    @property
-    @pulumi.getter(name="createdDate")
-    def created_date(self) -> str:
-        """
-        Date and time in UTC when the Atlas resource policy was created.
-        """
-        return pulumi.get(self, "created_date")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="lastUpdatedByUser")
-    def last_updated_by_user(self) -> 'outputs.GetResourcePoliciesResourcePolicyLastUpdatedByUserResult':
-        """
-        The user that last updated the Atlas resource policy.
-        """
-        return pulumi.get(self, "last_updated_by_user")
-
-    @property
-    @pulumi.getter(name="lastUpdatedDate")
-    def last_updated_date(self) -> str:
-        """
-        Date and time in UTC when the Atlas resource policy was last updated.
-        """
-        return pulumi.get(self, "last_updated_date")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Human-readable label that describes the Atlas resource policy.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="orgId")
-    def org_id(self) -> str:
-        """
-        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-        """
-        return pulumi.get(self, "org_id")
-
-    @property
-    @pulumi.getter
-    def policies(self) -> Sequence['outputs.GetResourcePoliciesResourcePolicyPolicyResult']:
-        """
-        List of policies that make up the Atlas resource policy.
-        """
-        return pulumi.get(self, "policies")
-
-    @property
-    @pulumi.getter
-    def version(self) -> str:
-        """
-        A string that identifies the version of the Atlas resource policy.
-        """
-        return pulumi.get(self, "version")
-
-
-@pulumi.output_type
-class GetResourcePoliciesResourcePolicyCreatedByUserResult(dict):
-    def __init__(__self__, *,
-                 id: str,
-                 name: str):
-        """
-        :param str id: Unique 24-hexadecimal character string that identifies a user.
-        :param str name: Human-readable label that describes a user.
-        """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class GetResourcePoliciesResourcePolicyLastUpdatedByUserResult(dict):
-    def __init__(__self__, *,
-                 id: str,
-                 name: str):
-        """
-        :param str id: Unique 24-hexadecimal character string that identifies a user.
-        :param str name: Human-readable label that describes a user.
-        """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class GetResourcePoliciesResourcePolicyPolicyResult(dict):
-    def __init__(__self__, *,
-                 body: str,
-                 id: str):
-        """
-        :param str body: A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        :param str id: Unique 24-hexadecimal character string that identifies the policy.
-        """
-        pulumi.set(__self__, "body", body)
-        pulumi.set(__self__, "id", id)
-
-    @property
-    @pulumi.getter
-    def body(self) -> str:
-        """
-        A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        """
-        return pulumi.get(self, "body")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal character string that identifies the policy.
-        """
-        return pulumi.get(self, "id")
-
-
-@pulumi.output_type
-class GetResourcePoliciesResultResult(dict):
-    def __init__(__self__, *,
-                 created_by_user: 'outputs.GetResourcePoliciesResultCreatedByUserResult',
-                 created_date: str,
-                 id: str,
-                 last_updated_by_user: 'outputs.GetResourcePoliciesResultLastUpdatedByUserResult',
-                 last_updated_date: str,
-                 name: str,
-                 org_id: str,
-                 policies: Sequence['outputs.GetResourcePoliciesResultPolicyResult'],
-                 version: str):
-        """
-        :param 'GetResourcePoliciesResultCreatedByUserArgs' created_by_user: The user that last updated the Atlas resource policy.
-        :param str created_date: Date and time in UTC when the Atlas resource policy was created.
-        :param str id: Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-        :param 'GetResourcePoliciesResultLastUpdatedByUserArgs' last_updated_by_user: The user that last updated the Atlas resource policy.
-        :param str last_updated_date: Date and time in UTC when the Atlas resource policy was last updated.
-        :param str name: Human-readable label that describes the Atlas resource policy.
-        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-        :param Sequence['GetResourcePoliciesResultPolicyArgs'] policies: List of policies that make up the Atlas resource policy.
-        :param str version: A string that identifies the version of the Atlas resource policy.
-        """
-        pulumi.set(__self__, "created_by_user", created_by_user)
-        pulumi.set(__self__, "created_date", created_date)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "last_updated_by_user", last_updated_by_user)
-        pulumi.set(__self__, "last_updated_date", last_updated_date)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "policies", policies)
-        pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="createdByUser")
-    def created_by_user(self) -> 'outputs.GetResourcePoliciesResultCreatedByUserResult':
-        """
-        The user that last updated the Atlas resource policy.
-        """
-        return pulumi.get(self, "created_by_user")
-
-    @property
-    @pulumi.getter(name="createdDate")
-    def created_date(self) -> str:
-        """
-        Date and time in UTC when the Atlas resource policy was created.
-        """
-        return pulumi.get(self, "created_date")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="lastUpdatedByUser")
-    def last_updated_by_user(self) -> 'outputs.GetResourcePoliciesResultLastUpdatedByUserResult':
-        """
-        The user that last updated the Atlas resource policy.
-        """
-        return pulumi.get(self, "last_updated_by_user")
-
-    @property
-    @pulumi.getter(name="lastUpdatedDate")
-    def last_updated_date(self) -> str:
-        """
-        Date and time in UTC when the Atlas resource policy was last updated.
-        """
-        return pulumi.get(self, "last_updated_date")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Human-readable label that describes the Atlas resource policy.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="orgId")
-    def org_id(self) -> str:
-        """
-        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-        """
-        return pulumi.get(self, "org_id")
-
-    @property
-    @pulumi.getter
-    def policies(self) -> Sequence['outputs.GetResourcePoliciesResultPolicyResult']:
-        """
-        List of policies that make up the Atlas resource policy.
-        """
-        return pulumi.get(self, "policies")
-
-    @property
-    @pulumi.getter
-    def version(self) -> str:
-        """
-        A string that identifies the version of the Atlas resource policy.
-        """
-        return pulumi.get(self, "version")
-
-
-@pulumi.output_type
-class GetResourcePoliciesResultCreatedByUserResult(dict):
-    def __init__(__self__, *,
-                 id: str,
-                 name: str):
-        """
-        :param str id: Unique 24-hexadecimal character string that identifies a user.
-        :param str name: Human-readable label that describes a user.
-        """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class GetResourcePoliciesResultLastUpdatedByUserResult(dict):
-    def __init__(__self__, *,
-                 id: str,
-                 name: str):
-        """
-        :param str id: Unique 24-hexadecimal character string that identifies a user.
-        :param str name: Human-readable label that describes a user.
-        """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class GetResourcePoliciesResultPolicyResult(dict):
-    def __init__(__self__, *,
-                 body: str,
-                 id: str):
-        """
-        :param str body: A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        :param str id: Unique 24-hexadecimal character string that identifies the policy.
-        """
-        pulumi.set(__self__, "body", body)
-        pulumi.set(__self__, "id", id)
-
-    @property
-    @pulumi.getter
-    def body(self) -> str:
-        """
-        A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        """
-        return pulumi.get(self, "body")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal character string that identifies the policy.
-        """
-        return pulumi.get(self, "id")
-
-
-@pulumi.output_type
-class GetResourcePolicyCreatedByUserResult(dict):
-    def __init__(__self__, *,
-                 id: str,
-                 name: str):
-        """
-        :param str id: Unique 24-hexadecimal character string that identifies a user.
-        :param str name: Human-readable label that describes a user.
-        """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class GetResourcePolicyLastUpdatedByUserResult(dict):
-    def __init__(__self__, *,
-                 id: str,
-                 name: str):
-        """
-        :param str id: Unique 24-hexadecimal character string that identifies a user.
-        :param str name: Human-readable label that describes a user.
-        """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class GetResourcePolicyPolicyResult(dict):
-    def __init__(__self__, *,
-                 body: str,
-                 id: str):
-        """
-        :param str body: A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        :param str id: Unique 24-hexadecimal character string that identifies the policy.
-        """
-        pulumi.set(__self__, "body", body)
-        pulumi.set(__self__, "id", id)
-
-    @property
-    @pulumi.getter
-    def body(self) -> str:
-        """
-        A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        """
-        return pulumi.get(self, "body")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique 24-hexadecimal character string that identifies the policy.
-        """
-        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

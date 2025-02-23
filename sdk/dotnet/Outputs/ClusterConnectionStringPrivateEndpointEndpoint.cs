@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// - `AWS` - Amazon AWS
         /// - `GCP` - Google Cloud Platform
         /// - `AZURE` - Microsoft Azure
-        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         /// </summary>
         public readonly string? ProviderName;
         public readonly string? Region;

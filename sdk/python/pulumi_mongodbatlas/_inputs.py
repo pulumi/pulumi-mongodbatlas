@@ -231,12 +231,6 @@ __all__ = [
     'ProviderAssumeRoleArgsDict',
     'PushBasedLogExportTimeoutsArgs',
     'PushBasedLogExportTimeoutsArgsDict',
-    'ResourcePolicyCreatedByUserArgs',
-    'ResourcePolicyCreatedByUserArgsDict',
-    'ResourcePolicyLastUpdatedByUserArgs',
-    'ResourcePolicyLastUpdatedByUserArgsDict',
-    'ResourcePolicyPolicyArgs',
-    'ResourcePolicyPolicyArgsDict',
     'SearchDeploymentSpecArgs',
     'SearchDeploymentSpecArgsDict',
     'SearchDeploymentTimeoutsArgs',
@@ -923,7 +917,7 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         region: NotRequired[pulumi.Input[str]]
 elif False:
@@ -942,7 +936,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -970,7 +964,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1268,7 +1262,7 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         region_name: pulumi.Input[str]
         """
@@ -1288,7 +1282,7 @@ if not MYPY:
         """
         backing_provider_name: NotRequired[pulumi.Input[str]]
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         """
         electable_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict']]
         """
@@ -1323,12 +1317,12 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param pulumi.Input[str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs'] analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
-        :param pulumi.Input[str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        :param pulumi.Input[str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs'] electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs'] read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
         """
@@ -1372,7 +1366,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1432,7 +1426,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
     @pulumi.getter(name="backingProviderName")
     def backing_provider_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         """
         return pulumi.get(self, "backing_provider_name")
 
@@ -5424,7 +5418,7 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         region: NotRequired[pulumi.Input[str]]
 elif False:
@@ -5444,7 +5438,7 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -5473,7 +5467,7 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         return pulumi.get(self, "provider_name")
 
@@ -10333,161 +10327,6 @@ class PushBasedLogExportTimeoutsArgs:
     @update.setter
     def update(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "update", value)
-
-
-if not MYPY:
-    class ResourcePolicyCreatedByUserArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[str]]
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        name: NotRequired[pulumi.Input[str]]
-        """
-        Human-readable label that describes a user.
-        """
-elif False:
-    ResourcePolicyCreatedByUserArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ResourcePolicyCreatedByUserArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] id: Unique 24-hexadecimal character string that identifies a user.
-        :param pulumi.Input[str] name: Human-readable label that describes a user.
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-if not MYPY:
-    class ResourcePolicyLastUpdatedByUserArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[str]]
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        name: NotRequired[pulumi.Input[str]]
-        """
-        Human-readable label that describes a user.
-        """
-elif False:
-    ResourcePolicyLastUpdatedByUserArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ResourcePolicyLastUpdatedByUserArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] id: Unique 24-hexadecimal character string that identifies a user.
-        :param pulumi.Input[str] name: Human-readable label that describes a user.
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique 24-hexadecimal character string that identifies a user.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Human-readable label that describes a user.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-if not MYPY:
-    class ResourcePolicyPolicyArgsDict(TypedDict):
-        body: pulumi.Input[str]
-        """
-        A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        """
-        id: NotRequired[pulumi.Input[str]]
-        """
-        Unique 24-hexadecimal character string that identifies the policy.
-        """
-elif False:
-    ResourcePolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ResourcePolicyPolicyArgs:
-    def __init__(__self__, *,
-                 body: pulumi.Input[str],
-                 id: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] body: A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        :param pulumi.Input[str] id: Unique 24-hexadecimal character string that identifies the policy.
-        """
-        pulumi.set(__self__, "body", body)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-
-    @property
-    @pulumi.getter
-    def body(self) -> pulumi.Input[str]:
-        """
-        A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-        """
-        return pulumi.get(self, "body")
-
-    @body.setter
-    def body(self, value: pulumi.Input[str]):
-        pulumi.set(self, "body", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique 24-hexadecimal character string that identifies the policy.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
 
 if not MYPY:

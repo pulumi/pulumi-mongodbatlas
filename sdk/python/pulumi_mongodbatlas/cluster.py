@@ -68,13 +68,13 @@ class ClusterArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         :param pulumi.Input[str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         :param pulumi.Input[bool] auto_scaling_compute_scale_down_enabled: Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
                - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
                
-               This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+               This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
                
                The possible values are:
                
@@ -240,7 +240,7 @@ class ClusterArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         return pulumi.get(self, "provider_name")
 
@@ -306,7 +306,7 @@ class ClusterArgs:
         """
         Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 
-        This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+        This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
 
         The possible values are:
 
@@ -722,7 +722,7 @@ class _ClusterState:
                - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
                
-               This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+               This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
                
                The possible values are:
                
@@ -782,7 +782,7 @@ class _ClusterState:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
@@ -962,7 +962,7 @@ class _ClusterState:
         """
         Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 
-        This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+        This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
 
         The possible values are:
 
@@ -1336,7 +1336,7 @@ class _ClusterState:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1742,7 +1742,7 @@ class Cluster(pulumi.CustomResource):
                - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
                
-               This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+               This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
                
                The possible values are:
                
@@ -1795,7 +1795,7 @@ class Cluster(pulumi.CustomResource):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
@@ -2192,7 +2192,7 @@ class Cluster(pulumi.CustomResource):
                - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
                
-               This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+               This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
                
                The possible values are:
                
@@ -2252,7 +2252,7 @@ class Cluster(pulumi.CustomResource):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
@@ -2367,7 +2367,7 @@ class Cluster(pulumi.CustomResource):
         """
         Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 
-        This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+        This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
 
         The possible values are:
 
@@ -2625,7 +2625,7 @@ class Cluster(pulumi.CustomResource):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         return pulumi.get(self, "provider_name")
 
