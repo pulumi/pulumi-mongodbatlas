@@ -355,7 +355,7 @@ type Cluster struct {
 	AutoScalingDiskGbEnabled           pulumi.BoolOutput `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
-	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
 	//
 	// The possible values are:
 	//
@@ -442,7 +442,7 @@ type Cluster struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -529,7 +529,7 @@ type clusterState struct {
 	AutoScalingDiskGbEnabled           *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
-	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
 	//
 	// The possible values are:
 	//
@@ -616,7 +616,7 @@ type clusterState struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 	ProviderName *string `pulumi:"providerName"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -665,7 +665,7 @@ type ClusterState struct {
 	AutoScalingDiskGbEnabled           pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
-	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
 	//
 	// The possible values are:
 	//
@@ -752,7 +752,7 @@ type ClusterState struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 	ProviderName pulumi.StringPtrInput
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -805,7 +805,7 @@ type clusterArgs struct {
 	AutoScalingDiskGbEnabled           *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
-	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
 	//
 	// The possible values are:
 	//
@@ -877,7 +877,7 @@ type clusterArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 	ProviderName string `pulumi:"providerName"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -915,7 +915,7 @@ type ClusterArgs struct {
 	AutoScalingDiskGbEnabled           pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
-	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
 	//
 	// The possible values are:
 	//
@@ -987,7 +987,7 @@ type ClusterArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 	ProviderName pulumi.StringInput
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -1125,7 +1125,7 @@ func (o ClusterOutput) AutoScalingDiskGbEnabled() pulumi.BoolOutput {
 
 // Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 //
-// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
 //
 // The possible values are:
 //
@@ -1299,7 +1299,7 @@ func (o ClusterOutput) ProviderInstanceSizeName() pulumi.StringOutput {
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
-// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 func (o ClusterOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }

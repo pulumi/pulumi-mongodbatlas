@@ -415,6 +415,26 @@ export const getFlexClusters: typeof import("./getFlexClusters").getFlexClusters
 export const getFlexClustersOutput: typeof import("./getFlexClusters").getFlexClustersOutput = null as any;
 utilities.lazyLoad(exports, ["getFlexClusters","getFlexClustersOutput"], () => require("./getFlexClusters"));
 
+export { GetFlexRestoreJobArgs, GetFlexRestoreJobResult, GetFlexRestoreJobOutputArgs } from "./getFlexRestoreJob";
+export const getFlexRestoreJob: typeof import("./getFlexRestoreJob").getFlexRestoreJob = null as any;
+export const getFlexRestoreJobOutput: typeof import("./getFlexRestoreJob").getFlexRestoreJobOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexRestoreJob","getFlexRestoreJobOutput"], () => require("./getFlexRestoreJob"));
+
+export { GetFlexRestoreJobsArgs, GetFlexRestoreJobsResult, GetFlexRestoreJobsOutputArgs } from "./getFlexRestoreJobs";
+export const getFlexRestoreJobs: typeof import("./getFlexRestoreJobs").getFlexRestoreJobs = null as any;
+export const getFlexRestoreJobsOutput: typeof import("./getFlexRestoreJobs").getFlexRestoreJobsOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexRestoreJobs","getFlexRestoreJobsOutput"], () => require("./getFlexRestoreJobs"));
+
+export { GetFlexSnapshotArgs, GetFlexSnapshotResult, GetFlexSnapshotOutputArgs } from "./getFlexSnapshot";
+export const getFlexSnapshot: typeof import("./getFlexSnapshot").getFlexSnapshot = null as any;
+export const getFlexSnapshotOutput: typeof import("./getFlexSnapshot").getFlexSnapshotOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexSnapshot","getFlexSnapshotOutput"], () => require("./getFlexSnapshot"));
+
+export { GetFlexSnapshotsArgs, GetFlexSnapshotsResult, GetFlexSnapshotsOutputArgs } from "./getFlexSnapshots";
+export const getFlexSnapshots: typeof import("./getFlexSnapshots").getFlexSnapshots = null as any;
+export const getFlexSnapshotsOutput: typeof import("./getFlexSnapshots").getFlexSnapshotsOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexSnapshots","getFlexSnapshotsOutput"], () => require("./getFlexSnapshots"));
+
 export { GetGlobalClusterConfigArgs, GetGlobalClusterConfigResult, GetGlobalClusterConfigOutputArgs } from "./getGlobalClusterConfig";
 export const getGlobalClusterConfig: typeof import("./getGlobalClusterConfig").getGlobalClusterConfig = null as any;
 export const getGlobalClusterConfigOutput: typeof import("./getGlobalClusterConfig").getGlobalClusterConfigOutput = null as any;
@@ -559,16 +579,6 @@ export { GetPushBasedLogExportArgs, GetPushBasedLogExportResult, GetPushBasedLog
 export const getPushBasedLogExport: typeof import("./getPushBasedLogExport").getPushBasedLogExport = null as any;
 export const getPushBasedLogExportOutput: typeof import("./getPushBasedLogExport").getPushBasedLogExportOutput = null as any;
 utilities.lazyLoad(exports, ["getPushBasedLogExport","getPushBasedLogExportOutput"], () => require("./getPushBasedLogExport"));
-
-export { GetResourcePoliciesArgs, GetResourcePoliciesResult, GetResourcePoliciesOutputArgs } from "./getResourcePolicies";
-export const getResourcePolicies: typeof import("./getResourcePolicies").getResourcePolicies = null as any;
-export const getResourcePoliciesOutput: typeof import("./getResourcePolicies").getResourcePoliciesOutput = null as any;
-utilities.lazyLoad(exports, ["getResourcePolicies","getResourcePoliciesOutput"], () => require("./getResourcePolicies"));
-
-export { GetResourcePolicyArgs, GetResourcePolicyResult, GetResourcePolicyOutputArgs } from "./getResourcePolicy";
-export const getResourcePolicy: typeof import("./getResourcePolicy").getResourcePolicy = null as any;
-export const getResourcePolicyOutput: typeof import("./getResourcePolicy").getResourcePolicyOutput = null as any;
-utilities.lazyLoad(exports, ["getResourcePolicy","getResourcePolicyOutput"], () => require("./getResourcePolicy"));
 
 export { GetRolesOrgIdResult } from "./getRolesOrgId";
 export const getRolesOrgId: typeof import("./getRolesOrgId").getRolesOrgId = null as any;
@@ -795,11 +805,6 @@ export type PushBasedLogExport = import("./pushBasedLogExport").PushBasedLogExpo
 export const PushBasedLogExport: typeof import("./pushBasedLogExport").PushBasedLogExport = null as any;
 utilities.lazyLoad(exports, ["PushBasedLogExport"], () => require("./pushBasedLogExport"));
 
-export { ResourcePolicyArgs, ResourcePolicyState } from "./resourcePolicy";
-export type ResourcePolicy = import("./resourcePolicy").ResourcePolicy;
-export const ResourcePolicy: typeof import("./resourcePolicy").ResourcePolicy = null as any;
-utilities.lazyLoad(exports, ["ResourcePolicy"], () => require("./resourcePolicy"));
-
 export { SearchDeploymentArgs, SearchDeploymentState } from "./searchDeployment";
 export type SearchDeployment = import("./searchDeployment").SearchDeployment;
 export const SearchDeployment: typeof import("./searchDeployment").SearchDeployment = null as any;
@@ -967,8 +972,6 @@ const _module = {
                 return new ProjectIpAccessList(name, <any>undefined, { urn })
             case "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport":
                 return new PushBasedLogExport(name, <any>undefined, { urn })
-            case "mongodbatlas:index/resourcePolicy:ResourcePolicy":
-                return new ResourcePolicy(name, <any>undefined, { urn })
             case "mongodbatlas:index/searchDeployment:SearchDeployment":
                 return new SearchDeployment(name, <any>undefined, { urn })
             case "mongodbatlas:index/searchIndex:SearchIndex":
@@ -1045,7 +1048,6 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectApiKey", _mo
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/pushBasedLogExport", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/resourcePolicy", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchDeployment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/serverlessInstance", _module)

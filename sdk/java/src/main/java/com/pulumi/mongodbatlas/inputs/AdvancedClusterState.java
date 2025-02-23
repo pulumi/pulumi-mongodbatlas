@@ -53,7 +53,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
      * 
      * Backup uses:
      * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-     * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+     * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
      * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
      * 
      * This parameter defaults to false.
@@ -68,7 +68,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
      * 
      * Backup uses:
      * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-     * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+     * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
      * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
      * 
      * This parameter defaults to false.
@@ -590,7 +590,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          * 
          * Backup uses:
          * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-         * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+         * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
          * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
          * 
          * This parameter defaults to false.
@@ -609,7 +609,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          * 
          * Backup uses:
          * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-         * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+         * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
          * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
          * 
          * This parameter defaults to false.
