@@ -249,7 +249,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      *
-     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
      *
      * The possible values are:
      *
@@ -392,7 +392,7 @@ export class Cluster extends pulumi.CustomResource {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
     public readonly providerName!: pulumi.Output<string>;
     /**
@@ -597,7 +597,7 @@ export interface ClusterState {
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      *
-     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
      *
      * The possible values are:
      *
@@ -740,7 +740,7 @@ export interface ClusterState {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
     providerName?: pulumi.Input<string>;
     /**
@@ -822,7 +822,7 @@ export interface ClusterArgs {
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      *
-     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
      *
      * The possible values are:
      *
@@ -936,7 +936,7 @@ export interface ClusterArgs {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
     providerName: pulumi.Input<string>;
     /**

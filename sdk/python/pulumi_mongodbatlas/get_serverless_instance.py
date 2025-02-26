@@ -229,7 +229,7 @@ def get_serverless_instance(auto_indexing: Optional[bool] = None,
                             state_name: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerlessInstanceResult:
     """
-    ## # Data Source: ServerlessInstance
+    **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 
     `ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -299,7 +299,7 @@ def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional
                                    state_name: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerlessInstanceResult]:
     """
-    ## # Data Source: ServerlessInstance
+    **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 
     `ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.

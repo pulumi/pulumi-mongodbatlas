@@ -81,7 +81,7 @@ def get_flex_clusters(project_id: Optional[str] = None,
 
     `get_flex_clusters` returns all flex clusters in a project.
 
-    **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+    **RECOMMENDATION:** We recommend using the `get_advanced_clusters` data source instead of the `get_flex_clusters` data source to retrieve Flex clusters. The `get_advanced_clusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
 
     ## Example Usage
 
@@ -104,7 +104,7 @@ def get_flex_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
 
     `get_flex_clusters` returns all flex clusters in a project.
 
-    **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+    **RECOMMENDATION:** We recommend using the `get_advanced_clusters` data source instead of the `get_flex_clusters` data source to retrieve Flex clusters. The `get_advanced_clusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
 
     ## Example Usage
 

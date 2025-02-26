@@ -935,7 +935,7 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpoint struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
@@ -959,7 +959,7 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -1025,7 +1025,7 @@ func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
-// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
@@ -1494,7 +1494,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	AnalyticsSpecs *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
 	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 	AutoScaling *AdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
-	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
 	BackingProviderName *string `pulumi:"backingProviderName"`
 	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
 	ElectableSpecs *AdvancedClusterReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
@@ -1508,7 +1508,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
@@ -1534,7 +1534,7 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	AnalyticsSpecs AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
 	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
 	AutoScaling AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput `pulumi:"autoScaling"`
-	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
 	BackingProviderName pulumi.StringPtrInput `pulumi:"backingProviderName"`
 	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
 	ElectableSpecs AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
@@ -1548,7 +1548,7 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
@@ -1628,7 +1628,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) AutoScaling() Advanced
 	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput)
 }
 
-// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) BackingProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *string { return v.BackingProviderName }).(pulumi.StringPtrOutput)
 }
@@ -1653,7 +1653,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) Priority() pulumi.IntO
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
-// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
@@ -8052,7 +8052,7 @@ type ClusterConnectionStringPrivateEndpointEndpoint struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
@@ -8077,7 +8077,7 @@ type ClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
-	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -8144,7 +8144,7 @@ func (o ClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulum
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
-// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
 func (o ClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
@@ -17187,424 +17187,6 @@ func (o PushBasedLogExportTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
 		}
 		return v.Update
 	}).(pulumi.StringPtrOutput)
-}
-
-type ResourcePolicyCreatedByUser struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id *string `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name *string `pulumi:"name"`
-}
-
-// ResourcePolicyCreatedByUserInput is an input type that accepts ResourcePolicyCreatedByUserArgs and ResourcePolicyCreatedByUserOutput values.
-// You can construct a concrete instance of `ResourcePolicyCreatedByUserInput` via:
-//
-//	ResourcePolicyCreatedByUserArgs{...}
-type ResourcePolicyCreatedByUserInput interface {
-	pulumi.Input
-
-	ToResourcePolicyCreatedByUserOutput() ResourcePolicyCreatedByUserOutput
-	ToResourcePolicyCreatedByUserOutputWithContext(context.Context) ResourcePolicyCreatedByUserOutput
-}
-
-type ResourcePolicyCreatedByUserArgs struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-}
-
-func (ResourcePolicyCreatedByUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourcePolicyCreatedByUser)(nil)).Elem()
-}
-
-func (i ResourcePolicyCreatedByUserArgs) ToResourcePolicyCreatedByUserOutput() ResourcePolicyCreatedByUserOutput {
-	return i.ToResourcePolicyCreatedByUserOutputWithContext(context.Background())
-}
-
-func (i ResourcePolicyCreatedByUserArgs) ToResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyCreatedByUserOutput)
-}
-
-func (i ResourcePolicyCreatedByUserArgs) ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput {
-	return i.ToResourcePolicyCreatedByUserPtrOutputWithContext(context.Background())
-}
-
-func (i ResourcePolicyCreatedByUserArgs) ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyCreatedByUserOutput).ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx)
-}
-
-// ResourcePolicyCreatedByUserPtrInput is an input type that accepts ResourcePolicyCreatedByUserArgs, ResourcePolicyCreatedByUserPtr and ResourcePolicyCreatedByUserPtrOutput values.
-// You can construct a concrete instance of `ResourcePolicyCreatedByUserPtrInput` via:
-//
-//	        ResourcePolicyCreatedByUserArgs{...}
-//
-//	or:
-//
-//	        nil
-type ResourcePolicyCreatedByUserPtrInput interface {
-	pulumi.Input
-
-	ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput
-	ToResourcePolicyCreatedByUserPtrOutputWithContext(context.Context) ResourcePolicyCreatedByUserPtrOutput
-}
-
-type resourcePolicyCreatedByUserPtrType ResourcePolicyCreatedByUserArgs
-
-func ResourcePolicyCreatedByUserPtr(v *ResourcePolicyCreatedByUserArgs) ResourcePolicyCreatedByUserPtrInput {
-	return (*resourcePolicyCreatedByUserPtrType)(v)
-}
-
-func (*resourcePolicyCreatedByUserPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ResourcePolicyCreatedByUser)(nil)).Elem()
-}
-
-func (i *resourcePolicyCreatedByUserPtrType) ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput {
-	return i.ToResourcePolicyCreatedByUserPtrOutputWithContext(context.Background())
-}
-
-func (i *resourcePolicyCreatedByUserPtrType) ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyCreatedByUserPtrOutput)
-}
-
-type ResourcePolicyCreatedByUserOutput struct{ *pulumi.OutputState }
-
-func (ResourcePolicyCreatedByUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourcePolicyCreatedByUser)(nil)).Elem()
-}
-
-func (o ResourcePolicyCreatedByUserOutput) ToResourcePolicyCreatedByUserOutput() ResourcePolicyCreatedByUserOutput {
-	return o
-}
-
-func (o ResourcePolicyCreatedByUserOutput) ToResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserOutput {
-	return o
-}
-
-func (o ResourcePolicyCreatedByUserOutput) ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput {
-	return o.ToResourcePolicyCreatedByUserPtrOutputWithContext(context.Background())
-}
-
-func (o ResourcePolicyCreatedByUserOutput) ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePolicyCreatedByUser) *ResourcePolicyCreatedByUser {
-		return &v
-	}).(ResourcePolicyCreatedByUserPtrOutput)
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o ResourcePolicyCreatedByUserOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ResourcePolicyCreatedByUser) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
-// Human-readable label that describes a user.
-func (o ResourcePolicyCreatedByUserOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ResourcePolicyCreatedByUser) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-type ResourcePolicyCreatedByUserPtrOutput struct{ *pulumi.OutputState }
-
-func (ResourcePolicyCreatedByUserPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ResourcePolicyCreatedByUser)(nil)).Elem()
-}
-
-func (o ResourcePolicyCreatedByUserPtrOutput) ToResourcePolicyCreatedByUserPtrOutput() ResourcePolicyCreatedByUserPtrOutput {
-	return o
-}
-
-func (o ResourcePolicyCreatedByUserPtrOutput) ToResourcePolicyCreatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyCreatedByUserPtrOutput {
-	return o
-}
-
-func (o ResourcePolicyCreatedByUserPtrOutput) Elem() ResourcePolicyCreatedByUserOutput {
-	return o.ApplyT(func(v *ResourcePolicyCreatedByUser) ResourcePolicyCreatedByUser {
-		if v != nil {
-			return *v
-		}
-		var ret ResourcePolicyCreatedByUser
-		return ret
-	}).(ResourcePolicyCreatedByUserOutput)
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o ResourcePolicyCreatedByUserPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ResourcePolicyCreatedByUser) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-// Human-readable label that describes a user.
-func (o ResourcePolicyCreatedByUserPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ResourcePolicyCreatedByUser) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-type ResourcePolicyLastUpdatedByUser struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id *string `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name *string `pulumi:"name"`
-}
-
-// ResourcePolicyLastUpdatedByUserInput is an input type that accepts ResourcePolicyLastUpdatedByUserArgs and ResourcePolicyLastUpdatedByUserOutput values.
-// You can construct a concrete instance of `ResourcePolicyLastUpdatedByUserInput` via:
-//
-//	ResourcePolicyLastUpdatedByUserArgs{...}
-type ResourcePolicyLastUpdatedByUserInput interface {
-	pulumi.Input
-
-	ToResourcePolicyLastUpdatedByUserOutput() ResourcePolicyLastUpdatedByUserOutput
-	ToResourcePolicyLastUpdatedByUserOutputWithContext(context.Context) ResourcePolicyLastUpdatedByUserOutput
-}
-
-type ResourcePolicyLastUpdatedByUserArgs struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-}
-
-func (ResourcePolicyLastUpdatedByUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourcePolicyLastUpdatedByUser)(nil)).Elem()
-}
-
-func (i ResourcePolicyLastUpdatedByUserArgs) ToResourcePolicyLastUpdatedByUserOutput() ResourcePolicyLastUpdatedByUserOutput {
-	return i.ToResourcePolicyLastUpdatedByUserOutputWithContext(context.Background())
-}
-
-func (i ResourcePolicyLastUpdatedByUserArgs) ToResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyLastUpdatedByUserOutput)
-}
-
-func (i ResourcePolicyLastUpdatedByUserArgs) ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput {
-	return i.ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(context.Background())
-}
-
-func (i ResourcePolicyLastUpdatedByUserArgs) ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyLastUpdatedByUserOutput).ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx)
-}
-
-// ResourcePolicyLastUpdatedByUserPtrInput is an input type that accepts ResourcePolicyLastUpdatedByUserArgs, ResourcePolicyLastUpdatedByUserPtr and ResourcePolicyLastUpdatedByUserPtrOutput values.
-// You can construct a concrete instance of `ResourcePolicyLastUpdatedByUserPtrInput` via:
-//
-//	        ResourcePolicyLastUpdatedByUserArgs{...}
-//
-//	or:
-//
-//	        nil
-type ResourcePolicyLastUpdatedByUserPtrInput interface {
-	pulumi.Input
-
-	ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput
-	ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(context.Context) ResourcePolicyLastUpdatedByUserPtrOutput
-}
-
-type resourcePolicyLastUpdatedByUserPtrType ResourcePolicyLastUpdatedByUserArgs
-
-func ResourcePolicyLastUpdatedByUserPtr(v *ResourcePolicyLastUpdatedByUserArgs) ResourcePolicyLastUpdatedByUserPtrInput {
-	return (*resourcePolicyLastUpdatedByUserPtrType)(v)
-}
-
-func (*resourcePolicyLastUpdatedByUserPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ResourcePolicyLastUpdatedByUser)(nil)).Elem()
-}
-
-func (i *resourcePolicyLastUpdatedByUserPtrType) ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput {
-	return i.ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(context.Background())
-}
-
-func (i *resourcePolicyLastUpdatedByUserPtrType) ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyLastUpdatedByUserPtrOutput)
-}
-
-type ResourcePolicyLastUpdatedByUserOutput struct{ *pulumi.OutputState }
-
-func (ResourcePolicyLastUpdatedByUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourcePolicyLastUpdatedByUser)(nil)).Elem()
-}
-
-func (o ResourcePolicyLastUpdatedByUserOutput) ToResourcePolicyLastUpdatedByUserOutput() ResourcePolicyLastUpdatedByUserOutput {
-	return o
-}
-
-func (o ResourcePolicyLastUpdatedByUserOutput) ToResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserOutput {
-	return o
-}
-
-func (o ResourcePolicyLastUpdatedByUserOutput) ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput {
-	return o.ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(context.Background())
-}
-
-func (o ResourcePolicyLastUpdatedByUserOutput) ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePolicyLastUpdatedByUser) *ResourcePolicyLastUpdatedByUser {
-		return &v
-	}).(ResourcePolicyLastUpdatedByUserPtrOutput)
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o ResourcePolicyLastUpdatedByUserOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ResourcePolicyLastUpdatedByUser) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
-// Human-readable label that describes a user.
-func (o ResourcePolicyLastUpdatedByUserOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ResourcePolicyLastUpdatedByUser) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-type ResourcePolicyLastUpdatedByUserPtrOutput struct{ *pulumi.OutputState }
-
-func (ResourcePolicyLastUpdatedByUserPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ResourcePolicyLastUpdatedByUser)(nil)).Elem()
-}
-
-func (o ResourcePolicyLastUpdatedByUserPtrOutput) ToResourcePolicyLastUpdatedByUserPtrOutput() ResourcePolicyLastUpdatedByUserPtrOutput {
-	return o
-}
-
-func (o ResourcePolicyLastUpdatedByUserPtrOutput) ToResourcePolicyLastUpdatedByUserPtrOutputWithContext(ctx context.Context) ResourcePolicyLastUpdatedByUserPtrOutput {
-	return o
-}
-
-func (o ResourcePolicyLastUpdatedByUserPtrOutput) Elem() ResourcePolicyLastUpdatedByUserOutput {
-	return o.ApplyT(func(v *ResourcePolicyLastUpdatedByUser) ResourcePolicyLastUpdatedByUser {
-		if v != nil {
-			return *v
-		}
-		var ret ResourcePolicyLastUpdatedByUser
-		return ret
-	}).(ResourcePolicyLastUpdatedByUserOutput)
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o ResourcePolicyLastUpdatedByUserPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ResourcePolicyLastUpdatedByUser) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-// Human-readable label that describes a user.
-func (o ResourcePolicyLastUpdatedByUserPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ResourcePolicyLastUpdatedByUser) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-type ResourcePolicyPolicy struct {
-	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-	Body string `pulumi:"body"`
-	// Unique 24-hexadecimal character string that identifies the policy.
-	Id *string `pulumi:"id"`
-}
-
-// ResourcePolicyPolicyInput is an input type that accepts ResourcePolicyPolicyArgs and ResourcePolicyPolicyOutput values.
-// You can construct a concrete instance of `ResourcePolicyPolicyInput` via:
-//
-//	ResourcePolicyPolicyArgs{...}
-type ResourcePolicyPolicyInput interface {
-	pulumi.Input
-
-	ToResourcePolicyPolicyOutput() ResourcePolicyPolicyOutput
-	ToResourcePolicyPolicyOutputWithContext(context.Context) ResourcePolicyPolicyOutput
-}
-
-type ResourcePolicyPolicyArgs struct {
-	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-	Body pulumi.StringInput `pulumi:"body"`
-	// Unique 24-hexadecimal character string that identifies the policy.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-}
-
-func (ResourcePolicyPolicyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (i ResourcePolicyPolicyArgs) ToResourcePolicyPolicyOutput() ResourcePolicyPolicyOutput {
-	return i.ToResourcePolicyPolicyOutputWithContext(context.Background())
-}
-
-func (i ResourcePolicyPolicyArgs) ToResourcePolicyPolicyOutputWithContext(ctx context.Context) ResourcePolicyPolicyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyPolicyOutput)
-}
-
-// ResourcePolicyPolicyArrayInput is an input type that accepts ResourcePolicyPolicyArray and ResourcePolicyPolicyArrayOutput values.
-// You can construct a concrete instance of `ResourcePolicyPolicyArrayInput` via:
-//
-//	ResourcePolicyPolicyArray{ ResourcePolicyPolicyArgs{...} }
-type ResourcePolicyPolicyArrayInput interface {
-	pulumi.Input
-
-	ToResourcePolicyPolicyArrayOutput() ResourcePolicyPolicyArrayOutput
-	ToResourcePolicyPolicyArrayOutputWithContext(context.Context) ResourcePolicyPolicyArrayOutput
-}
-
-type ResourcePolicyPolicyArray []ResourcePolicyPolicyInput
-
-func (ResourcePolicyPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (i ResourcePolicyPolicyArray) ToResourcePolicyPolicyArrayOutput() ResourcePolicyPolicyArrayOutput {
-	return i.ToResourcePolicyPolicyArrayOutputWithContext(context.Background())
-}
-
-func (i ResourcePolicyPolicyArray) ToResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) ResourcePolicyPolicyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyPolicyArrayOutput)
-}
-
-type ResourcePolicyPolicyOutput struct{ *pulumi.OutputState }
-
-func (ResourcePolicyPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (o ResourcePolicyPolicyOutput) ToResourcePolicyPolicyOutput() ResourcePolicyPolicyOutput {
-	return o
-}
-
-func (o ResourcePolicyPolicyOutput) ToResourcePolicyPolicyOutputWithContext(ctx context.Context) ResourcePolicyPolicyOutput {
-	return o
-}
-
-// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-func (o ResourcePolicyPolicyOutput) Body() pulumi.StringOutput {
-	return o.ApplyT(func(v ResourcePolicyPolicy) string { return v.Body }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal character string that identifies the policy.
-func (o ResourcePolicyPolicyOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ResourcePolicyPolicy) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
-type ResourcePolicyPolicyArrayOutput struct{ *pulumi.OutputState }
-
-func (ResourcePolicyPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (o ResourcePolicyPolicyArrayOutput) ToResourcePolicyPolicyArrayOutput() ResourcePolicyPolicyArrayOutput {
-	return o
-}
-
-func (o ResourcePolicyPolicyArrayOutput) ToResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) ResourcePolicyPolicyArrayOutput {
-	return o
-}
-
-func (o ResourcePolicyPolicyArrayOutput) Index(i pulumi.IntInput) ResourcePolicyPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResourcePolicyPolicy {
-		return vs[0].([]ResourcePolicyPolicy)[vs[1].(int)]
-	}).(ResourcePolicyPolicyOutput)
 }
 
 type SearchDeploymentSpec struct {
@@ -45701,6 +45283,380 @@ func (o GetFlexClustersResultProviderSettingsOutput) RegionName() pulumi.StringO
 	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
+type GetFlexRestoreJobsResult struct {
+	// Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+	DeliveryType string `pulumi:"deliveryType"`
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpirationDate string `pulumi:"expirationDate"`
+	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId string `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreFinishedDate string `pulumi:"restoreFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the restore job.
+	RestoreJobId string `pulumi:"restoreJobId"`
+	// Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreScheduledDate string `pulumi:"restoreScheduledDate"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	SnapshotFinishedDate string `pulumi:"snapshotFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+	SnapshotUrl string `pulumi:"snapshotUrl"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status string `pulumi:"status"`
+	// Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+	TargetDeploymentItemName string `pulumi:"targetDeploymentItemName"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+	TargetProjectId string `pulumi:"targetProjectId"`
+}
+
+// GetFlexRestoreJobsResultInput is an input type that accepts GetFlexRestoreJobsResultArgs and GetFlexRestoreJobsResultOutput values.
+// You can construct a concrete instance of `GetFlexRestoreJobsResultInput` via:
+//
+//	GetFlexRestoreJobsResultArgs{...}
+type GetFlexRestoreJobsResultInput interface {
+	pulumi.Input
+
+	ToGetFlexRestoreJobsResultOutput() GetFlexRestoreJobsResultOutput
+	ToGetFlexRestoreJobsResultOutputWithContext(context.Context) GetFlexRestoreJobsResultOutput
+}
+
+type GetFlexRestoreJobsResultArgs struct {
+	// Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+	DeliveryType pulumi.StringInput `pulumi:"deliveryType"`
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpirationDate pulumi.StringInput `pulumi:"expirationDate"`
+	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreFinishedDate pulumi.StringInput `pulumi:"restoreFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the restore job.
+	RestoreJobId pulumi.StringInput `pulumi:"restoreJobId"`
+	// Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreScheduledDate pulumi.StringInput `pulumi:"restoreScheduledDate"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	SnapshotFinishedDate pulumi.StringInput `pulumi:"snapshotFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+	SnapshotUrl pulumi.StringInput `pulumi:"snapshotUrl"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+	TargetDeploymentItemName pulumi.StringInput `pulumi:"targetDeploymentItemName"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+	TargetProjectId pulumi.StringInput `pulumi:"targetProjectId"`
+}
+
+func (GetFlexRestoreJobsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetFlexRestoreJobsResultArgs) ToGetFlexRestoreJobsResultOutput() GetFlexRestoreJobsResultOutput {
+	return i.ToGetFlexRestoreJobsResultOutputWithContext(context.Background())
+}
+
+func (i GetFlexRestoreJobsResultArgs) ToGetFlexRestoreJobsResultOutputWithContext(ctx context.Context) GetFlexRestoreJobsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexRestoreJobsResultOutput)
+}
+
+// GetFlexRestoreJobsResultArrayInput is an input type that accepts GetFlexRestoreJobsResultArray and GetFlexRestoreJobsResultArrayOutput values.
+// You can construct a concrete instance of `GetFlexRestoreJobsResultArrayInput` via:
+//
+//	GetFlexRestoreJobsResultArray{ GetFlexRestoreJobsResultArgs{...} }
+type GetFlexRestoreJobsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetFlexRestoreJobsResultArrayOutput() GetFlexRestoreJobsResultArrayOutput
+	ToGetFlexRestoreJobsResultArrayOutputWithContext(context.Context) GetFlexRestoreJobsResultArrayOutput
+}
+
+type GetFlexRestoreJobsResultArray []GetFlexRestoreJobsResultInput
+
+func (GetFlexRestoreJobsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetFlexRestoreJobsResultArray) ToGetFlexRestoreJobsResultArrayOutput() GetFlexRestoreJobsResultArrayOutput {
+	return i.ToGetFlexRestoreJobsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlexRestoreJobsResultArray) ToGetFlexRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetFlexRestoreJobsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexRestoreJobsResultArrayOutput)
+}
+
+type GetFlexRestoreJobsResultOutput struct{ *pulumi.OutputState }
+
+func (GetFlexRestoreJobsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetFlexRestoreJobsResultOutput) ToGetFlexRestoreJobsResultOutput() GetFlexRestoreJobsResultOutput {
+	return o
+}
+
+func (o GetFlexRestoreJobsResultOutput) ToGetFlexRestoreJobsResultOutputWithContext(ctx context.Context) GetFlexRestoreJobsResultOutput {
+	return o
+}
+
+// Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+func (o GetFlexRestoreJobsResultOutput) DeliveryType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.DeliveryType }).(pulumi.StringOutput)
+}
+
+// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexRestoreJobsResultOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.ExpirationDate }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+func (o GetFlexRestoreJobsResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+func (o GetFlexRestoreJobsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexRestoreJobsResultOutput) RestoreFinishedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.RestoreFinishedDate }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the restore job.
+func (o GetFlexRestoreJobsResultOutput) RestoreJobId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.RestoreJobId }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexRestoreJobsResultOutput) RestoreScheduledDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.RestoreScheduledDate }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexRestoreJobsResultOutput) SnapshotFinishedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.SnapshotFinishedDate }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+func (o GetFlexRestoreJobsResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+func (o GetFlexRestoreJobsResultOutput) SnapshotUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.SnapshotUrl }).(pulumi.StringOutput)
+}
+
+// Phase of the restore workflow for this job at the time this resource made this request.
+func (o GetFlexRestoreJobsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+func (o GetFlexRestoreJobsResultOutput) TargetDeploymentItemName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.TargetDeploymentItemName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+func (o GetFlexRestoreJobsResultOutput) TargetProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.TargetProjectId }).(pulumi.StringOutput)
+}
+
+type GetFlexRestoreJobsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlexRestoreJobsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetFlexRestoreJobsResultArrayOutput) ToGetFlexRestoreJobsResultArrayOutput() GetFlexRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetFlexRestoreJobsResultArrayOutput) ToGetFlexRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetFlexRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetFlexRestoreJobsResultArrayOutput) Index(i pulumi.IntInput) GetFlexRestoreJobsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlexRestoreJobsResult {
+		return vs[0].([]GetFlexRestoreJobsResult)[vs[1].(int)]
+	}).(GetFlexRestoreJobsResultOutput)
+}
+
+type GetFlexSnapshotsResult struct {
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	Expiration string `pulumi:"expiration"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	FinishTime string `pulumi:"finishTime"`
+	// MongoDB host version that the snapshot runs.
+	MongoDbVersion string `pulumi:"mongoDbVersion"`
+	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId string `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ScheduledTime string `pulumi:"scheduledTime"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	StartTime string `pulumi:"startTime"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status string `pulumi:"status"`
+}
+
+// GetFlexSnapshotsResultInput is an input type that accepts GetFlexSnapshotsResultArgs and GetFlexSnapshotsResultOutput values.
+// You can construct a concrete instance of `GetFlexSnapshotsResultInput` via:
+//
+//	GetFlexSnapshotsResultArgs{...}
+type GetFlexSnapshotsResultInput interface {
+	pulumi.Input
+
+	ToGetFlexSnapshotsResultOutput() GetFlexSnapshotsResultOutput
+	ToGetFlexSnapshotsResultOutputWithContext(context.Context) GetFlexSnapshotsResultOutput
+}
+
+type GetFlexSnapshotsResultArgs struct {
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	Expiration pulumi.StringInput `pulumi:"expiration"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	FinishTime pulumi.StringInput `pulumi:"finishTime"`
+	// MongoDB host version that the snapshot runs.
+	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
+	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ScheduledTime pulumi.StringInput `pulumi:"scheduledTime"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetFlexSnapshotsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexSnapshotsResult)(nil)).Elem()
+}
+
+func (i GetFlexSnapshotsResultArgs) ToGetFlexSnapshotsResultOutput() GetFlexSnapshotsResultOutput {
+	return i.ToGetFlexSnapshotsResultOutputWithContext(context.Background())
+}
+
+func (i GetFlexSnapshotsResultArgs) ToGetFlexSnapshotsResultOutputWithContext(ctx context.Context) GetFlexSnapshotsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexSnapshotsResultOutput)
+}
+
+// GetFlexSnapshotsResultArrayInput is an input type that accepts GetFlexSnapshotsResultArray and GetFlexSnapshotsResultArrayOutput values.
+// You can construct a concrete instance of `GetFlexSnapshotsResultArrayInput` via:
+//
+//	GetFlexSnapshotsResultArray{ GetFlexSnapshotsResultArgs{...} }
+type GetFlexSnapshotsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetFlexSnapshotsResultArrayOutput() GetFlexSnapshotsResultArrayOutput
+	ToGetFlexSnapshotsResultArrayOutputWithContext(context.Context) GetFlexSnapshotsResultArrayOutput
+}
+
+type GetFlexSnapshotsResultArray []GetFlexSnapshotsResultInput
+
+func (GetFlexSnapshotsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexSnapshotsResult)(nil)).Elem()
+}
+
+func (i GetFlexSnapshotsResultArray) ToGetFlexSnapshotsResultArrayOutput() GetFlexSnapshotsResultArrayOutput {
+	return i.ToGetFlexSnapshotsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlexSnapshotsResultArray) ToGetFlexSnapshotsResultArrayOutputWithContext(ctx context.Context) GetFlexSnapshotsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexSnapshotsResultArrayOutput)
+}
+
+type GetFlexSnapshotsResultOutput struct{ *pulumi.OutputState }
+
+func (GetFlexSnapshotsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexSnapshotsResult)(nil)).Elem()
+}
+
+func (o GetFlexSnapshotsResultOutput) ToGetFlexSnapshotsResultOutput() GetFlexSnapshotsResultOutput {
+	return o
+}
+
+func (o GetFlexSnapshotsResultOutput) ToGetFlexSnapshotsResultOutputWithContext(ctx context.Context) GetFlexSnapshotsResultOutput {
+	return o
+}
+
+// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexSnapshotsResultOutput) Expiration() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.Expiration }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexSnapshotsResultOutput) FinishTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.FinishTime }).(pulumi.StringOutput)
+}
+
+// MongoDB host version that the snapshot runs.
+func (o GetFlexSnapshotsResultOutput) MongoDbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.MongoDbVersion }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+func (o GetFlexSnapshotsResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+func (o GetFlexSnapshotsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexSnapshotsResultOutput) ScheduledTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.ScheduledTime }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+func (o GetFlexSnapshotsResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetFlexSnapshotsResultOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// Phase of the restore workflow for this job at the time this resource made this request.
+func (o GetFlexSnapshotsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetFlexSnapshotsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlexSnapshotsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexSnapshotsResult)(nil)).Elem()
+}
+
+func (o GetFlexSnapshotsResultArrayOutput) ToGetFlexSnapshotsResultArrayOutput() GetFlexSnapshotsResultArrayOutput {
+	return o
+}
+
+func (o GetFlexSnapshotsResultArrayOutput) ToGetFlexSnapshotsResultArrayOutputWithContext(ctx context.Context) GetFlexSnapshotsResultArrayOutput {
+	return o
+}
+
+func (o GetFlexSnapshotsResultArrayOutput) Index(i pulumi.IntInput) GetFlexSnapshotsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlexSnapshotsResult {
+		return vs[0].([]GetFlexSnapshotsResult)[vs[1].(int)]
+	}).(GetFlexSnapshotsResultOutput)
+}
+
 type GetGlobalClusterConfigManagedNamespace struct {
 	// (Required) The name of the collection associated with the managed namespace.
 	Collection string `pulumi:"collection"`
@@ -50185,1034 +50141,6 @@ func (o GetProjectsResultTeamArrayOutput) Index(i pulumi.IntInput) GetProjectsRe
 	}).(GetProjectsResultTeamOutput)
 }
 
-type GetResourcePoliciesResourcePolicy struct {
-	// The user that last updated the Atlas resource policy.
-	CreatedByUser GetResourcePoliciesResourcePolicyCreatedByUser `pulumi:"createdByUser"`
-	// Date and time in UTC when the Atlas resource policy was created.
-	CreatedDate string `pulumi:"createdDate"`
-	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-	Id string `pulumi:"id"`
-	// The user that last updated the Atlas resource policy.
-	LastUpdatedByUser GetResourcePoliciesResourcePolicyLastUpdatedByUser `pulumi:"lastUpdatedByUser"`
-	// Date and time in UTC when the Atlas resource policy was last updated.
-	LastUpdatedDate string `pulumi:"lastUpdatedDate"`
-	// Human-readable label that describes the Atlas resource policy.
-	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-	OrgId string `pulumi:"orgId"`
-	// List of policies that make up the Atlas resource policy.
-	Policies []GetResourcePoliciesResourcePolicyPolicy `pulumi:"policies"`
-	// A string that identifies the version of the Atlas resource policy.
-	Version string `pulumi:"version"`
-}
-
-// GetResourcePoliciesResourcePolicyInput is an input type that accepts GetResourcePoliciesResourcePolicyArgs and GetResourcePoliciesResourcePolicyOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyInput` via:
-//
-//	GetResourcePoliciesResourcePolicyArgs{...}
-type GetResourcePoliciesResourcePolicyInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResourcePolicyOutput() GetResourcePoliciesResourcePolicyOutput
-	ToGetResourcePoliciesResourcePolicyOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyOutput
-}
-
-type GetResourcePoliciesResourcePolicyArgs struct {
-	// The user that last updated the Atlas resource policy.
-	CreatedByUser GetResourcePoliciesResourcePolicyCreatedByUserInput `pulumi:"createdByUser"`
-	// Date and time in UTC when the Atlas resource policy was created.
-	CreatedDate pulumi.StringInput `pulumi:"createdDate"`
-	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-	Id pulumi.StringInput `pulumi:"id"`
-	// The user that last updated the Atlas resource policy.
-	LastUpdatedByUser GetResourcePoliciesResourcePolicyLastUpdatedByUserInput `pulumi:"lastUpdatedByUser"`
-	// Date and time in UTC when the Atlas resource policy was last updated.
-	LastUpdatedDate pulumi.StringInput `pulumi:"lastUpdatedDate"`
-	// Human-readable label that describes the Atlas resource policy.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-	OrgId pulumi.StringInput `pulumi:"orgId"`
-	// List of policies that make up the Atlas resource policy.
-	Policies GetResourcePoliciesResourcePolicyPolicyArrayInput `pulumi:"policies"`
-	// A string that identifies the version of the Atlas resource policy.
-	Version pulumi.StringInput `pulumi:"version"`
-}
-
-func (GetResourcePoliciesResourcePolicyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResourcePolicy)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResourcePolicyArgs) ToGetResourcePoliciesResourcePolicyOutput() GetResourcePoliciesResourcePolicyOutput {
-	return i.ToGetResourcePoliciesResourcePolicyOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResourcePolicyArgs) ToGetResourcePoliciesResourcePolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyOutput)
-}
-
-// GetResourcePoliciesResourcePolicyArrayInput is an input type that accepts GetResourcePoliciesResourcePolicyArray and GetResourcePoliciesResourcePolicyArrayOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyArrayInput` via:
-//
-//	GetResourcePoliciesResourcePolicyArray{ GetResourcePoliciesResourcePolicyArgs{...} }
-type GetResourcePoliciesResourcePolicyArrayInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResourcePolicyArrayOutput() GetResourcePoliciesResourcePolicyArrayOutput
-	ToGetResourcePoliciesResourcePolicyArrayOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyArrayOutput
-}
-
-type GetResourcePoliciesResourcePolicyArray []GetResourcePoliciesResourcePolicyInput
-
-func (GetResourcePoliciesResourcePolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePoliciesResourcePolicy)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResourcePolicyArray) ToGetResourcePoliciesResourcePolicyArrayOutput() GetResourcePoliciesResourcePolicyArrayOutput {
-	return i.ToGetResourcePoliciesResourcePolicyArrayOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResourcePolicyArray) ToGetResourcePoliciesResourcePolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyArrayOutput)
-}
-
-type GetResourcePoliciesResourcePolicyOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResourcePolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResourcePolicy)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResourcePolicyOutput) ToGetResourcePoliciesResourcePolicyOutput() GetResourcePoliciesResourcePolicyOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResourcePolicyOutput) ToGetResourcePoliciesResourcePolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyOutput {
-	return o
-}
-
-// The user that last updated the Atlas resource policy.
-func (o GetResourcePoliciesResourcePolicyOutput) CreatedByUser() GetResourcePoliciesResourcePolicyCreatedByUserOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) GetResourcePoliciesResourcePolicyCreatedByUser {
-		return v.CreatedByUser
-	}).(GetResourcePoliciesResourcePolicyCreatedByUserOutput)
-}
-
-// Date and time in UTC when the Atlas resource policy was created.
-func (o GetResourcePoliciesResourcePolicyOutput) CreatedDate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.CreatedDate }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-func (o GetResourcePoliciesResourcePolicyOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// The user that last updated the Atlas resource policy.
-func (o GetResourcePoliciesResourcePolicyOutput) LastUpdatedByUser() GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) GetResourcePoliciesResourcePolicyLastUpdatedByUser {
-		return v.LastUpdatedByUser
-	}).(GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput)
-}
-
-// Date and time in UTC when the Atlas resource policy was last updated.
-func (o GetResourcePoliciesResourcePolicyOutput) LastUpdatedDate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.LastUpdatedDate }).(pulumi.StringOutput)
-}
-
-// Human-readable label that describes the Atlas resource policy.
-func (o GetResourcePoliciesResourcePolicyOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-func (o GetResourcePoliciesResourcePolicyOutput) OrgId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.OrgId }).(pulumi.StringOutput)
-}
-
-// List of policies that make up the Atlas resource policy.
-func (o GetResourcePoliciesResourcePolicyOutput) Policies() GetResourcePoliciesResourcePolicyPolicyArrayOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) []GetResourcePoliciesResourcePolicyPolicy { return v.Policies }).(GetResourcePoliciesResourcePolicyPolicyArrayOutput)
-}
-
-// A string that identifies the version of the Atlas resource policy.
-func (o GetResourcePoliciesResourcePolicyOutput) Version() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.Version }).(pulumi.StringOutput)
-}
-
-type GetResourcePoliciesResourcePolicyArrayOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResourcePolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePoliciesResourcePolicy)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResourcePolicyArrayOutput) ToGetResourcePoliciesResourcePolicyArrayOutput() GetResourcePoliciesResourcePolicyArrayOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResourcePolicyArrayOutput) ToGetResourcePoliciesResourcePolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyArrayOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResourcePolicyArrayOutput) Index(i pulumi.IntInput) GetResourcePoliciesResourcePolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePoliciesResourcePolicy {
-		return vs[0].([]GetResourcePoliciesResourcePolicy)[vs[1].(int)]
-	}).(GetResourcePoliciesResourcePolicyOutput)
-}
-
-type GetResourcePoliciesResourcePolicyCreatedByUser struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id string `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name string `pulumi:"name"`
-}
-
-// GetResourcePoliciesResourcePolicyCreatedByUserInput is an input type that accepts GetResourcePoliciesResourcePolicyCreatedByUserArgs and GetResourcePoliciesResourcePolicyCreatedByUserOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyCreatedByUserInput` via:
-//
-//	GetResourcePoliciesResourcePolicyCreatedByUserArgs{...}
-type GetResourcePoliciesResourcePolicyCreatedByUserInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResourcePolicyCreatedByUserOutput() GetResourcePoliciesResourcePolicyCreatedByUserOutput
-	ToGetResourcePoliciesResourcePolicyCreatedByUserOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyCreatedByUserOutput
-}
-
-type GetResourcePoliciesResourcePolicyCreatedByUserArgs struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetResourcePoliciesResourcePolicyCreatedByUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyCreatedByUser)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResourcePolicyCreatedByUserArgs) ToGetResourcePoliciesResourcePolicyCreatedByUserOutput() GetResourcePoliciesResourcePolicyCreatedByUserOutput {
-	return i.ToGetResourcePoliciesResourcePolicyCreatedByUserOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResourcePolicyCreatedByUserArgs) ToGetResourcePoliciesResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyCreatedByUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyCreatedByUserOutput)
-}
-
-type GetResourcePoliciesResourcePolicyCreatedByUserOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResourcePolicyCreatedByUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyCreatedByUser)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResourcePolicyCreatedByUserOutput) ToGetResourcePoliciesResourcePolicyCreatedByUserOutput() GetResourcePoliciesResourcePolicyCreatedByUserOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResourcePolicyCreatedByUserOutput) ToGetResourcePoliciesResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyCreatedByUserOutput {
-	return o
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o GetResourcePoliciesResourcePolicyCreatedByUserOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyCreatedByUser) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Human-readable label that describes a user.
-func (o GetResourcePoliciesResourcePolicyCreatedByUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyCreatedByUser) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetResourcePoliciesResourcePolicyLastUpdatedByUser struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id string `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name string `pulumi:"name"`
-}
-
-// GetResourcePoliciesResourcePolicyLastUpdatedByUserInput is an input type that accepts GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs and GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyLastUpdatedByUserInput` via:
-//
-//	GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs{...}
-type GetResourcePoliciesResourcePolicyLastUpdatedByUserInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutput() GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput
-	ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput
-}
-
-type GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyLastUpdatedByUser)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs) ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutput() GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
-	return i.ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs) ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput)
-}
-
-type GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyLastUpdatedByUser)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutput() GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) ToGetResourcePoliciesResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput {
-	return o
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyLastUpdatedByUser) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Human-readable label that describes a user.
-func (o GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyLastUpdatedByUser) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetResourcePoliciesResourcePolicyPolicy struct {
-	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-	Body string `pulumi:"body"`
-	// Unique 24-hexadecimal character string that identifies the policy.
-	Id string `pulumi:"id"`
-}
-
-// GetResourcePoliciesResourcePolicyPolicyInput is an input type that accepts GetResourcePoliciesResourcePolicyPolicyArgs and GetResourcePoliciesResourcePolicyPolicyOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyPolicyInput` via:
-//
-//	GetResourcePoliciesResourcePolicyPolicyArgs{...}
-type GetResourcePoliciesResourcePolicyPolicyInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResourcePolicyPolicyOutput() GetResourcePoliciesResourcePolicyPolicyOutput
-	ToGetResourcePoliciesResourcePolicyPolicyOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyPolicyOutput
-}
-
-type GetResourcePoliciesResourcePolicyPolicyArgs struct {
-	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-	Body pulumi.StringInput `pulumi:"body"`
-	// Unique 24-hexadecimal character string that identifies the policy.
-	Id pulumi.StringInput `pulumi:"id"`
-}
-
-func (GetResourcePoliciesResourcePolicyPolicyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResourcePolicyPolicyArgs) ToGetResourcePoliciesResourcePolicyPolicyOutput() GetResourcePoliciesResourcePolicyPolicyOutput {
-	return i.ToGetResourcePoliciesResourcePolicyPolicyOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResourcePolicyPolicyArgs) ToGetResourcePoliciesResourcePolicyPolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyPolicyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyPolicyOutput)
-}
-
-// GetResourcePoliciesResourcePolicyPolicyArrayInput is an input type that accepts GetResourcePoliciesResourcePolicyPolicyArray and GetResourcePoliciesResourcePolicyPolicyArrayOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResourcePolicyPolicyArrayInput` via:
-//
-//	GetResourcePoliciesResourcePolicyPolicyArray{ GetResourcePoliciesResourcePolicyPolicyArgs{...} }
-type GetResourcePoliciesResourcePolicyPolicyArrayInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResourcePolicyPolicyArrayOutput() GetResourcePoliciesResourcePolicyPolicyArrayOutput
-	ToGetResourcePoliciesResourcePolicyPolicyArrayOutputWithContext(context.Context) GetResourcePoliciesResourcePolicyPolicyArrayOutput
-}
-
-type GetResourcePoliciesResourcePolicyPolicyArray []GetResourcePoliciesResourcePolicyPolicyInput
-
-func (GetResourcePoliciesResourcePolicyPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePoliciesResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResourcePolicyPolicyArray) ToGetResourcePoliciesResourcePolicyPolicyArrayOutput() GetResourcePoliciesResourcePolicyPolicyArrayOutput {
-	return i.ToGetResourcePoliciesResourcePolicyPolicyArrayOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResourcePolicyPolicyArray) ToGetResourcePoliciesResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyPolicyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResourcePolicyPolicyArrayOutput)
-}
-
-type GetResourcePoliciesResourcePolicyPolicyOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResourcePolicyPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResourcePolicyPolicyOutput) ToGetResourcePoliciesResourcePolicyPolicyOutput() GetResourcePoliciesResourcePolicyPolicyOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResourcePolicyPolicyOutput) ToGetResourcePoliciesResourcePolicyPolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyPolicyOutput {
-	return o
-}
-
-// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-func (o GetResourcePoliciesResourcePolicyPolicyOutput) Body() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyPolicy) string { return v.Body }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal character string that identifies the policy.
-func (o GetResourcePoliciesResourcePolicyPolicyOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResourcePolicyPolicy) string { return v.Id }).(pulumi.StringOutput)
-}
-
-type GetResourcePoliciesResourcePolicyPolicyArrayOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResourcePolicyPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePoliciesResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResourcePolicyPolicyArrayOutput) ToGetResourcePoliciesResourcePolicyPolicyArrayOutput() GetResourcePoliciesResourcePolicyPolicyArrayOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResourcePolicyPolicyArrayOutput) ToGetResourcePoliciesResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResourcePolicyPolicyArrayOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResourcePolicyPolicyArrayOutput) Index(i pulumi.IntInput) GetResourcePoliciesResourcePolicyPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePoliciesResourcePolicyPolicy {
-		return vs[0].([]GetResourcePoliciesResourcePolicyPolicy)[vs[1].(int)]
-	}).(GetResourcePoliciesResourcePolicyPolicyOutput)
-}
-
-type GetResourcePoliciesResult struct {
-	// The user that last updated the Atlas resource policy.
-	CreatedByUser GetResourcePoliciesResultCreatedByUser `pulumi:"createdByUser"`
-	// Date and time in UTC when the Atlas resource policy was created.
-	CreatedDate string `pulumi:"createdDate"`
-	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-	Id string `pulumi:"id"`
-	// The user that last updated the Atlas resource policy.
-	LastUpdatedByUser GetResourcePoliciesResultLastUpdatedByUser `pulumi:"lastUpdatedByUser"`
-	// Date and time in UTC when the Atlas resource policy was last updated.
-	LastUpdatedDate string `pulumi:"lastUpdatedDate"`
-	// Human-readable label that describes the Atlas resource policy.
-	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-	OrgId string `pulumi:"orgId"`
-	// List of policies that make up the Atlas resource policy.
-	Policies []GetResourcePoliciesResultPolicy `pulumi:"policies"`
-	// A string that identifies the version of the Atlas resource policy.
-	Version string `pulumi:"version"`
-}
-
-// GetResourcePoliciesResultInput is an input type that accepts GetResourcePoliciesResultArgs and GetResourcePoliciesResultOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResultInput` via:
-//
-//	GetResourcePoliciesResultArgs{...}
-type GetResourcePoliciesResultInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResultOutput() GetResourcePoliciesResultOutput
-	ToGetResourcePoliciesResultOutputWithContext(context.Context) GetResourcePoliciesResultOutput
-}
-
-type GetResourcePoliciesResultArgs struct {
-	// The user that last updated the Atlas resource policy.
-	CreatedByUser GetResourcePoliciesResultCreatedByUserInput `pulumi:"createdByUser"`
-	// Date and time in UTC when the Atlas resource policy was created.
-	CreatedDate pulumi.StringInput `pulumi:"createdDate"`
-	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-	Id pulumi.StringInput `pulumi:"id"`
-	// The user that last updated the Atlas resource policy.
-	LastUpdatedByUser GetResourcePoliciesResultLastUpdatedByUserInput `pulumi:"lastUpdatedByUser"`
-	// Date and time in UTC when the Atlas resource policy was last updated.
-	LastUpdatedDate pulumi.StringInput `pulumi:"lastUpdatedDate"`
-	// Human-readable label that describes the Atlas resource policy.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-	OrgId pulumi.StringInput `pulumi:"orgId"`
-	// List of policies that make up the Atlas resource policy.
-	Policies GetResourcePoliciesResultPolicyArrayInput `pulumi:"policies"`
-	// A string that identifies the version of the Atlas resource policy.
-	Version pulumi.StringInput `pulumi:"version"`
-}
-
-func (GetResourcePoliciesResultArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResult)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResultArgs) ToGetResourcePoliciesResultOutput() GetResourcePoliciesResultOutput {
-	return i.ToGetResourcePoliciesResultOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResultArgs) ToGetResourcePoliciesResultOutputWithContext(ctx context.Context) GetResourcePoliciesResultOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultOutput)
-}
-
-// GetResourcePoliciesResultArrayInput is an input type that accepts GetResourcePoliciesResultArray and GetResourcePoliciesResultArrayOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResultArrayInput` via:
-//
-//	GetResourcePoliciesResultArray{ GetResourcePoliciesResultArgs{...} }
-type GetResourcePoliciesResultArrayInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResultArrayOutput() GetResourcePoliciesResultArrayOutput
-	ToGetResourcePoliciesResultArrayOutputWithContext(context.Context) GetResourcePoliciesResultArrayOutput
-}
-
-type GetResourcePoliciesResultArray []GetResourcePoliciesResultInput
-
-func (GetResourcePoliciesResultArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePoliciesResult)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResultArray) ToGetResourcePoliciesResultArrayOutput() GetResourcePoliciesResultArrayOutput {
-	return i.ToGetResourcePoliciesResultArrayOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResultArray) ToGetResourcePoliciesResultArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResultArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultArrayOutput)
-}
-
-type GetResourcePoliciesResultOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResult)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResultOutput) ToGetResourcePoliciesResultOutput() GetResourcePoliciesResultOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResultOutput) ToGetResourcePoliciesResultOutputWithContext(ctx context.Context) GetResourcePoliciesResultOutput {
-	return o
-}
-
-// The user that last updated the Atlas resource policy.
-func (o GetResourcePoliciesResultOutput) CreatedByUser() GetResourcePoliciesResultCreatedByUserOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResult) GetResourcePoliciesResultCreatedByUser { return v.CreatedByUser }).(GetResourcePoliciesResultCreatedByUserOutput)
-}
-
-// Date and time in UTC when the Atlas resource policy was created.
-func (o GetResourcePoliciesResultOutput) CreatedDate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.CreatedDate }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-func (o GetResourcePoliciesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// The user that last updated the Atlas resource policy.
-func (o GetResourcePoliciesResultOutput) LastUpdatedByUser() GetResourcePoliciesResultLastUpdatedByUserOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResult) GetResourcePoliciesResultLastUpdatedByUser {
-		return v.LastUpdatedByUser
-	}).(GetResourcePoliciesResultLastUpdatedByUserOutput)
-}
-
-// Date and time in UTC when the Atlas resource policy was last updated.
-func (o GetResourcePoliciesResultOutput) LastUpdatedDate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.LastUpdatedDate }).(pulumi.StringOutput)
-}
-
-// Human-readable label that describes the Atlas resource policy.
-func (o GetResourcePoliciesResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-func (o GetResourcePoliciesResultOutput) OrgId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.OrgId }).(pulumi.StringOutput)
-}
-
-// List of policies that make up the Atlas resource policy.
-func (o GetResourcePoliciesResultOutput) Policies() GetResourcePoliciesResultPolicyArrayOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResult) []GetResourcePoliciesResultPolicy { return v.Policies }).(GetResourcePoliciesResultPolicyArrayOutput)
-}
-
-// A string that identifies the version of the Atlas resource policy.
-func (o GetResourcePoliciesResultOutput) Version() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.Version }).(pulumi.StringOutput)
-}
-
-type GetResourcePoliciesResultArrayOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePoliciesResult)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResultArrayOutput) ToGetResourcePoliciesResultArrayOutput() GetResourcePoliciesResultArrayOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResultArrayOutput) ToGetResourcePoliciesResultArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResultArrayOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResultArrayOutput) Index(i pulumi.IntInput) GetResourcePoliciesResultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePoliciesResult {
-		return vs[0].([]GetResourcePoliciesResult)[vs[1].(int)]
-	}).(GetResourcePoliciesResultOutput)
-}
-
-type GetResourcePoliciesResultCreatedByUser struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id string `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name string `pulumi:"name"`
-}
-
-// GetResourcePoliciesResultCreatedByUserInput is an input type that accepts GetResourcePoliciesResultCreatedByUserArgs and GetResourcePoliciesResultCreatedByUserOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResultCreatedByUserInput` via:
-//
-//	GetResourcePoliciesResultCreatedByUserArgs{...}
-type GetResourcePoliciesResultCreatedByUserInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResultCreatedByUserOutput() GetResourcePoliciesResultCreatedByUserOutput
-	ToGetResourcePoliciesResultCreatedByUserOutputWithContext(context.Context) GetResourcePoliciesResultCreatedByUserOutput
-}
-
-type GetResourcePoliciesResultCreatedByUserArgs struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetResourcePoliciesResultCreatedByUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResultCreatedByUser)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResultCreatedByUserArgs) ToGetResourcePoliciesResultCreatedByUserOutput() GetResourcePoliciesResultCreatedByUserOutput {
-	return i.ToGetResourcePoliciesResultCreatedByUserOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResultCreatedByUserArgs) ToGetResourcePoliciesResultCreatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResultCreatedByUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultCreatedByUserOutput)
-}
-
-type GetResourcePoliciesResultCreatedByUserOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResultCreatedByUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResultCreatedByUser)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResultCreatedByUserOutput) ToGetResourcePoliciesResultCreatedByUserOutput() GetResourcePoliciesResultCreatedByUserOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResultCreatedByUserOutput) ToGetResourcePoliciesResultCreatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResultCreatedByUserOutput {
-	return o
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o GetResourcePoliciesResultCreatedByUserOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResultCreatedByUser) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Human-readable label that describes a user.
-func (o GetResourcePoliciesResultCreatedByUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResultCreatedByUser) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetResourcePoliciesResultLastUpdatedByUser struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id string `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name string `pulumi:"name"`
-}
-
-// GetResourcePoliciesResultLastUpdatedByUserInput is an input type that accepts GetResourcePoliciesResultLastUpdatedByUserArgs and GetResourcePoliciesResultLastUpdatedByUserOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResultLastUpdatedByUserInput` via:
-//
-//	GetResourcePoliciesResultLastUpdatedByUserArgs{...}
-type GetResourcePoliciesResultLastUpdatedByUserInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResultLastUpdatedByUserOutput() GetResourcePoliciesResultLastUpdatedByUserOutput
-	ToGetResourcePoliciesResultLastUpdatedByUserOutputWithContext(context.Context) GetResourcePoliciesResultLastUpdatedByUserOutput
-}
-
-type GetResourcePoliciesResultLastUpdatedByUserArgs struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetResourcePoliciesResultLastUpdatedByUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResultLastUpdatedByUser)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResultLastUpdatedByUserArgs) ToGetResourcePoliciesResultLastUpdatedByUserOutput() GetResourcePoliciesResultLastUpdatedByUserOutput {
-	return i.ToGetResourcePoliciesResultLastUpdatedByUserOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResultLastUpdatedByUserArgs) ToGetResourcePoliciesResultLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResultLastUpdatedByUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultLastUpdatedByUserOutput)
-}
-
-type GetResourcePoliciesResultLastUpdatedByUserOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResultLastUpdatedByUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResultLastUpdatedByUser)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResultLastUpdatedByUserOutput) ToGetResourcePoliciesResultLastUpdatedByUserOutput() GetResourcePoliciesResultLastUpdatedByUserOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResultLastUpdatedByUserOutput) ToGetResourcePoliciesResultLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePoliciesResultLastUpdatedByUserOutput {
-	return o
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o GetResourcePoliciesResultLastUpdatedByUserOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResultLastUpdatedByUser) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Human-readable label that describes a user.
-func (o GetResourcePoliciesResultLastUpdatedByUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResultLastUpdatedByUser) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetResourcePoliciesResultPolicy struct {
-	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-	Body string `pulumi:"body"`
-	// Unique 24-hexadecimal character string that identifies the policy.
-	Id string `pulumi:"id"`
-}
-
-// GetResourcePoliciesResultPolicyInput is an input type that accepts GetResourcePoliciesResultPolicyArgs and GetResourcePoliciesResultPolicyOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResultPolicyInput` via:
-//
-//	GetResourcePoliciesResultPolicyArgs{...}
-type GetResourcePoliciesResultPolicyInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResultPolicyOutput() GetResourcePoliciesResultPolicyOutput
-	ToGetResourcePoliciesResultPolicyOutputWithContext(context.Context) GetResourcePoliciesResultPolicyOutput
-}
-
-type GetResourcePoliciesResultPolicyArgs struct {
-	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-	Body pulumi.StringInput `pulumi:"body"`
-	// Unique 24-hexadecimal character string that identifies the policy.
-	Id pulumi.StringInput `pulumi:"id"`
-}
-
-func (GetResourcePoliciesResultPolicyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResultPolicy)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResultPolicyArgs) ToGetResourcePoliciesResultPolicyOutput() GetResourcePoliciesResultPolicyOutput {
-	return i.ToGetResourcePoliciesResultPolicyOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResultPolicyArgs) ToGetResourcePoliciesResultPolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResultPolicyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultPolicyOutput)
-}
-
-// GetResourcePoliciesResultPolicyArrayInput is an input type that accepts GetResourcePoliciesResultPolicyArray and GetResourcePoliciesResultPolicyArrayOutput values.
-// You can construct a concrete instance of `GetResourcePoliciesResultPolicyArrayInput` via:
-//
-//	GetResourcePoliciesResultPolicyArray{ GetResourcePoliciesResultPolicyArgs{...} }
-type GetResourcePoliciesResultPolicyArrayInput interface {
-	pulumi.Input
-
-	ToGetResourcePoliciesResultPolicyArrayOutput() GetResourcePoliciesResultPolicyArrayOutput
-	ToGetResourcePoliciesResultPolicyArrayOutputWithContext(context.Context) GetResourcePoliciesResultPolicyArrayOutput
-}
-
-type GetResourcePoliciesResultPolicyArray []GetResourcePoliciesResultPolicyInput
-
-func (GetResourcePoliciesResultPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePoliciesResultPolicy)(nil)).Elem()
-}
-
-func (i GetResourcePoliciesResultPolicyArray) ToGetResourcePoliciesResultPolicyArrayOutput() GetResourcePoliciesResultPolicyArrayOutput {
-	return i.ToGetResourcePoliciesResultPolicyArrayOutputWithContext(context.Background())
-}
-
-func (i GetResourcePoliciesResultPolicyArray) ToGetResourcePoliciesResultPolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResultPolicyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePoliciesResultPolicyArrayOutput)
-}
-
-type GetResourcePoliciesResultPolicyOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResultPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePoliciesResultPolicy)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResultPolicyOutput) ToGetResourcePoliciesResultPolicyOutput() GetResourcePoliciesResultPolicyOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResultPolicyOutput) ToGetResourcePoliciesResultPolicyOutputWithContext(ctx context.Context) GetResourcePoliciesResultPolicyOutput {
-	return o
-}
-
-// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-func (o GetResourcePoliciesResultPolicyOutput) Body() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResultPolicy) string { return v.Body }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal character string that identifies the policy.
-func (o GetResourcePoliciesResultPolicyOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePoliciesResultPolicy) string { return v.Id }).(pulumi.StringOutput)
-}
-
-type GetResourcePoliciesResultPolicyArrayOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePoliciesResultPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePoliciesResultPolicy)(nil)).Elem()
-}
-
-func (o GetResourcePoliciesResultPolicyArrayOutput) ToGetResourcePoliciesResultPolicyArrayOutput() GetResourcePoliciesResultPolicyArrayOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResultPolicyArrayOutput) ToGetResourcePoliciesResultPolicyArrayOutputWithContext(ctx context.Context) GetResourcePoliciesResultPolicyArrayOutput {
-	return o
-}
-
-func (o GetResourcePoliciesResultPolicyArrayOutput) Index(i pulumi.IntInput) GetResourcePoliciesResultPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePoliciesResultPolicy {
-		return vs[0].([]GetResourcePoliciesResultPolicy)[vs[1].(int)]
-	}).(GetResourcePoliciesResultPolicyOutput)
-}
-
-type GetResourcePolicyCreatedByUser struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id string `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name string `pulumi:"name"`
-}
-
-// GetResourcePolicyCreatedByUserInput is an input type that accepts GetResourcePolicyCreatedByUserArgs and GetResourcePolicyCreatedByUserOutput values.
-// You can construct a concrete instance of `GetResourcePolicyCreatedByUserInput` via:
-//
-//	GetResourcePolicyCreatedByUserArgs{...}
-type GetResourcePolicyCreatedByUserInput interface {
-	pulumi.Input
-
-	ToGetResourcePolicyCreatedByUserOutput() GetResourcePolicyCreatedByUserOutput
-	ToGetResourcePolicyCreatedByUserOutputWithContext(context.Context) GetResourcePolicyCreatedByUserOutput
-}
-
-type GetResourcePolicyCreatedByUserArgs struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetResourcePolicyCreatedByUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePolicyCreatedByUser)(nil)).Elem()
-}
-
-func (i GetResourcePolicyCreatedByUserArgs) ToGetResourcePolicyCreatedByUserOutput() GetResourcePolicyCreatedByUserOutput {
-	return i.ToGetResourcePolicyCreatedByUserOutputWithContext(context.Background())
-}
-
-func (i GetResourcePolicyCreatedByUserArgs) ToGetResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) GetResourcePolicyCreatedByUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePolicyCreatedByUserOutput)
-}
-
-type GetResourcePolicyCreatedByUserOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePolicyCreatedByUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePolicyCreatedByUser)(nil)).Elem()
-}
-
-func (o GetResourcePolicyCreatedByUserOutput) ToGetResourcePolicyCreatedByUserOutput() GetResourcePolicyCreatedByUserOutput {
-	return o
-}
-
-func (o GetResourcePolicyCreatedByUserOutput) ToGetResourcePolicyCreatedByUserOutputWithContext(ctx context.Context) GetResourcePolicyCreatedByUserOutput {
-	return o
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o GetResourcePolicyCreatedByUserOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePolicyCreatedByUser) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Human-readable label that describes a user.
-func (o GetResourcePolicyCreatedByUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePolicyCreatedByUser) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetResourcePolicyLastUpdatedByUser struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id string `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name string `pulumi:"name"`
-}
-
-// GetResourcePolicyLastUpdatedByUserInput is an input type that accepts GetResourcePolicyLastUpdatedByUserArgs and GetResourcePolicyLastUpdatedByUserOutput values.
-// You can construct a concrete instance of `GetResourcePolicyLastUpdatedByUserInput` via:
-//
-//	GetResourcePolicyLastUpdatedByUserArgs{...}
-type GetResourcePolicyLastUpdatedByUserInput interface {
-	pulumi.Input
-
-	ToGetResourcePolicyLastUpdatedByUserOutput() GetResourcePolicyLastUpdatedByUserOutput
-	ToGetResourcePolicyLastUpdatedByUserOutputWithContext(context.Context) GetResourcePolicyLastUpdatedByUserOutput
-}
-
-type GetResourcePolicyLastUpdatedByUserArgs struct {
-	// Unique 24-hexadecimal character string that identifies a user.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Human-readable label that describes a user.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetResourcePolicyLastUpdatedByUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePolicyLastUpdatedByUser)(nil)).Elem()
-}
-
-func (i GetResourcePolicyLastUpdatedByUserArgs) ToGetResourcePolicyLastUpdatedByUserOutput() GetResourcePolicyLastUpdatedByUserOutput {
-	return i.ToGetResourcePolicyLastUpdatedByUserOutputWithContext(context.Background())
-}
-
-func (i GetResourcePolicyLastUpdatedByUserArgs) ToGetResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePolicyLastUpdatedByUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePolicyLastUpdatedByUserOutput)
-}
-
-type GetResourcePolicyLastUpdatedByUserOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePolicyLastUpdatedByUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePolicyLastUpdatedByUser)(nil)).Elem()
-}
-
-func (o GetResourcePolicyLastUpdatedByUserOutput) ToGetResourcePolicyLastUpdatedByUserOutput() GetResourcePolicyLastUpdatedByUserOutput {
-	return o
-}
-
-func (o GetResourcePolicyLastUpdatedByUserOutput) ToGetResourcePolicyLastUpdatedByUserOutputWithContext(ctx context.Context) GetResourcePolicyLastUpdatedByUserOutput {
-	return o
-}
-
-// Unique 24-hexadecimal character string that identifies a user.
-func (o GetResourcePolicyLastUpdatedByUserOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePolicyLastUpdatedByUser) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Human-readable label that describes a user.
-func (o GetResourcePolicyLastUpdatedByUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePolicyLastUpdatedByUser) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetResourcePolicyPolicy struct {
-	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-	Body string `pulumi:"body"`
-	// Unique 24-hexadecimal character string that identifies the policy.
-	Id string `pulumi:"id"`
-}
-
-// GetResourcePolicyPolicyInput is an input type that accepts GetResourcePolicyPolicyArgs and GetResourcePolicyPolicyOutput values.
-// You can construct a concrete instance of `GetResourcePolicyPolicyInput` via:
-//
-//	GetResourcePolicyPolicyArgs{...}
-type GetResourcePolicyPolicyInput interface {
-	pulumi.Input
-
-	ToGetResourcePolicyPolicyOutput() GetResourcePolicyPolicyOutput
-	ToGetResourcePolicyPolicyOutputWithContext(context.Context) GetResourcePolicyPolicyOutput
-}
-
-type GetResourcePolicyPolicyArgs struct {
-	// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-	Body pulumi.StringInput `pulumi:"body"`
-	// Unique 24-hexadecimal character string that identifies the policy.
-	Id pulumi.StringInput `pulumi:"id"`
-}
-
-func (GetResourcePolicyPolicyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (i GetResourcePolicyPolicyArgs) ToGetResourcePolicyPolicyOutput() GetResourcePolicyPolicyOutput {
-	return i.ToGetResourcePolicyPolicyOutputWithContext(context.Background())
-}
-
-func (i GetResourcePolicyPolicyArgs) ToGetResourcePolicyPolicyOutputWithContext(ctx context.Context) GetResourcePolicyPolicyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePolicyPolicyOutput)
-}
-
-// GetResourcePolicyPolicyArrayInput is an input type that accepts GetResourcePolicyPolicyArray and GetResourcePolicyPolicyArrayOutput values.
-// You can construct a concrete instance of `GetResourcePolicyPolicyArrayInput` via:
-//
-//	GetResourcePolicyPolicyArray{ GetResourcePolicyPolicyArgs{...} }
-type GetResourcePolicyPolicyArrayInput interface {
-	pulumi.Input
-
-	ToGetResourcePolicyPolicyArrayOutput() GetResourcePolicyPolicyArrayOutput
-	ToGetResourcePolicyPolicyArrayOutputWithContext(context.Context) GetResourcePolicyPolicyArrayOutput
-}
-
-type GetResourcePolicyPolicyArray []GetResourcePolicyPolicyInput
-
-func (GetResourcePolicyPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (i GetResourcePolicyPolicyArray) ToGetResourcePolicyPolicyArrayOutput() GetResourcePolicyPolicyArrayOutput {
-	return i.ToGetResourcePolicyPolicyArrayOutputWithContext(context.Background())
-}
-
-func (i GetResourcePolicyPolicyArray) ToGetResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) GetResourcePolicyPolicyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetResourcePolicyPolicyArrayOutput)
-}
-
-type GetResourcePolicyPolicyOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePolicyPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (o GetResourcePolicyPolicyOutput) ToGetResourcePolicyPolicyOutput() GetResourcePolicyPolicyOutput {
-	return o
-}
-
-func (o GetResourcePolicyPolicyOutput) ToGetResourcePolicyPolicyOutputWithContext(ctx context.Context) GetResourcePolicyPolicyOutput {
-	return o
-}
-
-// A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-func (o GetResourcePolicyPolicyOutput) Body() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePolicyPolicy) string { return v.Body }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal character string that identifies the policy.
-func (o GetResourcePolicyPolicyOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcePolicyPolicy) string { return v.Id }).(pulumi.StringOutput)
-}
-
-type GetResourcePolicyPolicyArrayOutput struct{ *pulumi.OutputState }
-
-func (GetResourcePolicyPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetResourcePolicyPolicy)(nil)).Elem()
-}
-
-func (o GetResourcePolicyPolicyArrayOutput) ToGetResourcePolicyPolicyArrayOutput() GetResourcePolicyPolicyArrayOutput {
-	return o
-}
-
-func (o GetResourcePolicyPolicyArrayOutput) ToGetResourcePolicyPolicyArrayOutputWithContext(ctx context.Context) GetResourcePolicyPolicyArrayOutput {
-	return o
-}
-
-func (o GetResourcePolicyPolicyArrayOutput) Index(i pulumi.IntInput) GetResourcePolicyPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetResourcePolicyPolicy {
-		return vs[0].([]GetResourcePolicyPolicy)[vs[1].(int)]
-	}).(GetResourcePolicyPolicyOutput)
-}
-
 type GetSearchDeploymentSpec struct {
 	// Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
 	InstanceSize string `pulumi:"instanceSize"`
@@ -55040,12 +53968,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRolePtrInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PushBasedLogExportTimeoutsInput)(nil)).Elem(), PushBasedLogExportTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PushBasedLogExportTimeoutsPtrInput)(nil)).Elem(), PushBasedLogExportTimeoutsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyCreatedByUserInput)(nil)).Elem(), ResourcePolicyCreatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyCreatedByUserPtrInput)(nil)).Elem(), ResourcePolicyCreatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyLastUpdatedByUserInput)(nil)).Elem(), ResourcePolicyLastUpdatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyLastUpdatedByUserPtrInput)(nil)).Elem(), ResourcePolicyLastUpdatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyPolicyInput)(nil)).Elem(), ResourcePolicyPolicyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePolicyPolicyArrayInput)(nil)).Elem(), ResourcePolicyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecInput)(nil)).Elem(), SearchDeploymentSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecArrayInput)(nil)).Elem(), SearchDeploymentSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentTimeoutsInput)(nil)).Elem(), SearchDeploymentTimeoutsArgs{})
@@ -55448,6 +54370,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultBackupSettingsInput)(nil)).Elem(), GetFlexClustersResultBackupSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultConnectionStringsInput)(nil)).Elem(), GetFlexClustersResultConnectionStringsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexClustersResultProviderSettingsInput)(nil)).Elem(), GetFlexClustersResultProviderSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexRestoreJobsResultInput)(nil)).Elem(), GetFlexRestoreJobsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexRestoreJobsResultArrayInput)(nil)).Elem(), GetFlexRestoreJobsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexSnapshotsResultInput)(nil)).Elem(), GetFlexSnapshotsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexSnapshotsResultArrayInput)(nil)).Elem(), GetFlexSnapshotsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalClusterConfigManagedNamespaceInput)(nil)).Elem(), GetGlobalClusterConfigManagedNamespaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalClusterConfigManagedNamespaceArrayInput)(nil)).Elem(), GetGlobalClusterConfigManagedNamespaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapConfigurationUserToDnMappingInput)(nil)).Elem(), GetLdapConfigurationUserToDnMappingArgs{})
@@ -55518,22 +54444,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultLimitArrayInput)(nil)).Elem(), GetProjectsResultLimitArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamInput)(nil)).Elem(), GetProjectsResultTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamArrayInput)(nil)).Elem(), GetProjectsResultTeamArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyArrayInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyCreatedByUserInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyCreatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyLastUpdatedByUserInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyPolicyInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyPolicyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResourcePolicyPolicyArrayInput)(nil)).Elem(), GetResourcePoliciesResourcePolicyPolicyArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultInput)(nil)).Elem(), GetResourcePoliciesResultArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultArrayInput)(nil)).Elem(), GetResourcePoliciesResultArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultCreatedByUserInput)(nil)).Elem(), GetResourcePoliciesResultCreatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultLastUpdatedByUserInput)(nil)).Elem(), GetResourcePoliciesResultLastUpdatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultPolicyInput)(nil)).Elem(), GetResourcePoliciesResultPolicyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePoliciesResultPolicyArrayInput)(nil)).Elem(), GetResourcePoliciesResultPolicyArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePolicyCreatedByUserInput)(nil)).Elem(), GetResourcePolicyCreatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePolicyLastUpdatedByUserInput)(nil)).Elem(), GetResourcePolicyLastUpdatedByUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePolicyPolicyInput)(nil)).Elem(), GetResourcePolicyPolicyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcePolicyPolicyArrayInput)(nil)).Elem(), GetResourcePolicyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchDeploymentSpecInput)(nil)).Elem(), GetSearchDeploymentSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchDeploymentSpecArrayInput)(nil)).Elem(), GetSearchDeploymentSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexSynonymInput)(nil)).Elem(), GetSearchIndexSynonymArgs{})
@@ -55802,12 +54712,6 @@ func init() {
 	pulumi.RegisterOutputType(ProviderAssumeRolePtrOutput{})
 	pulumi.RegisterOutputType(PushBasedLogExportTimeoutsOutput{})
 	pulumi.RegisterOutputType(PushBasedLogExportTimeoutsPtrOutput{})
-	pulumi.RegisterOutputType(ResourcePolicyCreatedByUserOutput{})
-	pulumi.RegisterOutputType(ResourcePolicyCreatedByUserPtrOutput{})
-	pulumi.RegisterOutputType(ResourcePolicyLastUpdatedByUserOutput{})
-	pulumi.RegisterOutputType(ResourcePolicyLastUpdatedByUserPtrOutput{})
-	pulumi.RegisterOutputType(ResourcePolicyPolicyOutput{})
-	pulumi.RegisterOutputType(ResourcePolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentSpecOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentSpecArrayOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentTimeoutsOutput{})
@@ -56210,6 +55114,10 @@ func init() {
 	pulumi.RegisterOutputType(GetFlexClustersResultBackupSettingsOutput{})
 	pulumi.RegisterOutputType(GetFlexClustersResultConnectionStringsOutput{})
 	pulumi.RegisterOutputType(GetFlexClustersResultProviderSettingsOutput{})
+	pulumi.RegisterOutputType(GetFlexRestoreJobsResultOutput{})
+	pulumi.RegisterOutputType(GetFlexRestoreJobsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetFlexSnapshotsResultOutput{})
+	pulumi.RegisterOutputType(GetFlexSnapshotsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceArrayOutput{})
 	pulumi.RegisterOutputType(GetLdapConfigurationUserToDnMappingOutput{})
@@ -56280,22 +55188,6 @@ func init() {
 	pulumi.RegisterOutputType(GetProjectsResultLimitArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamArrayOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyArrayOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyCreatedByUserOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyLastUpdatedByUserOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyPolicyOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResourcePolicyPolicyArrayOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResultOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResultArrayOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResultCreatedByUserOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResultLastUpdatedByUserOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResultPolicyOutput{})
-	pulumi.RegisterOutputType(GetResourcePoliciesResultPolicyArrayOutput{})
-	pulumi.RegisterOutputType(GetResourcePolicyCreatedByUserOutput{})
-	pulumi.RegisterOutputType(GetResourcePolicyLastUpdatedByUserOutput{})
-	pulumi.RegisterOutputType(GetResourcePolicyPolicyOutput{})
-	pulumi.RegisterOutputType(GetResourcePolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchDeploymentSpecOutput{})
 	pulumi.RegisterOutputType(GetSearchDeploymentSpecArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexSynonymOutput{})

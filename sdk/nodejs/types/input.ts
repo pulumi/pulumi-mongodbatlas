@@ -145,7 +145,7 @@ export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -222,7 +222,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     autoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling>;
     /**
-     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
      */
     backingProviderName?: pulumi.Input<string>;
     /**
@@ -242,7 +242,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: pulumi.Input<string>;
     /**
@@ -1070,7 +1070,7 @@ export interface ClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
     providerName?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -2171,39 +2171,6 @@ export interface PushBasedLogExportTimeouts {
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
     update?: pulumi.Input<string>;
-}
-
-export interface ResourcePolicyCreatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name?: pulumi.Input<string>;
-}
-
-export interface ResourcePolicyLastUpdatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name?: pulumi.Input<string>;
-}
-
-export interface ResourcePolicyPolicy {
-    /**
-     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-     */
-    body: pulumi.Input<string>;
-    /**
-     * Unique 24-hexadecimal character string that identifies the policy.
-     */
-    id?: pulumi.Input<string>;
 }
 
 export interface SearchDeploymentSpec {

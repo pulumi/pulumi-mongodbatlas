@@ -145,7 +145,7 @@ export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: string;
     region: string;
@@ -222,7 +222,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     autoScaling: outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling;
     /**
-     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
      */
     backingProviderName?: string;
     /**
@@ -242,7 +242,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: string;
     /**
@@ -1070,7 +1070,7 @@ export interface ClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
     providerName: string;
     region: string;
@@ -5933,6 +5933,100 @@ export interface GetFlexClustersResultProviderSettings {
     regionName: string;
 }
 
+export interface GetFlexRestoreJobsResult {
+    /**
+     * Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+     */
+    deliveryType: string;
+    /**
+     * Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expirationDate: string;
+    /**
+     * Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+     */
+    name: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     */
+    projectId: string;
+    /**
+     * Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    restoreFinishedDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the restore job.
+     */
+    restoreJobId: string;
+    /**
+     * Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    restoreScheduledDate: string;
+    /**
+     * Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    snapshotFinishedDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     */
+    snapshotId: string;
+    /**
+     * Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+     */
+    snapshotUrl: string;
+    /**
+     * Phase of the restore workflow for this job at the time this resource made this request.
+     */
+    status: string;
+    /**
+     * Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+     */
+    targetDeploymentItemName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+     */
+    targetProjectId: string;
+}
+
+export interface GetFlexSnapshotsResult {
+    /**
+     * Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiration: string;
+    /**
+     * Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    finishTime: string;
+    /**
+     * MongoDB host version that the snapshot runs.
+     */
+    mongoDbVersion: string;
+    /**
+     * Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+     */
+    name: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     */
+    projectId: string;
+    /**
+     * Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    scheduledTime: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     */
+    snapshotId: string;
+    /**
+     * Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    startTime: string;
+    /**
+     * Phase of the restore workflow for this job at the time this resource made this request.
+     */
+    status: string;
+}
+
 export interface GetGlobalClusterConfigManagedNamespace {
     /**
      * (Required) The name of the collection associated with the managed namespace.
@@ -6545,183 +6639,6 @@ export interface GetProjectsResultTeam {
      * The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
      */
     teamId: string;
-}
-
-export interface GetResourcePoliciesResourcePolicy {
-    /**
-     * The user that last updated the Atlas resource policy.
-     */
-    createdByUser: outputs.GetResourcePoliciesResourcePolicyCreatedByUser;
-    /**
-     * Date and time in UTC when the Atlas resource policy was created.
-     */
-    createdDate: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-     */
-    id: string;
-    /**
-     * The user that last updated the Atlas resource policy.
-     */
-    lastUpdatedByUser: outputs.GetResourcePoliciesResourcePolicyLastUpdatedByUser;
-    /**
-     * Date and time in UTC when the Atlas resource policy was last updated.
-     */
-    lastUpdatedDate: string;
-    /**
-     * Human-readable label that describes the Atlas resource policy.
-     */
-    name: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-     */
-    orgId: string;
-    /**
-     * List of policies that make up the Atlas resource policy.
-     */
-    policies: outputs.GetResourcePoliciesResourcePolicyPolicy[];
-    /**
-     * A string that identifies the version of the Atlas resource policy.
-     */
-    version: string;
-}
-
-export interface GetResourcePoliciesResourcePolicyCreatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id: string;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name: string;
-}
-
-export interface GetResourcePoliciesResourcePolicyLastUpdatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id: string;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name: string;
-}
-
-export interface GetResourcePoliciesResourcePolicyPolicy {
-    /**
-     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-     */
-    body: string;
-    /**
-     * Unique 24-hexadecimal character string that identifies the policy.
-     */
-    id: string;
-}
-
-export interface GetResourcePoliciesResult {
-    /**
-     * The user that last updated the Atlas resource policy.
-     */
-    createdByUser: outputs.GetResourcePoliciesResultCreatedByUser;
-    /**
-     * Date and time in UTC when the Atlas resource policy was created.
-     */
-    createdDate: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
-     */
-    id: string;
-    /**
-     * The user that last updated the Atlas resource policy.
-     */
-    lastUpdatedByUser: outputs.GetResourcePoliciesResultLastUpdatedByUser;
-    /**
-     * Date and time in UTC when the Atlas resource policy was last updated.
-     */
-    lastUpdatedDate: string;
-    /**
-     * Human-readable label that describes the Atlas resource policy.
-     */
-    name: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-     */
-    orgId: string;
-    /**
-     * List of policies that make up the Atlas resource policy.
-     */
-    policies: outputs.GetResourcePoliciesResultPolicy[];
-    /**
-     * A string that identifies the version of the Atlas resource policy.
-     */
-    version: string;
-}
-
-export interface GetResourcePoliciesResultCreatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id: string;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name: string;
-}
-
-export interface GetResourcePoliciesResultLastUpdatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id: string;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name: string;
-}
-
-export interface GetResourcePoliciesResultPolicy {
-    /**
-     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-     */
-    body: string;
-    /**
-     * Unique 24-hexadecimal character string that identifies the policy.
-     */
-    id: string;
-}
-
-export interface GetResourcePolicyCreatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id: string;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name: string;
-}
-
-export interface GetResourcePolicyLastUpdatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id: string;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name: string;
-}
-
-export interface GetResourcePolicyPolicy {
-    /**
-     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-     */
-    body: string;
-    /**
-     * Unique 24-hexadecimal character string that identifies the policy.
-     */
-    id: string;
 }
 
 export interface GetSearchDeploymentSpec {
@@ -7591,39 +7508,6 @@ export interface PushBasedLogExportTimeouts {
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
     update?: string;
-}
-
-export interface ResourcePolicyCreatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id: string;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name: string;
-}
-
-export interface ResourcePolicyLastUpdatedByUser {
-    /**
-     * Unique 24-hexadecimal character string that identifies a user.
-     */
-    id: string;
-    /**
-     * Human-readable label that describes a user.
-     */
-    name: string;
-}
-
-export interface ResourcePolicyPolicy {
-    /**
-     * A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
-     */
-    body: string;
-    /**
-     * Unique 24-hexadecimal character string that identifies the policy.
-     */
-    id: string;
 }
 
 export interface SearchDeploymentSpec {
