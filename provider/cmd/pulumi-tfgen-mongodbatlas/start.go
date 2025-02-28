@@ -14,8 +14,12 @@
 
 package main
 
-import _ "github.com/pulumi/pulumi-mongodbatlas/provider/v3/cmd/pulumi-tfgen-mongodbatlas/init"
+import (
+	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v3"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
+)
 
-func main() {
-	start()
+func start() {
+	// Modify the path to point to the new provider
+	tfgen.MainWithMuxer("mongodbatlas", mongodbatlas.Provider())
 }

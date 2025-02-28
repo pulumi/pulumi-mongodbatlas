@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package initialize
 
-import _ "github.com/pulumi/pulumi-mongodbatlas/provider/v3/cmd/pulumi-tfgen-mongodbatlas/init"
+import "os"
 
-func main() {
-	start()
+func init() {
+	os.Setenv("MONGODB_ATLAS_ENABLE_PREVIEW", "true")
 }
