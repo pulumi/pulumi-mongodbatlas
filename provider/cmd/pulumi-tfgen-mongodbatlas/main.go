@@ -15,12 +15,19 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
+	"os"
 
 	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v3"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
 )
 
 func main() {
+	// This makes sure experimental resources are included in the schema.
+	//
+	// It is unusual to set environment variables here but doing it in this way is a fool-prof
+	// way to ensure that all CI and local workflows agree on the schema of the provider.
+	os.Setenv("MONGODB_ATLAS_ENABLE_PREVIEW", "true")
+
 	// Modify the path to point to the new provider
 	tfgen.MainWithMuxer("mongodbatlas", mongodbatlas.Provider())
 }
