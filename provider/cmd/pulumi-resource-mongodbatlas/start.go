@@ -12,10 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//go:generate go run ./generate.go
+
 package main
 
-import _ "github.com/pulumi/pulumi-mongodbatlas/provider/v3/cmd/pulumi-resource-mongodbatlas/init"
+import (
+	"context"
 
-func main() {
-	start()
+	_ "embed"
+
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
+
+	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v3"
+)
+
+//go:embed schema-embed.json
+var pulumiSchema []byte
+
+func start() {
+	ctx := context.Background()
+	tfbridge.MainWithMuxer(ctx, "mongodbatlas", mongodbatlas.Provider(), pulumiSchema)
 }

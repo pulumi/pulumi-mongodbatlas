@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package initialize
 
-import _ "github.com/pulumi/pulumi-mongodbatlas/provider/v3/cmd/pulumi-resource-mongodbatlas/init"
+import "os"
 
-func main() {
-	start()
+func init() {
+	// This variable affects the schema of the provider. The most foolproof way to make sure it
+	// is set in local and CI build contexts is setting it in code over here.
+	os.Setenv("MONGODB_ATLAS_ENABLE_PREVIEW", "true")
 }
