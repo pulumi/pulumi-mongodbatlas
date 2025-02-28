@@ -17,5 +17,7 @@ package initialize
 import "os"
 
 func init() {
+	// This variable affects the schema of the provider. The most foolproof way to make sure it
+	// is set in local and CI build contexts is setting it in code over here.
 	os.Setenv("MONGODB_ATLAS_ENABLE_PREVIEW", "true")
 }
