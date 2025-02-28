@@ -77,6 +77,21 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
     }
 
     /**
+     * Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+     * 
+     */
+    @Import(name="requirePrivateNetworking")
+    private @Nullable Output<Boolean> requirePrivateNetworking;
+
+    /**
+     * @return Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+     * 
+     */
+    public Optional<Output<Boolean>> requirePrivateNetworking() {
+        return Optional.ofNullable(this.requirePrivateNetworking);
+    }
+
+    /**
      * Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      * 
      */
@@ -128,6 +143,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         this.customerMasterKeyId = $.customerMasterKeyId;
         this.enabled = $.enabled;
         this.region = $.region;
+        this.requirePrivateNetworking = $.requirePrivateNetworking;
         this.roleId = $.roleId;
         this.secretAccessKey = $.secretAccessKey;
         this.valid = $.valid;
@@ -233,6 +249,27 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param requirePrivateNetworking Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requirePrivateNetworking(@Nullable Output<Boolean> requirePrivateNetworking) {
+            $.requirePrivateNetworking = requirePrivateNetworking;
+            return this;
+        }
+
+        /**
+         * @param requirePrivateNetworking Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requirePrivateNetworking(Boolean requirePrivateNetworking) {
+            return requirePrivateNetworking(Output.of(requirePrivateNetworking));
         }
 
         /**
