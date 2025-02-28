@@ -87,6 +87,10 @@ from .get_federated_settings_org_role_mapping import *
 from .get_federated_settings_org_role_mappings import *
 from .get_flex_cluster import *
 from .get_flex_clusters import *
+from .get_flex_restore_job import *
+from .get_flex_restore_jobs import *
+from .get_flex_snapshot import *
+from .get_flex_snapshots import *
 from .get_global_cluster_config import *
 from .get_ldap_configuration import *
 from .get_ldap_verify import *

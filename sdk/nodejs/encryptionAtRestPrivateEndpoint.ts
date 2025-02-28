@@ -9,10 +9,7 @@ import * as utilities from "./utilities";
  *
  * `mongodbatlas.EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
  *
- * > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
- * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
- *
- * > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjust by configuring `azure_key_vault_config.require_private_networking` to true. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
+ * > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
  *
  * > **NOTE:** This resource does not support update operations. To modify values of a private endpoint the existing resource must be deleted and a new one can be created with the modified values.
  *
@@ -20,9 +17,10 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
- * > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+ * > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
  *
  * ### Configuring Atlas Encryption at Rest using Azure Key Vault with Azure Private Link
+ * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
  *
  * Make sure to reference the complete example section for detailed steps and considerations.
  *
@@ -66,6 +64,32 @@ import * as utilities from "./utilities";
  *             },
  *         },
  *     }),
+ * });
+ * ```
+ *
+ * ### Configuring Atlas Encryption at Rest using AWS KMS with AWS PrivateLink
+ *
+ * Make sure to reference the complete example section for detailed steps and considerations.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const ear = new mongodbatlas.EncryptionAtRest("ear", {
+ *     projectId: atlasProjectId,
+ *     awsKmsConfig: {
+ *         requirePrivateNetworking: true,
+ *         enabled: true,
+ *         customerMasterKeyId: awsKmsKeyId,
+ *         region: atlasAwsRegion,
+ *         roleId: authRole.roleId,
+ *     },
+ * });
+ * // Creates private endpoint
+ * const endpoint = new mongodbatlas.EncryptionAtRestPrivateEndpoint("endpoint", {
+ *     projectId: ear.projectId,
+ *     cloudProvider: "AWS",
+ *     regionName: atlasAwsRegion,
  * });
  * ```
  *

@@ -99,7 +99,7 @@ type MaintenanceWindow struct {
 	DayOfWeek pulumi.IntOutput `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer pulumi.BoolOutput `pulumi:"defer"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
 	HourOfDay pulumi.IntOutput `pulumi:"hourOfDay"`
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntOutput `pulumi:"numberOfDeferrals"`
@@ -152,7 +152,7 @@ type maintenanceWindowState struct {
 	DayOfWeek *int `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer *bool `pulumi:"defer"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
 	HourOfDay *int `pulumi:"hourOfDay"`
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals *int `pulumi:"numberOfDeferrals"`
@@ -170,7 +170,7 @@ type MaintenanceWindowState struct {
 	DayOfWeek pulumi.IntPtrInput
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer pulumi.BoolPtrInput
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
 	HourOfDay pulumi.IntPtrInput
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntPtrInput
@@ -192,7 +192,7 @@ type maintenanceWindowArgs struct {
 	DayOfWeek int `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer *bool `pulumi:"defer"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
 	HourOfDay *int `pulumi:"hourOfDay"`
 	// The unique identifier of the project for the Maintenance Window.
 	ProjectId string `pulumi:"projectId"`
@@ -209,7 +209,7 @@ type MaintenanceWindowArgs struct {
 	DayOfWeek pulumi.IntInput
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer pulumi.BoolPtrInput
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
 	HourOfDay pulumi.IntPtrInput
 	// The unique identifier of the project for the Maintenance Window.
 	ProjectId pulumi.StringInput
@@ -323,7 +323,7 @@ func (o MaintenanceWindowOutput) Defer() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.Defer }).(pulumi.BoolOutput)
 }
 
-// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
 func (o MaintenanceWindowOutput) HourOfDay() pulumi.IntOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.HourOfDay }).(pulumi.IntOutput)
 }

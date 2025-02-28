@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling? AutoScaling;
         /// <summary>
-        /// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        /// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         /// </summary>
         public readonly string? BackingProviderName;
         /// <summary>
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// - `AWS` - Amazon AWS
         /// - `GCP` - Google Cloud Platform
         /// - `AZURE` - Microsoft Azure
-        /// - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        /// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         /// </summary>
         public readonly string ProviderName;
         /// <summary>

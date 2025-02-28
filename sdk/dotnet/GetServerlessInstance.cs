@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetServerlessInstance
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ServerlessInstance
+        /// **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
         /// 
         /// `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServerlessInstanceResult>("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args ?? new GetServerlessInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ServerlessInstance
+        /// **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
         /// 
         /// `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -96,7 +96,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetServerlessInstanceResult>("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args ?? new GetServerlessInstanceInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ServerlessInstance
+        /// **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
         /// 
         /// `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.

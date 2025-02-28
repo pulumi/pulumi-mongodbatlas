@@ -33,6 +33,11 @@ public final class EncryptionAtRestAwsKmsConfig {
      */
     private @Nullable String region;
     /**
+     * @return Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+     * 
+     */
+    private @Nullable Boolean requirePrivateNetworking;
+    /**
      * @return Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      * 
      */
@@ -78,6 +83,13 @@ public final class EncryptionAtRestAwsKmsConfig {
         return Optional.ofNullable(this.region);
     }
     /**
+     * @return Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+     * 
+     */
+    public Optional<Boolean> requirePrivateNetworking() {
+        return Optional.ofNullable(this.requirePrivateNetworking);
+    }
+    /**
      * @return Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      * 
      */
@@ -112,6 +124,7 @@ public final class EncryptionAtRestAwsKmsConfig {
         private @Nullable String customerMasterKeyId;
         private @Nullable Boolean enabled;
         private @Nullable String region;
+        private @Nullable Boolean requirePrivateNetworking;
         private @Nullable String roleId;
         private @Nullable String secretAccessKey;
         private @Nullable Boolean valid;
@@ -122,6 +135,7 @@ public final class EncryptionAtRestAwsKmsConfig {
     	      this.customerMasterKeyId = defaults.customerMasterKeyId;
     	      this.enabled = defaults.enabled;
     	      this.region = defaults.region;
+    	      this.requirePrivateNetworking = defaults.requirePrivateNetworking;
     	      this.roleId = defaults.roleId;
     	      this.secretAccessKey = defaults.secretAccessKey;
     	      this.valid = defaults.valid;
@@ -152,6 +166,12 @@ public final class EncryptionAtRestAwsKmsConfig {
             return this;
         }
         @CustomType.Setter
+        public Builder requirePrivateNetworking(@Nullable Boolean requirePrivateNetworking) {
+
+            this.requirePrivateNetworking = requirePrivateNetworking;
+            return this;
+        }
+        @CustomType.Setter
         public Builder roleId(@Nullable String roleId) {
 
             this.roleId = roleId;
@@ -175,6 +195,7 @@ public final class EncryptionAtRestAwsKmsConfig {
             _resultValue.customerMasterKeyId = customerMasterKeyId;
             _resultValue.enabled = enabled;
             _resultValue.region = region;
+            _resultValue.requirePrivateNetworking = requirePrivateNetworking;
             _resultValue.roleId = roleId;
             _resultValue.secretAccessKey = secretAccessKey;
             _resultValue.valid = valid;

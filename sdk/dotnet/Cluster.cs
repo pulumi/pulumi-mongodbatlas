@@ -338,7 +338,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
         /// 
-        /// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+        /// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
         /// 
         /// The possible values are:
         /// 
@@ -537,7 +537,7 @@ namespace Pulumi.Mongodbatlas
         /// - `AWS` - Amazon AWS
         /// - `GCP` - Google Cloud Platform
         /// - `AZURE` - Microsoft Azure
-        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
@@ -695,7 +695,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
         /// 
-        /// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+        /// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
         /// 
         /// The possible values are:
         /// 
@@ -855,7 +855,7 @@ namespace Pulumi.Mongodbatlas
         /// - `AWS` - Amazon AWS
         /// - `GCP` - Google Cloud Platform
         /// - `AZURE` - Microsoft Azure
-        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -963,7 +963,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
         /// 
-        /// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+        /// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M0.
         /// 
         /// The possible values are:
         /// 
@@ -1174,7 +1174,7 @@ namespace Pulumi.Mongodbatlas
         /// - `AWS` - Amazon AWS
         /// - `GCP` - Google Cloud Platform
         /// - `AZURE` - Microsoft Azure
-        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }

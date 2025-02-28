@@ -95,7 +95,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
      */
     public readonly defer!: pulumi.Output<boolean>;
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
      */
     public readonly hourOfDay!: pulumi.Output<number>;
     /**
@@ -172,7 +172,7 @@ export interface MaintenanceWindowState {
      */
     defer?: pulumi.Input<boolean>;
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
      */
     hourOfDay?: pulumi.Input<number>;
     /**
@@ -207,7 +207,7 @@ export interface MaintenanceWindowArgs {
      */
     defer?: pulumi.Input<boolean>;
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
      */
     hourOfDay?: pulumi.Input<number>;
     /**

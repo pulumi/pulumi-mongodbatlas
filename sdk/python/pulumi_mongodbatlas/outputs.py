@@ -338,6 +338,8 @@ __all__ = [
     'GetFlexClustersResultBackupSettingsResult',
     'GetFlexClustersResultConnectionStringsResult',
     'GetFlexClustersResultProviderSettingsResult',
+    'GetFlexRestoreJobsResultResult',
+    'GetFlexSnapshotsResultResult',
     'GetGlobalClusterConfigManagedNamespaceResult',
     'GetLdapConfigurationUserToDnMappingResult',
     'GetLdapVerifyLinkResult',
@@ -935,7 +937,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -959,7 +961,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1221,12 +1223,12 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
-        :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
         """
@@ -1266,7 +1268,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1306,7 +1308,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
     @pulumi.getter(name="backingProviderName")
     def backing_provider_name(self) -> Optional[str]:
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         """
         return pulumi.get(self, "backing_provider_name")
 
@@ -4494,7 +4496,7 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -4519,7 +4521,7 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         return pulumi.get(self, "provider_name")
 
@@ -5889,6 +5891,8 @@ class EncryptionAtRestAwsKmsConfig(dict):
             suggest = "access_key_id"
         elif key == "customerMasterKeyId":
             suggest = "customer_master_key_id"
+        elif key == "requirePrivateNetworking":
+            suggest = "require_private_networking"
         elif key == "roleId":
             suggest = "role_id"
         elif key == "secretAccessKey":
@@ -5910,6 +5914,7 @@ class EncryptionAtRestAwsKmsConfig(dict):
                  customer_master_key_id: Optional[str] = None,
                  enabled: Optional[bool] = None,
                  region: Optional[str] = None,
+                 require_private_networking: Optional[bool] = None,
                  role_id: Optional[str] = None,
                  secret_access_key: Optional[str] = None,
                  valid: Optional[bool] = None):
@@ -5918,6 +5923,7 @@ class EncryptionAtRestAwsKmsConfig(dict):
         :param str customer_master_key_id: Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
         :param bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         :param str region: Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+        :param bool require_private_networking: Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
         :param str role_id: Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
         :param str secret_access_key: Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
         :param bool valid: Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
@@ -5930,6 +5936,8 @@ class EncryptionAtRestAwsKmsConfig(dict):
             pulumi.set(__self__, "enabled", enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if require_private_networking is not None:
+            pulumi.set(__self__, "require_private_networking", require_private_networking)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
         if secret_access_key is not None:
@@ -5968,6 +5976,14 @@ class EncryptionAtRestAwsKmsConfig(dict):
         Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="requirePrivateNetworking")
+    def require_private_networking(self) -> Optional[bool]:
+        """
+        Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+        """
+        return pulumi.get(self, "require_private_networking")
 
     @property
     @pulumi.getter(name="roleId")
@@ -17593,6 +17609,7 @@ class GetEncryptionAtRestAwsKmsConfigResult(dict):
                  customer_master_key_id: str,
                  enabled: bool,
                  region: str,
+                 require_private_networking: bool,
                  role_id: str,
                  secret_access_key: str,
                  valid: bool):
@@ -17601,6 +17618,7 @@ class GetEncryptionAtRestAwsKmsConfigResult(dict):
         :param str customer_master_key_id: Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
         :param bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         :param str region: Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+        :param bool require_private_networking: Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
         :param str role_id: Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
         :param str secret_access_key: Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
         :param bool valid: Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
@@ -17609,6 +17627,7 @@ class GetEncryptionAtRestAwsKmsConfigResult(dict):
         pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "require_private_networking", require_private_networking)
         pulumi.set(__self__, "role_id", role_id)
         pulumi.set(__self__, "secret_access_key", secret_access_key)
         pulumi.set(__self__, "valid", valid)
@@ -17644,6 +17663,14 @@ class GetEncryptionAtRestAwsKmsConfigResult(dict):
         Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="requirePrivateNetworking")
+    def require_private_networking(self) -> bool:
+        """
+        Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+        """
+        return pulumi.get(self, "require_private_networking")
 
     @property
     @pulumi.getter(name="roleId")
@@ -21050,6 +21077,262 @@ class GetFlexClustersResultProviderSettingsResult(dict):
         Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         """
         return pulumi.get(self, "region_name")
+
+
+@pulumi.output_type
+class GetFlexRestoreJobsResultResult(dict):
+    def __init__(__self__, *,
+                 delivery_type: str,
+                 expiration_date: str,
+                 name: str,
+                 project_id: str,
+                 restore_finished_date: str,
+                 restore_job_id: str,
+                 restore_scheduled_date: str,
+                 snapshot_finished_date: str,
+                 snapshot_id: str,
+                 snapshot_url: str,
+                 status: str,
+                 target_deployment_item_name: str,
+                 target_project_id: str):
+        """
+        :param str delivery_type: Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+        :param str expiration_date: Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param str restore_finished_date: Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str restore_job_id: Unique 24-hexadecimal digit string that identifies the restore job.
+        :param str restore_scheduled_date: Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str snapshot_finished_date: Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        :param str snapshot_url: Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+        :param str status: Phase of the restore workflow for this job at the time this resource made this request.
+        :param str target_deployment_item_name: Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+        :param str target_project_id: Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+        """
+        pulumi.set(__self__, "delivery_type", delivery_type)
+        pulumi.set(__self__, "expiration_date", expiration_date)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "restore_finished_date", restore_finished_date)
+        pulumi.set(__self__, "restore_job_id", restore_job_id)
+        pulumi.set(__self__, "restore_scheduled_date", restore_scheduled_date)
+        pulumi.set(__self__, "snapshot_finished_date", snapshot_finished_date)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "snapshot_url", snapshot_url)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "target_deployment_item_name", target_deployment_item_name)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+
+    @property
+    @pulumi.getter(name="deliveryType")
+    def delivery_type(self) -> str:
+        """
+        Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+        """
+        return pulumi.get(self, "delivery_type")
+
+    @property
+    @pulumi.getter(name="expirationDate")
+    def expiration_date(self) -> str:
+        """
+        Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expiration_date")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="restoreFinishedDate")
+    def restore_finished_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "restore_finished_date")
+
+    @property
+    @pulumi.getter(name="restoreJobId")
+    def restore_job_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the restore job.
+        """
+        return pulumi.get(self, "restore_job_id")
+
+    @property
+    @pulumi.getter(name="restoreScheduledDate")
+    def restore_scheduled_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "restore_scheduled_date")
+
+    @property
+    @pulumi.getter(name="snapshotFinishedDate")
+    def snapshot_finished_date(self) -> str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "snapshot_finished_date")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="snapshotUrl")
+    def snapshot_url(self) -> str:
+        """
+        Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+        """
+        return pulumi.get(self, "snapshot_url")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Phase of the restore workflow for this job at the time this resource made this request.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="targetDeploymentItemName")
+    def target_deployment_item_name(self) -> str:
+        """
+        Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+        """
+        return pulumi.get(self, "target_deployment_item_name")
+
+    @property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+        """
+        return pulumi.get(self, "target_project_id")
+
+
+@pulumi.output_type
+class GetFlexSnapshotsResultResult(dict):
+    def __init__(__self__, *,
+                 expiration: str,
+                 finish_time: str,
+                 mongo_db_version: str,
+                 name: str,
+                 project_id: str,
+                 scheduled_time: str,
+                 snapshot_id: str,
+                 start_time: str,
+                 status: str):
+        """
+        :param str expiration: Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str finish_time: Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str mongo_db_version: MongoDB host version that the snapshot runs.
+        :param str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param str scheduled_time: Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        :param str start_time: Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param str status: Phase of the restore workflow for this job at the time this resource made this request.
+        """
+        pulumi.set(__self__, "expiration", expiration)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "scheduled_time", scheduled_time)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def expiration(self) -> str:
+        """
+        Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expiration")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter(name="mongoDbVersion")
+    def mongo_db_version(self) -> str:
+        """
+        MongoDB host version that the snapshot runs.
+        """
+        return pulumi.get(self, "mongo_db_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="scheduledTime")
+    def scheduled_time(self) -> str:
+        """
+        Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "scheduled_time")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Phase of the restore workflow for this job at the time this resource made this request.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type

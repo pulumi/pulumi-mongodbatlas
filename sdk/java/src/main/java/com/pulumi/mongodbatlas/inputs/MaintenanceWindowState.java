@@ -70,14 +70,14 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
      * 
      */
     @Import(name="hourOfDay")
     private @Nullable Output<Integer> hourOfDay;
 
     /**
-     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
      * 
      */
     public Optional<Output<Integer>> hourOfDay() {
@@ -233,7 +233,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
          * 
          * @return builder
          * 
@@ -244,7 +244,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
          * 
          * @return builder
          * 

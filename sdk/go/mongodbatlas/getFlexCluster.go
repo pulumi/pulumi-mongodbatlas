@@ -15,7 +15,7 @@ import (
 //
 // `FlexCluster` describes a flex cluster.
 //
-// **NOTE:** Flex Cluster is in Public Preview. In order to use the resource and data sources you need to set the environment variable MONGODB_ATLAS_ENABLE_PREVIEW to true.
+// **RECOMMENDATION:** We recommend using the `AdvancedCluster` data source instead of `FlexCluster` data source to retrieve Flex clusters. The `AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.
 //
 // ## Example Usage
 func LookupFlexCluster(ctx *pulumi.Context, args *LookupFlexClusterArgs, opts ...pulumi.InvokeOption) (*LookupFlexClusterResult, error) {

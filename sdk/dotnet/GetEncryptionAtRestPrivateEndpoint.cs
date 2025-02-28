@@ -16,14 +16,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
         /// 
-        /// &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager. 
-        /// To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
-        /// 
         /// ## Example Usage
         /// 
         /// ### S
         /// 
-        /// &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+        /// &gt; **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+        /// 
+        /// ### Encryption At Rest Azure Key Vault Private Endpoint
+        /// To learn more, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -43,6 +43,29 @@ namespace Pulumi.Mongodbatlas
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
         ///         ["endpointConnectionName"] = single.Apply(getEncryptionAtRestPrivateEndpointResult =&gt; getEncryptionAtRestPrivateEndpointResult.PrivateEndpointConnectionName),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Encryption At Rest AWS KMS Private Endpoint
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = atlasProjectId,
+        ///         CloudProvider = "AWS",
+        ///         Id = endpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["status"] = single.Apply(getEncryptionAtRestPrivateEndpointResult =&gt; getEncryptionAtRestPrivateEndpointResult.Status),
         ///     };
         /// });
         /// ```
@@ -55,14 +78,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
         /// 
-        /// &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager. 
-        /// To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
-        /// 
         /// ## Example Usage
         /// 
         /// ### S
         /// 
-        /// &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+        /// &gt; **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+        /// 
+        /// ### Encryption At Rest Azure Key Vault Private Endpoint
+        /// To learn more, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -85,6 +108,29 @@ namespace Pulumi.Mongodbatlas
         ///     };
         /// });
         /// ```
+        /// 
+        /// ### Encryption At Rest AWS KMS Private Endpoint
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = atlasProjectId,
+        ///         CloudProvider = "AWS",
+        ///         Id = endpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["status"] = single.Apply(getEncryptionAtRestPrivateEndpointResult =&gt; getEncryptionAtRestPrivateEndpointResult.Status),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetEncryptionAtRestPrivateEndpointResult> Invoke(GetEncryptionAtRestPrivateEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEncryptionAtRestPrivateEndpointResult>("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", args ?? new GetEncryptionAtRestPrivateEndpointInvokeArgs(), options.WithDefaults());
@@ -94,14 +140,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
         /// 
-        /// &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager. 
-        /// To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
-        /// 
         /// ## Example Usage
         /// 
         /// ### S
         /// 
-        /// &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+        /// &gt; **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+        /// 
+        /// ### Encryption At Rest Azure Key Vault Private Endpoint
+        /// To learn more, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -121,6 +167,29 @@ namespace Pulumi.Mongodbatlas
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
         ///         ["endpointConnectionName"] = single.Apply(getEncryptionAtRestPrivateEndpointResult =&gt; getEncryptionAtRestPrivateEndpointResult.PrivateEndpointConnectionName),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Encryption At Rest AWS KMS Private Endpoint
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = atlasProjectId,
+        ///         CloudProvider = "AWS",
+        ///         Id = endpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["status"] = single.Apply(getEncryptionAtRestPrivateEndpointResult =&gt; getEncryptionAtRestPrivateEndpointResult.Status),
         ///     };
         /// });
         /// ```

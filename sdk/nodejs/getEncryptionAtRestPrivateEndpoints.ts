@@ -11,14 +11,14 @@ import * as utilities from "./utilities";
  *
  * `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
  *
- * > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
- * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
- *
  * ## Example Usage
  *
  * ### S
  *
- * > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+ * > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+ *
+ * ### Encryption At Rest Azure Key Vault Private Endpoint
+ * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,6 +27,18 @@ import * as utilities from "./utilities";
  * const plural = mongodbatlas.getEncryptionAtRestPrivateEndpoints({
  *     projectId: atlasProjectId,
  *     cloudProvider: "AZURE",
+ * });
+ * export const numberOfEndpoints = plural.then(plural => plural.results).length;
+ * ```
+ *
+ * ### Encryption At Rest AWS KMS Private Endpoint
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const plural = mongodbatlas.getEncryptionAtRestPrivateEndpoints({
+ *     projectId: atlasProjectId,
+ *     cloudProvider: "AWS",
  * });
  * export const numberOfEndpoints = plural.then(plural => plural.results).length;
  * ```
@@ -79,14 +91,14 @@ export interface GetEncryptionAtRestPrivateEndpointsResult {
  *
  * `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
  *
- * > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
- * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
- *
  * ## Example Usage
  *
  * ### S
  *
- * > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+ * > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+ *
+ * ### Encryption At Rest Azure Key Vault Private Endpoint
+ * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -95,6 +107,18 @@ export interface GetEncryptionAtRestPrivateEndpointsResult {
  * const plural = mongodbatlas.getEncryptionAtRestPrivateEndpoints({
  *     projectId: atlasProjectId,
  *     cloudProvider: "AZURE",
+ * });
+ * export const numberOfEndpoints = plural.then(plural => plural.results).length;
+ * ```
+ *
+ * ### Encryption At Rest AWS KMS Private Endpoint
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const plural = mongodbatlas.getEncryptionAtRestPrivateEndpoints({
+ *     projectId: atlasProjectId,
+ *     cloudProvider: "AWS",
  * });
  * export const numberOfEndpoints = plural.then(plural => plural.results).length;
  * ```

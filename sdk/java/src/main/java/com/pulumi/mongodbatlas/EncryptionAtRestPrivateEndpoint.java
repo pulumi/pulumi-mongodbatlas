@@ -18,10 +18,7 @@ import javax.annotation.Nullable;
  * 
  * `mongodbatlas.EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
  * 
- * &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
- * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
- * 
- * &gt; **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjust by configuring `azure_key_vault_config.require_private_networking` to true. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
+ * &gt; **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
  * 
  * &gt; **NOTE:** This resource does not support update operations. To modify values of a private endpoint the existing resource must be deleted and a new one can be created with the modified values.
  * 
@@ -29,9 +26,10 @@ import javax.annotation.Nullable;
  * 
  * ### S
  * 
- * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+ * &gt; **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
  * 
  * ### Configuring Atlas Encryption at Rest using Azure Key Vault with Azure Private Link
+ * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
  * 
  * Make sure to reference the complete example section for detailed steps and considerations.
  * 
@@ -107,6 +105,60 @@ import javax.annotation.Nullable;
  * 
  *     }}{@code
  * }}{@code
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Configuring Atlas Encryption at Rest using AWS KMS with AWS PrivateLink
+ * 
+ * Make sure to reference the complete example section for detailed steps and considerations.
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.EncryptionAtRest;
+ * import com.pulumi.mongodbatlas.EncryptionAtRestArgs;
+ * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAwsKmsConfigArgs;
+ * import com.pulumi.mongodbatlas.EncryptionAtRestPrivateEndpoint;
+ * import com.pulumi.mongodbatlas.EncryptionAtRestPrivateEndpointArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var ear = new EncryptionAtRest("ear", EncryptionAtRestArgs.builder()
+ *             .projectId(atlasProjectId)
+ *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
+ *                 .requirePrivateNetworking(true)
+ *                 .enabled(true)
+ *                 .customerMasterKeyId(awsKmsKeyId)
+ *                 .region(atlasAwsRegion)
+ *                 .roleId(authRole.roleId())
+ *                 .build())
+ *             .build());
+ * 
+ *         // Creates private endpoint
+ *         var endpoint = new EncryptionAtRestPrivateEndpoint("endpoint", EncryptionAtRestPrivateEndpointArgs.builder()
+ *             .projectId(ear.projectId())
+ *             .cloudProvider("AWS")
+ *             .regionName(atlasAwsRegion)
+ *             .build());
+ * 
+ *     }
+ * }
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;

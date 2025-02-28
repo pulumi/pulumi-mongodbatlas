@@ -30,6 +30,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Region;
         /// <summary>
+        /// Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+        /// </summary>
+        public readonly bool RequirePrivateNetworking;
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
         /// </summary>
         public readonly string RoleId;
@@ -52,6 +56,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string region,
 
+            bool requirePrivateNetworking,
+
             string roleId,
 
             string secretAccessKey,
@@ -62,6 +68,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             CustomerMasterKeyId = customerMasterKeyId;
             Enabled = enabled;
             Region = region;
+            RequirePrivateNetworking = requirePrivateNetworking;
             RoleId = roleId;
             SecretAccessKey = secretAccessKey;
             Valid = valid;

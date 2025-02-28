@@ -40,11 +40,11 @@ class CloudBackupScheduleArgs:
         The set of arguments for constructing a CloudBackupSchedule resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
-        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               * true - enables automatic export of cloud backup snapshots to the AWS bucket
-               * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+               * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+               * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]] copy_settings: List that contains a document for each copy setting item in the desired backup policy. See below
-        :param pulumi.Input['CloudBackupScheduleExportArgs'] export: Policy for automatically exporting Cloud Backup Snapshots. See below
+        :param pulumi.Input['CloudBackupScheduleExportArgs'] export: Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
         :param pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs'] policy_item_daily: Daily policy item. See below
         :param pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs'] policy_item_hourly: Hourly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]] policy_item_monthlies: Monthly policy item. See below
@@ -53,7 +53,7 @@ class CloudBackupScheduleArgs:
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-        :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "project_id", project_id)
@@ -112,9 +112,9 @@ class CloudBackupScheduleArgs:
     @pulumi.getter(name="autoExportEnabled")
     def auto_export_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        * true - enables automatic export of cloud backup snapshots to the AWS bucket
-        * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+        * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -138,7 +138,7 @@ class CloudBackupScheduleArgs:
     @pulumi.getter
     def export(self) -> Optional[pulumi.Input['CloudBackupScheduleExportArgs']]:
         """
-        Policy for automatically exporting Cloud Backup Snapshots. See below
+        Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
         """
         return pulumi.get(self, "export")
 
@@ -255,7 +255,7 @@ class CloudBackupScheduleArgs:
     @pulumi.getter(name="useOrgAndGroupNamesInExportPrefix")
     def use_org_and_group_names_in_export_prefix(self) -> Optional[pulumi.Input[bool]]:
         """
-        Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         return pulumi.get(self, "use_org_and_group_names_in_export_prefix")
 
@@ -287,13 +287,13 @@ class _CloudBackupScheduleState:
                  use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSchedule resources.
-        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               * true - enables automatic export of cloud backup snapshots to the AWS bucket
-               * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+               * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+               * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]] copy_settings: List that contains a document for each copy setting item in the desired backup policy. See below
-        :param pulumi.Input['CloudBackupScheduleExportArgs'] export: Policy for automatically exporting Cloud Backup Snapshots. See below
+        :param pulumi.Input['CloudBackupScheduleExportArgs'] export: Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
         :param pulumi.Input[str] id_policy: Unique identifier of the backup policy.
         :param pulumi.Input[str] next_snapshot: Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
         :param pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs'] policy_item_daily: Daily policy item. See below
@@ -305,7 +305,7 @@ class _CloudBackupScheduleState:
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-        :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         if auto_export_enabled is not None:
             pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
@@ -348,9 +348,9 @@ class _CloudBackupScheduleState:
     @pulumi.getter(name="autoExportEnabled")
     def auto_export_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        * true - enables automatic export of cloud backup snapshots to the AWS bucket
-        * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+        * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -398,7 +398,7 @@ class _CloudBackupScheduleState:
     @pulumi.getter
     def export(self) -> Optional[pulumi.Input['CloudBackupScheduleExportArgs']]:
         """
-        Policy for automatically exporting Cloud Backup Snapshots. See below
+        Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
         """
         return pulumi.get(self, "export")
 
@@ -551,7 +551,7 @@ class _CloudBackupScheduleState:
     @pulumi.getter(name="useOrgAndGroupNamesInExportPrefix")
     def use_org_and_group_names_in_export_prefix(self) -> Optional[pulumi.Input[bool]]:
         """
-        Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         return pulumi.get(self, "use_org_and_group_names_in_export_prefix")
 
@@ -593,12 +593,12 @@ class CloudBackupSchedule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               * true - enables automatic export of cloud backup snapshots to the AWS bucket
-               * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+               * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+               * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupScheduleCopySettingArgs', 'CloudBackupScheduleCopySettingArgsDict']]]] copy_settings: List that contains a document for each copy setting item in the desired backup policy. See below
-        :param pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']] export: Policy for automatically exporting Cloud Backup Snapshots. See below
+        :param pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']] export: Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
         :param pulumi.Input[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict']] policy_item_daily: Daily policy item. See below
         :param pulumi.Input[Union['CloudBackupSchedulePolicyItemHourlyArgs', 'CloudBackupSchedulePolicyItemHourlyArgsDict']] policy_item_hourly: Hourly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Monthly policy item. See below
@@ -608,7 +608,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-        :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         ...
     @overload
@@ -722,13 +722,13 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               * true - enables automatic export of cloud backup snapshots to the AWS bucket
-               * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+               * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+               * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupScheduleCopySettingArgs', 'CloudBackupScheduleCopySettingArgsDict']]]] copy_settings: List that contains a document for each copy setting item in the desired backup policy. See below
-        :param pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']] export: Policy for automatically exporting Cloud Backup Snapshots. See below
+        :param pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']] export: Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
         :param pulumi.Input[str] id_policy: Unique identifier of the backup policy.
         :param pulumi.Input[str] next_snapshot: Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
         :param pulumi.Input[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict']] policy_item_daily: Daily policy item. See below
@@ -740,7 +740,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-        :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -770,9 +770,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
     @pulumi.getter(name="autoExportEnabled")
     def auto_export_enabled(self) -> pulumi.Output[bool]:
         """
-        Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        * true - enables automatic export of cloud backup snapshots to the AWS bucket
-        * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+        * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -804,7 +804,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
     @pulumi.getter
     def export(self) -> pulumi.Output['outputs.CloudBackupScheduleExport']:
         """
-        Policy for automatically exporting Cloud Backup Snapshots. See below
+        Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
         """
         return pulumi.get(self, "export")
 
@@ -905,7 +905,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
     @pulumi.getter(name="useOrgAndGroupNamesInExportPrefix")
     def use_org_and_group_names_in_export_prefix(self) -> pulumi.Output[bool]:
         """
-        Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         return pulumi.get(self, "use_org_and_group_names_in_export_prefix")
 

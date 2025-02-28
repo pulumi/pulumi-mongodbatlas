@@ -15,14 +15,14 @@ import (
 //
 // `EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
 //
-// > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
-// To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
-//
 // ## Example Usage
 //
 // ### S
 //
-// > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+// > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+//
+// ### Encryption At Rest Azure Key Vault Private Endpoint
+// To learn more, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
 //
 // ```go
 // package main
@@ -45,6 +45,34 @@ import (
 //				return err
 //			}
 //			ctx.Export("endpointConnectionName", single.PrivateEndpointConnectionName)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Encryption At Rest AWS KMS Private Endpoint
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			single, err := mongodbatlas.LookupEncryptionAtRestPrivateEndpoint(ctx, &mongodbatlas.LookupEncryptionAtRestPrivateEndpointArgs{
+//				ProjectId:     atlasProjectId,
+//				CloudProvider: "AWS",
+//				Id:            endpoint.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("status", single.Status)
 //			return nil
 //		})
 //	}
