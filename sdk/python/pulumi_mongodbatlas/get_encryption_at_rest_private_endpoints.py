@@ -94,14 +94,14 @@ def get_encryption_at_rest_private_endpoints(cloud_provider: Optional[str] = Non
 
     `get_encryption_at_rest_private_endpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
 
-    > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
-    To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
-
     ## Example Usage
 
     ### S
 
-    > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+    > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+
+    ### Encryption At Rest Azure Key Vault Private Endpoint
+    To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
 
     ```python
     import pulumi
@@ -109,6 +109,16 @@ def get_encryption_at_rest_private_endpoints(cloud_provider: Optional[str] = Non
 
     plural = mongodbatlas.get_encryption_at_rest_private_endpoints(project_id=atlas_project_id,
         cloud_provider="AZURE")
+    pulumi.export("numberOfEndpoints", len(plural.results))
+    ```
+
+    ### Encryption At Rest AWS KMS Private Endpoint
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    plural = mongodbatlas.get_encryption_at_rest_private_endpoints(project_id=atlas_project_id,
+        cloud_provider="AWS")
     pulumi.export("numberOfEndpoints", len(plural.results))
     ```
 
@@ -135,14 +145,14 @@ def get_encryption_at_rest_private_endpoints_output(cloud_provider: Optional[pul
 
     `get_encryption_at_rest_private_endpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
 
-    > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
-    To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
-
     ## Example Usage
 
     ### S
 
-    > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+    > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+
+    ### Encryption At Rest Azure Key Vault Private Endpoint
+    To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
 
     ```python
     import pulumi
@@ -150,6 +160,16 @@ def get_encryption_at_rest_private_endpoints_output(cloud_provider: Optional[pul
 
     plural = mongodbatlas.get_encryption_at_rest_private_endpoints(project_id=atlas_project_id,
         cloud_provider="AZURE")
+    pulumi.export("numberOfEndpoints", len(plural.results))
+    ```
+
+    ### Encryption At Rest AWS KMS Private Endpoint
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    plural = mongodbatlas.get_encryption_at_rest_private_endpoints(project_id=atlas_project_id,
+        cloud_provider="AWS")
     pulumi.export("numberOfEndpoints", len(plural.results))
     ```
 

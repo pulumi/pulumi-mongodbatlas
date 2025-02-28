@@ -923,7 +923,7 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         region: NotRequired[pulumi.Input[str]]
 elif False:
@@ -942,7 +942,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -970,7 +970,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1268,7 +1268,7 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         region_name: pulumi.Input[str]
         """
@@ -1288,7 +1288,7 @@ if not MYPY:
         """
         backing_provider_name: NotRequired[pulumi.Input[str]]
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         """
         electable_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict']]
         """
@@ -1323,12 +1323,12 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param pulumi.Input[str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs'] analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
-        :param pulumi.Input[str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        :param pulumi.Input[str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs'] electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs'] read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
         """
@@ -1372,7 +1372,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1432,7 +1432,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
     @pulumi.getter(name="backingProviderName")
     def backing_provider_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
         """
         return pulumi.get(self, "backing_provider_name")
 
@@ -5424,7 +5424,7 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         region: NotRequired[pulumi.Input[str]]
 elif False:
@@ -5444,7 +5444,7 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -5473,7 +5473,7 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
         """
         return pulumi.get(self, "provider_name")
 
@@ -7221,6 +7221,10 @@ if not MYPY:
         """
         Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
         """
+        require_private_networking: NotRequired[pulumi.Input[bool]]
+        """
+        Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+        """
         role_id: NotRequired[pulumi.Input[str]]
         """
         Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
@@ -7243,6 +7247,7 @@ class EncryptionAtRestAwsKmsConfigArgs:
                  customer_master_key_id: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 require_private_networking: Optional[pulumi.Input[bool]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None,
                  valid: Optional[pulumi.Input[bool]] = None):
@@ -7251,6 +7256,7 @@ class EncryptionAtRestAwsKmsConfigArgs:
         :param pulumi.Input[str] customer_master_key_id: Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
         :param pulumi.Input[bool] enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         :param pulumi.Input[str] region: Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
+        :param pulumi.Input[bool] require_private_networking: Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
         :param pulumi.Input[str] role_id: Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
         :param pulumi.Input[str] secret_access_key: Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
         :param pulumi.Input[bool] valid: Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
@@ -7263,6 +7269,8 @@ class EncryptionAtRestAwsKmsConfigArgs:
             pulumi.set(__self__, "enabled", enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if require_private_networking is not None:
+            pulumi.set(__self__, "require_private_networking", require_private_networking)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
         if secret_access_key is not None:
@@ -7317,6 +7325,18 @@ class EncryptionAtRestAwsKmsConfigArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="requirePrivateNetworking")
+    def require_private_networking(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+        """
+        return pulumi.get(self, "require_private_networking")
+
+    @require_private_networking.setter
+    def require_private_networking(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "require_private_networking", value)
 
     @property
     @pulumi.getter(name="roleId")

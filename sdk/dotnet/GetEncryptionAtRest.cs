@@ -148,7 +148,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Azure Key Vault using Azure Private Link, ensuring that all traffic between Atlas and Key Vault takes place over Azure’s private network interfaces. Please review `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
+        /// &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
         /// 
         /// ### Configuring encryption at rest using customer key management in GCP
         /// ```csharp
@@ -322,7 +322,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Azure Key Vault using Azure Private Link, ensuring that all traffic between Atlas and Key Vault takes place over Azure’s private network interfaces. Please review `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
+        /// &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
         /// 
         /// ### Configuring encryption at rest using customer key management in GCP
         /// ```csharp
@@ -496,7 +496,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Azure Key Vault using Azure Private Link, ensuring that all traffic between Atlas and Key Vault takes place over Azure’s private network interfaces. Please review `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
+        /// &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
         /// 
         /// ### Configuring encryption at rest using customer key management in GCP
         /// ```csharp

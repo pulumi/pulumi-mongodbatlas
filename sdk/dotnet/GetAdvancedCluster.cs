@@ -22,6 +22,8 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// 
+        /// &gt; **NOTE:** This data source also includes Flex clusters.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -132,6 +134,48 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = exampleAdvancedCluster.ProjectId,
         ///         Name = exampleAdvancedCluster.Name,
         ///         UseReplicationSpecPerShard = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Example using Flex cluster
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example_flex = new Mongodbatlas.AdvancedCluster("example-flex", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "flex-cluster",
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ProviderName = "FLEX",
+        ///                         BackingProviderName = "AWS",
+        ///                         RegionName = "US_EAST_1",
+        ///                         Priority = 7,
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var example = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = example_flex.ProjectId,
+        ///         Name = example_flex.Name,
         ///     });
         /// 
         /// });
@@ -151,6 +195,8 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// 
+        /// &gt; **NOTE:** This data source also includes Flex clusters.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -261,6 +307,48 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = exampleAdvancedCluster.ProjectId,
         ///         Name = exampleAdvancedCluster.Name,
         ///         UseReplicationSpecPerShard = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Example using Flex cluster
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example_flex = new Mongodbatlas.AdvancedCluster("example-flex", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "flex-cluster",
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ProviderName = "FLEX",
+        ///                         BackingProviderName = "AWS",
+        ///                         RegionName = "US_EAST_1",
+        ///                         Priority = 7,
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var example = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = example_flex.ProjectId,
+        ///         Name = example_flex.Name,
         ///     });
         /// 
         /// });
@@ -280,6 +368,8 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// 
+        /// &gt; **NOTE:** This data source also includes Flex clusters.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -390,6 +480,48 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = exampleAdvancedCluster.ProjectId,
         ///         Name = exampleAdvancedCluster.Name,
         ///         UseReplicationSpecPerShard = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Example using Flex cluster
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example_flex = new Mongodbatlas.AdvancedCluster("example-flex", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "flex-cluster",
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ProviderName = "FLEX",
+        ///                         BackingProviderName = "AWS",
+        ///                         RegionName = "US_EAST_1",
+        ///                         Priority = 7,
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var example = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = example_flex.ProjectId,
+        ///         Name = example_flex.Name,
         ///     });
         /// 
         /// });

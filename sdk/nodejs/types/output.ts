@@ -145,7 +145,7 @@ export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: string;
     region: string;
@@ -222,7 +222,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     autoScaling: outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling;
     /**
-     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
      */
     backingProviderName?: string;
     /**
@@ -242,7 +242,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: string;
     /**
@@ -1070,7 +1070,7 @@ export interface ClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
     providerName: string;
     region: string;
@@ -1413,6 +1413,10 @@ export interface EncryptionAtRestAwsKmsConfig {
      * Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
      */
     region?: string;
+    /**
+     * Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+     */
+    requirePrivateNetworking: boolean;
     /**
      * Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      */
@@ -4788,6 +4792,10 @@ export interface GetEncryptionAtRestAwsKmsConfig {
      */
     region: string;
     /**
+     * Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+     */
+    requirePrivateNetworking: boolean;
+    /**
      * Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      */
     roleId: string;
@@ -5931,6 +5939,100 @@ export interface GetFlexClustersResultProviderSettings {
      * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
     regionName: string;
+}
+
+export interface GetFlexRestoreJobsResult {
+    /**
+     * Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+     */
+    deliveryType: string;
+    /**
+     * Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expirationDate: string;
+    /**
+     * Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+     */
+    name: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     */
+    projectId: string;
+    /**
+     * Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    restoreFinishedDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the restore job.
+     */
+    restoreJobId: string;
+    /**
+     * Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    restoreScheduledDate: string;
+    /**
+     * Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    snapshotFinishedDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     */
+    snapshotId: string;
+    /**
+     * Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+     */
+    snapshotUrl: string;
+    /**
+     * Phase of the restore workflow for this job at the time this resource made this request.
+     */
+    status: string;
+    /**
+     * Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+     */
+    targetDeploymentItemName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+     */
+    targetProjectId: string;
+}
+
+export interface GetFlexSnapshotsResult {
+    /**
+     * Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiration: string;
+    /**
+     * Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    finishTime: string;
+    /**
+     * MongoDB host version that the snapshot runs.
+     */
+    mongoDbVersion: string;
+    /**
+     * Human-readable label that identifies the flex cluster whose snapshot you want to restore.
+     */
+    name: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     */
+    projectId: string;
+    /**
+     * Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    scheduledTime: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     */
+    snapshotId: string;
+    /**
+     * Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    startTime: string;
+    /**
+     * Phase of the restore workflow for this job at the time this resource made this request.
+     */
+    status: string;
 }
 
 export interface GetGlobalClusterConfigManagedNamespace {

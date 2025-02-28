@@ -187,10 +187,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
 
         `EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
 
-        > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
-        To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
-
-        > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault, the corresponding `EncryptionAtRest` resource has to be adjust by configuring `azure_key_vault_config.require_private_networking` to true. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
+        > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
 
         > **NOTE:** This resource does not support update operations. To modify values of a private endpoint the existing resource must be deleted and a new one can be created with the modified values.
 
@@ -198,9 +195,10 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
 
         ### S
 
-        > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+        > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
 
         ### Configuring Atlas Encryption at Rest using Azure Key Vault with Azure Private Link
+        To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
 
         Make sure to reference the complete example section for detailed steps and considerations.
 
@@ -245,6 +243,30 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
             }))
         ```
 
+        ### Configuring Atlas Encryption at Rest using AWS KMS with AWS PrivateLink
+
+        Make sure to reference the complete example section for detailed steps and considerations.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        ear = mongodbatlas.EncryptionAtRest("ear",
+            project_id=atlas_project_id,
+            aws_kms_config={
+                "require_private_networking": True,
+                "enabled": True,
+                "customer_master_key_id": aws_kms_key_id,
+                "region": atlas_aws_region,
+                "role_id": auth_role["roleId"],
+            })
+        # Creates private endpoint
+        endpoint = mongodbatlas.EncryptionAtRestPrivateEndpoint("endpoint",
+            project_id=ear.project_id,
+            cloud_provider="AWS",
+            region_name=atlas_aws_region)
+        ```
+
         ## Import
 
         Encryption At Rest Private Endpoint resource can be imported using the project ID, cloud provider, and private endpoint ID. The format must be `{project_id}-{cloud_provider}-{private_endpoint_id}` e.g.
@@ -270,10 +292,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
 
         `EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
 
-        > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
-        To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
-
-        > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault, the corresponding `EncryptionAtRest` resource has to be adjust by configuring `azure_key_vault_config.require_private_networking` to true. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
+        > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
 
         > **NOTE:** This resource does not support update operations. To modify values of a private endpoint the existing resource must be deleted and a new one can be created with the modified values.
 
@@ -281,9 +300,10 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
 
         ### S
 
-        > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+        > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
 
         ### Configuring Atlas Encryption at Rest using Azure Key Vault with Azure Private Link
+        To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
 
         Make sure to reference the complete example section for detailed steps and considerations.
 
@@ -326,6 +346,30 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
                     },
                 },
             }))
+        ```
+
+        ### Configuring Atlas Encryption at Rest using AWS KMS with AWS PrivateLink
+
+        Make sure to reference the complete example section for detailed steps and considerations.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        ear = mongodbatlas.EncryptionAtRest("ear",
+            project_id=atlas_project_id,
+            aws_kms_config={
+                "require_private_networking": True,
+                "enabled": True,
+                "customer_master_key_id": aws_kms_key_id,
+                "region": atlas_aws_region,
+                "role_id": auth_role["roleId"],
+            })
+        # Creates private endpoint
+        endpoint = mongodbatlas.EncryptionAtRestPrivateEndpoint("endpoint",
+            project_id=ear.project_id,
+            cloud_provider="AWS",
+            region_name=atlas_aws_region)
         ```
 
         ## Import

@@ -145,7 +145,7 @@ export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -222,7 +222,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     autoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling>;
     /**
-     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
      */
     backingProviderName?: pulumi.Input<string>;
     /**
@@ -242,7 +242,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0, M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: pulumi.Input<string>;
     /**
@@ -1070,7 +1070,7 @@ export interface ClusterConnectionStringPrivateEndpointEndpoint {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
     providerName?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -1413,6 +1413,10 @@ export interface EncryptionAtRestAwsKmsConfig {
      * Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
      */
     region?: pulumi.Input<string>;
+    /**
+     * Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
+     */
+    requirePrivateNetworking?: pulumi.Input<boolean>;
     /**
      * Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      */

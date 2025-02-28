@@ -472,7 +472,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        ## # Resource: ServerlessInstance
+        **WARNING:** This resource is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 
         `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
 
@@ -533,7 +533,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  args: ServerlessInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: ServerlessInstance
+        **WARNING:** This resource is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 
         `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
 
