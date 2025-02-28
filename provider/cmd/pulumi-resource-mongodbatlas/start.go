@@ -14,8 +14,20 @@
 
 package main
 
-import _ "github.com/pulumi/pulumi-mongodbatlas/provider/v3/cmd/pulumi-tfgen-mongodbatlas/init"
+import (
+	"context"
 
-func main() {
-	start()
+	_ "embed"
+
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
+
+	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v3"
+)
+
+//go:embed schema-embed.json
+var pulumiSchema []byte
+
+func start() {
+	ctx := context.Background()
+	tfbridge.MainWithMuxer(ctx, "mongodbatlas", mongodbatlas.Provider(), pulumiSchema)
 }

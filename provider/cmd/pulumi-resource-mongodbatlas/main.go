@@ -1,4 +1,4 @@
-// Copyright 2016-2018, Pulumi Corporation.
+// Copyright 2016-2025, Pulumi Corporation.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,20 +16,8 @@
 
 package main
 
-import (
-	"context"
-
-	_ "embed"
-
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
-
-	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v3"
-)
-
-//go:embed schema-embed.json
-var pulumiSchema []byte
+import _ "github.com/pulumi/pulumi-mongodbatlas/provider/v3/cmd/pulumi-resource-mongodbatlas/init"
 
 func main() {
-	ctx := context.Background()
-	tfbridge.MainWithMuxer(ctx, "mongodbatlas", mongodbatlas.Provider(), pulumiSchema)
+	start()
 }
