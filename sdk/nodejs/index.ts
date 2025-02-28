@@ -415,6 +415,26 @@ export const getFlexClusters: typeof import("./getFlexClusters").getFlexClusters
 export const getFlexClustersOutput: typeof import("./getFlexClusters").getFlexClustersOutput = null as any;
 utilities.lazyLoad(exports, ["getFlexClusters","getFlexClustersOutput"], () => require("./getFlexClusters"));
 
+export { GetFlexRestoreJobArgs, GetFlexRestoreJobResult, GetFlexRestoreJobOutputArgs } from "./getFlexRestoreJob";
+export const getFlexRestoreJob: typeof import("./getFlexRestoreJob").getFlexRestoreJob = null as any;
+export const getFlexRestoreJobOutput: typeof import("./getFlexRestoreJob").getFlexRestoreJobOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexRestoreJob","getFlexRestoreJobOutput"], () => require("./getFlexRestoreJob"));
+
+export { GetFlexRestoreJobsArgs, GetFlexRestoreJobsResult, GetFlexRestoreJobsOutputArgs } from "./getFlexRestoreJobs";
+export const getFlexRestoreJobs: typeof import("./getFlexRestoreJobs").getFlexRestoreJobs = null as any;
+export const getFlexRestoreJobsOutput: typeof import("./getFlexRestoreJobs").getFlexRestoreJobsOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexRestoreJobs","getFlexRestoreJobsOutput"], () => require("./getFlexRestoreJobs"));
+
+export { GetFlexSnapshotArgs, GetFlexSnapshotResult, GetFlexSnapshotOutputArgs } from "./getFlexSnapshot";
+export const getFlexSnapshot: typeof import("./getFlexSnapshot").getFlexSnapshot = null as any;
+export const getFlexSnapshotOutput: typeof import("./getFlexSnapshot").getFlexSnapshotOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexSnapshot","getFlexSnapshotOutput"], () => require("./getFlexSnapshot"));
+
+export { GetFlexSnapshotsArgs, GetFlexSnapshotsResult, GetFlexSnapshotsOutputArgs } from "./getFlexSnapshots";
+export const getFlexSnapshots: typeof import("./getFlexSnapshots").getFlexSnapshots = null as any;
+export const getFlexSnapshotsOutput: typeof import("./getFlexSnapshots").getFlexSnapshotsOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexSnapshots","getFlexSnapshotsOutput"], () => require("./getFlexSnapshots"));
+
 export { GetGlobalClusterConfigArgs, GetGlobalClusterConfigResult, GetGlobalClusterConfigOutputArgs } from "./getGlobalClusterConfig";
 export const getGlobalClusterConfig: typeof import("./getGlobalClusterConfig").getGlobalClusterConfig = null as any;
 export const getGlobalClusterConfigOutput: typeof import("./getGlobalClusterConfig").getGlobalClusterConfigOutput = null as any;

@@ -32,7 +32,7 @@ class MaintenanceWindowArgs:
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
         :param pulumi.Input[bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
         :param pulumi.Input[bool] defer: Defer the next scheduled maintenance for the given project for one week.
-        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         :param pulumi.Input[bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         """
         pulumi.set(__self__, "day_of_week", day_of_week)
@@ -109,7 +109,7 @@ class MaintenanceWindowArgs:
     @pulumi.getter(name="hourOfDay")
     def hour_of_day(self) -> Optional[pulumi.Input[int]]:
         """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         """
         return pulumi.get(self, "hour_of_day")
 
@@ -146,7 +146,7 @@ class _MaintenanceWindowState:
         :param pulumi.Input[bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
         :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[bool] defer: Defer the next scheduled maintenance for the given project for one week.
-        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
         :param pulumi.Input[bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
@@ -217,7 +217,7 @@ class _MaintenanceWindowState:
     @pulumi.getter(name="hourOfDay")
     def hour_of_day(self) -> Optional[pulumi.Input[int]]:
         """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         """
         return pulumi.get(self, "hour_of_day")
 
@@ -327,7 +327,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
         :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[bool] defer: Defer the next scheduled maintenance for the given project for one week.
-        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
         :param pulumi.Input[bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         """
@@ -455,7 +455,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
         :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[bool] defer: Defer the next scheduled maintenance for the given project for one week.
-        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
         :param pulumi.Input[bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
@@ -507,7 +507,7 @@ class MaintenanceWindow(pulumi.CustomResource):
     @pulumi.getter(name="hourOfDay")
     def hour_of_day(self) -> pulumi.Output[int]:
         """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         """
         return pulumi.get(self, "hour_of_day")
 

@@ -94,6 +94,8 @@ def get_advanced_clusters(project_id: Optional[str] = None,
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 
+    > **NOTE:** This data source also includes Flex clusters.
+
     ## Example Usage
 
     ```python
@@ -160,6 +162,27 @@ def get_advanced_clusters(project_id: Optional[str] = None,
     example_asym = mongodbatlas.get_advanced_cluster_output(project_id=example.project_id,
         name=example.name,
         use_replication_spec_per_shard=True)
+    ```
+
+    ## Example using Flex cluster
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_flex = mongodbatlas.AdvancedCluster("example-flex",
+        project_id="<YOUR-PROJECT-ID>",
+        name="flex-cluster",
+        cluster_type="REPLICASET",
+        replication_specs=[{
+            "region_configs": [{
+                "provider_name": "FLEX",
+                "backing_provider_name": "AWS",
+                "region_name": "US_EAST_1",
+                "priority": 7,
+            }],
+        }])
+    example = mongodbatlas.get_advanced_clusters_output(project_id=example_flex.project_id)
     ```
 
 
@@ -191,6 +214,8 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 
+    > **NOTE:** This data source also includes Flex clusters.
+
     ## Example Usage
 
     ```python
@@ -257,6 +282,27 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
     example_asym = mongodbatlas.get_advanced_cluster_output(project_id=example.project_id,
         name=example.name,
         use_replication_spec_per_shard=True)
+    ```
+
+    ## Example using Flex cluster
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_flex = mongodbatlas.AdvancedCluster("example-flex",
+        project_id="<YOUR-PROJECT-ID>",
+        name="flex-cluster",
+        cluster_type="REPLICASET",
+        replication_specs=[{
+            "region_configs": [{
+                "provider_name": "FLEX",
+                "backing_provider_name": "AWS",
+                "region_name": "US_EAST_1",
+                "priority": 7,
+            }],
+        }])
+    example = mongodbatlas.get_advanced_clusters_output(project_id=example_flex.project_id)
     ```
 
 

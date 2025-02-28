@@ -97,7 +97,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> Defer { get; private set; } = null!;
 
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         /// </summary>
         [Output("hourOfDay")]
         public Output<int> HourOfDay { get; private set; } = null!;
@@ -188,7 +188,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Defer { get; set; }
 
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         /// </summary>
         [Input("hourOfDay")]
         public Input<int>? HourOfDay { get; set; }
@@ -235,7 +235,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Defer { get; set; }
 
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         /// </summary>
         [Input("hourOfDay")]
         public Input<int>? HourOfDay { get; set; }

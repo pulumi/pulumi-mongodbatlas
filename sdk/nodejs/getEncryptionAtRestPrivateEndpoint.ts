@@ -9,14 +9,14 @@ import * as utilities from "./utilities";
  *
  * `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
  *
- * > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
- * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
- *
  * ## Example Usage
  *
  * ### S
  *
- * > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+ * > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+ *
+ * ### Encryption At Rest Azure Key Vault Private Endpoint
+ * To learn more, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,6 +28,19 @@ import * as utilities from "./utilities";
  *     id: endpoint.id,
  * });
  * export const endpointConnectionName = single.then(single => single.privateEndpointConnectionName);
+ * ```
+ *
+ * ### Encryption At Rest AWS KMS Private Endpoint
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const single = mongodbatlas.getEncryptionAtRestPrivateEndpoint({
+ *     projectId: atlasProjectId,
+ *     cloudProvider: "AWS",
+ *     id: endpoint.id,
+ * });
+ * export const status = single.then(single => single.status);
  * ```
  */
 export function getEncryptionAtRestPrivateEndpoint(args: GetEncryptionAtRestPrivateEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetEncryptionAtRestPrivateEndpointResult> {
@@ -95,14 +108,14 @@ export interface GetEncryptionAtRestPrivateEndpointResult {
  *
  * `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
  *
- * > **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
- * To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
- *
  * ## Example Usage
  *
  * ### S
  *
- * > **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+ * > **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
+ *
+ * ### Encryption At Rest Azure Key Vault Private Endpoint
+ * To learn more, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -114,6 +127,19 @@ export interface GetEncryptionAtRestPrivateEndpointResult {
  *     id: endpoint.id,
  * });
  * export const endpointConnectionName = single.then(single => single.privateEndpointConnectionName);
+ * ```
+ *
+ * ### Encryption At Rest AWS KMS Private Endpoint
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const single = mongodbatlas.getEncryptionAtRestPrivateEndpoint({
+ *     projectId: atlasProjectId,
+ *     cloudProvider: "AWS",
+ *     id: endpoint.id,
+ * });
+ * export const status = single.then(single => single.status);
  * ```
  */
 export function getEncryptionAtRestPrivateEndpointOutput(args: GetEncryptionAtRestPrivateEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEncryptionAtRestPrivateEndpointResult> {

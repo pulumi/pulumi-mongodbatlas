@@ -164,14 +164,14 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
         return this.defer;
     }
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
      * 
      */
     @Export(name="hourOfDay", refs={Integer.class}, tree="[0]")
     private Output<Integer> hourOfDay;
 
     /**
-     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
      * 
      */
     public Output<Integer> hourOfDay() {

@@ -1,11 +1,11 @@
 module github.com/mongodb/terraform-provider-mongodbatlas/internal/shim
 
-go 1.23.4
+go 1.23.6
 
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.13.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.35.0
-	github.com/mongodb/terraform-provider-mongodbatlas v1.26.0
+	github.com/mongodb/terraform-provider-mongodbatlas v1.28.0
 )
 
 require (
@@ -20,10 +20,10 @@ require (
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
-	github.com/aws/aws-sdk-go v1.55.5 // indirect
+	github.com/aws/aws-sdk-go v1.55.6 // indirect
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d // indirect
 	github.com/bgentry/speakeasy v0.1.0 // indirect
-	github.com/evanphx/json-patch/v5 v5.9.0 // indirect
+	github.com/evanphx/json-patch/v5 v5.9.11 // indirect
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-logr/logr v1.4.1 // indirect
@@ -48,7 +48,7 @@ require (
 	github.com/hashicorp/go-version v1.7.0 // indirect
 	github.com/hashicorp/hcl/v2 v2.23.0 // indirect
 	github.com/hashicorp/logutils v1.0.0 // indirect
-	github.com/hashicorp/terraform-plugin-framework-timeouts v0.4.1 // indirect
+	github.com/hashicorp/terraform-plugin-framework-timeouts v0.5.0 // indirect
 	github.com/hashicorp/terraform-plugin-framework-validators v0.16.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.25.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
@@ -71,9 +71,8 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/mongodb-forks/digest v1.1.0 // indirect
-	github.com/mongodb/atlas-sdk-go v1.0.1-0.20250120083703-fd5c6d81ea5e // indirect
+	github.com/mongodb/atlas-sdk-go v1.0.1-0.20250217083801-6e38b3b1124c // indirect
 	github.com/oklog/run v1.0.0 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/shopspring/decimal v1.2.0 // indirect
 	github.com/spf13/afero v1.9.2 // indirect
@@ -87,12 +86,12 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/wI2L/jsondiff v0.6.1 // indirect
-	github.com/zclconf/go-cty v1.16.1 // indirect
+	github.com/zclconf/go-cty v1.16.2 // indirect
 	github.com/zclconf/go-cty-yaml v1.0.2 // indirect
 	go.mongodb.org/atlas v0.37.0 // indirect
 	go.mongodb.org/atlas-sdk/v20240530005 v20240530005.0.0 // indirect
 	go.mongodb.org/atlas-sdk/v20240805005 v20240805005.0.0 // indirect
-	go.mongodb.org/atlas-sdk/v20241113004 v20241113004.1.0 // indirect
+	go.mongodb.org/atlas-sdk/v20241113005 v20241113005.0.0 // indirect
 	go.mongodb.org/realm v0.1.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.47.0 // indirect

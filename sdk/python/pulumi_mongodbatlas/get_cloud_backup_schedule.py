@@ -90,9 +90,9 @@ class GetCloudBackupScheduleResult:
     @pulumi.getter(name="autoExportEnabled")
     def auto_export_enabled(self) -> bool:
         """
-        Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        * true - enables automatic export of cloud backup snapshots to the AWS bucket
-        * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
+        * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+        * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -222,7 +222,7 @@ class GetCloudBackupScheduleResult:
     @pulumi.getter(name="useOrgAndGroupNamesInExportPrefix")
     def use_org_and_group_names_in_export_prefix(self) -> bool:
         """
-        Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         return pulumi.get(self, "use_org_and_group_names_in_export_prefix")
 

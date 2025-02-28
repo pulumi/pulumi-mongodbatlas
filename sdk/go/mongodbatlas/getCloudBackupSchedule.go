@@ -38,9 +38,9 @@ type LookupCloudBackupScheduleArgs struct {
 
 // A collection of values returned by getCloudBackupSchedule.
 type LookupCloudBackupScheduleResult struct {
-	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	// * true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
+	// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+	// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
 	AutoExportEnabled bool `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
 	ClusterId   string `pulumi:"clusterId"`
@@ -72,7 +72,7 @@ type LookupCloudBackupScheduleResult struct {
 	ReferenceMinuteOfHour int `pulumi:"referenceMinuteOfHour"`
 	// Specifies a restore window in days for cloud backup to maintain.
 	RestoreWindowDays int `pulumi:"restoreWindowDays"`
-	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix bool  `pulumi:"useOrgAndGroupNamesInExportPrefix"`
 	UseZoneIdForCopySettings          *bool `pulumi:"useZoneIdForCopySettings"`
 }
@@ -115,9 +115,9 @@ func (o LookupCloudBackupScheduleResultOutput) ToLookupCloudBackupScheduleResult
 	return o
 }
 
-// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-// * true - enables automatic export of cloud backup snapshots to the AWS bucket
-// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
+// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
+// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
 func (o LookupCloudBackupScheduleResultOutput) AutoExportEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) bool { return v.AutoExportEnabled }).(pulumi.BoolOutput)
 }
@@ -210,7 +210,7 @@ func (o LookupCloudBackupScheduleResultOutput) RestoreWindowDays() pulumi.IntOut
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) int { return v.RestoreWindowDays }).(pulumi.IntOutput)
 }
 
-// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 func (o LookupCloudBackupScheduleResultOutput) UseOrgAndGroupNamesInExportPrefix() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) bool { return v.UseOrgAndGroupNamesInExportPrefix }).(pulumi.BoolOutput)
 }

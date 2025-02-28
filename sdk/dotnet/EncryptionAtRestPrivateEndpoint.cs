@@ -14,10 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// `mongodbatlas.EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
     /// 
-    /// &gt; **IMPORTANT** The Encryption at Rest using Azure Key Vault over Private Endpoints feature is available by request. To request this functionality for your Atlas deployments, contact your Account Manager.
-    /// To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
-    /// 
-    /// &gt; **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjust by configuring `azure_key_vault_config.require_private_networking` to true. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
+    /// &gt; **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
     /// 
     /// &gt; **NOTE:** This resource does not support update operations. To modify values of a private endpoint the existing resource must be deleted and a new one can be created with the modified values.
     /// 
@@ -25,9 +22,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### S
     /// 
-    /// &gt; **NOTE:** Only Azure Key Vault with Azure Private Link is supported at this time.
+    /// &gt; **NOTE:** Only Azure Key Vault with Azure Private Link and AWS KMS over AWS PrivateLink is supported at this time.
     /// 
     /// ### Configuring Atlas Encryption at Rest using Azure Key Vault with Azure Private Link
+    /// To learn more about existing limitations, see [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/#manage-customer-keys-with-azure-key-vault-over-private-endpoints).
     /// 
     /// Make sure to reference the complete example section for detailed steps and considerations.
     /// 
@@ -86,6 +84,42 @@ namespace Pulumi.Mongodbatlas
     ///                 },
     ///             },
     ///         }),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Configuring Atlas Encryption at Rest using AWS KMS with AWS PrivateLink
+    /// 
+    /// Make sure to reference the complete example section for detailed steps and considerations.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ear = new Mongodbatlas.EncryptionAtRest("ear", new()
+    ///     {
+    ///         ProjectId = atlasProjectId,
+    ///         AwsKmsConfig = new Mongodbatlas.Inputs.EncryptionAtRestAwsKmsConfigArgs
+    ///         {
+    ///             RequirePrivateNetworking = true,
+    ///             Enabled = true,
+    ///             CustomerMasterKeyId = awsKmsKeyId,
+    ///             Region = atlasAwsRegion,
+    ///             RoleId = authRole.RoleId,
+    ///         },
+    ///     });
+    /// 
+    ///     // Creates private endpoint
+    ///     var endpoint = new Mongodbatlas.EncryptionAtRestPrivateEndpoint("endpoint", new()
+    ///     {
+    ///         ProjectId = ear.ProjectId,
+    ///         CloudProvider = "AWS",
+    ///         RegionName = atlasAwsRegion,
     ///     });
     /// 
     /// });
