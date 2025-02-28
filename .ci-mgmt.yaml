@@ -4,18 +4,17 @@ env:
   MONGODB_ATLAS_ORG_ID: ${{ secrets.MONGODB_ATLAS_ORG_ID }}
   MONGODB_ATLAS_PRIVATE_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_KEY }}
   MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
-  MONGODB_ATLAS_ENABLE_PREVIEW: true
 makeTemplate: bridged
 plugins:
   - name: terraform
     version: "1.0.16"
     kind: converter
 
-  - name: aws 
+  - name: aws
     version: "4.0.0"
-  - name: azure 
+  - name: azure
     version: "4.0.0"
-  - name: gcp 
+  - name: gcp
     version: "5.0.0"
 team: ecosystem
 license:
