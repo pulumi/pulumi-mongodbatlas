@@ -130,7 +130,7 @@ def get_auditing(project_id: Optional[str] = None,
     ```
 
 
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -168,7 +168,7 @@ def get_auditing_output(project_id: Optional[pulumi.Input[str]] = None,
     ```
 
 
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

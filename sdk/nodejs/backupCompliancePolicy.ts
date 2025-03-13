@@ -168,15 +168,33 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
     public readonly encryptionAtRestEnabled!: pulumi.Output<boolean | undefined>;
-    public readonly onDemandPolicyItem!: pulumi.Output<outputs.BackupCompliancePolicyOnDemandPolicyItem>;
+    /**
+     * Specifications for on-demand policy.
+     */
+    public readonly onDemandPolicyItem!: pulumi.Output<outputs.BackupCompliancePolicyOnDemandPolicyItem | undefined>;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
     public readonly pitEnabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * Scheduled policy using a daily frequency type, see block fields.
+     */
     public readonly policyItemDaily!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemDaily | undefined>;
+    /**
+     * Scheduled policy using an hourly frequency type, see block fields.
+     */
     public readonly policyItemHourly!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemHourly | undefined>;
+    /**
+     * Scheduled policy using a monthly frequency type, see block fields.
+     */
     public readonly policyItemMonthlies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemMonthly[] | undefined>;
+    /**
+     * Scheduled policy using a weekly frequency type, see block fields.
+     */
     public readonly policyItemWeeklies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemWeekly[] | undefined>;
+    /**
+     * Scheduled policy using a yearly frequency type, see block fields.
+     */
     public readonly policyItemYearlies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemYearly[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
@@ -240,9 +258,6 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
             if ((!args || args.authorizedUserLastName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'authorizedUserLastName'");
             }
-            if ((!args || args.onDemandPolicyItem === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'onDemandPolicyItem'");
-            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -293,15 +308,33 @@ export interface BackupCompliancePolicyState {
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
     encryptionAtRestEnabled?: pulumi.Input<boolean>;
+    /**
+     * Specifications for on-demand policy.
+     */
     onDemandPolicyItem?: pulumi.Input<inputs.BackupCompliancePolicyOnDemandPolicyItem>;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
     pitEnabled?: pulumi.Input<boolean>;
+    /**
+     * Scheduled policy using a daily frequency type, see block fields.
+     */
     policyItemDaily?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemDaily>;
+    /**
+     * Scheduled policy using an hourly frequency type, see block fields.
+     */
     policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly>;
+    /**
+     * Scheduled policy using a monthly frequency type, see block fields.
+     */
     policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[]>;
+    /**
+     * Scheduled policy using a weekly frequency type, see block fields.
+     */
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[]>;
+    /**
+     * Scheduled policy using a yearly frequency type, see block fields.
+     */
     policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
@@ -349,15 +382,33 @@ export interface BackupCompliancePolicyArgs {
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
     encryptionAtRestEnabled?: pulumi.Input<boolean>;
-    onDemandPolicyItem: pulumi.Input<inputs.BackupCompliancePolicyOnDemandPolicyItem>;
+    /**
+     * Specifications for on-demand policy.
+     */
+    onDemandPolicyItem?: pulumi.Input<inputs.BackupCompliancePolicyOnDemandPolicyItem>;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
     pitEnabled?: pulumi.Input<boolean>;
+    /**
+     * Scheduled policy using a daily frequency type, see block fields.
+     */
     policyItemDaily?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemDaily>;
+    /**
+     * Scheduled policy using an hourly frequency type, see block fields.
+     */
     policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly>;
+    /**
+     * Scheduled policy using a monthly frequency type, see block fields.
+     */
     policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[]>;
+    /**
+     * Scheduled policy using a weekly frequency type, see block fields.
+     */
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[]>;
+    /**
+     * Scheduled policy using a yearly frequency type, see block fields.
+     */
     policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.

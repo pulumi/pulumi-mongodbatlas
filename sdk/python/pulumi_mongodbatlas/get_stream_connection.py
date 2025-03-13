@@ -27,10 +27,13 @@ class GetStreamConnectionResult:
     """
     A collection of values returned by getStreamConnection.
     """
-    def __init__(__self__, authentication=None, bootstrap_servers=None, cluster_name=None, config=None, connection_name=None, db_role_to_execute=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None):
+    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, config=None, connection_name=None, db_role_to_execute=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None):
         if authentication and not isinstance(authentication, dict):
             raise TypeError("Expected argument 'authentication' to be a dict")
         pulumi.set(__self__, "authentication", authentication)
+        if aws and not isinstance(aws, dict):
+            raise TypeError("Expected argument 'aws' to be a dict")
+        pulumi.set(__self__, "aws", aws)
         if bootstrap_servers and not isinstance(bootstrap_servers, str):
             raise TypeError("Expected argument 'bootstrap_servers' to be a str")
         pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
@@ -72,6 +75,14 @@ class GetStreamConnectionResult:
         User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
         """
         return pulumi.get(self, "authentication")
+
+    @property
+    @pulumi.getter
+    def aws(self) -> 'outputs.GetStreamConnectionAwsResult':
+        """
+        The configuration for AWS Lambda connection. See AWS
+        """
+        return pulumi.get(self, "aws")
 
     @property
     @pulumi.getter(name="bootstrapServers")
@@ -157,6 +168,7 @@ class AwaitableGetStreamConnectionResult(GetStreamConnectionResult):
             yield self
         return GetStreamConnectionResult(
             authentication=self.authentication,
+            aws=self.aws,
             bootstrap_servers=self.bootstrap_servers,
             cluster_name=self.cluster_name,
             config=self.config,
@@ -204,6 +216,7 @@ def get_stream_connection(connection_name: Optional[str] = None,
 
     return AwaitableGetStreamConnectionResult(
         authentication=pulumi.get(__ret__, 'authentication'),
+        aws=pulumi.get(__ret__, 'aws'),
         bootstrap_servers=pulumi.get(__ret__, 'bootstrap_servers'),
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
         config=pulumi.get(__ret__, 'config'),
@@ -248,6 +261,7 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[str]] = 
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamConnection:getStreamConnection', __args__, opts=opts, typ=GetStreamConnectionResult)
     return __ret__.apply(lambda __response__: GetStreamConnectionResult(
         authentication=pulumi.get(__response__, 'authentication'),
+        aws=pulumi.get(__response__, 'aws'),
         bootstrap_servers=pulumi.get(__response__, 'bootstrap_servers'),
         cluster_name=pulumi.get(__response__, 'cluster_name'),
         config=pulumi.get(__response__, 'config'),

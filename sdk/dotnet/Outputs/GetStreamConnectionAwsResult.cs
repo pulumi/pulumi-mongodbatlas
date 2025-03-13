@@ -11,17 +11,17 @@ namespace Pulumi.Mongodbatlas.Outputs
 {
 
     [OutputType]
-    public sealed class GetFlexClusterBackupSettingsResult
+    public sealed class GetStreamConnectionAwsResult
     {
         /// <summary>
-        /// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
+        /// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
         /// </summary>
-        public readonly bool Enabled;
+        public readonly string RoleArn;
 
         [OutputConstructor]
-        private GetFlexClusterBackupSettingsResult(bool enabled)
+        private GetStreamConnectionAwsResult(string roleArn)
         {
-            Enabled = enabled;
+            RoleArn = roleArn;
         }
     }
 }

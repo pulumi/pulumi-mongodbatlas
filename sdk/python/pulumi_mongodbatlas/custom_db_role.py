@@ -27,7 +27,7 @@ class CustomDbRoleArgs:
                  inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]] = None):
         """
         The set of arguments for constructing a CustomDbRole resource.
-        :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[str] project_id: The unique ID for the project.
         :param pulumi.Input[str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
@@ -48,7 +48,7 @@ class CustomDbRoleArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        The unique ID for the project to create the database user.
+        The unique ID for the project.
         """
         return pulumi.get(self, "project_id")
 
@@ -103,7 +103,7 @@ class _CustomDbRoleState:
                  role_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CustomDbRole resources.
-        :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[str] project_id: The unique ID for the project.
         :param pulumi.Input[str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
@@ -144,7 +144,7 @@ class _CustomDbRoleState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique ID for the project to create the database user.
+        The unique ID for the project.
         """
         return pulumi.get(self, "project_id")
 
@@ -292,7 +292,7 @@ class CustomDbRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[str] project_id: The unique ID for the project.
         :param pulumi.Input[str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
@@ -473,7 +473,7 @@ class CustomDbRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[str] project_id: The unique ID for the project.
         :param pulumi.Input[str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
@@ -507,7 +507,7 @@ class CustomDbRole(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The unique ID for the project to create the database user.
+        The unique ID for the project.
         """
         return pulumi.get(self, "project_id")
 

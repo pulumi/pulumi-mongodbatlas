@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * ## # Data Source: mongodbatlas.getAdvancedClusters
  *
- * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+ * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+ *
+ * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -45,8 +47,6 @@ import * as utilities from "./utilities";
  *     projectId: exampleAdvancedCluster.projectId,
  * });
  * ```
- *
- * **NOTE:** There can only be one M0 cluster per project.
  *
  * ## Example using latest sharding configurations with independent shard scaling in the cluster
  *
@@ -157,7 +157,9 @@ export interface GetAdvancedClustersResult {
 /**
  * ## # Data Source: mongodbatlas.getAdvancedClusters
  *
- * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+ * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+ *
+ * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -193,8 +195,6 @@ export interface GetAdvancedClustersResult {
  *     projectId: exampleAdvancedCluster.projectId,
  * });
  * ```
- *
- * **NOTE:** There can only be one M0 cluster per project.
  *
  * ## Example using latest sharding configurations with independent shard scaling in the cluster
  *

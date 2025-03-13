@@ -142,7 +142,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetNetworkPeeringsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -156,7 +156,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetNetworkPeeringsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

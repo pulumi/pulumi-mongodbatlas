@@ -47,7 +47,7 @@ export function getNetworkPeerings(args: GetNetworkPeeringsArgs, opts?: pulumi.I
  */
 export interface GetNetworkPeeringsArgs {
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: string;
 }
@@ -107,7 +107,7 @@ export function getNetworkPeeringsOutput(args: GetNetworkPeeringsOutputArgs, opt
  */
 export interface GetNetworkPeeringsOutputArgs {
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: pulumi.Input<string>;
 }

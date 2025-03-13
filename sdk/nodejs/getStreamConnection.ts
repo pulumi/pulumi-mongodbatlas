@@ -60,6 +60,10 @@ export interface GetStreamConnectionResult {
      */
     readonly authentication: outputs.GetStreamConnectionAuthentication;
     /**
+     * The configuration for AWS Lambda connection. See AWS
+     */
+    readonly aws: outputs.GetStreamConnectionAws;
+    /**
      * Comma separated list of server addresses.
      */
     readonly bootstrapServers: string;

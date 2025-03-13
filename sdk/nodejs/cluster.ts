@@ -197,6 +197,23 @@ import * as utilities from "./utilities";
  * export const standardSrv = cluster_test.connectionStrings[0].standardSrv;
  * ```
  * Private with Network peering and Custom DNS AWS enabled
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ *
+ * export = async () => {
+ *     return {
+ *         "private": cluster_test.connectionStrings[0]["private"],
+ *     };
+ * }
+ * ```
+ * Private srv with Network peering and Custom DNS AWS enabled
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ *
+ * export const privateSrv = cluster_test.connectionStrings[0].privateSrv;
+ * ```
+ *
+ * By endpointServiceId
  * ## Import
  *
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -292,7 +309,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly clusterType!: pulumi.Output<string>;
     /**
-     * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     public /*out*/ readonly connectionStrings!: pulumi.Output<outputs.ClusterConnectionString[]>;
     /**
@@ -353,7 +370,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly pitEnabled!: pulumi.Output<boolean>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the cluster.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -406,7 +423,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly providerVolumeType!: pulumi.Output<string>;
     /**
-     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
      */
     public readonly redactClientLogData!: pulumi.Output<boolean>;
     /**
@@ -640,7 +657,7 @@ export interface ClusterState {
      */
     clusterType?: pulumi.Input<string>;
     /**
-     * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     connectionStrings?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionString>[]>;
     /**
@@ -701,7 +718,7 @@ export interface ClusterState {
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the cluster.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -754,7 +771,7 @@ export interface ClusterState {
      */
     providerVolumeType?: pulumi.Input<string>;
     /**
-     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
      */
     redactClientLogData?: pulumi.Input<boolean>;
     /**
@@ -898,7 +915,7 @@ export interface ClusterArgs {
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the cluster.
      */
     projectId: pulumi.Input<string>;
     /**
@@ -950,7 +967,7 @@ export interface ClusterArgs {
      */
     providerVolumeType?: pulumi.Input<string>;
     /**
-     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
      */
     redactClientLogData?: pulumi.Input<boolean>;
     /**

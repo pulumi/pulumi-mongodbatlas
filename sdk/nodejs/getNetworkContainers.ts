@@ -46,7 +46,7 @@ export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulu
  */
 export interface GetNetworkContainersArgs {
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: string;
     /**
@@ -113,7 +113,7 @@ export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs,
  */
 export interface GetNetworkContainersOutputArgs {
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: pulumi.Input<string>;
     /**

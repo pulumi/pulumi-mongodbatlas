@@ -16,13 +16,15 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
         /// 
+        /// This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+        /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// 
-        /// &gt; **NOTE:** This data source also includes Flex clusters.
+        /// **NOTE:** This data source also includes Flex clusters.
         /// 
         /// ## Example Usage
         /// 
@@ -69,8 +71,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
-        /// **NOTE:** There can only be one M0 cluster per project.
         /// 
         /// ## Example using latest sharding configurations with independent shard scaling in the cluster
         /// 
@@ -189,13 +189,15 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
         /// 
+        /// This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+        /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// 
-        /// &gt; **NOTE:** This data source also includes Flex clusters.
+        /// **NOTE:** This data source also includes Flex clusters.
         /// 
         /// ## Example Usage
         /// 
@@ -242,8 +244,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
-        /// **NOTE:** There can only be one M0 cluster per project.
         /// 
         /// ## Example using latest sharding configurations with independent shard scaling in the cluster
         /// 
@@ -362,13 +362,15 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
         /// 
+        /// This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+        /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// 
-        /// &gt; **NOTE:** This data source also includes Flex clusters.
+        /// **NOTE:** This data source also includes Flex clusters.
         /// 
         /// ## Example Usage
         /// 
@@ -415,8 +417,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
-        /// **NOTE:** There can only be one M0 cluster per project.
         /// 
         /// ## Example using latest sharding configurations with independent shard scaling in the cluster
         /// 
@@ -547,7 +547,7 @@ namespace Pulumi.Mongodbatlas
         public bool? PitEnabled { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project to create the cluster.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -579,7 +579,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? PitEnabled { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project to create the cluster.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -605,9 +605,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterAdvancedConfigurationResult> AdvancedConfigurations;
         public readonly bool BackupEnabled;
-        /// <summary>
-        /// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterBiConnectorConfigResult> BiConnectorConfigs;
         /// <summary>
         /// Type of the cluster that you want to create.
@@ -622,7 +619,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ConfigServerType;
         /// <summary>
-        /// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterConnectionStringResult> ConnectionStrings;
         public readonly string CreateDate;
@@ -643,7 +640,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterLabelResult> Labels;
         /// <summary>
@@ -669,7 +666,7 @@ namespace Pulumi.Mongodbatlas
         public readonly bool PitEnabled;
         public readonly string ProjectId;
         /// <summary>
-        /// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+        /// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         /// </summary>
         public readonly bool RedactClientLogData;
         /// <summary>

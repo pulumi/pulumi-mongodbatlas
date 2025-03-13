@@ -217,7 +217,7 @@ export class NetworkPeering extends pulumi.CustomResource {
      */
     public /*out*/ readonly peerId!: pulumi.Output<string>;
     /**
-     * The unique ID for the MongoDB Atlas project to create the database user.
+     * The unique ID for the MongoDB Atlas project.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -396,7 +396,7 @@ export interface NetworkPeeringState {
      */
     peerId?: pulumi.Input<string>;
     /**
-     * The unique ID for the MongoDB Atlas project to create the database user.
+     * The unique ID for the MongoDB Atlas project.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -477,7 +477,7 @@ export interface NetworkPeeringArgs {
      */
     networkName?: pulumi.Input<string>;
     /**
-     * The unique ID for the MongoDB Atlas project to create the database user.
+     * The unique ID for the MongoDB Atlas project.
      */
     projectId: pulumi.Input<string>;
     /**

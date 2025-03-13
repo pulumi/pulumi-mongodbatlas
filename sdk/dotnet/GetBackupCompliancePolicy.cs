@@ -552,15 +552,33 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Specifications for on-demand policy.
+        /// </summary>
         public readonly Outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult OnDemandPolicyItem;
         /// <summary>
         /// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
         /// </summary>
         public readonly bool PitEnabled;
+        /// <summary>
+        /// Scheduled policy using a daily frequency type, see block fields.
+        /// </summary>
         public readonly Outputs.GetBackupCompliancePolicyPolicyItemDailyResult PolicyItemDaily;
+        /// <summary>
+        /// Scheduled policy using an hourly frequency type, see block fields.
+        /// </summary>
         public readonly Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult PolicyItemHourly;
+        /// <summary>
+        /// Scheduled policy using a monthly frequency type, see block fields.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemMonthlyResult> PolicyItemMonthlies;
+        /// <summary>
+        /// Scheduled policy using a weekly frequency type, see block fields.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemWeeklyResult> PolicyItemWeeklies;
+        /// <summary>
+        /// Scheduled policy using a yearly frequency type, see block fields.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemYearlyResult> PolicyItemYearlies;
         public readonly string ProjectId;
         /// <summary>

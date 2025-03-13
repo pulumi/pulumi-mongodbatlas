@@ -40,7 +40,7 @@ export function getAuditing(args: GetAuditingArgs, opts?: pulumi.InvokeOptions):
  */
 export interface GetAuditingArgs {
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: string;
 }
@@ -107,7 +107,7 @@ export function getAuditingOutput(args: GetAuditingOutputArgs, opts?: pulumi.Inv
  */
 export interface GetAuditingOutputArgs {
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: pulumi.Input<string>;
 }

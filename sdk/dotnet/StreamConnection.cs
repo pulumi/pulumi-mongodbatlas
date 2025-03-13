@@ -92,6 +92,9 @@ namespace Pulumi.Mongodbatlas
         [Output("authentication")]
         public Output<Outputs.StreamConnectionAuthentication?> Authentication { get; private set; } = null!;
 
+        [Output("aws")]
+        public Output<Outputs.StreamConnectionAws?> Aws { get; private set; } = null!;
+
         [Output("bootstrapServers")]
         public Output<string?> BootstrapServers { get; private set; } = null!;
 
@@ -129,7 +132,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamConnectionSecurity?> Security { get; private set; } = null!;
 
         /// <summary>
-        /// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        /// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -183,6 +186,9 @@ namespace Pulumi.Mongodbatlas
         [Input("authentication")]
         public Input<Inputs.StreamConnectionAuthenticationArgs>? Authentication { get; set; }
 
+        [Input("aws")]
+        public Input<Inputs.StreamConnectionAwsArgs>? Aws { get; set; }
+
         [Input("bootstrapServers")]
         public Input<string>? BootstrapServers { get; set; }
 
@@ -225,7 +231,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionSecurityArgs>? Security { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        /// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -240,6 +246,9 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("authentication")]
         public Input<Inputs.StreamConnectionAuthenticationGetArgs>? Authentication { get; set; }
+
+        [Input("aws")]
+        public Input<Inputs.StreamConnectionAwsGetArgs>? Aws { get; set; }
 
         [Input("bootstrapServers")]
         public Input<string>? BootstrapServers { get; set; }
@@ -283,7 +292,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionSecurityGetArgs>? Security { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        /// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -14,15 +14,15 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAdvancedClusterReplicationSpecRegionConfigResult
     {
         /// <summary>
-        /// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+        /// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult> AnalyticsAutoScalings;
         /// <summary>
-        /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+        /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
         /// </summary>
         public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult AnalyticsSpecs;
         /// <summary>
-        /// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+        /// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult> AutoScalings;
         /// <summary>
@@ -42,7 +42,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProviderName;
         /// <summary>
-        /// Hardware specifications for read-only nodes in the region. See below
+        /// Hardware specifications for read-only nodes in the region. See below.
         /// </summary>
         public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult ReadOnlySpecs;
         /// <summary>

@@ -23,7 +23,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string ExternalId;
         public readonly string Id;
         /// <summary>
-        /// Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
+        /// Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
         /// </summary>
         public readonly int NumShards;
         /// <summary>

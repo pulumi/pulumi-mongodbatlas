@@ -141,7 +141,7 @@ export class CloudBackupSnapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly snapshotId!: pulumi.Output<string>;
     /**
-     * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+     * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
      */
     public /*out*/ readonly snapshotIds!: pulumi.Output<string[]>;
     /**
@@ -281,7 +281,7 @@ export interface CloudBackupSnapshotState {
      */
     snapshotId?: pulumi.Input<string>;
     /**
-     * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+     * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
      */
     snapshotIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**

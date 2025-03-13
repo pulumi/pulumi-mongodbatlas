@@ -197,7 +197,7 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
 
     :param str cluster_name: The name of the Global Cluster.
     :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -304,7 +304,7 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] =
 
     :param str cluster_name: The name of the Global Cluster.
     :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

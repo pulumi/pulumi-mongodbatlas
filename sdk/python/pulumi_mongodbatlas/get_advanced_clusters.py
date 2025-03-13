@@ -86,7 +86,9 @@ def get_advanced_clusters(project_id: Optional[str] = None,
     """
     ## # Data Source: get_advanced_clusters
 
-    `get_advanced_clusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+    `get_advanced_clusters` returns all Advanced Clusters for a project_id.
+
+    This page describes the current version of `get_advanced_clusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -119,8 +121,6 @@ def get_advanced_clusters(project_id: Optional[str] = None,
         }])
     example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
     ```
-
-    **NOTE:** There can only be one M0 cluster per project.
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
 
@@ -206,7 +206,9 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
     """
     ## # Data Source: get_advanced_clusters
 
-    `get_advanced_clusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+    `get_advanced_clusters` returns all Advanced Clusters for a project_id.
+
+    This page describes the current version of `get_advanced_clusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -239,8 +241,6 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
         }])
     example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
     ```
-
-    **NOTE:** There can only be one M0 cluster per project.
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
 

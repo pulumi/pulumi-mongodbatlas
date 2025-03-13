@@ -15,7 +15,7 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     customOpensslCipherConfigTls12s?: string[];
     /**
-     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      */
     defaultMaxTimeMs?: number;
     /**
@@ -35,12 +35,11 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     failIndexKeyTooLong: boolean;
     /**
-     * When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
      */
     javascriptEnabled: boolean;
     /**
-     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-     *
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2
@@ -79,7 +78,7 @@ export interface AdvancedClusterAdvancedConfiguration {
 
 export interface AdvancedClusterBiConnectorConfig {
     /**
-     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.
      * *
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
@@ -105,10 +104,10 @@ export interface AdvancedClusterConnectionString {
     /**
      * Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
      * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
      * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
      * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
      * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -210,23 +209,23 @@ export interface AdvancedClusterReplicationSpec {
 
 export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
-     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
+     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
      */
     analyticsAutoScaling: outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling;
     /**
-     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
      */
     analyticsSpecs: outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs;
     /**
-     * Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
+     * Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
      */
     autoScaling: outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling;
     /**
-     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
+     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
      */
     backingProviderName?: string;
     /**
-     * Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+     * Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      */
     electableSpecs: outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs;
     /**
@@ -246,7 +245,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     providerName: string;
     /**
-     * Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+     * Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
      */
     readOnlySpecs: outputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs;
     /**
@@ -963,7 +962,7 @@ export interface ClusterAdvancedConfiguration {
      */
     javascriptEnabled: boolean;
     /**
-     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      *
      * - TLS1_0
      * - TLS1_1
@@ -1003,7 +1002,7 @@ export interface ClusterAdvancedConfiguration {
 
 export interface ClusterBiConnectorConfig {
     /**
-     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.
      * *
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
@@ -1029,10 +1028,10 @@ export interface ClusterConnectionString {
     /**
      * Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
      * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
      * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
      * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
      * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -1662,7 +1661,7 @@ export interface FederatedSettingsOrgRoleMappingRoleAssignment {
 
 export interface FlexClusterBackupSettings {
     /**
-     * Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     * Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      */
     enabled: boolean;
 }
@@ -1730,11 +1729,11 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      */
     customOpensslCipherConfigTls12s: string[];
     /**
-     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
@@ -1744,7 +1743,7 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      */
     defaultWriteConcern: string;
     /**
-     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
@@ -1754,7 +1753,7 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      */
     javascriptEnabled: boolean;
     /**
-     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -1789,7 +1788,7 @@ export interface GetAdvancedClusterAdvancedConfiguration {
 
 export interface GetAdvancedClusterBiConnectorConfig {
     /**
-     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.
      */
     enabled: boolean;
     /**
@@ -1806,10 +1805,10 @@ export interface GetAdvancedClusterConnectionString {
     /**
      * Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
      * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
      * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
      * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
      * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -1882,7 +1881,7 @@ export interface GetAdvancedClusterReplicationSpec {
      */
     id: string;
     /**
-     * Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
+     * Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
@@ -1903,15 +1902,15 @@ export interface GetAdvancedClusterReplicationSpec {
 
 export interface GetAdvancedClusterReplicationSpecRegionConfig {
     /**
-     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
      */
     analyticsAutoScalings: outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling[];
     /**
-     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      */
     analyticsSpecs: outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs;
     /**
-     * Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+     * Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
      */
     autoScalings: outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScaling[];
     /**
@@ -1931,7 +1930,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfig {
      */
     providerName: string;
     /**
-     * Hardware specifications for read-only nodes in the region. See below
+     * Hardware specifications for read-only nodes in the region. See below.
      */
     readOnlySpecs: outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs;
     /**
@@ -2080,9 +2079,6 @@ export interface GetAdvancedClustersResult {
      */
     advancedConfigurations: outputs.GetAdvancedClustersResultAdvancedConfiguration[];
     backupEnabled: boolean;
-    /**
-     * Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
-     */
     biConnectorConfigs: outputs.GetAdvancedClustersResultBiConnectorConfig[];
     /**
      * Type of the cluster that you want to create.
@@ -2097,7 +2093,7 @@ export interface GetAdvancedClustersResult {
      */
     configServerType: string;
     /**
-     * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     connectionStrings: outputs.GetAdvancedClustersResultConnectionString[];
     createDate: string;
@@ -2141,7 +2137,7 @@ export interface GetAdvancedClustersResult {
      */
     pitEnabled: boolean;
     /**
-     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      */
     redactClientLogData: boolean;
     /**
@@ -2184,11 +2180,11 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      */
     customOpensslCipherConfigTls12s: string[];
     /**
-     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
@@ -2198,7 +2194,7 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      */
     defaultWriteConcern: string;
     /**
-     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
@@ -2208,7 +2204,7 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      */
     javascriptEnabled: boolean;
     /**
-     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -2243,7 +2239,7 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
 
 export interface GetAdvancedClustersResultBiConnectorConfig {
     /**
-     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.
      */
     enabled: boolean;
     /**
@@ -2260,10 +2256,10 @@ export interface GetAdvancedClustersResultConnectionString {
     /**
      * Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
      * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
      * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
      * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
      * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -2336,7 +2332,7 @@ export interface GetAdvancedClustersResultReplicationSpec {
      */
     id: string;
     /**
-     * Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
+     * Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
@@ -2357,15 +2353,15 @@ export interface GetAdvancedClustersResultReplicationSpec {
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfig {
     /**
-     * Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+     * Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
      */
     analyticsAutoScalings: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling[];
     /**
-     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      */
     analyticsSpecs: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs;
     /**
-     * Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+     * Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
      */
     autoScalings: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling[];
     /**
@@ -2385,7 +2381,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfig {
      */
     providerName: string;
     /**
-     * Hardware specifications for read-only nodes in the region. See below
+     * Hardware specifications for read-only nodes in the region. See below.
      */
     readOnlySpecs: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs;
     /**
@@ -3693,7 +3689,7 @@ export interface GetClusterAdvancedConfiguration {
      */
     javascriptEnabled: boolean;
     /**
-     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -3751,7 +3747,7 @@ export interface GetClusterConnectionString {
      * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
      * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
      * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
      * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
      * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -3942,7 +3938,7 @@ export interface GetClustersResult {
      */
     clusterType: string;
     /**
-     * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     connectionStrings: outputs.GetClustersResultConnectionString[];
     /**
@@ -4043,7 +4039,7 @@ export interface GetClustersResult {
      */
     providerVolumeType: string;
     /**
-     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      */
     redactClientLogData: boolean;
     /**
@@ -4117,7 +4113,7 @@ export interface GetClustersResultAdvancedConfiguration {
      */
     javascriptEnabled: boolean;
     /**
-     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -4172,7 +4168,7 @@ export interface GetClustersResultConnectionString {
      * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
      * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
      * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
      * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
      * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -5814,7 +5810,7 @@ export interface GetFederatedSettingsOrgRoleMappingsResultRoleAssignment {
 
 export interface GetFlexClusterBackupSettings {
     /**
-     * Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     * Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      */
     enabled: boolean;
 }
@@ -5906,7 +5902,7 @@ export interface GetFlexClustersResult {
 
 export interface GetFlexClustersResultBackupSettings {
     /**
-     * Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     * Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      */
     enabled: boolean;
 }
@@ -7058,6 +7054,13 @@ export interface GetStreamConnectionAuthentication {
     username: string;
 }
 
+export interface GetStreamConnectionAws {
+    /**
+     * Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+     */
+    roleArn: string;
+}
+
 export interface GetStreamConnectionDbRoleToExecute {
     /**
      * The name of the role to use. Can be a built in role or a custom role.
@@ -7103,6 +7106,10 @@ export interface GetStreamConnectionsResult {
      * User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
      */
     authentication: outputs.GetStreamConnectionsResultAuthentication;
+    /**
+     * The configuration for AWS Lambda connection. See AWS
+     */
+    aws: outputs.GetStreamConnectionsResultAws;
     /**
      * Comma separated list of server addresses.
      */
@@ -7159,6 +7166,13 @@ export interface GetStreamConnectionsResultAuthentication {
      * Username of the account to connect to the Kafka cluster.
      */
     username: string;
+}
+
+export interface GetStreamConnectionsResultAws {
+    /**
+     * Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+     */
+    roleArn: string;
 }
 
 export interface GetStreamConnectionsResultDbRoleToExecute {
@@ -7802,13 +7816,20 @@ export interface StreamConnectionAuthentication {
     username?: string;
 }
 
+export interface StreamConnectionAws {
+    /**
+     * Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+     */
+    roleArn: string;
+}
+
 export interface StreamConnectionDbRoleToExecute {
     /**
      * The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
      */
     role: string;
     /**
-     * Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
      */
     type: string;
 }

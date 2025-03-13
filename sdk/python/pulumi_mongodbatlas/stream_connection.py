@@ -26,6 +26,7 @@ class StreamConnectionArgs:
                  project_id: pulumi.Input[str],
                  type: pulumi.Input[str],
                  authentication: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']] = None,
+                 aws: Optional[pulumi.Input['StreamConnectionAwsArgs']] = None,
                  bootstrap_servers: Optional[pulumi.Input[str]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -37,7 +38,7 @@ class StreamConnectionArgs:
         :param pulumi.Input[str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[str] type: Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        :param pulumi.Input[str] type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         """
         pulumi.set(__self__, "connection_name", connection_name)
         pulumi.set(__self__, "instance_name", instance_name)
@@ -45,6 +46,8 @@ class StreamConnectionArgs:
         pulumi.set(__self__, "type", type)
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
+        if aws is not None:
+            pulumi.set(__self__, "aws", aws)
         if bootstrap_servers is not None:
             pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
         if cluster_name is not None:
@@ -98,7 +101,7 @@ class StreamConnectionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         """
         return pulumi.get(self, "type")
 
@@ -114,6 +117,15 @@ class StreamConnectionArgs:
     @authentication.setter
     def authentication(self, value: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']]):
         pulumi.set(self, "authentication", value)
+
+    @property
+    @pulumi.getter
+    def aws(self) -> Optional[pulumi.Input['StreamConnectionAwsArgs']]:
+        return pulumi.get(self, "aws")
+
+    @aws.setter
+    def aws(self, value: Optional[pulumi.Input['StreamConnectionAwsArgs']]):
+        pulumi.set(self, "aws", value)
 
     @property
     @pulumi.getter(name="bootstrapServers")
@@ -174,6 +186,7 @@ class StreamConnectionArgs:
 class _StreamConnectionState:
     def __init__(__self__, *,
                  authentication: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']] = None,
+                 aws: Optional[pulumi.Input['StreamConnectionAwsArgs']] = None,
                  bootstrap_servers: Optional[pulumi.Input[str]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -189,10 +202,12 @@ class _StreamConnectionState:
         :param pulumi.Input[str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[str] type: Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        :param pulumi.Input[str] type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         """
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
+        if aws is not None:
+            pulumi.set(__self__, "aws", aws)
         if bootstrap_servers is not None:
             pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
         if cluster_name is not None:
@@ -222,6 +237,15 @@ class _StreamConnectionState:
     @authentication.setter
     def authentication(self, value: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']]):
         pulumi.set(self, "authentication", value)
+
+    @property
+    @pulumi.getter
+    def aws(self) -> Optional[pulumi.Input['StreamConnectionAwsArgs']]:
+        return pulumi.get(self, "aws")
+
+    @aws.setter
+    def aws(self, value: Optional[pulumi.Input['StreamConnectionAwsArgs']]):
+        pulumi.set(self, "aws", value)
 
     @property
     @pulumi.getter(name="bootstrapServers")
@@ -317,7 +341,7 @@ class _StreamConnectionState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         """
         return pulumi.get(self, "type")
 
@@ -332,6 +356,7 @@ class StreamConnection(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
+                 aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
                  bootstrap_servers: Optional[pulumi.Input[str]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -406,7 +431,7 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.Input[str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[str] type: Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        :param pulumi.Input[str] type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         """
         ...
     @overload
@@ -488,6 +513,7 @@ class StreamConnection(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
+                 aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
                  bootstrap_servers: Optional[pulumi.Input[str]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -508,6 +534,7 @@ class StreamConnection(pulumi.CustomResource):
             __props__ = StreamConnectionArgs.__new__(StreamConnectionArgs)
 
             __props__.__dict__["authentication"] = authentication
+            __props__.__dict__["aws"] = aws
             __props__.__dict__["bootstrap_servers"] = bootstrap_servers
             __props__.__dict__["cluster_name"] = cluster_name
             __props__.__dict__["config"] = config
@@ -537,6 +564,7 @@ class StreamConnection(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
+            aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
             bootstrap_servers: Optional[pulumi.Input[str]] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
             config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -557,13 +585,14 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.Input[str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[str] type: Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        :param pulumi.Input[str] type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _StreamConnectionState.__new__(_StreamConnectionState)
 
         __props__.__dict__["authentication"] = authentication
+        __props__.__dict__["aws"] = aws
         __props__.__dict__["bootstrap_servers"] = bootstrap_servers
         __props__.__dict__["cluster_name"] = cluster_name
         __props__.__dict__["config"] = config
@@ -580,6 +609,11 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter
     def authentication(self) -> pulumi.Output[Optional['outputs.StreamConnectionAuthentication']]:
         return pulumi.get(self, "authentication")
+
+    @property
+    @pulumi.getter
+    def aws(self) -> pulumi.Output[Optional['outputs.StreamConnectionAws']]:
+        return pulumi.get(self, "aws")
 
     @property
     @pulumi.getter(name="bootstrapServers")
@@ -639,7 +673,7 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
         """
         return pulumi.get(self, "type")
 

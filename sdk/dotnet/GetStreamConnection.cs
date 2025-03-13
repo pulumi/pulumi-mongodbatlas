@@ -158,6 +158,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly Outputs.GetStreamConnectionAuthenticationResult Authentication;
         /// <summary>
+        /// The configuration for AWS Lambda connection. See AWS
+        /// </summary>
+        public readonly Outputs.GetStreamConnectionAwsResult Aws;
+        /// <summary>
         /// Comma separated list of server addresses.
         /// </summary>
         public readonly string BootstrapServers;
@@ -194,6 +198,8 @@ namespace Pulumi.Mongodbatlas
         private GetStreamConnectionResult(
             Outputs.GetStreamConnectionAuthenticationResult authentication,
 
+            Outputs.GetStreamConnectionAwsResult aws,
+
             string bootstrapServers,
 
             string clusterName,
@@ -217,6 +223,7 @@ namespace Pulumi.Mongodbatlas
             string type)
         {
             Authentication = authentication;
+            Aws = aws;
             BootstrapServers = bootstrapServers;
             ClusterName = clusterName;
             Config = config;

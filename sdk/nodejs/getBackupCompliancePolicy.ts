@@ -156,15 +156,33 @@ export interface GetBackupCompliancePolicyResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Specifications for on-demand policy.
+     */
     readonly onDemandPolicyItem: outputs.GetBackupCompliancePolicyOnDemandPolicyItem;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
     readonly pitEnabled: boolean;
+    /**
+     * Scheduled policy using a daily frequency type, see block fields.
+     */
     readonly policyItemDaily: outputs.GetBackupCompliancePolicyPolicyItemDaily;
+    /**
+     * Scheduled policy using an hourly frequency type, see block fields.
+     */
     readonly policyItemHourly: outputs.GetBackupCompliancePolicyPolicyItemHourly;
+    /**
+     * Scheduled policy using a monthly frequency type, see block fields.
+     */
     readonly policyItemMonthlies: outputs.GetBackupCompliancePolicyPolicyItemMonthly[];
+    /**
+     * Scheduled policy using a weekly frequency type, see block fields.
+     */
     readonly policyItemWeeklies: outputs.GetBackupCompliancePolicyPolicyItemWeekly[];
+    /**
+     * Scheduled policy using a yearly frequency type, see block fields.
+     */
     readonly policyItemYearlies: outputs.GetBackupCompliancePolicyPolicyItemYearly[];
     readonly projectId: string;
     /**

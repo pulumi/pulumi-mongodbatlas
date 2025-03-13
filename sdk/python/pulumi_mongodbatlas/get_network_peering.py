@@ -330,7 +330,7 @@ def get_network_peering(peering_id: Optional[str] = None,
 
 
     :param str peering_id: Atlas assigned unique ID for the peering connection.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
     __args__['peeringId'] = peering_id
@@ -394,7 +394,7 @@ def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
 
 
     :param str peering_id: Atlas assigned unique ID for the peering connection.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
     __args__['peeringId'] = peering_id

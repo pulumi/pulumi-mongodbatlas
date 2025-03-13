@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class FlexClusterBackupSettingsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        /// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

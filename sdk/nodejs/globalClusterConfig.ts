@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
- * > **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `globalClusterSelfManagedSharding` attribute in `mongodbatlas.AdvancedCluster` resource for more info.
+ * > **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `globalClusterSelfManagedSharding` attribute in `mongodbatlas.AdvancedCluster` resource for more information.
  *
  * > **IMPORTANT:** You can update a Global Cluster Configuration to add new custom zone mappings and managed namespaces. However, once configured, you can't modify or partially delete custom zone mappings (you must remove them all at once). You can add or remove, but can't modify, managed namespaces. Any update that changes an existing managed namespace results in an error. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/). For more details, see [Global Clusters API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Global-Clusters)
  *
@@ -134,7 +134,7 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
      */
     public readonly managedNamespaces!: pulumi.Output<outputs.GlobalClusterConfigManagedNamespace[]>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     public readonly projectId!: pulumi.Output<string>;
 
@@ -204,7 +204,7 @@ export interface GlobalClusterConfigState {
      */
     managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId?: pulumi.Input<string>;
 }
@@ -226,7 +226,7 @@ export interface GlobalClusterConfigArgs {
      */
     managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: pulumi.Input<string>;
 }

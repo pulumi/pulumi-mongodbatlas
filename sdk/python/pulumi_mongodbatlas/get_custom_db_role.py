@@ -131,7 +131,7 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRole
     ```
 
 
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     :param str role_name: Name of the custom role.
     """
     __args__ = dict()
@@ -188,7 +188,7 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
     ```
 
 
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     :param str role_name: Name of the custom role.
     """
     __args__ = dict()

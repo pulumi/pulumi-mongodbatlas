@@ -132,9 +132,6 @@ class GetAdvancedClusterResult:
     @property
     @pulumi.getter(name="biConnectorConfigs")
     def bi_connector_configs(self) -> Sequence['outputs.GetAdvancedClusterBiConnectorConfigResult']:
-        """
-        Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
-        """
         return pulumi.get(self, "bi_connector_configs")
 
     @property
@@ -165,7 +162,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="connectionStrings")
     def connection_strings(self) -> Sequence['outputs.GetAdvancedClusterConnectionStringResult']:
         """
-        Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         """
         return pulumi.get(self, "connection_strings")
 
@@ -211,7 +208,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter
     def labels(self) -> Sequence['outputs.GetAdvancedClusterLabelResult']:
         """
-        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
         """
         return pulumi.get(self, "labels")
 
@@ -269,7 +266,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> bool:
         """
-        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -382,13 +379,15 @@ def get_advanced_cluster(name: Optional[str] = None,
 
     `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
 
+    This page describes the current version of `AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     > **IMPORTANT:**
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 
-    > **NOTE:** This data source also includes Flex clusters.
+    **NOTE:** This data source also includes Flex clusters.
 
     ## Example Usage
 
@@ -414,8 +413,6 @@ def get_advanced_cluster(name: Optional[str] = None,
     example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
         name=example_advanced_cluster.name)
     ```
-
-    **NOTE:** There can only be one M0 cluster per project.
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
 
@@ -484,7 +481,7 @@ def get_advanced_cluster(name: Optional[str] = None,
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
     :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project to create the cluster.
     :param bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
     """
     __args__ = dict()
@@ -535,13 +532,15 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
 
     `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
 
+    This page describes the current version of `AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     > **IMPORTANT:**
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 
-    > **NOTE:** This data source also includes Flex clusters.
+    **NOTE:** This data source also includes Flex clusters.
 
     ## Example Usage
 
@@ -567,8 +566,6 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
     example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
         name=example_advanced_cluster.name)
     ```
-
-    **NOTE:** There can only be one M0 cluster per project.
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
 
@@ -637,7 +634,7 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
     :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project to create the cluster.
     :param bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
     """
     __args__ = dict()
