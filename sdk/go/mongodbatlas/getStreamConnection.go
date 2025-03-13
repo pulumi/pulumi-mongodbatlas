@@ -66,6 +66,8 @@ type LookupStreamConnectionArgs struct {
 type LookupStreamConnectionResult struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionAuthentication `pulumi:"authentication"`
+	// The configuration for AWS Lambda connection. See AWS
+	Aws GetStreamConnectionAws `pulumi:"aws"`
 	// Comma separated list of server addresses.
 	BootstrapServers string `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
@@ -127,6 +129,11 @@ func (o LookupStreamConnectionResultOutput) ToLookupStreamConnectionResultOutput
 // User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 func (o LookupStreamConnectionResultOutput) Authentication() GetStreamConnectionAuthenticationOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionAuthentication { return v.Authentication }).(GetStreamConnectionAuthenticationOutput)
+}
+
+// The configuration for AWS Lambda connection. See AWS
+func (o LookupStreamConnectionResultOutput) Aws() GetStreamConnectionAwsOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionAws { return v.Aws }).(GetStreamConnectionAwsOutput)
 }
 
 // Comma separated list of server addresses.

@@ -16,14 +16,14 @@ public final class FlexClusterBackupSettingsArgs extends com.pulumi.resources.Re
     public static final FlexClusterBackupSettingsArgs Empty = new FlexClusterBackupSettingsArgs();
 
     /**
-     * Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     * Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -55,7 +55,7 @@ public final class FlexClusterBackupSettingsArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param enabled Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+         * @param enabled Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
          * 
          * @return builder
          * 
@@ -66,7 +66,7 @@ public final class FlexClusterBackupSettingsArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param enabled Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+         * @param enabled Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
          * 
          * @return builder
          * 

@@ -84,7 +84,7 @@ func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.
 type LookupClusterArgs struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name string `pulumi:"name"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the cluster.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -106,7 +106,7 @@ type LookupClusterResult struct {
 	BiConnectorConfigs []GetClusterBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType string `pulumi:"clusterType"`
-	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
 	ConnectionStrings []GetClusterConnectionString `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId string `pulumi:"containerId"`
@@ -160,7 +160,7 @@ type LookupClusterResult struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType string `pulumi:"providerVolumeType"`
-	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor int `pulumi:"replicationFactor"`
@@ -199,7 +199,7 @@ func LookupClusterOutput(ctx *pulumi.Context, args LookupClusterOutputArgs, opts
 type LookupClusterOutputArgs struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -262,7 +262,7 @@ func (o LookupClusterResultOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ClusterType }).(pulumi.StringOutput)
 }
 
-// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
+// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
 func (o LookupClusterResultOutput) ConnectionStrings() GetClusterConnectionStringArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []GetClusterConnectionString { return v.ConnectionStrings }).(GetClusterConnectionStringArrayOutput)
 }
@@ -400,7 +400,7 @@ func (o LookupClusterResultOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ProviderVolumeType }).(pulumi.StringOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 func (o LookupClusterResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }

@@ -12,7 +12,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAdvancedClustersResultBiConnectorConfig {
     /**
-     * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.
      * 
      */
     private Boolean enabled;
@@ -24,7 +24,7 @@ public final class GetAdvancedClustersResultBiConnectorConfig {
 
     private GetAdvancedClustersResultBiConnectorConfig() {}
     /**
-     * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.
      * 
      */
     public Boolean enabled() {

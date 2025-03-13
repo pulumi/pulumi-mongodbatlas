@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ClusterBiConnectorConfig {
     /**
-     * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.
      * *
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
@@ -34,7 +34,7 @@ public final class ClusterBiConnectorConfig {
 
     private ClusterBiConnectorConfig() {}
     /**
-     * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.
      * *
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.

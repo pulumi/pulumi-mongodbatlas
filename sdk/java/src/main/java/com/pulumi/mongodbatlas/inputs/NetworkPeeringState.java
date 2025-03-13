@@ -244,14 +244,14 @@ public final class NetworkPeeringState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The unique ID for the MongoDB Atlas project to create the database user.
+     * The unique ID for the MongoDB Atlas project.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique ID for the MongoDB Atlas project to create the database user.
+     * @return The unique ID for the MongoDB Atlas project.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -735,7 +735,7 @@ public final class NetworkPeeringState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param projectId The unique ID for the MongoDB Atlas project to create the database user.
+         * @param projectId The unique ID for the MongoDB Atlas project.
          * 
          * @return builder
          * 
@@ -746,7 +746,7 @@ public final class NetworkPeeringState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param projectId The unique ID for the MongoDB Atlas project to create the database user.
+         * @param projectId The unique ID for the MongoDB Atlas project.
          * 
          * @return builder
          * 

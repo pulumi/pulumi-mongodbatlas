@@ -67,7 +67,7 @@ func LookupNetworkContainer(ctx *pulumi.Context, args *LookupNetworkContainerArg
 type LookupNetworkContainerArgs struct {
 	// The Network Peering Container ID.
 	ContainerId string `pulumi:"containerId"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -114,7 +114,7 @@ func LookupNetworkContainerOutput(ctx *pulumi.Context, args LookupNetworkContain
 type LookupNetworkContainerOutputArgs struct {
 	// The Network Peering Container ID.
 	ContainerId pulumi.StringInput `pulumi:"containerId"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

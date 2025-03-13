@@ -26,10 +26,6 @@ public final class GetAdvancedClustersResult {
      */
     private List<GetAdvancedClustersResultAdvancedConfiguration> advancedConfigurations;
     private Boolean backupEnabled;
-    /**
-     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
-     * 
-     */
     private List<GetAdvancedClustersResultBiConnectorConfig> biConnectorConfigs;
     /**
      * @return Type of the cluster that you want to create.
@@ -47,7 +43,7 @@ public final class GetAdvancedClustersResult {
      */
     private String configServerType;
     /**
-     * @return Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
     private List<GetAdvancedClustersResultConnectionString> connectionStrings;
@@ -103,7 +99,7 @@ public final class GetAdvancedClustersResult {
      */
     private Boolean pitEnabled;
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      * 
      */
     private Boolean redactClientLogData;
@@ -154,10 +150,6 @@ public final class GetAdvancedClustersResult {
     public Boolean backupEnabled() {
         return this.backupEnabled;
     }
-    /**
-     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
-     * 
-     */
     public List<GetAdvancedClustersResultBiConnectorConfig> biConnectorConfigs() {
         return this.biConnectorConfigs;
     }
@@ -183,7 +175,7 @@ public final class GetAdvancedClustersResult {
         return this.configServerType;
     }
     /**
-     * @return Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
     public List<GetAdvancedClustersResultConnectionString> connectionStrings() {
@@ -263,7 +255,7 @@ public final class GetAdvancedClustersResult {
         return this.pitEnabled;
     }
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      * 
      */
     public Boolean redactClientLogData() {

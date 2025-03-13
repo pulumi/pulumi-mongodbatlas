@@ -99,9 +99,17 @@ public final class BackupCompliancePolicyState extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.encryptionAtRestEnabled);
     }
 
+    /**
+     * Specifications for on-demand policy.
+     * 
+     */
     @Import(name="onDemandPolicyItem")
     private @Nullable Output<BackupCompliancePolicyOnDemandPolicyItemArgs> onDemandPolicyItem;
 
+    /**
+     * @return Specifications for on-demand policy.
+     * 
+     */
     public Optional<Output<BackupCompliancePolicyOnDemandPolicyItemArgs>> onDemandPolicyItem() {
         return Optional.ofNullable(this.onDemandPolicyItem);
     }
@@ -121,37 +129,77 @@ public final class BackupCompliancePolicyState extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.pitEnabled);
     }
 
+    /**
+     * Scheduled policy using a daily frequency type, see block fields.
+     * 
+     */
     @Import(name="policyItemDaily")
     private @Nullable Output<BackupCompliancePolicyPolicyItemDailyArgs> policyItemDaily;
 
+    /**
+     * @return Scheduled policy using a daily frequency type, see block fields.
+     * 
+     */
     public Optional<Output<BackupCompliancePolicyPolicyItemDailyArgs>> policyItemDaily() {
         return Optional.ofNullable(this.policyItemDaily);
     }
 
+    /**
+     * Scheduled policy using an hourly frequency type, see block fields.
+     * 
+     */
     @Import(name="policyItemHourly")
     private @Nullable Output<BackupCompliancePolicyPolicyItemHourlyArgs> policyItemHourly;
 
+    /**
+     * @return Scheduled policy using an hourly frequency type, see block fields.
+     * 
+     */
     public Optional<Output<BackupCompliancePolicyPolicyItemHourlyArgs>> policyItemHourly() {
         return Optional.ofNullable(this.policyItemHourly);
     }
 
+    /**
+     * Scheduled policy using a monthly frequency type, see block fields.
+     * 
+     */
     @Import(name="policyItemMonthlies")
     private @Nullable Output<List<BackupCompliancePolicyPolicyItemMonthlyArgs>> policyItemMonthlies;
 
+    /**
+     * @return Scheduled policy using a monthly frequency type, see block fields.
+     * 
+     */
     public Optional<Output<List<BackupCompliancePolicyPolicyItemMonthlyArgs>>> policyItemMonthlies() {
         return Optional.ofNullable(this.policyItemMonthlies);
     }
 
+    /**
+     * Scheduled policy using a weekly frequency type, see block fields.
+     * 
+     */
     @Import(name="policyItemWeeklies")
     private @Nullable Output<List<BackupCompliancePolicyPolicyItemWeeklyArgs>> policyItemWeeklies;
 
+    /**
+     * @return Scheduled policy using a weekly frequency type, see block fields.
+     * 
+     */
     public Optional<Output<List<BackupCompliancePolicyPolicyItemWeeklyArgs>>> policyItemWeeklies() {
         return Optional.ofNullable(this.policyItemWeeklies);
     }
 
+    /**
+     * Scheduled policy using a yearly frequency type, see block fields.
+     * 
+     */
     @Import(name="policyItemYearlies")
     private @Nullable Output<List<BackupCompliancePolicyPolicyItemYearlyArgs>> policyItemYearlies;
 
+    /**
+     * @return Scheduled policy using a yearly frequency type, see block fields.
+     * 
+     */
     public Optional<Output<List<BackupCompliancePolicyPolicyItemYearlyArgs>>> policyItemYearlies() {
         return Optional.ofNullable(this.policyItemYearlies);
     }
@@ -376,11 +424,23 @@ public final class BackupCompliancePolicyState extends com.pulumi.resources.Reso
             return encryptionAtRestEnabled(Output.of(encryptionAtRestEnabled));
         }
 
+        /**
+         * @param onDemandPolicyItem Specifications for on-demand policy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder onDemandPolicyItem(@Nullable Output<BackupCompliancePolicyOnDemandPolicyItemArgs> onDemandPolicyItem) {
             $.onDemandPolicyItem = onDemandPolicyItem;
             return this;
         }
 
+        /**
+         * @param onDemandPolicyItem Specifications for on-demand policy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder onDemandPolicyItem(BackupCompliancePolicyOnDemandPolicyItemArgs onDemandPolicyItem) {
             return onDemandPolicyItem(Output.of(onDemandPolicyItem));
         }
@@ -406,59 +466,137 @@ public final class BackupCompliancePolicyState extends com.pulumi.resources.Reso
             return pitEnabled(Output.of(pitEnabled));
         }
 
+        /**
+         * @param policyItemDaily Scheduled policy using a daily frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemDaily(@Nullable Output<BackupCompliancePolicyPolicyItemDailyArgs> policyItemDaily) {
             $.policyItemDaily = policyItemDaily;
             return this;
         }
 
+        /**
+         * @param policyItemDaily Scheduled policy using a daily frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemDaily(BackupCompliancePolicyPolicyItemDailyArgs policyItemDaily) {
             return policyItemDaily(Output.of(policyItemDaily));
         }
 
+        /**
+         * @param policyItemHourly Scheduled policy using an hourly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemHourly(@Nullable Output<BackupCompliancePolicyPolicyItemHourlyArgs> policyItemHourly) {
             $.policyItemHourly = policyItemHourly;
             return this;
         }
 
+        /**
+         * @param policyItemHourly Scheduled policy using an hourly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemHourly(BackupCompliancePolicyPolicyItemHourlyArgs policyItemHourly) {
             return policyItemHourly(Output.of(policyItemHourly));
         }
 
+        /**
+         * @param policyItemMonthlies Scheduled policy using a monthly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemMonthlies(@Nullable Output<List<BackupCompliancePolicyPolicyItemMonthlyArgs>> policyItemMonthlies) {
             $.policyItemMonthlies = policyItemMonthlies;
             return this;
         }
 
+        /**
+         * @param policyItemMonthlies Scheduled policy using a monthly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemMonthlies(List<BackupCompliancePolicyPolicyItemMonthlyArgs> policyItemMonthlies) {
             return policyItemMonthlies(Output.of(policyItemMonthlies));
         }
 
+        /**
+         * @param policyItemMonthlies Scheduled policy using a monthly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemMonthlies(BackupCompliancePolicyPolicyItemMonthlyArgs... policyItemMonthlies) {
             return policyItemMonthlies(List.of(policyItemMonthlies));
         }
 
+        /**
+         * @param policyItemWeeklies Scheduled policy using a weekly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemWeeklies(@Nullable Output<List<BackupCompliancePolicyPolicyItemWeeklyArgs>> policyItemWeeklies) {
             $.policyItemWeeklies = policyItemWeeklies;
             return this;
         }
 
+        /**
+         * @param policyItemWeeklies Scheduled policy using a weekly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemWeeklies(List<BackupCompliancePolicyPolicyItemWeeklyArgs> policyItemWeeklies) {
             return policyItemWeeklies(Output.of(policyItemWeeklies));
         }
 
+        /**
+         * @param policyItemWeeklies Scheduled policy using a weekly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemWeeklies(BackupCompliancePolicyPolicyItemWeeklyArgs... policyItemWeeklies) {
             return policyItemWeeklies(List.of(policyItemWeeklies));
         }
 
+        /**
+         * @param policyItemYearlies Scheduled policy using a yearly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemYearlies(@Nullable Output<List<BackupCompliancePolicyPolicyItemYearlyArgs>> policyItemYearlies) {
             $.policyItemYearlies = policyItemYearlies;
             return this;
         }
 
+        /**
+         * @param policyItemYearlies Scheduled policy using a yearly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemYearlies(List<BackupCompliancePolicyPolicyItemYearlyArgs> policyItemYearlies) {
             return policyItemYearlies(Output.of(policyItemYearlies));
         }
 
+        /**
+         * @param policyItemYearlies Scheduled policy using a yearly frequency type, see block fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs... policyItemYearlies) {
             return policyItemYearlies(List.of(policyItemYearlies));
         }

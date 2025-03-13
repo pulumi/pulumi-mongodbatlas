@@ -28,10 +28,6 @@ public final class GetAdvancedClusterResult {
      */
     private List<GetAdvancedClusterAdvancedConfiguration> advancedConfigurations;
     private Boolean backupEnabled;
-    /**
-     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
-     * 
-     */
     private List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs;
     /**
      * @return Type of the cluster that you want to create.
@@ -49,7 +45,7 @@ public final class GetAdvancedClusterResult {
      */
     private String configServerType;
     /**
-     * @return Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
     private List<GetAdvancedClusterConnectionString> connectionStrings;
@@ -79,7 +75,7 @@ public final class GetAdvancedClusterResult {
      */
     private String id;
     /**
-     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
      * 
      */
     private List<GetAdvancedClusterLabel> labels;
@@ -111,7 +107,7 @@ public final class GetAdvancedClusterResult {
     private Boolean pitEnabled;
     private String projectId;
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      * 
      */
     private Boolean redactClientLogData;
@@ -163,10 +159,6 @@ public final class GetAdvancedClusterResult {
     public Boolean backupEnabled() {
         return this.backupEnabled;
     }
-    /**
-     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
-     * 
-     */
     public List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs() {
         return this.biConnectorConfigs;
     }
@@ -192,7 +184,7 @@ public final class GetAdvancedClusterResult {
         return this.configServerType;
     }
     /**
-     * @return Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
     public List<GetAdvancedClusterConnectionString> connectionStrings() {
@@ -234,7 +226,7 @@ public final class GetAdvancedClusterResult {
         return this.id;
     }
     /**
-     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
      * 
      */
     public List<GetAdvancedClusterLabel> labels() {
@@ -282,7 +274,7 @@ public final class GetAdvancedClusterResult {
         return this.projectId;
     }
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      * 
      */
     public Boolean redactClientLogData() {

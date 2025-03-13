@@ -18,7 +18,7 @@ type AdvancedClusterAdvancedConfiguration struct {
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
-	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs *int `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
@@ -30,10 +30,9 @@ type AdvancedClusterAdvancedConfiguration struct {
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
-	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	// When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	// - TLS1_0
 	// - TLS1_1
 	// - TLS1_2
@@ -71,7 +70,7 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntPtrInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
-	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntPtrInput `pulumi:"defaultMaxTimeMs"`
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
@@ -83,10 +82,9 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
-	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	// When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	// - TLS1_0
 	// - TLS1_1
 	// - TLS1_2
@@ -197,7 +195,7 @@ func (o AdvancedClusterAdvancedConfigurationOutput) CustomOpensslCipherConfigTls
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) []string { return v.CustomOpensslCipherConfigTls12s }).(pulumi.StringArrayOutput)
 }
 
-// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 func (o AdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.DefaultMaxTimeMs }).(pulumi.IntPtrOutput)
 }
@@ -221,13 +219,12 @@ func (o AdvancedClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
 }
 
-// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+// When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 func (o AdvancedClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.JavascriptEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 // - TLS1_0
 // - TLS1_1
 // - TLS1_2
@@ -315,7 +312,7 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) CustomOpensslCipherConfig
 	}).(pulumi.StringArrayOutput)
 }
 
-// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultMaxTimeMs() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -359,7 +356,7 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pul
 	}).(pulumi.BoolPtrOutput)
 }
 
-// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+// When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -369,8 +366,7 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulum
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 // - TLS1_0
 // - TLS1_1
 // - TLS1_2
@@ -455,7 +451,7 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitS
 }
 
 type AdvancedClusterBiConnectorConfig struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	// *
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
@@ -482,7 +478,7 @@ type AdvancedClusterBiConnectorConfigInput interface {
 }
 
 type AdvancedClusterBiConnectorConfigArgs struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	// *
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
@@ -574,7 +570,7 @@ func (o AdvancedClusterBiConnectorConfigOutput) ToAdvancedClusterBiConnectorConf
 	}).(AdvancedClusterBiConnectorConfigPtrOutput)
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 // *
 // - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
@@ -617,7 +613,7 @@ func (o AdvancedClusterBiConnectorConfigPtrOutput) Elem() AdvancedClusterBiConne
 	}).(AdvancedClusterBiConnectorConfigOutput)
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 // *
 // - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
@@ -651,10 +647,10 @@ type AdvancedClusterConnectionString struct {
 	Private *string `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -683,10 +679,10 @@ type AdvancedClusterConnectionStringArgs struct {
 	Private pulumi.StringPtrInput `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -757,10 +753,10 @@ func (o AdvancedClusterConnectionStringOutput) Private() pulumi.StringPtrOutput 
 
 // Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 // - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 // - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 // - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 // - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 // - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -1488,15 +1484,15 @@ func (o AdvancedClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) Adva
 }
 
 type AdvancedClusterReplicationSpecRegionConfig struct {
-	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
+	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 	AnalyticsAutoScaling *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScaling"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
 	AnalyticsSpecs *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
-	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
+	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 	AutoScaling *AdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
-	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
+	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
 	BackingProviderName *string `pulumi:"backingProviderName"`
-	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
 	ElectableSpecs *AdvancedClusterReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
 	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
@@ -1510,7 +1506,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	// - `AZURE` - Microsoft Azure
 	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
 	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	RegionName string `pulumi:"regionName"`
@@ -1528,15 +1524,15 @@ type AdvancedClusterReplicationSpecRegionConfigInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigArgs struct {
-	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
+	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 	AnalyticsAutoScaling AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrInput `pulumi:"analyticsAutoScaling"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
 	AnalyticsSpecs AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
-	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
+	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 	AutoScaling AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput `pulumi:"autoScaling"`
-	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
+	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
 	BackingProviderName pulumi.StringPtrInput `pulumi:"backingProviderName"`
-	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
 	ElectableSpecs AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
 	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
@@ -1550,7 +1546,7 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	// - `AZURE` - Microsoft Azure
 	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
 	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	RegionName pulumi.StringInput `pulumi:"regionName"`
@@ -1607,33 +1603,33 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) ToAdvancedClusterRepli
 	return o
 }
 
-// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
+// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsAutoScaling() AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
 		return v.AnalyticsAutoScaling
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 }
 
-// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
 		return v.AnalyticsSpecs
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
 }
 
-// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below
+// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) AutoScaling() AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAutoScaling {
 		return v.AutoScaling
 	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput)
 }
 
-// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M0`.
+// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) BackingProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *string { return v.BackingProviderName }).(pulumi.StringPtrOutput)
 }
 
-// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ElectableSpecs() AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
 		return v.ElectableSpecs
@@ -1658,7 +1654,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
 		return v.ReadOnlySpecs
@@ -7155,7 +7151,7 @@ type ClusterAdvancedConfiguration struct {
 	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	//
 	// - TLS1_0
 	// - TLS1_1
@@ -7207,7 +7203,7 @@ type ClusterAdvancedConfigurationArgs struct {
 	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	//
 	// - TLS1_0
 	// - TLS1_1
@@ -7347,7 +7343,7 @@ func (o ClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolPtrOu
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.JavascriptEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 //
 // - TLS1_0
 // - TLS1_1
@@ -7489,7 +7485,7 @@ func (o ClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPt
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 //
 // - TLS1_0
 // - TLS1_1
@@ -7575,7 +7571,7 @@ func (o ClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitSeconds()
 }
 
 type ClusterBiConnectorConfig struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	// *
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
@@ -7602,7 +7598,7 @@ type ClusterBiConnectorConfigInput interface {
 }
 
 type ClusterBiConnectorConfigArgs struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	// *
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
@@ -7694,7 +7690,7 @@ func (o ClusterBiConnectorConfigOutput) ToClusterBiConnectorConfigPtrOutputWithC
 	}).(ClusterBiConnectorConfigPtrOutput)
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 // *
 // - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
@@ -7737,7 +7733,7 @@ func (o ClusterBiConnectorConfigPtrOutput) Elem() ClusterBiConnectorConfigOutput
 	}).(ClusterBiConnectorConfigOutput)
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 // *
 // - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
@@ -7771,10 +7767,10 @@ type ClusterConnectionString struct {
 	Private *string `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -7803,10 +7799,10 @@ type ClusterConnectionStringArgs struct {
 	Private pulumi.StringPtrInput `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -7877,10 +7873,10 @@ func (o ClusterConnectionStringOutput) Private() pulumi.StringPtrOutput {
 
 // Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 // - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 // - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 // - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 // - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 // - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -13829,7 +13825,7 @@ func (o FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) Index(i pulumi
 }
 
 type FlexClusterBackupSettings struct {
-	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 	Enabled *bool `pulumi:"enabled"`
 }
 
@@ -13845,7 +13841,7 @@ type FlexClusterBackupSettingsInput interface {
 }
 
 type FlexClusterBackupSettingsArgs struct {
-	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 }
 
@@ -13926,7 +13922,7 @@ func (o FlexClusterBackupSettingsOutput) ToFlexClusterBackupSettingsPtrOutputWit
 	}).(FlexClusterBackupSettingsPtrOutput)
 }
 
-// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 func (o FlexClusterBackupSettingsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v FlexClusterBackupSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -13955,7 +13951,7 @@ func (o FlexClusterBackupSettingsPtrOutput) Elem() FlexClusterBackupSettingsOutp
 	}).(FlexClusterBackupSettingsOutput)
 }
 
-// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 func (o FlexClusterBackupSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *FlexClusterBackupSettings) *bool {
 		if v == nil {
@@ -18409,10 +18405,147 @@ func (o StreamConnectionAuthenticationPtrOutput) Username() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+type StreamConnectionAws struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn string `pulumi:"roleArn"`
+}
+
+// StreamConnectionAwsInput is an input type that accepts StreamConnectionAwsArgs and StreamConnectionAwsOutput values.
+// You can construct a concrete instance of `StreamConnectionAwsInput` via:
+//
+//	StreamConnectionAwsArgs{...}
+type StreamConnectionAwsInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAwsOutput() StreamConnectionAwsOutput
+	ToStreamConnectionAwsOutputWithContext(context.Context) StreamConnectionAwsOutput
+}
+
+type StreamConnectionAwsArgs struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+}
+
+func (StreamConnectionAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAws)(nil)).Elem()
+}
+
+func (i StreamConnectionAwsArgs) ToStreamConnectionAwsOutput() StreamConnectionAwsOutput {
+	return i.ToStreamConnectionAwsOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAwsArgs) ToStreamConnectionAwsOutputWithContext(ctx context.Context) StreamConnectionAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAwsOutput)
+}
+
+func (i StreamConnectionAwsArgs) ToStreamConnectionAwsPtrOutput() StreamConnectionAwsPtrOutput {
+	return i.ToStreamConnectionAwsPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAwsArgs) ToStreamConnectionAwsPtrOutputWithContext(ctx context.Context) StreamConnectionAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAwsOutput).ToStreamConnectionAwsPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionAwsPtrInput is an input type that accepts StreamConnectionAwsArgs, StreamConnectionAwsPtr and StreamConnectionAwsPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionAwsPtrInput` via:
+//
+//	        StreamConnectionAwsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionAwsPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAwsPtrOutput() StreamConnectionAwsPtrOutput
+	ToStreamConnectionAwsPtrOutputWithContext(context.Context) StreamConnectionAwsPtrOutput
+}
+
+type streamConnectionAwsPtrType StreamConnectionAwsArgs
+
+func StreamConnectionAwsPtr(v *StreamConnectionAwsArgs) StreamConnectionAwsPtrInput {
+	return (*streamConnectionAwsPtrType)(v)
+}
+
+func (*streamConnectionAwsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAws)(nil)).Elem()
+}
+
+func (i *streamConnectionAwsPtrType) ToStreamConnectionAwsPtrOutput() StreamConnectionAwsPtrOutput {
+	return i.ToStreamConnectionAwsPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionAwsPtrType) ToStreamConnectionAwsPtrOutputWithContext(ctx context.Context) StreamConnectionAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAwsPtrOutput)
+}
+
+type StreamConnectionAwsOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAws)(nil)).Elem()
+}
+
+func (o StreamConnectionAwsOutput) ToStreamConnectionAwsOutput() StreamConnectionAwsOutput {
+	return o
+}
+
+func (o StreamConnectionAwsOutput) ToStreamConnectionAwsOutputWithContext(ctx context.Context) StreamConnectionAwsOutput {
+	return o
+}
+
+func (o StreamConnectionAwsOutput) ToStreamConnectionAwsPtrOutput() StreamConnectionAwsPtrOutput {
+	return o.ToStreamConnectionAwsPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionAwsOutput) ToStreamConnectionAwsPtrOutputWithContext(ctx context.Context) StreamConnectionAwsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionAws) *StreamConnectionAws {
+		return &v
+	}).(StreamConnectionAwsPtrOutput)
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o StreamConnectionAwsOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionAws) string { return v.RoleArn }).(pulumi.StringOutput)
+}
+
+type StreamConnectionAwsPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAwsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAws)(nil)).Elem()
+}
+
+func (o StreamConnectionAwsPtrOutput) ToStreamConnectionAwsPtrOutput() StreamConnectionAwsPtrOutput {
+	return o
+}
+
+func (o StreamConnectionAwsPtrOutput) ToStreamConnectionAwsPtrOutputWithContext(ctx context.Context) StreamConnectionAwsPtrOutput {
+	return o
+}
+
+func (o StreamConnectionAwsPtrOutput) Elem() StreamConnectionAwsOutput {
+	return o.ApplyT(func(v *StreamConnectionAws) StreamConnectionAws {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionAws
+		return ret
+	}).(StreamConnectionAwsOutput)
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o StreamConnectionAwsPtrOutput) RoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAws) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RoleArn
+	}).(pulumi.StringPtrOutput)
+}
+
 type StreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role string `pulumi:"role"`
-	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 	Type string `pulumi:"type"`
 }
 
@@ -18430,7 +18563,7 @@ type StreamConnectionDbRoleToExecuteInput interface {
 type StreamConnectionDbRoleToExecuteArgs struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -18516,7 +18649,7 @@ func (o StreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 func (o StreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -18555,7 +18688,7 @@ func (o StreamConnectionDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
 		if v == nil {
@@ -19990,21 +20123,21 @@ type GetAdvancedClusterAdvancedConfiguration struct {
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
-	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
@@ -20038,21 +20171,21 @@ type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
-	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
@@ -20133,12 +20266,12 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) CustomOpensslCipherConfig
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) []string { return v.CustomOpensslCipherConfigTls12s }).(pulumi.StringArrayOutput)
 }
 
-// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
@@ -20150,7 +20283,7 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pul
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
@@ -20162,7 +20295,7 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) JavascriptEnabled() pulum
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) bool { return v.JavascriptEnabled }).(pulumi.BoolOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 func (o GetAdvancedClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
 }
@@ -20223,7 +20356,7 @@ func (o GetAdvancedClusterAdvancedConfigurationArrayOutput) Index(i pulumi.IntIn
 }
 
 type GetAdvancedClusterBiConnectorConfig struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled bool `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 	ReadPreference string `pulumi:"readPreference"`
@@ -20241,7 +20374,7 @@ type GetAdvancedClusterBiConnectorConfigInput interface {
 }
 
 type GetAdvancedClusterBiConnectorConfigArgs struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
@@ -20298,7 +20431,7 @@ func (o GetAdvancedClusterBiConnectorConfigOutput) ToGetAdvancedClusterBiConnect
 	return o
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 func (o GetAdvancedClusterBiConnectorConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClusterBiConnectorConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -20333,10 +20466,10 @@ type GetAdvancedClusterConnectionString struct {
 	Private string `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -20365,10 +20498,10 @@ type GetAdvancedClusterConnectionStringArgs struct {
 	Private pulumi.StringInput `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -20439,10 +20572,10 @@ func (o GetAdvancedClusterConnectionStringOutput) Private() pulumi.StringOutput 
 
 // Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 // - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 // - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 // - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 // - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 // - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -20937,7 +21070,7 @@ type GetAdvancedClusterReplicationSpec struct {
 	ExternalId string `pulumi:"externalId"`
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id string `pulumi:"id"`
-	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
+	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards int `pulumi:"numShards"`
@@ -20967,7 +21100,7 @@ type GetAdvancedClusterReplicationSpecArgs struct {
 	ExternalId pulumi.StringInput `pulumi:"externalId"`
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id pulumi.StringInput `pulumi:"id"`
-	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
+	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards pulumi.IntInput `pulumi:"numShards"`
@@ -21045,7 +21178,7 @@ func (o GetAdvancedClusterReplicationSpecOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
+// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClusterReplicationSpecOutput) NumShards() pulumi.IntOutput {
@@ -21090,11 +21223,11 @@ func (o GetAdvancedClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) G
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfig struct {
-	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
 	AnalyticsAutoScalings []GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScalings"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 	AnalyticsSpecs GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
-	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 	AutoScalings []GetAdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScalings"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster.
 	BackingProviderName string `pulumi:"backingProviderName"`
@@ -21104,7 +21237,7 @@ type GetAdvancedClusterReplicationSpecRegionConfig struct {
 	Priority int `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName string `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. See below
+	// Hardware specifications for read-only nodes in the region. See below.
 	ReadOnlySpecs GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster.
 	RegionName string `pulumi:"regionName"`
@@ -21122,11 +21255,11 @@ type GetAdvancedClusterReplicationSpecRegionConfigInput interface {
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigArgs struct {
-	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
 	AnalyticsAutoScalings GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArrayInput `pulumi:"analyticsAutoScalings"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 	AnalyticsSpecs GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput `pulumi:"analyticsSpecs"`
-	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 	AutoScalings GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput `pulumi:"autoScalings"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster.
 	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
@@ -21136,7 +21269,7 @@ type GetAdvancedClusterReplicationSpecRegionConfigArgs struct {
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. See below
+	// Hardware specifications for read-only nodes in the region. See below.
 	ReadOnlySpecs GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
@@ -21193,21 +21326,21 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ToGetAdvancedCluste
 	return o
 }
 
-// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
 func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsAutoScalings() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) []GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
 		return v.AnalyticsAutoScalings
 	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArrayOutput)
 }
 
-// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
 		return v.AnalyticsSpecs
 	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
 }
 
-// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AutoScalings() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) []GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
 		return v.AutoScalings
@@ -21236,7 +21369,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulu
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Hardware specifications for read-only nodes in the region. See below
+// Hardware specifications for read-only nodes in the region. See below.
 func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
 		return v.ReadOnlySpecs
@@ -21946,15 +22079,14 @@ type GetAdvancedClustersResult struct {
 	// Get the advanced configuration options. See Advanced Configuration below for more details.
 	AdvancedConfigurations []GetAdvancedClustersResultAdvancedConfiguration `pulumi:"advancedConfigurations"`
 	BackupEnabled          bool                                             `pulumi:"backupEnabled"`
-	// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
-	BiConnectorConfigs []GetAdvancedClustersResultBiConnectorConfig `pulumi:"biConnectorConfigs"`
+	BiConnectorConfigs     []GetAdvancedClustersResultBiConnectorConfig     `pulumi:"biConnectorConfigs"`
 	// Type of the cluster that you want to create.
 	ClusterType string `pulumi:"clusterType"`
 	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerManagementMode string `pulumi:"configServerManagementMode"`
 	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerType string `pulumi:"configServerType"`
-	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []GetAdvancedClustersResultConnectionString `pulumi:"connectionStrings"`
 	CreateDate        string                                      `pulumi:"createDate"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -21978,7 +22110,7 @@ type GetAdvancedClustersResult struct {
 	PinnedFcvs []GetAdvancedClustersResultPinnedFcv `pulumi:"pinnedFcvs"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
-	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
@@ -22011,15 +22143,14 @@ type GetAdvancedClustersResultArgs struct {
 	// Get the advanced configuration options. See Advanced Configuration below for more details.
 	AdvancedConfigurations GetAdvancedClustersResultAdvancedConfigurationArrayInput `pulumi:"advancedConfigurations"`
 	BackupEnabled          pulumi.BoolInput                                         `pulumi:"backupEnabled"`
-	// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
-	BiConnectorConfigs GetAdvancedClustersResultBiConnectorConfigArrayInput `pulumi:"biConnectorConfigs"`
+	BiConnectorConfigs     GetAdvancedClustersResultBiConnectorConfigArrayInput     `pulumi:"biConnectorConfigs"`
 	// Type of the cluster that you want to create.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
 	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerManagementMode pulumi.StringInput `pulumi:"configServerManagementMode"`
 	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerType pulumi.StringInput `pulumi:"configServerType"`
-	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings GetAdvancedClustersResultConnectionStringArrayInput `pulumi:"connectionStrings"`
 	CreateDate        pulumi.StringInput                                  `pulumi:"createDate"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -22043,7 +22174,7 @@ type GetAdvancedClustersResultArgs struct {
 	PinnedFcvs GetAdvancedClustersResultPinnedFcvArrayInput `pulumi:"pinnedFcvs"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
-	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy pulumi.StringInput `pulumi:"replicaSetScalingStrategy"`
@@ -22123,7 +22254,6 @@ func (o GetAdvancedClustersResultOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.BackupEnabled }).(pulumi.BoolOutput)
 }
 
-// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
 func (o GetAdvancedClustersResultOutput) BiConnectorConfigs() GetAdvancedClustersResultBiConnectorConfigArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultBiConnectorConfig {
 		return v.BiConnectorConfigs
@@ -22145,7 +22275,7 @@ func (o GetAdvancedClustersResultOutput) ConfigServerType() pulumi.StringOutput 
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ConfigServerType }).(pulumi.StringOutput)
 }
 
-// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 func (o GetAdvancedClustersResultOutput) ConnectionStrings() GetAdvancedClustersResultConnectionStringArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultConnectionString {
 		return v.ConnectionStrings
@@ -22207,7 +22337,7 @@ func (o GetAdvancedClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 func (o GetAdvancedClustersResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
@@ -22274,21 +22404,21 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
-	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
@@ -22322,21 +22452,21 @@ type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
-	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
@@ -22419,12 +22549,12 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) CustomOpensslCiphe
 	}).(pulumi.StringArrayOutput)
 }
 
-// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
@@ -22436,7 +22566,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultWriteConcer
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
@@ -22448,7 +22578,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) JavascriptEnabled(
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) bool { return v.JavascriptEnabled }).(pulumi.BoolOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
 }
@@ -22509,7 +22639,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationArrayOutput) Index(i pulum
 }
 
 type GetAdvancedClustersResultBiConnectorConfig struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled bool `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 	ReadPreference string `pulumi:"readPreference"`
@@ -22527,7 +22657,7 @@ type GetAdvancedClustersResultBiConnectorConfigInput interface {
 }
 
 type GetAdvancedClustersResultBiConnectorConfigArgs struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
@@ -22584,7 +22714,7 @@ func (o GetAdvancedClustersResultBiConnectorConfigOutput) ToGetAdvancedClustersR
 	return o
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 func (o GetAdvancedClustersResultBiConnectorConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultBiConnectorConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -22619,10 +22749,10 @@ type GetAdvancedClustersResultConnectionString struct {
 	Private string `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -22651,10 +22781,10 @@ type GetAdvancedClustersResultConnectionStringArgs struct {
 	Private pulumi.StringInput `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -22725,10 +22855,10 @@ func (o GetAdvancedClustersResultConnectionStringOutput) Private() pulumi.String
 
 // Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 // - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
-// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
 // - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 // - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 // - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 // - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -23223,7 +23353,7 @@ type GetAdvancedClustersResultReplicationSpec struct {
 	ExternalId string `pulumi:"externalId"`
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id string `pulumi:"id"`
-	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards int `pulumi:"numShards"`
@@ -23253,7 +23383,7 @@ type GetAdvancedClustersResultReplicationSpecArgs struct {
 	ExternalId pulumi.StringInput `pulumi:"externalId"`
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	Id pulumi.StringInput `pulumi:"id"`
-	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards pulumi.IntInput `pulumi:"numShards"`
@@ -23331,7 +23461,7 @@ func (o GetAdvancedClustersResultReplicationSpecOutput) Id() pulumi.StringOutput
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
+// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClustersResultReplicationSpecOutput) NumShards() pulumi.IntOutput {
@@ -23376,11 +23506,11 @@ func (o GetAdvancedClustersResultReplicationSpecArrayOutput) Index(i pulumi.IntI
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfig struct {
-	// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+	// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
 	AnalyticsAutoScalings []GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScalings"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 	AnalyticsSpecs GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
-	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 	AutoScalings []GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling `pulumi:"autoScalings"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster.
 	BackingProviderName string `pulumi:"backingProviderName"`
@@ -23390,7 +23520,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfig struct {
 	Priority int `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName string `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. See below
+	// Hardware specifications for read-only nodes in the region. See below.
 	ReadOnlySpecs GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster.
 	RegionName string `pulumi:"regionName"`
@@ -23408,11 +23538,11 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigInput interface {
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigArgs struct {
-	// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+	// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
 	AnalyticsAutoScalings GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArrayInput `pulumi:"analyticsAutoScalings"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 	AnalyticsSpecs GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput `pulumi:"analyticsSpecs"`
-	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 	AutoScalings GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput `pulumi:"autoScalings"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster.
 	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
@@ -23422,7 +23552,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigArgs struct {
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. See below
+	// Hardware specifications for read-only nodes in the region. See below.
 	ReadOnlySpecs GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
@@ -23479,21 +23609,21 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ToGetAdvance
 	return o
 }
 
-// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AnalyticsAutoScalings() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) []GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling {
 		return v.AnalyticsAutoScalings
 	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArrayOutput)
 }
 
-// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
 		return v.AnalyticsSpecs
 	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput)
 }
 
-// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AutoScalings() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) []GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling {
 		return v.AutoScalings
@@ -23522,7 +23652,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ProviderName
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Hardware specifications for read-only nodes in the region. See below
+// Hardware specifications for read-only nodes in the region. See below.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ReadOnlySpecs() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
 		return v.ReadOnlySpecs
@@ -30359,7 +30489,7 @@ type GetClusterAdvancedConfiguration struct {
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
@@ -30406,7 +30536,7 @@ type GetClusterAdvancedConfigurationArgs struct {
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
@@ -30515,7 +30645,7 @@ func (o GetClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolOu
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) bool { return v.JavascriptEnabled }).(pulumi.BoolOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 func (o GetClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
 }
@@ -30692,7 +30822,7 @@ type GetClusterConnectionString struct {
 	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
 	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -30725,7 +30855,7 @@ type GetClusterConnectionStringArgs struct {
 	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
 	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -30811,7 +30941,7 @@ func (o GetClusterConnectionStringOutput) PrivateEndpoints() GetClusterConnectio
 // - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
 // - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
 // - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 // - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 // - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 // - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -32159,7 +32289,7 @@ type GetClustersResult struct {
 	BiConnectorConfigs []GetClustersResultBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType string `pulumi:"clusterType"`
-	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []GetClustersResultConnectionString `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId string `pulumi:"containerId"`
@@ -32210,7 +32340,7 @@ type GetClustersResult struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType string `pulumi:"providerVolumeType"`
-	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor int `pulumi:"replicationFactor"`
@@ -32264,7 +32394,7 @@ type GetClustersResultArgs struct {
 	BiConnectorConfigs GetClustersResultBiConnectorConfigArrayInput `pulumi:"biConnectorConfigs"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
-	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings GetClustersResultConnectionStringArrayInput `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId pulumi.StringInput `pulumi:"containerId"`
@@ -32315,7 +32445,7 @@ type GetClustersResultArgs struct {
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringInput `pulumi:"providerVolumeType"`
-	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntInput `pulumi:"replicationFactor"`
@@ -32432,7 +32562,7 @@ func (o GetClustersResultOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ClusterType }).(pulumi.StringOutput)
 }
 
-// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 func (o GetClustersResultOutput) ConnectionStrings() GetClustersResultConnectionStringArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersResultConnectionString { return v.ConnectionStrings }).(GetClustersResultConnectionStringArrayOutput)
 }
@@ -32558,7 +32688,7 @@ func (o GetClustersResultOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderVolumeType }).(pulumi.StringOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 func (o GetClustersResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
@@ -32647,7 +32777,7 @@ type GetClustersResultAdvancedConfiguration struct {
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
@@ -32693,7 +32823,7 @@ type GetClustersResultAdvancedConfigurationArgs struct {
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
@@ -32801,7 +32931,7 @@ func (o GetClustersResultAdvancedConfigurationOutput) JavascriptEnabled() pulumi
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) bool { return v.JavascriptEnabled }).(pulumi.BoolOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
 func (o GetClustersResultAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
 }
@@ -32977,7 +33107,7 @@ type GetClustersResultConnectionString struct {
 	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
 	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -33010,7 +33140,7 @@ type GetClustersResultConnectionStringArgs struct {
 	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
 	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
 	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -33096,7 +33226,7 @@ func (o GetClustersResultConnectionStringOutput) PrivateEndpoints() GetClustersR
 // - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
 // - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
 // - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
 // - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 // - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 // - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
@@ -45141,7 +45271,7 @@ func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput) Inde
 }
 
 type GetFlexClusterBackupSettings struct {
-	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 	Enabled bool `pulumi:"enabled"`
 }
 
@@ -45157,7 +45287,7 @@ type GetFlexClusterBackupSettingsInput interface {
 }
 
 type GetFlexClusterBackupSettingsArgs struct {
-	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 }
 
@@ -45187,7 +45317,7 @@ func (o GetFlexClusterBackupSettingsOutput) ToGetFlexClusterBackupSettingsOutput
 	return o
 }
 
-// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 func (o GetFlexClusterBackupSettingsOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetFlexClusterBackupSettings) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -45538,7 +45668,7 @@ func (o GetFlexClustersResultArrayOutput) Index(i pulumi.IntInput) GetFlexCluste
 }
 
 type GetFlexClustersResultBackupSettings struct {
-	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 	Enabled bool `pulumi:"enabled"`
 }
 
@@ -45554,7 +45684,7 @@ type GetFlexClustersResultBackupSettingsInput interface {
 }
 
 type GetFlexClustersResultBackupSettingsArgs struct {
-	// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+	// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 }
 
@@ -45584,7 +45714,7 @@ func (o GetFlexClustersResultBackupSettingsOutput) ToGetFlexClustersResultBackup
 	return o
 }
 
-// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
 func (o GetFlexClustersResultBackupSettingsOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetFlexClustersResultBackupSettings) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -53181,6 +53311,58 @@ func (o GetStreamConnectionAuthenticationOutput) Username() pulumi.StringOutput 
 	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Username }).(pulumi.StringOutput)
 }
 
+type GetStreamConnectionAws struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn string `pulumi:"roleArn"`
+}
+
+// GetStreamConnectionAwsInput is an input type that accepts GetStreamConnectionAwsArgs and GetStreamConnectionAwsOutput values.
+// You can construct a concrete instance of `GetStreamConnectionAwsInput` via:
+//
+//	GetStreamConnectionAwsArgs{...}
+type GetStreamConnectionAwsInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionAwsOutput() GetStreamConnectionAwsOutput
+	ToGetStreamConnectionAwsOutputWithContext(context.Context) GetStreamConnectionAwsOutput
+}
+
+type GetStreamConnectionAwsArgs struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+}
+
+func (GetStreamConnectionAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAws)(nil)).Elem()
+}
+
+func (i GetStreamConnectionAwsArgs) ToGetStreamConnectionAwsOutput() GetStreamConnectionAwsOutput {
+	return i.ToGetStreamConnectionAwsOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionAwsArgs) ToGetStreamConnectionAwsOutputWithContext(ctx context.Context) GetStreamConnectionAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionAwsOutput)
+}
+
+type GetStreamConnectionAwsOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAws)(nil)).Elem()
+}
+
+func (o GetStreamConnectionAwsOutput) ToGetStreamConnectionAwsOutput() GetStreamConnectionAwsOutput {
+	return o
+}
+
+func (o GetStreamConnectionAwsOutput) ToGetStreamConnectionAwsOutputWithContext(ctx context.Context) GetStreamConnectionAwsOutput {
+	return o
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o GetStreamConnectionAwsOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAws) string { return v.RoleArn }).(pulumi.StringOutput)
+}
+
 type GetStreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
@@ -53419,6 +53601,8 @@ func (o GetStreamConnectionSecurityOutput) Protocol() pulumi.StringOutput {
 type GetStreamConnectionsResult struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionsResultAuthentication `pulumi:"authentication"`
+	// The configuration for AWS Lambda connection. See AWS
+	Aws GetStreamConnectionsResultAws `pulumi:"aws"`
 	// Comma separated list of server addresses.
 	BootstrapServers string `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
@@ -53456,6 +53640,8 @@ type GetStreamConnectionsResultInput interface {
 type GetStreamConnectionsResultArgs struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionsResultAuthenticationInput `pulumi:"authentication"`
+	// The configuration for AWS Lambda connection. See AWS
+	Aws GetStreamConnectionsResultAwsInput `pulumi:"aws"`
 	// Comma separated list of server addresses.
 	BootstrapServers pulumi.StringInput `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
@@ -53533,6 +53719,11 @@ func (o GetStreamConnectionsResultOutput) ToGetStreamConnectionsResultOutputWith
 // User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 func (o GetStreamConnectionsResultOutput) Authentication() GetStreamConnectionsResultAuthenticationOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAuthentication { return v.Authentication }).(GetStreamConnectionsResultAuthenticationOutput)
+}
+
+// The configuration for AWS Lambda connection. See AWS
+func (o GetStreamConnectionsResultOutput) Aws() GetStreamConnectionsResultAwsOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAws { return v.Aws }).(GetStreamConnectionsResultAwsOutput)
 }
 
 // Comma separated list of server addresses.
@@ -53677,6 +53868,58 @@ func (o GetStreamConnectionsResultAuthenticationOutput) Password() pulumi.String
 // Username of the account to connect to the Kafka cluster.
 func (o GetStreamConnectionsResultAuthenticationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultAws struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn string `pulumi:"roleArn"`
+}
+
+// GetStreamConnectionsResultAwsInput is an input type that accepts GetStreamConnectionsResultAwsArgs and GetStreamConnectionsResultAwsOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultAwsInput` via:
+//
+//	GetStreamConnectionsResultAwsArgs{...}
+type GetStreamConnectionsResultAwsInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultAwsOutput() GetStreamConnectionsResultAwsOutput
+	ToGetStreamConnectionsResultAwsOutputWithContext(context.Context) GetStreamConnectionsResultAwsOutput
+}
+
+type GetStreamConnectionsResultAwsArgs struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+}
+
+func (GetStreamConnectionsResultAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAws)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultAwsArgs) ToGetStreamConnectionsResultAwsOutput() GetStreamConnectionsResultAwsOutput {
+	return i.ToGetStreamConnectionsResultAwsOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultAwsArgs) ToGetStreamConnectionsResultAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAwsOutput)
+}
+
+type GetStreamConnectionsResultAwsOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAws)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultAwsOutput) ToGetStreamConnectionsResultAwsOutput() GetStreamConnectionsResultAwsOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultAwsOutput) ToGetStreamConnectionsResultAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAwsOutput {
+	return o
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o GetStreamConnectionsResultAwsOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAws) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionsResultDbRoleToExecute struct {
@@ -55460,6 +55703,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceTagArrayInput)(nil)).Elem(), ServerlessInstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationPtrInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAwsInput)(nil)).Elem(), StreamConnectionAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAwsPtrInput)(nil)).Elem(), StreamConnectionAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecuteInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecutePtrInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingInput)(nil)).Elem(), StreamConnectionNetworkingArgs{})
@@ -55963,6 +56208,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultInput)(nil)).Elem(), GetSharedTierSnapshotsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultArrayInput)(nil)).Elem(), GetSharedTierSnapshotsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAuthenticationInput)(nil)).Elem(), GetStreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAwsInput)(nil)).Elem(), GetStreamConnectionAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingInput)(nil)).Elem(), GetStreamConnectionNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionNetworkingAccessArgs{})
@@ -55970,6 +56216,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultInput)(nil)).Elem(), GetStreamConnectionsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAwsInput)(nil)).Elem(), GetStreamConnectionsResultAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingAccessArgs{})
@@ -56226,6 +56473,8 @@ func init() {
 	pulumi.RegisterOutputType(ServerlessInstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAuthenticationOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAuthenticationPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAwsOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAwsPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecutePtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionNetworkingOutput{})
@@ -56729,6 +56978,7 @@ func init() {
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultOutput{})
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionAwsOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionNetworkingOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionNetworkingAccessOutput{})
@@ -56736,6 +56986,7 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionsResultOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultAwsOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingAccessOutput{})

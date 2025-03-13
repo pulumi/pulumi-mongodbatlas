@@ -217,7 +217,7 @@ type NetworkPeering struct {
 	NetworkName pulumi.StringOutput `pulumi:"networkName"`
 	// Unique identifier of the Atlas network peer.
 	PeerId pulumi.StringOutput `pulumi:"peerId"`
-	// The unique ID for the MongoDB Atlas project to create the database user.
+	// The unique ID for the MongoDB Atlas project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	//
@@ -310,7 +310,7 @@ type networkPeeringState struct {
 	NetworkName *string `pulumi:"networkName"`
 	// Unique identifier of the Atlas network peer.
 	PeerId *string `pulumi:"peerId"`
-	// The unique ID for the MongoDB Atlas project to create the database user.
+	// The unique ID for the MongoDB Atlas project.
 	ProjectId *string `pulumi:"projectId"`
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	//
@@ -365,7 +365,7 @@ type NetworkPeeringState struct {
 	NetworkName pulumi.StringPtrInput
 	// Unique identifier of the Atlas network peer.
 	PeerId pulumi.StringPtrInput
-	// The unique ID for the MongoDB Atlas project to create the database user.
+	// The unique ID for the MongoDB Atlas project.
 	ProjectId pulumi.StringPtrInput
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	//
@@ -413,7 +413,7 @@ type networkPeeringArgs struct {
 	//
 	// **AZURE ONLY:**
 	NetworkName *string `pulumi:"networkName"`
-	// The unique ID for the MongoDB Atlas project to create the database user.
+	// The unique ID for the MongoDB Atlas project.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	//
@@ -454,7 +454,7 @@ type NetworkPeeringArgs struct {
 	//
 	// **AZURE ONLY:**
 	NetworkName pulumi.StringPtrInput
-	// The unique ID for the MongoDB Atlas project to create the database user.
+	// The unique ID for the MongoDB Atlas project.
 	ProjectId pulumi.StringInput
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	//
@@ -639,7 +639,7 @@ func (o NetworkPeeringOutput) PeerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.PeerId }).(pulumi.StringOutput)
 }
 
-// The unique ID for the MongoDB Atlas project to create the database user.
+// The unique ID for the MongoDB Atlas project.
 func (o NetworkPeeringOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

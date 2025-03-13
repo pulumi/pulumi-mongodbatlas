@@ -49,16 +49,40 @@ public final class GetBackupCompliancePolicyResult {
      * 
      */
     private String id;
+    /**
+     * @return Specifications for on-demand policy.
+     * 
+     */
     private GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem;
     /**
      * @return Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
     private Boolean pitEnabled;
+    /**
+     * @return Scheduled policy using a daily frequency type, see block fields.
+     * 
+     */
     private GetBackupCompliancePolicyPolicyItemDaily policyItemDaily;
+    /**
+     * @return Scheduled policy using an hourly frequency type, see block fields.
+     * 
+     */
     private GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
+    /**
+     * @return Scheduled policy using a monthly frequency type, see block fields.
+     * 
+     */
     private List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies;
+    /**
+     * @return Scheduled policy using a weekly frequency type, see block fields.
+     * 
+     */
     private List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies;
+    /**
+     * @return Scheduled policy using a yearly frequency type, see block fields.
+     * 
+     */
     private List<GetBackupCompliancePolicyPolicyItemYearly> policyItemYearlies;
     private String projectId;
     /**
@@ -125,6 +149,10 @@ public final class GetBackupCompliancePolicyResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Specifications for on-demand policy.
+     * 
+     */
     public GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem() {
         return this.onDemandPolicyItem;
     }
@@ -135,18 +163,38 @@ public final class GetBackupCompliancePolicyResult {
     public Boolean pitEnabled() {
         return this.pitEnabled;
     }
+    /**
+     * @return Scheduled policy using a daily frequency type, see block fields.
+     * 
+     */
     public GetBackupCompliancePolicyPolicyItemDaily policyItemDaily() {
         return this.policyItemDaily;
     }
+    /**
+     * @return Scheduled policy using an hourly frequency type, see block fields.
+     * 
+     */
     public GetBackupCompliancePolicyPolicyItemHourly policyItemHourly() {
         return this.policyItemHourly;
     }
+    /**
+     * @return Scheduled policy using a monthly frequency type, see block fields.
+     * 
+     */
     public List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies() {
         return this.policyItemMonthlies;
     }
+    /**
+     * @return Scheduled policy using a weekly frequency type, see block fields.
+     * 
+     */
     public List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies() {
         return this.policyItemWeeklies;
     }
+    /**
+     * @return Scheduled policy using a yearly frequency type, see block fields.
+     * 
+     */
     public List<GetBackupCompliancePolicyPolicyItemYearly> policyItemYearlies() {
         return this.policyItemYearlies;
     }

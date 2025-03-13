@@ -11,14 +11,14 @@ import java.util.Objects;
 @CustomType
 public final class GetFlexClustersResultBackupSettings {
     /**
-     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      * 
      */
     private Boolean enabled;
 
     private GetFlexClustersResultBackupSettings() {}
     /**
-     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      * 
      */
     public Boolean enabled() {

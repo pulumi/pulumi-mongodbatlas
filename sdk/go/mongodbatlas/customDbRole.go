@@ -181,7 +181,7 @@ type CustomDbRole struct {
 
 	Actions        CustomDbRoleActionArrayOutput        `pulumi:"actions"`
 	InheritedRoles CustomDbRoleInheritedRoleArrayOutput `pulumi:"inheritedRoles"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Name of the custom role.
 	//
@@ -232,7 +232,7 @@ func GetCustomDbRole(ctx *pulumi.Context,
 type customDbRoleState struct {
 	Actions        []CustomDbRoleAction        `pulumi:"actions"`
 	InheritedRoles []CustomDbRoleInheritedRole `pulumi:"inheritedRoles"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId *string `pulumi:"projectId"`
 	// Name of the custom role.
 	//
@@ -248,7 +248,7 @@ type customDbRoleState struct {
 type CustomDbRoleState struct {
 	Actions        CustomDbRoleActionArrayInput
 	InheritedRoles CustomDbRoleInheritedRoleArrayInput
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringPtrInput
 	// Name of the custom role.
 	//
@@ -268,7 +268,7 @@ func (CustomDbRoleState) ElementType() reflect.Type {
 type customDbRoleArgs struct {
 	Actions        []CustomDbRoleAction        `pulumi:"actions"`
 	InheritedRoles []CustomDbRoleInheritedRole `pulumi:"inheritedRoles"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
 	// Name of the custom role.
 	//
@@ -285,7 +285,7 @@ type customDbRoleArgs struct {
 type CustomDbRoleArgs struct {
 	Actions        CustomDbRoleActionArrayInput
 	InheritedRoles CustomDbRoleInheritedRoleArrayInput
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringInput
 	// Name of the custom role.
 	//
@@ -393,7 +393,7 @@ func (o CustomDbRoleOutput) InheritedRoles() CustomDbRoleInheritedRoleArrayOutpu
 	return o.ApplyT(func(v *CustomDbRole) CustomDbRoleInheritedRoleArrayOutput { return v.InheritedRoles }).(CustomDbRoleInheritedRoleArrayOutput)
 }
 
-// The unique ID for the project to create the database user.
+// The unique ID for the project.
 func (o CustomDbRoleOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomDbRole) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

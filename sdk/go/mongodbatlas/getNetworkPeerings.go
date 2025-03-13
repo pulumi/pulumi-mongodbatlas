@@ -65,7 +65,7 @@ func LookupNetworkPeerings(ctx *pulumi.Context, args *LookupNetworkPeeringsArgs,
 
 // A collection of arguments for invoking getNetworkPeerings.
 type LookupNetworkPeeringsArgs struct {
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -89,7 +89,7 @@ func LookupNetworkPeeringsOutput(ctx *pulumi.Context, args LookupNetworkPeerings
 
 // A collection of arguments for invoking getNetworkPeerings.
 type LookupNetworkPeeringsOutputArgs struct {
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

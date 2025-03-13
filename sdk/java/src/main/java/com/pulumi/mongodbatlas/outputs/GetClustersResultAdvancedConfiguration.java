@@ -54,7 +54,7 @@ public final class GetClustersResultAdvancedConfiguration {
      */
     private Boolean javascriptEnabled;
     /**
-     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      * 
      */
     private String minimumEnabledTlsProtocol;
@@ -145,7 +145,7 @@ public final class GetClustersResultAdvancedConfiguration {
         return this.javascriptEnabled;
     }
     /**
-     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      * 
      */
     public String minimumEnabledTlsProtocol() {

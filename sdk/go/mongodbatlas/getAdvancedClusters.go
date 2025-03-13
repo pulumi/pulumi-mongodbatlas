@@ -13,7 +13,9 @@ import (
 
 // ## # Data Source: getAdvancedClusters
 //
-// `getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+// `getAdvancedClusters` returns all Advanced Clusters for a project_id.
+//
+// This page describes the current version of `getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
@@ -68,8 +70,6 @@ import (
 //	}
 //
 // ```
-//
-// **NOTE:** There can only be one M0 cluster per project.
 //
 // ## Example using latest sharding configurations with independent shard scaling in the cluster
 //

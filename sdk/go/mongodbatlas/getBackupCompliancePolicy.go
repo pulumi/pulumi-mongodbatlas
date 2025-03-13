@@ -180,16 +180,22 @@ type LookupBackupCompliancePolicyResult struct {
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
 	EncryptionAtRestEnabled bool `pulumi:"encryptionAtRestEnabled"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                 string                                      `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Specifications for on-demand policy.
 	OnDemandPolicyItem GetBackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	PitEnabled          bool                                         `pulumi:"pitEnabled"`
-	PolicyItemDaily     GetBackupCompliancePolicyPolicyItemDaily     `pulumi:"policyItemDaily"`
-	PolicyItemHourly    GetBackupCompliancePolicyPolicyItemHourly    `pulumi:"policyItemHourly"`
+	PitEnabled bool `pulumi:"pitEnabled"`
+	// Scheduled policy using a daily frequency type, see block fields.
+	PolicyItemDaily GetBackupCompliancePolicyPolicyItemDaily `pulumi:"policyItemDaily"`
+	// Scheduled policy using an hourly frequency type, see block fields.
+	PolicyItemHourly GetBackupCompliancePolicyPolicyItemHourly `pulumi:"policyItemHourly"`
+	// Scheduled policy using a monthly frequency type, see block fields.
 	PolicyItemMonthlies []GetBackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
-	PolicyItemWeeklies  []GetBackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
-	PolicyItemYearlies  []GetBackupCompliancePolicyPolicyItemYearly  `pulumi:"policyItemYearlies"`
-	ProjectId           string                                       `pulumi:"projectId"`
+	// Scheduled policy using a weekly frequency type, see block fields.
+	PolicyItemWeeklies []GetBackupCompliancePolicyPolicyItemWeekly `pulumi:"policyItemWeeklies"`
+	// Scheduled policy using a yearly frequency type, see block fields.
+	PolicyItemYearlies []GetBackupCompliancePolicyPolicyItemYearly `pulumi:"policyItemYearlies"`
+	ProjectId          string                                      `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
 	RestoreWindowDays int `pulumi:"restoreWindowDays"`
 	// Label that indicates the state of the Backup Compliance Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
@@ -264,6 +270,7 @@ func (o LookupBackupCompliancePolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Specifications for on-demand policy.
 func (o LookupBackupCompliancePolicyResultOutput) OnDemandPolicyItem() GetBackupCompliancePolicyOnDemandPolicyItemOutput {
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) GetBackupCompliancePolicyOnDemandPolicyItem {
 		return v.OnDemandPolicyItem
@@ -275,30 +282,35 @@ func (o LookupBackupCompliancePolicyResultOutput) PitEnabled() pulumi.BoolOutput
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
+// Scheduled policy using a daily frequency type, see block fields.
 func (o LookupBackupCompliancePolicyResultOutput) PolicyItemDaily() GetBackupCompliancePolicyPolicyItemDailyOutput {
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) GetBackupCompliancePolicyPolicyItemDaily {
 		return v.PolicyItemDaily
 	}).(GetBackupCompliancePolicyPolicyItemDailyOutput)
 }
 
+// Scheduled policy using an hourly frequency type, see block fields.
 func (o LookupBackupCompliancePolicyResultOutput) PolicyItemHourly() GetBackupCompliancePolicyPolicyItemHourlyOutput {
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) GetBackupCompliancePolicyPolicyItemHourly {
 		return v.PolicyItemHourly
 	}).(GetBackupCompliancePolicyPolicyItemHourlyOutput)
 }
 
+// Scheduled policy using a monthly frequency type, see block fields.
 func (o LookupBackupCompliancePolicyResultOutput) PolicyItemMonthlies() GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput {
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) []GetBackupCompliancePolicyPolicyItemMonthly {
 		return v.PolicyItemMonthlies
 	}).(GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput)
 }
 
+// Scheduled policy using a weekly frequency type, see block fields.
 func (o LookupBackupCompliancePolicyResultOutput) PolicyItemWeeklies() GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput {
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) []GetBackupCompliancePolicyPolicyItemWeekly {
 		return v.PolicyItemWeeklies
 	}).(GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput)
 }
 
+// Scheduled policy using a yearly frequency type, see block fields.
 func (o LookupBackupCompliancePolicyResultOutput) PolicyItemYearlies() GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) []GetBackupCompliancePolicyPolicyItemYearly {
 		return v.PolicyItemYearlies

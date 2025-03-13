@@ -48,14 +48,14 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the cluster.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create the database user.
+     * @return The unique ID for the project to create the cluster.
      * 
      */
     public Output<String> projectId() {
@@ -147,7 +147,7 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param projectId The unique ID for the project to create the database user.
+         * @param projectId The unique ID for the project to create the cluster.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param projectId The unique ID for the project to create the database user.
+         * @param projectId The unique ID for the project to create the cluster.
          * 
          * @return builder
          * 

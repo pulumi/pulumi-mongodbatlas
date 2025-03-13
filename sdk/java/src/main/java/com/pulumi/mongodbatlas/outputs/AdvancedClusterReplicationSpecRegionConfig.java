@@ -19,27 +19,27 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AdvancedClusterReplicationSpecRegionConfig {
     /**
-     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
      * 
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling;
     /**
-     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don&#39;t specify this parameter, no analytics nodes deploy to this region. See below
+     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don&#39;t specify this parameter, no analytics nodes deploy to this region. See below.
      * 
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
     /**
-     * @return Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
+     * @return Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
      * 
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigAutoScaling autoScaling;
     /**
-     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
+     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
      * 
      */
     private @Nullable String backingProviderName;
     /**
-     * @return Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+     * @return Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      * 
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigElectableSpecs electableSpecs;
@@ -62,7 +62,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
      */
     private String providerName;
     /**
-     * @return Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below
+     * @return Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
      * 
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs;
@@ -74,35 +74,35 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
 
     private AdvancedClusterReplicationSpecRegionConfig() {}
     /**
-     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
      * 
      */
     public Optional<AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScaling() {
         return Optional.ofNullable(this.analyticsAutoScaling);
     }
     /**
-     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don&#39;t specify this parameter, no analytics nodes deploy to this region. See below
+     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don&#39;t specify this parameter, no analytics nodes deploy to this region. See below.
      * 
      */
     public Optional<AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs> analyticsSpecs() {
         return Optional.ofNullable(this.analyticsSpecs);
     }
     /**
-     * @return Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below
+     * @return Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
      * 
      */
     public Optional<AdvancedClusterReplicationSpecRegionConfigAutoScaling> autoScaling() {
         return Optional.ofNullable(this.autoScaling);
     }
     /**
-     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M0`.
+     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
      * 
      */
     public Optional<String> backingProviderName() {
         return Optional.ofNullable(this.backingProviderName);
     }
     /**
-     * @return Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+     * @return Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      * 
      */
     public Optional<AdvancedClusterReplicationSpecRegionConfigElectableSpecs> electableSpecs() {
@@ -131,7 +131,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
         return this.providerName;
     }
     /**
-     * @return Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below
+     * @return Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
      * 
      */
     public Optional<AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs> readOnlySpecs() {

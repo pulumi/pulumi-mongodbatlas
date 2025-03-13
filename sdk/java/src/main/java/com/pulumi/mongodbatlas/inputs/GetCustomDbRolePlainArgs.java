@@ -25,14 +25,14 @@ public final class GetCustomDbRolePlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique ID for the project to create the database user.
+     * @return The unique ID for the project.
      * 
      */
     public String projectId() {
@@ -90,7 +90,7 @@ public final class GetCustomDbRolePlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param projectId The unique ID for the project to create the database user.
+         * @param projectId The unique ID for the project.
          * 
          * @return builder
          * 

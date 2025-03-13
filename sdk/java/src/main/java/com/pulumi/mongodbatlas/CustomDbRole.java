@@ -195,14 +195,14 @@ public class CustomDbRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.inheritedRoles);
     }
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create the database user.
+     * @return The unique ID for the project.
      * 
      */
     public Output<String> projectId() {
