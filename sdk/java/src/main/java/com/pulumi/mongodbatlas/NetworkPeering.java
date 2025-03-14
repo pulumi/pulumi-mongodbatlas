@@ -414,14 +414,14 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
         return this.peerId;
     }
     /**
-     * The unique ID for the MongoDB Atlas project to create the database user.
+     * The unique ID for the MongoDB Atlas project.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the MongoDB Atlas project to create the database user.
+     * @return The unique ID for the MongoDB Atlas project.
      * 
      */
     public Output<String> projectId() {

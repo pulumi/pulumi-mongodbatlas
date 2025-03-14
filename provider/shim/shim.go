@@ -7,6 +7,6 @@ import (
 	p "github.com/mongodb/terraform-provider-mongodbatlas/internal/provider"
 )
 
-func FrameworkProvider() provider.Provider { return p.NewFrameworkProvider(nil) }
+func FrameworkProvider() provider.Provider { return p.NewFrameworkProvider() }
 
-func SDKProvider() *schema.Provider { return p.NewSdkV2Provider(nil) }
+func SDKProvider() *schema.Provider { return p.NewSdkV2Provider() }

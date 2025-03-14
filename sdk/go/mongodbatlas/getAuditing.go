@@ -60,7 +60,7 @@ func LookupAuditing(ctx *pulumi.Context, args *LookupAuditingArgs, opts ...pulum
 
 // A collection of arguments for invoking getAuditing.
 type LookupAuditingArgs struct {
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -90,7 +90,7 @@ func LookupAuditingOutput(ctx *pulumi.Context, args LookupAuditingOutputArgs, op
 
 // A collection of arguments for invoking getAuditing.
 type LookupAuditingOutputArgs struct {
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

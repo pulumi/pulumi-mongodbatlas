@@ -143,7 +143,7 @@ type LookupGlobalClusterConfigArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GetGlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -178,7 +178,7 @@ type LookupGlobalClusterConfigOutputArgs struct {
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces GetGlobalClusterConfigManagedNamespaceArrayInput `pulumi:"managedNamespaces"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

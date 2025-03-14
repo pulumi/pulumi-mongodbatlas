@@ -905,13 +905,15 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
+     * This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+     * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -968,8 +970,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1105,13 +1105,15 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
+     * This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+     * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -1168,8 +1170,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1305,13 +1305,15 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
+     * This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+     * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -1368,8 +1370,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1505,13 +1505,15 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
+     * This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+     * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -1568,8 +1570,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1705,13 +1705,15 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
+     * This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+     * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -1768,8 +1770,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -1903,7 +1903,9 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getAdvancedClusters
      * 
-     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * 
+     * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -1967,8 +1969,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -2101,7 +2101,9 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getAdvancedClusters
      * 
-     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * 
+     * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -2165,8 +2167,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -2299,7 +2299,9 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getAdvancedClusters
      * 
-     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * 
+     * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -2363,8 +2365,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -2497,7 +2497,9 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getAdvancedClusters
      * 
-     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * 
+     * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -2561,8 +2563,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
@@ -2695,7 +2695,9 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getAdvancedClusters
      * 
-     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * 
+     * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -2759,8 +2761,6 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * **NOTE:** There can only be one M0 cluster per project.
      * 
      * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 

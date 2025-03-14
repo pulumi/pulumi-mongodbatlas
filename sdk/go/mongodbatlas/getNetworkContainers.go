@@ -67,7 +67,7 @@ func LookupNetworkContainers(ctx *pulumi.Context, args *LookupNetworkContainersA
 
 // A collection of arguments for invoking getNetworkContainers.
 type LookupNetworkContainersArgs struct {
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
 	ProviderName string `pulumi:"providerName"`
@@ -95,7 +95,7 @@ func LookupNetworkContainersOutput(ctx *pulumi.Context, args LookupNetworkContai
 
 // A collection of arguments for invoking getNetworkContainers.
 type LookupNetworkContainersOutputArgs struct {
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`

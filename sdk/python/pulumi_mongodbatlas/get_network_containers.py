@@ -114,7 +114,7 @@ def get_network_containers(project_id: Optional[str] = None,
     ```
 
 
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     :param str provider_name: Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
     """
     __args__ = dict()
@@ -159,7 +159,7 @@ def get_network_containers_output(project_id: Optional[pulumi.Input[str]] = None
     ```
 
 
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     :param str provider_name: Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
     """
     __args__ = dict()

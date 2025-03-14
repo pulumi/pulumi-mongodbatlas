@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAdvancedClusterBiConnectorConfigResult
     {
         /// <summary>
-        /// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+        /// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>

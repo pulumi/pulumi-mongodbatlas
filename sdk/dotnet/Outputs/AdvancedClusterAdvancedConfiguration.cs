@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<string> CustomOpensslCipherConfigTls12s;
         /// <summary>
-        /// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+        /// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
         /// </summary>
         public readonly int? DefaultMaxTimeMs;
         /// <summary>
@@ -38,12 +38,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool? FailIndexKeyTooLong;
         /// <summary>
-        /// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        /// When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         /// </summary>
         public readonly bool? JavascriptEnabled;
         /// <summary>
-        /// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-        /// 
+        /// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
         /// - TLS1_0
         /// - TLS1_1
         /// - TLS1_2

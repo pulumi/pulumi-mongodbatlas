@@ -18,17 +18,17 @@ import java.util.Objects;
 @CustomType
 public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
     /**
-     * @return Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+     * @return Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
      * 
      */
     private List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings;
     /**
-     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      * 
      */
     private GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
     /**
-     * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+     * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
      * 
      */
     private List<GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling> autoScalings;
@@ -53,7 +53,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      */
     private String providerName;
     /**
-     * @return Hardware specifications for read-only nodes in the region. See below
+     * @return Hardware specifications for read-only nodes in the region. See below.
      * 
      */
     private GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs;
@@ -65,21 +65,21 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
 
     private GetAdvancedClustersResultReplicationSpecRegionConfig() {}
     /**
-     * @return Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+     * @return Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
      * 
      */
     public List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings() {
         return this.analyticsAutoScalings;
     }
     /**
-     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      * 
      */
     public GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs() {
         return this.analyticsSpecs;
     }
     /**
-     * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+     * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
      * 
      */
     public List<GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling> autoScalings() {
@@ -114,7 +114,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
         return this.providerName;
     }
     /**
-     * @return Hardware specifications for read-only nodes in the region. See below
+     * @return Hardware specifications for read-only nodes in the region. See below.
      * 
      */
     public GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs() {

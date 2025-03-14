@@ -18,9 +18,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultAdvancedConfigurationResult> AdvancedConfigurations;
         public readonly bool BackupEnabled;
-        /// <summary>
-        /// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultBiConnectorConfigResult> BiConnectorConfigs;
         /// <summary>
         /// Type of the cluster that you want to create.
@@ -35,7 +32,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ConfigServerType;
         /// <summary>
-        /// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultConnectionStringResult> ConnectionStrings;
         public readonly string CreateDate;
@@ -77,7 +74,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool PitEnabled;
         /// <summary>
-        /// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+        /// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         /// </summary>
         public readonly bool RedactClientLogData;
         /// <summary>

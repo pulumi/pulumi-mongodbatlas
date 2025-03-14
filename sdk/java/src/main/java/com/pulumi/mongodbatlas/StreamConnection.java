@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.StreamConnectionArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionState;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionAuthentication;
+import com.pulumi.mongodbatlas.outputs.StreamConnectionAws;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionDbRoleToExecute;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionNetworking;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionSecurity;
@@ -168,6 +169,48 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ### Example AWSLambda Connection
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionAwsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName("NewInstance")
+ *             .connectionName("AWSLambdaConnection")
+ *             .type("AWSLambda")
+ *             .aws(StreamConnectionAwsArgs.builder()
+ *                 .role_arn("arn:aws:iam::123456789123:role/lambdaRole")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -186,6 +229,12 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<StreamConnectionAuthentication>> authentication() {
         return Codegen.optional(this.authentication);
+    }
+    @Export(name="aws", refs={StreamConnectionAws.class}, tree="[0]")
+    private Output</* @Nullable */ StreamConnectionAws> aws;
+
+    public Output<Optional<StreamConnectionAws>> aws() {
+        return Codegen.optional(this.aws);
     }
     @Export(name="bootstrapServers", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bootstrapServers;
@@ -266,14 +315,14 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.security);
     }
     /**
-     * Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     * @return Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
      * 
      */
     public Output<String> type() {

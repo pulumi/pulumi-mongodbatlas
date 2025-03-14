@@ -58,7 +58,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<bool>? JavascriptEnabled { get; set; }
 
         /// <summary>
-        /// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        /// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
         /// 
         /// - TLS1_0
         /// - TLS1_1

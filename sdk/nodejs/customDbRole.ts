@@ -149,7 +149,7 @@ export class CustomDbRole extends pulumi.CustomResource {
     public readonly actions!: pulumi.Output<outputs.CustomDbRoleAction[] | undefined>;
     public readonly inheritedRoles!: pulumi.Output<outputs.CustomDbRoleInheritedRole[] | undefined>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -206,7 +206,7 @@ export interface CustomDbRoleState {
     actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
     inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -229,7 +229,7 @@ export interface CustomDbRoleArgs {
     actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
     inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: pulumi.Input<string>;
     /**

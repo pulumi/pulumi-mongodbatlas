@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetFlexClusterBackupSettingsResult
     {
         /// <summary>
-        /// Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+        /// Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
         /// </summary>
         public readonly bool Enabled;
 

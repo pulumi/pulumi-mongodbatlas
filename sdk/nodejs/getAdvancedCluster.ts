@@ -11,13 +11,15 @@ import * as utilities from "./utilities";
  *
  * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
  *
+ * This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  *
- * > **NOTE:** This data source also includes Flex clusters.
+ * **NOTE:** This data source also includes Flex clusters.
  *
  * ## Example Usage
  *
@@ -46,8 +48,6 @@ import * as utilities from "./utilities";
  *     name: exampleAdvancedCluster.name,
  * });
  * ```
- *
- * **NOTE:** There can only be one M0 cluster per project.
  *
  * ## Example using latest sharding configurations with independent shard scaling in the cluster
  *
@@ -142,7 +142,7 @@ export interface GetAdvancedClusterArgs {
      */
     pitEnabled?: boolean;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the cluster.
      */
     projectId: string;
     /**
@@ -160,9 +160,6 @@ export interface GetAdvancedClusterResult {
      */
     readonly advancedConfigurations: outputs.GetAdvancedClusterAdvancedConfiguration[];
     readonly backupEnabled: boolean;
-    /**
-     * Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
-     */
     readonly biConnectorConfigs: outputs.GetAdvancedClusterBiConnectorConfig[];
     /**
      * Type of the cluster that you want to create.
@@ -177,7 +174,7 @@ export interface GetAdvancedClusterResult {
      */
     readonly configServerType: string;
     /**
-     * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     readonly connectionStrings: outputs.GetAdvancedClusterConnectionString[];
     readonly createDate: string;
@@ -200,7 +197,7 @@ export interface GetAdvancedClusterResult {
      */
     readonly id: string;
     /**
-     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
      */
     readonly labels: outputs.GetAdvancedClusterLabel[];
     /**
@@ -226,7 +223,7 @@ export interface GetAdvancedClusterResult {
     readonly pitEnabled: boolean;
     readonly projectId: string;
     /**
-     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      */
     readonly redactClientLogData: boolean;
     /**
@@ -264,13 +261,15 @@ export interface GetAdvancedClusterResult {
  *
  * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
  *
+ * This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  *
- * > **NOTE:** This data source also includes Flex clusters.
+ * **NOTE:** This data source also includes Flex clusters.
  *
  * ## Example Usage
  *
@@ -299,8 +298,6 @@ export interface GetAdvancedClusterResult {
  *     name: exampleAdvancedCluster.name,
  * });
  * ```
- *
- * **NOTE:** There can only be one M0 cluster per project.
  *
  * ## Example using latest sharding configurations with independent shard scaling in the cluster
  *
@@ -395,7 +392,7 @@ export interface GetAdvancedClusterOutputArgs {
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the cluster.
      */
     projectId: pulumi.Input<string>;
     /**

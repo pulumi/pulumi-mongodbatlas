@@ -195,7 +195,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.CustomDbRoleInheritedRole>> InheritedRoles { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -276,7 +276,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -319,7 +319,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

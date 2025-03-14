@@ -38,7 +38,7 @@ class NetworkPeeringArgs:
         """
         The set of arguments for constructing a NetworkPeering resource.
         :param pulumi.Input[str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
-        :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project to create the database user.
+        :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project.
         :param pulumi.Input[str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
                
                **AWS ONLY:**
@@ -105,7 +105,7 @@ class NetworkPeeringArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        The unique ID for the MongoDB Atlas project to create the database user.
+        The unique ID for the MongoDB Atlas project.
         """
         return pulumi.get(self, "project_id")
 
@@ -330,7 +330,7 @@ class _NetworkPeeringState:
                
                **AZURE ONLY:**
         :param pulumi.Input[str] peer_id: Unique identifier of the Atlas network peer.
-        :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project to create the database user.
+        :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project.
         :param pulumi.Input[str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
                
                **AWS ONLY:**
@@ -584,7 +584,7 @@ class _NetworkPeeringState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique ID for the MongoDB Atlas project to create the database user.
+        The unique ID for the MongoDB Atlas project.
         """
         return pulumi.get(self, "project_id")
 
@@ -833,7 +833,7 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[str] network_name: Name of the network peer to which Atlas connects.
                
                **AZURE ONLY:**
-        :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project to create the database user.
+        :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project.
         :param pulumi.Input[str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
                
                **AWS ONLY:**
@@ -1094,7 +1094,7 @@ class NetworkPeering(pulumi.CustomResource):
                
                **AZURE ONLY:**
         :param pulumi.Input[str] peer_id: Unique identifier of the Atlas network peer.
-        :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project to create the database user.
+        :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project.
         :param pulumi.Input[str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
                
                **AWS ONLY:**
@@ -1265,7 +1265,7 @@ class NetworkPeering(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The unique ID for the MongoDB Atlas project to create the database user.
+        The unique ID for the MongoDB Atlas project.
         """
         return pulumi.get(self, "project_id")
 

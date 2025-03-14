@@ -116,7 +116,7 @@ export interface GetGlobalClusterConfigArgs {
      */
     managedNamespaces?: inputs.GetGlobalClusterConfigManagedNamespace[];
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: string;
 }
@@ -256,7 +256,7 @@ export interface GetGlobalClusterConfigOutputArgs {
      */
     managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GetGlobalClusterConfigManagedNamespaceArgs>[]>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: pulumi.Input<string>;
 }

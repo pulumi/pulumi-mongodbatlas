@@ -199,14 +199,14 @@ public final class CloudBackupSnapshotState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+     * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
      * 
      */
     @Import(name="snapshotIds")
     private @Nullable Output<List<String>> snapshotIds;
 
     /**
-     * @return Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+     * @return Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
      * 
      */
     public Optional<Output<List<String>>> snapshotIds() {
@@ -576,7 +576,7 @@ public final class CloudBackupSnapshotState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param snapshotIds Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+         * @param snapshotIds Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
          * 
          * @return builder
          * 
@@ -587,7 +587,7 @@ public final class CloudBackupSnapshotState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param snapshotIds Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+         * @param snapshotIds Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
          * 
          * @return builder
          * 
@@ -597,7 +597,7 @@ public final class CloudBackupSnapshotState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param snapshotIds Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+         * @param snapshotIds Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
          * 
          * @return builder
          * 

@@ -68,7 +68,7 @@ func LookupNetworkPeering(ctx *pulumi.Context, args *LookupNetworkPeeringArgs, o
 type LookupNetworkPeeringArgs struct {
 	// Atlas assigned unique ID for the peering connection.
 	PeeringId string `pulumi:"peeringId"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -130,7 +130,7 @@ func LookupNetworkPeeringOutput(ctx *pulumi.Context, args LookupNetworkPeeringOu
 type LookupNetworkPeeringOutputArgs struct {
 	// Atlas assigned unique ID for the peering connection.
 	PeeringId pulumi.StringInput `pulumi:"peeringId"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

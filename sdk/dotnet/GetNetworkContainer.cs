@@ -148,7 +148,7 @@ namespace Pulumi.Mongodbatlas
         public string ContainerId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -168,7 +168,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ContainerId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

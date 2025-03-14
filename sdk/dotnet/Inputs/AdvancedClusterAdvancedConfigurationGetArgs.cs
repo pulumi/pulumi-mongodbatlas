@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         }
 
         /// <summary>
-        /// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+        /// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
         /// </summary>
         [Input("defaultMaxTimeMs")]
         public Input<int>? DefaultMaxTimeMs { get; set; }
@@ -55,14 +55,13 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<bool>? FailIndexKeyTooLong { get; set; }
 
         /// <summary>
-        /// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        /// When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         /// </summary>
         [Input("javascriptEnabled")]
         public Input<bool>? JavascriptEnabled { get; set; }
 
         /// <summary>
-        /// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-        /// 
+        /// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
         /// - TLS1_0
         /// - TLS1_1
         /// - TLS1_2

@@ -257,11 +257,19 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
     public Output<Optional<Boolean>> encryptionAtRestEnabled() {
         return Codegen.optional(this.encryptionAtRestEnabled);
     }
+    /**
+     * Specifications for on-demand policy.
+     * 
+     */
     @Export(name="onDemandPolicyItem", refs={BackupCompliancePolicyOnDemandPolicyItem.class}, tree="[0]")
-    private Output<BackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItem;
+    private Output</* @Nullable */ BackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItem;
 
-    public Output<BackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItem() {
-        return this.onDemandPolicyItem;
+    /**
+     * @return Specifications for on-demand policy.
+     * 
+     */
+    public Output<Optional<BackupCompliancePolicyOnDemandPolicyItem>> onDemandPolicyItem() {
+        return Codegen.optional(this.onDemandPolicyItem);
     }
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -277,33 +285,73 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
     public Output<Optional<Boolean>> pitEnabled() {
         return Codegen.optional(this.pitEnabled);
     }
+    /**
+     * Scheduled policy using a daily frequency type, see block fields.
+     * 
+     */
     @Export(name="policyItemDaily", refs={BackupCompliancePolicyPolicyItemDaily.class}, tree="[0]")
     private Output</* @Nullable */ BackupCompliancePolicyPolicyItemDaily> policyItemDaily;
 
+    /**
+     * @return Scheduled policy using a daily frequency type, see block fields.
+     * 
+     */
     public Output<Optional<BackupCompliancePolicyPolicyItemDaily>> policyItemDaily() {
         return Codegen.optional(this.policyItemDaily);
     }
+    /**
+     * Scheduled policy using an hourly frequency type, see block fields.
+     * 
+     */
     @Export(name="policyItemHourly", refs={BackupCompliancePolicyPolicyItemHourly.class}, tree="[0]")
     private Output</* @Nullable */ BackupCompliancePolicyPolicyItemHourly> policyItemHourly;
 
+    /**
+     * @return Scheduled policy using an hourly frequency type, see block fields.
+     * 
+     */
     public Output<Optional<BackupCompliancePolicyPolicyItemHourly>> policyItemHourly() {
         return Codegen.optional(this.policyItemHourly);
     }
+    /**
+     * Scheduled policy using a monthly frequency type, see block fields.
+     * 
+     */
     @Export(name="policyItemMonthlies", refs={List.class,BackupCompliancePolicyPolicyItemMonthly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<BackupCompliancePolicyPolicyItemMonthly>> policyItemMonthlies;
 
+    /**
+     * @return Scheduled policy using a monthly frequency type, see block fields.
+     * 
+     */
     public Output<Optional<List<BackupCompliancePolicyPolicyItemMonthly>>> policyItemMonthlies() {
         return Codegen.optional(this.policyItemMonthlies);
     }
+    /**
+     * Scheduled policy using a weekly frequency type, see block fields.
+     * 
+     */
     @Export(name="policyItemWeeklies", refs={List.class,BackupCompliancePolicyPolicyItemWeekly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<BackupCompliancePolicyPolicyItemWeekly>> policyItemWeeklies;
 
+    /**
+     * @return Scheduled policy using a weekly frequency type, see block fields.
+     * 
+     */
     public Output<Optional<List<BackupCompliancePolicyPolicyItemWeekly>>> policyItemWeeklies() {
         return Codegen.optional(this.policyItemWeeklies);
     }
+    /**
+     * Scheduled policy using a yearly frequency type, see block fields.
+     * 
+     */
     @Export(name="policyItemYearlies", refs={List.class,BackupCompliancePolicyPolicyItemYearly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<BackupCompliancePolicyPolicyItemYearly>> policyItemYearlies;
 
+    /**
+     * @return Scheduled policy using a yearly frequency type, see block fields.
+     * 
+     */
     public Output<Optional<List<BackupCompliancePolicyPolicyItemYearly>>> policyItemYearlies() {
         return Codegen.optional(this.policyItemYearlies);
     }

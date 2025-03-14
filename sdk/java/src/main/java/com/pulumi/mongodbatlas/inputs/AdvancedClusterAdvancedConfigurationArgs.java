@@ -50,14 +50,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
     @Import(name="defaultMaxTimeMs")
     private @Nullable Output<Integer> defaultMaxTimeMs;
 
     /**
-     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
     public Optional<Output<Integer>> defaultMaxTimeMs() {
@@ -126,14 +126,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
      * 
      */
     @Import(name="javascriptEnabled")
     private @Nullable Output<Boolean> javascriptEnabled;
 
     /**
-     * @return When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * @return When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
      * 
      */
     public Optional<Output<Boolean>> javascriptEnabled() {
@@ -141,8 +141,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-     * 
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2
@@ -152,8 +151,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     private @Nullable Output<String> minimumEnabledTlsProtocol;
 
     /**
-     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-     * 
+     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2
@@ -361,7 +359,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
          * 
          * @return builder
          * 
@@ -372,7 +370,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
          * 
          * @return builder
          * 
@@ -461,7 +459,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param javascriptEnabled When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+         * @param javascriptEnabled When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
          * 
          * @return builder
          * 
@@ -472,7 +470,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param javascriptEnabled When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+         * @param javascriptEnabled When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
          * 
          * @return builder
          * 
@@ -482,8 +480,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param minimumEnabledTlsProtocol Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-         * 
+         * @param minimumEnabledTlsProtocol Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
          * - TLS1_0
          * - TLS1_1
          * - TLS1_2
@@ -497,8 +494,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param minimumEnabledTlsProtocol Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-         * 
+         * @param minimumEnabledTlsProtocol Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
          * - TLS1_0
          * - TLS1_1
          * - TLS1_2

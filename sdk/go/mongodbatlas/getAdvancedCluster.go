@@ -15,13 +15,15 @@ import (
 //
 // `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
 //
+// This page describes the current version of `AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
+//
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // > **IMPORTANT:**
 // <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
 // <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 //
-// > **NOTE:** This data source also includes Flex clusters.
+// **NOTE:** This data source also includes Flex clusters.
 //
 // ## Example Usage
 //
@@ -69,8 +71,6 @@ import (
 //	}
 //
 // ```
-//
-// **NOTE:** There can only be one M0 cluster per project.
 //
 // ## Example using latest sharding configurations with independent shard scaling in the cluster
 //
@@ -195,7 +195,7 @@ type LookupAdvancedClusterArgs struct {
 	Name string `pulumi:"name"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled *bool `pulumi:"pitEnabled"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the cluster.
 	ProjectId string `pulumi:"projectId"`
 	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
 	UseReplicationSpecPerShard *bool `pulumi:"useReplicationSpecPerShard"`
@@ -206,15 +206,14 @@ type LookupAdvancedClusterResult struct {
 	// Get the advanced configuration options. See Advanced Configuration below for more details.
 	AdvancedConfigurations []GetAdvancedClusterAdvancedConfiguration `pulumi:"advancedConfigurations"`
 	BackupEnabled          bool                                      `pulumi:"backupEnabled"`
-	// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
-	BiConnectorConfigs []GetAdvancedClusterBiConnectorConfig `pulumi:"biConnectorConfigs"`
+	BiConnectorConfigs     []GetAdvancedClusterBiConnectorConfig     `pulumi:"biConnectorConfigs"`
 	// Type of the cluster that you want to create.
 	ClusterType string `pulumi:"clusterType"`
 	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerManagementMode string `pulumi:"configServerManagementMode"`
 	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerType string `pulumi:"configServerType"`
-	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []GetAdvancedClusterConnectionString `pulumi:"connectionStrings"`
 	CreateDate        string                               `pulumi:"createDate"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -227,7 +226,7 @@ type LookupAdvancedClusterResult struct {
 	GlobalClusterSelfManagedSharding bool `pulumi:"globalClusterSelfManagedSharding"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
 	Labels []GetAdvancedClusterLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -241,7 +240,7 @@ type LookupAdvancedClusterResult struct {
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
-	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
@@ -275,7 +274,7 @@ type LookupAdvancedClusterOutputArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolPtrInput `pulumi:"pitEnabled"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
 	UseReplicationSpecPerShard pulumi.BoolPtrInput `pulumi:"useReplicationSpecPerShard"`
@@ -311,7 +310,6 @@ func (o LookupAdvancedClusterResultOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.BackupEnabled }).(pulumi.BoolOutput)
 }
 
-// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
 func (o LookupAdvancedClusterResultOutput) BiConnectorConfigs() GetAdvancedClusterBiConnectorConfigArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterBiConnectorConfig { return v.BiConnectorConfigs }).(GetAdvancedClusterBiConnectorConfigArrayOutput)
 }
@@ -331,7 +329,7 @@ func (o LookupAdvancedClusterResultOutput) ConfigServerType() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ConfigServerType }).(pulumi.StringOutput)
 }
 
-// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 func (o LookupAdvancedClusterResultOutput) ConnectionStrings() GetAdvancedClusterConnectionStringArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterConnectionString { return v.ConnectionStrings }).(GetAdvancedClusterConnectionStringArrayOutput)
 }
@@ -362,7 +360,7 @@ func (o LookupAdvancedClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
+// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
 func (o LookupAdvancedClusterResultOutput) Labels() GetAdvancedClusterLabelArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterLabel { return v.Labels }).(GetAdvancedClusterLabelArrayOutput)
 }
@@ -400,7 +398,7 @@ func (o LookupAdvancedClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 func (o LookupAdvancedClusterResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }

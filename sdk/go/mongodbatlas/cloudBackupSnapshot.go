@@ -120,7 +120,7 @@ type CloudBackupSnapshot struct {
 	RetentionInDays pulumi.IntOutput `pulumi:"retentionInDays"`
 	// Unique identifier of the snapshot.
 	SnapshotId pulumi.StringOutput `pulumi:"snapshotId"`
-	// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+	// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
 	SnapshotIds pulumi.StringArrayOutput `pulumi:"snapshotIds"`
 	// Specified the type of snapshot. Valid values are onDemand and scheduled.
 	SnapshotType pulumi.StringOutput `pulumi:"snapshotType"`
@@ -198,7 +198,7 @@ type cloudBackupSnapshotState struct {
 	RetentionInDays *int `pulumi:"retentionInDays"`
 	// Unique identifier of the snapshot.
 	SnapshotId *string `pulumi:"snapshotId"`
-	// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+	// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
 	SnapshotIds []string `pulumi:"snapshotIds"`
 	// Specified the type of snapshot. Valid values are onDemand and scheduled.
 	SnapshotType *string `pulumi:"snapshotType"`
@@ -235,7 +235,7 @@ type CloudBackupSnapshotState struct {
 	RetentionInDays pulumi.IntPtrInput
 	// Unique identifier of the snapshot.
 	SnapshotId pulumi.StringPtrInput
-	// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+	// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
 	SnapshotIds pulumi.StringArrayInput
 	// Specified the type of snapshot. Valid values are onDemand and scheduled.
 	SnapshotType pulumi.StringPtrInput
@@ -421,7 +421,7 @@ func (o CloudBackupSnapshotOutput) SnapshotId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshot) pulumi.StringOutput { return v.SnapshotId }).(pulumi.StringOutput)
 }
 
-// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
 func (o CloudBackupSnapshotOutput) SnapshotIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshot) pulumi.StringArrayOutput { return v.SnapshotIds }).(pulumi.StringArrayOutput)
 }

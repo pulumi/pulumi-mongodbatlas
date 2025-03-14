@@ -24,10 +24,10 @@ class BackupCompliancePolicyArgs:
                  authorized_email: pulumi.Input[str],
                  authorized_user_first_name: pulumi.Input[str],
                  authorized_user_last_name: pulumi.Input[str],
-                 on_demand_policy_item: pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs'],
                  project_id: pulumi.Input[str],
                  copy_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  encryption_at_rest_enabled: Optional[pulumi.Input[bool]] = None,
+                 on_demand_policy_item: Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  policy_item_daily: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']] = None,
                  policy_item_hourly: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']] = None,
@@ -43,18 +43,25 @@ class BackupCompliancePolicyArgs:
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        :param pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs'] on_demand_policy_item: Specifications for on-demand policy.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        :param pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs'] policy_item_daily: Scheduled policy using a daily frequency type, see block fields.
+        :param pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs'] policy_item_hourly: Scheduled policy using an hourly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]] policy_item_monthlies: Scheduled policy using a monthly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]] policy_item_weeklies: Scheduled policy using a weekly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]] policy_item_yearlies: Scheduled policy using a yearly frequency type, see block fields.
         :param pulumi.Input[int] restore_window_days: Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         """
         pulumi.set(__self__, "authorized_email", authorized_email)
         pulumi.set(__self__, "authorized_user_first_name", authorized_user_first_name)
         pulumi.set(__self__, "authorized_user_last_name", authorized_user_last_name)
-        pulumi.set(__self__, "on_demand_policy_item", on_demand_policy_item)
         pulumi.set(__self__, "project_id", project_id)
         if copy_protection_enabled is not None:
             pulumi.set(__self__, "copy_protection_enabled", copy_protection_enabled)
         if encryption_at_rest_enabled is not None:
             pulumi.set(__self__, "encryption_at_rest_enabled", encryption_at_rest_enabled)
+        if on_demand_policy_item is not None:
+            pulumi.set(__self__, "on_demand_policy_item", on_demand_policy_item)
         if pit_enabled is not None:
             pulumi.set(__self__, "pit_enabled", pit_enabled)
         if policy_item_daily is not None:
@@ -107,15 +114,6 @@ class BackupCompliancePolicyArgs:
         pulumi.set(self, "authorized_user_last_name", value)
 
     @property
-    @pulumi.getter(name="onDemandPolicyItem")
-    def on_demand_policy_item(self) -> pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']:
-        return pulumi.get(self, "on_demand_policy_item")
-
-    @on_demand_policy_item.setter
-    def on_demand_policy_item(self, value: pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']):
-        pulumi.set(self, "on_demand_policy_item", value)
-
-    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
@@ -152,6 +150,18 @@ class BackupCompliancePolicyArgs:
         pulumi.set(self, "encryption_at_rest_enabled", value)
 
     @property
+    @pulumi.getter(name="onDemandPolicyItem")
+    def on_demand_policy_item(self) -> Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']]:
+        """
+        Specifications for on-demand policy.
+        """
+        return pulumi.get(self, "on_demand_policy_item")
+
+    @on_demand_policy_item.setter
+    def on_demand_policy_item(self, value: Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']]):
+        pulumi.set(self, "on_demand_policy_item", value)
+
+    @property
     @pulumi.getter(name="pitEnabled")
     def pit_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -166,6 +176,9 @@ class BackupCompliancePolicyArgs:
     @property
     @pulumi.getter(name="policyItemDaily")
     def policy_item_daily(self) -> Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']]:
+        """
+        Scheduled policy using a daily frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_daily")
 
     @policy_item_daily.setter
@@ -175,6 +188,9 @@ class BackupCompliancePolicyArgs:
     @property
     @pulumi.getter(name="policyItemHourly")
     def policy_item_hourly(self) -> Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']]:
+        """
+        Scheduled policy using an hourly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_hourly")
 
     @policy_item_hourly.setter
@@ -184,6 +200,9 @@ class BackupCompliancePolicyArgs:
     @property
     @pulumi.getter(name="policyItemMonthlies")
     def policy_item_monthlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]:
+        """
+        Scheduled policy using a monthly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_monthlies")
 
     @policy_item_monthlies.setter
@@ -193,6 +212,9 @@ class BackupCompliancePolicyArgs:
     @property
     @pulumi.getter(name="policyItemWeeklies")
     def policy_item_weeklies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]:
+        """
+        Scheduled policy using a weekly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_weeklies")
 
     @policy_item_weeklies.setter
@@ -202,6 +224,9 @@ class BackupCompliancePolicyArgs:
     @property
     @pulumi.getter(name="policyItemYearlies")
     def policy_item_yearlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]:
+        """
+        Scheduled policy using a yearly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_yearlies")
 
     @policy_item_yearlies.setter
@@ -248,7 +273,13 @@ class _BackupCompliancePolicyState:
         :param pulumi.Input[str] authorized_user_last_name: Last name of the user who authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        :param pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs'] on_demand_policy_item: Specifications for on-demand policy.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        :param pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs'] policy_item_daily: Scheduled policy using a daily frequency type, see block fields.
+        :param pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs'] policy_item_hourly: Scheduled policy using an hourly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]] policy_item_monthlies: Scheduled policy using a monthly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]] policy_item_weeklies: Scheduled policy using a weekly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]] policy_item_yearlies: Scheduled policy using a yearly frequency type, see block fields.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[int] restore_window_days: Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         :param pulumi.Input[str] state: Label that indicates the state of the Backup Compliance Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
@@ -353,6 +384,9 @@ class _BackupCompliancePolicyState:
     @property
     @pulumi.getter(name="onDemandPolicyItem")
     def on_demand_policy_item(self) -> Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']]:
+        """
+        Specifications for on-demand policy.
+        """
         return pulumi.get(self, "on_demand_policy_item")
 
     @on_demand_policy_item.setter
@@ -374,6 +408,9 @@ class _BackupCompliancePolicyState:
     @property
     @pulumi.getter(name="policyItemDaily")
     def policy_item_daily(self) -> Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']]:
+        """
+        Scheduled policy using a daily frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_daily")
 
     @policy_item_daily.setter
@@ -383,6 +420,9 @@ class _BackupCompliancePolicyState:
     @property
     @pulumi.getter(name="policyItemHourly")
     def policy_item_hourly(self) -> Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']]:
+        """
+        Scheduled policy using an hourly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_hourly")
 
     @policy_item_hourly.setter
@@ -392,6 +432,9 @@ class _BackupCompliancePolicyState:
     @property
     @pulumi.getter(name="policyItemMonthlies")
     def policy_item_monthlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]:
+        """
+        Scheduled policy using a monthly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_monthlies")
 
     @policy_item_monthlies.setter
@@ -401,6 +444,9 @@ class _BackupCompliancePolicyState:
     @property
     @pulumi.getter(name="policyItemWeeklies")
     def policy_item_weeklies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]:
+        """
+        Scheduled policy using a weekly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_weeklies")
 
     @policy_item_weeklies.setter
@@ -410,6 +456,9 @@ class _BackupCompliancePolicyState:
     @property
     @pulumi.getter(name="policyItemYearlies")
     def policy_item_yearlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]:
+        """
+        Scheduled policy using a yearly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_yearlies")
 
     @policy_item_yearlies.setter
@@ -611,7 +660,13 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         :param pulumi.Input[str] authorized_user_last_name: Last name of the user who authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        :param pulumi.Input[Union['BackupCompliancePolicyOnDemandPolicyItemArgs', 'BackupCompliancePolicyOnDemandPolicyItemArgsDict']] on_demand_policy_item: Specifications for on-demand policy.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        :param pulumi.Input[Union['BackupCompliancePolicyPolicyItemDailyArgs', 'BackupCompliancePolicyPolicyItemDailyArgsDict']] policy_item_daily: Scheduled policy using a daily frequency type, see block fields.
+        :param pulumi.Input[Union['BackupCompliancePolicyPolicyItemHourlyArgs', 'BackupCompliancePolicyPolicyItemHourlyArgsDict']] policy_item_hourly: Scheduled policy using an hourly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Scheduled policy using a monthly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]] policy_item_weeklies: Scheduled policy using a weekly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]] policy_item_yearlies: Scheduled policy using a yearly frequency type, see block fields.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[int] restore_window_days: Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         """
@@ -777,8 +832,6 @@ class BackupCompliancePolicy(pulumi.CustomResource):
             __props__.__dict__["authorized_user_last_name"] = authorized_user_last_name
             __props__.__dict__["copy_protection_enabled"] = copy_protection_enabled
             __props__.__dict__["encryption_at_rest_enabled"] = encryption_at_rest_enabled
-            if on_demand_policy_item is None and not opts.urn:
-                raise TypeError("Missing required property 'on_demand_policy_item'")
             __props__.__dict__["on_demand_policy_item"] = on_demand_policy_item
             __props__.__dict__["pit_enabled"] = pit_enabled
             __props__.__dict__["policy_item_daily"] = policy_item_daily
@@ -832,7 +885,13 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         :param pulumi.Input[str] authorized_user_last_name: Last name of the user who authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        :param pulumi.Input[Union['BackupCompliancePolicyOnDemandPolicyItemArgs', 'BackupCompliancePolicyOnDemandPolicyItemArgsDict']] on_demand_policy_item: Specifications for on-demand policy.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        :param pulumi.Input[Union['BackupCompliancePolicyPolicyItemDailyArgs', 'BackupCompliancePolicyPolicyItemDailyArgsDict']] policy_item_daily: Scheduled policy using a daily frequency type, see block fields.
+        :param pulumi.Input[Union['BackupCompliancePolicyPolicyItemHourlyArgs', 'BackupCompliancePolicyPolicyItemHourlyArgsDict']] policy_item_hourly: Scheduled policy using an hourly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Scheduled policy using a monthly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]] policy_item_weeklies: Scheduled policy using a weekly frequency type, see block fields.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]] policy_item_yearlies: Scheduled policy using a yearly frequency type, see block fields.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[int] restore_window_days: Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         :param pulumi.Input[str] state: Label that indicates the state of the Backup Compliance Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
@@ -904,7 +963,10 @@ class BackupCompliancePolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="onDemandPolicyItem")
-    def on_demand_policy_item(self) -> pulumi.Output['outputs.BackupCompliancePolicyOnDemandPolicyItem']:
+    def on_demand_policy_item(self) -> pulumi.Output[Optional['outputs.BackupCompliancePolicyOnDemandPolicyItem']]:
+        """
+        Specifications for on-demand policy.
+        """
         return pulumi.get(self, "on_demand_policy_item")
 
     @property
@@ -918,26 +980,41 @@ class BackupCompliancePolicy(pulumi.CustomResource):
     @property
     @pulumi.getter(name="policyItemDaily")
     def policy_item_daily(self) -> pulumi.Output[Optional['outputs.BackupCompliancePolicyPolicyItemDaily']]:
+        """
+        Scheduled policy using a daily frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_daily")
 
     @property
     @pulumi.getter(name="policyItemHourly")
     def policy_item_hourly(self) -> pulumi.Output[Optional['outputs.BackupCompliancePolicyPolicyItemHourly']]:
+        """
+        Scheduled policy using an hourly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_hourly")
 
     @property
     @pulumi.getter(name="policyItemMonthlies")
     def policy_item_monthlies(self) -> pulumi.Output[Optional[Sequence['outputs.BackupCompliancePolicyPolicyItemMonthly']]]:
+        """
+        Scheduled policy using a monthly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_monthlies")
 
     @property
     @pulumi.getter(name="policyItemWeeklies")
     def policy_item_weeklies(self) -> pulumi.Output[Optional[Sequence['outputs.BackupCompliancePolicyPolicyItemWeekly']]]:
+        """
+        Scheduled policy using a weekly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_weeklies")
 
     @property
     @pulumi.getter(name="policyItemYearlies")
     def policy_item_yearlies(self) -> pulumi.Output[Optional[Sequence['outputs.BackupCompliancePolicyPolicyItemYearly']]]:
+        """
+        Scheduled policy using a yearly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_yearlies")
 
     @property

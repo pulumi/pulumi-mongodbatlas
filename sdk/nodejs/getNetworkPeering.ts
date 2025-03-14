@@ -51,7 +51,7 @@ export interface GetNetworkPeeringArgs {
      */
     peeringId: string;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: string;
 }
@@ -185,7 +185,7 @@ export interface GetNetworkPeeringOutputArgs {
      */
     peeringId: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: pulumi.Input<string>;
 }

@@ -264,7 +264,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> PeerId { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the MongoDB Atlas project to create the database user.
+        /// The unique ID for the MongoDB Atlas project.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -421,7 +421,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? NetworkName { get; set; }
 
         /// <summary>
-        /// The unique ID for the MongoDB Atlas project to create the database user.
+        /// The unique ID for the MongoDB Atlas project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -561,7 +561,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? PeerId { get; set; }
 
         /// <summary>
-        /// The unique ID for the MongoDB Atlas project to create the database user.
+        /// The unique ID for the MongoDB Atlas project.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

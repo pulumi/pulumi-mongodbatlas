@@ -134,6 +134,9 @@ class GetBackupCompliancePolicyResult:
     @property
     @pulumi.getter(name="onDemandPolicyItem")
     def on_demand_policy_item(self) -> 'outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult':
+        """
+        Specifications for on-demand policy.
+        """
         return pulumi.get(self, "on_demand_policy_item")
 
     @property
@@ -147,26 +150,41 @@ class GetBackupCompliancePolicyResult:
     @property
     @pulumi.getter(name="policyItemDaily")
     def policy_item_daily(self) -> 'outputs.GetBackupCompliancePolicyPolicyItemDailyResult':
+        """
+        Scheduled policy using a daily frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_daily")
 
     @property
     @pulumi.getter(name="policyItemHourly")
     def policy_item_hourly(self) -> 'outputs.GetBackupCompliancePolicyPolicyItemHourlyResult':
+        """
+        Scheduled policy using an hourly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_hourly")
 
     @property
     @pulumi.getter(name="policyItemMonthlies")
     def policy_item_monthlies(self) -> Sequence['outputs.GetBackupCompliancePolicyPolicyItemMonthlyResult']:
+        """
+        Scheduled policy using a monthly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_monthlies")
 
     @property
     @pulumi.getter(name="policyItemWeeklies")
     def policy_item_weeklies(self) -> Sequence['outputs.GetBackupCompliancePolicyPolicyItemWeeklyResult']:
+        """
+        Scheduled policy using a weekly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_weeklies")
 
     @property
     @pulumi.getter(name="policyItemYearlies")
     def policy_item_yearlies(self) -> Sequence['outputs.GetBackupCompliancePolicyPolicyItemYearlyResult']:
+        """
+        Scheduled policy using a yearly frequency type, see block fields.
+        """
         return pulumi.get(self, "policy_item_yearlies")
 
     @property

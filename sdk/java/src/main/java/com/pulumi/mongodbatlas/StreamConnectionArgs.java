@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+import com.pulumi.mongodbatlas.inputs.StreamConnectionAwsArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
@@ -26,6 +27,13 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
 
     public Optional<Output<StreamConnectionAuthenticationArgs>> authentication() {
         return Optional.ofNullable(this.authentication);
+    }
+
+    @Import(name="aws")
+    private @Nullable Output<StreamConnectionAwsArgs> aws;
+
+    public Optional<Output<StreamConnectionAwsArgs>> aws() {
+        return Optional.ofNullable(this.aws);
     }
 
     @Import(name="bootstrapServers")
@@ -116,14 +124,14 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     * @return Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
      * 
      */
     public Output<String> type() {
@@ -134,6 +142,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
 
     private StreamConnectionArgs(StreamConnectionArgs $) {
         this.authentication = $.authentication;
+        this.aws = $.aws;
         this.bootstrapServers = $.bootstrapServers;
         this.clusterName = $.clusterName;
         this.config = $.config;
@@ -171,6 +180,15 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
 
         public Builder authentication(StreamConnectionAuthenticationArgs authentication) {
             return authentication(Output.of(authentication));
+        }
+
+        public Builder aws(@Nullable Output<StreamConnectionAwsArgs> aws) {
+            $.aws = aws;
+            return this;
+        }
+
+        public Builder aws(StreamConnectionAwsArgs aws) {
+            return aws(Output.of(aws));
         }
 
         public Builder bootstrapServers(@Nullable Output<String> bootstrapServers) {
@@ -291,7 +309,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param type Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+         * @param type Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
          * 
          * @return builder
          * 
@@ -302,7 +320,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param type Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+         * @param type Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
          * 
          * @return builder
          * 

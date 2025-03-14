@@ -278,14 +278,14 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
         return this.snapshotId;
     }
     /**
-     * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+     * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
      * 
      */
     @Export(name="snapshotIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> snapshotIds;
 
     /**
-     * @return Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+     * @return Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
      * 
      */
     public Output<List<String>> snapshotIds() {

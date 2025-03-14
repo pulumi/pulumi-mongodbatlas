@@ -95,6 +95,7 @@ export class StreamConnection extends pulumi.CustomResource {
     }
 
     public readonly authentication!: pulumi.Output<outputs.StreamConnectionAuthentication | undefined>;
+    public readonly aws!: pulumi.Output<outputs.StreamConnectionAws | undefined>;
     public readonly bootstrapServers!: pulumi.Output<string | undefined>;
     public readonly clusterName!: pulumi.Output<string | undefined>;
     public readonly config!: pulumi.Output<{[key: string]: string} | undefined>;
@@ -114,7 +115,7 @@ export class StreamConnection extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     public readonly security!: pulumi.Output<outputs.StreamConnectionSecurity | undefined>;
     /**
-     * Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -132,6 +133,7 @@ export class StreamConnection extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as StreamConnectionState | undefined;
             resourceInputs["authentication"] = state ? state.authentication : undefined;
+            resourceInputs["aws"] = state ? state.aws : undefined;
             resourceInputs["bootstrapServers"] = state ? state.bootstrapServers : undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
             resourceInputs["config"] = state ? state.config : undefined;
@@ -157,6 +159,7 @@ export class StreamConnection extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["authentication"] = args ? args.authentication : undefined;
+            resourceInputs["aws"] = args ? args.aws : undefined;
             resourceInputs["bootstrapServers"] = args ? args.bootstrapServers : undefined;
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
             resourceInputs["config"] = args ? args.config : undefined;
@@ -178,6 +181,7 @@ export class StreamConnection extends pulumi.CustomResource {
  */
 export interface StreamConnectionState {
     authentication?: pulumi.Input<inputs.StreamConnectionAuthentication>;
+    aws?: pulumi.Input<inputs.StreamConnectionAws>;
     bootstrapServers?: pulumi.Input<string>;
     clusterName?: pulumi.Input<string>;
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -197,7 +201,7 @@ export interface StreamConnectionState {
     projectId?: pulumi.Input<string>;
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     /**
-     * Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
      */
     type?: pulumi.Input<string>;
 }
@@ -207,6 +211,7 @@ export interface StreamConnectionState {
  */
 export interface StreamConnectionArgs {
     authentication?: pulumi.Input<inputs.StreamConnectionAuthentication>;
+    aws?: pulumi.Input<inputs.StreamConnectionAws>;
     bootstrapServers?: pulumi.Input<string>;
     clusterName?: pulumi.Input<string>;
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -226,7 +231,7 @@ export interface StreamConnectionArgs {
     projectId: pulumi.Input<string>;
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     /**
-     * Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
      */
     type: pulumi.Input<string>;
 }

@@ -209,8 +209,11 @@ namespace Pulumi.Mongodbatlas
         [Output("encryptionAtRestEnabled")]
         public Output<bool?> EncryptionAtRestEnabled { get; private set; } = null!;
 
+        /// <summary>
+        /// Specifications for on-demand policy.
+        /// </summary>
         [Output("onDemandPolicyItem")]
-        public Output<Outputs.BackupCompliancePolicyOnDemandPolicyItem> OnDemandPolicyItem { get; private set; } = null!;
+        public Output<Outputs.BackupCompliancePolicyOnDemandPolicyItem?> OnDemandPolicyItem { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -218,18 +221,33 @@ namespace Pulumi.Mongodbatlas
         [Output("pitEnabled")]
         public Output<bool?> PitEnabled { get; private set; } = null!;
 
+        /// <summary>
+        /// Scheduled policy using a daily frequency type, see block fields.
+        /// </summary>
         [Output("policyItemDaily")]
         public Output<Outputs.BackupCompliancePolicyPolicyItemDaily?> PolicyItemDaily { get; private set; } = null!;
 
+        /// <summary>
+        /// Scheduled policy using an hourly frequency type, see block fields.
+        /// </summary>
         [Output("policyItemHourly")]
         public Output<Outputs.BackupCompliancePolicyPolicyItemHourly?> PolicyItemHourly { get; private set; } = null!;
 
+        /// <summary>
+        /// Scheduled policy using a monthly frequency type, see block fields.
+        /// </summary>
         [Output("policyItemMonthlies")]
         public Output<ImmutableArray<Outputs.BackupCompliancePolicyPolicyItemMonthly>> PolicyItemMonthlies { get; private set; } = null!;
 
+        /// <summary>
+        /// Scheduled policy using a weekly frequency type, see block fields.
+        /// </summary>
         [Output("policyItemWeeklies")]
         public Output<ImmutableArray<Outputs.BackupCompliancePolicyPolicyItemWeekly>> PolicyItemWeeklies { get; private set; } = null!;
 
+        /// <summary>
+        /// Scheduled policy using a yearly frequency type, see block fields.
+        /// </summary>
         [Output("policyItemYearlies")]
         public Output<ImmutableArray<Outputs.BackupCompliancePolicyPolicyItemYearly>> PolicyItemYearlies { get; private set; } = null!;
 
@@ -339,8 +357,11 @@ namespace Pulumi.Mongodbatlas
         [Input("encryptionAtRestEnabled")]
         public Input<bool>? EncryptionAtRestEnabled { get; set; }
 
-        [Input("onDemandPolicyItem", required: true)]
-        public Input<Inputs.BackupCompliancePolicyOnDemandPolicyItemArgs> OnDemandPolicyItem { get; set; } = null!;
+        /// <summary>
+        /// Specifications for on-demand policy.
+        /// </summary>
+        [Input("onDemandPolicyItem")]
+        public Input<Inputs.BackupCompliancePolicyOnDemandPolicyItemArgs>? OnDemandPolicyItem { get; set; }
 
         /// <summary>
         /// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -348,14 +369,24 @@ namespace Pulumi.Mongodbatlas
         [Input("pitEnabled")]
         public Input<bool>? PitEnabled { get; set; }
 
+        /// <summary>
+        /// Scheduled policy using a daily frequency type, see block fields.
+        /// </summary>
         [Input("policyItemDaily")]
         public Input<Inputs.BackupCompliancePolicyPolicyItemDailyArgs>? PolicyItemDaily { get; set; }
 
+        /// <summary>
+        /// Scheduled policy using an hourly frequency type, see block fields.
+        /// </summary>
         [Input("policyItemHourly")]
         public Input<Inputs.BackupCompliancePolicyPolicyItemHourlyArgs>? PolicyItemHourly { get; set; }
 
         [Input("policyItemMonthlies")]
         private InputList<Inputs.BackupCompliancePolicyPolicyItemMonthlyArgs>? _policyItemMonthlies;
+
+        /// <summary>
+        /// Scheduled policy using a monthly frequency type, see block fields.
+        /// </summary>
         public InputList<Inputs.BackupCompliancePolicyPolicyItemMonthlyArgs> PolicyItemMonthlies
         {
             get => _policyItemMonthlies ?? (_policyItemMonthlies = new InputList<Inputs.BackupCompliancePolicyPolicyItemMonthlyArgs>());
@@ -364,6 +395,10 @@ namespace Pulumi.Mongodbatlas
 
         [Input("policyItemWeeklies")]
         private InputList<Inputs.BackupCompliancePolicyPolicyItemWeeklyArgs>? _policyItemWeeklies;
+
+        /// <summary>
+        /// Scheduled policy using a weekly frequency type, see block fields.
+        /// </summary>
         public InputList<Inputs.BackupCompliancePolicyPolicyItemWeeklyArgs> PolicyItemWeeklies
         {
             get => _policyItemWeeklies ?? (_policyItemWeeklies = new InputList<Inputs.BackupCompliancePolicyPolicyItemWeeklyArgs>());
@@ -372,6 +407,10 @@ namespace Pulumi.Mongodbatlas
 
         [Input("policyItemYearlies")]
         private InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyArgs>? _policyItemYearlies;
+
+        /// <summary>
+        /// Scheduled policy using a yearly frequency type, see block fields.
+        /// </summary>
         public InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyArgs> PolicyItemYearlies
         {
             get => _policyItemYearlies ?? (_policyItemYearlies = new InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyArgs>());
@@ -428,6 +467,9 @@ namespace Pulumi.Mongodbatlas
         [Input("encryptionAtRestEnabled")]
         public Input<bool>? EncryptionAtRestEnabled { get; set; }
 
+        /// <summary>
+        /// Specifications for on-demand policy.
+        /// </summary>
         [Input("onDemandPolicyItem")]
         public Input<Inputs.BackupCompliancePolicyOnDemandPolicyItemGetArgs>? OnDemandPolicyItem { get; set; }
 
@@ -437,14 +479,24 @@ namespace Pulumi.Mongodbatlas
         [Input("pitEnabled")]
         public Input<bool>? PitEnabled { get; set; }
 
+        /// <summary>
+        /// Scheduled policy using a daily frequency type, see block fields.
+        /// </summary>
         [Input("policyItemDaily")]
         public Input<Inputs.BackupCompliancePolicyPolicyItemDailyGetArgs>? PolicyItemDaily { get; set; }
 
+        /// <summary>
+        /// Scheduled policy using an hourly frequency type, see block fields.
+        /// </summary>
         [Input("policyItemHourly")]
         public Input<Inputs.BackupCompliancePolicyPolicyItemHourlyGetArgs>? PolicyItemHourly { get; set; }
 
         [Input("policyItemMonthlies")]
         private InputList<Inputs.BackupCompliancePolicyPolicyItemMonthlyGetArgs>? _policyItemMonthlies;
+
+        /// <summary>
+        /// Scheduled policy using a monthly frequency type, see block fields.
+        /// </summary>
         public InputList<Inputs.BackupCompliancePolicyPolicyItemMonthlyGetArgs> PolicyItemMonthlies
         {
             get => _policyItemMonthlies ?? (_policyItemMonthlies = new InputList<Inputs.BackupCompliancePolicyPolicyItemMonthlyGetArgs>());
@@ -453,6 +505,10 @@ namespace Pulumi.Mongodbatlas
 
         [Input("policyItemWeeklies")]
         private InputList<Inputs.BackupCompliancePolicyPolicyItemWeeklyGetArgs>? _policyItemWeeklies;
+
+        /// <summary>
+        /// Scheduled policy using a weekly frequency type, see block fields.
+        /// </summary>
         public InputList<Inputs.BackupCompliancePolicyPolicyItemWeeklyGetArgs> PolicyItemWeeklies
         {
             get => _policyItemWeeklies ?? (_policyItemWeeklies = new InputList<Inputs.BackupCompliancePolicyPolicyItemWeeklyGetArgs>());
@@ -461,6 +517,10 @@ namespace Pulumi.Mongodbatlas
 
         [Input("policyItemYearlies")]
         private InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyGetArgs>? _policyItemYearlies;
+
+        /// <summary>
+        /// Scheduled policy using a yearly frequency type, see block fields.
+        /// </summary>
         public InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyGetArgs> PolicyItemYearlies
         {
             get => _policyItemYearlies ?? (_policyItemYearlies = new InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyGetArgs>());

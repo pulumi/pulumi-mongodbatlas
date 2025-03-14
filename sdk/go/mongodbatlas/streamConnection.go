@@ -104,6 +104,7 @@ type StreamConnection struct {
 	pulumi.CustomResourceState
 
 	Authentication   StreamConnectionAuthenticationPtrOutput `pulumi:"authentication"`
+	Aws              StreamConnectionAwsPtrOutput            `pulumi:"aws"`
 	BootstrapServers pulumi.StringPtrOutput                  `pulumi:"bootstrapServers"`
 	ClusterName      pulumi.StringPtrOutput                  `pulumi:"clusterName"`
 	Config           pulumi.StringMapOutput                  `pulumi:"config"`
@@ -116,7 +117,7 @@ type StreamConnection struct {
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput               `pulumi:"projectId"`
 	Security  StreamConnectionSecurityPtrOutput `pulumi:"security"`
-	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -163,6 +164,7 @@ func GetStreamConnection(ctx *pulumi.Context,
 // Input properties used for looking up and filtering StreamConnection resources.
 type streamConnectionState struct {
 	Authentication   *StreamConnectionAuthentication `pulumi:"authentication"`
+	Aws              *StreamConnectionAws            `pulumi:"aws"`
 	BootstrapServers *string                         `pulumi:"bootstrapServers"`
 	ClusterName      *string                         `pulumi:"clusterName"`
 	Config           map[string]string               `pulumi:"config"`
@@ -175,12 +177,13 @@ type streamConnectionState struct {
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string                   `pulumi:"projectId"`
 	Security  *StreamConnectionSecurity `pulumi:"security"`
-	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 	Type *string `pulumi:"type"`
 }
 
 type StreamConnectionState struct {
 	Authentication   StreamConnectionAuthenticationPtrInput
+	Aws              StreamConnectionAwsPtrInput
 	BootstrapServers pulumi.StringPtrInput
 	ClusterName      pulumi.StringPtrInput
 	Config           pulumi.StringMapInput
@@ -193,7 +196,7 @@ type StreamConnectionState struct {
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 	Security  StreamConnectionSecurityPtrInput
-	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 	Type pulumi.StringPtrInput
 }
 
@@ -203,6 +206,7 @@ func (StreamConnectionState) ElementType() reflect.Type {
 
 type streamConnectionArgs struct {
 	Authentication   *StreamConnectionAuthentication `pulumi:"authentication"`
+	Aws              *StreamConnectionAws            `pulumi:"aws"`
 	BootstrapServers *string                         `pulumi:"bootstrapServers"`
 	ClusterName      *string                         `pulumi:"clusterName"`
 	Config           map[string]string               `pulumi:"config"`
@@ -215,13 +219,14 @@ type streamConnectionArgs struct {
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string                    `pulumi:"projectId"`
 	Security  *StreamConnectionSecurity `pulumi:"security"`
-	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 	Type string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a StreamConnection resource.
 type StreamConnectionArgs struct {
 	Authentication   StreamConnectionAuthenticationPtrInput
+	Aws              StreamConnectionAwsPtrInput
 	BootstrapServers pulumi.StringPtrInput
 	ClusterName      pulumi.StringPtrInput
 	Config           pulumi.StringMapInput
@@ -234,7 +239,7 @@ type StreamConnectionArgs struct {
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	Security  StreamConnectionSecurityPtrInput
-	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 	Type pulumi.StringInput
 }
 
@@ -329,6 +334,10 @@ func (o StreamConnectionOutput) Authentication() StreamConnectionAuthenticationP
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionAuthenticationPtrOutput { return v.Authentication }).(StreamConnectionAuthenticationPtrOutput)
 }
 
+func (o StreamConnectionOutput) Aws() StreamConnectionAwsPtrOutput {
+	return o.ApplyT(func(v *StreamConnection) StreamConnectionAwsPtrOutput { return v.Aws }).(StreamConnectionAwsPtrOutput)
+}
+
 func (o StreamConnectionOutput) BootstrapServers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringPtrOutput { return v.BootstrapServers }).(pulumi.StringPtrOutput)
 }
@@ -368,7 +377,7 @@ func (o StreamConnectionOutput) Security() StreamConnectionSecurityPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionSecurityPtrOutput { return v.Security }).(StreamConnectionSecurityPtrOutput)
 }
 
-// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
 func (o StreamConnectionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

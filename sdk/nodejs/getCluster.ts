@@ -65,7 +65,7 @@ export interface GetClusterArgs {
      */
     name: string;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the cluster.
      */
     projectId: string;
 }
@@ -107,7 +107,7 @@ export interface GetClusterResult {
      */
     readonly clusterType: string;
     /**
-     * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
+     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
      */
     readonly connectionStrings: outputs.GetClusterConnectionString[];
     /**
@@ -211,7 +211,7 @@ export interface GetClusterResult {
      */
     readonly providerVolumeType: string;
     /**
-     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      */
     readonly redactClientLogData: boolean;
     /**
@@ -312,7 +312,7 @@ export interface GetClusterOutputArgs {
      */
     name: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the cluster.
      */
     projectId: pulumi.Input<string>;
 }

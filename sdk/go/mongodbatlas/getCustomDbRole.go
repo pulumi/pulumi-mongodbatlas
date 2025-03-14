@@ -80,7 +80,7 @@ func LookupCustomDbRole(ctx *pulumi.Context, args *LookupCustomDbRoleArgs, opts 
 // A collection of arguments for invoking getCustomDbRole.
 type LookupCustomDbRoleArgs struct {
 	InheritedRoles []GetCustomDbRoleInheritedRole `pulumi:"inheritedRoles"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
 	// Name of the custom role.
 	RoleName string `pulumi:"roleName"`
@@ -109,7 +109,7 @@ func LookupCustomDbRoleOutput(ctx *pulumi.Context, args LookupCustomDbRoleOutput
 // A collection of arguments for invoking getCustomDbRole.
 type LookupCustomDbRoleOutputArgs struct {
 	InheritedRoles GetCustomDbRoleInheritedRoleArrayInput `pulumi:"inheritedRoles"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Name of the custom role.
 	RoleName pulumi.StringInput `pulumi:"roleName"`

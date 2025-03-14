@@ -230,7 +230,7 @@ def get_network_container(container_id: Optional[str] = None,
 
 
     :param str container_id: The Network Peering Container ID.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
     __args__['containerId'] = container_id
@@ -284,7 +284,7 @@ def get_network_container_output(container_id: Optional[pulumi.Input[str]] = Non
 
 
     :param str container_id: The Network Peering Container ID.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
     __args__['containerId'] = container_id

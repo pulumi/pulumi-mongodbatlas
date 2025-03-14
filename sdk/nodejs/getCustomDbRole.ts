@@ -60,7 +60,7 @@ export function getCustomDbRole(args: GetCustomDbRoleArgs, opts?: pulumi.InvokeO
 export interface GetCustomDbRoleArgs {
     inheritedRoles?: inputs.GetCustomDbRoleInheritedRole[];
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: string;
     /**
@@ -139,7 +139,7 @@ export function getCustomDbRoleOutput(args: GetCustomDbRoleOutputArgs, opts?: pu
 export interface GetCustomDbRoleOutputArgs {
     inheritedRoles?: pulumi.Input<pulumi.Input<inputs.GetCustomDbRoleInheritedRoleArgs>[]>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project.
      */
     projectId: pulumi.Input<string>;
     /**

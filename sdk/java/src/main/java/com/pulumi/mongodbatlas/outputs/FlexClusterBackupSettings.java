@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class FlexClusterBackupSettings {
     /**
-     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      * 
      */
     private @Nullable Boolean enabled;
 
     private FlexClusterBackupSettings() {}
     /**
-     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses TODO for flex clusters.
+     * @return Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      * 
      */
     public Optional<Boolean> enabled() {

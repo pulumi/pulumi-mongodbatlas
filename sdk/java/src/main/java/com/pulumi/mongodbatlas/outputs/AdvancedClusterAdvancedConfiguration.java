@@ -26,7 +26,7 @@ public final class AdvancedClusterAdvancedConfiguration {
      */
     private @Nullable List<String> customOpensslCipherConfigTls12s;
     /**
-     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
     private @Nullable Integer defaultMaxTimeMs;
@@ -54,13 +54,12 @@ public final class AdvancedClusterAdvancedConfiguration {
     @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     private @Nullable Boolean failIndexKeyTooLong;
     /**
-     * @return When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * @return When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
      * 
      */
     private @Nullable Boolean javascriptEnabled;
     /**
-     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-     * 
+     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2
@@ -120,7 +119,7 @@ public final class AdvancedClusterAdvancedConfiguration {
         return this.customOpensslCipherConfigTls12s == null ? List.of() : this.customOpensslCipherConfigTls12s;
     }
     /**
-     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS(https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
     public Optional<Integer> defaultMaxTimeMs() {
@@ -156,15 +155,14 @@ public final class AdvancedClusterAdvancedConfiguration {
         return Optional.ofNullable(this.failIndexKeyTooLong);
     }
     /**
-     * @return When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * @return When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
      * 
      */
     public Optional<Boolean> javascriptEnabled() {
         return Optional.ofNullable(this.javascriptEnabled);
     }
     /**
-     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-     * 
+     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2

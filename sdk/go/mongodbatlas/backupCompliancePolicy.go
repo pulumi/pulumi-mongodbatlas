@@ -173,15 +173,21 @@ type BackupCompliancePolicy struct {
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
 	CopyProtectionEnabled pulumi.BoolPtrOutput `pulumi:"copyProtectionEnabled"`
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	EncryptionAtRestEnabled pulumi.BoolPtrOutput                           `pulumi:"encryptionAtRestEnabled"`
-	OnDemandPolicyItem      BackupCompliancePolicyOnDemandPolicyItemOutput `pulumi:"onDemandPolicyItem"`
+	EncryptionAtRestEnabled pulumi.BoolPtrOutput `pulumi:"encryptionAtRestEnabled"`
+	// Specifications for on-demand policy.
+	OnDemandPolicyItem BackupCompliancePolicyOnDemandPolicyItemPtrOutput `pulumi:"onDemandPolicyItem"`
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	PitEnabled          pulumi.BoolPtrOutput                               `pulumi:"pitEnabled"`
-	PolicyItemDaily     BackupCompliancePolicyPolicyItemDailyPtrOutput     `pulumi:"policyItemDaily"`
-	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrOutput    `pulumi:"policyItemHourly"`
+	PitEnabled pulumi.BoolPtrOutput `pulumi:"pitEnabled"`
+	// Scheduled policy using a daily frequency type, see block fields.
+	PolicyItemDaily BackupCompliancePolicyPolicyItemDailyPtrOutput `pulumi:"policyItemDaily"`
+	// Scheduled policy using an hourly frequency type, see block fields.
+	PolicyItemHourly BackupCompliancePolicyPolicyItemHourlyPtrOutput `pulumi:"policyItemHourly"`
+	// Scheduled policy using a monthly frequency type, see block fields.
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayOutput `pulumi:"policyItemMonthlies"`
-	PolicyItemWeeklies  BackupCompliancePolicyPolicyItemWeeklyArrayOutput  `pulumi:"policyItemWeeklies"`
-	PolicyItemYearlies  BackupCompliancePolicyPolicyItemYearlyArrayOutput  `pulumi:"policyItemYearlies"`
+	// Scheduled policy using a weekly frequency type, see block fields.
+	PolicyItemWeeklies BackupCompliancePolicyPolicyItemWeeklyArrayOutput `pulumi:"policyItemWeeklies"`
+	// Scheduled policy using a yearly frequency type, see block fields.
+	PolicyItemYearlies BackupCompliancePolicyPolicyItemYearlyArrayOutput `pulumi:"policyItemYearlies"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -209,9 +215,6 @@ func NewBackupCompliancePolicy(ctx *pulumi.Context,
 	}
 	if args.AuthorizedUserLastName == nil {
 		return nil, errors.New("invalid value for required argument 'AuthorizedUserLastName'")
-	}
-	if args.OnDemandPolicyItem == nil {
-		return nil, errors.New("invalid value for required argument 'OnDemandPolicyItem'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -248,15 +251,21 @@ type backupCompliancePolicyState struct {
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
 	CopyProtectionEnabled *bool `pulumi:"copyProtectionEnabled"`
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	EncryptionAtRestEnabled *bool                                     `pulumi:"encryptionAtRestEnabled"`
-	OnDemandPolicyItem      *BackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
+	EncryptionAtRestEnabled *bool `pulumi:"encryptionAtRestEnabled"`
+	// Specifications for on-demand policy.
+	OnDemandPolicyItem *BackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	PitEnabled          *bool                                     `pulumi:"pitEnabled"`
-	PolicyItemDaily     *BackupCompliancePolicyPolicyItemDaily    `pulumi:"policyItemDaily"`
-	PolicyItemHourly    *BackupCompliancePolicyPolicyItemHourly   `pulumi:"policyItemHourly"`
+	PitEnabled *bool `pulumi:"pitEnabled"`
+	// Scheduled policy using a daily frequency type, see block fields.
+	PolicyItemDaily *BackupCompliancePolicyPolicyItemDaily `pulumi:"policyItemDaily"`
+	// Scheduled policy using an hourly frequency type, see block fields.
+	PolicyItemHourly *BackupCompliancePolicyPolicyItemHourly `pulumi:"policyItemHourly"`
+	// Scheduled policy using a monthly frequency type, see block fields.
 	PolicyItemMonthlies []BackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
-	PolicyItemWeeklies  []BackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
-	PolicyItemYearlies  []BackupCompliancePolicyPolicyItemYearly  `pulumi:"policyItemYearlies"`
+	// Scheduled policy using a weekly frequency type, see block fields.
+	PolicyItemWeeklies []BackupCompliancePolicyPolicyItemWeekly `pulumi:"policyItemWeeklies"`
+	// Scheduled policy using a yearly frequency type, see block fields.
+	PolicyItemYearlies []BackupCompliancePolicyPolicyItemYearly `pulumi:"policyItemYearlies"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -280,14 +289,20 @@ type BackupCompliancePolicyState struct {
 	CopyProtectionEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
 	EncryptionAtRestEnabled pulumi.BoolPtrInput
-	OnDemandPolicyItem      BackupCompliancePolicyOnDemandPolicyItemPtrInput
+	// Specifications for on-demand policy.
+	OnDemandPolicyItem BackupCompliancePolicyOnDemandPolicyItemPtrInput
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	PitEnabled          pulumi.BoolPtrInput
-	PolicyItemDaily     BackupCompliancePolicyPolicyItemDailyPtrInput
-	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrInput
+	PitEnabled pulumi.BoolPtrInput
+	// Scheduled policy using a daily frequency type, see block fields.
+	PolicyItemDaily BackupCompliancePolicyPolicyItemDailyPtrInput
+	// Scheduled policy using an hourly frequency type, see block fields.
+	PolicyItemHourly BackupCompliancePolicyPolicyItemHourlyPtrInput
+	// Scheduled policy using a monthly frequency type, see block fields.
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayInput
-	PolicyItemWeeklies  BackupCompliancePolicyPolicyItemWeeklyArrayInput
-	PolicyItemYearlies  BackupCompliancePolicyPolicyItemYearlyArrayInput
+	// Scheduled policy using a weekly frequency type, see block fields.
+	PolicyItemWeeklies BackupCompliancePolicyPolicyItemWeeklyArrayInput
+	// Scheduled policy using a yearly frequency type, see block fields.
+	PolicyItemYearlies BackupCompliancePolicyPolicyItemYearlyArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -314,15 +329,21 @@ type backupCompliancePolicyArgs struct {
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
 	CopyProtectionEnabled *bool `pulumi:"copyProtectionEnabled"`
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	EncryptionAtRestEnabled *bool                                    `pulumi:"encryptionAtRestEnabled"`
-	OnDemandPolicyItem      BackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
+	EncryptionAtRestEnabled *bool `pulumi:"encryptionAtRestEnabled"`
+	// Specifications for on-demand policy.
+	OnDemandPolicyItem *BackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	PitEnabled          *bool                                     `pulumi:"pitEnabled"`
-	PolicyItemDaily     *BackupCompliancePolicyPolicyItemDaily    `pulumi:"policyItemDaily"`
-	PolicyItemHourly    *BackupCompliancePolicyPolicyItemHourly   `pulumi:"policyItemHourly"`
+	PitEnabled *bool `pulumi:"pitEnabled"`
+	// Scheduled policy using a daily frequency type, see block fields.
+	PolicyItemDaily *BackupCompliancePolicyPolicyItemDaily `pulumi:"policyItemDaily"`
+	// Scheduled policy using an hourly frequency type, see block fields.
+	PolicyItemHourly *BackupCompliancePolicyPolicyItemHourly `pulumi:"policyItemHourly"`
+	// Scheduled policy using a monthly frequency type, see block fields.
 	PolicyItemMonthlies []BackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
-	PolicyItemWeeklies  []BackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
-	PolicyItemYearlies  []BackupCompliancePolicyPolicyItemYearly  `pulumi:"policyItemYearlies"`
+	// Scheduled policy using a weekly frequency type, see block fields.
+	PolicyItemWeeklies []BackupCompliancePolicyPolicyItemWeekly `pulumi:"policyItemWeeklies"`
+	// Scheduled policy using a yearly frequency type, see block fields.
+	PolicyItemYearlies []BackupCompliancePolicyPolicyItemYearly `pulumi:"policyItemYearlies"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -341,14 +362,20 @@ type BackupCompliancePolicyArgs struct {
 	CopyProtectionEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
 	EncryptionAtRestEnabled pulumi.BoolPtrInput
-	OnDemandPolicyItem      BackupCompliancePolicyOnDemandPolicyItemInput
+	// Specifications for on-demand policy.
+	OnDemandPolicyItem BackupCompliancePolicyOnDemandPolicyItemPtrInput
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	PitEnabled          pulumi.BoolPtrInput
-	PolicyItemDaily     BackupCompliancePolicyPolicyItemDailyPtrInput
-	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrInput
+	PitEnabled pulumi.BoolPtrInput
+	// Scheduled policy using a daily frequency type, see block fields.
+	PolicyItemDaily BackupCompliancePolicyPolicyItemDailyPtrInput
+	// Scheduled policy using an hourly frequency type, see block fields.
+	PolicyItemHourly BackupCompliancePolicyPolicyItemHourlyPtrInput
+	// Scheduled policy using a monthly frequency type, see block fields.
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayInput
-	PolicyItemWeeklies  BackupCompliancePolicyPolicyItemWeeklyArrayInput
-	PolicyItemYearlies  BackupCompliancePolicyPolicyItemYearlyArrayInput
+	// Scheduled policy using a weekly frequency type, see block fields.
+	PolicyItemWeeklies BackupCompliancePolicyPolicyItemWeeklyArrayInput
+	// Scheduled policy using a yearly frequency type, see block fields.
+	PolicyItemYearlies BackupCompliancePolicyPolicyItemYearlyArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -467,10 +494,11 @@ func (o BackupCompliancePolicyOutput) EncryptionAtRestEnabled() pulumi.BoolPtrOu
 	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.BoolPtrOutput { return v.EncryptionAtRestEnabled }).(pulumi.BoolPtrOutput)
 }
 
-func (o BackupCompliancePolicyOutput) OnDemandPolicyItem() BackupCompliancePolicyOnDemandPolicyItemOutput {
-	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyOnDemandPolicyItemOutput {
+// Specifications for on-demand policy.
+func (o BackupCompliancePolicyOutput) OnDemandPolicyItem() BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
 		return v.OnDemandPolicyItem
-	}).(BackupCompliancePolicyOnDemandPolicyItemOutput)
+	}).(BackupCompliancePolicyOnDemandPolicyItemPtrOutput)
 }
 
 // Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -478,30 +506,35 @@ func (o BackupCompliancePolicyOutput) PitEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.BoolPtrOutput { return v.PitEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// Scheduled policy using a daily frequency type, see block fields.
 func (o BackupCompliancePolicyOutput) PolicyItemDaily() BackupCompliancePolicyPolicyItemDailyPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyPolicyItemDailyPtrOutput {
 		return v.PolicyItemDaily
 	}).(BackupCompliancePolicyPolicyItemDailyPtrOutput)
 }
 
+// Scheduled policy using an hourly frequency type, see block fields.
 func (o BackupCompliancePolicyOutput) PolicyItemHourly() BackupCompliancePolicyPolicyItemHourlyPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyPolicyItemHourlyPtrOutput {
 		return v.PolicyItemHourly
 	}).(BackupCompliancePolicyPolicyItemHourlyPtrOutput)
 }
 
+// Scheduled policy using a monthly frequency type, see block fields.
 func (o BackupCompliancePolicyOutput) PolicyItemMonthlies() BackupCompliancePolicyPolicyItemMonthlyArrayOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyPolicyItemMonthlyArrayOutput {
 		return v.PolicyItemMonthlies
 	}).(BackupCompliancePolicyPolicyItemMonthlyArrayOutput)
 }
 
+// Scheduled policy using a weekly frequency type, see block fields.
 func (o BackupCompliancePolicyOutput) PolicyItemWeeklies() BackupCompliancePolicyPolicyItemWeeklyArrayOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyPolicyItemWeeklyArrayOutput {
 		return v.PolicyItemWeeklies
 	}).(BackupCompliancePolicyPolicyItemWeeklyArrayOutput)
 }
 
+// Scheduled policy using a yearly frequency type, see block fields.
 func (o BackupCompliancePolicyOutput) PolicyItemYearlies() BackupCompliancePolicyPolicyItemYearlyArrayOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyPolicyItemYearlyArrayOutput {
 		return v.PolicyItemYearlies

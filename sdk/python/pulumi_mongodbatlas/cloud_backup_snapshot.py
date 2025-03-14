@@ -120,7 +120,7 @@ class _CloudBackupSnapshotState:
         :param pulumi.Input[str] replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] snapshot_ids: Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] snapshot_ids: Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
         :param pulumi.Input[str] snapshot_type: Specified the type of snapshot. Valid values are onDemand and scheduled.
         :param pulumi.Input[str] status: Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
         :param pulumi.Input[int] storage_size_bytes: Specifies the size of the snapshot in bytes.
@@ -309,7 +309,7 @@ class _CloudBackupSnapshotState:
     @pulumi.getter(name="snapshotIds")
     def snapshot_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+        Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
         """
         return pulumi.get(self, "snapshot_ids")
 
@@ -598,7 +598,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] snapshot_ids: Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] snapshot_ids: Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
         :param pulumi.Input[str] snapshot_type: Specified the type of snapshot. Valid values are onDemand and scheduled.
         :param pulumi.Input[str] status: Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
         :param pulumi.Input[int] storage_size_bytes: Specifies the size of the snapshot in bytes.
@@ -727,7 +727,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
     @pulumi.getter(name="snapshotIds")
     def snapshot_ids(self) -> pulumi.Output[Sequence[str]]:
         """
-        Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
+        Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
         """
         return pulumi.get(self, "snapshot_ids")
 

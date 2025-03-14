@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionAuthentication;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionAws;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionDbRoleToExecute;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionNetworking;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionSecurity;
@@ -20,6 +21,11 @@ public final class GetStreamConnectionResult {
      * 
      */
     private GetStreamConnectionAuthentication authentication;
+    /**
+     * @return The configuration for AWS Lambda connection. See AWS
+     * 
+     */
+    private GetStreamConnectionAws aws;
     /**
      * @return Comma separated list of server addresses.
      * 
@@ -67,6 +73,13 @@ public final class GetStreamConnectionResult {
      */
     public GetStreamConnectionAuthentication authentication() {
         return this.authentication;
+    }
+    /**
+     * @return The configuration for AWS Lambda connection. See AWS
+     * 
+     */
+    public GetStreamConnectionAws aws() {
+        return this.aws;
     }
     /**
      * @return Comma separated list of server addresses.
@@ -140,6 +153,7 @@ public final class GetStreamConnectionResult {
     @CustomType.Builder
     public static final class Builder {
         private GetStreamConnectionAuthentication authentication;
+        private GetStreamConnectionAws aws;
         private String bootstrapServers;
         private String clusterName;
         private Map<String,String> config;
@@ -155,6 +169,7 @@ public final class GetStreamConnectionResult {
         public Builder(GetStreamConnectionResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.authentication = defaults.authentication;
+    	      this.aws = defaults.aws;
     	      this.bootstrapServers = defaults.bootstrapServers;
     	      this.clusterName = defaults.clusterName;
     	      this.config = defaults.config;
@@ -174,6 +189,14 @@ public final class GetStreamConnectionResult {
               throw new MissingRequiredPropertyException("GetStreamConnectionResult", "authentication");
             }
             this.authentication = authentication;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder aws(GetStreamConnectionAws aws) {
+            if (aws == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionResult", "aws");
+            }
+            this.aws = aws;
             return this;
         }
         @CustomType.Setter
@@ -267,6 +290,7 @@ public final class GetStreamConnectionResult {
         public GetStreamConnectionResult build() {
             final var _resultValue = new GetStreamConnectionResult();
             _resultValue.authentication = authentication;
+            _resultValue.aws = aws;
             _resultValue.bootstrapServers = bootstrapServers;
             _resultValue.clusterName = clusterName;
             _resultValue.config = config;

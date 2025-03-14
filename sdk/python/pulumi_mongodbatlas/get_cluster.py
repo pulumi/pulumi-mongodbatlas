@@ -232,7 +232,7 @@ class GetClusterResult:
     @pulumi.getter(name="connectionStrings")
     def connection_strings(self) -> Sequence['outputs.GetClusterConnectionStringResult']:
         """
-        Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
+        Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
         """
         return pulumi.get(self, "connection_strings")
 
@@ -448,7 +448,7 @@ class GetClusterResult:
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> bool:
         """
-        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more info.
+        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -620,7 +620,7 @@ def get_cluster(name: Optional[str] = None,
 
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project to create the cluster.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -718,7 +718,7 @@ def get_cluster_output(name: Optional[pulumi.Input[str]] = None,
 
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-    :param str project_id: The unique ID for the project to create the database user.
+    :param str project_id: The unique ID for the project to create the cluster.
     """
     __args__ = dict()
     __args__['name'] = name
