@@ -21,7 +21,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     /**
      * Status of the interface endpoint for AWS.
      * Returns one of the following values:
-     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn&#39;t yet created the VPC endpoint.
      * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
      * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
      * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
@@ -35,7 +35,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     /**
      * @return Status of the interface endpoint for AWS.
      * Returns one of the following values:
-     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn&#39;t yet created the VPC endpoint.
      * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
      * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
      * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
@@ -334,7 +334,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         /**
          * @param awsConnectionStatus Status of the interface endpoint for AWS.
          * Returns one of the following values:
-         * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+         * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn&#39;t yet created the VPC endpoint.
          * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
          * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
          * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
@@ -352,7 +352,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         /**
          * @param awsConnectionStatus Status of the interface endpoint for AWS.
          * Returns one of the following values:
-         * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+         * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn&#39;t yet created the VPC endpoint.
          * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
          * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
          * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.

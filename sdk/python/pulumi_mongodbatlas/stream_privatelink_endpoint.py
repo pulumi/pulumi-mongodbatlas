@@ -22,6 +22,7 @@ class StreamPrivatelinkEndpointArgs:
                  project_id: pulumi.Input[str],
                  provider_name: pulumi.Input[str],
                  vendor: pulumi.Input[str],
+                 arn: Optional[pulumi.Input[str]] = None,
                  dns_domain: Optional[pulumi.Input[str]] = None,
                  dns_sub_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -31,14 +32,18 @@ class StreamPrivatelinkEndpointArgs:
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input[str] provider_name: Provider where the Kafka cluster is deployed.
         :param pulumi.Input[str] vendor: Vendor who manages the Kafka cluster.
+        :param pulumi.Input[str] arn: Amazon Resource Name (ARN).
         :param pulumi.Input[str] dns_domain: Domain name of Privatelink connected cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones.
-        :param pulumi.Input[str] region: Domain name of Confluent cluster.
+        :param pulumi.Input[str] region: When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+               by the API from the provided `arn`.
         :param pulumi.Input[str] service_endpoint_id: Service Endpoint ID.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
         pulumi.set(__self__, "vendor", vendor)
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
         if dns_domain is not None:
             pulumi.set(__self__, "dns_domain", dns_domain)
         if dns_sub_domains is not None:
@@ -85,6 +90,18 @@ class StreamPrivatelinkEndpointArgs:
         pulumi.set(self, "vendor", value)
 
     @property
+    @pulumi.getter
+    def arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Amazon Resource Name (ARN).
+        """
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "arn", value)
+
+    @property
     @pulumi.getter(name="dnsDomain")
     def dns_domain(self) -> Optional[pulumi.Input[str]]:
         """
@@ -112,7 +129,8 @@ class StreamPrivatelinkEndpointArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Domain name of Confluent cluster.
+        When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+        by the API from the provided `arn`.
         """
         return pulumi.get(self, "region")
 
@@ -136,10 +154,14 @@ class StreamPrivatelinkEndpointArgs:
 @pulumi.input_type
 class _StreamPrivatelinkEndpointState:
     def __init__(__self__, *,
+                 arn: Optional[pulumi.Input[str]] = None,
                  dns_domain: Optional[pulumi.Input[str]] = None,
                  dns_sub_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 error_message: Optional[pulumi.Input[str]] = None,
                  interface_endpoint_id: Optional[pulumi.Input[str]] = None,
+                 interface_endpoint_name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 provider_account_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  service_endpoint_id: Optional[pulumi.Input[str]] = None,
@@ -147,24 +169,37 @@ class _StreamPrivatelinkEndpointState:
                  vendor: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering StreamPrivatelinkEndpoint resources.
+        :param pulumi.Input[str] arn: Amazon Resource Name (ARN).
         :param pulumi.Input[str] dns_domain: Domain name of Privatelink connected cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones.
+        :param pulumi.Input[str] error_message: Error message if the connection is in a failed state.
         :param pulumi.Input[str] interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
+        :param pulumi.Input[str] interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[str] provider_account_id: Account ID from the cloud provider.
         :param pulumi.Input[str] provider_name: Provider where the Kafka cluster is deployed.
-        :param pulumi.Input[str] region: Domain name of Confluent cluster.
+        :param pulumi.Input[str] region: When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+               by the API from the provided `arn`.
         :param pulumi.Input[str] service_endpoint_id: Service Endpoint ID.
         :param pulumi.Input[str] state: Status of the connection.
         :param pulumi.Input[str] vendor: Vendor who manages the Kafka cluster.
         """
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
         if dns_domain is not None:
             pulumi.set(__self__, "dns_domain", dns_domain)
         if dns_sub_domains is not None:
             pulumi.set(__self__, "dns_sub_domains", dns_sub_domains)
+        if error_message is not None:
+            pulumi.set(__self__, "error_message", error_message)
         if interface_endpoint_id is not None:
             pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
+        if interface_endpoint_name is not None:
+            pulumi.set(__self__, "interface_endpoint_name", interface_endpoint_name)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if provider_account_id is not None:
+            pulumi.set(__self__, "provider_account_id", provider_account_id)
         if provider_name is not None:
             pulumi.set(__self__, "provider_name", provider_name)
         if region is not None:
@@ -175,6 +210,18 @@ class _StreamPrivatelinkEndpointState:
             pulumi.set(__self__, "state", state)
         if vendor is not None:
             pulumi.set(__self__, "vendor", vendor)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Amazon Resource Name (ARN).
+        """
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "arn", value)
 
     @property
     @pulumi.getter(name="dnsDomain")
@@ -201,6 +248,18 @@ class _StreamPrivatelinkEndpointState:
         pulumi.set(self, "dns_sub_domains", value)
 
     @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Error message if the connection is in a failed state.
+        """
+        return pulumi.get(self, "error_message")
+
+    @error_message.setter
+    def error_message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "error_message", value)
+
+    @property
     @pulumi.getter(name="interfaceEndpointId")
     def interface_endpoint_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -213,6 +272,18 @@ class _StreamPrivatelinkEndpointState:
         pulumi.set(self, "interface_endpoint_id", value)
 
     @property
+    @pulumi.getter(name="interfaceEndpointName")
+    def interface_endpoint_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of interface endpoint that is created from the specified service endpoint ID.
+        """
+        return pulumi.get(self, "interface_endpoint_name")
+
+    @interface_endpoint_name.setter
+    def interface_endpoint_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_endpoint_name", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -223,6 +294,18 @@ class _StreamPrivatelinkEndpointState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="providerAccountId")
+    def provider_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Account ID from the cloud provider.
+        """
+        return pulumi.get(self, "provider_account_id")
+
+    @provider_account_id.setter
+    def provider_account_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_account_id", value)
 
     @property
     @pulumi.getter(name="providerName")
@@ -240,7 +323,8 @@ class _StreamPrivatelinkEndpointState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Domain name of Confluent cluster.
+        When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+        by the API from the provided `arn`.
         """
         return pulumi.get(self, "region")
 
@@ -290,6 +374,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 arn: Optional[pulumi.Input[str]] = None,
                  dns_domain: Optional[pulumi.Input[str]] = None,
                  dns_sub_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -305,13 +390,17 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### S
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] arn: Amazon Resource Name (ARN).
         :param pulumi.Input[str] dns_domain: Domain name of Privatelink connected cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input[str] provider_name: Provider where the Kafka cluster is deployed.
-        :param pulumi.Input[str] region: Domain name of Confluent cluster.
+        :param pulumi.Input[str] region: When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+               by the API from the provided `arn`.
         :param pulumi.Input[str] service_endpoint_id: Service Endpoint ID.
         :param pulumi.Input[str] vendor: Vendor who manages the Kafka cluster.
         """
@@ -328,6 +417,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### S
+
         :param str resource_name: The name of the resource.
         :param StreamPrivatelinkEndpointArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -343,6 +434,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 arn: Optional[pulumi.Input[str]] = None,
                  dns_domain: Optional[pulumi.Input[str]] = None,
                  dns_sub_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -359,6 +451,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = StreamPrivatelinkEndpointArgs.__new__(StreamPrivatelinkEndpointArgs)
 
+            __props__.__dict__["arn"] = arn
             __props__.__dict__["dns_domain"] = dns_domain
             __props__.__dict__["dns_sub_domains"] = dns_sub_domains
             if project_id is None and not opts.urn:
@@ -372,7 +465,10 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
             if vendor is None and not opts.urn:
                 raise TypeError("Missing required property 'vendor'")
             __props__.__dict__["vendor"] = vendor
+            __props__.__dict__["error_message"] = None
             __props__.__dict__["interface_endpoint_id"] = None
+            __props__.__dict__["interface_endpoint_name"] = None
+            __props__.__dict__["provider_account_id"] = None
             __props__.__dict__["state"] = None
         super(StreamPrivatelinkEndpoint, __self__).__init__(
             'mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint',
@@ -384,10 +480,14 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
             dns_domain: Optional[pulumi.Input[str]] = None,
             dns_sub_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            error_message: Optional[pulumi.Input[str]] = None,
             interface_endpoint_id: Optional[pulumi.Input[str]] = None,
+            interface_endpoint_name: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            provider_account_id: Optional[pulumi.Input[str]] = None,
             provider_name: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             service_endpoint_id: Optional[pulumi.Input[str]] = None,
@@ -400,12 +500,17 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] arn: Amazon Resource Name (ARN).
         :param pulumi.Input[str] dns_domain: Domain name of Privatelink connected cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones.
+        :param pulumi.Input[str] error_message: Error message if the connection is in a failed state.
         :param pulumi.Input[str] interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
+        :param pulumi.Input[str] interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[str] provider_account_id: Account ID from the cloud provider.
         :param pulumi.Input[str] provider_name: Provider where the Kafka cluster is deployed.
-        :param pulumi.Input[str] region: Domain name of Confluent cluster.
+        :param pulumi.Input[str] region: When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+               by the API from the provided `arn`.
         :param pulumi.Input[str] service_endpoint_id: Service Endpoint ID.
         :param pulumi.Input[str] state: Status of the connection.
         :param pulumi.Input[str] vendor: Vendor who manages the Kafka cluster.
@@ -414,16 +519,28 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
 
         __props__ = _StreamPrivatelinkEndpointState.__new__(_StreamPrivatelinkEndpointState)
 
+        __props__.__dict__["arn"] = arn
         __props__.__dict__["dns_domain"] = dns_domain
         __props__.__dict__["dns_sub_domains"] = dns_sub_domains
+        __props__.__dict__["error_message"] = error_message
         __props__.__dict__["interface_endpoint_id"] = interface_endpoint_id
+        __props__.__dict__["interface_endpoint_name"] = interface_endpoint_name
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["provider_account_id"] = provider_account_id
         __props__.__dict__["provider_name"] = provider_name
         __props__.__dict__["region"] = region
         __props__.__dict__["service_endpoint_id"] = service_endpoint_id
         __props__.__dict__["state"] = state
         __props__.__dict__["vendor"] = vendor
         return StreamPrivatelinkEndpoint(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> pulumi.Output[Optional[str]]:
+        """
+        Amazon Resource Name (ARN).
+        """
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dnsDomain")
@@ -442,6 +559,14 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         return pulumi.get(self, "dns_sub_domains")
 
     @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> pulumi.Output[str]:
+        """
+        Error message if the connection is in a failed state.
+        """
+        return pulumi.get(self, "error_message")
+
+    @property
     @pulumi.getter(name="interfaceEndpointId")
     def interface_endpoint_id(self) -> pulumi.Output[str]:
         """
@@ -450,12 +575,28 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         return pulumi.get(self, "interface_endpoint_id")
 
     @property
+    @pulumi.getter(name="interfaceEndpointName")
+    def interface_endpoint_name(self) -> pulumi.Output[str]:
+        """
+        Name of interface endpoint that is created from the specified service endpoint ID.
+        """
+        return pulumi.get(self, "interface_endpoint_name")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
         Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="providerAccountId")
+    def provider_account_id(self) -> pulumi.Output[str]:
+        """
+        Account ID from the cloud provider.
+        """
+        return pulumi.get(self, "provider_account_id")
 
     @property
     @pulumi.getter(name="providerName")
@@ -467,9 +608,10 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[str]]:
+    def region(self) -> pulumi.Output[str]:
         """
-        Domain name of Confluent cluster.
+        When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+        by the API from the provided `arn`.
         """
         return pulumi.get(self, "region")
 

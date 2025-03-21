@@ -79,6 +79,13 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.dbRoleToExecute);
     }
 
+    @Import(name="headers")
+    private @Nullable Output<Map<String,String>> headers;
+
+    public Optional<Output<Map<String,String>>> headers() {
+        return Optional.ofNullable(this.headers);
+    }
+
     /**
      * Human-readable label that identifies the stream instance.
      * 
@@ -124,18 +131,25 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      * 
      */
     public Output<String> type() {
         return this.type;
+    }
+
+    @Import(name="url")
+    private @Nullable Output<String> url;
+
+    public Optional<Output<String>> url() {
+        return Optional.ofNullable(this.url);
     }
 
     private StreamConnectionArgs() {}
@@ -148,11 +162,13 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         this.config = $.config;
         this.connectionName = $.connectionName;
         this.dbRoleToExecute = $.dbRoleToExecute;
+        this.headers = $.headers;
         this.instanceName = $.instanceName;
         this.networking = $.networking;
         this.projectId = $.projectId;
         this.security = $.security;
         this.type = $.type;
+        this.url = $.url;
     }
 
     public static Builder builder() {
@@ -248,6 +264,15 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
             return dbRoleToExecute(Output.of(dbRoleToExecute));
         }
 
+        public Builder headers(@Nullable Output<Map<String,String>> headers) {
+            $.headers = headers;
+            return this;
+        }
+
+        public Builder headers(Map<String,String> headers) {
+            return headers(Output.of(headers));
+        }
+
         /**
          * @param instanceName Human-readable label that identifies the stream instance.
          * 
@@ -309,7 +334,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param type Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
          * 
          * @return builder
          * 
@@ -320,13 +345,22 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param type Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
          * 
          * @return builder
          * 
          */
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        public Builder url(@Nullable Output<String> url) {
+            $.url = url;
+            return this;
+        }
+
+        public Builder url(String url) {
+            return url(Output.of(url));
         }
 
         public StreamConnectionArgs build() {

@@ -116,7 +116,7 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
-     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
      *
      * @deprecated This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
      */
@@ -186,7 +186,7 @@ export interface GlobalClusterConfigState {
      */
     clusterName?: pulumi.Input<string>;
     /**
-     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
      *
      * @deprecated This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
      */

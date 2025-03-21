@@ -118,7 +118,7 @@ type GlobalClusterConfig struct {
 
 	// The name of the Global Cluster.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
-	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
 	CustomZoneMapping pulumi.StringMapOutput `pulumi:"customZoneMapping"`
@@ -170,7 +170,7 @@ func GetGlobalClusterConfig(ctx *pulumi.Context,
 type globalClusterConfigState struct {
 	// The name of the Global Cluster.
 	ClusterName *string `pulumi:"clusterName"`
-	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
 	CustomZoneMapping map[string]string `pulumi:"customZoneMapping"`
@@ -187,7 +187,7 @@ type globalClusterConfigState struct {
 type GlobalClusterConfigState struct {
 	// The name of the Global Cluster.
 	ClusterName pulumi.StringPtrInput
-	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
 	CustomZoneMapping pulumi.StringMapInput
@@ -320,7 +320,7 @@ func (o GlobalClusterConfigOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *GlobalClusterConfig) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
-// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead.
+// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
 //
 // Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
 func (o GlobalClusterConfigOutput) CustomZoneMapping() pulumi.StringMapOutput {

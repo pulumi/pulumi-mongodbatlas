@@ -140,7 +140,6 @@ export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
     /**
      * Cloud service provider on which the servers are provisioned.
      * The possible values are:
-     *
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
@@ -194,7 +193,7 @@ export interface AdvancedClusterReplicationSpec {
      */
     numShards?: number;
     /**
-     * Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+     * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      */
     regionConfigs: outputs.AdvancedClusterReplicationSpecRegionConfig[];
     /**
@@ -225,7 +224,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     backingProviderName?: string;
     /**
-     * Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+     * Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      */
     electableSpecs: outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs;
     /**
@@ -237,7 +236,6 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
      * Cloud service provider on which the servers are provisioned.
      * The possible values are:
-     *
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
@@ -245,7 +243,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     providerName: string;
     /**
-     * Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+     * Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
      */
     readOnlySpecs: outputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs;
     /**
@@ -1887,7 +1885,7 @@ export interface GetAdvancedClusterReplicationSpec {
      */
     numShards: number;
     /**
-     * Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+     * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      */
     regionConfigs: outputs.GetAdvancedClusterReplicationSpecRegionConfig[];
     /**
@@ -2338,7 +2336,7 @@ export interface GetAdvancedClustersResultReplicationSpec {
      */
     numShards: number;
     /**
-     * Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+     * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      */
     regionConfigs: outputs.GetAdvancedClustersResultReplicationSpecRegionConfig[];
     /**
@@ -7130,6 +7128,10 @@ export interface GetStreamConnectionsResult {
      * The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
      */
     dbRoleToExecute: outputs.GetStreamConnectionsResultDbRoleToExecute;
+    /**
+     * A map of key-value pairs for optional headers.
+     */
+    headers: {[key: string]: string};
     id: string;
     /**
      * Human-readable label that identifies the stream instance.
@@ -7151,6 +7153,10 @@ export interface GetStreamConnectionsResult {
      * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: string;
+    /**
+     * URL of the HTTPs endpoint that will be used for creating a connection.
+     */
+    url: string;
 }
 
 export interface GetStreamConnectionsResultAuthentication {
@@ -7277,6 +7283,10 @@ export interface GetStreamInstancesResultStreamConfig {
 
 export interface GetStreamPrivatelinkEndpointsResult {
     /**
+     * Amazon Resource Name (ARN).
+     */
+    arn: string;
+    /**
      * Domain name of Privatelink connected cluster.
      */
     dnsDomain: string;
@@ -7284,6 +7294,10 @@ export interface GetStreamPrivatelinkEndpointsResult {
      * Sub-Domain name of Confluent cluster. These are typically your availability zones.
      */
     dnsSubDomains: string[];
+    /**
+     * Error message if the connection is in a failed state.
+     */
+    errorMessage: string;
     /**
      * The ID of the Private Link connection.
      */
@@ -7293,15 +7307,23 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     interfaceEndpointId: string;
     /**
+     * Name of interface endpoint that is created from the specified service endpoint ID.
+     */
+    interfaceEndpointName: string;
+    /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
     projectId: string;
+    /**
+     * Account ID from the cloud provider.
+     */
+    providerAccountId: string;
     /**
      * Provider where the Kafka cluster is deployed.
      */
     providerName: string;
     /**
-     * Domain name of Confluent cluster.
+     * When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      */
     region: string;
     /**
@@ -7829,7 +7851,7 @@ export interface StreamConnectionDbRoleToExecute {
      */
     role: string;
     /**
-     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      */
     type: string;
 }

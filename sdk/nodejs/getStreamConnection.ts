@@ -80,6 +80,10 @@ export interface GetStreamConnectionResult {
      * The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
      */
     readonly dbRoleToExecute: outputs.GetStreamConnectionDbRoleToExecute;
+    /**
+     * A map of key-value pairs for optional headers.
+     */
+    readonly headers: {[key: string]: string};
     readonly id: string;
     readonly instanceName: string;
     /**
@@ -95,6 +99,10 @@ export interface GetStreamConnectionResult {
      * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     readonly type: string;
+    /**
+     * URL of the HTTPs endpoint that will be used for creating a connection.
+     */
+    readonly url: string;
 }
 /**
  * ## # Data Source: mongodbatlas.StreamConnection

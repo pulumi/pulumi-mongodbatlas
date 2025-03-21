@@ -494,7 +494,7 @@ namespace Pulumi.Mongodbatlas
     {
         public readonly string ClusterName;
         /// <summary>
-        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
+        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
         /// </summary>
         public readonly ImmutableDictionary<string, string> CustomZoneMapping;
         /// <summary>

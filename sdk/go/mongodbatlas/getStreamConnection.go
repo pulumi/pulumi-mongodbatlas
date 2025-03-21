@@ -77,8 +77,10 @@ type LookupStreamConnectionResult struct {
 	ConnectionName string            `pulumi:"connectionName"`
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
-	Id              string                             `pulumi:"id"`
-	InstanceName    string                             `pulumi:"instanceName"`
+	// A map of key-value pairs for optional headers.
+	Headers      map[string]string `pulumi:"headers"`
+	Id           string            `pulumi:"id"`
+	InstanceName string            `pulumi:"instanceName"`
 	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
 	Networking GetStreamConnectionNetworking `pulumi:"networking"`
 	ProjectId  string                        `pulumi:"projectId"`
@@ -86,6 +88,8 @@ type LookupStreamConnectionResult struct {
 	Security GetStreamConnectionSecurity `pulumi:"security"`
 	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
+	// URL of the HTTPs endpoint that will be used for creating a connection.
+	Url string `pulumi:"url"`
 }
 
 func LookupStreamConnectionOutput(ctx *pulumi.Context, args LookupStreamConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupStreamConnectionResultOutput {
@@ -160,6 +164,11 @@ func (o LookupStreamConnectionResultOutput) DbRoleToExecute() GetStreamConnectio
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionDbRoleToExecuteOutput)
 }
 
+// A map of key-value pairs for optional headers.
+func (o LookupStreamConnectionResultOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
 func (o LookupStreamConnectionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -185,6 +194,11 @@ func (o LookupStreamConnectionResultOutput) Security() GetStreamConnectionSecuri
 // Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o LookupStreamConnectionResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// URL of the HTTPs endpoint that will be used for creating a connection.
+func (o LookupStreamConnectionResultOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.Url }).(pulumi.StringOutput)
 }
 
 func init() {

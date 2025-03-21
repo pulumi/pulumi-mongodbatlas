@@ -26,22 +26,34 @@ class GetStreamPrivatelinkEndpointResult:
     """
     A collection of values returned by getStreamPrivatelinkEndpoint.
     """
-    def __init__(__self__, dns_domain=None, dns_sub_domains=None, id=None, interface_endpoint_id=None, project_id=None, provider_name=None, region=None, service_endpoint_id=None, state=None, vendor=None):
+    def __init__(__self__, arn=None, dns_domain=None, dns_sub_domains=None, error_message=None, id=None, interface_endpoint_id=None, interface_endpoint_name=None, project_id=None, provider_account_id=None, provider_name=None, region=None, service_endpoint_id=None, state=None, vendor=None):
+        if arn and not isinstance(arn, str):
+            raise TypeError("Expected argument 'arn' to be a str")
+        pulumi.set(__self__, "arn", arn)
         if dns_domain and not isinstance(dns_domain, str):
             raise TypeError("Expected argument 'dns_domain' to be a str")
         pulumi.set(__self__, "dns_domain", dns_domain)
         if dns_sub_domains and not isinstance(dns_sub_domains, list):
             raise TypeError("Expected argument 'dns_sub_domains' to be a list")
         pulumi.set(__self__, "dns_sub_domains", dns_sub_domains)
+        if error_message and not isinstance(error_message, str):
+            raise TypeError("Expected argument 'error_message' to be a str")
+        pulumi.set(__self__, "error_message", error_message)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if interface_endpoint_id and not isinstance(interface_endpoint_id, str):
             raise TypeError("Expected argument 'interface_endpoint_id' to be a str")
         pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
+        if interface_endpoint_name and not isinstance(interface_endpoint_name, str):
+            raise TypeError("Expected argument 'interface_endpoint_name' to be a str")
+        pulumi.set(__self__, "interface_endpoint_name", interface_endpoint_name)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if provider_account_id and not isinstance(provider_account_id, str):
+            raise TypeError("Expected argument 'provider_account_id' to be a str")
+        pulumi.set(__self__, "provider_account_id", provider_account_id)
         if provider_name and not isinstance(provider_name, str):
             raise TypeError("Expected argument 'provider_name' to be a str")
         pulumi.set(__self__, "provider_name", provider_name)
@@ -59,6 +71,11 @@ class GetStreamPrivatelinkEndpointResult:
         pulumi.set(__self__, "vendor", vendor)
 
     @property
+    @pulumi.getter
+    def arn(self) -> str:
+        return pulumi.get(self, "arn")
+
+    @property
     @pulumi.getter(name="dnsDomain")
     def dns_domain(self) -> str:
         return pulumi.get(self, "dns_domain")
@@ -67,6 +84,11 @@ class GetStreamPrivatelinkEndpointResult:
     @pulumi.getter(name="dnsSubDomains")
     def dns_sub_domains(self) -> Sequence[str]:
         return pulumi.get(self, "dns_sub_domains")
+
+    @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> str:
+        return pulumi.get(self, "error_message")
 
     @property
     @pulumi.getter
@@ -82,12 +104,22 @@ class GetStreamPrivatelinkEndpointResult:
         return pulumi.get(self, "interface_endpoint_id")
 
     @property
+    @pulumi.getter(name="interfaceEndpointName")
+    def interface_endpoint_name(self) -> str:
+        return pulumi.get(self, "interface_endpoint_name")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
         Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="providerAccountId")
+    def provider_account_id(self) -> str:
+        return pulumi.get(self, "provider_account_id")
 
     @property
     @pulumi.getter(name="providerName")
@@ -121,11 +153,15 @@ class AwaitableGetStreamPrivatelinkEndpointResult(GetStreamPrivatelinkEndpointRe
         if False:
             yield self
         return GetStreamPrivatelinkEndpointResult(
+            arn=self.arn,
             dns_domain=self.dns_domain,
             dns_sub_domains=self.dns_sub_domains,
+            error_message=self.error_message,
             id=self.id,
             interface_endpoint_id=self.interface_endpoint_id,
+            interface_endpoint_name=self.interface_endpoint_name,
             project_id=self.project_id,
+            provider_account_id=self.provider_account_id,
             provider_name=self.provider_name,
             region=self.region,
             service_endpoint_id=self.service_endpoint_id,
@@ -143,6 +179,8 @@ def get_stream_privatelink_endpoint(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### S
+
 
     :param str id: The ID of the Private Link connection.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -154,11 +192,15 @@ def get_stream_privatelink_endpoint(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint', __args__, opts=opts, typ=GetStreamPrivatelinkEndpointResult).value
 
     return AwaitableGetStreamPrivatelinkEndpointResult(
+        arn=pulumi.get(__ret__, 'arn'),
         dns_domain=pulumi.get(__ret__, 'dns_domain'),
         dns_sub_domains=pulumi.get(__ret__, 'dns_sub_domains'),
+        error_message=pulumi.get(__ret__, 'error_message'),
         id=pulumi.get(__ret__, 'id'),
         interface_endpoint_id=pulumi.get(__ret__, 'interface_endpoint_id'),
+        interface_endpoint_name=pulumi.get(__ret__, 'interface_endpoint_name'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        provider_account_id=pulumi.get(__ret__, 'provider_account_id'),
         provider_name=pulumi.get(__ret__, 'provider_name'),
         region=pulumi.get(__ret__, 'region'),
         service_endpoint_id=pulumi.get(__ret__, 'service_endpoint_id'),
@@ -174,6 +216,8 @@ def get_stream_privatelink_endpoint_output(id: Optional[pulumi.Input[str]] = Non
 
     ## Example Usage
 
+    ### S
+
 
     :param str id: The ID of the Private Link connection.
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -184,11 +228,15 @@ def get_stream_privatelink_endpoint_output(id: Optional[pulumi.Input[str]] = Non
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint', __args__, opts=opts, typ=GetStreamPrivatelinkEndpointResult)
     return __ret__.apply(lambda __response__: GetStreamPrivatelinkEndpointResult(
+        arn=pulumi.get(__response__, 'arn'),
         dns_domain=pulumi.get(__response__, 'dns_domain'),
         dns_sub_domains=pulumi.get(__response__, 'dns_sub_domains'),
+        error_message=pulumi.get(__response__, 'error_message'),
         id=pulumi.get(__response__, 'id'),
         interface_endpoint_id=pulumi.get(__response__, 'interface_endpoint_id'),
+        interface_endpoint_name=pulumi.get(__response__, 'interface_endpoint_name'),
         project_id=pulumi.get(__response__, 'project_id'),
+        provider_account_id=pulumi.get(__response__, 'provider_account_id'),
         provider_name=pulumi.get(__response__, 'provider_name'),
         region=pulumi.get(__response__, 'region'),
         service_endpoint_id=pulumi.get(__response__, 'service_endpoint_id'),

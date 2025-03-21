@@ -918,7 +918,6 @@ if not MYPY:
         """
         Cloud service provider on which the servers are provisioned.
         The possible values are:
-
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
@@ -937,7 +936,6 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
         """
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
-               
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
@@ -965,7 +963,6 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
         """
         Cloud service provider on which the servers are provisioned.
         The possible values are:
-
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
@@ -1100,7 +1097,7 @@ if not MYPY:
     class AdvancedClusterReplicationSpecArgsDict(TypedDict):
         region_configs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgsDict']]]
         """
-        Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         """
         container_id: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         external_id: NotRequired[pulumi.Input[str]]
@@ -1138,7 +1135,7 @@ class AdvancedClusterReplicationSpecArgs:
                  zone_id: Optional[pulumi.Input[str]] = None,
                  zone_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]] region_configs: Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         :param pulumi.Input[str] external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
         :param pulumi.Input[str] id: **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
         :param pulumi.Input[int] num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
@@ -1170,7 +1167,7 @@ class AdvancedClusterReplicationSpecArgs:
     @pulumi.getter(name="regionConfigs")
     def region_configs(self) -> pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]]:
         """
-        Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         """
         return pulumi.get(self, "region_configs")
 
@@ -1263,7 +1260,6 @@ if not MYPY:
         """
         Cloud service provider on which the servers are provisioned.
         The possible values are:
-
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
@@ -1291,11 +1287,11 @@ if not MYPY:
         """
         electable_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict']]
         """
-        Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+        Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
         """
         read_only_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict']]
         """
-        Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+        Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         """
 elif False:
     AdvancedClusterReplicationSpecRegionConfigArgsDict: TypeAlias = Mapping[str, Any]
@@ -1318,7 +1314,6 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
                * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
-               
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
@@ -1328,8 +1323,8 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs'] analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
-        :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs'] electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
-        :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs'] read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+        :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs'] electable_specs: Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+        :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs'] read_only_specs: Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         """
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -1367,7 +1362,6 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         """
         Cloud service provider on which the servers are provisioned.
         The possible values are:
-
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
@@ -1443,7 +1437,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
     @pulumi.getter(name="electableSpecs")
     def electable_specs(self) -> Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs']]:
         """
-        Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+        Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
         """
         return pulumi.get(self, "electable_specs")
 
@@ -1455,7 +1449,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
     @pulumi.getter(name="readOnlySpecs")
     def read_only_specs(self) -> Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs']]:
         """
-        Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+        Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         """
         return pulumi.get(self, "read_only_specs")
 
@@ -10903,7 +10897,7 @@ if not MYPY:
         """
         type: pulumi.Input[str]
         """
-        Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
 elif False:
     StreamConnectionDbRoleToExecuteArgsDict: TypeAlias = Mapping[str, Any]
@@ -10915,7 +10909,7 @@ class StreamConnectionDbRoleToExecuteArgs:
                  type: pulumi.Input[str]):
         """
         :param pulumi.Input[str] role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
-        :param pulumi.Input[str] type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        :param pulumi.Input[str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -10936,7 +10930,7 @@ class StreamConnectionDbRoleToExecuteArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         return pulumi.get(self, "type")
 

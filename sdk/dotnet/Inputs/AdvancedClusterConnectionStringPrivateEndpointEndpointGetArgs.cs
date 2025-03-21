@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Cloud service provider on which the servers are provisioned.
         /// The possible values are:
-        /// 
         /// - `AWS` - Amazon AWS
         /// - `GCP` - Google Cloud Platform
         /// - `AZURE` - Microsoft Azure

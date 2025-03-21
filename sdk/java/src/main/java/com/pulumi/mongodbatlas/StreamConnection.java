@@ -211,6 +211,49 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ### Example Https Connection
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example_https = new StreamConnection("example-https", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName(example.instanceName())
+ *             .connectionName("https_connection_tf_new")
+ *             .type("Https")
+ *             .url("https://example.com")
+ *             .headers(Map.ofEntries(
+ *                 Map.entry("key1", "value1"),
+ *                 Map.entry("key2", "value2")
+ *             ))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -274,6 +317,12 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
     public Output<Optional<StreamConnectionDbRoleToExecute>> dbRoleToExecute() {
         return Codegen.optional(this.dbRoleToExecute);
     }
+    @Export(name="headers", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> headers;
+
+    public Output<Optional<Map<String,String>>> headers() {
+        return Codegen.optional(this.headers);
+    }
     /**
      * Human-readable label that identifies the stream instance.
      * 
@@ -315,18 +364,24 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.security);
     }
     /**
-     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      * 
      */
     public Output<String> type() {
         return this.type;
+    }
+    @Export(name="url", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> url;
+
+    public Output<Optional<String>> url() {
+        return Codegen.optional(this.url);
     }
 
     /**

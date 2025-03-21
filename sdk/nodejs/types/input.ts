@@ -140,7 +140,6 @@ export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
     /**
      * Cloud service provider on which the servers are provisioned.
      * The possible values are:
-     *
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
@@ -194,7 +193,7 @@ export interface AdvancedClusterReplicationSpec {
      */
     numShards?: pulumi.Input<number>;
     /**
-     * Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+     * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      */
     regionConfigs: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfig>[]>;
     /**
@@ -225,7 +224,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     backingProviderName?: pulumi.Input<string>;
     /**
-     * Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+     * Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      */
     electableSpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs>;
     /**
@@ -237,7 +236,6 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
      * Cloud service provider on which the servers are provisioned.
      * The possible values are:
-     *
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
@@ -245,7 +243,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     providerName: pulumi.Input<string>;
     /**
-     * Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+     * Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
      */
     readOnlySpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs>;
     /**
@@ -2296,7 +2294,7 @@ export interface StreamConnectionDbRoleToExecute {
      */
     role: pulumi.Input<string>;
     /**
-     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      */
     type: pulumi.Input<string>;
 }

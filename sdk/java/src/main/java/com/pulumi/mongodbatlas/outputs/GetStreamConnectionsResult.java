@@ -51,6 +51,11 @@ public final class GetStreamConnectionsResult {
      * 
      */
     private GetStreamConnectionsResultDbRoleToExecute dbRoleToExecute;
+    /**
+     * @return A map of key-value pairs for optional headers.
+     * 
+     */
+    private Map<String,String> headers;
     private String id;
     /**
      * @return Human-readable label that identifies the stream instance.
@@ -77,6 +82,11 @@ public final class GetStreamConnectionsResult {
      * 
      */
     private String type;
+    /**
+     * @return URL of the HTTPs endpoint that will be used for creating a connection.
+     * 
+     */
+    private String url;
 
     private GetStreamConnectionsResult() {}
     /**
@@ -128,6 +138,13 @@ public final class GetStreamConnectionsResult {
     public GetStreamConnectionsResultDbRoleToExecute dbRoleToExecute() {
         return this.dbRoleToExecute;
     }
+    /**
+     * @return A map of key-value pairs for optional headers.
+     * 
+     */
+    public Map<String,String> headers() {
+        return this.headers;
+    }
     public String id() {
         return this.id;
     }
@@ -166,6 +183,13 @@ public final class GetStreamConnectionsResult {
     public String type() {
         return this.type;
     }
+    /**
+     * @return URL of the HTTPs endpoint that will be used for creating a connection.
+     * 
+     */
+    public String url() {
+        return this.url;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -183,12 +207,14 @@ public final class GetStreamConnectionsResult {
         private Map<String,String> config;
         private String connectionName;
         private GetStreamConnectionsResultDbRoleToExecute dbRoleToExecute;
+        private Map<String,String> headers;
         private String id;
         private String instanceName;
         private GetStreamConnectionsResultNetworking networking;
         private String projectId;
         private GetStreamConnectionsResultSecurity security;
         private String type;
+        private String url;
         public Builder() {}
         public Builder(GetStreamConnectionsResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -199,12 +225,14 @@ public final class GetStreamConnectionsResult {
     	      this.config = defaults.config;
     	      this.connectionName = defaults.connectionName;
     	      this.dbRoleToExecute = defaults.dbRoleToExecute;
+    	      this.headers = defaults.headers;
     	      this.id = defaults.id;
     	      this.instanceName = defaults.instanceName;
     	      this.networking = defaults.networking;
     	      this.projectId = defaults.projectId;
     	      this.security = defaults.security;
     	      this.type = defaults.type;
+    	      this.url = defaults.url;
         }
 
         @CustomType.Setter
@@ -264,6 +292,14 @@ public final class GetStreamConnectionsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder headers(Map<String,String> headers) {
+            if (headers == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "headers");
+            }
+            this.headers = headers;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "id");
@@ -311,6 +347,14 @@ public final class GetStreamConnectionsResult {
             this.type = type;
             return this;
         }
+        @CustomType.Setter
+        public Builder url(String url) {
+            if (url == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "url");
+            }
+            this.url = url;
+            return this;
+        }
         public GetStreamConnectionsResult build() {
             final var _resultValue = new GetStreamConnectionsResult();
             _resultValue.authentication = authentication;
@@ -320,12 +364,14 @@ public final class GetStreamConnectionsResult {
             _resultValue.config = config;
             _resultValue.connectionName = connectionName;
             _resultValue.dbRoleToExecute = dbRoleToExecute;
+            _resultValue.headers = headers;
             _resultValue.id = id;
             _resultValue.instanceName = instanceName;
             _resultValue.networking = networking;
             _resultValue.projectId = projectId;
             _resultValue.security = security;
             _resultValue.type = type;
+            _resultValue.url = url;
             return _resultValue;
         }
     }

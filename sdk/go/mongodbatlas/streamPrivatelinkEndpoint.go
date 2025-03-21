@@ -17,21 +17,32 @@ import (
 // `StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
 //
 // ## Example Usage
+//
+// ### S
 type StreamPrivatelinkEndpoint struct {
 	pulumi.CustomResourceState
 
+	// Amazon Resource Name (ARN).
+	Arn pulumi.StringPtrOutput `pulumi:"arn"`
 	// Domain name of Privatelink connected cluster.
 	DnsDomain pulumi.StringPtrOutput `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
 	DnsSubDomains pulumi.StringArrayOutput `pulumi:"dnsSubDomains"`
+	// Error message if the connection is in a failed state.
+	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
 	// Interface endpoint ID that is created from the specified service endpoint ID.
 	InterfaceEndpointId pulumi.StringOutput `pulumi:"interfaceEndpointId"`
+	// Name of interface endpoint that is created from the specified service endpoint ID.
+	InterfaceEndpointName pulumi.StringOutput `pulumi:"interfaceEndpointName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Account ID from the cloud provider.
+	ProviderAccountId pulumi.StringOutput `pulumi:"providerAccountId"`
 	// Provider where the Kafka cluster is deployed.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
-	// Domain name of Confluent cluster.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+	// by the API from the provided `arn`.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Service Endpoint ID.
 	ServiceEndpointId pulumi.StringPtrOutput `pulumi:"serviceEndpointId"`
 	// Status of the connection.
@@ -79,17 +90,26 @@ func GetStreamPrivatelinkEndpoint(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering StreamPrivatelinkEndpoint resources.
 type streamPrivatelinkEndpointState struct {
+	// Amazon Resource Name (ARN).
+	Arn *string `pulumi:"arn"`
 	// Domain name of Privatelink connected cluster.
 	DnsDomain *string `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
+	// Error message if the connection is in a failed state.
+	ErrorMessage *string `pulumi:"errorMessage"`
 	// Interface endpoint ID that is created from the specified service endpoint ID.
 	InterfaceEndpointId *string `pulumi:"interfaceEndpointId"`
+	// Name of interface endpoint that is created from the specified service endpoint ID.
+	InterfaceEndpointName *string `pulumi:"interfaceEndpointName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId *string `pulumi:"projectId"`
+	// Account ID from the cloud provider.
+	ProviderAccountId *string `pulumi:"providerAccountId"`
 	// Provider where the Kafka cluster is deployed.
 	ProviderName *string `pulumi:"providerName"`
-	// Domain name of Confluent cluster.
+	// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+	// by the API from the provided `arn`.
 	Region *string `pulumi:"region"`
 	// Service Endpoint ID.
 	ServiceEndpointId *string `pulumi:"serviceEndpointId"`
@@ -100,17 +120,26 @@ type streamPrivatelinkEndpointState struct {
 }
 
 type StreamPrivatelinkEndpointState struct {
+	// Amazon Resource Name (ARN).
+	Arn pulumi.StringPtrInput
 	// Domain name of Privatelink connected cluster.
 	DnsDomain pulumi.StringPtrInput
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
 	DnsSubDomains pulumi.StringArrayInput
+	// Error message if the connection is in a failed state.
+	ErrorMessage pulumi.StringPtrInput
 	// Interface endpoint ID that is created from the specified service endpoint ID.
 	InterfaceEndpointId pulumi.StringPtrInput
+	// Name of interface endpoint that is created from the specified service endpoint ID.
+	InterfaceEndpointName pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringPtrInput
+	// Account ID from the cloud provider.
+	ProviderAccountId pulumi.StringPtrInput
 	// Provider where the Kafka cluster is deployed.
 	ProviderName pulumi.StringPtrInput
-	// Domain name of Confluent cluster.
+	// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+	// by the API from the provided `arn`.
 	Region pulumi.StringPtrInput
 	// Service Endpoint ID.
 	ServiceEndpointId pulumi.StringPtrInput
@@ -125,6 +154,8 @@ func (StreamPrivatelinkEndpointState) ElementType() reflect.Type {
 }
 
 type streamPrivatelinkEndpointArgs struct {
+	// Amazon Resource Name (ARN).
+	Arn *string `pulumi:"arn"`
 	// Domain name of Privatelink connected cluster.
 	DnsDomain *string `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
@@ -133,7 +164,8 @@ type streamPrivatelinkEndpointArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// Provider where the Kafka cluster is deployed.
 	ProviderName string `pulumi:"providerName"`
-	// Domain name of Confluent cluster.
+	// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+	// by the API from the provided `arn`.
 	Region *string `pulumi:"region"`
 	// Service Endpoint ID.
 	ServiceEndpointId *string `pulumi:"serviceEndpointId"`
@@ -143,6 +175,8 @@ type streamPrivatelinkEndpointArgs struct {
 
 // The set of arguments for constructing a StreamPrivatelinkEndpoint resource.
 type StreamPrivatelinkEndpointArgs struct {
+	// Amazon Resource Name (ARN).
+	Arn pulumi.StringPtrInput
 	// Domain name of Privatelink connected cluster.
 	DnsDomain pulumi.StringPtrInput
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
@@ -151,7 +185,8 @@ type StreamPrivatelinkEndpointArgs struct {
 	ProjectId pulumi.StringInput
 	// Provider where the Kafka cluster is deployed.
 	ProviderName pulumi.StringInput
-	// Domain name of Confluent cluster.
+	// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+	// by the API from the provided `arn`.
 	Region pulumi.StringPtrInput
 	// Service Endpoint ID.
 	ServiceEndpointId pulumi.StringPtrInput
@@ -246,6 +281,11 @@ func (o StreamPrivatelinkEndpointOutput) ToStreamPrivatelinkEndpointOutputWithCo
 	return o
 }
 
+// Amazon Resource Name (ARN).
+func (o StreamPrivatelinkEndpointOutput) Arn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringPtrOutput { return v.Arn }).(pulumi.StringPtrOutput)
+}
+
 // Domain name of Privatelink connected cluster.
 func (o StreamPrivatelinkEndpointOutput) DnsDomain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringPtrOutput { return v.DnsDomain }).(pulumi.StringPtrOutput)
@@ -256,9 +296,19 @@ func (o StreamPrivatelinkEndpointOutput) DnsSubDomains() pulumi.StringArrayOutpu
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringArrayOutput { return v.DnsSubDomains }).(pulumi.StringArrayOutput)
 }
 
+// Error message if the connection is in a failed state.
+func (o StreamPrivatelinkEndpointOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
 // Interface endpoint ID that is created from the specified service endpoint ID.
 func (o StreamPrivatelinkEndpointOutput) InterfaceEndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.InterfaceEndpointId }).(pulumi.StringOutput)
+}
+
+// Name of interface endpoint that is created from the specified service endpoint ID.
+func (o StreamPrivatelinkEndpointOutput) InterfaceEndpointName() pulumi.StringOutput {
+	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.InterfaceEndpointName }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -266,14 +316,20 @@ func (o StreamPrivatelinkEndpointOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Account ID from the cloud provider.
+func (o StreamPrivatelinkEndpointOutput) ProviderAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.ProviderAccountId }).(pulumi.StringOutput)
+}
+
 // Provider where the Kafka cluster is deployed.
 func (o StreamPrivatelinkEndpointOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Domain name of Confluent cluster.
-func (o StreamPrivatelinkEndpointOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+// by the API from the provided `arn`.
+func (o StreamPrivatelinkEndpointOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Service Endpoint ID.

@@ -31,14 +31,16 @@ class StreamConnectionArgs:
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
+                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
-                 security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None):
+                 security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
+                 url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a StreamConnection resource.
         :param pulumi.Input[str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[str] type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        :param pulumi.Input[str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         pulumi.set(__self__, "connection_name", connection_name)
         pulumi.set(__self__, "instance_name", instance_name)
@@ -56,10 +58,14 @@ class StreamConnectionArgs:
             pulumi.set(__self__, "config", config)
         if db_role_to_execute is not None:
             pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
         if networking is not None:
             pulumi.set(__self__, "networking", networking)
         if security is not None:
             pulumi.set(__self__, "security", security)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="connectionName")
@@ -101,7 +107,7 @@ class StreamConnectionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         return pulumi.get(self, "type")
 
@@ -165,6 +171,15 @@ class StreamConnectionArgs:
 
     @property
     @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "headers", value)
+
+    @property
+    @pulumi.getter
     def networking(self) -> Optional[pulumi.Input['StreamConnectionNetworkingArgs']]:
         return pulumi.get(self, "networking")
 
@@ -181,6 +196,15 @@ class StreamConnectionArgs:
     def security(self, value: Optional[pulumi.Input['StreamConnectionSecurityArgs']]):
         pulumi.set(self, "security", value)
 
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
 
 @pulumi.input_type
 class _StreamConnectionState:
@@ -192,17 +216,19 @@ class _StreamConnectionState:
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  connection_name: Optional[pulumi.Input[str]] = None,
                  db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
+                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
-                 type: Optional[pulumi.Input[str]] = None):
+                 type: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering StreamConnection resources.
         :param pulumi.Input[str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[str] type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        :param pulumi.Input[str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
@@ -218,6 +244,8 @@ class _StreamConnectionState:
             pulumi.set(__self__, "connection_name", connection_name)
         if db_role_to_execute is not None:
             pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
         if networking is not None:
@@ -228,6 +256,8 @@ class _StreamConnectionState:
             pulumi.set(__self__, "security", security)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -296,6 +326,15 @@ class _StreamConnectionState:
         pulumi.set(self, "db_role_to_execute", value)
 
     @property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "headers", value)
+
+    @property
     @pulumi.getter(name="instanceName")
     def instance_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -341,13 +380,22 @@ class _StreamConnectionState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
 
 
 class StreamConnection(pulumi.CustomResource):
@@ -362,11 +410,13 @@ class StreamConnection(pulumi.CustomResource):
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  connection_name: Optional[pulumi.Input[str]] = None,
                  db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
+                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## # Resource: StreamConnection
@@ -416,6 +466,24 @@ class StreamConnection(pulumi.CustomResource):
             bootstrap_servers="localhost:9091,localhost:9092")
         ```
 
+        ### Example Https Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_https = mongodbatlas.StreamConnection("example-https",
+            project_id=project_id,
+            instance_name=example["instanceName"],
+            connection_name="https_connection_tf_new",
+            type="Https",
+            url="https://example.com",
+            headers={
+                "key1": "value1",
+                "key2": "value2",
+            })
+        ```
+
         ## Import
 
         You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -431,7 +499,7 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.Input[str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[str] type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        :param pulumi.Input[str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         ...
     @overload
@@ -487,6 +555,24 @@ class StreamConnection(pulumi.CustomResource):
             bootstrap_servers="localhost:9091,localhost:9092")
         ```
 
+        ### Example Https Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_https = mongodbatlas.StreamConnection("example-https",
+            project_id=project_id,
+            instance_name=example["instanceName"],
+            connection_name="https_connection_tf_new",
+            type="Https",
+            url="https://example.com",
+            headers={
+                "key1": "value1",
+                "key2": "value2",
+            })
+        ```
+
         ## Import
 
         You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -519,11 +605,13 @@ class StreamConnection(pulumi.CustomResource):
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  connection_name: Optional[pulumi.Input[str]] = None,
                  db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
+                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -542,6 +630,7 @@ class StreamConnection(pulumi.CustomResource):
                 raise TypeError("Missing required property 'connection_name'")
             __props__.__dict__["connection_name"] = connection_name
             __props__.__dict__["db_role_to_execute"] = db_role_to_execute
+            __props__.__dict__["headers"] = headers
             if instance_name is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_name'")
             __props__.__dict__["instance_name"] = instance_name
@@ -553,6 +642,7 @@ class StreamConnection(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["url"] = url
         super(StreamConnection, __self__).__init__(
             'mongodbatlas:index/streamConnection:StreamConnection',
             resource_name,
@@ -570,11 +660,13 @@ class StreamConnection(pulumi.CustomResource):
             config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             connection_name: Optional[pulumi.Input[str]] = None,
             db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
+            headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
             networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
-            type: Optional[pulumi.Input[str]] = None) -> 'StreamConnection':
+            type: Optional[pulumi.Input[str]] = None,
+            url: Optional[pulumi.Input[str]] = None) -> 'StreamConnection':
         """
         Get an existing StreamConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -585,7 +677,7 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.Input[str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[str] type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        :param pulumi.Input[str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -598,11 +690,13 @@ class StreamConnection(pulumi.CustomResource):
         __props__.__dict__["config"] = config
         __props__.__dict__["connection_name"] = connection_name
         __props__.__dict__["db_role_to_execute"] = db_role_to_execute
+        __props__.__dict__["headers"] = headers
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["networking"] = networking
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["security"] = security
         __props__.__dict__["type"] = type
+        __props__.__dict__["url"] = url
         return StreamConnection(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -644,6 +738,11 @@ class StreamConnection(pulumi.CustomResource):
         return pulumi.get(self, "db_role_to_execute")
 
     @property
+    @pulumi.getter
+    def headers(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        return pulumi.get(self, "headers")
+
+    @property
     @pulumi.getter(name="instanceName")
     def instance_name(self) -> pulumi.Output[str]:
         """
@@ -673,7 +772,12 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "url")
 

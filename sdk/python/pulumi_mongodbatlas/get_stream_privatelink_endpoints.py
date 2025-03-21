@@ -80,6 +80,8 @@ def get_stream_privatelink_endpoints(project_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### S
+
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
     """
@@ -100,6 +102,8 @@ def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[st
     `get_stream_privatelink_endpoints` describes a Privatelink Endpoint for Streams.
 
     ## Example Usage
+
+    ### S
 
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.

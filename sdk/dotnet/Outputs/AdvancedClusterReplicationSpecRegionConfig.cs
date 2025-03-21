@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? BackingProviderName;
         /// <summary>
-        /// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+        /// Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
         /// </summary>
         public readonly Outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs? ElectableSpecs;
         /// <summary>
@@ -42,7 +42,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Cloud service provider on which the servers are provisioned.
         /// The possible values are:
-        /// 
         /// - `AWS` - Amazon AWS
         /// - `GCP` - Google Cloud Platform
         /// - `AZURE` - Microsoft Azure
@@ -50,7 +49,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProviderName;
         /// <summary>
-        /// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+        /// Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         /// </summary>
         public readonly Outputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs? ReadOnlySpecs;
         /// <summary>

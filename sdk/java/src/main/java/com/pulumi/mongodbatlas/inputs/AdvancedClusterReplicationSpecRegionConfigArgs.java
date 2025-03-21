@@ -83,14 +83,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     }
 
     /**
-     * Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+     * Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      * 
      */
     @Import(name="electableSpecs")
     private @Nullable Output<AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs> electableSpecs;
 
     /**
-     * @return Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+     * @return Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      * 
      */
     public Optional<Output<AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs>> electableSpecs() {
@@ -119,7 +119,6 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     /**
      * Cloud service provider on which the servers are provisioned.
      * The possible values are:
-     * 
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
@@ -132,7 +131,6 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     /**
      * @return Cloud service provider on which the servers are provisioned.
      * The possible values are:
-     * 
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
@@ -144,14 +142,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     }
 
     /**
-     * Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
+     * Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
      * 
      */
     @Import(name="readOnlySpecs")
     private @Nullable Output<AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs> readOnlySpecs;
 
     /**
-     * @return Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
+     * @return Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
      * 
      */
     public Optional<Output<AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs>> readOnlySpecs() {
@@ -290,7 +288,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param electableSpecs Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+         * @param electableSpecs Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
          * 
          * @return builder
          * 
@@ -301,7 +299,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param electableSpecs Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+         * @param electableSpecs Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
          * 
          * @return builder
          * 
@@ -338,7 +336,6 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         /**
          * @param providerName Cloud service provider on which the servers are provisioned.
          * The possible values are:
-         * 
          * - `AWS` - Amazon AWS
          * - `GCP` - Google Cloud Platform
          * - `AZURE` - Microsoft Azure
@@ -355,7 +352,6 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         /**
          * @param providerName Cloud service provider on which the servers are provisioned.
          * The possible values are:
-         * 
          * - `AWS` - Amazon AWS
          * - `GCP` - Google Cloud Platform
          * - `AZURE` - Microsoft Azure
@@ -369,7 +365,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param readOnlySpecs Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
+         * @param readOnlySpecs Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
          * 
          * @return builder
          * 
@@ -380,7 +376,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param readOnlySpecs Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
+         * @param readOnlySpecs Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
          * 
          * @return builder
          * 

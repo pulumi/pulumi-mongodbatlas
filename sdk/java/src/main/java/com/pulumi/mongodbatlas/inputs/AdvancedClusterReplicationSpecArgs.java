@@ -91,14 +91,14 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
     }
 
     /**
-     * Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+     * Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
      * 
      */
     @Import(name="regionConfigs", required=true)
     private Output<List<AdvancedClusterReplicationSpecRegionConfigArgs>> regionConfigs;
 
     /**
-     * @return Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+     * @return Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
      * 
      */
     public Output<List<AdvancedClusterReplicationSpecRegionConfigArgs>> regionConfigs() {
@@ -256,7 +256,7 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param regionConfigs Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+         * @param regionConfigs Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
          * 
          * @return builder
          * 
@@ -267,7 +267,7 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param regionConfigs Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+         * @param regionConfigs Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
          * 
          * @return builder
          * 
@@ -277,7 +277,7 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param regionConfigs Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+         * @param regionConfigs Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
          * 
          * @return builder
          * 

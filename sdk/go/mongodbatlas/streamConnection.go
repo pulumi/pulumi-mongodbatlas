@@ -91,6 +91,40 @@ import (
 //
 // ```
 //
+// ### Example Https Connection
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "example-https", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:      pulumi.Any(projectId),
+//				InstanceName:   pulumi.Any(example.InstanceName),
+//				ConnectionName: pulumi.String("https_connection_tf_new"),
+//				Type:           pulumi.String("Https"),
+//				Url:            pulumi.String("https://example.com"),
+//				Headers: pulumi.StringMap{
+//					"key1": pulumi.String("value1"),
+//					"key2": pulumi.String("value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -111,14 +145,16 @@ type StreamConnection struct {
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringOutput                      `pulumi:"connectionName"`
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrOutput `pulumi:"dbRoleToExecute"`
+	Headers         pulumi.StringMapOutput                   `pulumi:"headers"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringOutput              `pulumi:"instanceName"`
 	Networking   StreamConnectionNetworkingOutput `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput               `pulumi:"projectId"`
 	Security  StreamConnectionSecurityPtrOutput `pulumi:"security"`
-	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
-	Type pulumi.StringOutput `pulumi:"type"`
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	Type pulumi.StringOutput    `pulumi:"type"`
+	Url  pulumi.StringPtrOutput `pulumi:"url"`
 }
 
 // NewStreamConnection registers a new resource with the given unique name, arguments, and options.
@@ -171,14 +207,16 @@ type streamConnectionState struct {
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  *string                          `pulumi:"connectionName"`
 	DbRoleToExecute *StreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	Headers         map[string]string                `pulumi:"headers"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName *string                     `pulumi:"instanceName"`
 	Networking   *StreamConnectionNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string                   `pulumi:"projectId"`
 	Security  *StreamConnectionSecurity `pulumi:"security"`
-	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
 	Type *string `pulumi:"type"`
+	Url  *string `pulumi:"url"`
 }
 
 type StreamConnectionState struct {
@@ -190,14 +228,16 @@ type StreamConnectionState struct {
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringPtrInput
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrInput
+	Headers         pulumi.StringMapInput
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringPtrInput
 	Networking   StreamConnectionNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 	Security  StreamConnectionSecurityPtrInput
-	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
 	Type pulumi.StringPtrInput
+	Url  pulumi.StringPtrInput
 }
 
 func (StreamConnectionState) ElementType() reflect.Type {
@@ -213,14 +253,16 @@ type streamConnectionArgs struct {
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  string                           `pulumi:"connectionName"`
 	DbRoleToExecute *StreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	Headers         map[string]string                `pulumi:"headers"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName string                      `pulumi:"instanceName"`
 	Networking   *StreamConnectionNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string                    `pulumi:"projectId"`
 	Security  *StreamConnectionSecurity `pulumi:"security"`
-	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
-	Type string `pulumi:"type"`
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	Type string  `pulumi:"type"`
+	Url  *string `pulumi:"url"`
 }
 
 // The set of arguments for constructing a StreamConnection resource.
@@ -233,14 +275,16 @@ type StreamConnectionArgs struct {
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringInput
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrInput
+	Headers         pulumi.StringMapInput
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringInput
 	Networking   StreamConnectionNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	Security  StreamConnectionSecurityPtrInput
-	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
 	Type pulumi.StringInput
+	Url  pulumi.StringPtrInput
 }
 
 func (StreamConnectionArgs) ElementType() reflect.Type {
@@ -359,6 +403,10 @@ func (o StreamConnectionOutput) DbRoleToExecute() StreamConnectionDbRoleToExecut
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionDbRoleToExecutePtrOutput { return v.DbRoleToExecute }).(StreamConnectionDbRoleToExecutePtrOutput)
 }
 
+func (o StreamConnectionOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *StreamConnection) pulumi.StringMapOutput { return v.Headers }).(pulumi.StringMapOutput)
+}
+
 // Human-readable label that identifies the stream instance.
 func (o StreamConnectionOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.InstanceName }).(pulumi.StringOutput)
@@ -377,9 +425,13 @@ func (o StreamConnectionOutput) Security() StreamConnectionSecurityPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionSecurityPtrOutput { return v.Security }).(StreamConnectionSecurityPtrOutput)
 }
 
-// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
 func (o StreamConnectionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o StreamConnectionOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnection) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
 }
 
 type StreamConnectionArrayOutput struct{ *pulumi.OutputState }
