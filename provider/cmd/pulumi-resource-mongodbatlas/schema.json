@@ -337,7 +337,7 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Cloud service provider on which the servers are provisioned.\nThe possible values are:\n\n- `AWS` - Amazon AWS\n- `GCP` - Google Cloud Platform\n- `AZURE` - Microsoft Azure\n- `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.\n"
+                    "description": "Cloud service provider on which the servers are provisioned.\nThe possible values are:\n- `AWS` - Amazon AWS\n- `GCP` - Google Cloud Platform\n- `AZURE` - Microsoft Azure\n- `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.\n"
                 },
                 "region": {
                     "type": "string"
@@ -418,7 +418,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/AdvancedClusterReplicationSpecRegionConfig:AdvancedClusterReplicationSpecRegionConfig"
                     },
-                    "description": "Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below\n"
+                    "description": "Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.\n"
                 },
                 "zoneId": {
                     "type": "string",
@@ -465,7 +465,7 @@
                 },
                 "electableSpecs": {
                     "$ref": "#/types/mongodbatlas:index/AdvancedClusterReplicationSpecRegionConfigElectableSpecs:AdvancedClusterReplicationSpecRegionConfigElectableSpecs",
-                    "description": "Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.\n"
+                    "description": "Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.\n"
                 },
                 "priority": {
                     "type": "integer",
@@ -473,11 +473,11 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Cloud service provider on which the servers are provisioned.\nThe possible values are:\n\n- `AWS` - Amazon AWS\n- `GCP` - Google Cloud Platform\n- `AZURE` - Microsoft Azure\n- `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.\n"
+                    "description": "Cloud service provider on which the servers are provisioned.\nThe possible values are:\n- `AWS` - Amazon AWS\n- `GCP` - Google Cloud Platform\n- `AZURE` - Microsoft Azure\n- `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.\n"
                 },
                 "readOnlySpecs": {
                     "$ref": "#/types/mongodbatlas:index/AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs:AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs",
-                    "description": "Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.\n"
+                    "description": "Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.\n"
                 },
                 "regionName": {
                     "type": "string",
@@ -3724,7 +3724,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.\n"
+                    "description": "Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.\n"
                 }
             },
             "type": "object",
@@ -4227,7 +4227,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/getAdvancedClusterReplicationSpecRegionConfig:getAdvancedClusterReplicationSpecRegionConfig"
                     },
-                    "description": "Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below\n"
+                    "description": "Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.\n"
                 },
                 "zoneId": {
                     "type": "string",
@@ -4966,7 +4966,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/getAdvancedClustersResultReplicationSpecRegionConfig:getAdvancedClustersResultReplicationSpecRegionConfig"
                     },
-                    "description": "Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below\n"
+                    "description": "Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.\n"
                 },
                 "zoneId": {
                     "type": "string",
@@ -13966,6 +13966,13 @@
                     "$ref": "#/types/mongodbatlas:index/getStreamConnectionsResultDbRoleToExecute:getStreamConnectionsResultDbRoleToExecute",
                     "description": "The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.\n"
                 },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A map of key-value pairs for optional headers.\n"
+                },
                 "id": {
                     "type": "string"
                 },
@@ -13988,6 +13995,10 @@
                 "type": {
                     "type": "string",
                     "description": "Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "URL of the HTTPs endpoint that will be used for creating a connection.\n"
                 }
             },
             "type": "object",
@@ -13999,12 +14010,14 @@
                 "config",
                 "connectionName",
                 "dbRoleToExecute",
+                "headers",
                 "id",
                 "instanceName",
                 "networking",
                 "projectId",
                 "security",
-                "type"
+                "type",
+                "url"
             ],
             "language": {
                 "nodejs": {
@@ -14264,6 +14277,10 @@
         },
         "mongodbatlas:index/getStreamPrivatelinkEndpointsResult:getStreamPrivatelinkEndpointsResult": {
             "properties": {
+                "arn": {
+                    "type": "string",
+                    "description": "Amazon Resource Name (ARN).\n"
+                },
                 "dnsDomain": {
                     "type": "string",
                     "description": "Domain name of Privatelink connected cluster.\n"
@@ -14275,6 +14292,10 @@
                     },
                     "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones.\n"
                 },
+                "errorMessage": {
+                    "type": "string",
+                    "description": "Error message if the connection is in a failed state.\n"
+                },
                 "id": {
                     "type": "string",
                     "description": "The ID of the Private Link connection.\n"
@@ -14283,9 +14304,17 @@
                     "type": "string",
                     "description": "Interface endpoint ID that is created from the specified service endpoint ID.\n"
                 },
+                "interfaceEndpointName": {
+                    "type": "string",
+                    "description": "Name of interface endpoint that is created from the specified service endpoint ID.\n"
+                },
                 "projectId": {
                     "type": "string",
                     "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n"
+                },
+                "providerAccountId": {
+                    "type": "string",
+                    "description": "Account ID from the cloud provider.\n"
                 },
                 "providerName": {
                     "type": "string",
@@ -14293,7 +14322,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Domain name of Confluent cluster.\n"
+                    "description": "When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.\n"
                 },
                 "serviceEndpointId": {
                     "type": "string",
@@ -14310,11 +14339,15 @@
             },
             "type": "object",
             "required": [
+                "arn",
                 "dnsDomain",
                 "dnsSubDomains",
+                "errorMessage",
                 "id",
                 "interfaceEndpointId",
+                "interfaceEndpointName",
                 "projectId",
+                "providerAccountId",
                 "providerName",
                 "region",
                 "serviceEndpointId",
@@ -19413,7 +19446,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "(Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.\n",
+                    "description": "(Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.\n",
                     "deprecationMessage": "This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id."
                 },
                 "customZoneMappingZoneId": {
@@ -19492,7 +19525,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "(Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.\n",
+                        "description": "(Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.\n",
                         "deprecationMessage": "This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id."
                     },
                     "customZoneMappingZoneId": {
@@ -21280,7 +21313,7 @@
             "properties": {
                 "awsConnectionStatus": {
                     "type": "string",
-                    "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n* `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.\n* `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.\n* `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.\n* `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.\n* `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.\n* `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.\n"
+                    "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n* `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn't yet created the VPC endpoint.\n* `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.\n* `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.\n* `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.\n* `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.\n* `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.\n"
                 },
                 "azureStatus": {
                     "type": "string",
@@ -21412,7 +21445,7 @@
                 "properties": {
                     "awsConnectionStatus": {
                         "type": "string",
-                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n* `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.\n* `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.\n* `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.\n* `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.\n* `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.\n* `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.\n"
+                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n* `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn't yet created the VPC endpoint.\n* `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.\n* `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.\n* `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.\n* `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.\n* `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.\n"
                     },
                     "azureStatus": {
                         "type": "string",
@@ -23135,7 +23168,7 @@
             }
         },
         "mongodbatlas:index/streamConnection:StreamConnection": {
-            "description": "## # Resource: mongodbatlas.StreamConnection\n\n`mongodbatlas.StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.\n\n\u003e **IMPORTANT:** All arguments including the Kafka authentication password will be stored in the raw state as plaintext. Read more about sensitive data in state.\n\n\n## Example Usage\n\n### Example Cluster Connection\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.StreamConnection(\"test\", {\n    projectId: projectId,\n    instanceName: \"InstanceName\",\n    connectionName: \"ConnectionName\",\n    type: \"Cluster\",\n    clusterName: \"Cluster0\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.StreamConnection(\"test\",\n    project_id=project_id,\n    instance_name=\"InstanceName\",\n    connection_name=\"ConnectionName\",\n    type=\"Cluster\",\n    cluster_name=\"Cluster0\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Mongodbatlas.StreamConnection(\"test\", new()\n    {\n        ProjectId = projectId,\n        InstanceName = \"InstanceName\",\n        ConnectionName = \"ConnectionName\",\n        Type = \"Cluster\",\n        ClusterName = \"Cluster0\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewStreamConnection(ctx, \"test\", \u0026mongodbatlas.StreamConnectionArgs{\n\t\t\tProjectId:      pulumi.Any(projectId),\n\t\t\tInstanceName:   pulumi.String(\"InstanceName\"),\n\t\t\tConnectionName: pulumi.String(\"ConnectionName\"),\n\t\t\tType:           pulumi.String(\"Cluster\"),\n\t\t\tClusterName:    pulumi.String(\"Cluster0\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new StreamConnection(\"test\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"InstanceName\")\n            .connectionName(\"ConnectionName\")\n            .type(\"Cluster\")\n            .clusterName(\"Cluster0\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: InstanceName\n      connectionName: ConnectionName\n      type: Cluster\n      clusterName: Cluster0\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example Kafka Plaintext Connection\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.StreamConnection(\"test\", {\n    projectId: projectId,\n    instanceName: \"NewInstance\",\n    connectionName: \"KafkaConnection\",\n    type: \"Kafka\",\n    authentication: {\n        mechanism: \"SCRAM-256\",\n        username: \"user\",\n        password: \"somepassword\",\n    },\n    security: {\n        protocol: \"PLAINTEXT\",\n    },\n    config: {\n        \"auto.offset.reset\": \"latest\",\n    },\n    bootstrapServers: \"localhost:9091,localhost:9092\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.StreamConnection(\"test\",\n    project_id=project_id,\n    instance_name=\"NewInstance\",\n    connection_name=\"KafkaConnection\",\n    type=\"Kafka\",\n    authentication={\n        \"mechanism\": \"SCRAM-256\",\n        \"username\": \"user\",\n        \"password\": \"somepassword\",\n    },\n    security={\n        \"protocol\": \"PLAINTEXT\",\n    },\n    config={\n        \"auto.offset.reset\": \"latest\",\n    },\n    bootstrap_servers=\"localhost:9091,localhost:9092\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Mongodbatlas.StreamConnection(\"test\", new()\n    {\n        ProjectId = projectId,\n        InstanceName = \"NewInstance\",\n        ConnectionName = \"KafkaConnection\",\n        Type = \"Kafka\",\n        Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs\n        {\n            Mechanism = \"SCRAM-256\",\n            Username = \"user\",\n            Password = \"somepassword\",\n        },\n        Security = new Mongodbatlas.Inputs.StreamConnectionSecurityArgs\n        {\n            Protocol = \"PLAINTEXT\",\n        },\n        Config = \n        {\n            { \"auto.offset.reset\", \"latest\" },\n        },\n        BootstrapServers = \"localhost:9091,localhost:9092\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewStreamConnection(ctx, \"test\", \u0026mongodbatlas.StreamConnectionArgs{\n\t\t\tProjectId:      pulumi.Any(projectId),\n\t\t\tInstanceName:   pulumi.String(\"NewInstance\"),\n\t\t\tConnectionName: pulumi.String(\"KafkaConnection\"),\n\t\t\tType:           pulumi.String(\"Kafka\"),\n\t\t\tAuthentication: \u0026mongodbatlas.StreamConnectionAuthenticationArgs{\n\t\t\t\tMechanism: pulumi.String(\"SCRAM-256\"),\n\t\t\t\tUsername:  pulumi.String(\"user\"),\n\t\t\t\tPassword:  pulumi.String(\"somepassword\"),\n\t\t\t},\n\t\t\tSecurity: \u0026mongodbatlas.StreamConnectionSecurityArgs{\n\t\t\t\tProtocol: pulumi.String(\"PLAINTEXT\"),\n\t\t\t},\n\t\t\tConfig: pulumi.StringMap{\n\t\t\t\t\"auto.offset.reset\": pulumi.String(\"latest\"),\n\t\t\t},\n\t\t\tBootstrapServers: pulumi.String(\"localhost:9091,localhost:9092\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new StreamConnection(\"test\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"NewInstance\")\n            .connectionName(\"KafkaConnection\")\n            .type(\"Kafka\")\n            .authentication(StreamConnectionAuthenticationArgs.builder()\n                .mechanism(\"SCRAM-256\")\n                .username(\"user\")\n                .password(\"somepassword\")\n                .build())\n            .security(StreamConnectionSecurityArgs.builder()\n                .protocol(\"PLAINTEXT\")\n                .build())\n            .config(Map.of(\"auto.offset.reset\", \"latest\"))\n            .bootstrapServers(\"localhost:9091,localhost:9092\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: NewInstance\n      connectionName: KafkaConnection\n      type: Kafka\n      authentication:\n        mechanism: SCRAM-256\n        username: user\n        password: somepassword\n      security:\n        protocol: PLAINTEXT\n      config:\n        auto.offset.reset: latest\n      bootstrapServers: localhost:9091,localhost:9092\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example Kafka SSL Connection\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new StreamConnection(\"test\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"NewInstance\")\n            .connectionName(\"KafkaConnection\")\n            .type(\"Kafka\")\n            .authentication(StreamConnectionAuthenticationArgs.builder()\n                .mechanism(\"PLAIN\")\n                .username(\"user\")\n                .password(\"somepassword\")\n                .build())\n            .security(StreamConnectionSecurityArgs.builder()\n                .protocol(\"SSL\")\n                .broker_public_certificate(\"-----BEGIN CERTIFICATE-----\u003cCONTENT\u003e-----END CERTIFICATE-----\")\n                .build())\n            .config(Map.of(\"auto.offset.reset\", \"latest\"))\n            .bootstrapServers(\"localhost:9091,localhost:9092\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: NewInstance\n      connectionName: KafkaConnection\n      type: Kafka\n      authentication:\n        mechanism: PLAIN\n        username: user\n        password: somepassword\n      security:\n        protocol: SSL\n        broker_public_certificate: '-----BEGIN CERTIFICATE-----\u003cCONTENT\u003e-----END CERTIFICATE-----'\n      config:\n        auto.offset.reset: latest\n      bootstrapServers: localhost:9091,localhost:9092\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example AWSLambda Connection\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionAwsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new StreamConnection(\"test\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"NewInstance\")\n            .connectionName(\"AWSLambdaConnection\")\n            .type(\"AWSLambda\")\n            .aws(StreamConnectionAwsArgs.builder()\n                .role_arn(\"arn:aws:iam::123456789123:role/lambdaRole\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: NewInstance\n      connectionName: AWSLambdaConnection\n      type: AWSLambda\n      aws:\n        role_arn: arn:aws:iam::123456789123:role/lambdaRole\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nYou can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:\n\n```sh\n$ pulumi import mongodbatlas:index/streamConnection:StreamConnection test \"DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection\"\n```\nTo learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamConnection) Documentation.\nThe Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.\n\n",
+            "description": "## # Resource: mongodbatlas.StreamConnection\n\n`mongodbatlas.StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.\n\n\u003e **IMPORTANT:** All arguments including the Kafka authentication password will be stored in the raw state as plaintext. Read more about sensitive data in state.\n\n\n## Example Usage\n\n### Example Cluster Connection\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.StreamConnection(\"test\", {\n    projectId: projectId,\n    instanceName: \"InstanceName\",\n    connectionName: \"ConnectionName\",\n    type: \"Cluster\",\n    clusterName: \"Cluster0\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.StreamConnection(\"test\",\n    project_id=project_id,\n    instance_name=\"InstanceName\",\n    connection_name=\"ConnectionName\",\n    type=\"Cluster\",\n    cluster_name=\"Cluster0\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Mongodbatlas.StreamConnection(\"test\", new()\n    {\n        ProjectId = projectId,\n        InstanceName = \"InstanceName\",\n        ConnectionName = \"ConnectionName\",\n        Type = \"Cluster\",\n        ClusterName = \"Cluster0\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewStreamConnection(ctx, \"test\", \u0026mongodbatlas.StreamConnectionArgs{\n\t\t\tProjectId:      pulumi.Any(projectId),\n\t\t\tInstanceName:   pulumi.String(\"InstanceName\"),\n\t\t\tConnectionName: pulumi.String(\"ConnectionName\"),\n\t\t\tType:           pulumi.String(\"Cluster\"),\n\t\t\tClusterName:    pulumi.String(\"Cluster0\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new StreamConnection(\"test\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"InstanceName\")\n            .connectionName(\"ConnectionName\")\n            .type(\"Cluster\")\n            .clusterName(\"Cluster0\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: InstanceName\n      connectionName: ConnectionName\n      type: Cluster\n      clusterName: Cluster0\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example Kafka Plaintext Connection\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.StreamConnection(\"test\", {\n    projectId: projectId,\n    instanceName: \"NewInstance\",\n    connectionName: \"KafkaConnection\",\n    type: \"Kafka\",\n    authentication: {\n        mechanism: \"SCRAM-256\",\n        username: \"user\",\n        password: \"somepassword\",\n    },\n    security: {\n        protocol: \"PLAINTEXT\",\n    },\n    config: {\n        \"auto.offset.reset\": \"latest\",\n    },\n    bootstrapServers: \"localhost:9091,localhost:9092\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.StreamConnection(\"test\",\n    project_id=project_id,\n    instance_name=\"NewInstance\",\n    connection_name=\"KafkaConnection\",\n    type=\"Kafka\",\n    authentication={\n        \"mechanism\": \"SCRAM-256\",\n        \"username\": \"user\",\n        \"password\": \"somepassword\",\n    },\n    security={\n        \"protocol\": \"PLAINTEXT\",\n    },\n    config={\n        \"auto.offset.reset\": \"latest\",\n    },\n    bootstrap_servers=\"localhost:9091,localhost:9092\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Mongodbatlas.StreamConnection(\"test\", new()\n    {\n        ProjectId = projectId,\n        InstanceName = \"NewInstance\",\n        ConnectionName = \"KafkaConnection\",\n        Type = \"Kafka\",\n        Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs\n        {\n            Mechanism = \"SCRAM-256\",\n            Username = \"user\",\n            Password = \"somepassword\",\n        },\n        Security = new Mongodbatlas.Inputs.StreamConnectionSecurityArgs\n        {\n            Protocol = \"PLAINTEXT\",\n        },\n        Config = \n        {\n            { \"auto.offset.reset\", \"latest\" },\n        },\n        BootstrapServers = \"localhost:9091,localhost:9092\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewStreamConnection(ctx, \"test\", \u0026mongodbatlas.StreamConnectionArgs{\n\t\t\tProjectId:      pulumi.Any(projectId),\n\t\t\tInstanceName:   pulumi.String(\"NewInstance\"),\n\t\t\tConnectionName: pulumi.String(\"KafkaConnection\"),\n\t\t\tType:           pulumi.String(\"Kafka\"),\n\t\t\tAuthentication: \u0026mongodbatlas.StreamConnectionAuthenticationArgs{\n\t\t\t\tMechanism: pulumi.String(\"SCRAM-256\"),\n\t\t\t\tUsername:  pulumi.String(\"user\"),\n\t\t\t\tPassword:  pulumi.String(\"somepassword\"),\n\t\t\t},\n\t\t\tSecurity: \u0026mongodbatlas.StreamConnectionSecurityArgs{\n\t\t\t\tProtocol: pulumi.String(\"PLAINTEXT\"),\n\t\t\t},\n\t\t\tConfig: pulumi.StringMap{\n\t\t\t\t\"auto.offset.reset\": pulumi.String(\"latest\"),\n\t\t\t},\n\t\t\tBootstrapServers: pulumi.String(\"localhost:9091,localhost:9092\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new StreamConnection(\"test\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"NewInstance\")\n            .connectionName(\"KafkaConnection\")\n            .type(\"Kafka\")\n            .authentication(StreamConnectionAuthenticationArgs.builder()\n                .mechanism(\"SCRAM-256\")\n                .username(\"user\")\n                .password(\"somepassword\")\n                .build())\n            .security(StreamConnectionSecurityArgs.builder()\n                .protocol(\"PLAINTEXT\")\n                .build())\n            .config(Map.of(\"auto.offset.reset\", \"latest\"))\n            .bootstrapServers(\"localhost:9091,localhost:9092\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: NewInstance\n      connectionName: KafkaConnection\n      type: Kafka\n      authentication:\n        mechanism: SCRAM-256\n        username: user\n        password: somepassword\n      security:\n        protocol: PLAINTEXT\n      config:\n        auto.offset.reset: latest\n      bootstrapServers: localhost:9091,localhost:9092\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example Kafka SSL Connection\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new StreamConnection(\"test\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"NewInstance\")\n            .connectionName(\"KafkaConnection\")\n            .type(\"Kafka\")\n            .authentication(StreamConnectionAuthenticationArgs.builder()\n                .mechanism(\"PLAIN\")\n                .username(\"user\")\n                .password(\"somepassword\")\n                .build())\n            .security(StreamConnectionSecurityArgs.builder()\n                .protocol(\"SSL\")\n                .broker_public_certificate(\"-----BEGIN CERTIFICATE-----\u003cCONTENT\u003e-----END CERTIFICATE-----\")\n                .build())\n            .config(Map.of(\"auto.offset.reset\", \"latest\"))\n            .bootstrapServers(\"localhost:9091,localhost:9092\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: NewInstance\n      connectionName: KafkaConnection\n      type: Kafka\n      authentication:\n        mechanism: PLAIN\n        username: user\n        password: somepassword\n      security:\n        protocol: SSL\n        broker_public_certificate: '-----BEGIN CERTIFICATE-----\u003cCONTENT\u003e-----END CERTIFICATE-----'\n      config:\n        auto.offset.reset: latest\n      bootstrapServers: localhost:9091,localhost:9092\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example AWSLambda Connection\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport com.pulumi.mongodbatlas.inputs.StreamConnectionAwsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new StreamConnection(\"test\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(\"NewInstance\")\n            .connectionName(\"AWSLambdaConnection\")\n            .type(\"AWSLambda\")\n            .aws(StreamConnectionAwsArgs.builder()\n                .role_arn(\"arn:aws:iam::123456789123:role/lambdaRole\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: NewInstance\n      connectionName: AWSLambdaConnection\n      type: AWSLambda\n      aws:\n        role_arn: arn:aws:iam::123456789123:role/lambdaRole\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example Https Connection\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst example_https = new mongodbatlas.StreamConnection(\"example-https\", {\n    projectId: projectId,\n    instanceName: example.instanceName,\n    connectionName: \"https_connection_tf_new\",\n    type: \"Https\",\n    url: \"https://example.com\",\n    headers: {\n        key1: \"value1\",\n        key2: \"value2\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nexample_https = mongodbatlas.StreamConnection(\"example-https\",\n    project_id=project_id,\n    instance_name=example[\"instanceName\"],\n    connection_name=\"https_connection_tf_new\",\n    type=\"Https\",\n    url=\"https://example.com\",\n    headers={\n        \"key1\": \"value1\",\n        \"key2\": \"value2\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example_https = new Mongodbatlas.StreamConnection(\"example-https\", new()\n    {\n        ProjectId = projectId,\n        InstanceName = example.InstanceName,\n        ConnectionName = \"https_connection_tf_new\",\n        Type = \"Https\",\n        Url = \"https://example.com\",\n        Headers = \n        {\n            { \"key1\", \"value1\" },\n            { \"key2\", \"value2\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewStreamConnection(ctx, \"example-https\", \u0026mongodbatlas.StreamConnectionArgs{\n\t\t\tProjectId:      pulumi.Any(projectId),\n\t\t\tInstanceName:   pulumi.Any(example.InstanceName),\n\t\t\tConnectionName: pulumi.String(\"https_connection_tf_new\"),\n\t\t\tType:           pulumi.String(\"Https\"),\n\t\t\tUrl:            pulumi.String(\"https://example.com\"),\n\t\t\tHeaders: pulumi.StringMap{\n\t\t\t\t\"key1\": pulumi.String(\"value1\"),\n\t\t\t\t\"key2\": pulumi.String(\"value2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.StreamConnection;\nimport com.pulumi.mongodbatlas.StreamConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example_https = new StreamConnection(\"example-https\", StreamConnectionArgs.builder()\n            .projectId(projectId)\n            .instanceName(example.instanceName())\n            .connectionName(\"https_connection_tf_new\")\n            .type(\"Https\")\n            .url(\"https://example.com\")\n            .headers(Map.ofEntries(\n                Map.entry(\"key1\", \"value1\"),\n                Map.entry(\"key2\", \"value2\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example-https:\n    type: mongodbatlas:StreamConnection\n    properties:\n      projectId: ${projectId}\n      instanceName: ${example.instanceName}\n      connectionName: https_connection_tf_new\n      type: Https\n      url: https://example.com\n      headers:\n        key1: value1\n        key2: value2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nYou can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:\n\n```sh\n$ pulumi import mongodbatlas:index/streamConnection:StreamConnection test \"DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection\"\n```\nTo learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamConnection) Documentation.\nThe Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.\n\n",
             "properties": {
                 "authentication": {
                     "$ref": "#/types/mongodbatlas:index/StreamConnectionAuthentication:StreamConnectionAuthentication"
@@ -23162,6 +23195,12 @@
                 "dbRoleToExecute": {
                     "$ref": "#/types/mongodbatlas:index/StreamConnectionDbRoleToExecute:StreamConnectionDbRoleToExecute"
                 },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
                 "instanceName": {
                     "type": "string",
                     "description": "Human-readable label that identifies the stream instance.\n"
@@ -23178,7 +23217,10 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.\n"
+                    "description": "Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.\n"
+                },
+                "url": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -23214,6 +23256,12 @@
                 "dbRoleToExecute": {
                     "$ref": "#/types/mongodbatlas:index/StreamConnectionDbRoleToExecute:StreamConnectionDbRoleToExecute"
                 },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
                 "instanceName": {
                     "type": "string",
                     "description": "Human-readable label that identifies the stream instance.\n"
@@ -23230,7 +23278,10 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.\n"
+                    "description": "Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.\n"
+                },
+                "url": {
+                    "type": "string"
                 }
             },
             "requiredInputs": [
@@ -23267,6 +23318,12 @@
                     "dbRoleToExecute": {
                         "$ref": "#/types/mongodbatlas:index/StreamConnectionDbRoleToExecute:StreamConnectionDbRoleToExecute"
                     },
+                    "headers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
                     "instanceName": {
                         "type": "string",
                         "description": "Human-readable label that identifies the stream instance.\n"
@@ -23283,7 +23340,10 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.\n"
+                        "description": "Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.\n"
+                    },
+                    "url": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -23377,8 +23437,12 @@
             }
         },
         "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint": {
-            "description": "## # Resource: mongodbatlas.StreamPrivatelinkEndpoint\n\n`mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n",
+            "description": "## # Resource: mongodbatlas.StreamPrivatelinkEndpoint\n\n`mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n### S\n\n",
             "properties": {
+                "arn": {
+                    "type": "string",
+                    "description": "Amazon Resource Name (ARN).\n"
+                },
                 "dnsDomain": {
                     "type": "string",
                     "description": "Domain name of Privatelink connected cluster.\n"
@@ -23390,13 +23454,25 @@
                     },
                     "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones.\n"
                 },
+                "errorMessage": {
+                    "type": "string",
+                    "description": "Error message if the connection is in a failed state.\n"
+                },
                 "interfaceEndpointId": {
                     "type": "string",
                     "description": "Interface endpoint ID that is created from the specified service endpoint ID.\n"
                 },
+                "interfaceEndpointName": {
+                    "type": "string",
+                    "description": "Name of interface endpoint that is created from the specified service endpoint ID.\n"
+                },
                 "projectId": {
                     "type": "string",
                     "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n"
+                },
+                "providerAccountId": {
+                    "type": "string",
+                    "description": "Account ID from the cloud provider.\n"
                 },
                 "providerName": {
                     "type": "string",
@@ -23404,7 +23480,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Domain name of Confluent cluster.\n"
+                    "description": "When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed\nby the API from the provided `arn`.\n"
                 },
                 "serviceEndpointId": {
                     "type": "string",
@@ -23420,13 +23496,21 @@
                 }
             },
             "required": [
+                "errorMessage",
                 "interfaceEndpointId",
+                "interfaceEndpointName",
                 "projectId",
+                "providerAccountId",
                 "providerName",
+                "region",
                 "state",
                 "vendor"
             ],
             "inputProperties": {
+                "arn": {
+                    "type": "string",
+                    "description": "Amazon Resource Name (ARN).\n"
+                },
                 "dnsDomain": {
                     "type": "string",
                     "description": "Domain name of Privatelink connected cluster.\n"
@@ -23448,7 +23532,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Domain name of Confluent cluster.\n"
+                    "description": "When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed\nby the API from the provided `arn`.\n"
                 },
                 "serviceEndpointId": {
                     "type": "string",
@@ -23467,6 +23551,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering StreamPrivatelinkEndpoint resources.\n",
                 "properties": {
+                    "arn": {
+                        "type": "string",
+                        "description": "Amazon Resource Name (ARN).\n"
+                    },
                     "dnsDomain": {
                         "type": "string",
                         "description": "Domain name of Privatelink connected cluster.\n"
@@ -23478,13 +23566,25 @@
                         },
                         "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones.\n"
                     },
+                    "errorMessage": {
+                        "type": "string",
+                        "description": "Error message if the connection is in a failed state.\n"
+                    },
                     "interfaceEndpointId": {
                         "type": "string",
                         "description": "Interface endpoint ID that is created from the specified service endpoint ID.\n"
                     },
+                    "interfaceEndpointName": {
+                        "type": "string",
+                        "description": "Name of interface endpoint that is created from the specified service endpoint ID.\n"
+                    },
                     "projectId": {
                         "type": "string",
                         "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n"
+                    },
+                    "providerAccountId": {
+                        "type": "string",
+                        "description": "Account ID from the cloud provider.\n"
                     },
                     "providerName": {
                         "type": "string",
@@ -23492,7 +23592,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "Domain name of Confluent cluster.\n"
+                        "description": "When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed\nby the API from the provided `arn`.\n"
                     },
                     "serviceEndpointId": {
                         "type": "string",
@@ -28665,7 +28765,7 @@
                             "type": "string"
                         },
                         "deprecationMessage": "This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.",
-                        "description": "(Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.\n",
+                        "description": "(Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.\n",
                         "type": "object"
                     },
                     "customZoneMappingZoneId": {
@@ -31591,6 +31691,13 @@
                         "$ref": "#/types/mongodbatlas:index/getStreamConnectionDbRoleToExecute:getStreamConnectionDbRoleToExecute",
                         "description": "The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.\n"
                     },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A map of key-value pairs for optional headers.\n",
+                        "type": "object"
+                    },
                     "id": {
                         "type": "string"
                     },
@@ -31611,6 +31718,10 @@
                     "type": {
                         "description": "Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.\n",
                         "type": "string"
+                    },
+                    "url": {
+                        "description": "URL of the HTTPs endpoint that will be used for creating a connection.\n",
+                        "type": "string"
                     }
                 },
                 "required": [
@@ -31621,12 +31732,14 @@
                     "config",
                     "connectionName",
                     "dbRoleToExecute",
+                    "headers",
                     "id",
                     "instanceName",
                     "networking",
                     "projectId",
                     "security",
-                    "type"
+                    "type",
+                    "url"
                 ],
                 "type": "object"
             }
@@ -31821,7 +31934,7 @@
             }
         },
         "mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint": {
-            "description": "## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint\n\n`mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n",
+            "description": "## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint\n\n`mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n### S\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getStreamPrivatelinkEndpoint.\n",
                 "properties": {
@@ -31843,6 +31956,9 @@
             "outputs": {
                 "description": "A collection of values returned by getStreamPrivatelinkEndpoint.\n",
                 "properties": {
+                    "arn": {
+                        "type": "string"
+                    },
                     "dnsDomain": {
                         "type": "string"
                     },
@@ -31852,6 +31968,9 @@
                         },
                         "type": "array"
                     },
+                    "errorMessage": {
+                        "type": "string"
+                    },
                     "id": {
                         "description": "The ID of the Private Link connection.\n",
                         "type": "string"
@@ -31859,8 +31978,14 @@
                     "interfaceEndpointId": {
                         "type": "string"
                     },
+                    "interfaceEndpointName": {
+                        "type": "string"
+                    },
                     "projectId": {
                         "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n",
+                        "type": "string"
+                    },
+                    "providerAccountId": {
                         "type": "string"
                     },
                     "providerName": {
@@ -31880,11 +32005,15 @@
                     }
                 },
                 "required": [
+                    "arn",
                     "dnsDomain",
                     "dnsSubDomains",
+                    "errorMessage",
                     "id",
                     "interfaceEndpointId",
+                    "interfaceEndpointName",
                     "projectId",
+                    "providerAccountId",
                     "providerName",
                     "region",
                     "serviceEndpointId",
@@ -31895,7 +32024,7 @@
             }
         },
         "mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints": {
-            "description": "## # Data Source: mongodbatlas.getStreamPrivatelinkEndpoints\n\n`mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n",
+            "description": "## # Data Source: mongodbatlas.getStreamPrivatelinkEndpoints\n\n`mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n### S\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getStreamPrivatelinkEndpoints.\n",
                 "properties": {
