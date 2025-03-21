@@ -10,6 +10,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getStreamPrivatelinkEndpoint(args: GetStreamPrivatelinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamPrivatelinkEndpointResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -37,17 +39,21 @@ export interface GetStreamPrivatelinkEndpointArgs {
  * A collection of values returned by getStreamPrivatelinkEndpoint.
  */
 export interface GetStreamPrivatelinkEndpointResult {
+    readonly arn: string;
     readonly dnsDomain: string;
     readonly dnsSubDomains: string[];
+    readonly errorMessage: string;
     /**
      * The ID of the Private Link connection.
      */
     readonly id: string;
     readonly interfaceEndpointId: string;
+    readonly interfaceEndpointName: string;
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
     readonly projectId: string;
+    readonly providerAccountId: string;
     readonly providerName: string;
     readonly region: string;
     readonly serviceEndpointId: string;
@@ -60,6 +66,8 @@ export interface GetStreamPrivatelinkEndpointResult {
  * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getStreamPrivatelinkEndpointOutput(args: GetStreamPrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamPrivatelinkEndpointResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

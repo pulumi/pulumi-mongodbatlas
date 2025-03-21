@@ -18,6 +18,21 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     public static final StreamPrivatelinkEndpointArgs Empty = new StreamPrivatelinkEndpointArgs();
 
     /**
+     * Amazon Resource Name (ARN).
+     * 
+     */
+    @Import(name="arn")
+    private @Nullable Output<String> arn;
+
+    /**
+     * @return Amazon Resource Name (ARN).
+     * 
+     */
+    public Optional<Output<String>> arn() {
+        return Optional.ofNullable(this.arn);
+    }
+
+    /**
      * Domain name of Privatelink connected cluster.
      * 
      */
@@ -78,14 +93,16 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Domain name of Confluent cluster.
+     * When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+     * by the API from the provided `arn`.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Domain name of Confluent cluster.
+     * @return When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+     * by the API from the provided `arn`.
      * 
      */
     public Optional<Output<String>> region() {
@@ -125,6 +142,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     private StreamPrivatelinkEndpointArgs() {}
 
     private StreamPrivatelinkEndpointArgs(StreamPrivatelinkEndpointArgs $) {
+        this.arn = $.arn;
         this.dnsDomain = $.dnsDomain;
         this.dnsSubDomains = $.dnsSubDomains;
         this.projectId = $.projectId;
@@ -150,6 +168,27 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
 
         public Builder(StreamPrivatelinkEndpointArgs defaults) {
             $ = new StreamPrivatelinkEndpointArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param arn Amazon Resource Name (ARN).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder arn(@Nullable Output<String> arn) {
+            $.arn = arn;
+            return this;
+        }
+
+        /**
+         * @param arn Amazon Resource Name (ARN).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder arn(String arn) {
+            return arn(Output.of(arn));
         }
 
         /**
@@ -247,7 +286,8 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param region Domain name of Confluent cluster.
+         * @param region When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+         * by the API from the provided `arn`.
          * 
          * @return builder
          * 
@@ -258,7 +298,8 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param region Domain name of Confluent cluster.
+         * @param region When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+         * by the API from the provided `arn`.
          * 
          * @return builder
          * 

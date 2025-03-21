@@ -30,14 +30,14 @@ public final class StreamConnectionDbRoleToExecuteArgs extends com.pulumi.resour
     }
 
     /**
-     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      * 
      */
     public Output<String> type() {
@@ -91,7 +91,7 @@ public final class StreamConnectionDbRoleToExecuteArgs extends com.pulumi.resour
         }
 
         /**
-         * @param type Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class StreamConnectionDbRoleToExecuteArgs extends com.pulumi.resour
         }
 
         /**
-         * @param type Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
          * 
          * @return builder
          * 

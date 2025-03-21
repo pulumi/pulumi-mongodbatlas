@@ -27,7 +27,7 @@ class GetStreamConnectionResult:
     """
     A collection of values returned by getStreamConnection.
     """
-    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, config=None, connection_name=None, db_role_to_execute=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None):
+    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, config=None, connection_name=None, db_role_to_execute=None, headers=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None, url=None):
         if authentication and not isinstance(authentication, dict):
             raise TypeError("Expected argument 'authentication' to be a dict")
         pulumi.set(__self__, "authentication", authentication)
@@ -49,6 +49,9 @@ class GetStreamConnectionResult:
         if db_role_to_execute and not isinstance(db_role_to_execute, dict):
             raise TypeError("Expected argument 'db_role_to_execute' to be a dict")
         pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        if headers and not isinstance(headers, dict):
+            raise TypeError("Expected argument 'headers' to be a dict")
+        pulumi.set(__self__, "headers", headers)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -67,6 +70,9 @@ class GetStreamConnectionResult:
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
+        if url and not isinstance(url, str):
+            raise TypeError("Expected argument 'url' to be a str")
+        pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -123,6 +129,14 @@ class GetStreamConnectionResult:
 
     @property
     @pulumi.getter
+    def headers(self) -> Mapping[str, str]:
+        """
+        A map of key-value pairs for optional headers.
+        """
+        return pulumi.get(self, "headers")
+
+    @property
+    @pulumi.getter
     def id(self) -> str:
         return pulumi.get(self, "id")
 
@@ -160,6 +174,14 @@ class GetStreamConnectionResult:
         """
         return pulumi.get(self, "type")
 
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        URL of the HTTPs endpoint that will be used for creating a connection.
+        """
+        return pulumi.get(self, "url")
+
 
 class AwaitableGetStreamConnectionResult(GetStreamConnectionResult):
     # pylint: disable=using-constant-test
@@ -174,12 +196,14 @@ class AwaitableGetStreamConnectionResult(GetStreamConnectionResult):
             config=self.config,
             connection_name=self.connection_name,
             db_role_to_execute=self.db_role_to_execute,
+            headers=self.headers,
             id=self.id,
             instance_name=self.instance_name,
             networking=self.networking,
             project_id=self.project_id,
             security=self.security,
-            type=self.type)
+            type=self.type,
+            url=self.url)
 
 
 def get_stream_connection(connection_name: Optional[str] = None,
@@ -222,12 +246,14 @@ def get_stream_connection(connection_name: Optional[str] = None,
         config=pulumi.get(__ret__, 'config'),
         connection_name=pulumi.get(__ret__, 'connection_name'),
         db_role_to_execute=pulumi.get(__ret__, 'db_role_to_execute'),
+        headers=pulumi.get(__ret__, 'headers'),
         id=pulumi.get(__ret__, 'id'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
         networking=pulumi.get(__ret__, 'networking'),
         project_id=pulumi.get(__ret__, 'project_id'),
         security=pulumi.get(__ret__, 'security'),
-        type=pulumi.get(__ret__, 'type'))
+        type=pulumi.get(__ret__, 'type'),
+        url=pulumi.get(__ret__, 'url'))
 def get_stream_connection_output(connection_name: Optional[pulumi.Input[str]] = None,
                                  instance_name: Optional[pulumi.Input[str]] = None,
                                  project_id: Optional[pulumi.Input[str]] = None,
@@ -267,9 +293,11 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[str]] = 
         config=pulumi.get(__response__, 'config'),
         connection_name=pulumi.get(__response__, 'connection_name'),
         db_role_to_execute=pulumi.get(__response__, 'db_role_to_execute'),
+        headers=pulumi.get(__response__, 'headers'),
         id=pulumi.get(__response__, 'id'),
         instance_name=pulumi.get(__response__, 'instance_name'),
         networking=pulumi.get(__response__, 'networking'),
         project_id=pulumi.get(__response__, 'project_id'),
         security=pulumi.get(__response__, 'security'),
-        type=pulumi.get(__response__, 'type')))
+        type=pulumi.get(__response__, 'type'),
+        url=pulumi.get(__response__, 'url')))

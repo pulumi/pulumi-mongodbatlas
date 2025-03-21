@@ -126,7 +126,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ClusterName { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
+        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
         /// </summary>
         [Output("customZoneMapping")]
         public Output<ImmutableDictionary<string, string>> CustomZoneMapping { get; private set; } = null!;
@@ -255,7 +255,7 @@ namespace Pulumi.Mongodbatlas
         private InputMap<string>? _customZoneMapping;
 
         /// <summary>
-        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead.
+        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
         /// </summary>
         [Obsolete(@"This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.")]
         public InputMap<string> CustomZoneMapping

@@ -927,7 +927,6 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpoint struct {
 	EndpointId *string `pulumi:"endpointId"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
-	//
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
@@ -951,7 +950,6 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
-	//
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
@@ -1017,7 +1015,6 @@ func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId
 
 // Cloud service provider on which the servers are provisioned.
 // The possible values are:
-//
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
@@ -1331,7 +1328,7 @@ type AdvancedClusterReplicationSpec struct {
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards *int `pulumi:"numShards"`
-	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs []AdvancedClusterReplicationSpecRegionConfig `pulumi:"regionConfigs"`
 	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
 	ZoneId *string `pulumi:"zoneId"`
@@ -1363,7 +1360,7 @@ type AdvancedClusterReplicationSpecArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards pulumi.IntPtrInput `pulumi:"numShards"`
-	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs AdvancedClusterReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
 	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
 	ZoneId pulumi.StringPtrInput `pulumi:"zoneId"`
@@ -1446,7 +1443,7 @@ func (o AdvancedClusterReplicationSpecOutput) NumShards() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *int { return v.NumShards }).(pulumi.IntPtrOutput)
 }
 
-// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 func (o AdvancedClusterReplicationSpecOutput) RegionConfigs() AdvancedClusterReplicationSpecRegionConfigArrayOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) []AdvancedClusterReplicationSpecRegionConfig {
 		return v.RegionConfigs
@@ -1492,7 +1489,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	AutoScaling *AdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
 	BackingProviderName *string `pulumi:"backingProviderName"`
-	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+	// Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
 	ElectableSpecs *AdvancedClusterReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
 	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
@@ -1500,13 +1497,12 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	Priority int `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
-	//
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
 	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+	// Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
 	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	RegionName string `pulumi:"regionName"`
@@ -1532,7 +1528,7 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	AutoScaling AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput `pulumi:"autoScaling"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
 	BackingProviderName pulumi.StringPtrInput `pulumi:"backingProviderName"`
-	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+	// Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
 	ElectableSpecs AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
 	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
@@ -1540,13 +1536,12 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
-	//
 	// - `AWS` - Amazon AWS
 	// - `GCP` - Google Cloud Platform
 	// - `AZURE` - Microsoft Azure
 	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+	// Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
 	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	RegionName pulumi.StringInput `pulumi:"regionName"`
@@ -1629,7 +1624,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) BackingProviderName() 
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *string { return v.BackingProviderName }).(pulumi.StringPtrOutput)
 }
 
-// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+// Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ElectableSpecs() AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
 		return v.ElectableSpecs
@@ -1645,7 +1640,6 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) Priority() pulumi.IntO
 
 // Cloud service provider on which the servers are provisioned.
 // The possible values are:
-//
 // - `AWS` - Amazon AWS
 // - `GCP` - Google Cloud Platform
 // - `AZURE` - Microsoft Azure
@@ -1654,7 +1648,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+// Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
 		return v.ReadOnlySpecs
@@ -18545,7 +18539,7 @@ func (o StreamConnectionAwsPtrOutput) RoleArn() pulumi.StringPtrOutput {
 type StreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role string `pulumi:"role"`
-	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
 	Type string `pulumi:"type"`
 }
 
@@ -18563,7 +18557,7 @@ type StreamConnectionDbRoleToExecuteInput interface {
 type StreamConnectionDbRoleToExecuteArgs struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -18649,7 +18643,7 @@ func (o StreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
 func (o StreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -18688,7 +18682,7 @@ func (o StreamConnectionDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
 func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
 		if v == nil {
@@ -21074,7 +21068,7 @@ type GetAdvancedClusterReplicationSpec struct {
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards int `pulumi:"numShards"`
-	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs []GetAdvancedClusterReplicationSpecRegionConfig `pulumi:"regionConfigs"`
 	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
 	ZoneId string `pulumi:"zoneId"`
@@ -21104,7 +21098,7 @@ type GetAdvancedClusterReplicationSpecArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards pulumi.IntInput `pulumi:"numShards"`
-	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs GetAdvancedClusterReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
 	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
 	ZoneId pulumi.StringInput `pulumi:"zoneId"`
@@ -21185,7 +21179,7 @@ func (o GetAdvancedClusterReplicationSpecOutput) NumShards() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
 
-// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 func (o GetAdvancedClusterReplicationSpecOutput) RegionConfigs() GetAdvancedClusterReplicationSpecRegionConfigArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) []GetAdvancedClusterReplicationSpecRegionConfig {
 		return v.RegionConfigs
@@ -23357,7 +23351,7 @@ type GetAdvancedClustersResultReplicationSpec struct {
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards int `pulumi:"numShards"`
-	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs []GetAdvancedClustersResultReplicationSpecRegionConfig `pulumi:"regionConfigs"`
 	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
 	ZoneId string `pulumi:"zoneId"`
@@ -23387,7 +23381,7 @@ type GetAdvancedClustersResultReplicationSpecArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards pulumi.IntInput `pulumi:"numShards"`
-	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
 	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
 	ZoneId pulumi.StringInput `pulumi:"zoneId"`
@@ -23468,7 +23462,7 @@ func (o GetAdvancedClustersResultReplicationSpecOutput) NumShards() pulumi.IntOu
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
 
-// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 func (o GetAdvancedClustersResultReplicationSpecOutput) RegionConfigs() GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) []GetAdvancedClustersResultReplicationSpecRegionConfig {
 		return v.RegionConfigs
@@ -53613,7 +53607,9 @@ type GetStreamConnectionsResult struct {
 	ConnectionName string `pulumi:"connectionName"`
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecute `pulumi:"dbRoleToExecute"`
-	Id              string                                    `pulumi:"id"`
+	// A map of key-value pairs for optional headers.
+	Headers map[string]string `pulumi:"headers"`
+	Id      string            `pulumi:"id"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName string `pulumi:"instanceName"`
 	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
@@ -53624,6 +53620,8 @@ type GetStreamConnectionsResult struct {
 	Security GetStreamConnectionsResultSecurity `pulumi:"security"`
 	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
+	// URL of the HTTPs endpoint that will be used for creating a connection.
+	Url string `pulumi:"url"`
 }
 
 // GetStreamConnectionsResultInput is an input type that accepts GetStreamConnectionsResultArgs and GetStreamConnectionsResultOutput values.
@@ -53652,7 +53650,9 @@ type GetStreamConnectionsResultArgs struct {
 	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecuteInput `pulumi:"dbRoleToExecute"`
-	Id              pulumi.StringInput                             `pulumi:"id"`
+	// A map of key-value pairs for optional headers.
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	Id      pulumi.StringInput    `pulumi:"id"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
 	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
@@ -53663,6 +53663,8 @@ type GetStreamConnectionsResultArgs struct {
 	Security GetStreamConnectionsResultSecurityInput `pulumi:"security"`
 	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
+	// URL of the HTTPs endpoint that will be used for creating a connection.
+	Url pulumi.StringInput `pulumi:"url"`
 }
 
 func (GetStreamConnectionsResultArgs) ElementType() reflect.Type {
@@ -53751,6 +53753,11 @@ func (o GetStreamConnectionsResultOutput) DbRoleToExecute() GetStreamConnections
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionsResultDbRoleToExecuteOutput)
 }
 
+// A map of key-value pairs for optional headers.
+func (o GetStreamConnectionsResultOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
 func (o GetStreamConnectionsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -53778,6 +53785,11 @@ func (o GetStreamConnectionsResultOutput) Security() GetStreamConnectionsResultS
 // Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 func (o GetStreamConnectionsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// URL of the HTTPs endpoint that will be used for creating a connection.
+func (o GetStreamConnectionsResultOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Url }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionsResultArrayOutput struct{ *pulumi.OutputState }
@@ -54525,19 +54537,27 @@ func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
 }
 
 type GetStreamPrivatelinkEndpointsResult struct {
+	// Amazon Resource Name (ARN).
+	Arn string `pulumi:"arn"`
 	// Domain name of Privatelink connected cluster.
 	DnsDomain string `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
+	// Error message if the connection is in a failed state.
+	ErrorMessage string `pulumi:"errorMessage"`
 	// The ID of the Private Link connection.
 	Id string `pulumi:"id"`
 	// Interface endpoint ID that is created from the specified service endpoint ID.
 	InterfaceEndpointId string `pulumi:"interfaceEndpointId"`
+	// Name of interface endpoint that is created from the specified service endpoint ID.
+	InterfaceEndpointName string `pulumi:"interfaceEndpointName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId string `pulumi:"projectId"`
+	// Account ID from the cloud provider.
+	ProviderAccountId string `pulumi:"providerAccountId"`
 	// Provider where the Kafka cluster is deployed.
 	ProviderName string `pulumi:"providerName"`
-	// Domain name of Confluent cluster.
+	// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 	Region string `pulumi:"region"`
 	// Service Endpoint ID.
 	ServiceEndpointId string `pulumi:"serviceEndpointId"`
@@ -54559,19 +54579,27 @@ type GetStreamPrivatelinkEndpointsResultInput interface {
 }
 
 type GetStreamPrivatelinkEndpointsResultArgs struct {
+	// Amazon Resource Name (ARN).
+	Arn pulumi.StringInput `pulumi:"arn"`
 	// Domain name of Privatelink connected cluster.
 	DnsDomain pulumi.StringInput `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
 	DnsSubDomains pulumi.StringArrayInput `pulumi:"dnsSubDomains"`
+	// Error message if the connection is in a failed state.
+	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
 	// The ID of the Private Link connection.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Interface endpoint ID that is created from the specified service endpoint ID.
 	InterfaceEndpointId pulumi.StringInput `pulumi:"interfaceEndpointId"`
+	// Name of interface endpoint that is created from the specified service endpoint ID.
+	InterfaceEndpointName pulumi.StringInput `pulumi:"interfaceEndpointName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Account ID from the cloud provider.
+	ProviderAccountId pulumi.StringInput `pulumi:"providerAccountId"`
 	// Provider where the Kafka cluster is deployed.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Domain name of Confluent cluster.
+	// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 	Region pulumi.StringInput `pulumi:"region"`
 	// Service Endpoint ID.
 	ServiceEndpointId pulumi.StringInput `pulumi:"serviceEndpointId"`
@@ -54632,6 +54660,11 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) ToGetStreamPrivatelinkEndpoin
 	return o
 }
 
+// Amazon Resource Name (ARN).
+func (o GetStreamPrivatelinkEndpointsResultOutput) Arn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Arn }).(pulumi.StringOutput)
+}
+
 // Domain name of Privatelink connected cluster.
 func (o GetStreamPrivatelinkEndpointsResultOutput) DnsDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.DnsDomain }).(pulumi.StringOutput)
@@ -54640,6 +54673,11 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) DnsDomain() pulumi.StringOutp
 // Sub-Domain name of Confluent cluster. These are typically your availability zones.
 func (o GetStreamPrivatelinkEndpointsResultOutput) DnsSubDomains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) []string { return v.DnsSubDomains }).(pulumi.StringArrayOutput)
+}
+
+// Error message if the connection is in a failed state.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
 }
 
 // The ID of the Private Link connection.
@@ -54652,9 +54690,19 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) InterfaceEndpointId() pulumi.
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.InterfaceEndpointId }).(pulumi.StringOutput)
 }
 
+// Name of interface endpoint that is created from the specified service endpoint ID.
+func (o GetStreamPrivatelinkEndpointsResultOutput) InterfaceEndpointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.InterfaceEndpointName }).(pulumi.StringOutput)
+}
+
 // Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 func (o GetStreamPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Account ID from the cloud provider.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ProviderAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProviderAccountId }).(pulumi.StringOutput)
 }
 
 // Provider where the Kafka cluster is deployed.
@@ -54662,7 +54710,7 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) ProviderName() pulumi.StringO
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Domain name of Confluent cluster.
+// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 func (o GetStreamPrivatelinkEndpointsResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Region }).(pulumi.StringOutput)
 }

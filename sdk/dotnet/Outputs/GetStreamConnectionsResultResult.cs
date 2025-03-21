@@ -41,6 +41,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultDbRoleToExecuteResult DbRoleToExecute;
+        /// <summary>
+        /// A map of key-value pairs for optional headers.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> Headers;
         public readonly string Id;
         /// <summary>
         /// Human-readable label that identifies the stream instance.
@@ -62,6 +66,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// URL of the HTTPs endpoint that will be used for creating a connection.
+        /// </summary>
+        public readonly string Url;
 
         [OutputConstructor]
         private GetStreamConnectionsResultResult(
@@ -79,6 +87,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             Outputs.GetStreamConnectionsResultDbRoleToExecuteResult dbRoleToExecute,
 
+            ImmutableDictionary<string, string> headers,
+
             string id,
 
             string instanceName,
@@ -89,7 +99,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             Outputs.GetStreamConnectionsResultSecurityResult security,
 
-            string type)
+            string type,
+
+            string url)
         {
             Authentication = authentication;
             Aws = aws;
@@ -98,12 +110,14 @@ namespace Pulumi.Mongodbatlas.Outputs
             Config = config;
             ConnectionName = connectionName;
             DbRoleToExecute = dbRoleToExecute;
+            Headers = headers;
             Id = id;
             InstanceName = instanceName;
             Networking = networking;
             ProjectId = projectId;
             Security = security;
             Type = type;
+            Url = url;
         }
     }
 }

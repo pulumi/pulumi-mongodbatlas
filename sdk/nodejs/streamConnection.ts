@@ -56,6 +56,25 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example Https Connection
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example_https = new mongodbatlas.StreamConnection("example-https", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     connectionName: "https_connection_tf_new",
+ *     type: "Https",
+ *     url: "https://example.com",
+ *     headers: {
+ *         key1: "value1",
+ *         key2: "value2",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -104,6 +123,7 @@ export class StreamConnection extends pulumi.CustomResource {
      */
     public readonly connectionName!: pulumi.Output<string>;
     public readonly dbRoleToExecute!: pulumi.Output<outputs.StreamConnectionDbRoleToExecute | undefined>;
+    public readonly headers!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Human-readable label that identifies the stream instance.
      */
@@ -115,9 +135,10 @@ export class StreamConnection extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     public readonly security!: pulumi.Output<outputs.StreamConnectionSecurity | undefined>;
     /**
-     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      */
     public readonly type!: pulumi.Output<string>;
+    public readonly url!: pulumi.Output<string | undefined>;
 
     /**
      * Create a StreamConnection resource with the given unique name, arguments, and options.
@@ -139,11 +160,13 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["config"] = state ? state.config : undefined;
             resourceInputs["connectionName"] = state ? state.connectionName : undefined;
             resourceInputs["dbRoleToExecute"] = state ? state.dbRoleToExecute : undefined;
+            resourceInputs["headers"] = state ? state.headers : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
             resourceInputs["networking"] = state ? state.networking : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["security"] = state ? state.security : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
         } else {
             const args = argsOrState as StreamConnectionArgs | undefined;
             if ((!args || args.connectionName === undefined) && !opts.urn) {
@@ -165,11 +188,13 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["config"] = args ? args.config : undefined;
             resourceInputs["connectionName"] = args ? args.connectionName : undefined;
             resourceInputs["dbRoleToExecute"] = args ? args.dbRoleToExecute : undefined;
+            resourceInputs["headers"] = args ? args.headers : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
             resourceInputs["networking"] = args ? args.networking : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["security"] = args ? args.security : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["url"] = args ? args.url : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(StreamConnection.__pulumiType, name, resourceInputs, opts);
@@ -190,6 +215,7 @@ export interface StreamConnectionState {
      */
     connectionName?: pulumi.Input<string>;
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
+    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Human-readable label that identifies the stream instance.
      */
@@ -201,9 +227,10 @@ export interface StreamConnectionState {
     projectId?: pulumi.Input<string>;
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     /**
-     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      */
     type?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
 }
 
 /**
@@ -220,6 +247,7 @@ export interface StreamConnectionArgs {
      */
     connectionName: pulumi.Input<string>;
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
+    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Human-readable label that identifies the stream instance.
      */
@@ -231,7 +259,8 @@ export interface StreamConnectionArgs {
     projectId: pulumi.Input<string>;
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     /**
-     * Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      */
     type: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
 }

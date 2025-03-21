@@ -41,7 +41,7 @@ public final class GetAdvancedClustersResultReplicationSpec {
     @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     private Integer numShards;
     /**
-     * @return Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+     * @return Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
      * 
      */
     private List<GetAdvancedClustersResultReplicationSpecRegionConfig> regionConfigs;
@@ -92,7 +92,7 @@ public final class GetAdvancedClustersResultReplicationSpec {
         return this.numShards;
     }
     /**
-     * @return Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+     * @return Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
      * 
      */
     public List<GetAdvancedClustersResultReplicationSpecRegionConfig> regionConfigs() {

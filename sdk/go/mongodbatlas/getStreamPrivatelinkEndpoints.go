@@ -16,6 +16,8 @@ import (
 // `getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
 //
 // ## Example Usage
+//
+// ### S
 func LookupStreamPrivatelinkEndpoints(ctx *pulumi.Context, args *LookupStreamPrivatelinkEndpointsArgs, opts ...pulumi.InvokeOption) (*LookupStreamPrivatelinkEndpointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStreamPrivatelinkEndpointsResult

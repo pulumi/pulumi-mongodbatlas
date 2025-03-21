@@ -76,6 +76,33 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example Https Connection
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example_https = new Mongodbatlas.StreamConnection("example-https", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         InstanceName = example.InstanceName,
+    ///         ConnectionName = "https_connection_tf_new",
+    ///         Type = "Https",
+    ///         Url = "https://example.com",
+    ///         Headers = 
+    ///         {
+    ///             { "key1", "value1" },
+    ///             { "key2", "value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -113,6 +140,9 @@ namespace Pulumi.Mongodbatlas
         [Output("dbRoleToExecute")]
         public Output<Outputs.StreamConnectionDbRoleToExecute?> DbRoleToExecute { get; private set; } = null!;
 
+        [Output("headers")]
+        public Output<ImmutableDictionary<string, string>?> Headers { get; private set; } = null!;
+
         /// <summary>
         /// Human-readable label that identifies the stream instance.
         /// </summary>
@@ -132,10 +162,13 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamConnectionSecurity?> Security { get; private set; } = null!;
 
         /// <summary>
-        /// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
+
+        [Output("url")]
+        public Output<string?> Url { get; private set; } = null!;
 
 
         /// <summary>
@@ -212,6 +245,14 @@ namespace Pulumi.Mongodbatlas
         [Input("dbRoleToExecute")]
         public Input<Inputs.StreamConnectionDbRoleToExecuteArgs>? DbRoleToExecute { get; set; }
 
+        [Input("headers")]
+        private InputMap<string>? _headers;
+        public InputMap<string> Headers
+        {
+            get => _headers ?? (_headers = new InputMap<string>());
+            set => _headers = value;
+        }
+
         /// <summary>
         /// Human-readable label that identifies the stream instance.
         /// </summary>
@@ -231,10 +272,13 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionSecurityArgs>? Security { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
+
+        [Input("url")]
+        public Input<string>? Url { get; set; }
 
         public StreamConnectionArgs()
         {
@@ -273,6 +317,14 @@ namespace Pulumi.Mongodbatlas
         [Input("dbRoleToExecute")]
         public Input<Inputs.StreamConnectionDbRoleToExecuteGetArgs>? DbRoleToExecute { get; set; }
 
+        [Input("headers")]
+        private InputMap<string>? _headers;
+        public InputMap<string> Headers
+        {
+            get => _headers ?? (_headers = new InputMap<string>());
+            set => _headers = value;
+        }
+
         /// <summary>
         /// Human-readable label that identifies the stream instance.
         /// </summary>
@@ -292,10 +344,13 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionSecurityGetArgs>? Security { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        [Input("url")]
+        public Input<string>? Url { get; set; }
 
         public StreamConnectionState()
         {

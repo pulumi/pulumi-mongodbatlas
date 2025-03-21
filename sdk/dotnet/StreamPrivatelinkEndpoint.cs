@@ -15,10 +15,18 @@ namespace Pulumi.Mongodbatlas
     /// `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
     /// 
     /// ## Example Usage
+    /// 
+    /// ### S
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint")]
     public partial class StreamPrivatelinkEndpoint : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Amazon Resource Name (ARN).
+        /// </summary>
+        [Output("arn")]
+        public Output<string?> Arn { get; private set; } = null!;
+
         /// <summary>
         /// Domain name of Privatelink connected cluster.
         /// </summary>
@@ -32,10 +40,22 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<string>> DnsSubDomains { get; private set; } = null!;
 
         /// <summary>
+        /// Error message if the connection is in a failed state.
+        /// </summary>
+        [Output("errorMessage")]
+        public Output<string> ErrorMessage { get; private set; } = null!;
+
+        /// <summary>
         /// Interface endpoint ID that is created from the specified service endpoint ID.
         /// </summary>
         [Output("interfaceEndpointId")]
         public Output<string> InterfaceEndpointId { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of interface endpoint that is created from the specified service endpoint ID.
+        /// </summary>
+        [Output("interfaceEndpointName")]
+        public Output<string> InterfaceEndpointName { get; private set; } = null!;
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -44,16 +64,23 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// Account ID from the cloud provider.
+        /// </summary>
+        [Output("providerAccountId")]
+        public Output<string> ProviderAccountId { get; private set; } = null!;
+
+        /// <summary>
         /// Provider where the Kafka cluster is deployed.
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
 
         /// <summary>
-        /// Domain name of Confluent cluster.
+        /// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+        /// by the API from the provided `arn`.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Service Endpoint ID.
@@ -120,6 +147,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class StreamPrivatelinkEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Amazon Resource Name (ARN).
+        /// </summary>
+        [Input("arn")]
+        public Input<string>? Arn { get; set; }
+
+        /// <summary>
         /// Domain name of Privatelink connected cluster.
         /// </summary>
         [Input("dnsDomain")]
@@ -150,7 +183,8 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProviderName { get; set; } = null!;
 
         /// <summary>
-        /// Domain name of Confluent cluster.
+        /// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+        /// by the API from the provided `arn`.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -176,6 +210,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class StreamPrivatelinkEndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Amazon Resource Name (ARN).
+        /// </summary>
+        [Input("arn")]
+        public Input<string>? Arn { get; set; }
+
+        /// <summary>
         /// Domain name of Privatelink connected cluster.
         /// </summary>
         [Input("dnsDomain")]
@@ -194,10 +234,22 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
+        /// Error message if the connection is in a failed state.
+        /// </summary>
+        [Input("errorMessage")]
+        public Input<string>? ErrorMessage { get; set; }
+
+        /// <summary>
         /// Interface endpoint ID that is created from the specified service endpoint ID.
         /// </summary>
         [Input("interfaceEndpointId")]
         public Input<string>? InterfaceEndpointId { get; set; }
+
+        /// <summary>
+        /// Name of interface endpoint that is created from the specified service endpoint ID.
+        /// </summary>
+        [Input("interfaceEndpointName")]
+        public Input<string>? InterfaceEndpointName { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -206,13 +258,20 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
+        /// Account ID from the cloud provider.
+        /// </summary>
+        [Input("providerAccountId")]
+        public Input<string>? ProviderAccountId { get; set; }
+
+        /// <summary>
         /// Provider where the Kafka cluster is deployed.
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
 
         /// <summary>
-        /// Domain name of Confluent cluster.
+        /// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+        /// by the API from the provided `arn`.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -17,6 +17,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Task<GetStreamPrivatelinkEndpointResult> InvokeAsync(GetStreamPrivatelinkEndpointArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamPrivatelinkEndpointResult>("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", args ?? new GetStreamPrivatelinkEndpointArgs(), options.WithDefaults());
@@ -27,6 +29,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetStreamPrivatelinkEndpointResult> Invoke(GetStreamPrivatelinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamPrivatelinkEndpointResult>("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", args ?? new GetStreamPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
@@ -37,6 +41,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetStreamPrivatelinkEndpointResult> Invoke(GetStreamPrivatelinkEndpointInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamPrivatelinkEndpointResult>("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", args ?? new GetStreamPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
@@ -87,17 +93,21 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetStreamPrivatelinkEndpointResult
     {
+        public readonly string Arn;
         public readonly string DnsDomain;
         public readonly ImmutableArray<string> DnsSubDomains;
+        public readonly string ErrorMessage;
         /// <summary>
         /// The ID of the Private Link connection.
         /// </summary>
         public readonly string Id;
         public readonly string InterfaceEndpointId;
+        public readonly string InterfaceEndpointName;
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         /// </summary>
         public readonly string ProjectId;
+        public readonly string ProviderAccountId;
         public readonly string ProviderName;
         public readonly string Region;
         public readonly string ServiceEndpointId;
@@ -106,15 +116,23 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetStreamPrivatelinkEndpointResult(
+            string arn,
+
             string dnsDomain,
 
             ImmutableArray<string> dnsSubDomains,
+
+            string errorMessage,
 
             string id,
 
             string interfaceEndpointId,
 
+            string interfaceEndpointName,
+
             string projectId,
+
+            string providerAccountId,
 
             string providerName,
 
@@ -126,11 +144,15 @@ namespace Pulumi.Mongodbatlas
 
             string vendor)
         {
+            Arn = arn;
             DnsDomain = dnsDomain;
             DnsSubDomains = dnsSubDomains;
+            ErrorMessage = errorMessage;
             Id = id;
             InterfaceEndpointId = interfaceEndpointId;
+            InterfaceEndpointName = interfaceEndpointName;
             ProjectId = projectId;
+            ProviderAccountId = providerAccountId;
             ProviderName = providerName;
             Region = region;
             ServiceEndpointId = serviceEndpointId;

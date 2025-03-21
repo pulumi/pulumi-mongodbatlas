@@ -17,6 +17,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Task<GetStreamPrivatelinkEndpointsResult> InvokeAsync(GetStreamPrivatelinkEndpointsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamPrivatelinkEndpointsResult>("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", args ?? new GetStreamPrivatelinkEndpointsArgs(), options.WithDefaults());
@@ -27,6 +29,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetStreamPrivatelinkEndpointsResult> Invoke(GetStreamPrivatelinkEndpointsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamPrivatelinkEndpointsResult>("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", args ?? new GetStreamPrivatelinkEndpointsInvokeArgs(), options.WithDefaults());
@@ -37,6 +41,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetStreamPrivatelinkEndpointsResult> Invoke(GetStreamPrivatelinkEndpointsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamPrivatelinkEndpointsResult>("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", args ?? new GetStreamPrivatelinkEndpointsInvokeArgs(), options.WithDefaults());

@@ -17,6 +17,21 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
     public static final StreamPrivatelinkEndpointState Empty = new StreamPrivatelinkEndpointState();
 
     /**
+     * Amazon Resource Name (ARN).
+     * 
+     */
+    @Import(name="arn")
+    private @Nullable Output<String> arn;
+
+    /**
+     * @return Amazon Resource Name (ARN).
+     * 
+     */
+    public Optional<Output<String>> arn() {
+        return Optional.ofNullable(this.arn);
+    }
+
+    /**
      * Domain name of Privatelink connected cluster.
      * 
      */
@@ -47,6 +62,21 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
     }
 
     /**
+     * Error message if the connection is in a failed state.
+     * 
+     */
+    @Import(name="errorMessage")
+    private @Nullable Output<String> errorMessage;
+
+    /**
+     * @return Error message if the connection is in a failed state.
+     * 
+     */
+    public Optional<Output<String>> errorMessage() {
+        return Optional.ofNullable(this.errorMessage);
+    }
+
+    /**
      * Interface endpoint ID that is created from the specified service endpoint ID.
      * 
      */
@@ -59,6 +89,21 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
      */
     public Optional<Output<String>> interfaceEndpointId() {
         return Optional.ofNullable(this.interfaceEndpointId);
+    }
+
+    /**
+     * Name of interface endpoint that is created from the specified service endpoint ID.
+     * 
+     */
+    @Import(name="interfaceEndpointName")
+    private @Nullable Output<String> interfaceEndpointName;
+
+    /**
+     * @return Name of interface endpoint that is created from the specified service endpoint ID.
+     * 
+     */
+    public Optional<Output<String>> interfaceEndpointName() {
+        return Optional.ofNullable(this.interfaceEndpointName);
     }
 
     /**
@@ -77,6 +122,21 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
     }
 
     /**
+     * Account ID from the cloud provider.
+     * 
+     */
+    @Import(name="providerAccountId")
+    private @Nullable Output<String> providerAccountId;
+
+    /**
+     * @return Account ID from the cloud provider.
+     * 
+     */
+    public Optional<Output<String>> providerAccountId() {
+        return Optional.ofNullable(this.providerAccountId);
+    }
+
+    /**
      * Provider where the Kafka cluster is deployed.
      * 
      */
@@ -92,14 +152,16 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
     }
 
     /**
-     * Domain name of Confluent cluster.
+     * When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+     * by the API from the provided `arn`.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Domain name of Confluent cluster.
+     * @return When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+     * by the API from the provided `arn`.
      * 
      */
     public Optional<Output<String>> region() {
@@ -154,10 +216,14 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
     private StreamPrivatelinkEndpointState() {}
 
     private StreamPrivatelinkEndpointState(StreamPrivatelinkEndpointState $) {
+        this.arn = $.arn;
         this.dnsDomain = $.dnsDomain;
         this.dnsSubDomains = $.dnsSubDomains;
+        this.errorMessage = $.errorMessage;
         this.interfaceEndpointId = $.interfaceEndpointId;
+        this.interfaceEndpointName = $.interfaceEndpointName;
         this.projectId = $.projectId;
+        this.providerAccountId = $.providerAccountId;
         this.providerName = $.providerName;
         this.region = $.region;
         this.serviceEndpointId = $.serviceEndpointId;
@@ -181,6 +247,27 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
 
         public Builder(StreamPrivatelinkEndpointState defaults) {
             $ = new StreamPrivatelinkEndpointState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param arn Amazon Resource Name (ARN).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder arn(@Nullable Output<String> arn) {
+            $.arn = arn;
+            return this;
+        }
+
+        /**
+         * @param arn Amazon Resource Name (ARN).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder arn(String arn) {
+            return arn(Output.of(arn));
         }
 
         /**
@@ -236,6 +323,27 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
         }
 
         /**
+         * @param errorMessage Error message if the connection is in a failed state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder errorMessage(@Nullable Output<String> errorMessage) {
+            $.errorMessage = errorMessage;
+            return this;
+        }
+
+        /**
+         * @param errorMessage Error message if the connection is in a failed state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder errorMessage(String errorMessage) {
+            return errorMessage(Output.of(errorMessage));
+        }
+
+        /**
          * @param interfaceEndpointId Interface endpoint ID that is created from the specified service endpoint ID.
          * 
          * @return builder
@@ -254,6 +362,27 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
          */
         public Builder interfaceEndpointId(String interfaceEndpointId) {
             return interfaceEndpointId(Output.of(interfaceEndpointId));
+        }
+
+        /**
+         * @param interfaceEndpointName Name of interface endpoint that is created from the specified service endpoint ID.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder interfaceEndpointName(@Nullable Output<String> interfaceEndpointName) {
+            $.interfaceEndpointName = interfaceEndpointName;
+            return this;
+        }
+
+        /**
+         * @param interfaceEndpointName Name of interface endpoint that is created from the specified service endpoint ID.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder interfaceEndpointName(String interfaceEndpointName) {
+            return interfaceEndpointName(Output.of(interfaceEndpointName));
         }
 
         /**
@@ -278,6 +407,27 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
         }
 
         /**
+         * @param providerAccountId Account ID from the cloud provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder providerAccountId(@Nullable Output<String> providerAccountId) {
+            $.providerAccountId = providerAccountId;
+            return this;
+        }
+
+        /**
+         * @param providerAccountId Account ID from the cloud provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder providerAccountId(String providerAccountId) {
+            return providerAccountId(Output.of(providerAccountId));
+        }
+
+        /**
          * @param providerName Provider where the Kafka cluster is deployed.
          * 
          * @return builder
@@ -299,7 +449,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
         }
 
         /**
-         * @param region Domain name of Confluent cluster.
+         * @param region When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+         * by the API from the provided `arn`.
          * 
          * @return builder
          * 
@@ -310,7 +461,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
         }
 
         /**
-         * @param region Domain name of Confluent cluster.
+         * @param region When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+         * by the API from the provided `arn`.
          * 
          * @return builder
          * 

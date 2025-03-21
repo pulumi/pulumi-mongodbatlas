@@ -12,6 +12,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getStreamPrivatelinkEndpoints(args: GetStreamPrivatelinkEndpointsArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamPrivatelinkEndpointsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -50,6 +52,8 @@ export interface GetStreamPrivatelinkEndpointsResult {
  * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getStreamPrivatelinkEndpointsOutput(args: GetStreamPrivatelinkEndpointsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamPrivatelinkEndpointsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

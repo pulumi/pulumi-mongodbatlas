@@ -16,6 +16,8 @@ import (
 // `StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
 //
 // ## Example Usage
+//
+// ### S
 func LookupStreamPrivatelinkEndpoint(ctx *pulumi.Context, args *LookupStreamPrivatelinkEndpointArgs, opts ...pulumi.InvokeOption) (*LookupStreamPrivatelinkEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStreamPrivatelinkEndpointResult
@@ -36,13 +38,17 @@ type LookupStreamPrivatelinkEndpointArgs struct {
 
 // A collection of values returned by getStreamPrivatelinkEndpoint.
 type LookupStreamPrivatelinkEndpointResult struct {
+	Arn           string   `pulumi:"arn"`
 	DnsDomain     string   `pulumi:"dnsDomain"`
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
+	ErrorMessage  string   `pulumi:"errorMessage"`
 	// The ID of the Private Link connection.
-	Id                  string `pulumi:"id"`
-	InterfaceEndpointId string `pulumi:"interfaceEndpointId"`
+	Id                    string `pulumi:"id"`
+	InterfaceEndpointId   string `pulumi:"interfaceEndpointId"`
+	InterfaceEndpointName string `pulumi:"interfaceEndpointName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId         string `pulumi:"projectId"`
+	ProviderAccountId string `pulumi:"providerAccountId"`
 	ProviderName      string `pulumi:"providerName"`
 	Region            string `pulumi:"region"`
 	ServiceEndpointId string `pulumi:"serviceEndpointId"`
@@ -86,12 +92,20 @@ func (o LookupStreamPrivatelinkEndpointResultOutput) ToLookupStreamPrivatelinkEn
 	return o
 }
 
+func (o LookupStreamPrivatelinkEndpointResultOutput) Arn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.Arn }).(pulumi.StringOutput)
+}
+
 func (o LookupStreamPrivatelinkEndpointResultOutput) DnsDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.DnsDomain }).(pulumi.StringOutput)
 }
 
 func (o LookupStreamPrivatelinkEndpointResultOutput) DnsSubDomains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) []string { return v.DnsSubDomains }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupStreamPrivatelinkEndpointResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
 }
 
 // The ID of the Private Link connection.
@@ -103,9 +117,17 @@ func (o LookupStreamPrivatelinkEndpointResultOutput) InterfaceEndpointId() pulum
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.InterfaceEndpointId }).(pulumi.StringOutput)
 }
 
+func (o LookupStreamPrivatelinkEndpointResultOutput) InterfaceEndpointName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.InterfaceEndpointName }).(pulumi.StringOutput)
+}
+
 // Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 func (o LookupStreamPrivatelinkEndpointResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o LookupStreamPrivatelinkEndpointResultOutput) ProviderAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.ProviderAccountId }).(pulumi.StringOutput)
 }
 
 func (o LookupStreamPrivatelinkEndpointResultOutput) ProviderName() pulumi.StringOutput {

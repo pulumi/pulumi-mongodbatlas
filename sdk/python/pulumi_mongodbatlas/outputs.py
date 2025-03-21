@@ -934,7 +934,6 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
         """
         :param str provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
-               
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
@@ -958,7 +957,6 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
         """
         Cloud service provider on which the servers are provisioned.
         The possible values are:
-
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
@@ -1092,7 +1090,7 @@ class AdvancedClusterReplicationSpec(dict):
                  zone_id: Optional[str] = None,
                  zone_name: Optional[str] = None):
         """
-        :param Sequence['AdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param Sequence['AdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         :param str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
         :param str id: **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
         :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
@@ -1118,7 +1116,7 @@ class AdvancedClusterReplicationSpec(dict):
     @pulumi.getter(name="regionConfigs")
     def region_configs(self) -> Sequence['outputs.AdvancedClusterReplicationSpecRegionConfig']:
         """
-        Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         """
         return pulumi.get(self, "region_configs")
 
@@ -1220,7 +1218,6 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         :param str provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
-               
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
@@ -1230,8 +1227,8 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
         :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
         :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
-        :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
-        :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+        :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+        :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         """
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -1265,7 +1262,6 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         """
         Cloud service provider on which the servers are provisioned.
         The possible values are:
-
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
@@ -1317,7 +1313,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
     @pulumi.getter(name="electableSpecs")
     def electable_specs(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs']:
         """
-        Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+        Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
         """
         return pulumi.get(self, "electable_specs")
 
@@ -1325,7 +1321,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
     @pulumi.getter(name="readOnlySpecs")
     def read_only_specs(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs']:
         """
-        Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+        Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         """
         return pulumi.get(self, "read_only_specs")
 
@@ -8625,7 +8621,7 @@ class StreamConnectionDbRoleToExecute(dict):
                  type: str):
         """
         :param str role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
-        :param str type: Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        :param str type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -8642,7 +8638,7 @@ class StreamConnectionDbRoleToExecute(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
         """
         return pulumi.get(self, "type")
 
@@ -9488,7 +9484,7 @@ class GetAdvancedClusterReplicationSpecResult(dict):
         :param Mapping[str, str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         :param str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
         :param int num_shards: Provide this value if you set a `cluster_type` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
-        :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         :param str zone_name: Name for the zone in a Global Cluster.
         """
@@ -9535,7 +9531,7 @@ class GetAdvancedClusterReplicationSpecResult(dict):
     @pulumi.getter(name="regionConfigs")
     def region_configs(self) -> Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigResult']:
         """
-        Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         """
         return pulumi.get(self, "region_configs")
 
@@ -10723,7 +10719,7 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
         :param Mapping[str, str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         :param str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
         :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
-        :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         :param str zone_name: Name for the zone in a Global Cluster.
         """
@@ -10770,7 +10766,7 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
     @pulumi.getter(name="regionConfigs")
     def region_configs(self) -> Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigResult']:
         """
-        Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         """
         return pulumi.get(self, "region_configs")
 
@@ -24596,12 +24592,14 @@ class GetStreamConnectionsResultResult(dict):
                  config: Mapping[str, str],
                  connection_name: str,
                  db_role_to_execute: 'outputs.GetStreamConnectionsResultDbRoleToExecuteResult',
+                 headers: Mapping[str, str],
                  id: str,
                  instance_name: str,
                  networking: 'outputs.GetStreamConnectionsResultNetworkingResult',
                  project_id: str,
                  security: 'outputs.GetStreamConnectionsResultSecurityResult',
-                 type: str):
+                 type: str,
+                 url: str):
         """
         :param 'GetStreamConnectionsResultAuthenticationArgs' authentication: User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
         :param 'GetStreamConnectionsResultAwsArgs' aws: The configuration for AWS Lambda connection. See AWS
@@ -24610,11 +24608,13 @@ class GetStreamConnectionsResultResult(dict):
         :param Mapping[str, str] config: A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
         :param str connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param 'GetStreamConnectionsResultDbRoleToExecuteArgs' db_role_to_execute: The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+        :param Mapping[str, str] headers: A map of key-value pairs for optional headers.
         :param str instance_name: Human-readable label that identifies the stream instance.
         :param 'GetStreamConnectionsResultNetworkingArgs' networking: Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
         :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param 'GetStreamConnectionsResultSecurityArgs' security: Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
         :param str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        :param str url: URL of the HTTPs endpoint that will be used for creating a connection.
         """
         pulumi.set(__self__, "authentication", authentication)
         pulumi.set(__self__, "aws", aws)
@@ -24623,12 +24623,14 @@ class GetStreamConnectionsResultResult(dict):
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "connection_name", connection_name)
         pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        pulumi.set(__self__, "headers", headers)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "networking", networking)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "security", security)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -24688,6 +24690,14 @@ class GetStreamConnectionsResultResult(dict):
 
     @property
     @pulumi.getter
+    def headers(self) -> Mapping[str, str]:
+        """
+        A map of key-value pairs for optional headers.
+        """
+        return pulumi.get(self, "headers")
+
+    @property
+    @pulumi.getter
     def id(self) -> str:
         return pulumi.get(self, "id")
 
@@ -24730,6 +24740,14 @@ class GetStreamConnectionsResultResult(dict):
         Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        URL of the HTTPs endpoint that will be used for creating a connection.
+        """
+        return pulumi.get(self, "url")
 
 
 @pulumi.output_type
@@ -25061,38 +25079,58 @@ class GetStreamInstancesResultStreamConfigResult(dict):
 @pulumi.output_type
 class GetStreamPrivatelinkEndpointsResultResult(dict):
     def __init__(__self__, *,
+                 arn: str,
                  dns_domain: str,
                  dns_sub_domains: Sequence[str],
+                 error_message: str,
                  id: str,
                  interface_endpoint_id: str,
+                 interface_endpoint_name: str,
                  project_id: str,
+                 provider_account_id: str,
                  provider_name: str,
                  region: str,
                  service_endpoint_id: str,
                  state: str,
                  vendor: str):
         """
+        :param str arn: Amazon Resource Name (ARN).
         :param str dns_domain: Domain name of Privatelink connected cluster.
         :param Sequence[str] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones.
+        :param str error_message: Error message if the connection is in a failed state.
         :param str id: The ID of the Private Link connection.
         :param str interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
+        :param str interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
         :param str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param str provider_account_id: Account ID from the cloud provider.
         :param str provider_name: Provider where the Kafka cluster is deployed.
-        :param str region: Domain name of Confluent cluster.
+        :param str region: When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
         :param str service_endpoint_id: Service Endpoint ID.
         :param str state: Status of the connection.
         :param str vendor: Vendor who manages the Kafka cluster.
         """
+        pulumi.set(__self__, "arn", arn)
         pulumi.set(__self__, "dns_domain", dns_domain)
         pulumi.set(__self__, "dns_sub_domains", dns_sub_domains)
+        pulumi.set(__self__, "error_message", error_message)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
+        pulumi.set(__self__, "interface_endpoint_name", interface_endpoint_name)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider_account_id", provider_account_id)
         pulumi.set(__self__, "provider_name", provider_name)
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "service_endpoint_id", service_endpoint_id)
         pulumi.set(__self__, "state", state)
         pulumi.set(__self__, "vendor", vendor)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN).
+        """
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dnsDomain")
@@ -25111,6 +25149,14 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         return pulumi.get(self, "dns_sub_domains")
 
     @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> str:
+        """
+        Error message if the connection is in a failed state.
+        """
+        return pulumi.get(self, "error_message")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -25127,12 +25173,28 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         return pulumi.get(self, "interface_endpoint_id")
 
     @property
+    @pulumi.getter(name="interfaceEndpointName")
+    def interface_endpoint_name(self) -> str:
+        """
+        Name of interface endpoint that is created from the specified service endpoint ID.
+        """
+        return pulumi.get(self, "interface_endpoint_name")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
         Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="providerAccountId")
+    def provider_account_id(self) -> str:
+        """
+        Account ID from the cloud provider.
+        """
+        return pulumi.get(self, "provider_account_id")
 
     @property
     @pulumi.getter(name="providerName")
@@ -25146,7 +25208,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter
     def region(self) -> str:
         """
-        Domain name of Confluent cluster.
+        When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
         """
         return pulumi.get(self, "region")
 

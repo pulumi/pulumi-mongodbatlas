@@ -12,6 +12,11 @@ import java.util.Objects;
 @CustomType
 public final class GetStreamPrivatelinkEndpointsResult {
     /**
+     * @return Amazon Resource Name (ARN).
+     * 
+     */
+    private String arn;
+    /**
      * @return Domain name of Privatelink connected cluster.
      * 
      */
@@ -21,6 +26,11 @@ public final class GetStreamPrivatelinkEndpointsResult {
      * 
      */
     private List<String> dnsSubDomains;
+    /**
+     * @return Error message if the connection is in a failed state.
+     * 
+     */
+    private String errorMessage;
     /**
      * @return The ID of the Private Link connection.
      * 
@@ -32,17 +42,27 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String interfaceEndpointId;
     /**
+     * @return Name of interface endpoint that is created from the specified service endpoint ID.
+     * 
+     */
+    private String interfaceEndpointName;
+    /**
      * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      * 
      */
     private String projectId;
+    /**
+     * @return Account ID from the cloud provider.
+     * 
+     */
+    private String providerAccountId;
     /**
      * @return Provider where the Kafka cluster is deployed.
      * 
      */
     private String providerName;
     /**
-     * @return Domain name of Confluent cluster.
+     * @return When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      * 
      */
     private String region;
@@ -64,6 +84,13 @@ public final class GetStreamPrivatelinkEndpointsResult {
 
     private GetStreamPrivatelinkEndpointsResult() {}
     /**
+     * @return Amazon Resource Name (ARN).
+     * 
+     */
+    public String arn() {
+        return this.arn;
+    }
+    /**
      * @return Domain name of Privatelink connected cluster.
      * 
      */
@@ -76,6 +103,13 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     public List<String> dnsSubDomains() {
         return this.dnsSubDomains;
+    }
+    /**
+     * @return Error message if the connection is in a failed state.
+     * 
+     */
+    public String errorMessage() {
+        return this.errorMessage;
     }
     /**
      * @return The ID of the Private Link connection.
@@ -92,11 +126,25 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.interfaceEndpointId;
     }
     /**
+     * @return Name of interface endpoint that is created from the specified service endpoint ID.
+     * 
+     */
+    public String interfaceEndpointName() {
+        return this.interfaceEndpointName;
+    }
+    /**
      * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      * 
      */
     public String projectId() {
         return this.projectId;
+    }
+    /**
+     * @return Account ID from the cloud provider.
+     * 
+     */
+    public String providerAccountId() {
+        return this.providerAccountId;
     }
     /**
      * @return Provider where the Kafka cluster is deployed.
@@ -106,7 +154,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.providerName;
     }
     /**
-     * @return Domain name of Confluent cluster.
+     * @return When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      * 
      */
     public String region() {
@@ -143,11 +191,15 @@ public final class GetStreamPrivatelinkEndpointsResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String arn;
         private String dnsDomain;
         private List<String> dnsSubDomains;
+        private String errorMessage;
         private String id;
         private String interfaceEndpointId;
+        private String interfaceEndpointName;
         private String projectId;
+        private String providerAccountId;
         private String providerName;
         private String region;
         private String serviceEndpointId;
@@ -156,11 +208,15 @@ public final class GetStreamPrivatelinkEndpointsResult {
         public Builder() {}
         public Builder(GetStreamPrivatelinkEndpointsResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.arn = defaults.arn;
     	      this.dnsDomain = defaults.dnsDomain;
     	      this.dnsSubDomains = defaults.dnsSubDomains;
+    	      this.errorMessage = defaults.errorMessage;
     	      this.id = defaults.id;
     	      this.interfaceEndpointId = defaults.interfaceEndpointId;
+    	      this.interfaceEndpointName = defaults.interfaceEndpointName;
     	      this.projectId = defaults.projectId;
+    	      this.providerAccountId = defaults.providerAccountId;
     	      this.providerName = defaults.providerName;
     	      this.region = defaults.region;
     	      this.serviceEndpointId = defaults.serviceEndpointId;
@@ -168,6 +224,14 @@ public final class GetStreamPrivatelinkEndpointsResult {
     	      this.vendor = defaults.vendor;
         }
 
+        @CustomType.Setter
+        public Builder arn(String arn) {
+            if (arn == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "arn");
+            }
+            this.arn = arn;
+            return this;
+        }
         @CustomType.Setter
         public Builder dnsDomain(String dnsDomain) {
             if (dnsDomain == null) {
@@ -188,6 +252,14 @@ public final class GetStreamPrivatelinkEndpointsResult {
             return dnsSubDomains(List.of(dnsSubDomains));
         }
         @CustomType.Setter
+        public Builder errorMessage(String errorMessage) {
+            if (errorMessage == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "errorMessage");
+            }
+            this.errorMessage = errorMessage;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "id");
@@ -204,11 +276,27 @@ public final class GetStreamPrivatelinkEndpointsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder interfaceEndpointName(String interfaceEndpointName) {
+            if (interfaceEndpointName == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "interfaceEndpointName");
+            }
+            this.interfaceEndpointName = interfaceEndpointName;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "projectId");
             }
             this.projectId = projectId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder providerAccountId(String providerAccountId) {
+            if (providerAccountId == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "providerAccountId");
+            }
+            this.providerAccountId = providerAccountId;
             return this;
         }
         @CustomType.Setter
@@ -253,11 +341,15 @@ public final class GetStreamPrivatelinkEndpointsResult {
         }
         public GetStreamPrivatelinkEndpointsResult build() {
             final var _resultValue = new GetStreamPrivatelinkEndpointsResult();
+            _resultValue.arn = arn;
             _resultValue.dnsDomain = dnsDomain;
             _resultValue.dnsSubDomains = dnsSubDomains;
+            _resultValue.errorMessage = errorMessage;
             _resultValue.id = id;
             _resultValue.interfaceEndpointId = interfaceEndpointId;
+            _resultValue.interfaceEndpointName = interfaceEndpointName;
             _resultValue.projectId = projectId;
+            _resultValue.providerAccountId = providerAccountId;
             _resultValue.providerName = providerName;
             _resultValue.region = region;
             _resultValue.serviceEndpointId = serviceEndpointId;

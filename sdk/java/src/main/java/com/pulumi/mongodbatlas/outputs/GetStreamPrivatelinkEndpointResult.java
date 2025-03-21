@@ -11,19 +11,23 @@ import java.util.Objects;
 
 @CustomType
 public final class GetStreamPrivatelinkEndpointResult {
+    private String arn;
     private String dnsDomain;
     private List<String> dnsSubDomains;
+    private String errorMessage;
     /**
      * @return The ID of the Private Link connection.
      * 
      */
     private String id;
     private String interfaceEndpointId;
+    private String interfaceEndpointName;
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      * 
      */
     private String projectId;
+    private String providerAccountId;
     private String providerName;
     private String region;
     private String serviceEndpointId;
@@ -31,11 +35,17 @@ public final class GetStreamPrivatelinkEndpointResult {
     private String vendor;
 
     private GetStreamPrivatelinkEndpointResult() {}
+    public String arn() {
+        return this.arn;
+    }
     public String dnsDomain() {
         return this.dnsDomain;
     }
     public List<String> dnsSubDomains() {
         return this.dnsSubDomains;
+    }
+    public String errorMessage() {
+        return this.errorMessage;
     }
     /**
      * @return The ID of the Private Link connection.
@@ -47,12 +57,18 @@ public final class GetStreamPrivatelinkEndpointResult {
     public String interfaceEndpointId() {
         return this.interfaceEndpointId;
     }
+    public String interfaceEndpointName() {
+        return this.interfaceEndpointName;
+    }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      * 
      */
     public String projectId() {
         return this.projectId;
+    }
+    public String providerAccountId() {
+        return this.providerAccountId;
     }
     public String providerName() {
         return this.providerName;
@@ -79,11 +95,15 @@ public final class GetStreamPrivatelinkEndpointResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String arn;
         private String dnsDomain;
         private List<String> dnsSubDomains;
+        private String errorMessage;
         private String id;
         private String interfaceEndpointId;
+        private String interfaceEndpointName;
         private String projectId;
+        private String providerAccountId;
         private String providerName;
         private String region;
         private String serviceEndpointId;
@@ -92,11 +112,15 @@ public final class GetStreamPrivatelinkEndpointResult {
         public Builder() {}
         public Builder(GetStreamPrivatelinkEndpointResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.arn = defaults.arn;
     	      this.dnsDomain = defaults.dnsDomain;
     	      this.dnsSubDomains = defaults.dnsSubDomains;
+    	      this.errorMessage = defaults.errorMessage;
     	      this.id = defaults.id;
     	      this.interfaceEndpointId = defaults.interfaceEndpointId;
+    	      this.interfaceEndpointName = defaults.interfaceEndpointName;
     	      this.projectId = defaults.projectId;
+    	      this.providerAccountId = defaults.providerAccountId;
     	      this.providerName = defaults.providerName;
     	      this.region = defaults.region;
     	      this.serviceEndpointId = defaults.serviceEndpointId;
@@ -104,6 +128,14 @@ public final class GetStreamPrivatelinkEndpointResult {
     	      this.vendor = defaults.vendor;
         }
 
+        @CustomType.Setter
+        public Builder arn(String arn) {
+            if (arn == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "arn");
+            }
+            this.arn = arn;
+            return this;
+        }
         @CustomType.Setter
         public Builder dnsDomain(String dnsDomain) {
             if (dnsDomain == null) {
@@ -124,6 +156,14 @@ public final class GetStreamPrivatelinkEndpointResult {
             return dnsSubDomains(List.of(dnsSubDomains));
         }
         @CustomType.Setter
+        public Builder errorMessage(String errorMessage) {
+            if (errorMessage == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "errorMessage");
+            }
+            this.errorMessage = errorMessage;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "id");
@@ -140,11 +180,27 @@ public final class GetStreamPrivatelinkEndpointResult {
             return this;
         }
         @CustomType.Setter
+        public Builder interfaceEndpointName(String interfaceEndpointName) {
+            if (interfaceEndpointName == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "interfaceEndpointName");
+            }
+            this.interfaceEndpointName = interfaceEndpointName;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "projectId");
             }
             this.projectId = projectId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder providerAccountId(String providerAccountId) {
+            if (providerAccountId == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "providerAccountId");
+            }
+            this.providerAccountId = providerAccountId;
             return this;
         }
         @CustomType.Setter
@@ -189,11 +245,15 @@ public final class GetStreamPrivatelinkEndpointResult {
         }
         public GetStreamPrivatelinkEndpointResult build() {
             final var _resultValue = new GetStreamPrivatelinkEndpointResult();
+            _resultValue.arn = arn;
             _resultValue.dnsDomain = dnsDomain;
             _resultValue.dnsSubDomains = dnsSubDomains;
+            _resultValue.errorMessage = errorMessage;
             _resultValue.id = id;
             _resultValue.interfaceEndpointId = interfaceEndpointId;
+            _resultValue.interfaceEndpointName = interfaceEndpointName;
             _resultValue.projectId = projectId;
+            _resultValue.providerAccountId = providerAccountId;
             _resultValue.providerName = providerName;
             _resultValue.region = region;
             _resultValue.serviceEndpointId = serviceEndpointId;

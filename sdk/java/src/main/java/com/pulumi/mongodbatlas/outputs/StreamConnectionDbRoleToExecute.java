@@ -16,7 +16,7 @@ public final class StreamConnectionDbRoleToExecute {
      */
     private String role;
     /**
-     * @return Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      * 
      */
     private String type;
@@ -30,7 +30,7 @@ public final class StreamConnectionDbRoleToExecute {
         return this.role;
     }
     /**
-     * @return Type of connection. Can be `Cluster`, `Kafka`, `Sample`, or `AWSLambda`.
+     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      * 
      */
     public String type() {

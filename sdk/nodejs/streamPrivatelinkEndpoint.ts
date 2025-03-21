@@ -10,6 +10,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
     /**
@@ -40,6 +42,10 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
     }
 
     /**
+     * Amazon Resource Name (ARN).
+     */
+    public readonly arn!: pulumi.Output<string | undefined>;
+    /**
      * Domain name of Privatelink connected cluster.
      */
     public readonly dnsDomain!: pulumi.Output<string | undefined>;
@@ -48,21 +54,34 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
      */
     public readonly dnsSubDomains!: pulumi.Output<string[] | undefined>;
     /**
+     * Error message if the connection is in a failed state.
+     */
+    public /*out*/ readonly errorMessage!: pulumi.Output<string>;
+    /**
      * Interface endpoint ID that is created from the specified service endpoint ID.
      */
     public /*out*/ readonly interfaceEndpointId!: pulumi.Output<string>;
+    /**
+     * Name of interface endpoint that is created from the specified service endpoint ID.
+     */
+    public /*out*/ readonly interfaceEndpointName!: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * Account ID from the cloud provider.
+     */
+    public /*out*/ readonly providerAccountId!: pulumi.Output<string>;
+    /**
      * Provider where the Kafka cluster is deployed.
      */
     public readonly providerName!: pulumi.Output<string>;
     /**
-     * Domain name of Confluent cluster.
+     * When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+     * by the API from the provided `arn`.
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    public readonly region!: pulumi.Output<string>;
     /**
      * Service Endpoint ID.
      */
@@ -89,10 +108,14 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StreamPrivatelinkEndpointState | undefined;
+            resourceInputs["arn"] = state ? state.arn : undefined;
             resourceInputs["dnsDomain"] = state ? state.dnsDomain : undefined;
             resourceInputs["dnsSubDomains"] = state ? state.dnsSubDomains : undefined;
+            resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
             resourceInputs["interfaceEndpointId"] = state ? state.interfaceEndpointId : undefined;
+            resourceInputs["interfaceEndpointName"] = state ? state.interfaceEndpointName : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["providerAccountId"] = state ? state.providerAccountId : undefined;
             resourceInputs["providerName"] = state ? state.providerName : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["serviceEndpointId"] = state ? state.serviceEndpointId : undefined;
@@ -109,6 +132,7 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
             if ((!args || args.vendor === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vendor'");
             }
+            resourceInputs["arn"] = args ? args.arn : undefined;
             resourceInputs["dnsDomain"] = args ? args.dnsDomain : undefined;
             resourceInputs["dnsSubDomains"] = args ? args.dnsSubDomains : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -116,7 +140,10 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["serviceEndpointId"] = args ? args.serviceEndpointId : undefined;
             resourceInputs["vendor"] = args ? args.vendor : undefined;
+            resourceInputs["errorMessage"] = undefined /*out*/;
             resourceInputs["interfaceEndpointId"] = undefined /*out*/;
+            resourceInputs["interfaceEndpointName"] = undefined /*out*/;
+            resourceInputs["providerAccountId"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -129,6 +156,10 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
  */
 export interface StreamPrivatelinkEndpointState {
     /**
+     * Amazon Resource Name (ARN).
+     */
+    arn?: pulumi.Input<string>;
+    /**
      * Domain name of Privatelink connected cluster.
      */
     dnsDomain?: pulumi.Input<string>;
@@ -137,19 +168,32 @@ export interface StreamPrivatelinkEndpointState {
      */
     dnsSubDomains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Error message if the connection is in a failed state.
+     */
+    errorMessage?: pulumi.Input<string>;
+    /**
      * Interface endpoint ID that is created from the specified service endpoint ID.
      */
     interfaceEndpointId?: pulumi.Input<string>;
+    /**
+     * Name of interface endpoint that is created from the specified service endpoint ID.
+     */
+    interfaceEndpointName?: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
     projectId?: pulumi.Input<string>;
     /**
+     * Account ID from the cloud provider.
+     */
+    providerAccountId?: pulumi.Input<string>;
+    /**
      * Provider where the Kafka cluster is deployed.
      */
     providerName?: pulumi.Input<string>;
     /**
-     * Domain name of Confluent cluster.
+     * When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+     * by the API from the provided `arn`.
      */
     region?: pulumi.Input<string>;
     /**
@@ -171,6 +215,10 @@ export interface StreamPrivatelinkEndpointState {
  */
 export interface StreamPrivatelinkEndpointArgs {
     /**
+     * Amazon Resource Name (ARN).
+     */
+    arn?: pulumi.Input<string>;
+    /**
      * Domain name of Privatelink connected cluster.
      */
     dnsDomain?: pulumi.Input<string>;
@@ -187,7 +235,8 @@ export interface StreamPrivatelinkEndpointArgs {
      */
     providerName: pulumi.Input<string>;
     /**
-     * Domain name of Confluent cluster.
+     * When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+     * by the API from the provided `arn`.
      */
     region?: pulumi.Input<string>;
     /**

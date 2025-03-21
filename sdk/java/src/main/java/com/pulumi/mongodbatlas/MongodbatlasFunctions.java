@@ -33572,6 +33572,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args) {
         return getStreamPrivatelinkEndpoint(args, InvokeOptions.Empty);
@@ -33582,6 +33584,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpointPlain(GetStreamPrivatelinkEndpointPlainArgs args) {
@@ -33594,6 +33598,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", TypeShape.of(GetStreamPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
@@ -33604,6 +33610,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args, InvokeOutputOptions options) {
@@ -33616,6 +33624,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpointPlain(GetStreamPrivatelinkEndpointPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", TypeShape.of(GetStreamPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
@@ -33626,6 +33636,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args) {
@@ -33638,6 +33650,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpointsPlain(GetStreamPrivatelinkEndpointsPlainArgs args) {
         return getStreamPrivatelinkEndpointsPlain(args, InvokeOptions.Empty);
@@ -33648,6 +33662,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args, InvokeOptions options) {
@@ -33660,6 +33676,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", TypeShape.of(GetStreamPrivatelinkEndpointsInvokeResult.class), args, Utilities.withVersion(options));
@@ -33670,6 +33688,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpointsPlain(GetStreamPrivatelinkEndpointsPlainArgs args, InvokeOptions options) {

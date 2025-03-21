@@ -14,6 +14,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetStreamPrivatelinkEndpointsResultResult
     {
         /// <summary>
+        /// Amazon Resource Name (ARN).
+        /// </summary>
+        public readonly string Arn;
+        /// <summary>
         /// Domain name of Privatelink connected cluster.
         /// </summary>
         public readonly string DnsDomain;
@@ -21,6 +25,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Sub-Domain name of Confluent cluster. These are typically your availability zones.
         /// </summary>
         public readonly ImmutableArray<string> DnsSubDomains;
+        /// <summary>
+        /// Error message if the connection is in a failed state.
+        /// </summary>
+        public readonly string ErrorMessage;
         /// <summary>
         /// The ID of the Private Link connection.
         /// </summary>
@@ -30,15 +38,23 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string InterfaceEndpointId;
         /// <summary>
+        /// Name of interface endpoint that is created from the specified service endpoint ID.
+        /// </summary>
+        public readonly string InterfaceEndpointName;
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// Account ID from the cloud provider.
+        /// </summary>
+        public readonly string ProviderAccountId;
         /// <summary>
         /// Provider where the Kafka cluster is deployed.
         /// </summary>
         public readonly string ProviderName;
         /// <summary>
-        /// Domain name of Confluent cluster.
+        /// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
         /// </summary>
         public readonly string Region;
         /// <summary>
@@ -56,15 +72,23 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetStreamPrivatelinkEndpointsResultResult(
+            string arn,
+
             string dnsDomain,
 
             ImmutableArray<string> dnsSubDomains,
+
+            string errorMessage,
 
             string id,
 
             string interfaceEndpointId,
 
+            string interfaceEndpointName,
+
             string projectId,
+
+            string providerAccountId,
 
             string providerName,
 
@@ -76,11 +100,15 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string vendor)
         {
+            Arn = arn;
             DnsDomain = dnsDomain;
             DnsSubDomains = dnsSubDomains;
+            ErrorMessage = errorMessage;
             Id = id;
             InterfaceEndpointId = interfaceEndpointId;
+            InterfaceEndpointName = interfaceEndpointName;
             ProjectId = projectId;
+            ProviderAccountId = providerAccountId;
             ProviderName = providerName;
             Region = region;
             ServiceEndpointId = serviceEndpointId;

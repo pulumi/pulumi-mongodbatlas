@@ -22,9 +22,25 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### S
+ * 
  */
 @ResourceType(type="mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint")
 public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResource {
+    /**
+     * Amazon Resource Name (ARN).
+     * 
+     */
+    @Export(name="arn", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> arn;
+
+    /**
+     * @return Amazon Resource Name (ARN).
+     * 
+     */
+    public Output<Optional<String>> arn() {
+        return Codegen.optional(this.arn);
+    }
     /**
      * Domain name of Privatelink connected cluster.
      * 
@@ -54,6 +70,20 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return Codegen.optional(this.dnsSubDomains);
     }
     /**
+     * Error message if the connection is in a failed state.
+     * 
+     */
+    @Export(name="errorMessage", refs={String.class}, tree="[0]")
+    private Output<String> errorMessage;
+
+    /**
+     * @return Error message if the connection is in a failed state.
+     * 
+     */
+    public Output<String> errorMessage() {
+        return this.errorMessage;
+    }
+    /**
      * Interface endpoint ID that is created from the specified service endpoint ID.
      * 
      */
@@ -66,6 +96,20 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      */
     public Output<String> interfaceEndpointId() {
         return this.interfaceEndpointId;
+    }
+    /**
+     * Name of interface endpoint that is created from the specified service endpoint ID.
+     * 
+     */
+    @Export(name="interfaceEndpointName", refs={String.class}, tree="[0]")
+    private Output<String> interfaceEndpointName;
+
+    /**
+     * @return Name of interface endpoint that is created from the specified service endpoint ID.
+     * 
+     */
+    public Output<String> interfaceEndpointName() {
+        return this.interfaceEndpointName;
     }
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -82,6 +126,20 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return this.projectId;
     }
     /**
+     * Account ID from the cloud provider.
+     * 
+     */
+    @Export(name="providerAccountId", refs={String.class}, tree="[0]")
+    private Output<String> providerAccountId;
+
+    /**
+     * @return Account ID from the cloud provider.
+     * 
+     */
+    public Output<String> providerAccountId() {
+        return this.providerAccountId;
+    }
+    /**
      * Provider where the Kafka cluster is deployed.
      * 
      */
@@ -96,18 +154,20 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return this.providerName;
     }
     /**
-     * Domain name of Confluent cluster.
+     * When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+     * by the API from the provided `arn`.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> region;
+    private Output<String> region;
 
     /**
-     * @return Domain name of Confluent cluster.
+     * @return When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
+     * by the API from the provided `arn`.
      * 
      */
-    public Output<Optional<String>> region() {
-        return Codegen.optional(this.region);
+    public Output<String> region() {
+        return this.region;
     }
     /**
      * Service Endpoint ID.
