@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.NetworkPeering;
  * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
  * import com.pulumi.aws.vpcPeeringConnectionAccepter;
- * import com.pulumi.aws.VpcPeeringConnectionAccepterArgs;
+ * import com.pulumi.aws.vpcPeeringConnectionAccepterArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;

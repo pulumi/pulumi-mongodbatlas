@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
  * import com.pulumi.aws.vpcEndpoint;
- * import com.pulumi.aws.VpcEndpointArgs;
+ * import com.pulumi.aws.vpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
  * import java.util.List;
@@ -73,8 +73,8 @@ import javax.annotation.Nullable;
  *             .vpcId("vpc-7fc0a543")
  *             .serviceName(test.endpointServiceName())
  *             .vpcEndpointType("Interface")
- *             .subnetIds("subnet-de0406d2")
- *             .securityGroupIds("sg-3f238186")
+ *             .subnetIds(List.of("subnet-de0406d2"))
+ *             .securityGroupIds(List.of("sg-3f238186"))
  *             .build());
  * 
  *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
@@ -105,7 +105,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
  * import com.pulumi.azurerm.privateEndpoint;
- * import com.pulumi.azurerm.PrivateEndpointArgs;
+ * import com.pulumi.azurerm.privateEndpointArgs;
  * import com.pulumi.mongodbatlas.ServerlessInstance;
  * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
@@ -133,7 +133,12 @@ import javax.annotation.Nullable;
  *             .location(testAzurermResourceGroup.location())
  *             .resourceGroupName(resourceGroupName)
  *             .subnetId(testAzurermSubnet.id())
- *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .privateServiceConnection(List.of(Map.ofEntries(
+ *                 Map.entry("name", test.privateLinkServiceName()),
+ *                 Map.entry("privateConnectionResourceId", test.privateLinkServiceResourceId()),
+ *                 Map.entry("isManualConnection", true),
+ *                 Map.entry("requestMessage", "Azure Private Link test")
+ *             )))
  *             .build());
  * 
  *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()

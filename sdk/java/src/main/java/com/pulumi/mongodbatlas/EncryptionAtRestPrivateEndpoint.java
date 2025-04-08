@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.EncryptionAtRestPrivateEndpoint;
  * import com.pulumi.mongodbatlas.EncryptionAtRestPrivateEndpointArgs;
  * import com.pulumi.azapi.updateResource;
- * import com.pulumi.azapi.UpdateResourceArgs;
+ * import com.pulumi.azapi.updateResourceArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.List;
  * import java.util.ArrayList;
