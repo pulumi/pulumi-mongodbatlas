@@ -121,94 +121,11 @@ import javax.annotation.Nullable;
  * ### Example Kafka SSL Connection
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.StreamConnection;
- * import com.pulumi.mongodbatlas.StreamConnectionArgs;
- * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
- * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
- *             .projectId(projectId)
- *             .instanceName("NewInstance")
- *             .connectionName("KafkaConnection")
- *             .type("Kafka")
- *             .authentication(StreamConnectionAuthenticationArgs.builder()
- *                 .mechanism("PLAIN")
- *                 .username("user")
- *                 .password("somepassword")
- *                 .build())
- *             .security(StreamConnectionSecurityArgs.builder()
- *                 .protocol("SSL")
- *                 .broker_public_certificate("-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----")
- *                 .build())
- *             .config(Map.of("auto.offset.reset", "latest"))
- *             .bootstrapServers("localhost:9091,localhost:9092")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example AWSLambda Connection
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.StreamConnection;
- * import com.pulumi.mongodbatlas.StreamConnectionArgs;
- * import com.pulumi.mongodbatlas.inputs.StreamConnectionAwsArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
- *             .projectId(projectId)
- *             .instanceName("NewInstance")
- *             .connectionName("AWSLambdaConnection")
- *             .type("AWSLambda")
- *             .aws(StreamConnectionAwsArgs.builder()
- *                 .role_arn("arn:aws:iam::123456789123:role/lambdaRole")
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Https Connection

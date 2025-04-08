@@ -75,7 +75,7 @@ import javax.annotation.Nullable;
  *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
  *                 .metricName("ASSERT_REGULAR")
  *                 .operator("LESS_THAN")
- *                 .threshold(99)
+ *                 .threshold(99.0)
  *                 .units("RAW")
  *                 .mode("AVERAGE")
  *                 .build())
@@ -134,7 +134,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .thresholdConfig(AlertConfigurationThresholdConfigArgs.builder()
  *                 .operator("LESS_THAN")
- *                 .threshold(1)
+ *                 .threshold(1.0)
  *                 .units("HOURS")
  *                 .build())
  *             .build());
@@ -204,7 +204,7 @@ import javax.annotation.Nullable;
  *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
  *                 .metricName("ASSERT_REGULAR")
  *                 .operator("LESS_THAN")
- *                 .threshold(99)
+ *                 .threshold(99.0)
  *                 .units("RAW")
  *                 .mode("AVERAGE")
  *                 .build())
@@ -255,7 +255,7 @@ import javax.annotation.Nullable;
  *             .eventType("USERS_WITHOUT_MULTI_FACTOR_AUTH")
  *             .notifications(AlertConfigurationNotificationArgs.builder()
  *                 .typeName("PAGER_DUTY")
- *                 .integrationId(test.applyValue(getThirdPartyIntegrationResult -> getThirdPartyIntegrationResult.id()))
+ *                 .integrationId(test.id())
  *                 .build())
  *             .build());
  * 
