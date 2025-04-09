@@ -21,11 +21,21 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ```terraform 
-        /// data "mongodbatlas_online_archives" "test" {
-        ///     project_id   = var.project_id
-        ///     cluster_name = var.cluster_name
-        /// }
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetOnlineArchives.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClusterName = clusterName,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// 
         /// ## Attributes reference
@@ -83,11 +93,21 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ```terraform 
-        /// data "mongodbatlas_online_archives" "test" {
-        ///     project_id   = var.project_id
-        ///     cluster_name = var.cluster_name
-        /// }
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetOnlineArchives.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClusterName = clusterName,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// 
         /// ## Attributes reference
@@ -145,11 +165,21 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ```terraform 
-        /// data "mongodbatlas_online_archives" "test" {
-        ///     project_id   = var.project_id
-        ///     cluster_name = var.cluster_name
-        /// }
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetOnlineArchives.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClusterName = clusterName,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// 
         /// ## Attributes reference

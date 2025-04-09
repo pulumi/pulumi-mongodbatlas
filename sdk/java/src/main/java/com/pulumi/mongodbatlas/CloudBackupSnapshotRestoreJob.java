@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
  * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
  * import com.pulumi.mongodbatlas.cloudProviderSnapshot;
- * import com.pulumi.mongodbatlas.CloudProviderSnapshotArgs;
+ * import com.pulumi.mongodbatlas.cloudProviderSnapshotArgs;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
@@ -107,7 +107,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
  * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
  * import com.pulumi.mongodbatlas.cloudProviderSnapshot;
- * import com.pulumi.mongodbatlas.CloudProviderSnapshotArgs;
+ * import com.pulumi.mongodbatlas.cloudProviderSnapshotArgs;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
@@ -217,7 +217,7 @@ import javax.annotation.Nullable;
  *             .projectId(clusterTest.projectId())
  *             .clusterName(clusterTest.name())
  *             .description("My description")
- *             .retentionInDays("1")
+ *             .retentionInDays(1)
  *             .build());
  * 
  *         for (var i = 0; i < (pointInTimeUtcSeconds == 0 ? 0 : 1); i++) {
