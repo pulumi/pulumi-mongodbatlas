@@ -83,7 +83,7 @@ import javax.annotation.Nullable;
  *             .projectId(testPushBasedLogExport.projectId())
  *             .build());
  * 
- *         ctx.export("test", test.applyValue(getPushBasedLogExportResult -> getPushBasedLogExportResult).applyValue(test -> test.applyValue(getPushBasedLogExportResult -> getPushBasedLogExportResult.prefixPath())));
+ *         ctx.export("test", test.applyValue(_test -> _test.prefixPath()));
  *     }
  * }
  * }

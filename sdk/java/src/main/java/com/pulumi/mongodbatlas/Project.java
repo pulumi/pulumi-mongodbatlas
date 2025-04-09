@@ -56,11 +56,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         final var test = MongodbatlasFunctions.getRolesOrgId();
+ *         final var test = MongodbatlasFunctions.getRolesOrgId(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
  * 
  *         var testProject = new Project("testProject", ProjectArgs.builder()
  *             .name("project-name")
- *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
+ *             .orgId(test.orgId())
  *             .projectOwnerId("<OWNER_ACCOUNT_ID>")
  *             .teams(            
  *                 ProjectTeamArgs.builder()

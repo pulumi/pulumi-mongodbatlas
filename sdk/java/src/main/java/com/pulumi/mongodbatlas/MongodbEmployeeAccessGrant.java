@@ -59,8 +59,8 @@ import javax.annotation.Nullable;
  *             .clusterName(clusterName)
  *             .build());
  * 
- *         ctx.export("grantType", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.grantType()));
- *         ctx.export("expirationTime", dsExample.applyValue(getMongodbEmployeeAccessGrantResult -> getMongodbEmployeeAccessGrantResult.expirationTime()));
+ *         ctx.export("grantType", dsExample.grantType());
+ *         ctx.export("expirationTime", dsExample.expirationTime());
  *     }
  * }
  * }
