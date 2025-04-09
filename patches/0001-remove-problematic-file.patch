@@ -1,0 +1,40 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Venelin <venelin@pulumi.com>
+Date: Wed, 9 Apr 2025 17:37:04 +0300
+Subject: [PATCH] remove problematic file
+
+
+diff --git a/internal/service/advancedclustertpf/testdata/ClusterTwoRepSpecsWithAutoScalingAndSpecs/import_GET__api_atlas_v2_groups_{groupId}_containers?providerName=AWS_2023-01-01.json b/internal/service/advancedclustertpf/testdata/ClusterTwoRepSpecsWithAutoScalingAndSpecs/import_GET__api_atlas_v2_groups_{groupId}_containers?providerName=AWS_2023-01-01.json
+deleted file mode 100644
+index 51db6ff2..00000000
+--- a/internal/service/advancedclustertpf/testdata/ClusterTwoRepSpecsWithAutoScalingAndSpecs/import_GET__api_atlas_v2_groups_{groupId}_containers?providerName=AWS_2023-01-01.json
++++ /dev/null
+@@ -1,27 +0,0 @@
+-{
+- "links": [
+-  {
+-   "href": "https://cloud-dev.mongodb.com/api/atlas/v2/groups/{groupId}/containers?includeCount=true\u0026providerName=AWS\u0026pageNum=1\u0026itemsPerPage=100",
+-   "rel": "self"
+-  }
+- ],
+- "results": [
+-  {
+-   "atlasCidrBlock": "192.168.248.0/21",
+-   "id": "67d01a2d01d3561b07caf76c",
+-   "providerName": "AWS",
+-   "provisioned": true,
+-   "regionName": "US_EAST_1",
+-   "vpcId": "vpc-0e0706bcd69b8855a"
+-  },
+-  {
+-   "atlasCidrBlock": "192.168.240.0/21",
+-   "id": "67d01a2d01d3561b07caf76d",
+-   "providerName": "AWS",
+-   "provisioned": true,
+-   "regionName": "US_WEST_2",
+-   "vpcId": "vpc-04a84758be9599707"
+-  }
+- ],
+- "totalCount": 2
+-}
+\ No newline at end of file
