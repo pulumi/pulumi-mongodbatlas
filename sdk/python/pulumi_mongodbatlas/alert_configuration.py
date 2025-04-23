@@ -294,6 +294,9 @@ class _AlertConfigurationState:
 
 
 class AlertConfiguration(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/alertConfiguration:AlertConfiguration"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

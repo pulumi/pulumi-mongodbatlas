@@ -158,6 +158,9 @@ class _MongodbEmployeeAccessGrantState:
 
 
 class MongodbEmployeeAccessGrant(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -227,6 +227,9 @@ class _ProjectIpAccessListState:
 
 
 class ProjectIpAccessList(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

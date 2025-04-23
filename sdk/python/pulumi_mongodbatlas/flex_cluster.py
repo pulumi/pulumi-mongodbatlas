@@ -306,6 +306,9 @@ class _FlexClusterState:
 
 
 class FlexCluster(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/flexCluster:FlexCluster"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

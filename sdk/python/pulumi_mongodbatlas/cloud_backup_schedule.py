@@ -562,6 +562,9 @@ class _CloudBackupScheduleState:
 
 
 class CloudBackupSchedule(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

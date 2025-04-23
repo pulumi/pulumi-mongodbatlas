@@ -364,6 +364,9 @@ class _NetworkContainerState:
 
 
 class NetworkContainer(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/networkContainer:NetworkContainer"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

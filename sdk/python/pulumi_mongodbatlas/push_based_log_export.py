@@ -217,6 +217,9 @@ class _PushBasedLogExportState:
 
 
 class PushBasedLogExport(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

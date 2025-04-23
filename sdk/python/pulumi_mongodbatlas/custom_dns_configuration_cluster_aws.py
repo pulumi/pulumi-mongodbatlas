@@ -96,6 +96,9 @@ class _CustomDnsConfigurationClusterAwsState:
 
 
 class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

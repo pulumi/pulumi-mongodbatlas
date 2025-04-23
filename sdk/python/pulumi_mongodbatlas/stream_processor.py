@@ -256,6 +256,9 @@ class _StreamProcessorState:
 
 
 class StreamProcessor(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/streamProcessor:StreamProcessor"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

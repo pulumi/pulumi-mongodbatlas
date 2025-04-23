@@ -434,6 +434,9 @@ class _PrivateLinkEndpointServiceState:
 
 
 class PrivateLinkEndpointService(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
