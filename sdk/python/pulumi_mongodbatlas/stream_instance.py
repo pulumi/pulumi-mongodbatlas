@@ -177,6 +177,9 @@ class _StreamInstanceState:
 
 
 class StreamInstance(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/streamInstance:StreamInstance"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

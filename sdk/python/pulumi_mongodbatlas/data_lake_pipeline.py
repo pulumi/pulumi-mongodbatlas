@@ -305,6 +305,9 @@ class _DataLakePipelineState:
 
 
 class DataLakePipeline(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/dataLakePipeline:DataLakePipeline"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -363,6 +363,9 @@ class _LdapConfigurationState:
 
 
 class LdapConfiguration(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/ldapConfiguration:LdapConfiguration"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

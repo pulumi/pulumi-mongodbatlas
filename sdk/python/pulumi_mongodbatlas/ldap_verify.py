@@ -319,6 +319,9 @@ class _LdapVerifyState:
 
 
 class LdapVerify(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/ldapVerify:LdapVerify"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

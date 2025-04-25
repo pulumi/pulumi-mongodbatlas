@@ -109,6 +109,9 @@ class _PrivateEndpointRegionalModeState:
 
 
 class PrivateEndpointRegionalMode(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

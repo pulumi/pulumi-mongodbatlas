@@ -448,6 +448,9 @@ class _ThirdPartyIntegrationState:
 
 
 class ThirdPartyIntegration(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -644,6 +644,9 @@ class _FederatedSettingsIdentityProviderState:
 
 
 class FederatedSettingsIdentityProvider(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

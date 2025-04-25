@@ -174,6 +174,9 @@ class _CustomDbRoleState:
 
 
 class CustomDbRole(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/customDbRole:CustomDbRole"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

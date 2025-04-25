@@ -320,6 +320,9 @@ class _CloudBackupSnapshotExportJobState:
 
 
 class CloudBackupSnapshotExportJob(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

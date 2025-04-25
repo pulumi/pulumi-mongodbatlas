@@ -163,6 +163,9 @@ class _EncryptionAtRestState:
 
 
 class EncryptionAtRest(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/encryptionAtRest:EncryptionAtRest"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

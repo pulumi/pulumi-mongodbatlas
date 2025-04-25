@@ -620,6 +620,9 @@ class _SearchIndexState:
 
 
 class SearchIndex(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/searchIndex:SearchIndex"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
