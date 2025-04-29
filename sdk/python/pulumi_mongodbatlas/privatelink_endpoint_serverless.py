@@ -191,6 +191,9 @@ class _PrivatelinkEndpointServerlessState:
 
 
 class PrivatelinkEndpointServerless(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

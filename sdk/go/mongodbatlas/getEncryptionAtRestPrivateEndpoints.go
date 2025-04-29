@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("numberOfEndpoints", pulumi.Int(len(plural.Results)))
+//			ctx.Export("numberOfEndpoints", len(plural.Results))
 //			return nil
 //		})
 //	}
@@ -70,7 +70,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("numberOfEndpoints", pulumi.Int(len(plural.Results)))
+//			ctx.Export("numberOfEndpoints", len(plural.Results))
 //			return nil
 //		})
 //	}

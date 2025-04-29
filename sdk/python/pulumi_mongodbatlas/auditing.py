@@ -191,6 +191,9 @@ class _AuditingState:
 
 
 class Auditing(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/auditing:Auditing"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

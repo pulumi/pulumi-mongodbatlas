@@ -189,6 +189,9 @@ class _ClusterOutageSimulationState:
 
 
 class ClusterOutageSimulation(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

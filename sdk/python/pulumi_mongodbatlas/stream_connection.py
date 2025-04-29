@@ -400,6 +400,9 @@ class _StreamConnectionState:
 
 
 class StreamConnection(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/streamConnection:StreamConnection"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

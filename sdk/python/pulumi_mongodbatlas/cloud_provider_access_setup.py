@@ -154,6 +154,9 @@ class _CloudProviderAccessSetupState:
 
 
 class CloudProviderAccessSetup(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
