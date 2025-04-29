@@ -169,6 +169,9 @@ class _SearchDeploymentState:
 
 
 class SearchDeployment(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/searchDeployment:SearchDeployment"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

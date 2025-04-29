@@ -116,6 +116,9 @@ class _TeamsState:
 
 
 class Teams(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/teams:Teams"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

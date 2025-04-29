@@ -371,6 +371,9 @@ class _StreamPrivatelinkEndpointState:
 
 
 class StreamPrivatelinkEndpoint(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

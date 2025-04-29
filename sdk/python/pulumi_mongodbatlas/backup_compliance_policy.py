@@ -528,6 +528,9 @@ class _BackupCompliancePolicyState:
 
 
 class BackupCompliancePolicy(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

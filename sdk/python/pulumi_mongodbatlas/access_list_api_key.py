@@ -168,6 +168,9 @@ class _AccessListApiKeyState:
 
 
 class AccessListApiKey(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/accessListApiKey:AccessListApiKey"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

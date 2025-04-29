@@ -447,6 +447,9 @@ class _OnlineArchiveState:
 
 
 class OnlineArchive(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/onlineArchive:OnlineArchive"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

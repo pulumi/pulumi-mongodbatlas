@@ -176,6 +176,9 @@ class _FederatedSettingsOrgRoleMappingState:
 
 
 class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

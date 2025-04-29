@@ -239,6 +239,9 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
 
 
 class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

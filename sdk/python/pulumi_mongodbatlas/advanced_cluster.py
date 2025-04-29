@@ -955,6 +955,9 @@ class _AdvancedClusterState:
 
 
 class AdvancedCluster(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/advancedCluster:AdvancedCluster"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

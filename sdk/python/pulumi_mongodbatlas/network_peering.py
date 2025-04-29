@@ -683,6 +683,9 @@ class _NetworkPeeringState:
 
 
 class NetworkPeering(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/networkPeering:NetworkPeering"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

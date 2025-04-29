@@ -456,6 +456,9 @@ class _ServerlessInstanceState:
 
 
 class ServerlessInstance(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/serverlessInstance:ServerlessInstance"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

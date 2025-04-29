@@ -281,6 +281,9 @@ class _FederatedSettingsOrgConfigState:
 
 
 class FederatedSettingsOrgConfig(pulumi.CustomResource):
+
+    pulumi_type = "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
