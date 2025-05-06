@@ -31,14 +31,14 @@ public final class DatabaseUserScopeArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     * @return Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
      * 
      */
     public Optional<Output<String>> type() {
@@ -92,7 +92,7 @@ public final class DatabaseUserScopeArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+         * @param type Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class DatabaseUserScopeArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+         * @param type Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
          * 
          * @return builder
          * 

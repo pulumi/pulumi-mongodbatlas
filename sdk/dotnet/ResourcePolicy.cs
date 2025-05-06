@@ -10,6 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.ResourcePolicy
+    /// 
+    /// `mongodbatlas.ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
+    /// 
     /// ## Example Usage
     /// 
     /// ## Import
@@ -32,6 +36,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("createdDate")]
         public Output<string> CreatedDate { get; private set; } = null!;
+
+        /// <summary>
+        /// Description of the Atlas resource policy.
+        /// </summary>
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
         /// The user that last updated the Atlas resource policy.
@@ -116,6 +126,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class ResourcePolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Description of the Atlas resource policy.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// Human-readable label that describes the Atlas resource policy.
         /// </summary>
         [Input("name")]
@@ -158,6 +174,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("createdDate")]
         public Input<string>? CreatedDate { get; set; }
+
+        /// <summary>
+        /// Description of the Atlas resource policy.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         /// <summary>
         /// The user that last updated the Atlas resource policy.

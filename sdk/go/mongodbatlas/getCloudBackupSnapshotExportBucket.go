@@ -83,6 +83,8 @@ type LookupCloudBackupSnapshotExportBucketResult struct {
 	// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
 	ServiceUrl string `pulumi:"serviceUrl"`
 	// UUID that identifies the Azure Active Directory Tenant ID.
+	//
+	// Deprecated: This parameter is deprecated.
 	TenantId string `pulumi:"tenantId"`
 }
 
@@ -160,6 +162,8 @@ func (o LookupCloudBackupSnapshotExportBucketResultOutput) ServiceUrl() pulumi.S
 }
 
 // UUID that identifies the Azure Active Directory Tenant ID.
+//
+// Deprecated: This parameter is deprecated.
 func (o LookupCloudBackupSnapshotExportBucketResultOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.TenantId }).(pulumi.StringOutput)
 }

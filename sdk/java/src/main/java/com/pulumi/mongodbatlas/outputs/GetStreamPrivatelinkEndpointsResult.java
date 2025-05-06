@@ -12,17 +12,17 @@ import java.util.Objects;
 @CustomType
 public final class GetStreamPrivatelinkEndpointsResult {
     /**
-     * @return Amazon Resource Name (ARN).
+     * @return Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      * 
      */
     private String arn;
     /**
-     * @return Domain name of Privatelink connected cluster.
+     * @return The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
      * 
      */
     private String dnsDomain;
     /**
-     * @return Sub-Domain name of Confluent cluster. These are typically your availability zones.
+     * @return Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
      * 
      */
     private List<String> dnsSubDomains;
@@ -47,7 +47,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String interfaceEndpointName;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      * 
      */
     private String projectId;
@@ -57,17 +57,17 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String providerAccountId;
     /**
-     * @return Provider where the Kafka cluster is deployed.
+     * @return Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
      * 
      */
     private String providerName;
     /**
-     * @return When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+     * @return The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      * 
      */
     private String region;
     /**
-     * @return Service Endpoint ID.
+     * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      * 
      */
     private String serviceEndpointId;
@@ -77,28 +77,28 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String state;
     /**
-     * @return Vendor who manages the Kafka cluster.
+     * @return Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
      * 
      */
     private String vendor;
 
     private GetStreamPrivatelinkEndpointsResult() {}
     /**
-     * @return Amazon Resource Name (ARN).
+     * @return Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      * 
      */
     public String arn() {
         return this.arn;
     }
     /**
-     * @return Domain name of Privatelink connected cluster.
+     * @return The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
      * 
      */
     public String dnsDomain() {
         return this.dnsDomain;
     }
     /**
-     * @return Sub-Domain name of Confluent cluster. These are typically your availability zones.
+     * @return Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
      * 
      */
     public List<String> dnsSubDomains() {
@@ -133,7 +133,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.interfaceEndpointName;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      * 
      */
     public String projectId() {
@@ -147,21 +147,21 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.providerAccountId;
     }
     /**
-     * @return Provider where the Kafka cluster is deployed.
+     * @return Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
      * 
      */
     public String providerName() {
         return this.providerName;
     }
     /**
-     * @return When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+     * @return The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      * 
      */
     public String region() {
         return this.region;
     }
     /**
-     * @return Service Endpoint ID.
+     * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      * 
      */
     public String serviceEndpointId() {
@@ -175,7 +175,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.state;
     }
     /**
-     * @return Vendor who manages the Kafka cluster.
+     * @return Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
      * 
      */
     public String vendor() {

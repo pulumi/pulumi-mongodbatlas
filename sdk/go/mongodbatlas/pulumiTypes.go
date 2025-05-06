@@ -20,15 +20,15 @@ type AdvancedClusterAdvancedConfiguration struct {
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs *int `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern *string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern *string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
 	// When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
@@ -72,15 +72,15 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntPtrInput `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
 	// When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
@@ -200,21 +200,21 @@ func (o AdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.In
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.DefaultMaxTimeMs }).(pulumi.IntPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o AdvancedClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.DefaultReadConcern }).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o AdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.DefaultWriteConcern }).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o AdvancedClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
 }
@@ -322,9 +322,9 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultMaxTimeMs() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -334,7 +334,7 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulu
 	}).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -344,9 +344,9 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pul
 	}).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -1321,12 +1321,12 @@ type AdvancedClusterReplicationSpec struct {
 	ExternalId *string `pulumi:"externalId"`
 	// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	Id *string `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
 	// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	NumShards *int `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs []AdvancedClusterReplicationSpecRegionConfig `pulumi:"regionConfigs"`
@@ -1353,12 +1353,12 @@ type AdvancedClusterReplicationSpecArgs struct {
 	ExternalId pulumi.StringPtrInput `pulumi:"externalId"`
 	// **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
 	// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	NumShards pulumi.IntPtrInput `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs AdvancedClusterReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
@@ -1430,7 +1430,7 @@ func (o AdvancedClusterReplicationSpecOutput) ExternalId() pulumi.StringPtrOutpu
 
 // **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o AdvancedClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -1438,7 +1438,7 @@ func (o AdvancedClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
 // Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
 // If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o AdvancedClusterReplicationSpecOutput) NumShards() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *int { return v.NumShards }).(pulumi.IntPtrOutput)
 }
@@ -4832,7 +4832,7 @@ type CloudBackupScheduleCopySetting struct {
 	RegionName *string `pulumi:"regionName"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
-	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId *string `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs *bool `pulumi:"shouldCopyOplogs"`
@@ -4860,7 +4860,7 @@ type CloudBackupScheduleCopySettingArgs struct {
 	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
-	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId pulumi.StringPtrInput `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs pulumi.BoolPtrInput `pulumi:"shouldCopyOplogs"`
@@ -4936,7 +4936,7 @@ func (o CloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringPtrOutpu
 
 // Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 //
-// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o CloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.ReplicationSpecId }).(pulumi.StringPtrOutput)
 }
@@ -7133,20 +7133,19 @@ type ClusterAdvancedConfiguration struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                *int     `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern *string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern *string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-	//
 	// - TLS1_0
 	// - TLS1_1
 	// - TLS1_2
@@ -7185,20 +7184,19 @@ type ClusterAdvancedConfigurationArgs struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                pulumi.IntPtrInput      `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-	//
 	// - TLS1_0
 	// - TLS1_1
 	// - TLS1_2
@@ -7313,21 +7311,21 @@ func (o ClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntPtrOutp
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.DefaultMaxTimeMs }).(pulumi.IntPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o ClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.DefaultReadConcern }).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o ClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.DefaultWriteConcern }).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o ClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
 }
@@ -7338,7 +7336,6 @@ func (o ClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolPtrOu
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-//
 // - TLS1_0
 // - TLS1_1
 // - TLS1_2
@@ -7435,9 +7432,9 @@ func (o ClusterAdvancedConfigurationPtrOutput) DefaultMaxTimeMs() pulumi.IntPtrO
 	}).(pulumi.IntPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o ClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -7447,7 +7444,7 @@ func (o ClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o ClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -7457,9 +7454,9 @@ func (o ClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o ClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -7480,7 +7477,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPt
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-//
 // - TLS1_0
 // - TLS1_1
 // - TLS1_2
@@ -9326,7 +9322,7 @@ type CustomDbRoleAction struct {
 	//
 	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 	//
-	// * `resources.#.database_name`	Database on which the action is granted.
+	// * `resources.#.database_name` Database on which the action is granted. Use the empty string ("") to allow an action on all databases.
 	//
 	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 	//
@@ -9357,7 +9353,7 @@ type CustomDbRoleActionArgs struct {
 	//
 	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 	//
-	// * `resources.#.database_name`	Database on which the action is granted.
+	// * `resources.#.database_name` Database on which the action is granted. Use the empty string ("") to allow an action on all databases.
 	//
 	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 	//
@@ -9430,7 +9426,7 @@ func (o CustomDbRoleActionOutput) Action() pulumi.StringOutput {
 //
 // > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 //
-// * `resources.#.database_name`	Database on which the action is granted.
+// * `resources.#.database_name` Database on which the action is granted. Use the empty string ("") to allow an action on all databases.
 //
 // > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 //
@@ -10847,7 +10843,7 @@ func (o DatabaseUserRoleArrayOutput) Index(i pulumi.IntInput) DatabaseUserRoleOu
 type DatabaseUserScope struct {
 	// Name of the cluster or Atlas Data Lake that the user has access to.
 	Name *string `pulumi:"name"`
-	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
 	Type *string `pulumi:"type"`
 }
 
@@ -10865,7 +10861,7 @@ type DatabaseUserScopeInput interface {
 type DatabaseUserScopeArgs struct {
 	// Name of the cluster or Atlas Data Lake that the user has access to.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -10925,7 +10921,7 @@ func (o DatabaseUserScopeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseUserScope) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
 func (o DatabaseUserScopeOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseUserScope) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -14851,6 +14847,162 @@ func (o LdapVerifyValidationArrayOutput) Index(i pulumi.IntInput) LdapVerifyVali
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LdapVerifyValidation {
 		return vs[0].([]LdapVerifyValidation)[vs[1].(int)]
 	}).(LdapVerifyValidationOutput)
+}
+
+type MaintenanceWindowProtectedHours struct {
+	// Zero-based integer that represents the end hour of the day for the protected hours window.
+	EndHourOfDay int `pulumi:"endHourOfDay"`
+	// Zero-based integer that represents the beginning hour of the day for the protected hours window.
+	StartHourOfDay int `pulumi:"startHourOfDay"`
+}
+
+// MaintenanceWindowProtectedHoursInput is an input type that accepts MaintenanceWindowProtectedHoursArgs and MaintenanceWindowProtectedHoursOutput values.
+// You can construct a concrete instance of `MaintenanceWindowProtectedHoursInput` via:
+//
+//	MaintenanceWindowProtectedHoursArgs{...}
+type MaintenanceWindowProtectedHoursInput interface {
+	pulumi.Input
+
+	ToMaintenanceWindowProtectedHoursOutput() MaintenanceWindowProtectedHoursOutput
+	ToMaintenanceWindowProtectedHoursOutputWithContext(context.Context) MaintenanceWindowProtectedHoursOutput
+}
+
+type MaintenanceWindowProtectedHoursArgs struct {
+	// Zero-based integer that represents the end hour of the day for the protected hours window.
+	EndHourOfDay pulumi.IntInput `pulumi:"endHourOfDay"`
+	// Zero-based integer that represents the beginning hour of the day for the protected hours window.
+	StartHourOfDay pulumi.IntInput `pulumi:"startHourOfDay"`
+}
+
+func (MaintenanceWindowProtectedHoursArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaintenanceWindowProtectedHours)(nil)).Elem()
+}
+
+func (i MaintenanceWindowProtectedHoursArgs) ToMaintenanceWindowProtectedHoursOutput() MaintenanceWindowProtectedHoursOutput {
+	return i.ToMaintenanceWindowProtectedHoursOutputWithContext(context.Background())
+}
+
+func (i MaintenanceWindowProtectedHoursArgs) ToMaintenanceWindowProtectedHoursOutputWithContext(ctx context.Context) MaintenanceWindowProtectedHoursOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaintenanceWindowProtectedHoursOutput)
+}
+
+func (i MaintenanceWindowProtectedHoursArgs) ToMaintenanceWindowProtectedHoursPtrOutput() MaintenanceWindowProtectedHoursPtrOutput {
+	return i.ToMaintenanceWindowProtectedHoursPtrOutputWithContext(context.Background())
+}
+
+func (i MaintenanceWindowProtectedHoursArgs) ToMaintenanceWindowProtectedHoursPtrOutputWithContext(ctx context.Context) MaintenanceWindowProtectedHoursPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaintenanceWindowProtectedHoursOutput).ToMaintenanceWindowProtectedHoursPtrOutputWithContext(ctx)
+}
+
+// MaintenanceWindowProtectedHoursPtrInput is an input type that accepts MaintenanceWindowProtectedHoursArgs, MaintenanceWindowProtectedHoursPtr and MaintenanceWindowProtectedHoursPtrOutput values.
+// You can construct a concrete instance of `MaintenanceWindowProtectedHoursPtrInput` via:
+//
+//	        MaintenanceWindowProtectedHoursArgs{...}
+//
+//	or:
+//
+//	        nil
+type MaintenanceWindowProtectedHoursPtrInput interface {
+	pulumi.Input
+
+	ToMaintenanceWindowProtectedHoursPtrOutput() MaintenanceWindowProtectedHoursPtrOutput
+	ToMaintenanceWindowProtectedHoursPtrOutputWithContext(context.Context) MaintenanceWindowProtectedHoursPtrOutput
+}
+
+type maintenanceWindowProtectedHoursPtrType MaintenanceWindowProtectedHoursArgs
+
+func MaintenanceWindowProtectedHoursPtr(v *MaintenanceWindowProtectedHoursArgs) MaintenanceWindowProtectedHoursPtrInput {
+	return (*maintenanceWindowProtectedHoursPtrType)(v)
+}
+
+func (*maintenanceWindowProtectedHoursPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MaintenanceWindowProtectedHours)(nil)).Elem()
+}
+
+func (i *maintenanceWindowProtectedHoursPtrType) ToMaintenanceWindowProtectedHoursPtrOutput() MaintenanceWindowProtectedHoursPtrOutput {
+	return i.ToMaintenanceWindowProtectedHoursPtrOutputWithContext(context.Background())
+}
+
+func (i *maintenanceWindowProtectedHoursPtrType) ToMaintenanceWindowProtectedHoursPtrOutputWithContext(ctx context.Context) MaintenanceWindowProtectedHoursPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaintenanceWindowProtectedHoursPtrOutput)
+}
+
+type MaintenanceWindowProtectedHoursOutput struct{ *pulumi.OutputState }
+
+func (MaintenanceWindowProtectedHoursOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaintenanceWindowProtectedHours)(nil)).Elem()
+}
+
+func (o MaintenanceWindowProtectedHoursOutput) ToMaintenanceWindowProtectedHoursOutput() MaintenanceWindowProtectedHoursOutput {
+	return o
+}
+
+func (o MaintenanceWindowProtectedHoursOutput) ToMaintenanceWindowProtectedHoursOutputWithContext(ctx context.Context) MaintenanceWindowProtectedHoursOutput {
+	return o
+}
+
+func (o MaintenanceWindowProtectedHoursOutput) ToMaintenanceWindowProtectedHoursPtrOutput() MaintenanceWindowProtectedHoursPtrOutput {
+	return o.ToMaintenanceWindowProtectedHoursPtrOutputWithContext(context.Background())
+}
+
+func (o MaintenanceWindowProtectedHoursOutput) ToMaintenanceWindowProtectedHoursPtrOutputWithContext(ctx context.Context) MaintenanceWindowProtectedHoursPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MaintenanceWindowProtectedHours) *MaintenanceWindowProtectedHours {
+		return &v
+	}).(MaintenanceWindowProtectedHoursPtrOutput)
+}
+
+// Zero-based integer that represents the end hour of the day for the protected hours window.
+func (o MaintenanceWindowProtectedHoursOutput) EndHourOfDay() pulumi.IntOutput {
+	return o.ApplyT(func(v MaintenanceWindowProtectedHours) int { return v.EndHourOfDay }).(pulumi.IntOutput)
+}
+
+// Zero-based integer that represents the beginning hour of the day for the protected hours window.
+func (o MaintenanceWindowProtectedHoursOutput) StartHourOfDay() pulumi.IntOutput {
+	return o.ApplyT(func(v MaintenanceWindowProtectedHours) int { return v.StartHourOfDay }).(pulumi.IntOutput)
+}
+
+type MaintenanceWindowProtectedHoursPtrOutput struct{ *pulumi.OutputState }
+
+func (MaintenanceWindowProtectedHoursPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MaintenanceWindowProtectedHours)(nil)).Elem()
+}
+
+func (o MaintenanceWindowProtectedHoursPtrOutput) ToMaintenanceWindowProtectedHoursPtrOutput() MaintenanceWindowProtectedHoursPtrOutput {
+	return o
+}
+
+func (o MaintenanceWindowProtectedHoursPtrOutput) ToMaintenanceWindowProtectedHoursPtrOutputWithContext(ctx context.Context) MaintenanceWindowProtectedHoursPtrOutput {
+	return o
+}
+
+func (o MaintenanceWindowProtectedHoursPtrOutput) Elem() MaintenanceWindowProtectedHoursOutput {
+	return o.ApplyT(func(v *MaintenanceWindowProtectedHours) MaintenanceWindowProtectedHours {
+		if v != nil {
+			return *v
+		}
+		var ret MaintenanceWindowProtectedHours
+		return ret
+	}).(MaintenanceWindowProtectedHoursOutput)
+}
+
+// Zero-based integer that represents the end hour of the day for the protected hours window.
+func (o MaintenanceWindowProtectedHoursPtrOutput) EndHourOfDay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MaintenanceWindowProtectedHours) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.EndHourOfDay
+	}).(pulumi.IntPtrOutput)
+}
+
+// Zero-based integer that represents the beginning hour of the day for the protected hours window.
+func (o MaintenanceWindowProtectedHoursPtrOutput) StartHourOfDay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MaintenanceWindowProtectedHours) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.StartHourOfDay
+	}).(pulumi.IntPtrOutput)
 }
 
 type OnlineArchiveCriteria struct {
@@ -20119,19 +20271,22 @@ type GetAdvancedClusterAdvancedConfiguration struct {
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
@@ -20167,19 +20322,22 @@ type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
@@ -20265,21 +20423,21 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetAdvancedClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
 }
@@ -20290,6 +20448,9 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) JavascriptEnabled() pulum
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+// - TLS1_0
+// - TLS1_1
+// - TLS1_2
 func (o GetAdvancedClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
 }
@@ -21062,11 +21223,11 @@ type GetAdvancedClusterReplicationSpec struct {
 	ContainerId map[string]string `pulumi:"containerId"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
 	ExternalId string `pulumi:"externalId"`
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	Id string `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	NumShards int `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs []GetAdvancedClusterReplicationSpecRegionConfig `pulumi:"regionConfigs"`
@@ -21092,11 +21253,11 @@ type GetAdvancedClusterReplicationSpecArgs struct {
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
 	ExternalId pulumi.StringInput `pulumi:"externalId"`
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	Id pulumi.StringInput `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	NumShards pulumi.IntInput `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs GetAdvancedClusterReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
@@ -21167,14 +21328,14 @@ func (o GetAdvancedClusterReplicationSpecOutput) ExternalId() pulumi.StringOutpu
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) string { return v.ExternalId }).(pulumi.StringOutput)
 }
 
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetAdvancedClusterReplicationSpecOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetAdvancedClusterReplicationSpecOutput) NumShards() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
@@ -22085,7 +22246,7 @@ type GetAdvancedClustersResult struct {
 	CreateDate        string                                      `pulumi:"createDate"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
@@ -22149,7 +22310,7 @@ type GetAdvancedClustersResultArgs struct {
 	CreateDate        pulumi.StringInput                                  `pulumi:"createDate"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
@@ -22282,7 +22443,7 @@ func (o GetAdvancedClustersResultOutput) CreateDate() pulumi.StringOutput {
 
 // Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetAdvancedClustersResultOutput) DiskSizeGb() pulumi.Float64Output {
 	return o.ApplyT(func(v GetAdvancedClustersResult) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
@@ -22400,19 +22561,22 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
@@ -22448,19 +22612,22 @@ type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
@@ -22548,21 +22715,21 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs()
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
 }
@@ -22573,6 +22740,9 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) JavascriptEnabled(
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+// - TLS1_0
+// - TLS1_1
+// - TLS1_2
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
 }
@@ -23345,11 +23515,11 @@ type GetAdvancedClustersResultReplicationSpec struct {
 	ContainerId map[string]string `pulumi:"containerId"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
 	ExternalId string `pulumi:"externalId"`
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	Id string `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	NumShards int `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs []GetAdvancedClustersResultReplicationSpecRegionConfig `pulumi:"regionConfigs"`
@@ -23375,11 +23545,11 @@ type GetAdvancedClustersResultReplicationSpecArgs struct {
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
 	ExternalId pulumi.StringInput `pulumi:"externalId"`
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	Id pulumi.StringInput `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	NumShards pulumi.IntInput `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
 	RegionConfigs GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
@@ -23450,14 +23620,14 @@ func (o GetAdvancedClustersResultReplicationSpecOutput) ExternalId() pulumi.Stri
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) string { return v.ExternalId }).(pulumi.StringOutput)
 }
 
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetAdvancedClustersResultReplicationSpecOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetAdvancedClustersResultReplicationSpecOutput) NumShards() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
@@ -27892,7 +28062,7 @@ type GetCloudBackupScheduleCopySetting struct {
 	RegionName string `pulumi:"regionName"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
-	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId string `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs bool `pulumi:"shouldCopyOplogs"`
@@ -27920,7 +28090,7 @@ type GetCloudBackupScheduleCopySettingArgs struct {
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
-	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId pulumi.StringInput `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs pulumi.BoolInput `pulumi:"shouldCopyOplogs"`
@@ -27996,7 +28166,7 @@ func (o GetCloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringOutpu
 
 // Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 //
-// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetCloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.ReplicationSpecId }).(pulumi.StringOutput)
 }
@@ -28816,6 +28986,8 @@ type GetCloudBackupSnapshotExportBucketsResult struct {
 	// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
 	ServiceUrl string `pulumi:"serviceUrl"`
 	// UUID that identifies the Azure Active Directory Tenant ID.
+	//
+	// Deprecated: This parameter is deprecated.
 	TenantId string `pulumi:"tenantId"`
 }
 
@@ -28844,6 +29016,8 @@ type GetCloudBackupSnapshotExportBucketsResultArgs struct {
 	// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
 	ServiceUrl pulumi.StringInput `pulumi:"serviceUrl"`
 	// UUID that identifies the Azure Active Directory Tenant ID.
+	//
+	// Deprecated: This parameter is deprecated.
 	TenantId pulumi.StringInput `pulumi:"tenantId"`
 }
 
@@ -28929,6 +29103,8 @@ func (o GetCloudBackupSnapshotExportBucketsResultOutput) ServiceUrl() pulumi.Str
 }
 
 // UUID that identifies the Azure Active Directory Tenant ID.
+//
+// Deprecated: This parameter is deprecated.
 func (o GetCloudBackupSnapshotExportBucketsResultOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.TenantId }).(pulumi.StringOutput)
 }
@@ -30471,19 +30647,22 @@ type GetClusterAdvancedConfiguration struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                int      `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
@@ -30518,19 +30697,22 @@ type GetClusterAdvancedConfigurationArgs struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                pulumi.IntInput         `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
@@ -30615,21 +30797,21 @@ func (o GetClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutp
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o GetClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
 }
@@ -30640,6 +30822,9 @@ func (o GetClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolOu
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+// - TLS1_0
+// - TLS1_1
+// - TLS1_2
 func (o GetClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
 }
@@ -32759,19 +32944,22 @@ type GetClustersResultAdvancedConfiguration struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                int      `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
@@ -32805,19 +32993,22 @@ type GetClustersResultAdvancedConfigurationArgs struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                pulumi.IntInput         `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
@@ -32901,21 +33092,21 @@ func (o GetClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetClustersResultAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o GetClustersResultAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetClustersResultAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
 }
@@ -32926,6 +33117,9 @@ func (o GetClustersResultAdvancedConfigurationOutput) JavascriptEnabled() pulumi
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+// - TLS1_0
+// - TLS1_1
+// - TLS1_2
 func (o GetClustersResultAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
 }
@@ -37330,7 +37524,7 @@ func (o GetDatabaseUserRoleArrayOutput) Index(i pulumi.IntInput) GetDatabaseUser
 type GetDatabaseUserScope struct {
 	// Name of the role to grant.
 	Name string `pulumi:"name"`
-	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
 	Type string `pulumi:"type"`
 }
 
@@ -37348,7 +37542,7 @@ type GetDatabaseUserScopeInput interface {
 type GetDatabaseUserScopeArgs struct {
 	// Name of the role to grant.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -37408,7 +37602,7 @@ func (o GetDatabaseUserScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUserScope) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
 func (o GetDatabaseUserScopeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUserScope) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -37439,6 +37633,8 @@ type GetDatabaseUsersResult struct {
 	AuthDatabaseName string `pulumi:"authDatabaseName"`
 	// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
 	AwsIamType string `pulumi:"awsIamType"`
+	// Description of this database user.
+	Description string `pulumi:"description"`
 	// Autogenerated Unique ID for this data source.
 	Id     string                        `pulumi:"id"`
 	Labels []GetDatabaseUsersResultLabel `pulumi:"labels"`
@@ -37478,6 +37674,8 @@ type GetDatabaseUsersResultArgs struct {
 	AuthDatabaseName pulumi.StringInput `pulumi:"authDatabaseName"`
 	// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
 	AwsIamType pulumi.StringInput `pulumi:"awsIamType"`
+	// Description of this database user.
+	Description pulumi.StringInput `pulumi:"description"`
 	// Autogenerated Unique ID for this data source.
 	Id     pulumi.StringInput                    `pulumi:"id"`
 	Labels GetDatabaseUsersResultLabelArrayInput `pulumi:"labels"`
@@ -37560,6 +37758,11 @@ func (o GetDatabaseUsersResultOutput) AuthDatabaseName() pulumi.StringOutput {
 // The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
 func (o GetDatabaseUsersResultOutput) AwsIamType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.AwsIamType }).(pulumi.StringOutput)
+}
+
+// Description of this database user.
+func (o GetDatabaseUsersResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // Autogenerated Unique ID for this data source.
@@ -37850,7 +38053,7 @@ func (o GetDatabaseUsersResultRoleArrayOutput) Index(i pulumi.IntInput) GetDatab
 type GetDatabaseUsersResultScope struct {
 	// Name of the role to grant.
 	Name string `pulumi:"name"`
-	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
 	Type string `pulumi:"type"`
 }
 
@@ -37868,7 +38071,7 @@ type GetDatabaseUsersResultScopeInput interface {
 type GetDatabaseUsersResultScopeArgs struct {
 	// Name of the role to grant.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -37928,7 +38131,7 @@ func (o GetDatabaseUsersResultScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultScope) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
 func (o GetDatabaseUsersResultScopeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultScope) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -46678,6 +46881,112 @@ func (o GetLdapVerifyValidationArrayOutput) Index(i pulumi.IntInput) GetLdapVeri
 	}).(GetLdapVerifyValidationOutput)
 }
 
+type GetMaintenanceWindowProtectedHour struct {
+	// Zero-based integer that represents the end hour of the day for the protected hours window.
+	EndHourOfDay int `pulumi:"endHourOfDay"`
+	// Zero-based integer that represents the beginning hour of the day for the protected hours window.
+	StartHourOfDay int `pulumi:"startHourOfDay"`
+}
+
+// GetMaintenanceWindowProtectedHourInput is an input type that accepts GetMaintenanceWindowProtectedHourArgs and GetMaintenanceWindowProtectedHourOutput values.
+// You can construct a concrete instance of `GetMaintenanceWindowProtectedHourInput` via:
+//
+//	GetMaintenanceWindowProtectedHourArgs{...}
+type GetMaintenanceWindowProtectedHourInput interface {
+	pulumi.Input
+
+	ToGetMaintenanceWindowProtectedHourOutput() GetMaintenanceWindowProtectedHourOutput
+	ToGetMaintenanceWindowProtectedHourOutputWithContext(context.Context) GetMaintenanceWindowProtectedHourOutput
+}
+
+type GetMaintenanceWindowProtectedHourArgs struct {
+	// Zero-based integer that represents the end hour of the day for the protected hours window.
+	EndHourOfDay pulumi.IntInput `pulumi:"endHourOfDay"`
+	// Zero-based integer that represents the beginning hour of the day for the protected hours window.
+	StartHourOfDay pulumi.IntInput `pulumi:"startHourOfDay"`
+}
+
+func (GetMaintenanceWindowProtectedHourArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaintenanceWindowProtectedHour)(nil)).Elem()
+}
+
+func (i GetMaintenanceWindowProtectedHourArgs) ToGetMaintenanceWindowProtectedHourOutput() GetMaintenanceWindowProtectedHourOutput {
+	return i.ToGetMaintenanceWindowProtectedHourOutputWithContext(context.Background())
+}
+
+func (i GetMaintenanceWindowProtectedHourArgs) ToGetMaintenanceWindowProtectedHourOutputWithContext(ctx context.Context) GetMaintenanceWindowProtectedHourOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaintenanceWindowProtectedHourOutput)
+}
+
+// GetMaintenanceWindowProtectedHourArrayInput is an input type that accepts GetMaintenanceWindowProtectedHourArray and GetMaintenanceWindowProtectedHourArrayOutput values.
+// You can construct a concrete instance of `GetMaintenanceWindowProtectedHourArrayInput` via:
+//
+//	GetMaintenanceWindowProtectedHourArray{ GetMaintenanceWindowProtectedHourArgs{...} }
+type GetMaintenanceWindowProtectedHourArrayInput interface {
+	pulumi.Input
+
+	ToGetMaintenanceWindowProtectedHourArrayOutput() GetMaintenanceWindowProtectedHourArrayOutput
+	ToGetMaintenanceWindowProtectedHourArrayOutputWithContext(context.Context) GetMaintenanceWindowProtectedHourArrayOutput
+}
+
+type GetMaintenanceWindowProtectedHourArray []GetMaintenanceWindowProtectedHourInput
+
+func (GetMaintenanceWindowProtectedHourArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaintenanceWindowProtectedHour)(nil)).Elem()
+}
+
+func (i GetMaintenanceWindowProtectedHourArray) ToGetMaintenanceWindowProtectedHourArrayOutput() GetMaintenanceWindowProtectedHourArrayOutput {
+	return i.ToGetMaintenanceWindowProtectedHourArrayOutputWithContext(context.Background())
+}
+
+func (i GetMaintenanceWindowProtectedHourArray) ToGetMaintenanceWindowProtectedHourArrayOutputWithContext(ctx context.Context) GetMaintenanceWindowProtectedHourArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMaintenanceWindowProtectedHourArrayOutput)
+}
+
+type GetMaintenanceWindowProtectedHourOutput struct{ *pulumi.OutputState }
+
+func (GetMaintenanceWindowProtectedHourOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMaintenanceWindowProtectedHour)(nil)).Elem()
+}
+
+func (o GetMaintenanceWindowProtectedHourOutput) ToGetMaintenanceWindowProtectedHourOutput() GetMaintenanceWindowProtectedHourOutput {
+	return o
+}
+
+func (o GetMaintenanceWindowProtectedHourOutput) ToGetMaintenanceWindowProtectedHourOutputWithContext(ctx context.Context) GetMaintenanceWindowProtectedHourOutput {
+	return o
+}
+
+// Zero-based integer that represents the end hour of the day for the protected hours window.
+func (o GetMaintenanceWindowProtectedHourOutput) EndHourOfDay() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMaintenanceWindowProtectedHour) int { return v.EndHourOfDay }).(pulumi.IntOutput)
+}
+
+// Zero-based integer that represents the beginning hour of the day for the protected hours window.
+func (o GetMaintenanceWindowProtectedHourOutput) StartHourOfDay() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMaintenanceWindowProtectedHour) int { return v.StartHourOfDay }).(pulumi.IntOutput)
+}
+
+type GetMaintenanceWindowProtectedHourArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMaintenanceWindowProtectedHourArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMaintenanceWindowProtectedHour)(nil)).Elem()
+}
+
+func (o GetMaintenanceWindowProtectedHourArrayOutput) ToGetMaintenanceWindowProtectedHourArrayOutput() GetMaintenanceWindowProtectedHourArrayOutput {
+	return o
+}
+
+func (o GetMaintenanceWindowProtectedHourArrayOutput) ToGetMaintenanceWindowProtectedHourArrayOutputWithContext(ctx context.Context) GetMaintenanceWindowProtectedHourArrayOutput {
+	return o
+}
+
+func (o GetMaintenanceWindowProtectedHourArrayOutput) Index(i pulumi.IntInput) GetMaintenanceWindowProtectedHourOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMaintenanceWindowProtectedHour {
+		return vs[0].([]GetMaintenanceWindowProtectedHour)[vs[1].(int)]
+	}).(GetMaintenanceWindowProtectedHourOutput)
+}
+
 type GetNetworkContainersResult struct {
 	// CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
 	AtlasCidrBlock string `pulumi:"atlasCidrBlock"`
@@ -48524,8 +48833,6 @@ type GetOrganizationsResult struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired bool `pulumi:"apiAccessListRequired"`
 	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
-	//
-	// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
 	GenAiFeaturesEnabled bool `pulumi:"genAiFeaturesEnabled"`
 	// Autogenerated Unique ID for this data source.
 	Id string `pulumi:"id"`
@@ -48538,6 +48845,9 @@ type GetOrganizationsResult struct {
 	Name string `pulumi:"name"`
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess bool `pulumi:"restrictEmployeeAccess"`
+	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+	SecurityContact           string `pulumi:"securityContact"`
+	SkipDefaultAlertsSettings bool   `pulumi:"skipDefaultAlertsSettings"`
 }
 
 // GetOrganizationsResultInput is an input type that accepts GetOrganizationsResultArgs and GetOrganizationsResultOutput values.
@@ -48555,8 +48865,6 @@ type GetOrganizationsResultArgs struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired pulumi.BoolInput `pulumi:"apiAccessListRequired"`
 	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
-	//
-	// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
 	GenAiFeaturesEnabled pulumi.BoolInput `pulumi:"genAiFeaturesEnabled"`
 	// Autogenerated Unique ID for this data source.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -48569,6 +48877,9 @@ type GetOrganizationsResultArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess pulumi.BoolInput `pulumi:"restrictEmployeeAccess"`
+	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+	SecurityContact           pulumi.StringInput `pulumi:"securityContact"`
+	SkipDefaultAlertsSettings pulumi.BoolInput   `pulumi:"skipDefaultAlertsSettings"`
 }
 
 func (GetOrganizationsResultArgs) ElementType() reflect.Type {
@@ -48628,8 +48939,6 @@ func (o GetOrganizationsResultOutput) ApiAccessListRequired() pulumi.BoolOutput 
 }
 
 // Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
-//
-// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
 func (o GetOrganizationsResultOutput) GenAiFeaturesEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.GenAiFeaturesEnabled }).(pulumi.BoolOutput)
 }
@@ -48661,6 +48970,15 @@ func (o GetOrganizationsResultOutput) Name() pulumi.StringOutput {
 // Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 func (o GetOrganizationsResultOutput) RestrictEmployeeAccess() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.RestrictEmployeeAccess }).(pulumi.BoolOutput)
+}
+
+// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+func (o GetOrganizationsResultOutput) SecurityContact() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationsResult) string { return v.SecurityContact }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationsResultOutput) SkipDefaultAlertsSettings() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.SkipDefaultAlertsSettings }).(pulumi.BoolOutput)
 }
 
 type GetOrganizationsResultArrayOutput struct{ *pulumi.OutputState }
@@ -50023,9 +50341,9 @@ type GetProjectsResult struct {
 	Created string `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id string `pulumi:"id"`
-	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `getProjectIpAddresses` data source instead.
 	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.21.0. Please transition to getProjectIpAddresses data source.
+	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddresses `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
@@ -50040,6 +50358,8 @@ type GetProjectsResult struct {
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
 	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+	//
+	// Deprecated: This parameter is deprecated.
 	IsSlowOperationThresholdingEnabled bool `pulumi:"isSlowOperationThresholdingEnabled"`
 	// The limits for the specified project. See Limits.
 	Limits []GetProjectsResultLimit `pulumi:"limits"`
@@ -50073,9 +50393,9 @@ type GetProjectsResultArgs struct {
 	Created pulumi.StringInput `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id pulumi.StringInput `pulumi:"id"`
-	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `getProjectIpAddresses` data source instead.
 	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.21.0. Please transition to getProjectIpAddresses data source.
+	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddressesInput `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolInput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
@@ -50090,6 +50410,8 @@ type GetProjectsResultArgs struct {
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
 	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+	//
+	// Deprecated: This parameter is deprecated.
 	IsSlowOperationThresholdingEnabled pulumi.BoolInput `pulumi:"isSlowOperationThresholdingEnabled"`
 	// The limits for the specified project. See Limits.
 	Limits GetProjectsResultLimitArrayInput `pulumi:"limits"`
@@ -50171,9 +50493,9 @@ func (o GetProjectsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `getProjectIpAddresses` data source instead.
+// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `getProjectIpAddresses` data source instead.
 //
-// Deprecated: This parameter is deprecated and will be removed in version 1.21.0. Please transition to getProjectIpAddresses data source.
+// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 func (o GetProjectsResultOutput) IpAddresses() GetProjectsResultIpAddressesOutput {
 	return o.ApplyT(func(v GetProjectsResult) GetProjectsResultIpAddresses { return v.IpAddresses }).(GetProjectsResultIpAddressesOutput)
 }
@@ -50209,6 +50531,8 @@ func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 }
 
 // Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+//
+// Deprecated: This parameter is deprecated.
 func (o GetProjectsResultOutput) IsSlowOperationThresholdingEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSlowOperationThresholdingEnabled }).(pulumi.BoolOutput)
 }
@@ -50716,6 +51040,8 @@ type GetResourcePoliciesResourcePolicy struct {
 	CreatedByUser GetResourcePoliciesResourcePolicyCreatedByUser `pulumi:"createdByUser"`
 	// Date and time in UTC when the Atlas resource policy was created.
 	CreatedDate string `pulumi:"createdDate"`
+	// Description of the Atlas resource policy.
+	Description string `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
 	Id string `pulumi:"id"`
 	// The user that last updated the Atlas resource policy.
@@ -50748,6 +51074,8 @@ type GetResourcePoliciesResourcePolicyArgs struct {
 	CreatedByUser GetResourcePoliciesResourcePolicyCreatedByUserInput `pulumi:"createdByUser"`
 	// Date and time in UTC when the Atlas resource policy was created.
 	CreatedDate pulumi.StringInput `pulumi:"createdDate"`
+	// Description of the Atlas resource policy.
+	Description pulumi.StringInput `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The user that last updated the Atlas resource policy.
@@ -50825,6 +51153,11 @@ func (o GetResourcePoliciesResourcePolicyOutput) CreatedByUser() GetResourcePoli
 // Date and time in UTC when the Atlas resource policy was created.
 func (o GetResourcePoliciesResourcePolicyOutput) CreatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// Description of the Atlas resource policy.
+func (o GetResourcePoliciesResourcePolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
@@ -51117,6 +51450,8 @@ type GetResourcePoliciesResult struct {
 	CreatedByUser GetResourcePoliciesResultCreatedByUser `pulumi:"createdByUser"`
 	// Date and time in UTC when the Atlas resource policy was created.
 	CreatedDate string `pulumi:"createdDate"`
+	// Description of the Atlas resource policy.
+	Description string `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
 	Id string `pulumi:"id"`
 	// The user that last updated the Atlas resource policy.
@@ -51149,6 +51484,8 @@ type GetResourcePoliciesResultArgs struct {
 	CreatedByUser GetResourcePoliciesResultCreatedByUserInput `pulumi:"createdByUser"`
 	// Date and time in UTC when the Atlas resource policy was created.
 	CreatedDate pulumi.StringInput `pulumi:"createdDate"`
+	// Description of the Atlas resource policy.
+	Description pulumi.StringInput `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The user that last updated the Atlas resource policy.
@@ -51224,6 +51561,11 @@ func (o GetResourcePoliciesResultOutput) CreatedByUser() GetResourcePoliciesResu
 // Date and time in UTC when the Atlas resource policy was created.
 func (o GetResourcePoliciesResultOutput) CreatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// Description of the Atlas resource policy.
+func (o GetResourcePoliciesResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
@@ -54537,11 +54879,11 @@ func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
 }
 
 type GetStreamPrivatelinkEndpointsResult struct {
-	// Amazon Resource Name (ARN).
+	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn string `pulumi:"arn"`
-	// Domain name of Privatelink connected cluster.
+	// The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
 	DnsDomain string `pulumi:"dnsDomain"`
-	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
+	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
 	// Error message if the connection is in a failed state.
 	ErrorMessage string `pulumi:"errorMessage"`
@@ -54551,19 +54893,19 @@ type GetStreamPrivatelinkEndpointsResult struct {
 	InterfaceEndpointId string `pulumi:"interfaceEndpointId"`
 	// Name of interface endpoint that is created from the specified service endpoint ID.
 	InterfaceEndpointName string `pulumi:"interfaceEndpointName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 	ProjectId string `pulumi:"projectId"`
 	// Account ID from the cloud provider.
 	ProviderAccountId string `pulumi:"providerAccountId"`
-	// Provider where the Kafka cluster is deployed.
+	// Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
 	ProviderName string `pulumi:"providerName"`
-	// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 	Region string `pulumi:"region"`
-	// Service Endpoint ID.
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
 	ServiceEndpointId string `pulumi:"serviceEndpointId"`
 	// Status of the connection.
 	State string `pulumi:"state"`
-	// Vendor who manages the Kafka cluster.
+	// Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
 	Vendor string `pulumi:"vendor"`
 }
 
@@ -54579,11 +54921,11 @@ type GetStreamPrivatelinkEndpointsResultInput interface {
 }
 
 type GetStreamPrivatelinkEndpointsResultArgs struct {
-	// Amazon Resource Name (ARN).
+	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn pulumi.StringInput `pulumi:"arn"`
-	// Domain name of Privatelink connected cluster.
+	// The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
 	DnsDomain pulumi.StringInput `pulumi:"dnsDomain"`
-	// Sub-Domain name of Confluent cluster. These are typically your availability zones.
+	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains pulumi.StringArrayInput `pulumi:"dnsSubDomains"`
 	// Error message if the connection is in a failed state.
 	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
@@ -54593,19 +54935,19 @@ type GetStreamPrivatelinkEndpointsResultArgs struct {
 	InterfaceEndpointId pulumi.StringInput `pulumi:"interfaceEndpointId"`
 	// Name of interface endpoint that is created from the specified service endpoint ID.
 	InterfaceEndpointName pulumi.StringInput `pulumi:"interfaceEndpointName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Account ID from the cloud provider.
 	ProviderAccountId pulumi.StringInput `pulumi:"providerAccountId"`
-	// Provider where the Kafka cluster is deployed.
+	// Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 	Region pulumi.StringInput `pulumi:"region"`
-	// Service Endpoint ID.
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
 	ServiceEndpointId pulumi.StringInput `pulumi:"serviceEndpointId"`
 	// Status of the connection.
 	State pulumi.StringInput `pulumi:"state"`
-	// Vendor who manages the Kafka cluster.
+	// Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
 	Vendor pulumi.StringInput `pulumi:"vendor"`
 }
 
@@ -54660,17 +55002,17 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) ToGetStreamPrivatelinkEndpoin
 	return o
 }
 
-// Amazon Resource Name (ARN).
+// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 func (o GetStreamPrivatelinkEndpointsResultOutput) Arn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Arn }).(pulumi.StringOutput)
 }
 
-// Domain name of Privatelink connected cluster.
+// The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
 func (o GetStreamPrivatelinkEndpointsResultOutput) DnsDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.DnsDomain }).(pulumi.StringOutput)
 }
 
-// Sub-Domain name of Confluent cluster. These are typically your availability zones.
+// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 func (o GetStreamPrivatelinkEndpointsResultOutput) DnsSubDomains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) []string { return v.DnsSubDomains }).(pulumi.StringArrayOutput)
 }
@@ -54695,7 +55037,7 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) InterfaceEndpointName() pulum
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.InterfaceEndpointName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 func (o GetStreamPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -54705,17 +55047,17 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) ProviderAccountId() pulumi.St
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProviderAccountId }).(pulumi.StringOutput)
 }
 
-// Provider where the Kafka cluster is deployed.
+// Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
 func (o GetStreamPrivatelinkEndpointsResultOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 func (o GetStreamPrivatelinkEndpointsResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// Service Endpoint ID.
+// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
 func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceEndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ServiceEndpointId }).(pulumi.StringOutput)
 }
@@ -54725,7 +55067,7 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.State }).(pulumi.StringOutput)
 }
 
-// Vendor who manages the Kafka cluster.
+// Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
 func (o GetStreamPrivatelinkEndpointsResultOutput) Vendor() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Vendor }).(pulumi.StringOutput)
 }
@@ -54885,9 +55227,9 @@ type GetStreamProcessorsResult struct {
 	ProcessorName string `pulumi:"processorName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId string `pulumi:"projectId"`
-	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state.
+	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 	//
-	// **NOTE** When creating a stream processor, setting the state to STARTED can automatically start the stream processor.
+	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State string `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats string `pulumi:"stats"`
@@ -54917,9 +55259,9 @@ type GetStreamProcessorsResultArgs struct {
 	ProcessorName pulumi.StringInput `pulumi:"processorName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state.
+	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 	//
-	// **NOTE** When creating a stream processor, setting the state to STARTED can automatically start the stream processor.
+	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringInput `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats pulumi.StringInput `pulumi:"stats"`
@@ -55006,9 +55348,9 @@ func (o GetStreamProcessorsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state.
+// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 //
-// **NOTE** When creating a stream processor, setting the state to STARTED can automatically start the stream processor.
+// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 func (o GetStreamProcessorsResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.State }).(pulumi.StringOutput)
 }
@@ -55166,12 +55508,12 @@ type GetThirdPartyIntegrationsResult struct {
 	ApiKey      string `pulumi:"apiKey"`
 	ChannelName string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
-	Enabled *bool `pulumi:"enabled"`
+	Enabled bool `pulumi:"enabled"`
 	// Unique identifier of the integration.
 	Id string `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
 	// * `PROMETHEUS`
-	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
+	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
@@ -55183,8 +55525,13 @@ type GetThirdPartyIntegrationsResult struct {
 	// An optional field for your webhook secret.
 	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
+	// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
+	SendCollectionLatencyMetrics bool `pulumi:"sendCollectionLatencyMetrics"`
+	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+	// * `OPS_GENIE`
+	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
 	// Indicates which service discovery method is used, either file or http.
-	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
+	ServiceDiscovery string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey string `pulumi:"serviceKey"`
@@ -55194,7 +55541,7 @@ type GetThirdPartyIntegrationsResult struct {
 	// Your webhook URL.
 	Url string `pulumi:"url"`
 	// Your Prometheus username.
-	UserName *string `pulumi:"userName"`
+	UserName string `pulumi:"userName"`
 }
 
 // GetThirdPartyIntegrationsResultInput is an input type that accepts GetThirdPartyIntegrationsResultArgs and GetThirdPartyIntegrationsResultOutput values.
@@ -55214,12 +55561,12 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	ApiKey      pulumi.StringInput `pulumi:"apiKey"`
 	ChannelName pulumi.StringInput `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Unique identifier of the integration.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
 	// * `PROMETHEUS`
-	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
+	MicrosoftTeamsWebhookUrl pulumi.StringInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
@@ -55231,8 +55578,13 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// An optional field for your webhook secret.
 	// * `MICROSOFT_TEAMS`
 	Secret pulumi.StringInput `pulumi:"secret"`
+	// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
+	SendCollectionLatencyMetrics pulumi.BoolInput `pulumi:"sendCollectionLatencyMetrics"`
+	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+	// * `OPS_GENIE`
+	SendDatabaseMetrics pulumi.BoolInput `pulumi:"sendDatabaseMetrics"`
 	// Indicates which service discovery method is used, either file or http.
-	ServiceDiscovery pulumi.StringPtrInput `pulumi:"serviceDiscovery"`
+	ServiceDiscovery pulumi.StringInput `pulumi:"serviceDiscovery"`
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
@@ -55242,7 +55594,7 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// Your webhook URL.
 	Url pulumi.StringInput `pulumi:"url"`
 	// Your Prometheus username.
-	UserName pulumi.StringPtrInput `pulumi:"userName"`
+	UserName pulumi.StringInput `pulumi:"userName"`
 }
 
 func (GetThirdPartyIntegrationsResultArgs) ElementType() reflect.Type {
@@ -55310,8 +55662,8 @@ func (o GetThirdPartyIntegrationsResultOutput) ChannelName() pulumi.StringOutput
 }
 
 // Whether your cluster has Prometheus enabled.
-func (o GetThirdPartyIntegrationsResultOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+func (o GetThirdPartyIntegrationsResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
 // Unique identifier of the integration.
@@ -55321,8 +55673,8 @@ func (o GetThirdPartyIntegrationsResultOutput) Id() pulumi.StringOutput {
 
 // Your Microsoft Teams incoming webhook URL.
 // * `PROMETHEUS`
-func (o GetThirdPartyIntegrationsResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
+func (o GetThirdPartyIntegrationsResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringOutput)
 }
 
 // The unique ID for the project to get all Third-Party service integrations
@@ -55348,9 +55700,20 @@ func (o GetThirdPartyIntegrationsResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Secret }).(pulumi.StringOutput)
 }
 
+// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
+func (o GetThirdPartyIntegrationsResultOutput) SendCollectionLatencyMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendCollectionLatencyMetrics }).(pulumi.BoolOutput)
+}
+
+// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+// * `OPS_GENIE`
+func (o GetThirdPartyIntegrationsResultOutput) SendDatabaseMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
+}
+
 // Indicates which service discovery method is used, either file or http.
-func (o GetThirdPartyIntegrationsResultOutput) ServiceDiscovery() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.ServiceDiscovery }).(pulumi.StringPtrOutput)
+func (o GetThirdPartyIntegrationsResultOutput) ServiceDiscovery() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ServiceDiscovery }).(pulumi.StringOutput)
 }
 
 // Your Service Key.
@@ -55374,8 +55737,8 @@ func (o GetThirdPartyIntegrationsResultOutput) Url() pulumi.StringOutput {
 }
 
 // Your Prometheus username.
-func (o GetThirdPartyIntegrationsResultOutput) UserName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.UserName }).(pulumi.StringPtrOutput)
+func (o GetThirdPartyIntegrationsResultOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.UserName }).(pulumi.StringOutput)
 }
 
 type GetThirdPartyIntegrationsResultArrayOutput struct{ *pulumi.OutputState }
@@ -55703,6 +56066,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LdapVerifyLinkArrayInput)(nil)).Elem(), LdapVerifyLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LdapVerifyValidationInput)(nil)).Elem(), LdapVerifyValidationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LdapVerifyValidationArrayInput)(nil)).Elem(), LdapVerifyValidationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceWindowProtectedHoursInput)(nil)).Elem(), MaintenanceWindowProtectedHoursArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceWindowProtectedHoursPtrInput)(nil)).Elem(), MaintenanceWindowProtectedHoursArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaPtrInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveDataExpirationRuleInput)(nil)).Elem(), OnlineArchiveDataExpirationRuleArgs{})
@@ -56155,6 +56520,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapVerifyLinkArrayInput)(nil)).Elem(), GetLdapVerifyLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapVerifyValidationInput)(nil)).Elem(), GetLdapVerifyValidationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapVerifyValidationArrayInput)(nil)).Elem(), GetLdapVerifyValidationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourArrayInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkContainersResultInput)(nil)).Elem(), GetNetworkContainersResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkContainersResultArrayInput)(nil)).Elem(), GetNetworkContainersResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkPeeringsResultInput)(nil)).Elem(), GetNetworkPeeringsResultArgs{})
@@ -56473,6 +56840,8 @@ func init() {
 	pulumi.RegisterOutputType(LdapVerifyLinkArrayOutput{})
 	pulumi.RegisterOutputType(LdapVerifyValidationOutput{})
 	pulumi.RegisterOutputType(LdapVerifyValidationArrayOutput{})
+	pulumi.RegisterOutputType(MaintenanceWindowProtectedHoursOutput{})
+	pulumi.RegisterOutputType(MaintenanceWindowProtectedHoursPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveDataExpirationRuleOutput{})
@@ -56925,6 +57294,8 @@ func init() {
 	pulumi.RegisterOutputType(GetLdapVerifyLinkArrayOutput{})
 	pulumi.RegisterOutputType(GetLdapVerifyValidationOutput{})
 	pulumi.RegisterOutputType(GetLdapVerifyValidationArrayOutput{})
+	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourOutput{})
+	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkPeeringsResultOutput{})

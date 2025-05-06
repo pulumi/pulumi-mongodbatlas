@@ -19,8 +19,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly bool ApiAccessListRequired;
         /// <summary>
         /// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
-        /// 
-        /// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         /// </summary>
         public readonly bool GenAiFeaturesEnabled;
         /// <summary>
@@ -44,6 +42,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         /// </summary>
         public readonly bool RestrictEmployeeAccess;
+        /// <summary>
+        /// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        /// </summary>
+        public readonly string SecurityContact;
+        public readonly bool SkipDefaultAlertsSettings;
 
         [OutputConstructor]
         private GetOrganizationsResultResult(
@@ -61,7 +64,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string name,
 
-            bool restrictEmployeeAccess)
+            bool restrictEmployeeAccess,
+
+            string securityContact,
+
+            bool skipDefaultAlertsSettings)
         {
             ApiAccessListRequired = apiAccessListRequired;
             GenAiFeaturesEnabled = genAiFeaturesEnabled;
@@ -71,6 +78,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             MultiFactorAuthRequired = multiFactorAuthRequired;
             Name = name;
             RestrictEmployeeAccess = restrictEmployeeAccess;
+            SecurityContact = securityContact;
+            SkipDefaultAlertsSettings = skipDefaultAlertsSettings;
         }
     }
 }

@@ -16,6 +16,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.StreamProcessor
+ * 
+ * `mongodbatlas.StreamProcessor` provides a Stream Processor resource. The resource lets you create, delete, import, start and stop a stream processor in a stream instance.
+ * 
+ * **NOTE**: When updating an Atlas Stream Processor, the following behavior applies:
+ * 1. If the processor is in a `STARTED` state, it will automatically be stopped before the update is applied
+ * 2. The update will be performed while the processor is in `STOPPED` state
+ * 3. If the processor was originally in `STARTED` state, it will be restarted after the update
+ * 
  * ## Example Usage
  * 
  * ### S
@@ -105,8 +114,9 @@ public class StreamProcessor extends com.pulumi.resources.CustomResource {
     /**
      * The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
      * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-     * setting the state to STARTED can automatically start the stream processor.
+     * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+     * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+     * specifying the state, it is stopped and then restored to previous state upon update completion.
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
@@ -115,8 +125,9 @@ public class StreamProcessor extends com.pulumi.resources.CustomResource {
     /**
      * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
      * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-     * setting the state to STARTED can automatically start the stream processor.
+     * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+     * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+     * specifying the state, it is stopped and then restored to previous state upon update completion.
      * 
      */
     public Output<String> state() {

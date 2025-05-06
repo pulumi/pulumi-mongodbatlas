@@ -8,6 +8,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetEncryptionAtRestAwsKmsConfig;
 import com.pulumi.mongodbatlas.outputs.GetEncryptionAtRestAzureKeyVaultConfig;
 import com.pulumi.mongodbatlas.outputs.GetEncryptionAtRestGoogleCloudKmsConfig;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 
@@ -23,6 +24,11 @@ public final class GetEncryptionAtRestResult {
      * 
      */
     private GetEncryptionAtRestAzureKeyVaultConfig azureKeyVaultConfig;
+    /**
+     * @return Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     * 
+     */
+    private Boolean enabledForSearchNodes;
     /**
      * @return Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
      * 
@@ -53,6 +59,13 @@ public final class GetEncryptionAtRestResult {
      */
     public GetEncryptionAtRestAzureKeyVaultConfig azureKeyVaultConfig() {
         return this.azureKeyVaultConfig;
+    }
+    /**
+     * @return Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     * 
+     */
+    public Boolean enabledForSearchNodes() {
+        return this.enabledForSearchNodes;
     }
     /**
      * @return Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
@@ -87,6 +100,7 @@ public final class GetEncryptionAtRestResult {
     public static final class Builder {
         private GetEncryptionAtRestAwsKmsConfig awsKmsConfig;
         private GetEncryptionAtRestAzureKeyVaultConfig azureKeyVaultConfig;
+        private Boolean enabledForSearchNodes;
         private GetEncryptionAtRestGoogleCloudKmsConfig googleCloudKmsConfig;
         private String id;
         private String projectId;
@@ -95,6 +109,7 @@ public final class GetEncryptionAtRestResult {
     	      Objects.requireNonNull(defaults);
     	      this.awsKmsConfig = defaults.awsKmsConfig;
     	      this.azureKeyVaultConfig = defaults.azureKeyVaultConfig;
+    	      this.enabledForSearchNodes = defaults.enabledForSearchNodes;
     	      this.googleCloudKmsConfig = defaults.googleCloudKmsConfig;
     	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
@@ -114,6 +129,14 @@ public final class GetEncryptionAtRestResult {
               throw new MissingRequiredPropertyException("GetEncryptionAtRestResult", "azureKeyVaultConfig");
             }
             this.azureKeyVaultConfig = azureKeyVaultConfig;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder enabledForSearchNodes(Boolean enabledForSearchNodes) {
+            if (enabledForSearchNodes == null) {
+              throw new MissingRequiredPropertyException("GetEncryptionAtRestResult", "enabledForSearchNodes");
+            }
+            this.enabledForSearchNodes = enabledForSearchNodes;
             return this;
         }
         @CustomType.Setter
@@ -144,6 +167,7 @@ public final class GetEncryptionAtRestResult {
             final var _resultValue = new GetEncryptionAtRestResult();
             _resultValue.awsKmsConfig = awsKmsConfig;
             _resultValue.azureKeyVaultConfig = azureKeyVaultConfig;
+            _resultValue.enabledForSearchNodes = enabledForSearchNodes;
             _resultValue.googleCloudKmsConfig = googleCloudKmsConfig;
             _resultValue.id = id;
             _resultValue.projectId = projectId;

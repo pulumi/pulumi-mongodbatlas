@@ -31,13 +31,13 @@ public final class GetProjectResult {
     private String created;
     private String id;
     /**
-     * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+     * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     private GetProjectIpAddresses ipAddresses;
     /**
      * @return Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -72,7 +72,11 @@ public final class GetProjectResult {
     /**
      * @return (Deprecated) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
+     * @deprecated
+     * This parameter is deprecated.
+     * 
      */
+    @Deprecated /* This parameter is deprecated. */
     private Boolean isSlowOperationThresholdingEnabled;
     /**
      * @return The limits for the specified project. See Limits.
@@ -125,13 +129,13 @@ public final class GetProjectResult {
         return this.id;
     }
     /**
-     * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+     * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     public GetProjectIpAddresses ipAddresses() {
         return this.ipAddresses;
     }
@@ -180,7 +184,11 @@ public final class GetProjectResult {
     /**
      * @return (Deprecated) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
+     * @deprecated
+     * This parameter is deprecated.
+     * 
      */
+    @Deprecated /* This parameter is deprecated. */
     public Boolean isSlowOperationThresholdingEnabled() {
         return this.isSlowOperationThresholdingEnabled;
     }

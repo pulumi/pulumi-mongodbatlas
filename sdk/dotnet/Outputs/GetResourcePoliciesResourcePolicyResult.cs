@@ -22,6 +22,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string CreatedDate;
         /// <summary>
+        /// Description of the Atlas resource policy.
+        /// </summary>
+        public readonly string Description;
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
         /// </summary>
         public readonly string Id;
@@ -56,6 +60,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string createdDate,
 
+            string description,
+
             string id,
 
             Outputs.GetResourcePoliciesResourcePolicyLastUpdatedByUserResult lastUpdatedByUser,
@@ -72,6 +78,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         {
             CreatedByUser = createdByUser;
             CreatedDate = createdDate;
+            Description = description;
             Id = id;
             LastUpdatedByUser = lastUpdatedByUser;
             LastUpdatedDate = lastUpdatedDate;

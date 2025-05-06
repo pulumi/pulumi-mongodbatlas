@@ -50,6 +50,21 @@ public final class ResourcePolicyState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Description of the Atlas resource policy.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return Description of the Atlas resource policy.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * The user that last updated the Atlas resource policy.
      * 
      */
@@ -144,6 +159,7 @@ public final class ResourcePolicyState extends com.pulumi.resources.ResourceArgs
     private ResourcePolicyState(ResourcePolicyState $) {
         this.createdByUser = $.createdByUser;
         this.createdDate = $.createdDate;
+        this.description = $.description;
         this.lastUpdatedByUser = $.lastUpdatedByUser;
         this.lastUpdatedDate = $.lastUpdatedDate;
         this.name = $.name;
@@ -210,6 +226,27 @@ public final class ResourcePolicyState extends com.pulumi.resources.ResourceArgs
          */
         public Builder createdDate(String createdDate) {
             return createdDate(Output.of(createdDate));
+        }
+
+        /**
+         * @param description Description of the Atlas resource policy.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description Description of the Atlas resource policy.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**

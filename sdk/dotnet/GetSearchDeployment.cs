@@ -92,6 +92,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ClusterName;
         /// <summary>
+        /// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+        /// </summary>
+        public readonly string EncryptionAtRestProvider;
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the search deployment.
         /// </summary>
         public readonly string Id;
@@ -112,6 +116,8 @@ namespace Pulumi.Mongodbatlas
         private GetSearchDeploymentResult(
             string clusterName,
 
+            string encryptionAtRestProvider,
+
             string id,
 
             string projectId,
@@ -121,6 +127,7 @@ namespace Pulumi.Mongodbatlas
             string stateName)
         {
             ClusterName = clusterName;
+            EncryptionAtRestProvider = encryptionAtRestProvider;
             Id = id;
             ProjectId = projectId;
             Specs = specs;

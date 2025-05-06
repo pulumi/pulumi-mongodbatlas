@@ -6,48 +6,13 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetThirdPartyIntegrationArgs Empty = new GetThirdPartyIntegrationArgs();
-
-    /**
-     * Whether your cluster has Prometheus enabled.
-     * 
-     */
-    @Import(name="enabled")
-    private @Nullable Output<Boolean> enabled;
-
-    /**
-     * @return Whether your cluster has Prometheus enabled.
-     * 
-     */
-    public Optional<Output<Boolean>> enabled() {
-        return Optional.ofNullable(this.enabled);
-    }
-
-    /**
-     * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
-     * 
-     */
-    @Import(name="microsoftTeamsWebhookUrl")
-    private @Nullable Output<String> microsoftTeamsWebhookUrl;
-
-    /**
-     * @return Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
-     * 
-     */
-    public Optional<Output<String>> microsoftTeamsWebhookUrl() {
-        return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
-    }
 
     /**
      * The unique ID for the project to get all Third-Party service integrations
@@ -62,21 +27,6 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
      */
     public Output<String> projectId() {
         return this.projectId;
-    }
-
-    /**
-     * Indicates which service discovery method is used, either file or http.
-     * 
-     */
-    @Import(name="serviceDiscovery")
-    private @Nullable Output<String> serviceDiscovery;
-
-    /**
-     * @return Indicates which service discovery method is used, either file or http.
-     * 
-     */
-    public Optional<Output<String>> serviceDiscovery() {
-        return Optional.ofNullable(this.serviceDiscovery);
     }
 
     /**
@@ -108,30 +58,11 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
         return this.type;
     }
 
-    /**
-     * Your Prometheus username.
-     * 
-     */
-    @Import(name="userName")
-    private @Nullable Output<String> userName;
-
-    /**
-     * @return Your Prometheus username.
-     * 
-     */
-    public Optional<Output<String>> userName() {
-        return Optional.ofNullable(this.userName);
-    }
-
     private GetThirdPartyIntegrationArgs() {}
 
     private GetThirdPartyIntegrationArgs(GetThirdPartyIntegrationArgs $) {
-        this.enabled = $.enabled;
-        this.microsoftTeamsWebhookUrl = $.microsoftTeamsWebhookUrl;
         this.projectId = $.projectId;
-        this.serviceDiscovery = $.serviceDiscovery;
         this.type = $.type;
-        this.userName = $.userName;
     }
 
     public static Builder builder() {
@@ -153,50 +84,6 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
         }
 
         /**
-         * @param enabled Whether your cluster has Prometheus enabled.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder enabled(@Nullable Output<Boolean> enabled) {
-            $.enabled = enabled;
-            return this;
-        }
-
-        /**
-         * @param enabled Whether your cluster has Prometheus enabled.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder enabled(Boolean enabled) {
-            return enabled(Output.of(enabled));
-        }
-
-        /**
-         * @param microsoftTeamsWebhookUrl Your Microsoft Teams incoming webhook URL.
-         * * `PROMETHEUS`
-         * 
-         * @return builder
-         * 
-         */
-        public Builder microsoftTeamsWebhookUrl(@Nullable Output<String> microsoftTeamsWebhookUrl) {
-            $.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
-            return this;
-        }
-
-        /**
-         * @param microsoftTeamsWebhookUrl Your Microsoft Teams incoming webhook URL.
-         * * `PROMETHEUS`
-         * 
-         * @return builder
-         * 
-         */
-        public Builder microsoftTeamsWebhookUrl(String microsoftTeamsWebhookUrl) {
-            return microsoftTeamsWebhookUrl(Output.of(microsoftTeamsWebhookUrl));
-        }
-
-        /**
          * @param projectId The unique ID for the project to get all Third-Party service integrations
          * 
          * @return builder
@@ -215,27 +102,6 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
-        }
-
-        /**
-         * @param serviceDiscovery Indicates which service discovery method is used, either file or http.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder serviceDiscovery(@Nullable Output<String> serviceDiscovery) {
-            $.serviceDiscovery = serviceDiscovery;
-            return this;
-        }
-
-        /**
-         * @param serviceDiscovery Indicates which service discovery method is used, either file or http.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder serviceDiscovery(String serviceDiscovery) {
-            return serviceDiscovery(Output.of(serviceDiscovery));
         }
 
         /**
@@ -271,27 +137,6 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
          */
         public Builder type(String type) {
             return type(Output.of(type));
-        }
-
-        /**
-         * @param userName Your Prometheus username.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder userName(@Nullable Output<String> userName) {
-            $.userName = userName;
-            return this;
-        }
-
-        /**
-         * @param userName Your Prometheus username.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder userName(String userName) {
-            return userName(Output.of(userName));
         }
 
         public GetThirdPartyIntegrationArgs build() {

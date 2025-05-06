@@ -21,8 +21,6 @@ public final class GetOrganizationsResult {
     /**
      * @return Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
      * 
-     * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
-     * 
      */
     private Boolean genAiFeaturesEnabled;
     /**
@@ -51,6 +49,12 @@ public final class GetOrganizationsResult {
      * 
      */
     private Boolean restrictEmployeeAccess;
+    /**
+     * @return String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     * 
+     */
+    private String securityContact;
+    private Boolean skipDefaultAlertsSettings;
 
     private GetOrganizationsResult() {}
     /**
@@ -62,8 +66,6 @@ public final class GetOrganizationsResult {
     }
     /**
      * @return Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
-     * 
-     * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
      * 
      */
     public Boolean genAiFeaturesEnabled() {
@@ -107,6 +109,16 @@ public final class GetOrganizationsResult {
     public Boolean restrictEmployeeAccess() {
         return this.restrictEmployeeAccess;
     }
+    /**
+     * @return String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     * 
+     */
+    public String securityContact() {
+        return this.securityContact;
+    }
+    public Boolean skipDefaultAlertsSettings() {
+        return this.skipDefaultAlertsSettings;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -125,6 +137,8 @@ public final class GetOrganizationsResult {
         private Boolean multiFactorAuthRequired;
         private String name;
         private Boolean restrictEmployeeAccess;
+        private String securityContact;
+        private Boolean skipDefaultAlertsSettings;
         public Builder() {}
         public Builder(GetOrganizationsResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -136,6 +150,8 @@ public final class GetOrganizationsResult {
     	      this.multiFactorAuthRequired = defaults.multiFactorAuthRequired;
     	      this.name = defaults.name;
     	      this.restrictEmployeeAccess = defaults.restrictEmployeeAccess;
+    	      this.securityContact = defaults.securityContact;
+    	      this.skipDefaultAlertsSettings = defaults.skipDefaultAlertsSettings;
         }
 
         @CustomType.Setter
@@ -205,6 +221,22 @@ public final class GetOrganizationsResult {
             this.restrictEmployeeAccess = restrictEmployeeAccess;
             return this;
         }
+        @CustomType.Setter
+        public Builder securityContact(String securityContact) {
+            if (securityContact == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationsResult", "securityContact");
+            }
+            this.securityContact = securityContact;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder skipDefaultAlertsSettings(Boolean skipDefaultAlertsSettings) {
+            if (skipDefaultAlertsSettings == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationsResult", "skipDefaultAlertsSettings");
+            }
+            this.skipDefaultAlertsSettings = skipDefaultAlertsSettings;
+            return this;
+        }
         public GetOrganizationsResult build() {
             final var _resultValue = new GetOrganizationsResult();
             _resultValue.apiAccessListRequired = apiAccessListRequired;
@@ -215,6 +247,8 @@ public final class GetOrganizationsResult {
             _resultValue.multiFactorAuthRequired = multiFactorAuthRequired;
             _resultValue.name = name;
             _resultValue.restrictEmployeeAccess = restrictEmployeeAccess;
+            _resultValue.securityContact = securityContact;
+            _resultValue.skipDefaultAlertsSettings = skipDefaultAlertsSettings;
             return _resultValue;
         }
     }

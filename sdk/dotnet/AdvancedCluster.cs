@@ -21,7 +21,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ~&gt; __IMPORTANT:__
     /// \n\n &amp;#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
-    /// \n\n &amp;#8226;  Note: The first time `pulumi up` command is run __after__ updating the configuration of an imported cluster, you may receive a `500 Internal Server Error (Error code: "SERVICE_UNAVAILABLE")` error. This is a known temporary issue. If you encounter this, please re-run `pulumi up` and this time the update should succeed.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/advancedCluster:AdvancedCluster")]
     public partial class AdvancedCluster : global::Pulumi.CustomResource
@@ -42,9 +41,7 @@ namespace Pulumi.Mongodbatlas
         /// Backup uses:
         /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
         /// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-        /// If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
-        /// 
-        /// This parameter defaults to false.
+        /// If "`backup_enabled`"  is `false` (default), the cluster doesn't use Atlas backups.
         /// </summary>
         [Output("backupEnabled")]
         public Output<bool> BackupEnabled { get; private set; } = null!;
@@ -280,9 +277,7 @@ namespace Pulumi.Mongodbatlas
         /// Backup uses:
         /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
         /// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-        /// If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
-        /// 
-        /// This parameter defaults to false.
+        /// If "`backup_enabled`"  is `false` (default), the cluster doesn't use Atlas backups.
         /// </summary>
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
@@ -458,9 +453,7 @@ namespace Pulumi.Mongodbatlas
         /// Backup uses:
         /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
         /// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-        /// If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
-        /// 
-        /// This parameter defaults to false.
+        /// If "`backup_enabled`"  is `false` (default), the cluster doesn't use Atlas backups.
         /// </summary>
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }

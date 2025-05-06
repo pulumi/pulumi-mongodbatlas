@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.inputs.MaintenanceWindowProtectedHoursArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -33,9 +34,17 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.autoDefer);
     }
 
+    /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * 
+     */
     @Import(name="autoDeferOnceEnabled")
     private @Nullable Output<Boolean> autoDeferOnceEnabled;
 
+    /**
+     * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * 
+     */
     public Optional<Output<Boolean>> autoDeferOnceEnabled() {
         return Optional.ofNullable(this.autoDeferOnceEnabled);
     }
@@ -100,6 +109,13 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         return this.projectId;
     }
 
+    @Import(name="protectedHours")
+    private @Nullable Output<MaintenanceWindowProtectedHoursArgs> protectedHours;
+
+    public Optional<Output<MaintenanceWindowProtectedHoursArgs>> protectedHours() {
+        return Optional.ofNullable(this.protectedHours);
+    }
+
     /**
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
@@ -124,6 +140,7 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         this.defer = $.defer;
         this.hourOfDay = $.hourOfDay;
         this.projectId = $.projectId;
+        this.protectedHours = $.protectedHours;
         this.startAsap = $.startAsap;
     }
 
@@ -166,11 +183,23 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
             return autoDefer(Output.of(autoDefer));
         }
 
+        /**
+         * @param autoDeferOnceEnabled Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoDeferOnceEnabled(@Nullable Output<Boolean> autoDeferOnceEnabled) {
             $.autoDeferOnceEnabled = autoDeferOnceEnabled;
             return this;
         }
 
+        /**
+         * @param autoDeferOnceEnabled Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoDeferOnceEnabled(Boolean autoDeferOnceEnabled) {
             return autoDeferOnceEnabled(Output.of(autoDeferOnceEnabled));
         }
@@ -257,6 +286,15 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        public Builder protectedHours(@Nullable Output<MaintenanceWindowProtectedHoursArgs> protectedHours) {
+            $.protectedHours = protectedHours;
+            return this;
+        }
+
+        public Builder protectedHours(MaintenanceWindowProtectedHoursArgs protectedHours) {
+            return protectedHours(Output.of(protectedHours));
         }
 
         /**

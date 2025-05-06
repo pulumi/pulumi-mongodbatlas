@@ -19,6 +19,8 @@ type EncryptionAtRest struct {
 	AwsKmsConfig EncryptionAtRestAwsKmsConfigPtrOutput `pulumi:"awsKmsConfig"`
 	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
 	AzureKeyVaultConfig EncryptionAtRestAzureKeyVaultConfigPtrOutput `pulumi:"azureKeyVaultConfig"`
+	// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+	EnabledForSearchNodes pulumi.BoolOutput `pulumi:"enabledForSearchNodes"`
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrOutput `pulumi:"googleCloudKmsConfig"`
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -62,6 +64,8 @@ type encryptionAtRestState struct {
 	AwsKmsConfig *EncryptionAtRestAwsKmsConfig `pulumi:"awsKmsConfig"`
 	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
 	AzureKeyVaultConfig *EncryptionAtRestAzureKeyVaultConfig `pulumi:"azureKeyVaultConfig"`
+	// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+	EnabledForSearchNodes *bool `pulumi:"enabledForSearchNodes"`
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig *EncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -73,6 +77,8 @@ type EncryptionAtRestState struct {
 	AwsKmsConfig EncryptionAtRestAwsKmsConfigPtrInput
 	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
 	AzureKeyVaultConfig EncryptionAtRestAzureKeyVaultConfigPtrInput
+	// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+	EnabledForSearchNodes pulumi.BoolPtrInput
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -88,6 +94,8 @@ type encryptionAtRestArgs struct {
 	AwsKmsConfig *EncryptionAtRestAwsKmsConfig `pulumi:"awsKmsConfig"`
 	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
 	AzureKeyVaultConfig *EncryptionAtRestAzureKeyVaultConfig `pulumi:"azureKeyVaultConfig"`
+	// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+	EnabledForSearchNodes *bool `pulumi:"enabledForSearchNodes"`
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig *EncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -100,6 +108,8 @@ type EncryptionAtRestArgs struct {
 	AwsKmsConfig EncryptionAtRestAwsKmsConfigPtrInput
 	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
 	AzureKeyVaultConfig EncryptionAtRestAzureKeyVaultConfigPtrInput
+	// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+	EnabledForSearchNodes pulumi.BoolPtrInput
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -201,6 +211,11 @@ func (o EncryptionAtRestOutput) AwsKmsConfig() EncryptionAtRestAwsKmsConfigPtrOu
 // Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
 func (o EncryptionAtRestOutput) AzureKeyVaultConfig() EncryptionAtRestAzureKeyVaultConfigPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestAzureKeyVaultConfigPtrOutput { return v.AzureKeyVaultConfig }).(EncryptionAtRestAzureKeyVaultConfigPtrOutput)
+}
+
+// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+func (o EncryptionAtRestOutput) EnabledForSearchNodes() pulumi.BoolOutput {
+	return o.ApplyT(func(v *EncryptionAtRest) pulumi.BoolOutput { return v.EnabledForSearchNodes }).(pulumi.BoolOutput)
 }
 
 // Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).

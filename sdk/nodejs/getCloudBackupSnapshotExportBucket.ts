@@ -80,6 +80,8 @@ export interface GetCloudBackupSnapshotExportBucketResult {
     readonly serviceUrl: string;
     /**
      * UUID that identifies the Azure Active Directory Tenant ID.
+     *
+     * @deprecated This parameter is deprecated.
      */
     readonly tenantId: string;
 }

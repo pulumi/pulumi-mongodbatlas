@@ -19,19 +19,19 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     defaultMaxTimeMs?: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     defaultReadConcern: string;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
-     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+     * **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     failIndexKeyTooLong: boolean;
     /**
@@ -182,14 +182,14 @@ export interface AdvancedClusterReplicationSpec {
     /**
      * **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     id: string;
     /**
      * Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
      * If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     numShards?: number;
     /**
@@ -710,7 +710,7 @@ export interface CloudBackupScheduleCopySetting {
     /**
      * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
      *
-     * @deprecated This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     replicationSpecId: string;
     /**
@@ -940,19 +940,19 @@ export interface ClusterAdvancedConfiguration {
     customOpensslCipherConfigTls12s?: string[];
     defaultMaxTimeMs?: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     defaultReadConcern: string;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
-     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+     * **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     failIndexKeyTooLong: boolean;
     /**
@@ -961,7 +961,6 @@ export interface ClusterAdvancedConfiguration {
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     *
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2
@@ -1226,7 +1225,7 @@ export interface CustomDbRoleAction {
      *
      * > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
      *
-     * * `resources.#.database_name`	Database on which the action is granted.
+     * * `resources.#.database_name` Database on which the action is granted. Use the empty string ("") to allow an action on all databases.
      *
      * > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
      *
@@ -1388,7 +1387,7 @@ export interface DatabaseUserScope {
      */
     name?: string;
     /**
-     * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
      */
     type?: string;
 }
@@ -1731,19 +1730,19 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     defaultReadConcern: string;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
-     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+     * **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     failIndexKeyTooLong: boolean;
     /**
@@ -1752,6 +1751,9 @@ export interface GetAdvancedClusterAdvancedConfiguration {
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -1875,13 +1877,13 @@ export interface GetAdvancedClusterReplicationSpec {
      */
     externalId: string;
     /**
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     id: string;
     /**
      * Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     numShards: number;
     /**
@@ -2098,7 +2100,7 @@ export interface GetAdvancedClustersResult {
     /**
      * Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     diskSizeGb: number;
     /**
@@ -2182,19 +2184,19 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     defaultReadConcern: string;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
-     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+     * **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     failIndexKeyTooLong: boolean;
     /**
@@ -2203,6 +2205,9 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -2326,13 +2331,13 @@ export interface GetAdvancedClustersResultReplicationSpec {
      */
     externalId: string;
     /**
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     id: string;
     /**
      * Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     numShards: number;
     /**
@@ -3226,7 +3231,7 @@ export interface GetCloudBackupScheduleCopySetting {
     /**
      * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
      *
-     * @deprecated This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     replicationSpecId: string;
     /**
@@ -3392,6 +3397,8 @@ export interface GetCloudBackupSnapshotExportBucketsResult {
     serviceUrl: string;
     /**
      * UUID that identifies the Azure Active Directory Tenant ID.
+     *
+     * @deprecated This parameter is deprecated.
      */
     tenantId: string;
 }
@@ -3667,19 +3674,19 @@ export interface GetClusterAdvancedConfiguration {
     customOpensslCipherConfigTls12s: string[];
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     defaultReadConcern: string;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
-     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+     * **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     failIndexKeyTooLong: boolean;
     /**
@@ -3688,6 +3695,9 @@ export interface GetClusterAdvancedConfiguration {
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -4091,19 +4101,19 @@ export interface GetClustersResultAdvancedConfiguration {
     customOpensslCipherConfigTls12s: string[];
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     defaultReadConcern: string;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
-     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+     * **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     failIndexKeyTooLong: boolean;
     /**
@@ -4112,6 +4122,9 @@ export interface GetClustersResultAdvancedConfiguration {
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -4681,7 +4694,7 @@ export interface GetDatabaseUserScope {
      */
     name: string;
     /**
-     * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
      */
     type: string;
 }
@@ -4696,6 +4709,10 @@ export interface GetDatabaseUsersResult {
      * The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
      */
     awsIamType: string;
+    /**
+     * Description of this database user.
+     */
+    description: string;
     /**
      * Autogenerated Unique ID for this data source.
      */
@@ -4763,7 +4780,7 @@ export interface GetDatabaseUsersResultScope {
      */
     name: string;
     /**
-     * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
      */
     type: string;
 }
@@ -6080,6 +6097,17 @@ export interface GetLdapVerifyValidation {
     validationType: string;
 }
 
+export interface GetMaintenanceWindowProtectedHour {
+    /**
+     * Zero-based integer that represents the end hour of the day for the protected hours window.
+     */
+    endHourOfDay: number;
+    /**
+     * Zero-based integer that represents the beginning hour of the day for the protected hours window.
+     */
+    startHourOfDay: number;
+}
+
 export interface GetNetworkContainersResult {
     /**
      * CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
@@ -6312,8 +6340,6 @@ export interface GetOrganizationsResult {
     apiAccessListRequired: boolean;
     /**
      * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
-     *
-     * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
      */
     genAiFeaturesEnabled: boolean;
     /**
@@ -6337,6 +6363,11 @@ export interface GetOrganizationsResult {
      * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
      */
     restrictEmployeeAccess: boolean;
+    /**
+     * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     */
+    securityContact: string;
+    skipDefaultAlertsSettings: boolean;
 }
 
 export interface GetOrganizationsResultLink {
@@ -6538,9 +6569,9 @@ export interface GetProjectsResult {
      */
     id: string;
     /**
-     * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+     * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      *
-     * @deprecated This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * @deprecated This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      */
     ipAddresses: outputs.GetProjectsResultIpAddresses;
     /**
@@ -6569,6 +6600,8 @@ export interface GetProjectsResult {
     isSchemaAdvisorEnabled: boolean;
     /**
      * Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+     *
+     * @deprecated This parameter is deprecated.
      */
     isSlowOperationThresholdingEnabled: boolean;
     /**
@@ -6653,6 +6686,10 @@ export interface GetResourcePoliciesResourcePolicy {
      */
     createdDate: string;
     /**
+     * Description of the Atlas resource policy.
+     */
+    description: string;
+    /**
      * Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
      */
     id: string;
@@ -6724,6 +6761,10 @@ export interface GetResourcePoliciesResult {
      * Date and time in UTC when the Atlas resource policy was created.
      */
     createdDate: string;
+    /**
+     * Description of the Atlas resource policy.
+     */
+    description: string;
     /**
      * Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
      */
@@ -7283,15 +7324,15 @@ export interface GetStreamInstancesResultStreamConfig {
 
 export interface GetStreamPrivatelinkEndpointsResult {
     /**
-     * Amazon Resource Name (ARN).
+     * Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      */
     arn: string;
     /**
-     * Domain name of Privatelink connected cluster.
+     * The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
      */
     dnsDomain: string;
     /**
-     * Sub-Domain name of Confluent cluster. These are typically your availability zones.
+     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
      */
     dnsSubDomains: string[];
     /**
@@ -7311,7 +7352,7 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     interfaceEndpointName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
     projectId: string;
     /**
@@ -7319,15 +7360,15 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     providerAccountId: string;
     /**
-     * Provider where the Kafka cluster is deployed.
+     * Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
      */
     providerName: string;
     /**
-     * When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+     * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      */
     region: string;
     /**
-     * Service Endpoint ID.
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      */
     serviceEndpointId: string;
     /**
@@ -7335,7 +7376,7 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     state: string;
     /**
-     * Vendor who manages the Kafka cluster.
+     * Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
      */
     vendor: string;
 }
@@ -7388,9 +7429,9 @@ export interface GetStreamProcessorsResult {
      */
     projectId: string;
     /**
-     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state.
+     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
      *
-     * **NOTE** When creating a stream processor, setting the state to STARTED can automatically start the stream processor.
+     * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      */
     state: string;
     /**
@@ -7431,7 +7472,7 @@ export interface GetThirdPartyIntegrationsResult {
     /**
      * Whether your cluster has Prometheus enabled.
      */
-    enabled?: boolean;
+    enabled: boolean;
     /**
      * Unique identifier of the integration.
      */
@@ -7440,7 +7481,7 @@ export interface GetThirdPartyIntegrationsResult {
      * Your Microsoft Teams incoming webhook URL.
      * * `PROMETHEUS`
      */
-    microsoftTeamsWebhookUrl?: string;
+    microsoftTeamsWebhookUrl: string;
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
@@ -7461,9 +7502,18 @@ export interface GetThirdPartyIntegrationsResult {
      */
     secret: string;
     /**
+     * Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
+     */
+    sendCollectionLatencyMetrics: boolean;
+    /**
+     * Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+     * * `OPS_GENIE`
+     */
+    sendDatabaseMetrics: boolean;
+    /**
      * Indicates which service discovery method is used, either file or http.
      */
-    serviceDiscovery?: string;
+    serviceDiscovery: string;
     /**
      * Your Service Key.
      * * `DATADOG`
@@ -7481,7 +7531,7 @@ export interface GetThirdPartyIntegrationsResult {
     /**
      * Your Prometheus username.
      */
-    userName?: string;
+    userName: string;
 }
 
 export interface GetX509AuthenticationDatabaseUserCertificate {
@@ -7543,6 +7593,17 @@ export interface LdapVerifyValidation {
      */
     status: string;
     validationType: string;
+}
+
+export interface MaintenanceWindowProtectedHours {
+    /**
+     * Zero-based integer that represents the end hour of the day for the protected hours window.
+     */
+    endHourOfDay: number;
+    /**
+     * Zero-based integer that represents the beginning hour of the day for the protected hours window.
+     */
+    startHourOfDay: number;
 }
 
 export interface OnlineArchiveCriteria {

@@ -75,6 +75,9 @@ type LookupOrganizationResult struct {
 	OrgId string `pulumi:"orgId"`
 	// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess bool `pulumi:"restrictEmployeeAccess"`
+	// (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+	SecurityContact           string `pulumi:"securityContact"`
+	SkipDefaultAlertsSettings bool   `pulumi:"skipDefaultAlertsSettings"`
 }
 
 func LookupOrganizationOutput(ctx *pulumi.Context, args LookupOrganizationOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationResultOutput {
@@ -152,6 +155,15 @@ func (o LookupOrganizationResultOutput) OrgId() pulumi.StringOutput {
 // (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 func (o LookupOrganizationResultOutput) RestrictEmployeeAccess() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.RestrictEmployeeAccess }).(pulumi.BoolOutput)
+}
+
+// (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+func (o LookupOrganizationResultOutput) SecurityContact() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) string { return v.SecurityContact }).(pulumi.StringOutput)
+}
+
+func (o LookupOrganizationResultOutput) SkipDefaultAlertsSettings() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.SkipDefaultAlertsSettings }).(pulumi.BoolOutput)
 }
 
 func init() {

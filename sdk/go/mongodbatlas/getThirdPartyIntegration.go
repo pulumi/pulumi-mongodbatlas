@@ -61,15 +61,8 @@ func LookupThirdPartyIntegration(ctx *pulumi.Context, args *LookupThirdPartyInte
 
 // A collection of arguments for invoking getThirdPartyIntegration.
 type LookupThirdPartyIntegrationArgs struct {
-	// Whether your cluster has Prometheus enabled.
-	Enabled *bool `pulumi:"enabled"`
-	// Your Microsoft Teams incoming webhook URL.
-	// * `PROMETHEUS`
-	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
-	// Indicates which service discovery method is used, either file or http.
-	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Third-Party service integration type
 	// * PAGER_DUTY
 	// * DATADOG
@@ -79,8 +72,6 @@ type LookupThirdPartyIntegrationArgs struct {
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
 	Type string `pulumi:"type"`
-	// Your Prometheus username.
-	UserName *string `pulumi:"userName"`
 }
 
 // A collection of values returned by getThirdPartyIntegration.
@@ -90,13 +81,13 @@ type LookupThirdPartyIntegrationResult struct {
 	ApiKey      string `pulumi:"apiKey"`
 	ChannelName string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
-	Enabled *bool `pulumi:"enabled"`
+	Enabled bool `pulumi:"enabled"`
 	// Unique identifier of the integration.
 	Id string `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
 	// * `PROMETHEUS`
-	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
-	ProjectId                string  `pulumi:"projectId"`
+	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
+	ProjectId                string `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
 	// * `VICTOR_OPS`
 	Region string `pulumi:"region"`
@@ -106,8 +97,13 @@ type LookupThirdPartyIntegrationResult struct {
 	// An optional field for your webhook secret.
 	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
+	// Toggle sending collection latency metrics that includes database names and collection name sand latency metrics on reads, writes, commands, and transactions.
+	SendCollectionLatencyMetrics bool `pulumi:"sendCollectionLatencyMetrics"`
+	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+	// * `OPS_GENIE`
+	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
 	// Indicates which service discovery method is used, either file or http.
-	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
+	ServiceDiscovery string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey string `pulumi:"serviceKey"`
@@ -116,7 +112,7 @@ type LookupThirdPartyIntegrationResult struct {
 	// Your webhook URL.
 	Url string `pulumi:"url"`
 	// Your Prometheus username.
-	UserName *string `pulumi:"userName"`
+	UserName string `pulumi:"userName"`
 }
 
 func LookupThirdPartyIntegrationOutput(ctx *pulumi.Context, args LookupThirdPartyIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupThirdPartyIntegrationResultOutput {
@@ -130,15 +126,8 @@ func LookupThirdPartyIntegrationOutput(ctx *pulumi.Context, args LookupThirdPart
 
 // A collection of arguments for invoking getThirdPartyIntegration.
 type LookupThirdPartyIntegrationOutputArgs struct {
-	// Whether your cluster has Prometheus enabled.
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// Your Microsoft Teams incoming webhook URL.
-	// * `PROMETHEUS`
-	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Indicates which service discovery method is used, either file or http.
-	ServiceDiscovery pulumi.StringPtrInput `pulumi:"serviceDiscovery"`
 	// Third-Party service integration type
 	// * PAGER_DUTY
 	// * DATADOG
@@ -148,8 +137,6 @@ type LookupThirdPartyIntegrationOutputArgs struct {
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
 	Type pulumi.StringInput `pulumi:"type"`
-	// Your Prometheus username.
-	UserName pulumi.StringPtrInput `pulumi:"userName"`
 }
 
 func (LookupThirdPartyIntegrationOutputArgs) ElementType() reflect.Type {
@@ -185,8 +172,8 @@ func (o LookupThirdPartyIntegrationResultOutput) ChannelName() pulumi.StringOutp
 }
 
 // Whether your cluster has Prometheus enabled.
-func (o LookupThirdPartyIntegrationResultOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+func (o LookupThirdPartyIntegrationResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
 // Unique identifier of the integration.
@@ -196,8 +183,8 @@ func (o LookupThirdPartyIntegrationResultOutput) Id() pulumi.StringOutput {
 
 // Your Microsoft Teams incoming webhook URL.
 // * `PROMETHEUS`
-func (o LookupThirdPartyIntegrationResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
+func (o LookupThirdPartyIntegrationResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringOutput)
 }
 
 func (o LookupThirdPartyIntegrationResultOutput) ProjectId() pulumi.StringOutput {
@@ -222,9 +209,20 @@ func (o LookupThirdPartyIntegrationResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Secret }).(pulumi.StringOutput)
 }
 
+// Toggle sending collection latency metrics that includes database names and collection name sand latency metrics on reads, writes, commands, and transactions.
+func (o LookupThirdPartyIntegrationResultOutput) SendCollectionLatencyMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendCollectionLatencyMetrics }).(pulumi.BoolOutput)
+}
+
+// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+// * `OPS_GENIE`
+func (o LookupThirdPartyIntegrationResultOutput) SendDatabaseMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
+}
+
 // Indicates which service discovery method is used, either file or http.
-func (o LookupThirdPartyIntegrationResultOutput) ServiceDiscovery() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *string { return v.ServiceDiscovery }).(pulumi.StringPtrOutput)
+func (o LookupThirdPartyIntegrationResultOutput) ServiceDiscovery() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ServiceDiscovery }).(pulumi.StringOutput)
 }
 
 // Your Service Key.
@@ -247,8 +245,8 @@ func (o LookupThirdPartyIntegrationResultOutput) Url() pulumi.StringOutput {
 }
 
 // Your Prometheus username.
-func (o LookupThirdPartyIntegrationResultOutput) UserName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *string { return v.UserName }).(pulumi.StringPtrOutput)
+func (o LookupThirdPartyIntegrationResultOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.UserName }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -5,48 +5,13 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetThirdPartyIntegrationPlainArgs Empty = new GetThirdPartyIntegrationPlainArgs();
-
-    /**
-     * Whether your cluster has Prometheus enabled.
-     * 
-     */
-    @Import(name="enabled")
-    private @Nullable Boolean enabled;
-
-    /**
-     * @return Whether your cluster has Prometheus enabled.
-     * 
-     */
-    public Optional<Boolean> enabled() {
-        return Optional.ofNullable(this.enabled);
-    }
-
-    /**
-     * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
-     * 
-     */
-    @Import(name="microsoftTeamsWebhookUrl")
-    private @Nullable String microsoftTeamsWebhookUrl;
-
-    /**
-     * @return Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
-     * 
-     */
-    public Optional<String> microsoftTeamsWebhookUrl() {
-        return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
-    }
 
     /**
      * The unique ID for the project to get all Third-Party service integrations
@@ -61,21 +26,6 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
      */
     public String projectId() {
         return this.projectId;
-    }
-
-    /**
-     * Indicates which service discovery method is used, either file or http.
-     * 
-     */
-    @Import(name="serviceDiscovery")
-    private @Nullable String serviceDiscovery;
-
-    /**
-     * @return Indicates which service discovery method is used, either file or http.
-     * 
-     */
-    public Optional<String> serviceDiscovery() {
-        return Optional.ofNullable(this.serviceDiscovery);
     }
 
     /**
@@ -107,30 +57,11 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
         return this.type;
     }
 
-    /**
-     * Your Prometheus username.
-     * 
-     */
-    @Import(name="userName")
-    private @Nullable String userName;
-
-    /**
-     * @return Your Prometheus username.
-     * 
-     */
-    public Optional<String> userName() {
-        return Optional.ofNullable(this.userName);
-    }
-
     private GetThirdPartyIntegrationPlainArgs() {}
 
     private GetThirdPartyIntegrationPlainArgs(GetThirdPartyIntegrationPlainArgs $) {
-        this.enabled = $.enabled;
-        this.microsoftTeamsWebhookUrl = $.microsoftTeamsWebhookUrl;
         this.projectId = $.projectId;
-        this.serviceDiscovery = $.serviceDiscovery;
         this.type = $.type;
-        this.userName = $.userName;
     }
 
     public static Builder builder() {
@@ -152,29 +83,6 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
         }
 
         /**
-         * @param enabled Whether your cluster has Prometheus enabled.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder enabled(@Nullable Boolean enabled) {
-            $.enabled = enabled;
-            return this;
-        }
-
-        /**
-         * @param microsoftTeamsWebhookUrl Your Microsoft Teams incoming webhook URL.
-         * * `PROMETHEUS`
-         * 
-         * @return builder
-         * 
-         */
-        public Builder microsoftTeamsWebhookUrl(@Nullable String microsoftTeamsWebhookUrl) {
-            $.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
-            return this;
-        }
-
-        /**
          * @param projectId The unique ID for the project to get all Third-Party service integrations
          * 
          * @return builder
@@ -182,17 +90,6 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
          */
         public Builder projectId(String projectId) {
             $.projectId = projectId;
-            return this;
-        }
-
-        /**
-         * @param serviceDiscovery Indicates which service discovery method is used, either file or http.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder serviceDiscovery(@Nullable String serviceDiscovery) {
-            $.serviceDiscovery = serviceDiscovery;
             return this;
         }
 
@@ -211,17 +108,6 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
          */
         public Builder type(String type) {
             $.type = type;
-            return this;
-        }
-
-        /**
-         * @param userName Your Prometheus username.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder userName(@Nullable String userName) {
-            $.userName = userName;
             return this;
         }
 

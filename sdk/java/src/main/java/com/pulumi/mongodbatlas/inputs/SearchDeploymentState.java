@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
 import com.pulumi.mongodbatlas.inputs.SearchDeploymentTimeoutsArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +35,21 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+     * 
+     */
+    @Import(name="encryptionAtRestProvider")
+    private @Nullable Output<String> encryptionAtRestProvider;
+
+    /**
+     * @return Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+     * 
+     */
+    public Optional<Output<String>> encryptionAtRestProvider() {
+        return Optional.ofNullable(this.encryptionAtRestProvider);
+    }
+
+    /**
      * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
@@ -46,6 +62,13 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<String>> projectId() {
         return Optional.ofNullable(this.projectId);
+    }
+
+    @Import(name="skipWaitOnUpdate")
+    private @Nullable Output<Boolean> skipWaitOnUpdate;
+
+    public Optional<Output<Boolean>> skipWaitOnUpdate() {
+        return Optional.ofNullable(this.skipWaitOnUpdate);
     }
 
     /**
@@ -89,7 +112,9 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
 
     private SearchDeploymentState(SearchDeploymentState $) {
         this.clusterName = $.clusterName;
+        this.encryptionAtRestProvider = $.encryptionAtRestProvider;
         this.projectId = $.projectId;
+        this.skipWaitOnUpdate = $.skipWaitOnUpdate;
         this.specs = $.specs;
         this.stateName = $.stateName;
         this.timeouts = $.timeouts;
@@ -135,6 +160,27 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param encryptionAtRestProvider Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionAtRestProvider(@Nullable Output<String> encryptionAtRestProvider) {
+            $.encryptionAtRestProvider = encryptionAtRestProvider;
+            return this;
+        }
+
+        /**
+         * @param encryptionAtRestProvider Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionAtRestProvider(String encryptionAtRestProvider) {
+            return encryptionAtRestProvider(Output.of(encryptionAtRestProvider));
+        }
+
+        /**
          * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
@@ -153,6 +199,15 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        public Builder skipWaitOnUpdate(@Nullable Output<Boolean> skipWaitOnUpdate) {
+            $.skipWaitOnUpdate = skipWaitOnUpdate;
+            return this;
+        }
+
+        public Builder skipWaitOnUpdate(Boolean skipWaitOnUpdate) {
+            return skipWaitOnUpdate(Output.of(skipWaitOnUpdate));
         }
 
         /**

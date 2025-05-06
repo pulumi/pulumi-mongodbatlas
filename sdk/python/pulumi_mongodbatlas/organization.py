@@ -28,7 +28,9 @@ class OrganizationArgs:
                  gen_ai_features_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  multi_factor_auth_required: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
-                 restrict_employee_access: Optional[pulumi.Input[builtins.bool]] = None):
+                 restrict_employee_access: Optional[pulumi.Input[builtins.bool]] = None,
+                 security_contact: Optional[pulumi.Input[builtins.str]] = None,
+                 skip_default_alerts_settings: Optional[pulumi.Input[builtins.bool]] = None):
         """
         The set of arguments for constructing a Organization resource.
         :param pulumi.Input[builtins.str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
@@ -39,6 +41,7 @@ class OrganizationArgs:
         :param pulumi.Input[builtins.bool] multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param pulumi.Input[builtins.str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        :param pulumi.Input[builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "org_owner_id", org_owner_id)
@@ -55,6 +58,10 @@ class OrganizationArgs:
             pulumi.set(__self__, "name", name)
         if restrict_employee_access is not None:
             pulumi.set(__self__, "restrict_employee_access", restrict_employee_access)
+        if security_contact is not None:
+            pulumi.set(__self__, "security_contact", security_contact)
+        if skip_default_alerts_settings is not None:
+            pulumi.set(__self__, "skip_default_alerts_settings", skip_default_alerts_settings)
 
     @property
     @pulumi.getter
@@ -161,6 +168,27 @@ class OrganizationArgs:
     def restrict_employee_access(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "restrict_employee_access", value)
 
+    @property
+    @pulumi.getter(name="securityContact")
+    def security_contact(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        """
+        return pulumi.get(self, "security_contact")
+
+    @security_contact.setter
+    def security_contact(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "security_contact", value)
+
+    @property
+    @pulumi.getter(name="skipDefaultAlertsSettings")
+    def skip_default_alerts_settings(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "skip_default_alerts_settings")
+
+    @skip_default_alerts_settings.setter
+    def skip_default_alerts_settings(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "skip_default_alerts_settings", value)
+
 
 @pulumi.input_type
 class _OrganizationState:
@@ -176,7 +204,9 @@ class _OrganizationState:
                  private_key: Optional[pulumi.Input[builtins.str]] = None,
                  public_key: Optional[pulumi.Input[builtins.str]] = None,
                  restrict_employee_access: Optional[pulumi.Input[builtins.bool]] = None,
-                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None):
+                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 security_contact: Optional[pulumi.Input[builtins.str]] = None,
+                 skip_default_alerts_settings: Optional[pulumi.Input[builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
         :param pulumi.Input[builtins.bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
@@ -189,6 +219,7 @@ class _OrganizationState:
         :param pulumi.Input[builtins.str] public_key: Public API key value set for the specified organization API key.
         :param pulumi.Input[builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+        :param pulumi.Input[builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         """
         if api_access_list_required is not None:
             pulumi.set(__self__, "api_access_list_required", api_access_list_required)
@@ -214,6 +245,10 @@ class _OrganizationState:
             pulumi.set(__self__, "restrict_employee_access", restrict_employee_access)
         if role_names is not None:
             pulumi.set(__self__, "role_names", role_names)
+        if security_contact is not None:
+            pulumi.set(__self__, "security_contact", security_contact)
+        if skip_default_alerts_settings is not None:
+            pulumi.set(__self__, "skip_default_alerts_settings", skip_default_alerts_settings)
 
     @property
     @pulumi.getter(name="apiAccessListRequired")
@@ -353,6 +388,27 @@ class _OrganizationState:
     def role_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "role_names", value)
 
+    @property
+    @pulumi.getter(name="securityContact")
+    def security_contact(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        """
+        return pulumi.get(self, "security_contact")
+
+    @security_contact.setter
+    def security_contact(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "security_contact", value)
+
+    @property
+    @pulumi.getter(name="skipDefaultAlertsSettings")
+    def skip_default_alerts_settings(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "skip_default_alerts_settings")
+
+    @skip_default_alerts_settings.setter
+    def skip_default_alerts_settings(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "skip_default_alerts_settings", value)
+
 
 class Organization(pulumi.CustomResource):
 
@@ -371,6 +427,8 @@ class Organization(pulumi.CustomResource):
                  org_owner_id: Optional[pulumi.Input[builtins.str]] = None,
                  restrict_employee_access: Optional[pulumi.Input[builtins.bool]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 security_contact: Optional[pulumi.Input[builtins.str]] = None,
+                 skip_default_alerts_settings: Optional[pulumi.Input[builtins.bool]] = None,
                  __props__=None):
         """
         ## # Resource: Organization
@@ -406,6 +464,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
         :param pulumi.Input[builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+        :param pulumi.Input[builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         """
         ...
     @overload
@@ -461,6 +520,8 @@ class Organization(pulumi.CustomResource):
                  org_owner_id: Optional[pulumi.Input[builtins.str]] = None,
                  restrict_employee_access: Optional[pulumi.Input[builtins.bool]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 security_contact: Optional[pulumi.Input[builtins.str]] = None,
+                 skip_default_alerts_settings: Optional[pulumi.Input[builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -485,6 +546,8 @@ class Organization(pulumi.CustomResource):
             if role_names is None and not opts.urn:
                 raise TypeError("Missing required property 'role_names'")
             __props__.__dict__["role_names"] = role_names
+            __props__.__dict__["security_contact"] = security_contact
+            __props__.__dict__["skip_default_alerts_settings"] = skip_default_alerts_settings
             __props__.__dict__["org_id"] = None
             __props__.__dict__["private_key"] = None
             __props__.__dict__["public_key"] = None
@@ -511,7 +574,9 @@ class Organization(pulumi.CustomResource):
             private_key: Optional[pulumi.Input[builtins.str]] = None,
             public_key: Optional[pulumi.Input[builtins.str]] = None,
             restrict_employee_access: Optional[pulumi.Input[builtins.bool]] = None,
-            role_names: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None) -> 'Organization':
+            role_names: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+            security_contact: Optional[pulumi.Input[builtins.str]] = None,
+            skip_default_alerts_settings: Optional[pulumi.Input[builtins.bool]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -529,6 +594,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] public_key: Public API key value set for the specified organization API key.
         :param pulumi.Input[builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+        :param pulumi.Input[builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -546,6 +612,8 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["public_key"] = public_key
         __props__.__dict__["restrict_employee_access"] = restrict_employee_access
         __props__.__dict__["role_names"] = role_names
+        __props__.__dict__["security_contact"] = security_contact
+        __props__.__dict__["skip_default_alerts_settings"] = skip_default_alerts_settings
         return Organization(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -637,4 +705,17 @@ class Organization(pulumi.CustomResource):
         List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         """
         return pulumi.get(self, "role_names")
+
+    @property
+    @pulumi.getter(name="securityContact")
+    def security_contact(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        """
+        return pulumi.get(self, "security_contact")
+
+    @property
+    @pulumi.getter(name="skipDefaultAlertsSettings")
+    def skip_default_alerts_settings(self) -> pulumi.Output[builtins.bool]:
+        return pulumi.get(self, "skip_default_alerts_settings")
 

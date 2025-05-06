@@ -120,7 +120,7 @@ type GlobalClusterConfig struct {
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
 	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
+	// Deprecated: This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	CustomZoneMapping pulumi.StringMapOutput `pulumi:"customZoneMapping"`
 	// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
 	CustomZoneMappingZoneId pulumi.StringMapOutput `pulumi:"customZoneMappingZoneId"`
@@ -172,7 +172,7 @@ type globalClusterConfigState struct {
 	ClusterName *string `pulumi:"clusterName"`
 	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
 	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
+	// Deprecated: This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	CustomZoneMapping map[string]string `pulumi:"customZoneMapping"`
 	// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
 	CustomZoneMappingZoneId map[string]string `pulumi:"customZoneMappingZoneId"`
@@ -189,7 +189,7 @@ type GlobalClusterConfigState struct {
 	ClusterName pulumi.StringPtrInput
 	// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
 	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
+	// Deprecated: This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	CustomZoneMapping pulumi.StringMapInput
 	// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
 	CustomZoneMappingZoneId pulumi.StringMapInput
@@ -322,7 +322,7 @@ func (o GlobalClusterConfigOutput) ClusterName() pulumi.StringOutput {
 
 // (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
 //
-// Deprecated: This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.
+// Deprecated: This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GlobalClusterConfigOutput) CustomZoneMapping() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *GlobalClusterConfig) pulumi.StringMapOutput { return v.CustomZoneMapping }).(pulumi.StringMapOutput)
 }

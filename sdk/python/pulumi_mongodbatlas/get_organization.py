@@ -28,7 +28,7 @@ class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
     """
-    def __init__(__self__, api_access_list_required=None, gen_ai_features_enabled=None, id=None, is_deleted=None, links=None, multi_factor_auth_required=None, name=None, org_id=None, restrict_employee_access=None):
+    def __init__(__self__, api_access_list_required=None, gen_ai_features_enabled=None, id=None, is_deleted=None, links=None, multi_factor_auth_required=None, name=None, org_id=None, restrict_employee_access=None, security_contact=None, skip_default_alerts_settings=None):
         if api_access_list_required and not isinstance(api_access_list_required, bool):
             raise TypeError("Expected argument 'api_access_list_required' to be a bool")
         pulumi.set(__self__, "api_access_list_required", api_access_list_required)
@@ -56,6 +56,12 @@ class GetOrganizationResult:
         if restrict_employee_access and not isinstance(restrict_employee_access, bool):
             raise TypeError("Expected argument 'restrict_employee_access' to be a bool")
         pulumi.set(__self__, "restrict_employee_access", restrict_employee_access)
+        if security_contact and not isinstance(security_contact, str):
+            raise TypeError("Expected argument 'security_contact' to be a str")
+        pulumi.set(__self__, "security_contact", security_contact)
+        if skip_default_alerts_settings and not isinstance(skip_default_alerts_settings, bool):
+            raise TypeError("Expected argument 'skip_default_alerts_settings' to be a bool")
+        pulumi.set(__self__, "skip_default_alerts_settings", skip_default_alerts_settings)
 
     @property
     @pulumi.getter(name="apiAccessListRequired")
@@ -123,6 +129,19 @@ class GetOrganizationResult:
         """
         return pulumi.get(self, "restrict_employee_access")
 
+    @property
+    @pulumi.getter(name="securityContact")
+    def security_contact(self) -> builtins.str:
+        """
+        (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        """
+        return pulumi.get(self, "security_contact")
+
+    @property
+    @pulumi.getter(name="skipDefaultAlertsSettings")
+    def skip_default_alerts_settings(self) -> builtins.bool:
+        return pulumi.get(self, "skip_default_alerts_settings")
+
 
 class AwaitableGetOrganizationResult(GetOrganizationResult):
     # pylint: disable=using-constant-test
@@ -138,7 +157,9 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             multi_factor_auth_required=self.multi_factor_auth_required,
             name=self.name,
             org_id=self.org_id,
-            restrict_employee_access=self.restrict_employee_access)
+            restrict_employee_access=self.restrict_employee_access,
+            security_contact=self.security_contact,
+            skip_default_alerts_settings=self.skip_default_alerts_settings)
 
 
 def get_organization(org_id: Optional[builtins.str] = None,
@@ -175,7 +196,9 @@ def get_organization(org_id: Optional[builtins.str] = None,
         multi_factor_auth_required=pulumi.get(__ret__, 'multi_factor_auth_required'),
         name=pulumi.get(__ret__, 'name'),
         org_id=pulumi.get(__ret__, 'org_id'),
-        restrict_employee_access=pulumi.get(__ret__, 'restrict_employee_access'))
+        restrict_employee_access=pulumi.get(__ret__, 'restrict_employee_access'),
+        security_contact=pulumi.get(__ret__, 'security_contact'),
+        skip_default_alerts_settings=pulumi.get(__ret__, 'skip_default_alerts_settings'))
 def get_organization_output(org_id: Optional[pulumi.Input[builtins.str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
@@ -209,4 +232,6 @@ def get_organization_output(org_id: Optional[pulumi.Input[builtins.str]] = None,
         multi_factor_auth_required=pulumi.get(__response__, 'multi_factor_auth_required'),
         name=pulumi.get(__response__, 'name'),
         org_id=pulumi.get(__response__, 'org_id'),
-        restrict_employee_access=pulumi.get(__response__, 'restrict_employee_access')))
+        restrict_employee_access=pulumi.get(__response__, 'restrict_employee_access'),
+        security_contact=pulumi.get(__response__, 'security_contact'),
+        skip_default_alerts_settings=pulumi.get(__response__, 'skip_default_alerts_settings')))

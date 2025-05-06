@@ -85,6 +85,12 @@ namespace Pulumi.Mongodbatlas
         [Output("secret")]
         public Output<string?> Secret { get; private set; } = null!;
 
+        [Output("sendCollectionLatencyMetrics")]
+        public Output<bool> SendCollectionLatencyMetrics { get; private set; } = null!;
+
+        [Output("sendDatabaseMetrics")]
+        public Output<bool> SendDatabaseMetrics { get; private set; } = null!;
+
         [Output("serviceDiscovery")]
         public Output<string> ServiceDiscovery { get; private set; } = null!;
 
@@ -248,6 +254,12 @@ namespace Pulumi.Mongodbatlas
             }
         }
 
+        [Input("sendCollectionLatencyMetrics")]
+        public Input<bool>? SendCollectionLatencyMetrics { get; set; }
+
+        [Input("sendDatabaseMetrics")]
+        public Input<bool>? SendDatabaseMetrics { get; set; }
+
         [Input("serviceDiscovery")]
         private Input<string>? _serviceDiscovery;
         public Input<string>? ServiceDiscovery
@@ -388,6 +400,12 @@ namespace Pulumi.Mongodbatlas
                 _secret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("sendCollectionLatencyMetrics")]
+        public Input<bool>? SendCollectionLatencyMetrics { get; set; }
+
+        [Input("sendDatabaseMetrics")]
+        public Input<bool>? SendDatabaseMetrics { get; set; }
 
         [Input("serviceDiscovery")]
         private Input<string>? _serviceDiscovery;

@@ -202,6 +202,8 @@ __all__ = [
     'LdapVerifyLinkArgsDict',
     'LdapVerifyValidationArgs',
     'LdapVerifyValidationArgsDict',
+    'MaintenanceWindowProtectedHoursArgs',
+    'MaintenanceWindowProtectedHoursArgsDict',
     'OnlineArchiveCriteriaArgs',
     'OnlineArchiveCriteriaArgsDict',
     'OnlineArchiveDataExpirationRuleArgs',
@@ -306,15 +308,15 @@ if not MYPY:
         """
         default_read_concern: NotRequired[pulumi.Input[builtins.str]]
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         default_write_concern: NotRequired[pulumi.Input[builtins.str]]
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         fail_index_key_too_long: NotRequired[pulumi.Input[builtins.bool]]
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+        **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         javascript_enabled: NotRequired[pulumi.Input[builtins.bool]]
         """
@@ -381,9 +383,9 @@ class AdvancedClusterAdvancedConfigurationArgs:
         :param pulumi.Input[builtins.int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param pulumi.Input[builtins.int] default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
-        :param pulumi.Input[builtins.str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        :param pulumi.Input[builtins.str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param pulumi.Input[builtins.bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+        :param pulumi.Input[builtins.str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        :param pulumi.Input[builtins.str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param pulumi.Input[builtins.bool] fail_index_key_too_long: **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param pulumi.Input[builtins.bool] javascript_enabled: When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param pulumi.Input[builtins.str] minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
                - TLS1_0
@@ -405,15 +407,15 @@ class AdvancedClusterAdvancedConfigurationArgs:
         if default_max_time_ms is not None:
             pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         if default_read_concern is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
-            pulumi.log.warn("""default_read_concern is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
+            pulumi.log.warn("""default_read_concern is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
         if default_read_concern is not None:
             pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
             pulumi.set(__self__, "default_write_concern", default_write_concern)
         if fail_index_key_too_long is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
-            pulumi.log.warn("""fail_index_key_too_long is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
+            pulumi.log.warn("""fail_index_key_too_long is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
         if fail_index_key_too_long is not None:
             pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
         if javascript_enabled is not None:
@@ -473,10 +475,10 @@ class AdvancedClusterAdvancedConfigurationArgs:
 
     @property
     @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def default_read_concern(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -488,7 +490,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
 
@@ -498,10 +500,10 @@ class AdvancedClusterAdvancedConfigurationArgs:
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def fail_index_key_too_long(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+        **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -1150,13 +1152,13 @@ class AdvancedClusterReplicationSpecArgs:
         if external_id is not None:
             pulumi.set(__self__, "external_id", external_id)
         if id is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
-            pulumi.log.warn("""id is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
+            pulumi.log.warn("""id is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
         if id is not None:
             pulumi.set(__self__, "id", id)
         if num_shards is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
-            pulumi.log.warn("""num_shards is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
+            pulumi.log.warn("""num_shards is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
         if num_shards is not None:
             pulumi.set(__self__, "num_shards", num_shards)
         if zone_id is not None:
@@ -1199,7 +1201,7 @@ class AdvancedClusterReplicationSpecArgs:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
@@ -1212,7 +1214,7 @@ class AdvancedClusterReplicationSpecArgs:
 
     @property
     @pulumi.getter(name="numShards")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def num_shards(self) -> Optional[pulumi.Input[builtins.int]]:
         """
         Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
@@ -3618,8 +3620,8 @@ class CloudBackupScheduleCopySettingArgs:
         if region_name is not None:
             pulumi.set(__self__, "region_name", region_name)
         if replication_spec_id is not None:
-            warnings.warn("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
-            pulumi.log.warn("""replication_spec_id is deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+            warnings.warn("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
+            pulumi.log.warn("""replication_spec_id is deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
         if replication_spec_id is not None:
             pulumi.set(__self__, "replication_spec_id", replication_spec_id)
         if should_copy_oplogs is not None:
@@ -3665,7 +3667,7 @@ class CloudBackupScheduleCopySettingArgs:
 
     @property
     @pulumi.getter(name="replicationSpecId")
-    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def replication_spec_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
@@ -4801,15 +4803,15 @@ if not MYPY:
         default_max_time_ms: NotRequired[pulumi.Input[builtins.int]]
         default_read_concern: NotRequired[pulumi.Input[builtins.str]]
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         default_write_concern: NotRequired[pulumi.Input[builtins.str]]
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         fail_index_key_too_long: NotRequired[pulumi.Input[builtins.bool]]
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         javascript_enabled: NotRequired[pulumi.Input[builtins.bool]]
         """
@@ -4818,7 +4820,6 @@ if not MYPY:
         minimum_enabled_tls_protocol: NotRequired[pulumi.Input[builtins.str]]
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-
         - TLS1_0
         - TLS1_1
         - TLS1_2
@@ -4876,12 +4877,11 @@ class ClusterAdvancedConfigurationArgs:
         """
         :param pulumi.Input[builtins.int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
-        :param pulumi.Input[builtins.str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-        :param pulumi.Input[builtins.str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param pulumi.Input[builtins.bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param pulumi.Input[builtins.str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        :param pulumi.Input[builtins.str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param pulumi.Input[builtins.bool] fail_index_key_too_long: **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param pulumi.Input[builtins.bool] javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param pulumi.Input[builtins.str] minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               
                - TLS1_0
                - TLS1_1
                - TLS1_2
@@ -4901,15 +4901,15 @@ class ClusterAdvancedConfigurationArgs:
         if default_max_time_ms is not None:
             pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
         if default_read_concern is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
-            pulumi.log.warn("""default_read_concern is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
+            pulumi.log.warn("""default_read_concern is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
         if default_read_concern is not None:
             pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
             pulumi.set(__self__, "default_write_concern", default_write_concern)
         if fail_index_key_too_long is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""", DeprecationWarning)
-            pulumi.log.warn("""fail_index_key_too_long is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
+            pulumi.log.warn("""fail_index_key_too_long is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
         if fail_index_key_too_long is not None:
             pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
         if javascript_enabled is not None:
@@ -4966,10 +4966,10 @@ class ClusterAdvancedConfigurationArgs:
 
     @property
     @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def default_read_concern(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -4981,7 +4981,7 @@ class ClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
 
@@ -4991,10 +4991,10 @@ class ClusterAdvancedConfigurationArgs:
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def fail_index_key_too_long(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -5019,7 +5019,6 @@ class ClusterAdvancedConfigurationArgs:
     def minimum_enabled_tls_protocol(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-
         - TLS1_0
         - TLS1_1
         - TLS1_2
@@ -6228,7 +6227,7 @@ if not MYPY:
 
         > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 
-        * `resources.#.database_name`	Database on which the action is granted.
+        * `resources.#.database_name` Database on which the action is granted. Use the empty string ("") to allow an action on all databases.
 
         > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 
@@ -6253,7 +6252,7 @@ class CustomDbRoleActionArgs:
                
                > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
                
-               * `resources.#.database_name`	Database on which the action is granted.
+               * `resources.#.database_name` Database on which the action is granted. Use the empty string ("") to allow an action on all databases.
                
                > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
                
@@ -6287,7 +6286,7 @@ class CustomDbRoleActionArgs:
 
         > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 
-        * `resources.#.database_name`	Database on which the action is granted.
+        * `resources.#.database_name` Database on which the action is granted. Use the empty string ("") to allow an action on all databases.
 
         > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 
@@ -7153,7 +7152,7 @@ if not MYPY:
         """
         type: NotRequired[pulumi.Input[builtins.str]]
         """
-        Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         """
 elif False:
     DatabaseUserScopeArgsDict: TypeAlias = Mapping[str, Any]
@@ -7165,7 +7164,7 @@ class DatabaseUserScopeArgs:
                  type: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] name: Name of the cluster or Atlas Data Lake that the user has access to.
-        :param pulumi.Input[builtins.str] type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        :param pulumi.Input[builtins.str] type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -7188,7 +7187,7 @@ class DatabaseUserScopeArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         """
         return pulumi.get(self, "type")
 
@@ -9236,6 +9235,56 @@ class LdapVerifyValidationArgs:
     @validation_type.setter
     def validation_type(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "validation_type", value)
+
+
+if not MYPY:
+    class MaintenanceWindowProtectedHoursArgsDict(TypedDict):
+        end_hour_of_day: pulumi.Input[builtins.int]
+        """
+        Zero-based integer that represents the end hour of the day for the protected hours window.
+        """
+        start_hour_of_day: pulumi.Input[builtins.int]
+        """
+        Zero-based integer that represents the beginning hour of the day for the protected hours window.
+        """
+elif False:
+    MaintenanceWindowProtectedHoursArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class MaintenanceWindowProtectedHoursArgs:
+    def __init__(__self__, *,
+                 end_hour_of_day: pulumi.Input[builtins.int],
+                 start_hour_of_day: pulumi.Input[builtins.int]):
+        """
+        :param pulumi.Input[builtins.int] end_hour_of_day: Zero-based integer that represents the end hour of the day for the protected hours window.
+        :param pulumi.Input[builtins.int] start_hour_of_day: Zero-based integer that represents the beginning hour of the day for the protected hours window.
+        """
+        pulumi.set(__self__, "end_hour_of_day", end_hour_of_day)
+        pulumi.set(__self__, "start_hour_of_day", start_hour_of_day)
+
+    @property
+    @pulumi.getter(name="endHourOfDay")
+    def end_hour_of_day(self) -> pulumi.Input[builtins.int]:
+        """
+        Zero-based integer that represents the end hour of the day for the protected hours window.
+        """
+        return pulumi.get(self, "end_hour_of_day")
+
+    @end_hour_of_day.setter
+    def end_hour_of_day(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "end_hour_of_day", value)
+
+    @property
+    @pulumi.getter(name="startHourOfDay")
+    def start_hour_of_day(self) -> pulumi.Input[builtins.int]:
+        """
+        Zero-based integer that represents the beginning hour of the day for the protected hours window.
+        """
+        return pulumi.get(self, "start_hour_of_day")
+
+    @start_hour_of_day.setter
+    def start_hour_of_day(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "start_hour_of_day", value)
 
 
 if not MYPY:

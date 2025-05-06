@@ -13,6 +13,7 @@ import com.pulumi.mongodbatlas.inputs.EncryptionAtRestState;
 import com.pulumi.mongodbatlas.outputs.EncryptionAtRestAwsKmsConfig;
 import com.pulumi.mongodbatlas.outputs.EncryptionAtRestAzureKeyVaultConfig;
 import com.pulumi.mongodbatlas.outputs.EncryptionAtRestGoogleCloudKmsConfig;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -46,6 +47,20 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<EncryptionAtRestAzureKeyVaultConfig>> azureKeyVaultConfig() {
         return Codegen.optional(this.azureKeyVaultConfig);
+    }
+    /**
+     * Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     * 
+     */
+    @Export(name="enabledForSearchNodes", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> enabledForSearchNodes;
+
+    /**
+     * @return Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     * 
+     */
+    public Output<Boolean> enabledForSearchNodes() {
+        return this.enabledForSearchNodes;
     }
     /**
      * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).

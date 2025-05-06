@@ -12,6 +12,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: StreamProcessor
+//
+// `StreamProcessor` provides a Stream Processor resource. The resource lets you create, delete, import, start and stop a stream processor in a stream instance.
+//
+// **NOTE**: When updating an Atlas Stream Processor, the following behavior applies:
+// 1. If the processor is in a `STARTED` state, it will automatically be stopped before the update is applied
+// 2. The update will be performed while the processor is in `STOPPED` state
+// 3. If the processor was originally in `STARTED` state, it will be restarted after the update
+//
 // ## Example Usage
 //
 // ## Import
@@ -34,8 +43,9 @@ type StreamProcessor struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-	// setting the state to STARTED can automatically start the stream processor.
+	// created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+	// specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+	// specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas
 	// Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
@@ -97,8 +107,9 @@ type streamProcessorState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-	// setting the state to STARTED can automatically start the stream processor.
+	// created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+	// specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+	// specifying the state, it is stopped and then restored to previous state upon update completion.
 	State *string `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas
 	// Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
@@ -119,8 +130,9 @@ type StreamProcessorState struct {
 	ProjectId pulumi.StringPtrInput
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-	// setting the state to STARTED can automatically start the stream processor.
+	// created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+	// specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+	// specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringPtrInput
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas
 	// Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
@@ -145,8 +157,9 @@ type streamProcessorArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-	// setting the state to STARTED can automatically start the stream processor.
+	// created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+	// specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+	// specifying the state, it is stopped and then restored to previous state upon update completion.
 	State *string `pulumi:"state"`
 }
 
@@ -164,8 +177,9 @@ type StreamProcessorArgs struct {
 	ProjectId pulumi.StringInput
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 	// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-	// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-	// setting the state to STARTED can automatically start the stream processor.
+	// created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+	// specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+	// specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringPtrInput
 }
 
@@ -283,8 +297,9 @@ func (o StreamProcessorOutput) ProjectId() pulumi.StringOutput {
 
 // The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
 // start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-// created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-// setting the state to STARTED can automatically start the stream processor.
+// created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+// specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+// specifying the state, it is stopped and then restored to previous state upon update completion.
 func (o StreamProcessorOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }

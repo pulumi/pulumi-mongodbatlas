@@ -25,6 +25,12 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.EncryptionAtRestAzureKeyVaultConfig?> AzureKeyVaultConfig { get; private set; } = null!;
 
         /// <summary>
+        /// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+        /// </summary>
+        [Output("enabledForSearchNodes")]
+        public Output<bool> EnabledForSearchNodes { get; private set; } = null!;
+
+        /// <summary>
         /// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         /// </summary>
         [Output("googleCloudKmsConfig")]
@@ -95,6 +101,12 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>? AzureKeyVaultConfig { get; set; }
 
         /// <summary>
+        /// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+        /// </summary>
+        [Input("enabledForSearchNodes")]
+        public Input<bool>? EnabledForSearchNodes { get; set; }
+
+        /// <summary>
         /// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         /// </summary>
         [Input("googleCloudKmsConfig")]
@@ -125,6 +137,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("azureKeyVaultConfig")]
         public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>? AzureKeyVaultConfig { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+        /// </summary>
+        [Input("enabledForSearchNodes")]
+        public Input<bool>? EnabledForSearchNodes { get; set; }
 
         /// <summary>
         /// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).

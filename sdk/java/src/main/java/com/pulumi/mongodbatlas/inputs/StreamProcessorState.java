@@ -94,8 +94,9 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
     /**
      * The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
      * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-     * setting the state to STARTED can automatically start the stream processor.
+     * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+     * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+     * specifying the state, it is stopped and then restored to previous state upon update completion.
      * 
      */
     @Import(name="state")
@@ -104,8 +105,9 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
     /**
      * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
      * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-     * setting the state to STARTED can automatically start the stream processor.
+     * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+     * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+     * specifying the state, it is stopped and then restored to previous state upon update completion.
      * 
      */
     public Optional<Output<String>> state() {
@@ -269,8 +271,9 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         /**
          * @param state The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
          * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-         * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-         * setting the state to STARTED can automatically start the stream processor.
+         * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+         * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+         * specifying the state, it is stopped and then restored to previous state upon update completion.
          * 
          * @return builder
          * 
@@ -283,8 +286,9 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         /**
          * @param state The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
          * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-         * created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-         * setting the state to STARTED can automatically start the stream processor.
+         * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+         * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+         * specifying the state, it is stopped and then restored to previous state upon update completion.
          * 
          * @return builder
          * 

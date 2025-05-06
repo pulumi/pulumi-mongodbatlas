@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.MaintenanceWindowProtectedHoursArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -32,9 +33,17 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.autoDefer);
     }
 
+    /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * 
+     */
     @Import(name="autoDeferOnceEnabled")
     private @Nullable Output<Boolean> autoDeferOnceEnabled;
 
+    /**
+     * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * 
+     */
     public Optional<Output<Boolean>> autoDeferOnceEnabled() {
         return Optional.ofNullable(this.autoDeferOnceEnabled);
     }
@@ -114,6 +123,13 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.projectId);
     }
 
+    @Import(name="protectedHours")
+    private @Nullable Output<MaintenanceWindowProtectedHoursArgs> protectedHours;
+
+    public Optional<Output<MaintenanceWindowProtectedHoursArgs>> protectedHours() {
+        return Optional.ofNullable(this.protectedHours);
+    }
+
     /**
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
@@ -129,6 +145,21 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.startAsap);
     }
 
+    /**
+     * Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+     * 
+     */
+    @Import(name="timeZoneId")
+    private @Nullable Output<String> timeZoneId;
+
+    /**
+     * @return Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+     * 
+     */
+    public Optional<Output<String>> timeZoneId() {
+        return Optional.ofNullable(this.timeZoneId);
+    }
+
     private MaintenanceWindowState() {}
 
     private MaintenanceWindowState(MaintenanceWindowState $) {
@@ -139,7 +170,9 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         this.hourOfDay = $.hourOfDay;
         this.numberOfDeferrals = $.numberOfDeferrals;
         this.projectId = $.projectId;
+        this.protectedHours = $.protectedHours;
         this.startAsap = $.startAsap;
+        this.timeZoneId = $.timeZoneId;
     }
 
     public static Builder builder() {
@@ -181,11 +214,23 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
             return autoDefer(Output.of(autoDefer));
         }
 
+        /**
+         * @param autoDeferOnceEnabled Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoDeferOnceEnabled(@Nullable Output<Boolean> autoDeferOnceEnabled) {
             $.autoDeferOnceEnabled = autoDeferOnceEnabled;
             return this;
         }
 
+        /**
+         * @param autoDeferOnceEnabled Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoDeferOnceEnabled(Boolean autoDeferOnceEnabled) {
             return autoDeferOnceEnabled(Output.of(autoDeferOnceEnabled));
         }
@@ -295,6 +340,15 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
             return projectId(Output.of(projectId));
         }
 
+        public Builder protectedHours(@Nullable Output<MaintenanceWindowProtectedHoursArgs> protectedHours) {
+            $.protectedHours = protectedHours;
+            return this;
+        }
+
+        public Builder protectedHours(MaintenanceWindowProtectedHoursArgs protectedHours) {
+            return protectedHours(Output.of(protectedHours));
+        }
+
         /**
          * @param startAsap Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
          * 
@@ -314,6 +368,27 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
          */
         public Builder startAsap(Boolean startAsap) {
             return startAsap(Output.of(startAsap));
+        }
+
+        /**
+         * @param timeZoneId Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeZoneId(@Nullable Output<String> timeZoneId) {
+            $.timeZoneId = timeZoneId;
+            return this;
+        }
+
+        /**
+         * @param timeZoneId Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeZoneId(String timeZoneId) {
+            return timeZoneId(Output.of(timeZoneId));
         }
 
         public MaintenanceWindowState build() {

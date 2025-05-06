@@ -37,8 +37,9 @@ class StreamProcessorArgs:
         :param pulumi.Input['StreamProcessorOptionsArgs'] options: Optional configuration for the stream processor.
         :param pulumi.Input[builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
                start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-               created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-               setting the state to STARTED can automatically start the stream processor.
+               created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+               specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+               specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "pipeline", pipeline)
@@ -115,8 +116,9 @@ class StreamProcessorArgs:
         """
         The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
         start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-        setting the state to STARTED can automatically start the stream processor.
+        created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+        specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+        specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         return pulumi.get(self, "state")
 
@@ -144,8 +146,9 @@ class _StreamProcessorState:
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input[builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
                start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-               created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-               setting the state to STARTED can automatically start the stream processor.
+               created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+               specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+               specifying the state, it is stopped and then restored to previous state upon update completion.
         :param pulumi.Input[builtins.str] stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas
                Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
                for more information.
@@ -231,8 +234,9 @@ class _StreamProcessorState:
         """
         The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
         start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-        setting the state to STARTED can automatically start the stream processor.
+        created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+        specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+        specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         return pulumi.get(self, "state")
 
@@ -271,6 +275,15 @@ class StreamProcessor(pulumi.CustomResource):
                  state: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
+        ## # Resource: StreamProcessor
+
+        `StreamProcessor` provides a Stream Processor resource. The resource lets you create, delete, import, start and stop a stream processor in a stream instance.
+
+        **NOTE**: When updating an Atlas Stream Processor, the following behavior applies:
+        1. If the processor is in a `STARTED` state, it will automatically be stopped before the update is applied
+        2. The update will be performed while the processor is in `STOPPED` state
+        3. If the processor was originally in `STARTED` state, it will be restarted after the update
+
         ## Example Usage
 
         ## Import
@@ -288,8 +301,9 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input[builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
                start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-               created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-               setting the state to STARTED can automatically start the stream processor.
+               created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+               specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+               specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         ...
     @overload
@@ -298,6 +312,15 @@ class StreamProcessor(pulumi.CustomResource):
                  args: StreamProcessorArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: StreamProcessor
+
+        `StreamProcessor` provides a Stream Processor resource. The resource lets you create, delete, import, start and stop a stream processor in a stream instance.
+
+        **NOTE**: When updating an Atlas Stream Processor, the following behavior applies:
+        1. If the processor is in a `STARTED` state, it will automatically be stopped before the update is applied
+        2. The update will be performed while the processor is in `STOPPED` state
+        3. If the processor was originally in `STARTED` state, it will be restarted after the update
+
         ## Example Usage
 
         ## Import
@@ -382,8 +405,9 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input[builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
                start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-               created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-               setting the state to STARTED can automatically start the stream processor.
+               created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+               specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+               specifying the state, it is stopped and then restored to previous state upon update completion.
         :param pulumi.Input[builtins.str] stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas
                Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
                for more information.
@@ -447,8 +471,9 @@ class StreamProcessor(pulumi.CustomResource):
         """
         The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
         start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        created without specifying the state, it will default to `CREATED` state. **NOTE** When creating a stream processor,
-        setting the state to STARTED can automatically start the stream processor.
+        created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
+        specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
+        specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         return pulumi.get(self, "state")
 

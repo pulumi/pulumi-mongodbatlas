@@ -605,7 +605,12 @@
             },
             "mongodbatlas_maintenance_window": {
                 "current": "mongodbatlas:index/maintenanceWindow:MaintenanceWindow",
-                "majorVersion": 3
+                "majorVersion": 3,
+                "fields": {
+                    "protected_hours": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "mongodbatlas_mongodb_employee_access_grant": {
                 "current": "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant",
@@ -2258,7 +2263,12 @@
             },
             "mongodbatlas_maintenance_window": {
                 "current": "mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow",
-                "majorVersion": 3
+                "majorVersion": 3,
+                "fields": {
+                    "protected_hours": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "mongodbatlas_mongodb_employee_access_grant": {
                 "current": "mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant",

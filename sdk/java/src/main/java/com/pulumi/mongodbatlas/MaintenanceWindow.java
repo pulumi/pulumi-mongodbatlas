@@ -10,9 +10,11 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.MaintenanceWindowState;
+import com.pulumi.mongodbatlas.outputs.MaintenanceWindowProtectedHours;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -44,6 +46,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.MaintenanceWindow;
  * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
+ * import com.pulumi.mongodbatlas.inputs.MaintenanceWindowProtectedHoursArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -61,6 +64,10 @@ import javax.annotation.Nullable;
  *             .projectId("<your-project-id>")
  *             .dayOfWeek(3)
  *             .hourOfDay(4)
+ *             .protectedHours(MaintenanceWindowProtectedHoursArgs.builder()
+ *                 .startHourOfDay(9)
+ *                 .endHourOfDay(17)
+ *                 .build())
  *             .build());
  * 
  *     }
@@ -129,9 +136,17 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
     public Output<Boolean> autoDefer() {
         return this.autoDefer;
     }
+    /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * 
+     */
     @Export(name="autoDeferOnceEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoDeferOnceEnabled;
 
+    /**
+     * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * 
+     */
     public Output<Boolean> autoDeferOnceEnabled() {
         return this.autoDeferOnceEnabled;
     }
@@ -205,6 +220,12 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
+    @Export(name="protectedHours", refs={MaintenanceWindowProtectedHours.class}, tree="[0]")
+    private Output</* @Nullable */ MaintenanceWindowProtectedHours> protectedHours;
+
+    public Output<Optional<MaintenanceWindowProtectedHours>> protectedHours() {
+        return Codegen.optional(this.protectedHours);
+    }
     /**
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
@@ -218,6 +239,20 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> startAsap() {
         return this.startAsap;
+    }
+    /**
+     * Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+     * 
+     */
+    @Export(name="timeZoneId", refs={String.class}, tree="[0]")
+    private Output<String> timeZoneId;
+
+    /**
+     * @return Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+     * 
+     */
+    public Output<String> timeZoneId() {
+        return this.timeZoneId;
     }
 
     /**

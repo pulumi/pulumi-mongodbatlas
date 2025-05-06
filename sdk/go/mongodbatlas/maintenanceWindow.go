@@ -46,6 +46,10 @@ import (
 //				ProjectId: pulumi.String("<your-project-id>"),
 //				DayOfWeek: pulumi.Int(3),
 //				HourOfDay: pulumi.Int(4),
+//				ProtectedHours: &mongodbatlas.MaintenanceWindowProtectedHoursArgs{
+//					StartHourOfDay: pulumi.Int(9),
+//					EndHourOfDay:   pulumi.Int(17),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -93,7 +97,8 @@ type MaintenanceWindow struct {
 	pulumi.CustomResourceState
 
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer            pulumi.BoolOutput `pulumi:"autoDefer"`
+	AutoDefer pulumi.BoolOutput `pulumi:"autoDefer"`
+	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
 	AutoDeferOnceEnabled pulumi.BoolOutput `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntOutput `pulumi:"dayOfWeek"`
@@ -104,9 +109,12 @@ type MaintenanceWindow struct {
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntOutput `pulumi:"numberOfDeferrals"`
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	ProjectId      pulumi.StringOutput                      `pulumi:"projectId"`
+	ProtectedHours MaintenanceWindowProtectedHoursPtrOutput `pulumi:"protectedHours"`
 	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap pulumi.BoolOutput `pulumi:"startAsap"`
+	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+	TimeZoneId pulumi.StringOutput `pulumi:"timeZoneId"`
 }
 
 // NewMaintenanceWindow registers a new resource with the given unique name, arguments, and options.
@@ -146,7 +154,8 @@ func GetMaintenanceWindow(ctx *pulumi.Context,
 // Input properties used for looking up and filtering MaintenanceWindow resources.
 type maintenanceWindowState struct {
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer            *bool `pulumi:"autoDefer"`
+	AutoDefer *bool `pulumi:"autoDefer"`
+	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek *int `pulumi:"dayOfWeek"`
@@ -157,14 +166,18 @@ type maintenanceWindowState struct {
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals *int `pulumi:"numberOfDeferrals"`
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId *string `pulumi:"projectId"`
+	ProjectId      *string                          `pulumi:"projectId"`
+	ProtectedHours *MaintenanceWindowProtectedHours `pulumi:"protectedHours"`
 	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap *bool `pulumi:"startAsap"`
+	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+	TimeZoneId *string `pulumi:"timeZoneId"`
 }
 
 type MaintenanceWindowState struct {
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer            pulumi.BoolPtrInput
+	AutoDefer pulumi.BoolPtrInput
+	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntPtrInput
@@ -175,9 +188,12 @@ type MaintenanceWindowState struct {
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntPtrInput
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId pulumi.StringPtrInput
+	ProjectId      pulumi.StringPtrInput
+	ProtectedHours MaintenanceWindowProtectedHoursPtrInput
 	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap pulumi.BoolPtrInput
+	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+	TimeZoneId pulumi.StringPtrInput
 }
 
 func (MaintenanceWindowState) ElementType() reflect.Type {
@@ -186,7 +202,8 @@ func (MaintenanceWindowState) ElementType() reflect.Type {
 
 type maintenanceWindowArgs struct {
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer            *bool `pulumi:"autoDefer"`
+	AutoDefer *bool `pulumi:"autoDefer"`
+	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek int `pulumi:"dayOfWeek"`
@@ -195,7 +212,8 @@ type maintenanceWindowArgs struct {
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
 	HourOfDay *int `pulumi:"hourOfDay"`
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId string `pulumi:"projectId"`
+	ProjectId      string                           `pulumi:"projectId"`
+	ProtectedHours *MaintenanceWindowProtectedHours `pulumi:"protectedHours"`
 	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap *bool `pulumi:"startAsap"`
 }
@@ -203,7 +221,8 @@ type maintenanceWindowArgs struct {
 // The set of arguments for constructing a MaintenanceWindow resource.
 type MaintenanceWindowArgs struct {
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer            pulumi.BoolPtrInput
+	AutoDefer pulumi.BoolPtrInput
+	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntInput
@@ -212,7 +231,8 @@ type MaintenanceWindowArgs struct {
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
 	HourOfDay pulumi.IntPtrInput
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId pulumi.StringInput
+	ProjectId      pulumi.StringInput
+	ProtectedHours MaintenanceWindowProtectedHoursPtrInput
 	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap pulumi.BoolPtrInput
 }
@@ -309,6 +329,7 @@ func (o MaintenanceWindowOutput) AutoDefer() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDefer }).(pulumi.BoolOutput)
 }
 
+// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
 func (o MaintenanceWindowOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
 }
@@ -338,9 +359,18 @@ func (o MaintenanceWindowOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+func (o MaintenanceWindowOutput) ProtectedHours() MaintenanceWindowProtectedHoursPtrOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) MaintenanceWindowProtectedHoursPtrOutput { return v.ProtectedHours }).(MaintenanceWindowProtectedHoursPtrOutput)
+}
+
 // Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
 func (o MaintenanceWindowOutput) StartAsap() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.StartAsap }).(pulumi.BoolOutput)
+}
+
+// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+func (o MaintenanceWindowOutput) TimeZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.TimeZoneId }).(pulumi.StringOutput)
 }
 
 type MaintenanceWindowArrayOutput struct{ *pulumi.OutputState }

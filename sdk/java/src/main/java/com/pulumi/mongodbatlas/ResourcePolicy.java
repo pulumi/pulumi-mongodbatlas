@@ -15,9 +15,14 @@ import com.pulumi.mongodbatlas.outputs.ResourcePolicyLastUpdatedByUser;
 import com.pulumi.mongodbatlas.outputs.ResourcePolicyPolicy;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.ResourcePolicy
+ * 
+ * `mongodbatlas.ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
+ * 
  * ## Example Usage
  * 
  * ## Import
@@ -56,6 +61,20 @@ public class ResourcePolicy extends com.pulumi.resources.CustomResource {
      */
     public Output<String> createdDate() {
         return this.createdDate;
+    }
+    /**
+     * Description of the Atlas resource policy.
+     * 
+     */
+    @Export(name="description", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> description;
+
+    /**
+     * @return Description of the Atlas resource policy.
+     * 
+     */
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
     }
     /**
      * The user that last updated the Atlas resource policy.

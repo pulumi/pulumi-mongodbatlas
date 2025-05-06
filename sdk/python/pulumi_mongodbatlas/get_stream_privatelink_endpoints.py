@@ -51,13 +51,16 @@ class GetStreamPrivatelinkEndpointsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
     def results(self) -> Sequence['outputs.GetStreamPrivatelinkEndpointsResultResult']:
+        """
+        List of documents that MongoDB Cloud returns for this request.
+        """
         return pulumi.get(self, "results")
 
 
@@ -84,7 +87,7 @@ def get_stream_privatelink_endpoints(project_id: Optional[builtins.str] = None,
     ### S
 
 
-    :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -107,7 +110,7 @@ def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[bu
     ### S
 
 
-    :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

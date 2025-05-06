@@ -95,7 +95,6 @@ type LookupMaintenanceWindowArgs struct {
 // A collection of values returned by getMaintenanceWindow.
 type LookupMaintenanceWindowResult struct {
 	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-	// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
 	AutoDeferOnceEnabled bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek int `pulumi:"dayOfWeek"`
@@ -106,8 +105,12 @@ type LookupMaintenanceWindowResult struct {
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals int    `pulumi:"numberOfDeferrals"`
 	ProjectId         string `pulumi:"projectId"`
+	// (Optional) Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+	ProtectedHours []GetMaintenanceWindowProtectedHour `pulumi:"protectedHours"`
 	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap bool `pulumi:"startAsap"`
+	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+	TimeZoneId string `pulumi:"timeZoneId"`
 }
 
 func LookupMaintenanceWindowOutput(ctx *pulumi.Context, args LookupMaintenanceWindowOutputArgs, opts ...pulumi.InvokeOption) LookupMaintenanceWindowResultOutput {
@@ -145,7 +148,6 @@ func (o LookupMaintenanceWindowResultOutput) ToLookupMaintenanceWindowResultOutp
 }
 
 // Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
 func (o LookupMaintenanceWindowResultOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) bool { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
 }
@@ -174,9 +176,19 @@ func (o LookupMaintenanceWindowResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// (Optional) Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+func (o LookupMaintenanceWindowResultOutput) ProtectedHours() GetMaintenanceWindowProtectedHourArrayOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) []GetMaintenanceWindowProtectedHour { return v.ProtectedHours }).(GetMaintenanceWindowProtectedHourArrayOutput)
+}
+
 // Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
 func (o LookupMaintenanceWindowResultOutput) StartAsap() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) bool { return v.StartAsap }).(pulumi.BoolOutput)
+}
+
+// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+func (o LookupMaintenanceWindowResultOutput) TimeZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) string { return v.TimeZoneId }).(pulumi.StringOutput)
 }
 
 func init() {

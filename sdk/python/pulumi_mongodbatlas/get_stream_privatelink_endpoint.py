@@ -74,21 +74,33 @@ class GetStreamPrivatelinkEndpointResult:
     @property
     @pulumi.getter
     def arn(self) -> builtins.str:
+        """
+        Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+        """
         return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dnsDomain")
     def dns_domain(self) -> builtins.str:
+        """
+        The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+        """
         return pulumi.get(self, "dns_domain")
 
     @property
     @pulumi.getter(name="dnsSubDomains")
     def dns_sub_domains(self) -> Sequence[builtins.str]:
+        """
+        Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+        """
         return pulumi.get(self, "dns_sub_domains")
 
     @property
     @pulumi.getter(name="errorMessage")
     def error_message(self) -> builtins.str:
+        """
+        Error message if the connection is in a failed state.
+        """
         return pulumi.get(self, "error_message")
 
     @property
@@ -102,49 +114,73 @@ class GetStreamPrivatelinkEndpointResult:
     @property
     @pulumi.getter(name="interfaceEndpointId")
     def interface_endpoint_id(self) -> builtins.str:
+        """
+        Interface endpoint ID that is created from the specified service endpoint ID.
+        """
         return pulumi.get(self, "interface_endpoint_id")
 
     @property
     @pulumi.getter(name="interfaceEndpointName")
     def interface_endpoint_name(self) -> builtins.str:
+        """
+        Name of interface endpoint that is created from the specified service endpoint ID.
+        """
         return pulumi.get(self, "interface_endpoint_name")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="providerAccountId")
     def provider_account_id(self) -> builtins.str:
+        """
+        Account ID from the cloud provider.
+        """
         return pulumi.get(self, "provider_account_id")
 
     @property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> builtins.str:
+        """
+        Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+        """
         return pulumi.get(self, "provider_name")
 
     @property
     @pulumi.getter
     def region(self) -> builtins.str:
+        """
+        The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="serviceEndpointId")
     def service_endpoint_id(self) -> builtins.str:
+        """
+        For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        """
         return pulumi.get(self, "service_endpoint_id")
 
     @property
     @pulumi.getter
     def state(self) -> builtins.str:
+        """
+        Status of the connection.
+        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
     def vendor(self) -> builtins.str:
+        """
+        Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        """
         return pulumi.get(self, "vendor")
 
 
@@ -184,7 +220,7 @@ def get_stream_privatelink_endpoint(id: Optional[builtins.str] = None,
 
 
     :param builtins.str id: The ID of the Private Link connection.
-    :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -221,7 +257,7 @@ def get_stream_privatelink_endpoint_output(id: Optional[pulumi.Input[builtins.st
 
 
     :param builtins.str id: The ID of the Private Link connection.
-    :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
     """
     __args__ = dict()
     __args__['id'] = id

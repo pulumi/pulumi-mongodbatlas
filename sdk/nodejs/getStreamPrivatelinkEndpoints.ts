@@ -27,7 +27,7 @@ export function getStreamPrivatelinkEndpoints(args: GetStreamPrivatelinkEndpoint
  */
 export interface GetStreamPrivatelinkEndpointsArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
     projectId: string;
 }
@@ -41,9 +41,12 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     readonly id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
     readonly projectId: string;
+    /**
+     * List of documents that MongoDB Cloud returns for this request.
+     */
     readonly results: outputs.GetStreamPrivatelinkEndpointsResult[];
 }
 /**
@@ -67,7 +70,7 @@ export function getStreamPrivatelinkEndpointsOutput(args: GetStreamPrivatelinkEn
  */
 export interface GetStreamPrivatelinkEndpointsOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
     projectId: pulumi.Input<string>;
 }

@@ -49,6 +49,7 @@ import * as utilities from "./utilities";
  *         region: atlasRegion,
  *         roleId: authRole.roleId,
  *     },
+ *     enabledForSearchNodes: true,
  * });
  * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
  *     projectId: testEncryptionAtRest.projectId,
@@ -150,6 +151,10 @@ export interface GetEncryptionAtRestResult {
      */
     readonly azureKeyVaultConfig: outputs.GetEncryptionAtRestAzureKeyVaultConfig;
     /**
+     * Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     */
+    readonly enabledForSearchNodes: boolean;
+    /**
      * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
      */
     readonly googleCloudKmsConfig: outputs.GetEncryptionAtRestGoogleCloudKmsConfig;
@@ -205,6 +210,7 @@ export interface GetEncryptionAtRestResult {
  *         region: atlasRegion,
  *         roleId: authRole.roleId,
  *     },
+ *     enabledForSearchNodes: true,
  * });
  * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
  *     projectId: testEncryptionAtRest.projectId,

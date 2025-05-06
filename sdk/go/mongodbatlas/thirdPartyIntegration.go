@@ -70,13 +70,15 @@ type ThirdPartyIntegration struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringOutput `pulumi:"microsoftTeamsWebhookUrl"`
 	Password                 pulumi.StringOutput `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        pulumi.StringOutput    `pulumi:"projectId"`
-	Region           pulumi.StringOutput    `pulumi:"region"`
-	RoutingKey       pulumi.StringOutput    `pulumi:"routingKey"`
-	Secret           pulumi.StringPtrOutput `pulumi:"secret"`
-	ServiceDiscovery pulumi.StringOutput    `pulumi:"serviceDiscovery"`
-	ServiceKey       pulumi.StringOutput    `pulumi:"serviceKey"`
-	TeamName         pulumi.StringOutput    `pulumi:"teamName"`
+	ProjectId                    pulumi.StringOutput    `pulumi:"projectId"`
+	Region                       pulumi.StringOutput    `pulumi:"region"`
+	RoutingKey                   pulumi.StringOutput    `pulumi:"routingKey"`
+	Secret                       pulumi.StringPtrOutput `pulumi:"secret"`
+	SendCollectionLatencyMetrics pulumi.BoolOutput      `pulumi:"sendCollectionLatencyMetrics"`
+	SendDatabaseMetrics          pulumi.BoolOutput      `pulumi:"sendDatabaseMetrics"`
+	ServiceDiscovery             pulumi.StringOutput    `pulumi:"serviceDiscovery"`
+	ServiceKey                   pulumi.StringOutput    `pulumi:"serviceKey"`
+	TeamName                     pulumi.StringOutput    `pulumi:"teamName"`
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
@@ -169,13 +171,15 @@ type thirdPartyIntegrationState struct {
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	Password                 *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        *string `pulumi:"projectId"`
-	Region           *string `pulumi:"region"`
-	RoutingKey       *string `pulumi:"routingKey"`
-	Secret           *string `pulumi:"secret"`
-	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
-	ServiceKey       *string `pulumi:"serviceKey"`
-	TeamName         *string `pulumi:"teamName"`
+	ProjectId                    *string `pulumi:"projectId"`
+	Region                       *string `pulumi:"region"`
+	RoutingKey                   *string `pulumi:"routingKey"`
+	Secret                       *string `pulumi:"secret"`
+	SendCollectionLatencyMetrics *bool   `pulumi:"sendCollectionLatencyMetrics"`
+	SendDatabaseMetrics          *bool   `pulumi:"sendDatabaseMetrics"`
+	ServiceDiscovery             *string `pulumi:"serviceDiscovery"`
+	ServiceKey                   *string `pulumi:"serviceKey"`
+	TeamName                     *string `pulumi:"teamName"`
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
@@ -198,13 +202,15 @@ type ThirdPartyIntegrationState struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
 	Password                 pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        pulumi.StringPtrInput
-	Region           pulumi.StringPtrInput
-	RoutingKey       pulumi.StringPtrInput
-	Secret           pulumi.StringPtrInput
-	ServiceDiscovery pulumi.StringPtrInput
-	ServiceKey       pulumi.StringPtrInput
-	TeamName         pulumi.StringPtrInput
+	ProjectId                    pulumi.StringPtrInput
+	Region                       pulumi.StringPtrInput
+	RoutingKey                   pulumi.StringPtrInput
+	Secret                       pulumi.StringPtrInput
+	SendCollectionLatencyMetrics pulumi.BoolPtrInput
+	SendDatabaseMetrics          pulumi.BoolPtrInput
+	ServiceDiscovery             pulumi.StringPtrInput
+	ServiceKey                   pulumi.StringPtrInput
+	TeamName                     pulumi.StringPtrInput
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
@@ -231,13 +237,15 @@ type thirdPartyIntegrationArgs struct {
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	Password                 *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        string  `pulumi:"projectId"`
-	Region           *string `pulumi:"region"`
-	RoutingKey       *string `pulumi:"routingKey"`
-	Secret           *string `pulumi:"secret"`
-	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
-	ServiceKey       *string `pulumi:"serviceKey"`
-	TeamName         *string `pulumi:"teamName"`
+	ProjectId                    string  `pulumi:"projectId"`
+	Region                       *string `pulumi:"region"`
+	RoutingKey                   *string `pulumi:"routingKey"`
+	Secret                       *string `pulumi:"secret"`
+	SendCollectionLatencyMetrics *bool   `pulumi:"sendCollectionLatencyMetrics"`
+	SendDatabaseMetrics          *bool   `pulumi:"sendDatabaseMetrics"`
+	ServiceDiscovery             *string `pulumi:"serviceDiscovery"`
+	ServiceKey                   *string `pulumi:"serviceKey"`
+	TeamName                     *string `pulumi:"teamName"`
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
@@ -261,13 +269,15 @@ type ThirdPartyIntegrationArgs struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
 	Password                 pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        pulumi.StringInput
-	Region           pulumi.StringPtrInput
-	RoutingKey       pulumi.StringPtrInput
-	Secret           pulumi.StringPtrInput
-	ServiceDiscovery pulumi.StringPtrInput
-	ServiceKey       pulumi.StringPtrInput
-	TeamName         pulumi.StringPtrInput
+	ProjectId                    pulumi.StringInput
+	Region                       pulumi.StringPtrInput
+	RoutingKey                   pulumi.StringPtrInput
+	Secret                       pulumi.StringPtrInput
+	SendCollectionLatencyMetrics pulumi.BoolPtrInput
+	SendDatabaseMetrics          pulumi.BoolPtrInput
+	ServiceDiscovery             pulumi.StringPtrInput
+	ServiceKey                   pulumi.StringPtrInput
+	TeamName                     pulumi.StringPtrInput
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
@@ -405,6 +415,14 @@ func (o ThirdPartyIntegrationOutput) RoutingKey() pulumi.StringOutput {
 
 func (o ThirdPartyIntegrationOutput) Secret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Secret }).(pulumi.StringPtrOutput)
+}
+
+func (o ThirdPartyIntegrationOutput) SendCollectionLatencyMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolOutput { return v.SendCollectionLatencyMetrics }).(pulumi.BoolOutput)
+}
+
+func (o ThirdPartyIntegrationOutput) SendDatabaseMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolOutput { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
 }
 
 func (o ThirdPartyIntegrationOutput) ServiceDiscovery() pulumi.StringOutput {

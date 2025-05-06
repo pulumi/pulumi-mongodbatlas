@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Whether your cluster has Prometheus enabled.
         /// </summary>
-        public readonly bool? Enabled;
+        public readonly bool Enabled;
         /// <summary>
         /// Unique identifier of the integration.
         /// </summary>
@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Your Microsoft Teams incoming webhook URL.
         /// * `PROMETHEUS`
         /// </summary>
-        public readonly string? MicrosoftTeamsWebhookUrl;
+        public readonly string MicrosoftTeamsWebhookUrl;
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
         /// </summary>
@@ -52,9 +52,18 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Secret;
         /// <summary>
+        /// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
+        /// </summary>
+        public readonly bool SendCollectionLatencyMetrics;
+        /// <summary>
+        /// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+        /// * `OPS_GENIE`
+        /// </summary>
+        public readonly bool SendDatabaseMetrics;
+        /// <summary>
         /// Indicates which service discovery method is used, either file or http.
         /// </summary>
-        public readonly string? ServiceDiscovery;
+        public readonly string ServiceDiscovery;
         /// <summary>
         /// Your Service Key.
         /// * `DATADOG`
@@ -72,7 +81,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Your Prometheus username.
         /// </summary>
-        public readonly string? UserName;
+        public readonly string UserName;
 
         [OutputConstructor]
         private GetThirdPartyIntegrationsResultResult(
@@ -82,11 +91,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string channelName,
 
-            bool? enabled,
+            bool enabled,
 
             string id,
 
-            string? microsoftTeamsWebhookUrl,
+            string microsoftTeamsWebhookUrl,
 
             string projectId,
 
@@ -96,7 +105,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string secret,
 
-            string? serviceDiscovery,
+            bool sendCollectionLatencyMetrics,
+
+            bool sendDatabaseMetrics,
+
+            string serviceDiscovery,
 
             string serviceKey,
 
@@ -106,7 +119,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string url,
 
-            string? userName)
+            string userName)
         {
             AccountId = accountId;
             ApiKey = apiKey;
@@ -118,6 +131,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             Region = region;
             RoutingKey = routingKey;
             Secret = secret;
+            SendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
+            SendDatabaseMetrics = sendDatabaseMetrics;
             ServiceDiscovery = serviceDiscovery;
             ServiceKey = serviceKey;
             TeamName = teamName;

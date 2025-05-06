@@ -560,7 +560,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
      * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
      * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-     * * The default value is false.  M10 and above only.
+     * * The default value is false. M10 and above only.
      * 
      */
     @Export(name="backupEnabled", refs={Boolean.class}, tree="[0]")
@@ -571,7 +571,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
      * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
      * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-     * * The default value is false.  M10 and above only.
+     * * The default value is false. M10 and above only.
      * 
      */
     public Output<Boolean> backupEnabled() {
@@ -1064,14 +1064,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.replicationSpecs;
     }
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
+     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only. This only applies to the `Delete` operation. If you see the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, set it to explicit `true`.
      * 
      */
     @Export(name="retainBackupsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> retainBackupsEnabled;
 
     /**
-     * @return Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
+     * @return Set to true to retain backup snapshots for the deleted cluster. M10 and above only. This only applies to the `Delete` operation. If you see the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, set it to explicit `true`.
      * 
      */
     public Output<Optional<Boolean>> retainBackupsEnabled() {

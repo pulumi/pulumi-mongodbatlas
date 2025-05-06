@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -31,6 +33,10 @@ import * as utilities from "./utilities";
  *     projectId: "<your-project-id>",
  *     dayOfWeek: 3,
  *     hourOfDay: 4,
+ *     protectedHours: {
+ *         startHourOfDay: 9,
+ *         endHourOfDay: 17,
+ *     },
  * });
  * ```
  *
@@ -85,6 +91,9 @@ export class MaintenanceWindow extends pulumi.CustomResource {
      * Defer any scheduled maintenance for the given project for one week.
      */
     public readonly autoDefer!: pulumi.Output<boolean>;
+    /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     */
     public readonly autoDeferOnceEnabled!: pulumi.Output<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
@@ -106,10 +115,15 @@ export class MaintenanceWindow extends pulumi.CustomResource {
      * The unique identifier of the project for the Maintenance Window.
      */
     public readonly projectId!: pulumi.Output<string>;
+    public readonly protectedHours!: pulumi.Output<outputs.MaintenanceWindowProtectedHours | undefined>;
     /**
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      */
     public readonly startAsap!: pulumi.Output<boolean>;
+    /**
+     * Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+     */
+    public /*out*/ readonly timeZoneId!: pulumi.Output<string>;
 
     /**
      * Create a MaintenanceWindow resource with the given unique name, arguments, and options.
@@ -131,7 +145,9 @@ export class MaintenanceWindow extends pulumi.CustomResource {
             resourceInputs["hourOfDay"] = state ? state.hourOfDay : undefined;
             resourceInputs["numberOfDeferrals"] = state ? state.numberOfDeferrals : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["protectedHours"] = state ? state.protectedHours : undefined;
             resourceInputs["startAsap"] = state ? state.startAsap : undefined;
+            resourceInputs["timeZoneId"] = state ? state.timeZoneId : undefined;
         } else {
             const args = argsOrState as MaintenanceWindowArgs | undefined;
             if ((!args || args.dayOfWeek === undefined) && !opts.urn) {
@@ -146,8 +162,10 @@ export class MaintenanceWindow extends pulumi.CustomResource {
             resourceInputs["defer"] = args ? args.defer : undefined;
             resourceInputs["hourOfDay"] = args ? args.hourOfDay : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["protectedHours"] = args ? args.protectedHours : undefined;
             resourceInputs["startAsap"] = args ? args.startAsap : undefined;
             resourceInputs["numberOfDeferrals"] = undefined /*out*/;
+            resourceInputs["timeZoneId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MaintenanceWindow.__pulumiType, name, resourceInputs, opts);
@@ -162,6 +180,9 @@ export interface MaintenanceWindowState {
      * Defer any scheduled maintenance for the given project for one week.
      */
     autoDefer?: pulumi.Input<boolean>;
+    /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     */
     autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
@@ -183,10 +204,15 @@ export interface MaintenanceWindowState {
      * The unique identifier of the project for the Maintenance Window.
      */
     projectId?: pulumi.Input<string>;
+    protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours>;
     /**
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      */
     startAsap?: pulumi.Input<boolean>;
+    /**
+     * Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+     */
+    timeZoneId?: pulumi.Input<string>;
 }
 
 /**
@@ -197,6 +223,9 @@ export interface MaintenanceWindowArgs {
      * Defer any scheduled maintenance for the given project for one week.
      */
     autoDefer?: pulumi.Input<boolean>;
+    /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     */
     autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
@@ -214,6 +243,7 @@ export interface MaintenanceWindowArgs {
      * The unique identifier of the project for the Maintenance Window.
      */
     projectId: pulumi.Input<string>;
+    protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours>;
     /**
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      */

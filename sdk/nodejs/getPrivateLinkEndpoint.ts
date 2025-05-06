@@ -11,6 +11,9 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
+ * > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
+ * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -123,6 +126,9 @@ export interface GetPrivateLinkEndpointResult {
  * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
+ * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
  *
  * ## Example Usage
  *

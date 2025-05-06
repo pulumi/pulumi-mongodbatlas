@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -64,7 +66,6 @@ export interface GetMaintenanceWindowArgs {
 export interface GetMaintenanceWindowResult {
     /**
      * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-     * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
      */
     readonly autoDeferOnceEnabled: boolean;
     /**
@@ -85,9 +86,17 @@ export interface GetMaintenanceWindowResult {
     readonly numberOfDeferrals: number;
     readonly projectId: string;
     /**
+     * (Optional) Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     */
+    readonly protectedHours: outputs.GetMaintenanceWindowProtectedHour[];
+    /**
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      */
     readonly startAsap: boolean;
+    /**
+     * Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+     */
+    readonly timeZoneId: string;
 }
 /**
  * ## # Data Source: mongodbatlas.MaintenanceWindow

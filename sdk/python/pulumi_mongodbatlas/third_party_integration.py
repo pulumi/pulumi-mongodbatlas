@@ -30,6 +30,8 @@ class ThirdPartyIntegrationArgs:
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  routing_key: Optional[pulumi.Input[builtins.str]] = None,
                  secret: Optional[pulumi.Input[builtins.str]] = None,
+                 send_collection_latency_metrics: Optional[pulumi.Input[builtins.bool]] = None,
+                 send_database_metrics: Optional[pulumi.Input[builtins.bool]] = None,
                  service_discovery: Optional[pulumi.Input[builtins.str]] = None,
                  service_key: Optional[pulumi.Input[builtins.str]] = None,
                  team_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -68,6 +70,10 @@ class ThirdPartyIntegrationArgs:
             pulumi.set(__self__, "routing_key", routing_key)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
+        if send_collection_latency_metrics is not None:
+            pulumi.set(__self__, "send_collection_latency_metrics", send_collection_latency_metrics)
+        if send_database_metrics is not None:
+            pulumi.set(__self__, "send_database_metrics", send_database_metrics)
         if service_discovery is not None:
             pulumi.set(__self__, "service_discovery", service_discovery)
         if service_key is not None:
@@ -186,6 +192,24 @@ class ThirdPartyIntegrationArgs:
         pulumi.set(self, "secret", value)
 
     @property
+    @pulumi.getter(name="sendCollectionLatencyMetrics")
+    def send_collection_latency_metrics(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "send_collection_latency_metrics")
+
+    @send_collection_latency_metrics.setter
+    def send_collection_latency_metrics(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "send_collection_latency_metrics", value)
+
+    @property
+    @pulumi.getter(name="sendDatabaseMetrics")
+    def send_database_metrics(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "send_database_metrics")
+
+    @send_database_metrics.setter
+    def send_database_metrics(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "send_database_metrics", value)
+
+    @property
     @pulumi.getter(name="serviceDiscovery")
     def service_discovery(self) -> Optional[pulumi.Input[builtins.str]]:
         return pulumi.get(self, "service_discovery")
@@ -243,6 +267,8 @@ class _ThirdPartyIntegrationState:
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  routing_key: Optional[pulumi.Input[builtins.str]] = None,
                  secret: Optional[pulumi.Input[builtins.str]] = None,
+                 send_collection_latency_metrics: Optional[pulumi.Input[builtins.bool]] = None,
+                 send_database_metrics: Optional[pulumi.Input[builtins.bool]] = None,
                  service_discovery: Optional[pulumi.Input[builtins.str]] = None,
                  service_key: Optional[pulumi.Input[builtins.str]] = None,
                  team_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -282,6 +308,10 @@ class _ThirdPartyIntegrationState:
             pulumi.set(__self__, "routing_key", routing_key)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
+        if send_collection_latency_metrics is not None:
+            pulumi.set(__self__, "send_collection_latency_metrics", send_collection_latency_metrics)
+        if send_database_metrics is not None:
+            pulumi.set(__self__, "send_database_metrics", send_database_metrics)
         if service_discovery is not None:
             pulumi.set(__self__, "service_discovery", service_discovery)
         if service_key is not None:
@@ -380,6 +410,24 @@ class _ThirdPartyIntegrationState:
         pulumi.set(self, "secret", value)
 
     @property
+    @pulumi.getter(name="sendCollectionLatencyMetrics")
+    def send_collection_latency_metrics(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "send_collection_latency_metrics")
+
+    @send_collection_latency_metrics.setter
+    def send_collection_latency_metrics(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "send_collection_latency_metrics", value)
+
+    @property
+    @pulumi.getter(name="sendDatabaseMetrics")
+    def send_database_metrics(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "send_database_metrics")
+
+    @send_database_metrics.setter
+    def send_database_metrics(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "send_database_metrics", value)
+
+    @property
     @pulumi.getter(name="serviceDiscovery")
     def service_discovery(self) -> Optional[pulumi.Input[builtins.str]]:
         return pulumi.get(self, "service_discovery")
@@ -464,6 +512,8 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  routing_key: Optional[pulumi.Input[builtins.str]] = None,
                  secret: Optional[pulumi.Input[builtins.str]] = None,
+                 send_collection_latency_metrics: Optional[pulumi.Input[builtins.bool]] = None,
+                 send_database_metrics: Optional[pulumi.Input[builtins.bool]] = None,
                  service_discovery: Optional[pulumi.Input[builtins.str]] = None,
                  service_key: Optional[pulumi.Input[builtins.str]] = None,
                  team_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -586,6 +636,8 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  routing_key: Optional[pulumi.Input[builtins.str]] = None,
                  secret: Optional[pulumi.Input[builtins.str]] = None,
+                 send_collection_latency_metrics: Optional[pulumi.Input[builtins.bool]] = None,
+                 send_database_metrics: Optional[pulumi.Input[builtins.bool]] = None,
                  service_discovery: Optional[pulumi.Input[builtins.str]] = None,
                  service_key: Optional[pulumi.Input[builtins.str]] = None,
                  team_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -612,6 +664,8 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["routing_key"] = None if routing_key is None else pulumi.Output.secret(routing_key)
             __props__.__dict__["secret"] = None if secret is None else pulumi.Output.secret(secret)
+            __props__.__dict__["send_collection_latency_metrics"] = send_collection_latency_metrics
+            __props__.__dict__["send_database_metrics"] = send_database_metrics
             __props__.__dict__["service_discovery"] = None if service_discovery is None else pulumi.Output.secret(service_discovery)
             __props__.__dict__["service_key"] = None if service_key is None else pulumi.Output.secret(service_key)
             __props__.__dict__["team_name"] = team_name
@@ -641,6 +695,8 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             region: Optional[pulumi.Input[builtins.str]] = None,
             routing_key: Optional[pulumi.Input[builtins.str]] = None,
             secret: Optional[pulumi.Input[builtins.str]] = None,
+            send_collection_latency_metrics: Optional[pulumi.Input[builtins.bool]] = None,
+            send_database_metrics: Optional[pulumi.Input[builtins.bool]] = None,
             service_discovery: Optional[pulumi.Input[builtins.str]] = None,
             service_key: Optional[pulumi.Input[builtins.str]] = None,
             team_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -680,6 +736,8 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["routing_key"] = routing_key
         __props__.__dict__["secret"] = secret
+        __props__.__dict__["send_collection_latency_metrics"] = send_collection_latency_metrics
+        __props__.__dict__["send_database_metrics"] = send_database_metrics
         __props__.__dict__["service_discovery"] = service_discovery
         __props__.__dict__["service_key"] = service_key
         __props__.__dict__["team_name"] = team_name
@@ -735,6 +793,16 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter
     def secret(self) -> pulumi.Output[Optional[builtins.str]]:
         return pulumi.get(self, "secret")
+
+    @property
+    @pulumi.getter(name="sendCollectionLatencyMetrics")
+    def send_collection_latency_metrics(self) -> pulumi.Output[builtins.bool]:
+        return pulumi.get(self, "send_collection_latency_metrics")
+
+    @property
+    @pulumi.getter(name="sendDatabaseMetrics")
+    def send_database_metrics(self) -> pulumi.Output[builtins.bool]:
+        return pulumi.get(self, "send_database_metrics")
 
     @property
     @pulumi.getter(name="serviceDiscovery")

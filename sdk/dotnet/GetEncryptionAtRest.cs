@@ -67,6 +67,7 @@ namespace Pulumi.Mongodbatlas
         ///             Region = atlasRegion,
         ///             RoleId = authRole.RoleId,
         ///         },
+        ///         EnabledForSearchNodes = true,
         ///     });
         /// 
         ///     var cluster = new Mongodbatlas.AdvancedCluster("cluster", new()
@@ -241,6 +242,7 @@ namespace Pulumi.Mongodbatlas
         ///             Region = atlasRegion,
         ///             RoleId = authRole.RoleId,
         ///         },
+        ///         EnabledForSearchNodes = true,
         ///     });
         /// 
         ///     var cluster = new Mongodbatlas.AdvancedCluster("cluster", new()
@@ -415,6 +417,7 @@ namespace Pulumi.Mongodbatlas
         ///             Region = atlasRegion,
         ///             RoleId = authRole.RoleId,
         ///         },
+        ///         EnabledForSearchNodes = true,
         ///     });
         /// 
         ///     var cluster = new Mongodbatlas.AdvancedCluster("cluster", new()
@@ -576,6 +579,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly Outputs.GetEncryptionAtRestAzureKeyVaultConfigResult AzureKeyVaultConfig;
         /// <summary>
+        /// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+        /// </summary>
+        public readonly bool EnabledForSearchNodes;
+        /// <summary>
         /// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         /// </summary>
         public readonly Outputs.GetEncryptionAtRestGoogleCloudKmsConfigResult GoogleCloudKmsConfig;
@@ -594,6 +601,8 @@ namespace Pulumi.Mongodbatlas
 
             Outputs.GetEncryptionAtRestAzureKeyVaultConfigResult azureKeyVaultConfig,
 
+            bool enabledForSearchNodes,
+
             Outputs.GetEncryptionAtRestGoogleCloudKmsConfigResult googleCloudKmsConfig,
 
             string id,
@@ -602,6 +611,7 @@ namespace Pulumi.Mongodbatlas
         {
             AwsKmsConfig = awsKmsConfig;
             AzureKeyVaultConfig = azureKeyVaultConfig;
+            EnabledForSearchNodes = enabledForSearchNodes;
             GoogleCloudKmsConfig = googleCloudKmsConfig;
             Id = id;
             ProjectId = projectId;

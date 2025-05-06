@@ -19,6 +19,21 @@ public final class ResourcePolicyArgs extends com.pulumi.resources.ResourceArgs 
     public static final ResourcePolicyArgs Empty = new ResourcePolicyArgs();
 
     /**
+     * Description of the Atlas resource policy.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return Description of the Atlas resource policy.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * Human-readable label that describes the Atlas resource policy.
      * 
      */
@@ -66,6 +81,7 @@ public final class ResourcePolicyArgs extends com.pulumi.resources.ResourceArgs 
     private ResourcePolicyArgs() {}
 
     private ResourcePolicyArgs(ResourcePolicyArgs $) {
+        this.description = $.description;
         this.name = $.name;
         this.orgId = $.orgId;
         this.policies = $.policies;
@@ -87,6 +103,27 @@ public final class ResourcePolicyArgs extends com.pulumi.resources.ResourceArgs 
 
         public Builder(ResourcePolicyArgs defaults) {
             $ = new ResourcePolicyArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param description Description of the Atlas resource policy.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description Description of the Atlas resource policy.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**

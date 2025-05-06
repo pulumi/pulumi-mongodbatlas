@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        /// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         /// </summary>
         public readonly string? Type;
 

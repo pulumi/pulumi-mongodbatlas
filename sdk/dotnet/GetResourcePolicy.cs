@@ -12,18 +12,30 @@ namespace Pulumi.Mongodbatlas
     public static class GetResourcePolicy
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.ResourcePolicy
+        /// 
+        /// `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Task<GetResourcePolicyResult> InvokeAsync(GetResourcePolicyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetResourcePolicyResult>("mongodbatlas:index/getResourcePolicy:getResourcePolicy", args ?? new GetResourcePolicyArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.ResourcePolicy
+        /// 
+        /// `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetResourcePolicyResult> Invoke(GetResourcePolicyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetResourcePolicyResult>("mongodbatlas:index/getResourcePolicy:getResourcePolicy", args ?? new GetResourcePolicyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.ResourcePolicy
+        /// 
+        /// `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetResourcePolicyResult> Invoke(GetResourcePolicyInvokeArgs args, InvokeOutputOptions options)
@@ -84,6 +96,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string CreatedDate;
         /// <summary>
+        /// Description of the Atlas resource policy.
+        /// </summary>
+        public readonly string Description;
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
         /// </summary>
         public readonly string Id;
@@ -118,6 +134,8 @@ namespace Pulumi.Mongodbatlas
 
             string createdDate,
 
+            string description,
+
             string id,
 
             Outputs.GetResourcePolicyLastUpdatedByUserResult lastUpdatedByUser,
@@ -134,6 +152,7 @@ namespace Pulumi.Mongodbatlas
         {
             CreatedByUser = createdByUser;
             CreatedDate = createdDate;
+            Description = description;
             Id = id;
             LastUpdatedByUser = lastUpdatedByUser;
             LastUpdatedDate = lastUpdatedDate;

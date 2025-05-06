@@ -18,6 +18,11 @@ public final class GetSearchDeploymentResult {
      */
     private String clusterName;
     /**
+     * @return Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+     * 
+     */
+    private String encryptionAtRestProvider;
+    /**
      * @return Unique 24-hexadecimal digit string that identifies the search deployment.
      * 
      */
@@ -45,6 +50,13 @@ public final class GetSearchDeploymentResult {
      */
     public String clusterName() {
         return this.clusterName;
+    }
+    /**
+     * @return Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+     * 
+     */
+    public String encryptionAtRestProvider() {
+        return this.encryptionAtRestProvider;
     }
     /**
      * @return Unique 24-hexadecimal digit string that identifies the search deployment.
@@ -85,6 +97,7 @@ public final class GetSearchDeploymentResult {
     @CustomType.Builder
     public static final class Builder {
         private String clusterName;
+        private String encryptionAtRestProvider;
         private String id;
         private String projectId;
         private List<GetSearchDeploymentSpec> specs;
@@ -93,6 +106,7 @@ public final class GetSearchDeploymentResult {
         public Builder(GetSearchDeploymentResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clusterName = defaults.clusterName;
+    	      this.encryptionAtRestProvider = defaults.encryptionAtRestProvider;
     	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.specs = defaults.specs;
@@ -105,6 +119,14 @@ public final class GetSearchDeploymentResult {
               throw new MissingRequiredPropertyException("GetSearchDeploymentResult", "clusterName");
             }
             this.clusterName = clusterName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder encryptionAtRestProvider(String encryptionAtRestProvider) {
+            if (encryptionAtRestProvider == null) {
+              throw new MissingRequiredPropertyException("GetSearchDeploymentResult", "encryptionAtRestProvider");
+            }
+            this.encryptionAtRestProvider = encryptionAtRestProvider;
             return this;
         }
         @CustomType.Setter
@@ -145,6 +167,7 @@ public final class GetSearchDeploymentResult {
         public GetSearchDeploymentResult build() {
             final var _resultValue = new GetSearchDeploymentResult();
             _resultValue.clusterName = clusterName;
+            _resultValue.encryptionAtRestProvider = encryptionAtRestProvider;
             _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.specs = specs;

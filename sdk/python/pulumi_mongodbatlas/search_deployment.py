@@ -25,6 +25,7 @@ class SearchDeploymentArgs:
                  cluster_name: pulumi.Input[builtins.str],
                  project_id: pulumi.Input[builtins.str],
                  specs: pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]],
+                 skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
                  timeouts: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a SearchDeployment resource.
@@ -35,6 +36,8 @@ class SearchDeploymentArgs:
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "specs", specs)
+        if skip_wait_on_update is not None:
+            pulumi.set(__self__, "skip_wait_on_update", skip_wait_on_update)
         if timeouts is not None:
             pulumi.set(__self__, "timeouts", timeouts)
 
@@ -75,6 +78,15 @@ class SearchDeploymentArgs:
         pulumi.set(self, "specs", value)
 
     @property
+    @pulumi.getter(name="skipWaitOnUpdate")
+    def skip_wait_on_update(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "skip_wait_on_update")
+
+    @skip_wait_on_update.setter
+    def skip_wait_on_update(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "skip_wait_on_update", value)
+
+    @property
     @pulumi.getter
     def timeouts(self) -> Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
@@ -88,21 +100,28 @@ class SearchDeploymentArgs:
 class _SearchDeploymentState:
     def __init__(__self__, *,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+                 encryption_at_rest_provider: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
                  specs: Optional[pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]]] = None,
                  state_name: Optional[pulumi.Input[builtins.str]] = None,
                  timeouts: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering SearchDeployment resources.
         :param pulumi.Input[builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
+        :param pulumi.Input[builtins.str] encryption_at_rest_provider: Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[builtins.str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
         """
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
+        if encryption_at_rest_provider is not None:
+            pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if skip_wait_on_update is not None:
+            pulumi.set(__self__, "skip_wait_on_update", skip_wait_on_update)
         if specs is not None:
             pulumi.set(__self__, "specs", specs)
         if state_name is not None:
@@ -123,6 +142,18 @@ class _SearchDeploymentState:
         pulumi.set(self, "cluster_name", value)
 
     @property
+    @pulumi.getter(name="encryptionAtRestProvider")
+    def encryption_at_rest_provider(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+        """
+        return pulumi.get(self, "encryption_at_rest_provider")
+
+    @encryption_at_rest_provider.setter
+    def encryption_at_rest_provider(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "encryption_at_rest_provider", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -133,6 +164,15 @@ class _SearchDeploymentState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="skipWaitOnUpdate")
+    def skip_wait_on_update(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "skip_wait_on_update")
+
+    @skip_wait_on_update.setter
+    def skip_wait_on_update(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "skip_wait_on_update", value)
 
     @property
     @pulumi.getter
@@ -178,6 +218,7 @@ class SearchDeployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
                  specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
                  timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
                  __props__=None):
@@ -195,6 +236,8 @@ class SearchDeployment(pulumi.CustomResource):
         ## Import
 
         Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
+
+        After an import, a non-empty plan is expected if the configuration defines the `skip_wait_on_update` attribute. However, the update will not have any effect on the search deployment since `skip_wait_on_update` only relates to the update operations wait time.
 
         For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
 
@@ -225,6 +268,8 @@ class SearchDeployment(pulumi.CustomResource):
 
         Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
 
+        After an import, a non-empty plan is expected if the configuration defines the `skip_wait_on_update` attribute. However, the update will not have any effect on the search deployment since `skip_wait_on_update` only relates to the update operations wait time.
+
         For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
 
         :param str resource_name: The name of the resource.
@@ -244,6 +289,7 @@ class SearchDeployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
                  specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
                  timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
                  __props__=None):
@@ -261,10 +307,12 @@ class SearchDeployment(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["skip_wait_on_update"] = skip_wait_on_update
             if specs is None and not opts.urn:
                 raise TypeError("Missing required property 'specs'")
             __props__.__dict__["specs"] = specs
             __props__.__dict__["timeouts"] = timeouts
+            __props__.__dict__["encryption_at_rest_provider"] = None
             __props__.__dict__["state_name"] = None
         super(SearchDeployment, __self__).__init__(
             'mongodbatlas:index/searchDeployment:SearchDeployment',
@@ -277,7 +325,9 @@ class SearchDeployment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+            encryption_at_rest_provider: Optional[pulumi.Input[builtins.str]] = None,
             project_id: Optional[pulumi.Input[builtins.str]] = None,
+            skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
             specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
             state_name: Optional[pulumi.Input[builtins.str]] = None,
             timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None) -> 'SearchDeployment':
@@ -289,6 +339,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
+        :param pulumi.Input[builtins.str] encryption_at_rest_provider: Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[builtins.str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
@@ -298,7 +349,9 @@ class SearchDeployment(pulumi.CustomResource):
         __props__ = _SearchDeploymentState.__new__(_SearchDeploymentState)
 
         __props__.__dict__["cluster_name"] = cluster_name
+        __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["skip_wait_on_update"] = skip_wait_on_update
         __props__.__dict__["specs"] = specs
         __props__.__dict__["state_name"] = state_name
         __props__.__dict__["timeouts"] = timeouts
@@ -313,12 +366,25 @@ class SearchDeployment(pulumi.CustomResource):
         return pulumi.get(self, "cluster_name")
 
     @property
+    @pulumi.getter(name="encryptionAtRestProvider")
+    def encryption_at_rest_provider(self) -> pulumi.Output[builtins.str]:
+        """
+        Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+        """
+        return pulumi.get(self, "encryption_at_rest_provider")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[builtins.str]:
         """
         Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="skipWaitOnUpdate")
+    def skip_wait_on_update(self) -> pulumi.Output[Optional[builtins.bool]]:
+        return pulumi.get(self, "skip_wait_on_update")
 
     @property
     @pulumi.getter

@@ -213,9 +213,9 @@ import (
 //
 // Database users can be imported using project ID, username, and auth database name in the format:
 //
-// 1. `project_id`-`username`-`auth_database_name` Only works if no `-` are used for `username`/`auth_database_name`. For example `my-username` should use (2).
+// 1. `project_id`-`username`-`auth_database_name` Doesn't  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
 //
-// 2.  `project_id`/`username`/`auth_database_name` Works in all cases (introduced after (1))
+// 2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
 //
 // ```sh
 // $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
@@ -234,8 +234,10 @@ type DatabaseUser struct {
 	// * `NONE` -	The user does not use AWS IAM credentials.
 	// * `USER` - New database user has AWS IAM user credentials.
 	// * `ROLE` -  New database user has credentials associated with an AWS IAM role.
-	AwsIamType pulumi.StringOutput          `pulumi:"awsIamType"`
-	Labels     DatabaseUserLabelArrayOutput `pulumi:"labels"`
+	AwsIamType pulumi.StringOutput `pulumi:"awsIamType"`
+	// Description of this database user.
+	Description pulumi.StringPtrOutput       `pulumi:"description"`
+	Labels      DatabaseUserLabelArrayOutput `pulumi:"labels"`
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
 	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
@@ -314,8 +316,10 @@ type databaseUserState struct {
 	// * `NONE` -	The user does not use AWS IAM credentials.
 	// * `USER` - New database user has AWS IAM user credentials.
 	// * `ROLE` -  New database user has credentials associated with an AWS IAM role.
-	AwsIamType *string             `pulumi:"awsIamType"`
-	Labels     []DatabaseUserLabel `pulumi:"labels"`
+	AwsIamType *string `pulumi:"awsIamType"`
+	// Description of this database user.
+	Description *string             `pulumi:"description"`
+	Labels      []DatabaseUserLabel `pulumi:"labels"`
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
 	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
@@ -350,7 +354,9 @@ type DatabaseUserState struct {
 	// * `USER` - New database user has AWS IAM user credentials.
 	// * `ROLE` -  New database user has credentials associated with an AWS IAM role.
 	AwsIamType pulumi.StringPtrInput
-	Labels     DatabaseUserLabelArrayInput
+	// Description of this database user.
+	Description pulumi.StringPtrInput
+	Labels      DatabaseUserLabelArrayInput
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
 	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
@@ -388,8 +394,10 @@ type databaseUserArgs struct {
 	// * `NONE` -	The user does not use AWS IAM credentials.
 	// * `USER` - New database user has AWS IAM user credentials.
 	// * `ROLE` -  New database user has credentials associated with an AWS IAM role.
-	AwsIamType *string             `pulumi:"awsIamType"`
-	Labels     []DatabaseUserLabel `pulumi:"labels"`
+	AwsIamType *string `pulumi:"awsIamType"`
+	// Description of this database user.
+	Description *string             `pulumi:"description"`
+	Labels      []DatabaseUserLabel `pulumi:"labels"`
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
 	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
@@ -425,7 +433,9 @@ type DatabaseUserArgs struct {
 	// * `USER` - New database user has AWS IAM user credentials.
 	// * `ROLE` -  New database user has credentials associated with an AWS IAM role.
 	AwsIamType pulumi.StringPtrInput
-	Labels     DatabaseUserLabelArrayInput
+	// Description of this database user.
+	Description pulumi.StringPtrInput
+	Labels      DatabaseUserLabelArrayInput
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
 	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
@@ -550,6 +560,11 @@ func (o DatabaseUserOutput) AuthDatabaseName() pulumi.StringOutput {
 // * `ROLE` -  New database user has credentials associated with an AWS IAM role.
 func (o DatabaseUserOutput) AwsIamType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.AwsIamType }).(pulumi.StringOutput)
+}
+
+// Description of this database user.
+func (o DatabaseUserOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 func (o DatabaseUserOutput) Labels() DatabaseUserLabelArrayOutput {

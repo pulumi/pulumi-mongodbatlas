@@ -30,7 +30,7 @@ func LookupStreamPrivatelinkEndpoints(ctx *pulumi.Context, args *LookupStreamPri
 
 // A collection of arguments for invoking getStreamPrivatelinkEndpoints.
 type LookupStreamPrivatelinkEndpointsArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -38,9 +38,10 @@ type LookupStreamPrivatelinkEndpointsArgs struct {
 type LookupStreamPrivatelinkEndpointsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId string                                `pulumi:"projectId"`
-	Results   []GetStreamPrivatelinkEndpointsResult `pulumi:"results"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+	ProjectId string `pulumi:"projectId"`
+	// List of documents that MongoDB Cloud returns for this request.
+	Results []GetStreamPrivatelinkEndpointsResult `pulumi:"results"`
 }
 
 func LookupStreamPrivatelinkEndpointsOutput(ctx *pulumi.Context, args LookupStreamPrivatelinkEndpointsOutputArgs, opts ...pulumi.InvokeOption) LookupStreamPrivatelinkEndpointsResultOutput {
@@ -54,7 +55,7 @@ func LookupStreamPrivatelinkEndpointsOutput(ctx *pulumi.Context, args LookupStre
 
 // A collection of arguments for invoking getStreamPrivatelinkEndpoints.
 type LookupStreamPrivatelinkEndpointsOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -82,11 +83,12 @@ func (o LookupStreamPrivatelinkEndpointsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 func (o LookupStreamPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// List of documents that MongoDB Cloud returns for this request.
 func (o LookupStreamPrivatelinkEndpointsResultOutput) Results() GetStreamPrivatelinkEndpointsResultArrayOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointsResult) []GetStreamPrivatelinkEndpointsResult { return v.Results }).(GetStreamPrivatelinkEndpointsResultArrayOutput)
 }

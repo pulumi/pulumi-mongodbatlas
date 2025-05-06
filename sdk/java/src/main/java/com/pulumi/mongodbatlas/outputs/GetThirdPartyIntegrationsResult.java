@@ -8,8 +8,6 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetThirdPartyIntegrationsResult {
@@ -24,7 +22,7 @@ public final class GetThirdPartyIntegrationsResult {
      * @return Whether your cluster has Prometheus enabled.
      * 
      */
-    private @Nullable Boolean enabled;
+    private Boolean enabled;
     /**
      * @return Unique identifier of the integration.
      * 
@@ -35,7 +33,7 @@ public final class GetThirdPartyIntegrationsResult {
      * * `PROMETHEUS`
      * 
      */
-    private @Nullable String microsoftTeamsWebhookUrl;
+    private String microsoftTeamsWebhookUrl;
     /**
      * @return The unique ID for the project to get all Third-Party service integrations
      * 
@@ -60,10 +58,21 @@ public final class GetThirdPartyIntegrationsResult {
      */
     private String secret;
     /**
+     * @return Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
+     * 
+     */
+    private Boolean sendCollectionLatencyMetrics;
+    /**
+     * @return Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+     * * `OPS_GENIE`
+     * 
+     */
+    private Boolean sendDatabaseMetrics;
+    /**
      * @return Indicates which service discovery method is used, either file or http.
      * 
      */
-    private @Nullable String serviceDiscovery;
+    private String serviceDiscovery;
     /**
      * @return Your Service Key.
      * * `DATADOG`
@@ -85,7 +94,7 @@ public final class GetThirdPartyIntegrationsResult {
      * @return Your Prometheus username.
      * 
      */
-    private @Nullable String userName;
+    private String userName;
 
     private GetThirdPartyIntegrationsResult() {}
     public String accountId() {
@@ -105,8 +114,8 @@ public final class GetThirdPartyIntegrationsResult {
      * @return Whether your cluster has Prometheus enabled.
      * 
      */
-    public Optional<Boolean> enabled() {
-        return Optional.ofNullable(this.enabled);
+    public Boolean enabled() {
+        return this.enabled;
     }
     /**
      * @return Unique identifier of the integration.
@@ -120,8 +129,8 @@ public final class GetThirdPartyIntegrationsResult {
      * * `PROMETHEUS`
      * 
      */
-    public Optional<String> microsoftTeamsWebhookUrl() {
-        return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
+    public String microsoftTeamsWebhookUrl() {
+        return this.microsoftTeamsWebhookUrl;
     }
     /**
      * @return The unique ID for the project to get all Third-Party service integrations
@@ -155,11 +164,26 @@ public final class GetThirdPartyIntegrationsResult {
         return this.secret;
     }
     /**
+     * @return Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
+     * 
+     */
+    public Boolean sendCollectionLatencyMetrics() {
+        return this.sendCollectionLatencyMetrics;
+    }
+    /**
+     * @return Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+     * * `OPS_GENIE`
+     * 
+     */
+    public Boolean sendDatabaseMetrics() {
+        return this.sendDatabaseMetrics;
+    }
+    /**
      * @return Indicates which service discovery method is used, either file or http.
      * 
      */
-    public Optional<String> serviceDiscovery() {
-        return Optional.ofNullable(this.serviceDiscovery);
+    public String serviceDiscovery() {
+        return this.serviceDiscovery;
     }
     /**
      * @return Your Service Key.
@@ -190,8 +214,8 @@ public final class GetThirdPartyIntegrationsResult {
      * @return Your Prometheus username.
      * 
      */
-    public Optional<String> userName() {
-        return Optional.ofNullable(this.userName);
+    public String userName() {
+        return this.userName;
     }
 
     public static Builder builder() {
@@ -206,19 +230,21 @@ public final class GetThirdPartyIntegrationsResult {
         private String accountId;
         private String apiKey;
         private String channelName;
-        private @Nullable Boolean enabled;
+        private Boolean enabled;
         private String id;
-        private @Nullable String microsoftTeamsWebhookUrl;
+        private String microsoftTeamsWebhookUrl;
         private String projectId;
         private String region;
         private String routingKey;
         private String secret;
-        private @Nullable String serviceDiscovery;
+        private Boolean sendCollectionLatencyMetrics;
+        private Boolean sendDatabaseMetrics;
+        private String serviceDiscovery;
         private String serviceKey;
         private String teamName;
         private String type;
         private String url;
-        private @Nullable String userName;
+        private String userName;
         public Builder() {}
         public Builder(GetThirdPartyIntegrationsResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -232,6 +258,8 @@ public final class GetThirdPartyIntegrationsResult {
     	      this.region = defaults.region;
     	      this.routingKey = defaults.routingKey;
     	      this.secret = defaults.secret;
+    	      this.sendCollectionLatencyMetrics = defaults.sendCollectionLatencyMetrics;
+    	      this.sendDatabaseMetrics = defaults.sendDatabaseMetrics;
     	      this.serviceDiscovery = defaults.serviceDiscovery;
     	      this.serviceKey = defaults.serviceKey;
     	      this.teamName = defaults.teamName;
@@ -265,8 +293,10 @@ public final class GetThirdPartyIntegrationsResult {
             return this;
         }
         @CustomType.Setter
-        public Builder enabled(@Nullable Boolean enabled) {
-
+        public Builder enabled(Boolean enabled) {
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "enabled");
+            }
             this.enabled = enabled;
             return this;
         }
@@ -279,8 +309,10 @@ public final class GetThirdPartyIntegrationsResult {
             return this;
         }
         @CustomType.Setter
-        public Builder microsoftTeamsWebhookUrl(@Nullable String microsoftTeamsWebhookUrl) {
-
+        public Builder microsoftTeamsWebhookUrl(String microsoftTeamsWebhookUrl) {
+            if (microsoftTeamsWebhookUrl == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "microsoftTeamsWebhookUrl");
+            }
             this.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             return this;
         }
@@ -317,8 +349,26 @@ public final class GetThirdPartyIntegrationsResult {
             return this;
         }
         @CustomType.Setter
-        public Builder serviceDiscovery(@Nullable String serviceDiscovery) {
-
+        public Builder sendCollectionLatencyMetrics(Boolean sendCollectionLatencyMetrics) {
+            if (sendCollectionLatencyMetrics == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "sendCollectionLatencyMetrics");
+            }
+            this.sendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder sendDatabaseMetrics(Boolean sendDatabaseMetrics) {
+            if (sendDatabaseMetrics == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "sendDatabaseMetrics");
+            }
+            this.sendDatabaseMetrics = sendDatabaseMetrics;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder serviceDiscovery(String serviceDiscovery) {
+            if (serviceDiscovery == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "serviceDiscovery");
+            }
             this.serviceDiscovery = serviceDiscovery;
             return this;
         }
@@ -355,8 +405,10 @@ public final class GetThirdPartyIntegrationsResult {
             return this;
         }
         @CustomType.Setter
-        public Builder userName(@Nullable String userName) {
-
+        public Builder userName(String userName) {
+            if (userName == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "userName");
+            }
             this.userName = userName;
             return this;
         }
@@ -372,6 +424,8 @@ public final class GetThirdPartyIntegrationsResult {
             _resultValue.region = region;
             _resultValue.routingKey = routingKey;
             _resultValue.secret = secret;
+            _resultValue.sendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
+            _resultValue.sendDatabaseMetrics = sendDatabaseMetrics;
             _resultValue.serviceDiscovery = serviceDiscovery;
             _resultValue.serviceKey = serviceKey;
             _resultValue.teamName = teamName;

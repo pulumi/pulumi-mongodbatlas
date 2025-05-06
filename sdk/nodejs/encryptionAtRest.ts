@@ -43,6 +43,10 @@ export class EncryptionAtRest extends pulumi.CustomResource {
      */
     public readonly azureKeyVaultConfig!: pulumi.Output<outputs.EncryptionAtRestAzureKeyVaultConfig | undefined>;
     /**
+     * Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     */
+    public readonly enabledForSearchNodes!: pulumi.Output<boolean>;
+    /**
      * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
      */
     public readonly googleCloudKmsConfig!: pulumi.Output<outputs.EncryptionAtRestGoogleCloudKmsConfig | undefined>;
@@ -66,6 +70,7 @@ export class EncryptionAtRest extends pulumi.CustomResource {
             const state = argsOrState as EncryptionAtRestState | undefined;
             resourceInputs["awsKmsConfig"] = state ? state.awsKmsConfig : undefined;
             resourceInputs["azureKeyVaultConfig"] = state ? state.azureKeyVaultConfig : undefined;
+            resourceInputs["enabledForSearchNodes"] = state ? state.enabledForSearchNodes : undefined;
             resourceInputs["googleCloudKmsConfig"] = state ? state.googleCloudKmsConfig : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
@@ -75,6 +80,7 @@ export class EncryptionAtRest extends pulumi.CustomResource {
             }
             resourceInputs["awsKmsConfig"] = args ? args.awsKmsConfig : undefined;
             resourceInputs["azureKeyVaultConfig"] = args ? args.azureKeyVaultConfig : undefined;
+            resourceInputs["enabledForSearchNodes"] = args ? args.enabledForSearchNodes : undefined;
             resourceInputs["googleCloudKmsConfig"] = args ? args.googleCloudKmsConfig : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
@@ -95,6 +101,10 @@ export interface EncryptionAtRestState {
      * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
      */
     azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
+    /**
+     * Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     */
+    enabledForSearchNodes?: pulumi.Input<boolean>;
     /**
      * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
      */
@@ -117,6 +127,10 @@ export interface EncryptionAtRestArgs {
      * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
      */
     azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
+    /**
+     * Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     */
+    enabledForSearchNodes?: pulumi.Input<boolean>;
     /**
      * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
      */

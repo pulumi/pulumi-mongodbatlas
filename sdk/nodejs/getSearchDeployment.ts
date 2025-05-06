@@ -44,6 +44,10 @@ export interface GetSearchDeploymentResult {
      */
     readonly clusterName: string;
     /**
+     * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+     */
+    readonly encryptionAtRestProvider: string;
+    /**
      * Unique 24-hexadecimal digit string that identifies the search deployment.
      */
     readonly id: string;

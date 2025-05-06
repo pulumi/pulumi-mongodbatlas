@@ -24,6 +24,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
     /// 
+    /// After an import, a non-empty plan is expected if the configuration defines the `skip_wait_on_update` attribute. However, the update will not have any effect on the search deployment since `skip_wait_on_update` only relates to the update operations wait time.
+    /// 
     /// For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/searchDeployment:SearchDeployment")]
@@ -36,10 +38,19 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ClusterName { get; private set; } = null!;
 
         /// <summary>
+        /// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+        /// </summary>
+        [Output("encryptionAtRestProvider")]
+        public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
+
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
+
+        [Output("skipWaitOnUpdate")]
+        public Output<bool?> SkipWaitOnUpdate { get; private set; } = null!;
 
         /// <summary>
         /// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
@@ -114,6 +125,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        [Input("skipWaitOnUpdate")]
+        public Input<bool>? SkipWaitOnUpdate { get; set; }
+
         [Input("specs", required: true)]
         private InputList<Inputs.SearchDeploymentSpecArgs>? _specs;
 
@@ -144,10 +158,19 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ClusterName { get; set; }
 
         /// <summary>
+        /// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+        /// </summary>
+        [Input("encryptionAtRestProvider")]
+        public Input<string>? EncryptionAtRestProvider { get; set; }
+
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("skipWaitOnUpdate")]
+        public Input<bool>? SkipWaitOnUpdate { get; set; }
 
         [Input("specs")]
         private InputList<Inputs.SearchDeploymentSpecGetArgs>? _specs;

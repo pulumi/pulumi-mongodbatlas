@@ -141,6 +141,18 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> secret() {
         return Codegen.optional(this.secret);
     }
+    @Export(name="sendCollectionLatencyMetrics", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> sendCollectionLatencyMetrics;
+
+    public Output<Boolean> sendCollectionLatencyMetrics() {
+        return this.sendCollectionLatencyMetrics;
+    }
+    @Export(name="sendDatabaseMetrics", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> sendDatabaseMetrics;
+
+    public Output<Boolean> sendDatabaseMetrics() {
+        return this.sendDatabaseMetrics;
+    }
     @Export(name="serviceDiscovery", refs={String.class}, tree="[0]")
     private Output<String> serviceDiscovery;
 

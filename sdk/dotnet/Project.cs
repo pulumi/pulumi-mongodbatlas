@@ -103,7 +103,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Created { get; private set; } = null!;
 
         /// <summary>
-        /// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+        /// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
         /// </summary>
         [Output("ipAddresses")]
         public Output<Outputs.ProjectIpAddresses> IpAddresses { get; private set; } = null!;
@@ -359,7 +359,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Created { get; set; }
 
         /// <summary>
-        /// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+        /// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
         /// </summary>
         [Input("ipAddresses")]
         public Input<Inputs.ProjectIpAddressesGetArgs>? IpAddresses { get; set; }

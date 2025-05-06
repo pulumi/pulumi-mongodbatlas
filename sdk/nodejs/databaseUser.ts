@@ -132,9 +132,9 @@ import * as utilities from "./utilities";
  *
  * Database users can be imported using project ID, username, and auth database name in the format:
  *
- * 1. `project_id`-`username`-`auth_database_name` Only works if no `-` are used for `username`/`auth_database_name`. For example `my-username` should use (2).
+ * 1. `project_id`-`username`-`auth_database_name` Doesn't  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
  *
- * 2.  `project_id`/`username`/`auth_database_name` Works in all cases (introduced after (1))
+ * 2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
  *
  * ```sh
  * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
@@ -184,6 +184,10 @@ export class DatabaseUser extends pulumi.CustomResource {
      * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      */
     public readonly awsIamType!: pulumi.Output<string>;
+    /**
+     * Description of this database user.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
     public readonly labels!: pulumi.Output<outputs.DatabaseUserLabel[] | undefined>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
@@ -236,6 +240,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             const state = argsOrState as DatabaseUserState | undefined;
             resourceInputs["authDatabaseName"] = state ? state.authDatabaseName : undefined;
             resourceInputs["awsIamType"] = state ? state.awsIamType : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["ldapAuthType"] = state ? state.ldapAuthType : undefined;
             resourceInputs["oidcAuthType"] = state ? state.oidcAuthType : undefined;
@@ -258,6 +263,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             }
             resourceInputs["authDatabaseName"] = args ? args.authDatabaseName : undefined;
             resourceInputs["awsIamType"] = args ? args.awsIamType : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["ldapAuthType"] = args ? args.ldapAuthType : undefined;
             resourceInputs["oidcAuthType"] = args ? args.oidcAuthType : undefined;
@@ -291,6 +297,10 @@ export interface DatabaseUserState {
      * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      */
     awsIamType?: pulumi.Input<string>;
+    /**
+     * Description of this database user.
+     */
+    description?: pulumi.Input<string>;
     labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
@@ -345,6 +355,10 @@ export interface DatabaseUserArgs {
      * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      */
     awsIamType?: pulumi.Input<string>;
+    /**
+     * Description of this database user.
+     */
+    description?: pulumi.Input<string>;
     labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.

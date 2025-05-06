@@ -25,6 +25,11 @@ public final class GetResourcePolicyResult {
      */
     private String createdDate;
     /**
+     * @return Description of the Atlas resource policy.
+     * 
+     */
+    private String description;
+    /**
      * @return Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
      * 
      */
@@ -74,6 +79,13 @@ public final class GetResourcePolicyResult {
      */
     public String createdDate() {
         return this.createdDate;
+    }
+    /**
+     * @return Description of the Atlas resource policy.
+     * 
+     */
+    public String description() {
+        return this.description;
     }
     /**
      * @return Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
@@ -136,6 +148,7 @@ public final class GetResourcePolicyResult {
     public static final class Builder {
         private GetResourcePolicyCreatedByUser createdByUser;
         private String createdDate;
+        private String description;
         private String id;
         private GetResourcePolicyLastUpdatedByUser lastUpdatedByUser;
         private String lastUpdatedDate;
@@ -148,6 +161,7 @@ public final class GetResourcePolicyResult {
     	      Objects.requireNonNull(defaults);
     	      this.createdByUser = defaults.createdByUser;
     	      this.createdDate = defaults.createdDate;
+    	      this.description = defaults.description;
     	      this.id = defaults.id;
     	      this.lastUpdatedByUser = defaults.lastUpdatedByUser;
     	      this.lastUpdatedDate = defaults.lastUpdatedDate;
@@ -171,6 +185,14 @@ public final class GetResourcePolicyResult {
               throw new MissingRequiredPropertyException("GetResourcePolicyResult", "createdDate");
             }
             this.createdDate = createdDate;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder description(String description) {
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetResourcePolicyResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
@@ -236,6 +258,7 @@ public final class GetResourcePolicyResult {
             final var _resultValue = new GetResourcePolicyResult();
             _resultValue.createdByUser = createdByUser;
             _resultValue.createdDate = createdDate;
+            _resultValue.description = description;
             _resultValue.id = id;
             _resultValue.lastUpdatedByUser = lastUpdatedByUser;
             _resultValue.lastUpdatedDate = lastUpdatedDate;
