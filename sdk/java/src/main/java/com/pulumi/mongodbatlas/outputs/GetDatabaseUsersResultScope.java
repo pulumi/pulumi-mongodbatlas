@@ -16,7 +16,7 @@ public final class GetDatabaseUsersResultScope {
      */
     private String name;
     /**
-     * @return Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     * @return Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
      * 
      */
     private String type;
@@ -30,7 +30,7 @@ public final class GetDatabaseUsersResultScope {
         return this.name;
     }
     /**
-     * @return Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     * @return Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
      * 
      */
     public String type() {

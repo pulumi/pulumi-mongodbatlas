@@ -11,6 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: ResourcePolicy
+//
+// `ResourcePolicy` describes a resource policy in an organization.
+//
 // ## Example Usage
 func LookupResourcePolicy(ctx *pulumi.Context, args *LookupResourcePolicyArgs, opts ...pulumi.InvokeOption) (*LookupResourcePolicyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -36,6 +40,8 @@ type LookupResourcePolicyResult struct {
 	CreatedByUser GetResourcePolicyCreatedByUser `pulumi:"createdByUser"`
 	// Date and time in UTC when the Atlas resource policy was created.
 	CreatedDate string `pulumi:"createdDate"`
+	// Description of the Atlas resource policy.
+	Description string `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
 	Id string `pulumi:"id"`
 	// The user that last updated the Atlas resource policy.
@@ -96,6 +102,11 @@ func (o LookupResourcePolicyResultOutput) CreatedByUser() GetResourcePolicyCreat
 // Date and time in UTC when the Atlas resource policy was created.
 func (o LookupResourcePolicyResultOutput) CreatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupResourcePolicyResult) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// Description of the Atlas resource policy.
+func (o LookupResourcePolicyResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupResourcePolicyResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies an Atlas resource policy.

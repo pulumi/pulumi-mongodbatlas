@@ -156,6 +156,11 @@ namespace Pulumi.Mongodbatlas
         /// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         /// </summary>
         public readonly bool RestrictEmployeeAccess;
+        /// <summary>
+        /// (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        /// </summary>
+        public readonly string SecurityContact;
+        public readonly bool SkipDefaultAlertsSettings;
 
         [OutputConstructor]
         private GetOrganizationResult(
@@ -175,7 +180,11 @@ namespace Pulumi.Mongodbatlas
 
             string orgId,
 
-            bool restrictEmployeeAccess)
+            bool restrictEmployeeAccess,
+
+            string securityContact,
+
+            bool skipDefaultAlertsSettings)
         {
             ApiAccessListRequired = apiAccessListRequired;
             GenAiFeaturesEnabled = genAiFeaturesEnabled;
@@ -186,6 +195,8 @@ namespace Pulumi.Mongodbatlas
             Name = name;
             OrgId = orgId;
             RestrictEmployeeAccess = restrictEmployeeAccess;
+            SecurityContact = securityContact;
+            SkipDefaultAlertsSettings = skipDefaultAlertsSettings;
         }
     }
 }

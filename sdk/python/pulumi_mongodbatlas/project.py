@@ -67,6 +67,9 @@ class ProjectArgs:
         if is_schema_advisor_enabled is not None:
             pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
         if is_slow_operation_thresholding_enabled is not None:
+            warnings.warn("""This parameter is deprecated.""", DeprecationWarning)
+            pulumi.log.warn("""is_slow_operation_thresholding_enabled is deprecated: This parameter is deprecated.""")
+        if is_slow_operation_thresholding_enabled is not None:
             pulumi.set(__self__, "is_slow_operation_thresholding_enabled", is_slow_operation_thresholding_enabled)
         if limits is not None:
             pulumi.set(__self__, "limits", limits)
@@ -169,6 +172,7 @@ class ProjectArgs:
 
     @property
     @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def is_slow_operation_thresholding_enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
         (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
@@ -283,7 +287,7 @@ class _ProjectState:
         Input properties used for looking up and filtering Project resources.
         :param pulumi.Input[builtins.int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[builtins.str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
-        :param pulumi.Input['ProjectIpAddressesArgs'] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
+        :param pulumi.Input['ProjectIpAddressesArgs'] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         :param pulumi.Input[builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         :param pulumi.Input[builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
@@ -303,8 +307,8 @@ class _ProjectState:
         if created is not None:
             pulumi.set(__self__, "created", created)
         if ip_addresses is not None:
-            warnings.warn("""This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""", DeprecationWarning)
-            pulumi.log.warn("""ip_addresses is deprecated: This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""")
+            warnings.warn("""This parameter is deprecated. Please transition to get_project_ip_addresses data source.""", DeprecationWarning)
+            pulumi.log.warn("""ip_addresses is deprecated: This parameter is deprecated. Please transition to get_project_ip_addresses data source.""")
         if ip_addresses is not None:
             pulumi.set(__self__, "ip_addresses", ip_addresses)
         if is_collect_database_specifics_statistics_enabled is not None:
@@ -319,6 +323,9 @@ class _ProjectState:
             pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         if is_schema_advisor_enabled is not None:
             pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        if is_slow_operation_thresholding_enabled is not None:
+            warnings.warn("""This parameter is deprecated.""", DeprecationWarning)
+            pulumi.log.warn("""is_slow_operation_thresholding_enabled is deprecated: This parameter is deprecated.""")
         if is_slow_operation_thresholding_enabled is not None:
             pulumi.set(__self__, "is_slow_operation_thresholding_enabled", is_slow_operation_thresholding_enabled)
         if limits is not None:
@@ -364,10 +371,10 @@ class _ProjectState:
 
     @property
     @pulumi.getter(name="ipAddresses")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> Optional[pulumi.Input['ProjectIpAddressesArgs']]:
         """
-        IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
+        IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
 
@@ -449,6 +456,7 @@ class _ProjectState:
 
     @property
     @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def is_slow_operation_thresholding_enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
         (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
@@ -810,7 +818,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[builtins.str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
-        :param pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
+        :param pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         :param pulumi.Input[builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         :param pulumi.Input[builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
@@ -867,10 +875,10 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipAddresses")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> pulumi.Output['outputs.ProjectIpAddresses']:
         """
-        IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
+        IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
 
@@ -924,6 +932,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def is_slow_operation_thresholding_enabled(self) -> pulumi.Output[builtins.bool]:
         """
         (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.

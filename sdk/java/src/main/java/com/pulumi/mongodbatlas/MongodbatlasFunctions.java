@@ -12701,6 +12701,7 @@ public final class MongodbatlasFunctions {
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
+     *             .enabledForSearchNodes(true)
      *             .build());
      * 
      *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
@@ -12914,6 +12915,7 @@ public final class MongodbatlasFunctions {
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
+     *             .enabledForSearchNodes(true)
      *             .build());
      * 
      *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
@@ -13127,6 +13129,7 @@ public final class MongodbatlasFunctions {
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
+     *             .enabledForSearchNodes(true)
      *             .build());
      * 
      *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
@@ -13340,6 +13343,7 @@ public final class MongodbatlasFunctions {
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
+     *             .enabledForSearchNodes(true)
      *             .build());
      * 
      *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
@@ -13553,6 +13557,7 @@ public final class MongodbatlasFunctions {
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
+     *             .enabledForSearchNodes(true)
      *             .build());
      * 
      *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
@@ -22703,6 +22708,9 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
+     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -22761,6 +22769,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
+     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
      * 
@@ -22821,6 +22832,9 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
+     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -22880,6 +22894,9 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
+     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -22938,6 +22955,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
+     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
      * 
@@ -28875,6 +28895,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", TypeShape.of(GetPushBasedLogExportResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.getResourcePolicies
+     * 
+     * `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
+     * 
      * ## Example Usage
      * 
      */
@@ -28882,6 +28906,10 @@ public final class MongodbatlasFunctions {
         return getResourcePolicies(args, InvokeOptions.Empty);
     }
     /**
+     * ## # Data Source: mongodbatlas.getResourcePolicies
+     * 
+     * `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
+     * 
      * ## Example Usage
      * 
      */
@@ -28889,6 +28917,10 @@ public final class MongodbatlasFunctions {
         return getResourcePoliciesPlain(args, InvokeOptions.Empty);
     }
     /**
+     * ## # Data Source: mongodbatlas.getResourcePolicies
+     * 
+     * `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
+     * 
      * ## Example Usage
      * 
      */
@@ -28896,6 +28928,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getResourcePolicies:getResourcePolicies", TypeShape.of(GetResourcePoliciesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.getResourcePolicies
+     * 
+     * `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
+     * 
      * ## Example Usage
      * 
      */
@@ -28903,6 +28939,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getResourcePolicies:getResourcePolicies", TypeShape.of(GetResourcePoliciesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.getResourcePolicies
+     * 
+     * `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
+     * 
      * ## Example Usage
      * 
      */
@@ -28910,6 +28950,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getResourcePolicies:getResourcePolicies", TypeShape.of(GetResourcePoliciesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.ResourcePolicy
+     * 
+     * `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+     * 
      * ## Example Usage
      * 
      */
@@ -28917,6 +28961,10 @@ public final class MongodbatlasFunctions {
         return getResourcePolicy(args, InvokeOptions.Empty);
     }
     /**
+     * ## # Data Source: mongodbatlas.ResourcePolicy
+     * 
+     * `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+     * 
      * ## Example Usage
      * 
      */
@@ -28924,6 +28972,10 @@ public final class MongodbatlasFunctions {
         return getResourcePolicyPlain(args, InvokeOptions.Empty);
     }
     /**
+     * ## # Data Source: mongodbatlas.ResourcePolicy
+     * 
+     * `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+     * 
      * ## Example Usage
      * 
      */
@@ -28931,6 +28983,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getResourcePolicy:getResourcePolicy", TypeShape.of(GetResourcePolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.ResourcePolicy
+     * 
+     * `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+     * 
      * ## Example Usage
      * 
      */
@@ -28938,6 +28994,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getResourcePolicy:getResourcePolicy", TypeShape.of(GetResourcePolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # Data Source: mongodbatlas.ResourcePolicy
+     * 
+     * `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+     * 
      * ## Example Usage
      * 
      */

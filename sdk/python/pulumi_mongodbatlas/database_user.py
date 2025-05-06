@@ -26,6 +26,7 @@ class DatabaseUserArgs:
                  project_id: pulumi.Input[builtins.str],
                  username: pulumi.Input[builtins.str],
                  aws_iam_type: Optional[pulumi.Input[builtins.str]] = None,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
                  ldap_auth_type: Optional[pulumi.Input[builtins.str]] = None,
                  oidc_auth_type: Optional[pulumi.Input[builtins.str]] = None,
@@ -43,6 +44,7 @@ class DatabaseUserArgs:
                * `NONE` -	The user does not use AWS IAM credentials.
                * `USER` - New database user has AWS IAM user credentials.
                * `ROLE` -  New database user has credentials associated with an AWS IAM role.
+        :param pulumi.Input[builtins.str] description: Description of this database user.
         :param pulumi.Input[builtins.str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
                * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
                * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
@@ -62,6 +64,8 @@ class DatabaseUserArgs:
         pulumi.set(__self__, "username", username)
         if aws_iam_type is not None:
             pulumi.set(__self__, "aws_iam_type", aws_iam_type)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if ldap_auth_type is not None:
@@ -128,6 +132,18 @@ class DatabaseUserArgs:
     @aws_iam_type.setter
     def aws_iam_type(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "aws_iam_type", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Description of this database user.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -219,6 +235,7 @@ class _DatabaseUserState:
     def __init__(__self__, *,
                  auth_database_name: Optional[pulumi.Input[builtins.str]] = None,
                  aws_iam_type: Optional[pulumi.Input[builtins.str]] = None,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
                  ldap_auth_type: Optional[pulumi.Input[builtins.str]] = None,
                  oidc_auth_type: Optional[pulumi.Input[builtins.str]] = None,
@@ -236,6 +253,7 @@ class _DatabaseUserState:
                * `NONE` -	The user does not use AWS IAM credentials.
                * `USER` - New database user has AWS IAM user credentials.
                * `ROLE` -  New database user has credentials associated with an AWS IAM role.
+        :param pulumi.Input[builtins.str] description: Description of this database user.
         :param pulumi.Input[builtins.str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
                * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
                * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
@@ -256,6 +274,8 @@ class _DatabaseUserState:
             pulumi.set(__self__, "auth_database_name", auth_database_name)
         if aws_iam_type is not None:
             pulumi.set(__self__, "aws_iam_type", aws_iam_type)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if ldap_auth_type is not None:
@@ -302,6 +322,18 @@ class _DatabaseUserState:
     @aws_iam_type.setter
     def aws_iam_type(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "aws_iam_type", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Description of this database user.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -422,6 +454,7 @@ class DatabaseUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auth_database_name: Optional[pulumi.Input[builtins.str]] = None,
                  aws_iam_type: Optional[pulumi.Input[builtins.str]] = None,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
                  ldap_auth_type: Optional[pulumi.Input[builtins.str]] = None,
                  oidc_auth_type: Optional[pulumi.Input[builtins.str]] = None,
@@ -554,9 +587,9 @@ class DatabaseUser(pulumi.CustomResource):
 
         Database users can be imported using project ID, username, and auth database name in the format:
 
-        1. `project_id`-`username`-`auth_database_name` Only works if no `-` are used for `username`/`auth_database_name`. For example `my-username` should use (2).
+        1. `project_id`-`username`-`auth_database_name` Doesn't  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
 
-        2.  `project_id`/`username`/`auth_database_name` Works in all cases (introduced after (1))
+        2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
 
         ```sh
         $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
@@ -574,6 +607,7 @@ class DatabaseUser(pulumi.CustomResource):
                * `NONE` -	The user does not use AWS IAM credentials.
                * `USER` - New database user has AWS IAM user credentials.
                * `ROLE` -  New database user has credentials associated with an AWS IAM role.
+        :param pulumi.Input[builtins.str] description: Description of this database user.
         :param pulumi.Input[builtins.str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
                * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
                * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
@@ -718,9 +752,9 @@ class DatabaseUser(pulumi.CustomResource):
 
         Database users can be imported using project ID, username, and auth database name in the format:
 
-        1. `project_id`-`username`-`auth_database_name` Only works if no `-` are used for `username`/`auth_database_name`. For example `my-username` should use (2).
+        1. `project_id`-`username`-`auth_database_name` Doesn't  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
 
-        2.  `project_id`/`username`/`auth_database_name` Works in all cases (introduced after (1))
+        2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
 
         ```sh
         $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
@@ -747,6 +781,7 @@ class DatabaseUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auth_database_name: Optional[pulumi.Input[builtins.str]] = None,
                  aws_iam_type: Optional[pulumi.Input[builtins.str]] = None,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
                  ldap_auth_type: Optional[pulumi.Input[builtins.str]] = None,
                  oidc_auth_type: Optional[pulumi.Input[builtins.str]] = None,
@@ -769,6 +804,7 @@ class DatabaseUser(pulumi.CustomResource):
                 raise TypeError("Missing required property 'auth_database_name'")
             __props__.__dict__["auth_database_name"] = auth_database_name
             __props__.__dict__["aws_iam_type"] = aws_iam_type
+            __props__.__dict__["description"] = description
             __props__.__dict__["labels"] = labels
             __props__.__dict__["ldap_auth_type"] = ldap_auth_type
             __props__.__dict__["oidc_auth_type"] = oidc_auth_type
@@ -796,6 +832,7 @@ class DatabaseUser(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             auth_database_name: Optional[pulumi.Input[builtins.str]] = None,
             aws_iam_type: Optional[pulumi.Input[builtins.str]] = None,
+            description: Optional[pulumi.Input[builtins.str]] = None,
             labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
             ldap_auth_type: Optional[pulumi.Input[builtins.str]] = None,
             oidc_auth_type: Optional[pulumi.Input[builtins.str]] = None,
@@ -818,6 +855,7 @@ class DatabaseUser(pulumi.CustomResource):
                * `NONE` -	The user does not use AWS IAM credentials.
                * `USER` - New database user has AWS IAM user credentials.
                * `ROLE` -  New database user has credentials associated with an AWS IAM role.
+        :param pulumi.Input[builtins.str] description: Description of this database user.
         :param pulumi.Input[builtins.str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
                * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
                * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
@@ -840,6 +878,7 @@ class DatabaseUser(pulumi.CustomResource):
 
         __props__.__dict__["auth_database_name"] = auth_database_name
         __props__.__dict__["aws_iam_type"] = aws_iam_type
+        __props__.__dict__["description"] = description
         __props__.__dict__["labels"] = labels
         __props__.__dict__["ldap_auth_type"] = ldap_auth_type
         __props__.__dict__["oidc_auth_type"] = oidc_auth_type
@@ -870,6 +909,14 @@ class DatabaseUser(pulumi.CustomResource):
         * `ROLE` -  New database user has credentials associated with an AWS IAM role.
         """
         return pulumi.get(self, "aws_iam_type")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        Description of this database user.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter

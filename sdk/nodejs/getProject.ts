@@ -117,9 +117,9 @@ export interface GetProjectResult {
     readonly created: string;
     readonly id: string;
     /**
-     * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+     * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      *
-     * @deprecated This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * @deprecated This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      */
     readonly ipAddresses: outputs.GetProjectIpAddresses;
     /**
@@ -148,6 +148,8 @@ export interface GetProjectResult {
     readonly isSchemaAdvisorEnabled: boolean;
     /**
      * (Deprecated) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+     *
+     * @deprecated This parameter is deprecated.
      */
     readonly isSlowOperationThresholdingEnabled: boolean;
     /**

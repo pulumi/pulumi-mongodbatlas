@@ -32,12 +32,8 @@ import * as utilities from "./utilities";
 export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", {
-        "enabled": args.enabled,
-        "microsoftTeamsWebhookUrl": args.microsoftTeamsWebhookUrl,
         "projectId": args.projectId,
-        "serviceDiscovery": args.serviceDiscovery,
         "type": args.type,
-        "userName": args.userName,
     }, opts);
 }
 
@@ -46,22 +42,9 @@ export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opt
  */
 export interface GetThirdPartyIntegrationArgs {
     /**
-     * Whether your cluster has Prometheus enabled.
-     */
-    enabled?: boolean;
-    /**
-     * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
-     */
-    microsoftTeamsWebhookUrl?: string;
-    /**
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId: string;
-    /**
-     * Indicates which service discovery method is used, either file or http.
-     */
-    serviceDiscovery?: string;
     /**
      * Third-Party service integration type
      * * PAGER_DUTY
@@ -73,10 +56,6 @@ export interface GetThirdPartyIntegrationArgs {
      * * PROMETHEUS
      */
     type: string;
-    /**
-     * Your Prometheus username.
-     */
-    userName?: string;
 }
 
 /**
@@ -92,7 +71,7 @@ export interface GetThirdPartyIntegrationResult {
     /**
      * Whether your cluster has Prometheus enabled.
      */
-    readonly enabled?: boolean;
+    readonly enabled: boolean;
     /**
      * Unique identifier of the integration.
      */
@@ -101,7 +80,7 @@ export interface GetThirdPartyIntegrationResult {
      * Your Microsoft Teams incoming webhook URL.
      * * `PROMETHEUS`
      */
-    readonly microsoftTeamsWebhookUrl?: string;
+    readonly microsoftTeamsWebhookUrl: string;
     readonly projectId: string;
     /**
      * Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
@@ -119,9 +98,18 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly secret: string;
     /**
+     * Toggle sending collection latency metrics that includes database names and collection name sand latency metrics on reads, writes, commands, and transactions.
+     */
+    readonly sendCollectionLatencyMetrics: boolean;
+    /**
+     * Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+     * * `OPS_GENIE`
+     */
+    readonly sendDatabaseMetrics: boolean;
+    /**
      * Indicates which service discovery method is used, either file or http.
      */
-    readonly serviceDiscovery?: string;
+    readonly serviceDiscovery: string;
     /**
      * Your Service Key.
      * * `DATADOG`
@@ -136,7 +124,7 @@ export interface GetThirdPartyIntegrationResult {
     /**
      * Your Prometheus username.
      */
-    readonly userName?: string;
+    readonly userName: string;
 }
 /**
  * ## # Data Source: mongodbatlas.ThirdPartyIntegration
@@ -166,12 +154,8 @@ export interface GetThirdPartyIntegrationResult {
 export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", {
-        "enabled": args.enabled,
-        "microsoftTeamsWebhookUrl": args.microsoftTeamsWebhookUrl,
         "projectId": args.projectId,
-        "serviceDiscovery": args.serviceDiscovery,
         "type": args.type,
-        "userName": args.userName,
     }, opts);
 }
 
@@ -180,22 +164,9 @@ export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOut
  */
 export interface GetThirdPartyIntegrationOutputArgs {
     /**
-     * Whether your cluster has Prometheus enabled.
-     */
-    enabled?: pulumi.Input<boolean>;
-    /**
-     * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
-     */
-    microsoftTeamsWebhookUrl?: pulumi.Input<string>;
-    /**
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId: pulumi.Input<string>;
-    /**
-     * Indicates which service discovery method is used, either file or http.
-     */
-    serviceDiscovery?: pulumi.Input<string>;
     /**
      * Third-Party service integration type
      * * PAGER_DUTY
@@ -207,8 +178,4 @@ export interface GetThirdPartyIntegrationOutputArgs {
      * * PROMETHEUS
      */
     type: pulumi.Input<string>;
-    /**
-     * Your Prometheus username.
-     */
-    userName?: pulumi.Input<string>;
 }

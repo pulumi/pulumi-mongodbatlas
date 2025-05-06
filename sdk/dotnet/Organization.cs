@@ -113,6 +113,15 @@ namespace Pulumi.Mongodbatlas
         [Output("roleNames")]
         public Output<ImmutableArray<string>> RoleNames { get; private set; } = null!;
 
+        /// <summary>
+        /// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        /// </summary>
+        [Output("securityContact")]
+        public Output<string?> SecurityContact { get; private set; } = null!;
+
+        [Output("skipDefaultAlertsSettings")]
+        public Output<bool> SkipDefaultAlertsSettings { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Organization resource with the given unique name, arguments, and options.
@@ -221,6 +230,15 @@ namespace Pulumi.Mongodbatlas
             set => _roleNames = value;
         }
 
+        /// <summary>
+        /// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        /// </summary>
+        [Input("securityContact")]
+        public Input<string>? SecurityContact { get; set; }
+
+        [Input("skipDefaultAlertsSettings")]
+        public Input<bool>? SkipDefaultAlertsSettings { get; set; }
+
         public OrganizationArgs()
         {
         }
@@ -319,6 +337,15 @@ namespace Pulumi.Mongodbatlas
             get => _roleNames ?? (_roleNames = new InputList<string>());
             set => _roleNames = value;
         }
+
+        /// <summary>
+        /// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        /// </summary>
+        [Input("securityContact")]
+        public Input<string>? SecurityContact { get; set; }
+
+        [Input("skipDefaultAlertsSettings")]
+        public Input<bool>? SkipDefaultAlertsSettings { get; set; }
 
         public OrganizationState()
         {

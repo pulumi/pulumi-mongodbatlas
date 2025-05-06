@@ -38,6 +38,8 @@ type LookupSearchDeploymentArgs struct {
 type LookupSearchDeploymentResult struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName string `pulumi:"clusterName"`
+	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Unique 24-hexadecimal digit string that identifies the search deployment.
 	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -87,6 +89,11 @@ func (o LookupSearchDeploymentResultOutput) ToLookupSearchDeploymentResultOutput
 // Label that identifies the cluster to return the search nodes for.
 func (o LookupSearchDeploymentResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchDeploymentResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+func (o LookupSearchDeploymentResultOutput) EncryptionAtRestProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchDeploymentResult) string { return v.EncryptionAtRestProvider }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies the search deployment.

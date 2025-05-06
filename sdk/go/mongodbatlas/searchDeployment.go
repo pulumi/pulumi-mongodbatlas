@@ -26,14 +26,19 @@ import (
 //
 // Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
 //
+// After an import, a non-empty plan is expected if the configuration defines the `skipWaitOnUpdate` attribute. However, the update will not have any effect on the search deployment since `skipWaitOnUpdate` only relates to the update operations wait time.
+//
 // For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
 type SearchDeployment struct {
 	pulumi.CustomResourceState
 
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
+	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+	EncryptionAtRestProvider pulumi.StringOutput `pulumi:"encryptionAtRestProvider"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	ProjectId        pulumi.StringOutput  `pulumi:"projectId"`
+	SkipWaitOnUpdate pulumi.BoolPtrOutput `pulumi:"skipWaitOnUpdate"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs SearchDeploymentSpecArrayOutput `pulumi:"specs"`
 	// Human-readable label that indicates the current operating condition of this search deployment.
@@ -82,8 +87,11 @@ func GetSearchDeployment(ctx *pulumi.Context,
 type searchDeploymentState struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName *string `pulumi:"clusterName"`
+	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+	EncryptionAtRestProvider *string `pulumi:"encryptionAtRestProvider"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId *string `pulumi:"projectId"`
+	ProjectId        *string `pulumi:"projectId"`
+	SkipWaitOnUpdate *bool   `pulumi:"skipWaitOnUpdate"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs []SearchDeploymentSpec `pulumi:"specs"`
 	// Human-readable label that indicates the current operating condition of this search deployment.
@@ -94,8 +102,11 @@ type searchDeploymentState struct {
 type SearchDeploymentState struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringPtrInput
+	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+	EncryptionAtRestProvider pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId pulumi.StringPtrInput
+	ProjectId        pulumi.StringPtrInput
+	SkipWaitOnUpdate pulumi.BoolPtrInput
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs SearchDeploymentSpecArrayInput
 	// Human-readable label that indicates the current operating condition of this search deployment.
@@ -111,7 +122,8 @@ type searchDeploymentArgs struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName string `pulumi:"clusterName"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId string `pulumi:"projectId"`
+	ProjectId        string `pulumi:"projectId"`
+	SkipWaitOnUpdate *bool  `pulumi:"skipWaitOnUpdate"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs    []SearchDeploymentSpec    `pulumi:"specs"`
 	Timeouts *SearchDeploymentTimeouts `pulumi:"timeouts"`
@@ -122,7 +134,8 @@ type SearchDeploymentArgs struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringInput
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId pulumi.StringInput
+	ProjectId        pulumi.StringInput
+	SkipWaitOnUpdate pulumi.BoolPtrInput
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs    SearchDeploymentSpecArrayInput
 	Timeouts SearchDeploymentTimeoutsPtrInput
@@ -220,9 +233,18 @@ func (o SearchDeploymentOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
+// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+func (o SearchDeploymentOutput) EncryptionAtRestProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.EncryptionAtRestProvider }).(pulumi.StringOutput)
+}
+
 // Unique 24-hexadecimal digit string that identifies your project.
 func (o SearchDeploymentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o SearchDeploymentOutput) SkipWaitOnUpdate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SearchDeployment) pulumi.BoolPtrOutput { return v.SkipWaitOnUpdate }).(pulumi.BoolPtrOutput)
 }
 
 // List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.

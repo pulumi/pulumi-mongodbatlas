@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.SearchDeploymentState;
 import com.pulumi.mongodbatlas.outputs.SearchDeploymentSpec;
 import com.pulumi.mongodbatlas.outputs.SearchDeploymentTimeouts;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +38,8 @@ import javax.annotation.Nullable;
  * 
  * Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
  * 
+ * After an import, a non-empty plan is expected if the configuration defines the `skip_wait_on_update` attribute. However, the update will not have any effect on the search deployment since `skip_wait_on_update` only relates to the update operations wait time.
+ * 
  * For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
  * 
  */
@@ -57,6 +60,20 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
         return this.clusterName;
     }
     /**
+     * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+     * 
+     */
+    @Export(name="encryptionAtRestProvider", refs={String.class}, tree="[0]")
+    private Output<String> encryptionAtRestProvider;
+
+    /**
+     * @return Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+     * 
+     */
+    public Output<String> encryptionAtRestProvider() {
+        return this.encryptionAtRestProvider;
+    }
+    /**
      * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
@@ -69,6 +86,12 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
      */
     public Output<String> projectId() {
         return this.projectId;
+    }
+    @Export(name="skipWaitOnUpdate", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> skipWaitOnUpdate;
+
+    public Output<Optional<Boolean>> skipWaitOnUpdate() {
+        return Codegen.optional(this.skipWaitOnUpdate);
     }
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.

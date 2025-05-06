@@ -7,6 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.ResourcePolicy
+ *
+ * `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+ *
  * ## Example Usage
  */
 export function getResourcePolicy(args: GetResourcePolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetResourcePolicyResult> {
@@ -44,6 +48,10 @@ export interface GetResourcePolicyResult {
      */
     readonly createdDate: string;
     /**
+     * Description of the Atlas resource policy.
+     */
+    readonly description: string;
+    /**
      * Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
      */
     readonly id: string;
@@ -73,6 +81,10 @@ export interface GetResourcePolicyResult {
     readonly version: string;
 }
 /**
+ * ## # Data Source: mongodbatlas.ResourcePolicy
+ *
+ * `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
+ *
  * ## Example Usage
  */
 export function getResourcePolicyOutput(args: GetResourcePolicyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetResourcePolicyResult> {

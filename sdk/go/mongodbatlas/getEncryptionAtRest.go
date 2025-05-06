@@ -67,6 +67,7 @@ import (
 //					Region:              pulumi.Any(atlasRegion),
 //					RoleId:              authRole.RoleId,
 //				},
+//				EnabledForSearchNodes: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -209,6 +210,8 @@ type LookupEncryptionAtRestResult struct {
 	AwsKmsConfig GetEncryptionAtRestAwsKmsConfig `pulumi:"awsKmsConfig"`
 	// Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
 	AzureKeyVaultConfig GetEncryptionAtRestAzureKeyVaultConfig `pulumi:"azureKeyVaultConfig"`
+	// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+	EnabledForSearchNodes bool `pulumi:"enabledForSearchNodes"`
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig GetEncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
 	// The ID of this resource.
@@ -261,6 +264,11 @@ func (o LookupEncryptionAtRestResultOutput) AzureKeyVaultConfig() GetEncryptionA
 	return o.ApplyT(func(v LookupEncryptionAtRestResult) GetEncryptionAtRestAzureKeyVaultConfig {
 		return v.AzureKeyVaultConfig
 	}).(GetEncryptionAtRestAzureKeyVaultConfigOutput)
+}
+
+// Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+func (o LookupEncryptionAtRestResultOutput) EnabledForSearchNodes() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupEncryptionAtRestResult) bool { return v.EnabledForSearchNodes }).(pulumi.BoolOutput)
 }
 
 // Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).

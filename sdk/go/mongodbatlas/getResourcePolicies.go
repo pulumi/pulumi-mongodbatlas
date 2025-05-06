@@ -11,6 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: getResourcePolicies
+//
+// `getResourcePolicies` returns all resource policies in an organization.
+//
 // ## Example Usage
 func LookupResourcePolicies(ctx *pulumi.Context, args *LookupResourcePoliciesArgs, opts ...pulumi.InvokeOption) (*LookupResourcePoliciesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

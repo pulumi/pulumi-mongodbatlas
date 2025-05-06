@@ -47,6 +47,9 @@ class CloudBackupSnapshotExportBucketArgs:
         if service_url is not None:
             pulumi.set(__self__, "service_url", service_url)
         if tenant_id is not None:
+            warnings.warn("""This parameter is deprecated.""", DeprecationWarning)
+            pulumi.log.warn("""tenant_id is deprecated: This parameter is deprecated.""")
+        if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
 
     @property
@@ -123,6 +126,7 @@ class CloudBackupSnapshotExportBucketArgs:
 
     @property
     @pulumi.getter(name="tenantId")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def tenant_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
@@ -170,6 +174,9 @@ class _CloudBackupSnapshotExportBucketState:
             pulumi.set(__self__, "role_id", role_id)
         if service_url is not None:
             pulumi.set(__self__, "service_url", service_url)
+        if tenant_id is not None:
+            warnings.warn("""This parameter is deprecated.""", DeprecationWarning)
+            pulumi.log.warn("""tenant_id is deprecated: This parameter is deprecated.""")
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
 
@@ -259,6 +266,7 @@ class _CloudBackupSnapshotExportBucketState:
 
     @property
     @pulumi.getter(name="tenantId")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def tenant_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
@@ -549,6 +557,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tenantId")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def tenant_id(self) -> pulumi.Output[builtins.str]:
         """
         This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.

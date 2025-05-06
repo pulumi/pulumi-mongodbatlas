@@ -31,10 +31,10 @@ public final class GetCloudBackupScheduleCopySetting {
      * @return Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
      * 
      * @deprecated
-     * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
+    @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
     private String replicationSpecId;
     /**
      * @return Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
@@ -73,10 +73,10 @@ public final class GetCloudBackupScheduleCopySetting {
      * @return Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
      * 
      * @deprecated
-     * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
+    @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
     public String replicationSpecId() {
         return this.replicationSpecId;
     }

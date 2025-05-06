@@ -12,6 +12,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: ResourcePolicy
+//
+// `ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
+//
 // ## Example Usage
 //
 // ## Import
@@ -26,6 +30,8 @@ type ResourcePolicy struct {
 	CreatedByUser ResourcePolicyCreatedByUserOutput `pulumi:"createdByUser"`
 	// Date and time in UTC when the Atlas resource policy was created.
 	CreatedDate pulumi.StringOutput `pulumi:"createdDate"`
+	// Description of the Atlas resource policy.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The user that last updated the Atlas resource policy.
 	LastUpdatedByUser ResourcePolicyLastUpdatedByUserOutput `pulumi:"lastUpdatedByUser"`
 	// Date and time in UTC when the Atlas resource policy was last updated.
@@ -80,6 +86,8 @@ type resourcePolicyState struct {
 	CreatedByUser *ResourcePolicyCreatedByUser `pulumi:"createdByUser"`
 	// Date and time in UTC when the Atlas resource policy was created.
 	CreatedDate *string `pulumi:"createdDate"`
+	// Description of the Atlas resource policy.
+	Description *string `pulumi:"description"`
 	// The user that last updated the Atlas resource policy.
 	LastUpdatedByUser *ResourcePolicyLastUpdatedByUser `pulumi:"lastUpdatedByUser"`
 	// Date and time in UTC when the Atlas resource policy was last updated.
@@ -99,6 +107,8 @@ type ResourcePolicyState struct {
 	CreatedByUser ResourcePolicyCreatedByUserPtrInput
 	// Date and time in UTC when the Atlas resource policy was created.
 	CreatedDate pulumi.StringPtrInput
+	// Description of the Atlas resource policy.
+	Description pulumi.StringPtrInput
 	// The user that last updated the Atlas resource policy.
 	LastUpdatedByUser ResourcePolicyLastUpdatedByUserPtrInput
 	// Date and time in UTC when the Atlas resource policy was last updated.
@@ -118,6 +128,8 @@ func (ResourcePolicyState) ElementType() reflect.Type {
 }
 
 type resourcePolicyArgs struct {
+	// Description of the Atlas resource policy.
+	Description *string `pulumi:"description"`
 	// Human-readable label that describes the Atlas resource policy.
 	Name *string `pulumi:"name"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
@@ -128,6 +140,8 @@ type resourcePolicyArgs struct {
 
 // The set of arguments for constructing a ResourcePolicy resource.
 type ResourcePolicyArgs struct {
+	// Description of the Atlas resource policy.
+	Description pulumi.StringPtrInput
 	// Human-readable label that describes the Atlas resource policy.
 	Name pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
@@ -231,6 +245,11 @@ func (o ResourcePolicyOutput) CreatedByUser() ResourcePolicyCreatedByUserOutput 
 // Date and time in UTC when the Atlas resource policy was created.
 func (o ResourcePolicyOutput) CreatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcePolicy) pulumi.StringOutput { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// Description of the Atlas resource policy.
+func (o ResourcePolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ResourcePolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // The user that last updated the Atlas resource policy.

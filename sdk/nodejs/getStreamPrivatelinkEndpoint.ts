@@ -30,7 +30,7 @@ export interface GetStreamPrivatelinkEndpointArgs {
      */
     id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
     projectId: string;
 }
@@ -39,25 +39,61 @@ export interface GetStreamPrivatelinkEndpointArgs {
  * A collection of values returned by getStreamPrivatelinkEndpoint.
  */
 export interface GetStreamPrivatelinkEndpointResult {
+    /**
+     * Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+     */
     readonly arn: string;
+    /**
+     * The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+     */
     readonly dnsDomain: string;
+    /**
+     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+     */
     readonly dnsSubDomains: string[];
+    /**
+     * Error message if the connection is in a failed state.
+     */
     readonly errorMessage: string;
     /**
      * The ID of the Private Link connection.
      */
     readonly id: string;
+    /**
+     * Interface endpoint ID that is created from the specified service endpoint ID.
+     */
     readonly interfaceEndpointId: string;
+    /**
+     * Name of interface endpoint that is created from the specified service endpoint ID.
+     */
     readonly interfaceEndpointName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
     readonly projectId: string;
+    /**
+     * Account ID from the cloud provider.
+     */
     readonly providerAccountId: string;
+    /**
+     * Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+     */
     readonly providerName: string;
+    /**
+     * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+     */
     readonly region: string;
+    /**
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     */
     readonly serviceEndpointId: string;
+    /**
+     * Status of the connection.
+     */
     readonly state: string;
+    /**
+     * Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
+     */
     readonly vendor: string;
 }
 /**
@@ -86,7 +122,7 @@ export interface GetStreamPrivatelinkEndpointOutputArgs {
      */
     id: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
     projectId: pulumi.Input<string>;
 }

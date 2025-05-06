@@ -24,15 +24,19 @@ class ResourcePolicyArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[builtins.str],
                  policies: pulumi.Input[Sequence[pulumi.Input['ResourcePolicyPolicyArgs']]],
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a ResourcePolicy resource.
         :param pulumi.Input[builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input['ResourcePolicyPolicyArgs']]] policies: List of policies that make up the Atlas resource policy.
+        :param pulumi.Input[builtins.str] description: Description of the Atlas resource policy.
         :param pulumi.Input[builtins.str] name: Human-readable label that describes the Atlas resource policy.
         """
         pulumi.set(__self__, "org_id", org_id)
         pulumi.set(__self__, "policies", policies)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -62,6 +66,18 @@ class ResourcePolicyArgs:
 
     @property
     @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Description of the Atlas resource policy.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         Human-readable label that describes the Atlas resource policy.
@@ -78,6 +94,7 @@ class _ResourcePolicyState:
     def __init__(__self__, *,
                  created_by_user: Optional[pulumi.Input['ResourcePolicyCreatedByUserArgs']] = None,
                  created_date: Optional[pulumi.Input[builtins.str]] = None,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  last_updated_by_user: Optional[pulumi.Input['ResourcePolicyLastUpdatedByUserArgs']] = None,
                  last_updated_date: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -88,6 +105,7 @@ class _ResourcePolicyState:
         Input properties used for looking up and filtering ResourcePolicy resources.
         :param pulumi.Input['ResourcePolicyCreatedByUserArgs'] created_by_user: The user that last updated the Atlas resource policy.
         :param pulumi.Input[builtins.str] created_date: Date and time in UTC when the Atlas resource policy was created.
+        :param pulumi.Input[builtins.str] description: Description of the Atlas resource policy.
         :param pulumi.Input['ResourcePolicyLastUpdatedByUserArgs'] last_updated_by_user: The user that last updated the Atlas resource policy.
         :param pulumi.Input[builtins.str] last_updated_date: Date and time in UTC when the Atlas resource policy was last updated.
         :param pulumi.Input[builtins.str] name: Human-readable label that describes the Atlas resource policy.
@@ -99,6 +117,8 @@ class _ResourcePolicyState:
             pulumi.set(__self__, "created_by_user", created_by_user)
         if created_date is not None:
             pulumi.set(__self__, "created_date", created_date)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if last_updated_by_user is not None:
             pulumi.set(__self__, "last_updated_by_user", last_updated_by_user)
         if last_updated_date is not None:
@@ -135,6 +155,18 @@ class _ResourcePolicyState:
     @created_date.setter
     def created_date(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "created_date", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Description of the Atlas resource policy.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter(name="lastUpdatedByUser")
@@ -217,11 +249,16 @@ class ResourcePolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  org_id: Optional[pulumi.Input[builtins.str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]]] = None,
                  __props__=None):
         """
+        ## # Resource: ResourcePolicy
+
+        `ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
+
         ## Example Usage
 
         ## Import
@@ -232,6 +269,7 @@ class ResourcePolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.str] description: Description of the Atlas resource policy.
         :param pulumi.Input[builtins.str] name: Human-readable label that describes the Atlas resource policy.
         :param pulumi.Input[builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]] policies: List of policies that make up the Atlas resource policy.
@@ -243,6 +281,10 @@ class ResourcePolicy(pulumi.CustomResource):
                  args: ResourcePolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: ResourcePolicy
+
+        `ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
+
         ## Example Usage
 
         ## Import
@@ -266,6 +308,7 @@ class ResourcePolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  org_id: Optional[pulumi.Input[builtins.str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]]] = None,
@@ -278,6 +321,7 @@ class ResourcePolicy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ResourcePolicyArgs.__new__(ResourcePolicyArgs)
 
+            __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
             if org_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_id'")
@@ -302,6 +346,7 @@ class ResourcePolicy(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             created_by_user: Optional[pulumi.Input[Union['ResourcePolicyCreatedByUserArgs', 'ResourcePolicyCreatedByUserArgsDict']]] = None,
             created_date: Optional[pulumi.Input[builtins.str]] = None,
+            description: Optional[pulumi.Input[builtins.str]] = None,
             last_updated_by_user: Optional[pulumi.Input[Union['ResourcePolicyLastUpdatedByUserArgs', 'ResourcePolicyLastUpdatedByUserArgsDict']]] = None,
             last_updated_date: Optional[pulumi.Input[builtins.str]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
@@ -317,6 +362,7 @@ class ResourcePolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ResourcePolicyCreatedByUserArgs', 'ResourcePolicyCreatedByUserArgsDict']] created_by_user: The user that last updated the Atlas resource policy.
         :param pulumi.Input[builtins.str] created_date: Date and time in UTC when the Atlas resource policy was created.
+        :param pulumi.Input[builtins.str] description: Description of the Atlas resource policy.
         :param pulumi.Input[Union['ResourcePolicyLastUpdatedByUserArgs', 'ResourcePolicyLastUpdatedByUserArgsDict']] last_updated_by_user: The user that last updated the Atlas resource policy.
         :param pulumi.Input[builtins.str] last_updated_date: Date and time in UTC when the Atlas resource policy was last updated.
         :param pulumi.Input[builtins.str] name: Human-readable label that describes the Atlas resource policy.
@@ -330,6 +376,7 @@ class ResourcePolicy(pulumi.CustomResource):
 
         __props__.__dict__["created_by_user"] = created_by_user
         __props__.__dict__["created_date"] = created_date
+        __props__.__dict__["description"] = description
         __props__.__dict__["last_updated_by_user"] = last_updated_by_user
         __props__.__dict__["last_updated_date"] = last_updated_date
         __props__.__dict__["name"] = name
@@ -353,6 +400,14 @@ class ResourcePolicy(pulumi.CustomResource):
         Date and time in UTC when the Atlas resource policy was created.
         """
         return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        Description of the Atlas resource policy.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="lastUpdatedByUser")

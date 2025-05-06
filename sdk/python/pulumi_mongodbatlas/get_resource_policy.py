@@ -28,13 +28,16 @@ class GetResourcePolicyResult:
     """
     A collection of values returned by getResourcePolicy.
     """
-    def __init__(__self__, created_by_user=None, created_date=None, id=None, last_updated_by_user=None, last_updated_date=None, name=None, org_id=None, policies=None, version=None):
+    def __init__(__self__, created_by_user=None, created_date=None, description=None, id=None, last_updated_by_user=None, last_updated_date=None, name=None, org_id=None, policies=None, version=None):
         if created_by_user and not isinstance(created_by_user, dict):
             raise TypeError("Expected argument 'created_by_user' to be a dict")
         pulumi.set(__self__, "created_by_user", created_by_user)
         if created_date and not isinstance(created_date, str):
             raise TypeError("Expected argument 'created_date' to be a str")
         pulumi.set(__self__, "created_date", created_date)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -72,6 +75,14 @@ class GetResourcePolicyResult:
         Date and time in UTC when the Atlas resource policy was created.
         """
         return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> builtins.str:
+        """
+        Description of the Atlas resource policy.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -138,6 +149,7 @@ class AwaitableGetResourcePolicyResult(GetResourcePolicyResult):
         return GetResourcePolicyResult(
             created_by_user=self.created_by_user,
             created_date=self.created_date,
+            description=self.description,
             id=self.id,
             last_updated_by_user=self.last_updated_by_user,
             last_updated_date=self.last_updated_date,
@@ -151,6 +163,10 @@ def get_resource_policy(id: Optional[builtins.str] = None,
                         org_id: Optional[builtins.str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourcePolicyResult:
     """
+    ## # Data Source: ResourcePolicy
+
+    `ResourcePolicy` describes a resource policy in an organization.
+
     ## Example Usage
 
 
@@ -166,6 +182,7 @@ def get_resource_policy(id: Optional[builtins.str] = None,
     return AwaitableGetResourcePolicyResult(
         created_by_user=pulumi.get(__ret__, 'created_by_user'),
         created_date=pulumi.get(__ret__, 'created_date'),
+        description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         last_updated_by_user=pulumi.get(__ret__, 'last_updated_by_user'),
         last_updated_date=pulumi.get(__ret__, 'last_updated_date'),
@@ -177,6 +194,10 @@ def get_resource_policy_output(id: Optional[pulumi.Input[builtins.str]] = None,
                                org_id: Optional[pulumi.Input[builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourcePolicyResult]:
     """
+    ## # Data Source: ResourcePolicy
+
+    `ResourcePolicy` describes a resource policy in an organization.
+
     ## Example Usage
 
 
@@ -191,6 +212,7 @@ def get_resource_policy_output(id: Optional[pulumi.Input[builtins.str]] = None,
     return __ret__.apply(lambda __response__: GetResourcePolicyResult(
         created_by_user=pulumi.get(__response__, 'created_by_user'),
         created_date=pulumi.get(__response__, 'created_date'),
+        description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         last_updated_by_user=pulumi.get(__response__, 'last_updated_by_user'),
         last_updated_date=pulumi.get(__response__, 'last_updated_date'),

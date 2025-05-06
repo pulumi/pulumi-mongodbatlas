@@ -110,6 +110,7 @@ __all__ = [
     'LdapConfigurationUserToDnMapping',
     'LdapVerifyLink',
     'LdapVerifyValidation',
+    'MaintenanceWindowProtectedHours',
     'OnlineArchiveCriteria',
     'OnlineArchiveDataExpirationRule',
     'OnlineArchiveDataProcessRegion',
@@ -346,6 +347,7 @@ __all__ = [
     'GetLdapConfigurationUserToDnMappingResult',
     'GetLdapVerifyLinkResult',
     'GetLdapVerifyValidationResult',
+    'GetMaintenanceWindowProtectedHourResult',
     'GetNetworkContainersResultResult',
     'GetNetworkPeeringsResultResult',
     'GetOnlineArchiveCriteriaResult',
@@ -496,9 +498,9 @@ class AdvancedClusterAdvancedConfiguration(dict):
         :param builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         :param Sequence[builtins.str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param builtins.int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
-        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param builtins.bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param builtins.bool fail_index_key_too_long: **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param builtins.bool javascript_enabled: When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
                - TLS1_0
@@ -570,10 +572,10 @@ class AdvancedClusterAdvancedConfiguration(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def default_read_concern(self) -> Optional[builtins.str]:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -581,16 +583,16 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> Optional[builtins.str]:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def fail_index_key_too_long(self) -> Optional[builtins.bool]:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+        **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -1136,7 +1138,7 @@ class AdvancedClusterReplicationSpec(dict):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def id(self) -> Optional[builtins.str]:
         """
         **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
@@ -1145,7 +1147,7 @@ class AdvancedClusterReplicationSpec(dict):
 
     @property
     @pulumi.getter(name="numShards")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def num_shards(self) -> Optional[builtins.int]:
         """
         Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
@@ -3026,7 +3028,7 @@ class CloudBackupScheduleCopySetting(dict):
 
     @property
     @pulumi.getter(name="replicationSpecId")
-    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def replication_spec_id(self) -> Optional[builtins.str]:
         """
         Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
@@ -4051,12 +4053,11 @@ class ClusterAdvancedConfiguration(dict):
         """
         :param builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         :param Sequence[builtins.str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
-        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param builtins.bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param builtins.bool fail_index_key_too_long: **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               
                - TLS1_0
                - TLS1_1
                - TLS1_2
@@ -4123,10 +4124,10 @@ class ClusterAdvancedConfiguration(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def default_read_concern(self) -> Optional[builtins.str]:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -4134,16 +4135,16 @@ class ClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> Optional[builtins.str]:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def fail_index_key_too_long(self) -> Optional[builtins.bool]:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -4160,7 +4161,6 @@ class ClusterAdvancedConfiguration(dict):
     def minimum_enabled_tls_protocol(self) -> Optional[builtins.str]:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-
         - TLS1_0
         - TLS1_1
         - TLS1_2
@@ -5130,7 +5130,7 @@ class CustomDbRoleAction(dict):
                
                > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
                
-               * `resources.#.database_name`	Database on which the action is granted.
+               * `resources.#.database_name` Database on which the action is granted. Use the empty string ("") to allow an action on all databases.
                
                > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
                
@@ -5160,7 +5160,7 @@ class CustomDbRoleAction(dict):
 
         > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 
-        * `resources.#.database_name`	Database on which the action is granted.
+        * `resources.#.database_name` Database on which the action is granted. Use the empty string ("") to allow an action on all databases.
 
         > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 
@@ -5856,7 +5856,7 @@ class DatabaseUserScope(dict):
                  type: Optional[builtins.str] = None):
         """
         :param builtins.str name: Name of the cluster or Atlas Data Lake that the user has access to.
-        :param builtins.str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        :param builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -5875,7 +5875,7 @@ class DatabaseUserScope(dict):
     @pulumi.getter
     def type(self) -> Optional[builtins.str]:
         """
-        Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         """
         return pulumi.get(self, "type")
 
@@ -7503,6 +7503,54 @@ class LdapVerifyValidation(dict):
 
 
 @pulumi.output_type
+class MaintenanceWindowProtectedHours(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "endHourOfDay":
+            suggest = "end_hour_of_day"
+        elif key == "startHourOfDay":
+            suggest = "start_hour_of_day"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MaintenanceWindowProtectedHours. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MaintenanceWindowProtectedHours.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MaintenanceWindowProtectedHours.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 end_hour_of_day: builtins.int,
+                 start_hour_of_day: builtins.int):
+        """
+        :param builtins.int end_hour_of_day: Zero-based integer that represents the end hour of the day for the protected hours window.
+        :param builtins.int start_hour_of_day: Zero-based integer that represents the beginning hour of the day for the protected hours window.
+        """
+        pulumi.set(__self__, "end_hour_of_day", end_hour_of_day)
+        pulumi.set(__self__, "start_hour_of_day", start_hour_of_day)
+
+    @property
+    @pulumi.getter(name="endHourOfDay")
+    def end_hour_of_day(self) -> builtins.int:
+        """
+        Zero-based integer that represents the end hour of the day for the protected hours window.
+        """
+        return pulumi.get(self, "end_hour_of_day")
+
+    @property
+    @pulumi.getter(name="startHourOfDay")
+    def start_hour_of_day(self) -> builtins.int:
+        """
+        Zero-based integer that represents the beginning hour of the day for the protected hours window.
+        """
+        return pulumi.get(self, "start_hour_of_day")
+
+
+@pulumi.output_type
 class OnlineArchiveCriteria(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -9082,11 +9130,14 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         :param builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         :param Sequence[builtins.str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param builtins.int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
-        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param builtins.bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param builtins.bool fail_index_key_too_long: **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+               - TLS1_0
+               - TLS1_1
+               - TLS1_2
         :param builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -9137,10 +9188,10 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def default_read_concern(self) -> builtins.str:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -9148,16 +9199,16 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> builtins.str:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def fail_index_key_too_long(self) -> builtins.bool:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+        **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -9174,6 +9225,9 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
     def minimum_enabled_tls_protocol(self) -> builtins.str:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+        - TLS1_0
+        - TLS1_1
+        - TLS1_2
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -9515,13 +9569,13 @@ class GetAdvancedClusterReplicationSpecResult(dict):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def id(self) -> builtins.str:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="numShards")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def num_shards(self) -> builtins.int:
         """
         Provide this value if you set a `cluster_type` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
@@ -10154,7 +10208,7 @@ class GetAdvancedClustersResultResult(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def disk_size_gb(self) -> builtins.float:
         """
         Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -10317,11 +10371,14 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         :param builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         :param Sequence[builtins.str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param builtins.int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
-        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param builtins.bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param builtins.bool fail_index_key_too_long: **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+               - TLS1_0
+               - TLS1_1
+               - TLS1_2
         :param builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -10372,10 +10429,10 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def default_read_concern(self) -> builtins.str:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -10383,16 +10440,16 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> builtins.str:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def fail_index_key_too_long(self) -> builtins.bool:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+        **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -10409,6 +10466,9 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
     def minimum_enabled_tls_protocol(self) -> builtins.str:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+        - TLS1_0
+        - TLS1_1
+        - TLS1_2
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -10750,13 +10810,13 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def id(self) -> builtins.str:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="numShards")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def num_shards(self) -> builtins.int:
         """
         Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
@@ -13192,7 +13252,7 @@ class GetCloudBackupScheduleCopySettingResult(dict):
 
     @property
     @pulumi.getter(name="replicationSpecId")
-    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def replication_spec_id(self) -> builtins.str:
         """
         Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
@@ -13632,6 +13692,7 @@ class GetCloudBackupSnapshotExportBucketsResultResult(dict):
 
     @property
     @pulumi.getter(name="tenantId")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def tenant_id(self) -> builtins.str:
         """
         UUID that identifies the Azure Active Directory Tenant ID.
@@ -14380,11 +14441,14 @@ class GetClusterAdvancedConfigurationResult(dict):
         """
         :param builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         :param Sequence[builtins.str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
-        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param builtins.bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param builtins.bool fail_index_key_too_long: **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+               - TLS1_0
+               - TLS1_1
+               - TLS1_2
         :param builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -14432,10 +14496,10 @@ class GetClusterAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def default_read_concern(self) -> builtins.str:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -14443,16 +14507,16 @@ class GetClusterAdvancedConfigurationResult(dict):
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> builtins.str:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def fail_index_key_too_long(self) -> builtins.bool:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -14469,6 +14533,9 @@ class GetClusterAdvancedConfigurationResult(dict):
     def minimum_enabled_tls_protocol(self) -> builtins.str:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+        - TLS1_0
+        - TLS1_1
+        - TLS1_2
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -15602,11 +15669,14 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         """
         :param builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         :param Sequence[builtins.str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
-        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param builtins.bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        :param builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param builtins.bool fail_index_key_too_long: **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+               - TLS1_0
+               - TLS1_1
+               - TLS1_2
         :param builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -15653,10 +15723,10 @@ class GetClustersResultAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def default_read_concern(self) -> builtins.str:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -15664,16 +15734,16 @@ class GetClustersResultAdvancedConfigurationResult(dict):
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> builtins.str:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def fail_index_key_too_long(self) -> builtins.bool:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -15690,6 +15760,9 @@ class GetClustersResultAdvancedConfigurationResult(dict):
     def minimum_enabled_tls_protocol(self) -> builtins.str:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
+        - TLS1_0
+        - TLS1_1
+        - TLS1_2
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -17383,7 +17456,7 @@ class GetDatabaseUserScopeResult(dict):
                  type: builtins.str):
         """
         :param builtins.str name: Name of the role to grant.
-        :param builtins.str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        :param builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
@@ -17400,7 +17473,7 @@ class GetDatabaseUserScopeResult(dict):
     @pulumi.getter
     def type(self) -> builtins.str:
         """
-        Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         """
         return pulumi.get(self, "type")
 
@@ -17410,6 +17483,7 @@ class GetDatabaseUsersResultResult(dict):
     def __init__(__self__, *,
                  auth_database_name: builtins.str,
                  aws_iam_type: builtins.str,
+                 description: builtins.str,
                  id: builtins.str,
                  labels: Sequence['outputs.GetDatabaseUsersResultLabelResult'],
                  ldap_auth_type: builtins.str,
@@ -17423,6 +17497,7 @@ class GetDatabaseUsersResultResult(dict):
         :param builtins.str auth_database_name: (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
                Possible values include:
         :param builtins.str aws_iam_type: The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+        :param builtins.str description: Description of this database user.
         :param builtins.str id: Autogenerated Unique ID for this data source.
         :param builtins.str ldap_auth_type: Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
         :param builtins.str oidc_auth_type: (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
@@ -17437,6 +17512,7 @@ class GetDatabaseUsersResultResult(dict):
         """
         pulumi.set(__self__, "auth_database_name", auth_database_name)
         pulumi.set(__self__, "aws_iam_type", aws_iam_type)
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
@@ -17463,6 +17539,14 @@ class GetDatabaseUsersResultResult(dict):
         The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
         """
         return pulumi.get(self, "aws_iam_type")
+
+    @property
+    @pulumi.getter
+    def description(self) -> builtins.str:
+        """
+        Description of this database user.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -17609,7 +17693,7 @@ class GetDatabaseUsersResultScopeResult(dict):
                  type: builtins.str):
         """
         :param builtins.str name: Name of the role to grant.
-        :param builtins.str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        :param builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
@@ -17626,7 +17710,7 @@ class GetDatabaseUsersResultScopeResult(dict):
     @pulumi.getter
     def type(self) -> builtins.str:
         """
-        Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
         """
         return pulumi.get(self, "type")
 
@@ -21511,6 +21595,35 @@ class GetLdapVerifyValidationResult(dict):
 
 
 @pulumi.output_type
+class GetMaintenanceWindowProtectedHourResult(dict):
+    def __init__(__self__, *,
+                 end_hour_of_day: builtins.int,
+                 start_hour_of_day: builtins.int):
+        """
+        :param builtins.int end_hour_of_day: Zero-based integer that represents the end hour of the day for the protected hours window.
+        :param builtins.int start_hour_of_day: Zero-based integer that represents the beginning hour of the day for the protected hours window.
+        """
+        pulumi.set(__self__, "end_hour_of_day", end_hour_of_day)
+        pulumi.set(__self__, "start_hour_of_day", start_hour_of_day)
+
+    @property
+    @pulumi.getter(name="endHourOfDay")
+    def end_hour_of_day(self) -> builtins.int:
+        """
+        Zero-based integer that represents the end hour of the day for the protected hours window.
+        """
+        return pulumi.get(self, "end_hour_of_day")
+
+    @property
+    @pulumi.getter(name="startHourOfDay")
+    def start_hour_of_day(self) -> builtins.int:
+        """
+        Zero-based integer that represents the beginning hour of the day for the protected hours window.
+        """
+        return pulumi.get(self, "start_hour_of_day")
+
+
+@pulumi.output_type
 class GetNetworkContainersResultResult(dict):
     def __init__(__self__, *,
                  atlas_cidr_block: builtins.str,
@@ -22317,17 +22430,18 @@ class GetOrganizationsResultResult(dict):
                  links: Sequence['outputs.GetOrganizationsResultLinkResult'],
                  multi_factor_auth_required: builtins.bool,
                  name: builtins.str,
-                 restrict_employee_access: builtins.bool):
+                 restrict_employee_access: builtins.bool,
+                 security_contact: builtins.str,
+                 skip_default_alerts_settings: builtins.bool):
         """
         :param builtins.bool api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         :param builtins.bool gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
-               
-               See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         :param builtins.str id: Autogenerated Unique ID for this data source.
         :param builtins.bool is_deleted: Flag that indicates whether this organization has been deleted.
         :param builtins.bool multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param builtins.str name: Human-readable label that identifies the organization.
         :param builtins.bool restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        :param builtins.str security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         """
         pulumi.set(__self__, "api_access_list_required", api_access_list_required)
         pulumi.set(__self__, "gen_ai_features_enabled", gen_ai_features_enabled)
@@ -22337,6 +22451,8 @@ class GetOrganizationsResultResult(dict):
         pulumi.set(__self__, "multi_factor_auth_required", multi_factor_auth_required)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "restrict_employee_access", restrict_employee_access)
+        pulumi.set(__self__, "security_contact", security_contact)
+        pulumi.set(__self__, "skip_default_alerts_settings", skip_default_alerts_settings)
 
     @property
     @pulumi.getter(name="apiAccessListRequired")
@@ -22351,8 +22467,6 @@ class GetOrganizationsResultResult(dict):
     def gen_ai_features_enabled(self) -> builtins.bool:
         """
         Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
-
-        See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         """
         return pulumi.get(self, "gen_ai_features_enabled")
 
@@ -22400,6 +22514,19 @@ class GetOrganizationsResultResult(dict):
         Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         """
         return pulumi.get(self, "restrict_employee_access")
+
+    @property
+    @pulumi.getter(name="securityContact")
+    def security_contact(self) -> builtins.str:
+        """
+        String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        """
+        return pulumi.get(self, "security_contact")
+
+    @property
+    @pulumi.getter(name="skipDefaultAlertsSettings")
+    def skip_default_alerts_settings(self) -> builtins.bool:
+        return pulumi.get(self, "skip_default_alerts_settings")
 
 
 @pulumi.output_type
@@ -22946,7 +23073,7 @@ class GetProjectsResultResult(dict):
         :param builtins.int cluster_count: The number of Atlas clusters deployed in the project.
         :param builtins.str created: The ISO-8601-formatted timestamp of when Atlas created the project.
         :param builtins.str id: Autogenerated Unique ID for this data source.
-        :param 'GetProjectsResultIpAddressesArgs' ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
+        :param 'GetProjectsResultIpAddressesArgs' ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         :param builtins.bool is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param builtins.bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
         :param builtins.bool is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project.
@@ -23005,10 +23132,10 @@ class GetProjectsResultResult(dict):
 
     @property
     @pulumi.getter(name="ipAddresses")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.21.0. Please transition to get_project_ip_addresses data source.""")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to get_project_ip_addresses data source.""")
     def ip_addresses(self) -> 'outputs.GetProjectsResultIpAddressesResult':
         """
-        IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `get_project_ip_addresses` data source instead.
+        IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
 
@@ -23062,6 +23189,7 @@ class GetProjectsResultResult(dict):
 
     @property
     @pulumi.getter(name="isSlowOperationThresholdingEnabled")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def is_slow_operation_thresholding_enabled(self) -> builtins.bool:
         """
         Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
@@ -23265,6 +23393,7 @@ class GetResourcePoliciesResourcePolicyResult(dict):
     def __init__(__self__, *,
                  created_by_user: 'outputs.GetResourcePoliciesResourcePolicyCreatedByUserResult',
                  created_date: builtins.str,
+                 description: builtins.str,
                  id: builtins.str,
                  last_updated_by_user: 'outputs.GetResourcePoliciesResourcePolicyLastUpdatedByUserResult',
                  last_updated_date: builtins.str,
@@ -23275,6 +23404,7 @@ class GetResourcePoliciesResourcePolicyResult(dict):
         """
         :param 'GetResourcePoliciesResourcePolicyCreatedByUserArgs' created_by_user: The user that last updated the Atlas resource policy.
         :param builtins.str created_date: Date and time in UTC when the Atlas resource policy was created.
+        :param builtins.str description: Description of the Atlas resource policy.
         :param builtins.str id: Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
         :param 'GetResourcePoliciesResourcePolicyLastUpdatedByUserArgs' last_updated_by_user: The user that last updated the Atlas resource policy.
         :param builtins.str last_updated_date: Date and time in UTC when the Atlas resource policy was last updated.
@@ -23285,6 +23415,7 @@ class GetResourcePoliciesResourcePolicyResult(dict):
         """
         pulumi.set(__self__, "created_by_user", created_by_user)
         pulumi.set(__self__, "created_date", created_date)
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "last_updated_by_user", last_updated_by_user)
         pulumi.set(__self__, "last_updated_date", last_updated_date)
@@ -23308,6 +23439,14 @@ class GetResourcePoliciesResourcePolicyResult(dict):
         Date and time in UTC when the Atlas resource policy was created.
         """
         return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> builtins.str:
+        """
+        Description of the Atlas resource policy.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -23458,6 +23597,7 @@ class GetResourcePoliciesResultResult(dict):
     def __init__(__self__, *,
                  created_by_user: 'outputs.GetResourcePoliciesResultCreatedByUserResult',
                  created_date: builtins.str,
+                 description: builtins.str,
                  id: builtins.str,
                  last_updated_by_user: 'outputs.GetResourcePoliciesResultLastUpdatedByUserResult',
                  last_updated_date: builtins.str,
@@ -23468,6 +23608,7 @@ class GetResourcePoliciesResultResult(dict):
         """
         :param 'GetResourcePoliciesResultCreatedByUserArgs' created_by_user: The user that last updated the Atlas resource policy.
         :param builtins.str created_date: Date and time in UTC when the Atlas resource policy was created.
+        :param builtins.str description: Description of the Atlas resource policy.
         :param builtins.str id: Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
         :param 'GetResourcePoliciesResultLastUpdatedByUserArgs' last_updated_by_user: The user that last updated the Atlas resource policy.
         :param builtins.str last_updated_date: Date and time in UTC when the Atlas resource policy was last updated.
@@ -23478,6 +23619,7 @@ class GetResourcePoliciesResultResult(dict):
         """
         pulumi.set(__self__, "created_by_user", created_by_user)
         pulumi.set(__self__, "created_date", created_date)
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "last_updated_by_user", last_updated_by_user)
         pulumi.set(__self__, "last_updated_date", last_updated_date)
@@ -23501,6 +23643,14 @@ class GetResourcePoliciesResultResult(dict):
         Date and time in UTC when the Atlas resource policy was created.
         """
         return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> builtins.str:
+        """
+        Description of the Atlas resource policy.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -25095,20 +25245,20 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
                  state: builtins.str,
                  vendor: builtins.str):
         """
-        :param builtins.str arn: Amazon Resource Name (ARN).
-        :param builtins.str dns_domain: Domain name of Privatelink connected cluster.
-        :param Sequence[builtins.str] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones.
+        :param builtins.str arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+        :param builtins.str dns_domain: The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+        :param Sequence[builtins.str] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         :param builtins.str error_message: Error message if the connection is in a failed state.
         :param builtins.str id: The ID of the Private Link connection.
         :param builtins.str interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
         :param builtins.str interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
-        :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         :param builtins.str provider_account_id: Account ID from the cloud provider.
-        :param builtins.str provider_name: Provider where the Kafka cluster is deployed.
-        :param builtins.str region: When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
-        :param builtins.str service_endpoint_id: Service Endpoint ID.
+        :param builtins.str provider_name: Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+        :param builtins.str region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+        :param builtins.str service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         :param builtins.str state: Status of the connection.
-        :param builtins.str vendor: Vendor who manages the Kafka cluster.
+        :param builtins.str vendor: Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
         """
         pulumi.set(__self__, "arn", arn)
         pulumi.set(__self__, "dns_domain", dns_domain)
@@ -25129,7 +25279,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter
     def arn(self) -> builtins.str:
         """
-        Amazon Resource Name (ARN).
+        Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
         """
         return pulumi.get(self, "arn")
 
@@ -25137,7 +25287,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="dnsDomain")
     def dns_domain(self) -> builtins.str:
         """
-        Domain name of Privatelink connected cluster.
+        The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
         """
         return pulumi.get(self, "dns_domain")
 
@@ -25145,7 +25295,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="dnsSubDomains")
     def dns_sub_domains(self) -> Sequence[builtins.str]:
         """
-        Sub-Domain name of Confluent cluster. These are typically your availability zones.
+        Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         """
         return pulumi.get(self, "dns_sub_domains")
 
@@ -25185,7 +25335,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         """
         return pulumi.get(self, "project_id")
 
@@ -25201,7 +25351,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="providerName")
     def provider_name(self) -> builtins.str:
         """
-        Provider where the Kafka cluster is deployed.
+        Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
         """
         return pulumi.get(self, "provider_name")
 
@@ -25209,7 +25359,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter
     def region(self) -> builtins.str:
         """
-        When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+        The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
         """
         return pulumi.get(self, "region")
 
@@ -25217,7 +25367,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="serviceEndpointId")
     def service_endpoint_id(self) -> builtins.str:
         """
-        Service Endpoint ID.
+        For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         """
         return pulumi.get(self, "service_endpoint_id")
 
@@ -25233,7 +25383,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter
     def vendor(self) -> builtins.str:
         """
-        Vendor who manages the Kafka cluster.
+        Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
         """
         return pulumi.get(self, "vendor")
 
@@ -25314,9 +25464,9 @@ class GetStreamProcessorsResultResult(dict):
         :param builtins.str pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         :param builtins.str processor_name: Human-readable label that identifies the stream processor.
         :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-        :param builtins.str state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state.
+        :param builtins.str state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
                
-               **NOTE** When creating a stream processor, setting the state to STARTED can automatically start the stream processor.
+               **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         :param builtins.str stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         """
         pulumi.set(__self__, "id", id)
@@ -25380,9 +25530,9 @@ class GetStreamProcessorsResultResult(dict):
     @pulumi.getter
     def state(self) -> builtins.str:
         """
-        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state.
+        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
 
-        **NOTE** When creating a stream processor, setting the state to STARTED can automatically start the stream processor.
+        **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         return pulumi.get(self, "state")
 
@@ -25459,22 +25609,27 @@ class GetThirdPartyIntegrationsResultResult(dict):
                  account_id: builtins.str,
                  api_key: builtins.str,
                  channel_name: builtins.str,
+                 enabled: builtins.bool,
                  id: builtins.str,
+                 microsoft_teams_webhook_url: builtins.str,
                  project_id: builtins.str,
                  region: builtins.str,
                  routing_key: builtins.str,
                  secret: builtins.str,
+                 send_collection_latency_metrics: builtins.bool,
+                 send_database_metrics: builtins.bool,
+                 service_discovery: builtins.str,
                  service_key: builtins.str,
                  team_name: builtins.str,
                  type: builtins.str,
                  url: builtins.str,
-                 enabled: Optional[builtins.bool] = None,
-                 microsoft_teams_webhook_url: Optional[builtins.str] = None,
-                 service_discovery: Optional[builtins.str] = None,
-                 user_name: Optional[builtins.str] = None):
+                 user_name: builtins.str):
         """
         :param builtins.str api_key: Your API Key.
+        :param builtins.bool enabled: Whether your cluster has Prometheus enabled.
         :param builtins.str id: Unique identifier of the integration.
+        :param builtins.str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+               * `PROMETHEUS`
         :param builtins.str project_id: The unique ID for the project to get all Third-Party service integrations
         :param builtins.str region: Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
                * `VICTOR_OPS`
@@ -25482,36 +25637,34 @@ class GetThirdPartyIntegrationsResultResult(dict):
                * `WEBHOOK`
         :param builtins.str secret: An optional field for your webhook secret.
                * `MICROSOFT_TEAMS`
+        :param builtins.bool send_collection_latency_metrics: Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
+        :param builtins.bool send_database_metrics: Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+               * `OPS_GENIE`
+        :param builtins.str service_discovery: Indicates which service discovery method is used, either file or http.
         :param builtins.str service_key: Your Service Key.
                * `DATADOG`
         :param builtins.str type: Thirt-Party service integration type.
         :param builtins.str url: Your webhook URL.
-        :param builtins.bool enabled: Whether your cluster has Prometheus enabled.
-        :param builtins.str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
-               * `PROMETHEUS`
-        :param builtins.str service_discovery: Indicates which service discovery method is used, either file or http.
         :param builtins.str user_name: Your Prometheus username.
         """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "channel_name", channel_name)
+        pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "routing_key", routing_key)
         pulumi.set(__self__, "secret", secret)
+        pulumi.set(__self__, "send_collection_latency_metrics", send_collection_latency_metrics)
+        pulumi.set(__self__, "send_database_metrics", send_database_metrics)
+        pulumi.set(__self__, "service_discovery", service_discovery)
         pulumi.set(__self__, "service_key", service_key)
         pulumi.set(__self__, "team_name", team_name)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "url", url)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if microsoft_teams_webhook_url is not None:
-            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
-        if service_discovery is not None:
-            pulumi.set(__self__, "service_discovery", service_discovery)
-        if user_name is not None:
-            pulumi.set(__self__, "user_name", user_name)
+        pulumi.set(__self__, "user_name", user_name)
 
     @property
     @pulumi.getter(name="accountId")
@@ -25533,11 +25686,28 @@ class GetThirdPartyIntegrationsResultResult(dict):
 
     @property
     @pulumi.getter
+    def enabled(self) -> builtins.bool:
+        """
+        Whether your cluster has Prometheus enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
     def id(self) -> builtins.str:
         """
         Unique identifier of the integration.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> builtins.str:
+        """
+        Your Microsoft Teams incoming webhook URL.
+        * `PROMETHEUS`
+        """
+        return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @property
     @pulumi.getter(name="projectId")
@@ -25575,6 +25745,31 @@ class GetThirdPartyIntegrationsResultResult(dict):
         return pulumi.get(self, "secret")
 
     @property
+    @pulumi.getter(name="sendCollectionLatencyMetrics")
+    def send_collection_latency_metrics(self) -> builtins.bool:
+        """
+        Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
+        """
+        return pulumi.get(self, "send_collection_latency_metrics")
+
+    @property
+    @pulumi.getter(name="sendDatabaseMetrics")
+    def send_database_metrics(self) -> builtins.bool:
+        """
+        Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+        * `OPS_GENIE`
+        """
+        return pulumi.get(self, "send_database_metrics")
+
+    @property
+    @pulumi.getter(name="serviceDiscovery")
+    def service_discovery(self) -> builtins.str:
+        """
+        Indicates which service discovery method is used, either file or http.
+        """
+        return pulumi.get(self, "service_discovery")
+
+    @property
     @pulumi.getter(name="serviceKey")
     def service_key(self) -> builtins.str:
         """
@@ -25605,33 +25800,8 @@ class GetThirdPartyIntegrationsResultResult(dict):
         return pulumi.get(self, "url")
 
     @property
-    @pulumi.getter
-    def enabled(self) -> Optional[builtins.bool]:
-        """
-        Whether your cluster has Prometheus enabled.
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="microsoftTeamsWebhookUrl")
-    def microsoft_teams_webhook_url(self) -> Optional[builtins.str]:
-        """
-        Your Microsoft Teams incoming webhook URL.
-        * `PROMETHEUS`
-        """
-        return pulumi.get(self, "microsoft_teams_webhook_url")
-
-    @property
-    @pulumi.getter(name="serviceDiscovery")
-    def service_discovery(self) -> Optional[builtins.str]:
-        """
-        Indicates which service discovery method is used, either file or http.
-        """
-        return pulumi.get(self, "service_discovery")
-
-    @property
     @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[builtins.str]:
+    def user_name(self) -> builtins.str:
         """
         Your Prometheus username.
         """

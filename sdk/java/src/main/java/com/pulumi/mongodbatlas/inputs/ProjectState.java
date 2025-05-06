@@ -53,24 +53,24 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+     * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     @Import(name="ipAddresses")
     private @Nullable Output<ProjectIpAddressesArgs> ipAddresses;
 
     /**
-     * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+     * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
      * @deprecated
-     * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     public Optional<Output<ProjectIpAddressesArgs>> ipAddresses() {
         return Optional.ofNullable(this.ipAddresses);
     }
@@ -168,14 +168,22 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     /**
      * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
+     * @deprecated
+     * This parameter is deprecated.
+     * 
      */
+    @Deprecated /* This parameter is deprecated. */
     @Import(name="isSlowOperationThresholdingEnabled")
     private @Nullable Output<Boolean> isSlowOperationThresholdingEnabled;
 
     /**
      * @return (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
+     * @deprecated
+     * This parameter is deprecated.
+     * 
      */
+    @Deprecated /* This parameter is deprecated. */
     public Optional<Output<Boolean>> isSlowOperationThresholdingEnabled() {
         return Optional.ofNullable(this.isSlowOperationThresholdingEnabled);
     }
@@ -368,30 +376,30 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ipAddresses IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+         * @param ipAddresses IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+         * This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+        @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
         public Builder ipAddresses(@Nullable Output<ProjectIpAddressesArgs> ipAddresses) {
             $.ipAddresses = ipAddresses;
             return this;
         }
 
         /**
-         * @param ipAddresses IP addresses in a project categorized by services. See IP Addresses. **WARNING:** this attribute is deprecated and will be removed in version 1.21.0. Use the `mongodbatlas.getProjectIpAddresses` data source instead.
+         * @param ipAddresses IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source.
+         * This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.21.0. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+        @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
         public Builder ipAddresses(ProjectIpAddressesArgs ipAddresses) {
             return ipAddresses(Output.of(ipAddresses));
         }
@@ -527,7 +535,11 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated.
+         * 
          */
+        @Deprecated /* This parameter is deprecated. */
         public Builder isSlowOperationThresholdingEnabled(@Nullable Output<Boolean> isSlowOperationThresholdingEnabled) {
             $.isSlowOperationThresholdingEnabled = isSlowOperationThresholdingEnabled;
             return this;
@@ -538,7 +550,11 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated.
+         * 
          */
+        @Deprecated /* This parameter is deprecated. */
         public Builder isSlowOperationThresholdingEnabled(Boolean isSlowOperationThresholdingEnabled) {
             return isSlowOperationThresholdingEnabled(Output.of(isSlowOperationThresholdingEnabled));
         }

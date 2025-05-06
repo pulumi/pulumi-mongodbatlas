@@ -52,7 +52,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamPrivatelinkEndpointsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamPrivatelinkEndpointsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -86,9 +86,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// List of documents that MongoDB Cloud returns for this request.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStreamPrivatelinkEndpointsResultResult> Results;
 
         [OutputConstructor]

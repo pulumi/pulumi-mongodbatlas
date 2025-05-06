@@ -284,7 +284,7 @@ export class Cluster extends pulumi.CustomResource {
      * backup_enabled = "false"
      * cloud_backup = "true"
      * ```
-     * * The default value is false.  M10 and above only.
+     * * The default value is false. M10 and above only.
      */
     public readonly backupEnabled!: pulumi.Output<boolean>;
     /**
@@ -435,7 +435,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly replicationSpecs!: pulumi.Output<outputs.ClusterReplicationSpec[]>;
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
+     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only. This only applies to the `Delete` operation. If you see the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, set it to explicit `true`.
      */
     public readonly retainBackupsEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -632,7 +632,7 @@ export interface ClusterState {
      * backup_enabled = "false"
      * cloud_backup = "true"
      * ```
-     * * The default value is false.  M10 and above only.
+     * * The default value is false. M10 and above only.
      */
     backupEnabled?: pulumi.Input<boolean>;
     /**
@@ -783,7 +783,7 @@ export interface ClusterState {
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
+     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only. This only applies to the `Delete` operation. If you see the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, set it to explicit `true`.
      */
     retainBackupsEnabled?: pulumi.Input<boolean>;
     /**
@@ -857,7 +857,7 @@ export interface ClusterArgs {
      * backup_enabled = "false"
      * cloud_backup = "true"
      * ```
-     * * The default value is false.  M10 and above only.
+     * * The default value is false. M10 and above only.
      */
     backupEnabled?: pulumi.Input<boolean>;
     /**
@@ -979,7 +979,7 @@ export interface ClusterArgs {
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
+     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only. This only applies to the `Delete` operation. If you see the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, set it to explicit `true`.
      */
     retainBackupsEnabled?: pulumi.Input<boolean>;
     /**

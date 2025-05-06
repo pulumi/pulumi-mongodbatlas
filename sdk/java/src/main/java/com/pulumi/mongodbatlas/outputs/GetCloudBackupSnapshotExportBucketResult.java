@@ -41,7 +41,11 @@ public final class GetCloudBackupSnapshotExportBucketResult {
     /**
      * @return UUID that identifies the Azure Active Directory Tenant ID.
      * 
+     * @deprecated
+     * This parameter is deprecated.
+     * 
      */
+    @Deprecated /* This parameter is deprecated. */
     private String tenantId;
 
     private GetCloudBackupSnapshotExportBucketResult() {}
@@ -92,7 +96,11 @@ public final class GetCloudBackupSnapshotExportBucketResult {
     /**
      * @return UUID that identifies the Azure Active Directory Tenant ID.
      * 
+     * @deprecated
+     * This parameter is deprecated.
+     * 
      */
+    @Deprecated /* This parameter is deprecated. */
     public String tenantId() {
         return this.tenantId;
     }

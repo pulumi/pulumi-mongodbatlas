@@ -80,6 +80,8 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     public readonly routingKey!: pulumi.Output<string>;
     public readonly secret!: pulumi.Output<string | undefined>;
+    public readonly sendCollectionLatencyMetrics!: pulumi.Output<boolean>;
+    public readonly sendDatabaseMetrics!: pulumi.Output<boolean>;
     public readonly serviceDiscovery!: pulumi.Output<string>;
     public readonly serviceKey!: pulumi.Output<string>;
     public readonly teamName!: pulumi.Output<string>;
@@ -122,6 +124,8 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["routingKey"] = state ? state.routingKey : undefined;
             resourceInputs["secret"] = state ? state.secret : undefined;
+            resourceInputs["sendCollectionLatencyMetrics"] = state ? state.sendCollectionLatencyMetrics : undefined;
+            resourceInputs["sendDatabaseMetrics"] = state ? state.sendDatabaseMetrics : undefined;
             resourceInputs["serviceDiscovery"] = state ? state.serviceDiscovery : undefined;
             resourceInputs["serviceKey"] = state ? state.serviceKey : undefined;
             resourceInputs["teamName"] = state ? state.teamName : undefined;
@@ -145,6 +149,8 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["routingKey"] = args?.routingKey ? pulumi.secret(args.routingKey) : undefined;
             resourceInputs["secret"] = args?.secret ? pulumi.secret(args.secret) : undefined;
+            resourceInputs["sendCollectionLatencyMetrics"] = args ? args.sendCollectionLatencyMetrics : undefined;
+            resourceInputs["sendDatabaseMetrics"] = args ? args.sendDatabaseMetrics : undefined;
             resourceInputs["serviceDiscovery"] = args?.serviceDiscovery ? pulumi.secret(args.serviceDiscovery) : undefined;
             resourceInputs["serviceKey"] = args?.serviceKey ? pulumi.secret(args.serviceKey) : undefined;
             resourceInputs["teamName"] = args ? args.teamName : undefined;
@@ -175,6 +181,8 @@ export interface ThirdPartyIntegrationState {
     region?: pulumi.Input<string>;
     routingKey?: pulumi.Input<string>;
     secret?: pulumi.Input<string>;
+    sendCollectionLatencyMetrics?: pulumi.Input<boolean>;
+    sendDatabaseMetrics?: pulumi.Input<boolean>;
     serviceDiscovery?: pulumi.Input<string>;
     serviceKey?: pulumi.Input<string>;
     teamName?: pulumi.Input<string>;
@@ -212,6 +220,8 @@ export interface ThirdPartyIntegrationArgs {
     region?: pulumi.Input<string>;
     routingKey?: pulumi.Input<string>;
     secret?: pulumi.Input<string>;
+    sendCollectionLatencyMetrics?: pulumi.Input<boolean>;
+    sendDatabaseMetrics?: pulumi.Input<boolean>;
     serviceDiscovery?: pulumi.Input<string>;
     serviceKey?: pulumi.Input<string>;
     teamName?: pulumi.Input<string>;

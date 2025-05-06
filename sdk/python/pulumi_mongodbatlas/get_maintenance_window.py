@@ -14,6 +14,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetMaintenanceWindowResult',
@@ -27,7 +28,7 @@ class GetMaintenanceWindowResult:
     """
     A collection of values returned by getMaintenanceWindow.
     """
-    def __init__(__self__, auto_defer_once_enabled=None, day_of_week=None, hour_of_day=None, id=None, number_of_deferrals=None, project_id=None, start_asap=None):
+    def __init__(__self__, auto_defer_once_enabled=None, day_of_week=None, hour_of_day=None, id=None, number_of_deferrals=None, project_id=None, protected_hours=None, start_asap=None, time_zone_id=None):
         if auto_defer_once_enabled and not isinstance(auto_defer_once_enabled, bool):
             raise TypeError("Expected argument 'auto_defer_once_enabled' to be a bool")
         pulumi.set(__self__, "auto_defer_once_enabled", auto_defer_once_enabled)
@@ -46,16 +47,21 @@ class GetMaintenanceWindowResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if protected_hours and not isinstance(protected_hours, list):
+            raise TypeError("Expected argument 'protected_hours' to be a list")
+        pulumi.set(__self__, "protected_hours", protected_hours)
         if start_asap and not isinstance(start_asap, bool):
             raise TypeError("Expected argument 'start_asap' to be a bool")
         pulumi.set(__self__, "start_asap", start_asap)
+        if time_zone_id and not isinstance(time_zone_id, str):
+            raise TypeError("Expected argument 'time_zone_id' to be a str")
+        pulumi.set(__self__, "time_zone_id", time_zone_id)
 
     @property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> builtins.bool:
         """
         Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
         """
         return pulumi.get(self, "auto_defer_once_enabled")
 
@@ -97,12 +103,28 @@ class GetMaintenanceWindowResult:
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="protectedHours")
+    def protected_hours(self) -> Sequence['outputs.GetMaintenanceWindowProtectedHourResult']:
+        """
+        (Optional) Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        """
+        return pulumi.get(self, "protected_hours")
+
+    @property
     @pulumi.getter(name="startAsap")
     def start_asap(self) -> builtins.bool:
         """
         Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         """
         return pulumi.get(self, "start_asap")
+
+    @property
+    @pulumi.getter(name="timeZoneId")
+    def time_zone_id(self) -> builtins.str:
+        """
+        Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+        """
+        return pulumi.get(self, "time_zone_id")
 
 
 class AwaitableGetMaintenanceWindowResult(GetMaintenanceWindowResult):
@@ -117,7 +139,9 @@ class AwaitableGetMaintenanceWindowResult(GetMaintenanceWindowResult):
             id=self.id,
             number_of_deferrals=self.number_of_deferrals,
             project_id=self.project_id,
-            start_asap=self.start_asap)
+            protected_hours=self.protected_hours,
+            start_asap=self.start_asap,
+            time_zone_id=self.time_zone_id)
 
 
 def get_maintenance_window(project_id: Optional[builtins.str] = None,
@@ -168,7 +192,9 @@ def get_maintenance_window(project_id: Optional[builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         number_of_deferrals=pulumi.get(__ret__, 'number_of_deferrals'),
         project_id=pulumi.get(__ret__, 'project_id'),
-        start_asap=pulumi.get(__ret__, 'start_asap'))
+        protected_hours=pulumi.get(__ret__, 'protected_hours'),
+        start_asap=pulumi.get(__ret__, 'start_asap'),
+        time_zone_id=pulumi.get(__ret__, 'time_zone_id'))
 def get_maintenance_window_output(project_id: Optional[pulumi.Input[builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMaintenanceWindowResult]:
     """
@@ -216,4 +242,6 @@ def get_maintenance_window_output(project_id: Optional[pulumi.Input[builtins.str
         id=pulumi.get(__response__, 'id'),
         number_of_deferrals=pulumi.get(__response__, 'number_of_deferrals'),
         project_id=pulumi.get(__response__, 'project_id'),
-        start_asap=pulumi.get(__response__, 'start_asap')))
+        protected_hours=pulumi.get(__response__, 'protected_hours'),
+        start_asap=pulumi.get(__response__, 'start_asap'),
+        time_zone_id=pulumi.get(__response__, 'time_zone_id')))

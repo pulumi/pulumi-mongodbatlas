@@ -74,6 +74,11 @@ export interface GetOrganizationResult {
      * (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
      */
     readonly restrictEmployeeAccess: boolean;
+    /**
+     * (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     */
+    readonly securityContact: string;
+    readonly skipDefaultAlertsSettings: boolean;
 }
 /**
  * ## # Data Source: mongodbatlas.Organization

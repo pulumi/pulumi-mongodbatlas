@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAwsKmsConfigArgs;
 import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
 import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -49,6 +50,21 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     * 
+     */
+    @Import(name="enabledForSearchNodes")
+    private @Nullable Output<Boolean> enabledForSearchNodes;
+
+    /**
+     * @return Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+     * 
+     */
+    public Optional<Output<Boolean>> enabledForSearchNodes() {
+        return Optional.ofNullable(this.enabledForSearchNodes);
+    }
+
+    /**
      * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
      * 
      */
@@ -83,6 +99,7 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
     private EncryptionAtRestState(EncryptionAtRestState $) {
         this.awsKmsConfig = $.awsKmsConfig;
         this.azureKeyVaultConfig = $.azureKeyVaultConfig;
+        this.enabledForSearchNodes = $.enabledForSearchNodes;
         this.googleCloudKmsConfig = $.googleCloudKmsConfig;
         this.projectId = $.projectId;
     }
@@ -145,6 +162,27 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
          */
         public Builder azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs azureKeyVaultConfig) {
             return azureKeyVaultConfig(Output.of(azureKeyVaultConfig));
+        }
+
+        /**
+         * @param enabledForSearchNodes Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledForSearchNodes(@Nullable Output<Boolean> enabledForSearchNodes) {
+            $.enabledForSearchNodes = enabledForSearchNodes;
+            return this;
+        }
+
+        /**
+         * @param enabledForSearchNodes Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledForSearchNodes(Boolean enabledForSearchNodes) {
+            return enabledForSearchNodes(Output.of(enabledForSearchNodes));
         }
 
         /**

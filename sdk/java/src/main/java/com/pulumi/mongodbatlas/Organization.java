@@ -220,6 +220,26 @@ public class Organization extends com.pulumi.resources.CustomResource {
     public Output<List<String>> roleNames() {
         return this.roleNames;
     }
+    /**
+     * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     * 
+     */
+    @Export(name="securityContact", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> securityContact;
+
+    /**
+     * @return String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     * 
+     */
+    public Output<Optional<String>> securityContact() {
+        return Codegen.optional(this.securityContact);
+    }
+    @Export(name="skipDefaultAlertsSettings", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> skipDefaultAlertsSettings;
+
+    public Output<Boolean> skipDefaultAlertsSettings() {
+        return this.skipDefaultAlertsSettings;
+    }
 
     /**
      *

@@ -28,10 +28,13 @@ class GetSearchDeploymentResult:
     """
     A collection of values returned by getSearchDeployment.
     """
-    def __init__(__self__, cluster_name=None, id=None, project_id=None, specs=None, state_name=None):
+    def __init__(__self__, cluster_name=None, encryption_at_rest_provider=None, id=None, project_id=None, specs=None, state_name=None):
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
+        if encryption_at_rest_provider and not isinstance(encryption_at_rest_provider, str):
+            raise TypeError("Expected argument 'encryption_at_rest_provider' to be a str")
+        pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -52,6 +55,14 @@ class GetSearchDeploymentResult:
         Label that identifies the cluster to return the search nodes for.
         """
         return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="encryptionAtRestProvider")
+    def encryption_at_rest_provider(self) -> builtins.str:
+        """
+        Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+        """
+        return pulumi.get(self, "encryption_at_rest_provider")
 
     @property
     @pulumi.getter
@@ -93,6 +104,7 @@ class AwaitableGetSearchDeploymentResult(GetSearchDeploymentResult):
             yield self
         return GetSearchDeploymentResult(
             cluster_name=self.cluster_name,
+            encryption_at_rest_provider=self.encryption_at_rest_provider,
             id=self.id,
             project_id=self.project_id,
             specs=self.specs,
@@ -121,6 +133,7 @@ def get_search_deployment(cluster_name: Optional[builtins.str] = None,
 
     return AwaitableGetSearchDeploymentResult(
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        encryption_at_rest_provider=pulumi.get(__ret__, 'encryption_at_rest_provider'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         specs=pulumi.get(__ret__, 'specs'),
@@ -146,6 +159,7 @@ def get_search_deployment_output(cluster_name: Optional[pulumi.Input[builtins.st
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getSearchDeployment:getSearchDeployment', __args__, opts=opts, typ=GetSearchDeploymentResult)
     return __ret__.apply(lambda __response__: GetSearchDeploymentResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),
+        encryption_at_rest_provider=pulumi.get(__response__, 'encryption_at_rest_provider'),
         id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         specs=pulumi.get(__response__, 'specs'),

@@ -77,6 +77,9 @@ type Organization struct {
 	RestrictEmployeeAccess pulumi.BoolOutput `pulumi:"restrictEmployeeAccess"`
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames pulumi.StringArrayOutput `pulumi:"roleNames"`
+	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+	SecurityContact           pulumi.StringPtrOutput `pulumi:"securityContact"`
+	SkipDefaultAlertsSettings pulumi.BoolOutput      `pulumi:"skipDefaultAlertsSettings"`
 }
 
 // NewOrganization registers a new resource with the given unique name, arguments, and options.
@@ -145,6 +148,9 @@ type organizationState struct {
 	RestrictEmployeeAccess *bool `pulumi:"restrictEmployeeAccess"`
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames []string `pulumi:"roleNames"`
+	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+	SecurityContact           *string `pulumi:"securityContact"`
+	SkipDefaultAlertsSettings *bool   `pulumi:"skipDefaultAlertsSettings"`
 }
 
 type OrganizationState struct {
@@ -170,6 +176,9 @@ type OrganizationState struct {
 	RestrictEmployeeAccess pulumi.BoolPtrInput
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames pulumi.StringArrayInput
+	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+	SecurityContact           pulumi.StringPtrInput
+	SkipDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
 func (OrganizationState) ElementType() reflect.Type {
@@ -194,6 +203,9 @@ type organizationArgs struct {
 	RestrictEmployeeAccess *bool `pulumi:"restrictEmployeeAccess"`
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames []string `pulumi:"roleNames"`
+	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+	SecurityContact           *string `pulumi:"securityContact"`
+	SkipDefaultAlertsSettings *bool   `pulumi:"skipDefaultAlertsSettings"`
 }
 
 // The set of arguments for constructing a Organization resource.
@@ -215,6 +227,9 @@ type OrganizationArgs struct {
 	RestrictEmployeeAccess pulumi.BoolPtrInput
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames pulumi.StringArrayInput
+	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+	SecurityContact           pulumi.StringPtrInput
+	SkipDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
 func (OrganizationArgs) ElementType() reflect.Type {
@@ -360,6 +375,15 @@ func (o OrganizationOutput) RestrictEmployeeAccess() pulumi.BoolOutput {
 // List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 func (o OrganizationOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringArrayOutput { return v.RoleNames }).(pulumi.StringArrayOutput)
+}
+
+// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+func (o OrganizationOutput) SecurityContact() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.SecurityContact }).(pulumi.StringPtrOutput)
+}
+
+func (o OrganizationOutput) SkipDefaultAlertsSettings() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Organization) pulumi.BoolOutput { return v.SkipDefaultAlertsSettings }).(pulumi.BoolOutput)
 }
 
 type OrganizationArrayOutput struct{ *pulumi.OutputState }

@@ -41,6 +41,11 @@ namespace Pulumi.Mongodbatlas
     ///         ProjectId = "&lt;your-project-id&gt;",
     ///         DayOfWeek = 3,
     ///         HourOfDay = 4,
+    ///         ProtectedHours = new Mongodbatlas.Inputs.MaintenanceWindowProtectedHoursArgs
+    ///         {
+    ///             StartHourOfDay = 9,
+    ///             EndHourOfDay = 17,
+    ///         },
     ///     });
     /// 
     /// });
@@ -81,6 +86,9 @@ namespace Pulumi.Mongodbatlas
         [Output("autoDefer")]
         public Output<bool> AutoDefer { get; private set; } = null!;
 
+        /// <summary>
+        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// </summary>
         [Output("autoDeferOnceEnabled")]
         public Output<bool> AutoDeferOnceEnabled { get; private set; } = null!;
 
@@ -114,11 +122,20 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        [Output("protectedHours")]
+        public Output<Outputs.MaintenanceWindowProtectedHours?> ProtectedHours { get; private set; } = null!;
+
         /// <summary>
         /// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         /// </summary>
         [Output("startAsap")]
         public Output<bool> StartAsap { get; private set; } = null!;
+
+        /// <summary>
+        /// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+        /// </summary>
+        [Output("timeZoneId")]
+        public Output<string> TimeZoneId { get; private set; } = null!;
 
 
         /// <summary>
@@ -172,6 +189,9 @@ namespace Pulumi.Mongodbatlas
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
@@ -199,6 +219,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        [Input("protectedHours")]
+        public Input<Inputs.MaintenanceWindowProtectedHoursArgs>? ProtectedHours { get; set; }
+
         /// <summary>
         /// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         /// </summary>
@@ -219,6 +242,9 @@ namespace Pulumi.Mongodbatlas
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
@@ -252,11 +278,20 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("protectedHours")]
+        public Input<Inputs.MaintenanceWindowProtectedHoursGetArgs>? ProtectedHours { get; set; }
+
         /// <summary>
         /// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         /// </summary>
         [Input("startAsap")]
         public Input<bool>? StartAsap { get; set; }
+
+        /// <summary>
+        /// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+        /// </summary>
+        [Input("timeZoneId")]
+        public Input<string>? TimeZoneId { get; set; }
 
         public MaintenanceWindowState()
         {

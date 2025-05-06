@@ -28,13 +28,16 @@ class GetEncryptionAtRestResult:
     """
     A collection of values returned by getEncryptionAtRest.
     """
-    def __init__(__self__, aws_kms_config=None, azure_key_vault_config=None, google_cloud_kms_config=None, id=None, project_id=None):
+    def __init__(__self__, aws_kms_config=None, azure_key_vault_config=None, enabled_for_search_nodes=None, google_cloud_kms_config=None, id=None, project_id=None):
         if aws_kms_config and not isinstance(aws_kms_config, dict):
             raise TypeError("Expected argument 'aws_kms_config' to be a dict")
         pulumi.set(__self__, "aws_kms_config", aws_kms_config)
         if azure_key_vault_config and not isinstance(azure_key_vault_config, dict):
             raise TypeError("Expected argument 'azure_key_vault_config' to be a dict")
         pulumi.set(__self__, "azure_key_vault_config", azure_key_vault_config)
+        if enabled_for_search_nodes and not isinstance(enabled_for_search_nodes, bool):
+            raise TypeError("Expected argument 'enabled_for_search_nodes' to be a bool")
+        pulumi.set(__self__, "enabled_for_search_nodes", enabled_for_search_nodes)
         if google_cloud_kms_config and not isinstance(google_cloud_kms_config, dict):
             raise TypeError("Expected argument 'google_cloud_kms_config' to be a dict")
         pulumi.set(__self__, "google_cloud_kms_config", google_cloud_kms_config)
@@ -60,6 +63,14 @@ class GetEncryptionAtRestResult:
         Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
         """
         return pulumi.get(self, "azure_key_vault_config")
+
+    @property
+    @pulumi.getter(name="enabledForSearchNodes")
+    def enabled_for_search_nodes(self) -> builtins.bool:
+        """
+        Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+        """
+        return pulumi.get(self, "enabled_for_search_nodes")
 
     @property
     @pulumi.getter(name="googleCloudKmsConfig")
@@ -94,6 +105,7 @@ class AwaitableGetEncryptionAtRestResult(GetEncryptionAtRestResult):
         return GetEncryptionAtRestResult(
             aws_kms_config=self.aws_kms_config,
             azure_key_vault_config=self.azure_key_vault_config,
+            enabled_for_search_nodes=self.enabled_for_search_nodes,
             google_cloud_kms_config=self.google_cloud_kms_config,
             id=self.id,
             project_id=self.project_id)
@@ -141,7 +153,8 @@ def get_encryption_at_rest(project_id: Optional[builtins.str] = None,
             "customer_master_key_id": kms_key["id"],
             "region": atlas_region,
             "role_id": auth_role.role_id,
-        })
+        },
+        enabled_for_search_nodes=True)
     cluster = mongodbatlas.AdvancedCluster("cluster",
         project_id=test_encryption_at_rest.project_id,
         name="MyCluster",
@@ -214,6 +227,7 @@ def get_encryption_at_rest(project_id: Optional[builtins.str] = None,
     return AwaitableGetEncryptionAtRestResult(
         aws_kms_config=pulumi.get(__ret__, 'aws_kms_config'),
         azure_key_vault_config=pulumi.get(__ret__, 'azure_key_vault_config'),
+        enabled_for_search_nodes=pulumi.get(__ret__, 'enabled_for_search_nodes'),
         google_cloud_kms_config=pulumi.get(__ret__, 'google_cloud_kms_config'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
@@ -259,7 +273,8 @@ def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[builtins.str
             "customer_master_key_id": kms_key["id"],
             "region": atlas_region,
             "role_id": auth_role.role_id,
-        })
+        },
+        enabled_for_search_nodes=True)
     cluster = mongodbatlas.AdvancedCluster("cluster",
         project_id=test_encryption_at_rest.project_id,
         name="MyCluster",
@@ -331,6 +346,7 @@ def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[builtins.str
     return __ret__.apply(lambda __response__: GetEncryptionAtRestResult(
         aws_kms_config=pulumi.get(__response__, 'aws_kms_config'),
         azure_key_vault_config=pulumi.get(__response__, 'azure_key_vault_config'),
+        enabled_for_search_nodes=pulumi.get(__response__, 'enabled_for_search_nodes'),
         google_cloud_kms_config=pulumi.get(__response__, 'google_cloud_kms_config'),
         id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id')))

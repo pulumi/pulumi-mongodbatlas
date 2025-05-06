@@ -25,12 +25,14 @@ class EncryptionAtRestArgs:
                  project_id: pulumi.Input[builtins.str],
                  aws_kms_config: Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']] = None,
                  azure_key_vault_config: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
+                 enabled_for_search_nodes: Optional[pulumi.Input[builtins.bool]] = None,
                  google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None):
         """
         The set of arguments for constructing a EncryptionAtRest resource.
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input['EncryptionAtRestAwsKmsConfigArgs'] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
         :param pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs'] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        :param pulumi.Input[builtins.bool] enabled_for_search_nodes: Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
         :param pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs'] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -38,6 +40,8 @@ class EncryptionAtRestArgs:
             pulumi.set(__self__, "aws_kms_config", aws_kms_config)
         if azure_key_vault_config is not None:
             pulumi.set(__self__, "azure_key_vault_config", azure_key_vault_config)
+        if enabled_for_search_nodes is not None:
+            pulumi.set(__self__, "enabled_for_search_nodes", enabled_for_search_nodes)
         if google_cloud_kms_config is not None:
             pulumi.set(__self__, "google_cloud_kms_config", google_cloud_kms_config)
 
@@ -78,6 +82,18 @@ class EncryptionAtRestArgs:
         pulumi.set(self, "azure_key_vault_config", value)
 
     @property
+    @pulumi.getter(name="enabledForSearchNodes")
+    def enabled_for_search_nodes(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+        """
+        return pulumi.get(self, "enabled_for_search_nodes")
+
+    @enabled_for_search_nodes.setter
+    def enabled_for_search_nodes(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "enabled_for_search_nodes", value)
+
+    @property
     @pulumi.getter(name="googleCloudKmsConfig")
     def google_cloud_kms_config(self) -> Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']]:
         """
@@ -95,12 +111,14 @@ class _EncryptionAtRestState:
     def __init__(__self__, *,
                  aws_kms_config: Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']] = None,
                  azure_key_vault_config: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
+                 enabled_for_search_nodes: Optional[pulumi.Input[builtins.bool]] = None,
                  google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering EncryptionAtRest resources.
         :param pulumi.Input['EncryptionAtRestAwsKmsConfigArgs'] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
         :param pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs'] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        :param pulumi.Input[builtins.bool] enabled_for_search_nodes: Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
         :param pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs'] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
@@ -108,6 +126,8 @@ class _EncryptionAtRestState:
             pulumi.set(__self__, "aws_kms_config", aws_kms_config)
         if azure_key_vault_config is not None:
             pulumi.set(__self__, "azure_key_vault_config", azure_key_vault_config)
+        if enabled_for_search_nodes is not None:
+            pulumi.set(__self__, "enabled_for_search_nodes", enabled_for_search_nodes)
         if google_cloud_kms_config is not None:
             pulumi.set(__self__, "google_cloud_kms_config", google_cloud_kms_config)
         if project_id is not None:
@@ -136,6 +156,18 @@ class _EncryptionAtRestState:
     @azure_key_vault_config.setter
     def azure_key_vault_config(self, value: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']]):
         pulumi.set(self, "azure_key_vault_config", value)
+
+    @property
+    @pulumi.getter(name="enabledForSearchNodes")
+    def enabled_for_search_nodes(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+        """
+        return pulumi.get(self, "enabled_for_search_nodes")
+
+    @enabled_for_search_nodes.setter
+    def enabled_for_search_nodes(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "enabled_for_search_nodes", value)
 
     @property
     @pulumi.getter(name="googleCloudKmsConfig")
@@ -172,6 +204,7 @@ class EncryptionAtRest(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  aws_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
                  azure_key_vault_config: Optional[pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
+                 enabled_for_search_nodes: Optional[pulumi.Input[builtins.bool]] = None,
                  google_cloud_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -181,6 +214,7 @@ class EncryptionAtRest(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
         :param pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        :param pulumi.Input[builtins.bool] enabled_for_search_nodes: Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
         :param pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
@@ -209,6 +243,7 @@ class EncryptionAtRest(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  aws_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
                  azure_key_vault_config: Optional[pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
+                 enabled_for_search_nodes: Optional[pulumi.Input[builtins.bool]] = None,
                  google_cloud_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -222,6 +257,7 @@ class EncryptionAtRest(pulumi.CustomResource):
 
             __props__.__dict__["aws_kms_config"] = aws_kms_config
             __props__.__dict__["azure_key_vault_config"] = azure_key_vault_config
+            __props__.__dict__["enabled_for_search_nodes"] = enabled_for_search_nodes
             __props__.__dict__["google_cloud_kms_config"] = google_cloud_kms_config
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
@@ -238,6 +274,7 @@ class EncryptionAtRest(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             aws_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
             azure_key_vault_config: Optional[pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
+            enabled_for_search_nodes: Optional[pulumi.Input[builtins.bool]] = None,
             google_cloud_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
             project_id: Optional[pulumi.Input[builtins.str]] = None) -> 'EncryptionAtRest':
         """
@@ -249,6 +286,7 @@ class EncryptionAtRest(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
         :param pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
+        :param pulumi.Input[builtins.bool] enabled_for_search_nodes: Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
         :param pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
@@ -258,6 +296,7 @@ class EncryptionAtRest(pulumi.CustomResource):
 
         __props__.__dict__["aws_kms_config"] = aws_kms_config
         __props__.__dict__["azure_key_vault_config"] = azure_key_vault_config
+        __props__.__dict__["enabled_for_search_nodes"] = enabled_for_search_nodes
         __props__.__dict__["google_cloud_kms_config"] = google_cloud_kms_config
         __props__.__dict__["project_id"] = project_id
         return EncryptionAtRest(resource_name, opts=opts, __props__=__props__)
@@ -277,6 +316,14 @@ class EncryptionAtRest(pulumi.CustomResource):
         Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
         """
         return pulumi.get(self, "azure_key_vault_config")
+
+    @property
+    @pulumi.getter(name="enabledForSearchNodes")
+    def enabled_for_search_nodes(self) -> pulumi.Output[builtins.bool]:
+        """
+        Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
+        """
+        return pulumi.get(self, "enabled_for_search_nodes")
 
     @property
     @pulumi.getter(name="googleCloudKmsConfig")

@@ -113,6 +113,7 @@ class GetCloudBackupSnapshotExportBucketResult:
 
     @property
     @pulumi.getter(name="tenantId")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def tenant_id(self) -> builtins.str:
         """
         UUID that identifies the Azure Active Directory Tenant ID.

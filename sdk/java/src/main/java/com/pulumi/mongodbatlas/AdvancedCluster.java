@@ -36,7 +36,6 @@ import javax.annotation.Nullable;
  * 
  * ~&gt; __IMPORTANT:__
  * \n\n &amp;#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
- * \n\n &amp;#8226;  Note: The first time `pulumi up` command is run __after__ updating the configuration of an imported cluster, you may receive a `500 Internal Server Error (Error code: &#34;SERVICE_UNAVAILABLE&#34;)` error. This is a known temporary issue. If you encounter this, please re-run `pulumi up` and this time the update should succeed.
  * 
  */
 @ResourceType(type="mongodbatlas:index/advancedCluster:AdvancedCluster")
@@ -68,9 +67,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Backup uses:
      * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
      * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-     * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
-     * 
-     * This parameter defaults to false.
+     * If &#34;`backup_enabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
      * 
      */
     @Export(name="backupEnabled", refs={Boolean.class}, tree="[0]")
@@ -83,9 +80,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Backup uses:
      * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
      * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-     * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
-     * 
-     * This parameter defaults to false.
+     * If &#34;`backup_enabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
      * 
      */
     public Output<Boolean> backupEnabled() {
@@ -193,10 +188,10 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
      * 
      * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
     @Export(name="diskSizeGb", refs={Double.class}, tree="[0]")
     private Output<Double> diskSizeGb;
 

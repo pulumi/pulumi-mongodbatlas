@@ -99,6 +99,11 @@ export class Organization extends pulumi.CustomResource {
      * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      */
     public readonly roleNames!: pulumi.Output<string[]>;
+    /**
+     * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     */
+    public readonly securityContact!: pulumi.Output<string | undefined>;
+    public readonly skipDefaultAlertsSettings!: pulumi.Output<boolean>;
 
     /**
      * Create a Organization resource with the given unique name, arguments, and options.
@@ -125,6 +130,8 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
             resourceInputs["restrictEmployeeAccess"] = state ? state.restrictEmployeeAccess : undefined;
             resourceInputs["roleNames"] = state ? state.roleNames : undefined;
+            resourceInputs["securityContact"] = state ? state.securityContact : undefined;
+            resourceInputs["skipDefaultAlertsSettings"] = state ? state.skipDefaultAlertsSettings : undefined;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
             if ((!args || args.description === undefined) && !opts.urn) {
@@ -145,6 +152,8 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["orgOwnerId"] = args ? args.orgOwnerId : undefined;
             resourceInputs["restrictEmployeeAccess"] = args ? args.restrictEmployeeAccess : undefined;
             resourceInputs["roleNames"] = args ? args.roleNames : undefined;
+            resourceInputs["securityContact"] = args ? args.securityContact : undefined;
+            resourceInputs["skipDefaultAlertsSettings"] = args ? args.skipDefaultAlertsSettings : undefined;
             resourceInputs["orgId"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;
             resourceInputs["publicKey"] = undefined /*out*/;
@@ -202,6 +211,11 @@ export interface OrganizationState {
      * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      */
     roleNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     */
+    securityContact?: pulumi.Input<string>;
+    skipDefaultAlertsSettings?: pulumi.Input<boolean>;
 }
 
 /**
@@ -241,4 +255,9 @@ export interface OrganizationArgs {
      * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     */
+    securityContact?: pulumi.Input<string>;
+    skipDefaultAlertsSettings?: pulumi.Input<boolean>;
 }

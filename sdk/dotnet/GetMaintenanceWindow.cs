@@ -224,7 +224,6 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-        /// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
         /// </summary>
         public readonly bool AutoDeferOnceEnabled;
         /// <summary>
@@ -245,9 +244,17 @@ namespace Pulumi.Mongodbatlas
         public readonly int NumberOfDeferrals;
         public readonly string ProjectId;
         /// <summary>
+        /// (Optional) Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetMaintenanceWindowProtectedHourResult> ProtectedHours;
+        /// <summary>
         /// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         /// </summary>
         public readonly bool StartAsap;
+        /// <summary>
+        /// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+        /// </summary>
+        public readonly string TimeZoneId;
 
         [OutputConstructor]
         private GetMaintenanceWindowResult(
@@ -263,7 +270,11 @@ namespace Pulumi.Mongodbatlas
 
             string projectId,
 
-            bool startAsap)
+            ImmutableArray<Outputs.GetMaintenanceWindowProtectedHourResult> protectedHours,
+
+            bool startAsap,
+
+            string timeZoneId)
         {
             AutoDeferOnceEnabled = autoDeferOnceEnabled;
             DayOfWeek = dayOfWeek;
@@ -271,7 +282,9 @@ namespace Pulumi.Mongodbatlas
             Id = id;
             NumberOfDeferrals = numberOfDeferrals;
             ProjectId = projectId;
+            ProtectedHours = protectedHours;
             StartAsap = startAsap;
+            TimeZoneId = timeZoneId;
         }
     }
 }

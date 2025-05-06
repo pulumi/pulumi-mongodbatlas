@@ -112,6 +112,8 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
     public readonly serviceUrl!: pulumi.Output<string | undefined>;
     /**
      * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
+     *
+     * @deprecated This parameter is deprecated.
      */
     public readonly tenantId!: pulumi.Output<string>;
 
@@ -195,6 +197,8 @@ export interface CloudBackupSnapshotExportBucketState {
     serviceUrl?: pulumi.Input<string>;
     /**
      * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
+     *
+     * @deprecated This parameter is deprecated.
      */
     tenantId?: pulumi.Input<string>;
 }
@@ -229,6 +233,8 @@ export interface CloudBackupSnapshotExportBucketArgs {
     serviceUrl?: pulumi.Input<string>;
     /**
      * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
+     *
+     * @deprecated This parameter is deprecated.
      */
     tenantId?: pulumi.Input<string>;
 }

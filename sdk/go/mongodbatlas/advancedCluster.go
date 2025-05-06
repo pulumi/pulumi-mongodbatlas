@@ -23,7 +23,6 @@ import (
 //
 // ~> __IMPORTANT:__
 // \n\n &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
-// \n\n &#8226;  Note: The first time `pulumi up` command is run __after__ updating the configuration of an imported cluster, you may receive a `500 Internal Server Error (Error code: "SERVICE_UNAVAILABLE")` error. This is a known temporary issue. If you encounter this, please re-run `pulumi up` and this time the update should succeed.
 type AdvancedCluster struct {
 	pulumi.CustomResourceState
 
@@ -36,9 +35,7 @@ type AdvancedCluster struct {
 	// Backup uses:
 	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
 	// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
-	//
-	// This parameter defaults to false.
+	// If "`backupEnabled`"  is `false` (default), the cluster doesn't use Atlas backups.
 	BackupEnabled pulumi.BoolOutput `pulumi:"backupEnabled"`
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
 	BiConnectorConfig AdvancedClusterBiConnectorConfigOutput `pulumi:"biConnectorConfig"`
@@ -59,7 +56,7 @@ type AdvancedCluster struct {
 	CreateDate        pulumi.StringOutput                        `pulumi:"createDate"`
 	// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DiskSizeGb pulumi.Float64Output `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
 	EncryptionAtRestProvider pulumi.StringOutput `pulumi:"encryptionAtRestProvider"`
@@ -157,9 +154,7 @@ type advancedClusterState struct {
 	// Backup uses:
 	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
 	// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
-	//
-	// This parameter defaults to false.
+	// If "`backupEnabled`"  is `false` (default), the cluster doesn't use Atlas backups.
 	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
 	BiConnectorConfig *AdvancedClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
@@ -180,7 +175,7 @@ type advancedClusterState struct {
 	CreateDate        *string                           `pulumi:"createDate"`
 	// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
 	EncryptionAtRestProvider *string `pulumi:"encryptionAtRestProvider"`
@@ -240,9 +235,7 @@ type AdvancedClusterState struct {
 	// Backup uses:
 	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
 	// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
-	//
-	// This parameter defaults to false.
+	// If "`backupEnabled`"  is `false` (default), the cluster doesn't use Atlas backups.
 	BackupEnabled pulumi.BoolPtrInput
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
 	BiConnectorConfig AdvancedClusterBiConnectorConfigPtrInput
@@ -263,7 +256,7 @@ type AdvancedClusterState struct {
 	CreateDate        pulumi.StringPtrInput
 	// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DiskSizeGb pulumi.Float64PtrInput
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
 	EncryptionAtRestProvider pulumi.StringPtrInput
@@ -327,9 +320,7 @@ type advancedClusterArgs struct {
 	// Backup uses:
 	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
 	// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
-	//
-	// This parameter defaults to false.
+	// If "`backupEnabled`"  is `false` (default), the cluster doesn't use Atlas backups.
 	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
 	BiConnectorConfig *AdvancedClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
@@ -343,7 +334,7 @@ type advancedClusterArgs struct {
 	ConfigServerManagementMode *string `pulumi:"configServerManagementMode"`
 	// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
 	EncryptionAtRestProvider *string `pulumi:"encryptionAtRestProvider"`
@@ -393,9 +384,7 @@ type AdvancedClusterArgs struct {
 	// Backup uses:
 	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
 	// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
-	//
-	// This parameter defaults to false.
+	// If "`backupEnabled`"  is `false` (default), the cluster doesn't use Atlas backups.
 	BackupEnabled pulumi.BoolPtrInput
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
 	BiConnectorConfig AdvancedClusterBiConnectorConfigPtrInput
@@ -409,7 +398,7 @@ type AdvancedClusterArgs struct {
 	ConfigServerManagementMode pulumi.StringPtrInput
 	// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DiskSizeGb pulumi.Float64PtrInput
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
 	EncryptionAtRestProvider pulumi.StringPtrInput
@@ -550,9 +539,7 @@ func (o AdvancedClusterOutput) AdvancedConfiguration() AdvancedClusterAdvancedCo
 // Backup uses:
 // [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
 // [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
-//
-// This parameter defaults to false.
+// If "`backupEnabled`"  is `false` (default), the cluster doesn't use Atlas backups.
 func (o AdvancedClusterOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolOutput { return v.BackupEnabled }).(pulumi.BoolOutput)
 }
@@ -597,7 +584,7 @@ func (o AdvancedClusterOutput) CreateDate() pulumi.StringOutput {
 
 // Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
 //
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o AdvancedClusterOutput) DiskSizeGb() pulumi.Float64Output {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.Float64Output { return v.DiskSizeGb }).(pulumi.Float64Output)
 }

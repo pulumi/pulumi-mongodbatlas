@@ -201,9 +201,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// Database users can be imported using project ID, username, and auth database name in the format:
     /// 
-    /// 1. `project_id`-`username`-`auth_database_name` Only works if no `-` are used for `username`/`auth_database_name`. For example `my-username` should use (2).
+    /// 1. `project_id`-`username`-`auth_database_name` Doesn't  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
     /// 
-    /// 2.  `project_id`/`username`/`auth_database_name` Works in all cases (introduced after (1))
+    /// 2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
     /// 
     /// ```sh
     /// $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
@@ -231,6 +231,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("awsIamType")]
         public Output<string> AwsIamType { get; private set; } = null!;
+
+        /// <summary>
+        /// Description of this database user.
+        /// </summary>
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
 
         [Output("labels")]
         public Output<ImmutableArray<Outputs.DatabaseUserLabel>> Labels { get; private set; } = null!;
@@ -352,6 +358,12 @@ namespace Pulumi.Mongodbatlas
         [Input("awsIamType")]
         public Input<string>? AwsIamType { get; set; }
 
+        /// <summary>
+        /// Description of this database user.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
         [Input("labels")]
         private InputList<Inputs.DatabaseUserLabelArgs>? _labels;
         public InputList<Inputs.DatabaseUserLabelArgs> Labels
@@ -454,6 +466,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("awsIamType")]
         public Input<string>? AwsIamType { get; set; }
+
+        /// <summary>
+        /// Description of this database user.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         [Input("labels")]
         private InputList<Inputs.DatabaseUserLabelGetArgs>? _labels;

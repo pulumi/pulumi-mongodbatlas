@@ -50,6 +50,12 @@ public final class GetOrganizationResult {
      * 
      */
     private Boolean restrictEmployeeAccess;
+    /**
+     * @return (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     * 
+     */
+    private String securityContact;
+    private Boolean skipDefaultAlertsSettings;
 
     private GetOrganizationResult() {}
     /**
@@ -107,6 +113,16 @@ public final class GetOrganizationResult {
     public Boolean restrictEmployeeAccess() {
         return this.restrictEmployeeAccess;
     }
+    /**
+     * @return (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     * 
+     */
+    public String securityContact() {
+        return this.securityContact;
+    }
+    public Boolean skipDefaultAlertsSettings() {
+        return this.skipDefaultAlertsSettings;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -126,6 +142,8 @@ public final class GetOrganizationResult {
         private String name;
         private String orgId;
         private Boolean restrictEmployeeAccess;
+        private String securityContact;
+        private Boolean skipDefaultAlertsSettings;
         public Builder() {}
         public Builder(GetOrganizationResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -138,6 +156,8 @@ public final class GetOrganizationResult {
     	      this.name = defaults.name;
     	      this.orgId = defaults.orgId;
     	      this.restrictEmployeeAccess = defaults.restrictEmployeeAccess;
+    	      this.securityContact = defaults.securityContact;
+    	      this.skipDefaultAlertsSettings = defaults.skipDefaultAlertsSettings;
         }
 
         @CustomType.Setter
@@ -215,6 +235,22 @@ public final class GetOrganizationResult {
             this.restrictEmployeeAccess = restrictEmployeeAccess;
             return this;
         }
+        @CustomType.Setter
+        public Builder securityContact(String securityContact) {
+            if (securityContact == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "securityContact");
+            }
+            this.securityContact = securityContact;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder skipDefaultAlertsSettings(Boolean skipDefaultAlertsSettings) {
+            if (skipDefaultAlertsSettings == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "skipDefaultAlertsSettings");
+            }
+            this.skipDefaultAlertsSettings = skipDefaultAlertsSettings;
+            return this;
+        }
         public GetOrganizationResult build() {
             final var _resultValue = new GetOrganizationResult();
             _resultValue.apiAccessListRequired = apiAccessListRequired;
@@ -226,6 +262,8 @@ public final class GetOrganizationResult {
             _resultValue.name = name;
             _resultValue.orgId = orgId;
             _resultValue.restrictEmployeeAccess = restrictEmployeeAccess;
+            _resultValue.securityContact = securityContact;
+            _resultValue.skipDefaultAlertsSettings = skipDefaultAlertsSettings;
             return _resultValue;
         }
     }

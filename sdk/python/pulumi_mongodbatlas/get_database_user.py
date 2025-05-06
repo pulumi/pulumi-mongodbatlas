@@ -28,13 +28,16 @@ class GetDatabaseUserResult:
     """
     A collection of values returned by getDatabaseUser.
     """
-    def __init__(__self__, auth_database_name=None, aws_iam_type=None, id=None, labels=None, ldap_auth_type=None, oidc_auth_type=None, project_id=None, roles=None, scopes=None, username=None, x509_type=None):
+    def __init__(__self__, auth_database_name=None, aws_iam_type=None, description=None, id=None, labels=None, ldap_auth_type=None, oidc_auth_type=None, project_id=None, roles=None, scopes=None, username=None, x509_type=None):
         if auth_database_name and not isinstance(auth_database_name, str):
             raise TypeError("Expected argument 'auth_database_name' to be a str")
         pulumi.set(__self__, "auth_database_name", auth_database_name)
         if aws_iam_type and not isinstance(aws_iam_type, str):
             raise TypeError("Expected argument 'aws_iam_type' to be a str")
         pulumi.set(__self__, "aws_iam_type", aws_iam_type)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -75,6 +78,14 @@ class GetDatabaseUserResult:
         The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
         """
         return pulumi.get(self, "aws_iam_type")
+
+    @property
+    @pulumi.getter
+    def description(self) -> builtins.str:
+        """
+        Description of this database user.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -151,6 +162,7 @@ class AwaitableGetDatabaseUserResult(GetDatabaseUserResult):
         return GetDatabaseUserResult(
             auth_database_name=self.auth_database_name,
             aws_iam_type=self.aws_iam_type,
+            description=self.description,
             id=self.id,
             labels=self.labels,
             ldap_auth_type=self.ldap_auth_type,
@@ -246,6 +258,7 @@ def get_database_user(auth_database_name: Optional[builtins.str] = None,
     return AwaitableGetDatabaseUserResult(
         auth_database_name=pulumi.get(__ret__, 'auth_database_name'),
         aws_iam_type=pulumi.get(__ret__, 'aws_iam_type'),
+        description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         labels=pulumi.get(__ret__, 'labels'),
         ldap_auth_type=pulumi.get(__ret__, 'ldap_auth_type'),
@@ -338,6 +351,7 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[builtins.
     return __ret__.apply(lambda __response__: GetDatabaseUserResult(
         auth_database_name=pulumi.get(__response__, 'auth_database_name'),
         aws_iam_type=pulumi.get(__response__, 'aws_iam_type'),
+        description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         labels=pulumi.get(__response__, 'labels'),
         ldap_auth_type=pulumi.get(__response__, 'ldap_auth_type'),

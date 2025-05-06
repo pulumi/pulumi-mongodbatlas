@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
 import com.pulumi.mongodbatlas.inputs.SearchDeploymentTimeoutsArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -49,6 +50,13 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         return this.projectId;
     }
 
+    @Import(name="skipWaitOnUpdate")
+    private @Nullable Output<Boolean> skipWaitOnUpdate;
+
+    public Optional<Output<Boolean>> skipWaitOnUpdate() {
+        return Optional.ofNullable(this.skipWaitOnUpdate);
+    }
+
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      * 
@@ -76,6 +84,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
     private SearchDeploymentArgs(SearchDeploymentArgs $) {
         this.clusterName = $.clusterName;
         this.projectId = $.projectId;
+        this.skipWaitOnUpdate = $.skipWaitOnUpdate;
         this.specs = $.specs;
         this.timeouts = $.timeouts;
     }
@@ -138,6 +147,15 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        public Builder skipWaitOnUpdate(@Nullable Output<Boolean> skipWaitOnUpdate) {
+            $.skipWaitOnUpdate = skipWaitOnUpdate;
+            return this;
+        }
+
+        public Builder skipWaitOnUpdate(Boolean skipWaitOnUpdate) {
+            return skipWaitOnUpdate(Output.of(skipWaitOnUpdate));
         }
 
         /**

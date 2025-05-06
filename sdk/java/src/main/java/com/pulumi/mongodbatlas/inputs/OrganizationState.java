@@ -181,6 +181,28 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.roleNames);
     }
 
+    /**
+     * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     * 
+     */
+    @Import(name="securityContact")
+    private @Nullable Output<String> securityContact;
+
+    /**
+     * @return String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+     * 
+     */
+    public Optional<Output<String>> securityContact() {
+        return Optional.ofNullable(this.securityContact);
+    }
+
+    @Import(name="skipDefaultAlertsSettings")
+    private @Nullable Output<Boolean> skipDefaultAlertsSettings;
+
+    public Optional<Output<Boolean>> skipDefaultAlertsSettings() {
+        return Optional.ofNullable(this.skipDefaultAlertsSettings);
+    }
+
     private OrganizationState() {}
 
     private OrganizationState(OrganizationState $) {
@@ -196,6 +218,8 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         this.publicKey = $.publicKey;
         this.restrictEmployeeAccess = $.restrictEmployeeAccess;
         this.roleNames = $.roleNames;
+        this.securityContact = $.securityContact;
+        this.skipDefaultAlertsSettings = $.skipDefaultAlertsSettings;
     }
 
     public static Builder builder() {
@@ -452,6 +476,36 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder roleNames(String... roleNames) {
             return roleNames(List.of(roleNames));
+        }
+
+        /**
+         * @param securityContact String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder securityContact(@Nullable Output<String> securityContact) {
+            $.securityContact = securityContact;
+            return this;
+        }
+
+        /**
+         * @param securityContact String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder securityContact(String securityContact) {
+            return securityContact(Output.of(securityContact));
+        }
+
+        public Builder skipDefaultAlertsSettings(@Nullable Output<Boolean> skipDefaultAlertsSettings) {
+            $.skipDefaultAlertsSettings = skipDefaultAlertsSettings;
+            return this;
+        }
+
+        public Builder skipDefaultAlertsSettings(Boolean skipDefaultAlertsSettings) {
+            return skipDefaultAlertsSettings(Output.of(skipDefaultAlertsSettings));
         }
 
         public OrganizationState build() {

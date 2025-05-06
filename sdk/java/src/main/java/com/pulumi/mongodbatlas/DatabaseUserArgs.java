@@ -58,6 +58,21 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.awsIamType);
     }
 
+    /**
+     * Description of this database user.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return Description of this database user.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
     @Import(name="labels")
     private @Nullable Output<List<DatabaseUserLabelArgs>> labels;
 
@@ -192,6 +207,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
     private DatabaseUserArgs(DatabaseUserArgs $) {
         this.authDatabaseName = $.authDatabaseName;
         this.awsIamType = $.awsIamType;
+        this.description = $.description;
         this.labels = $.labels;
         this.ldapAuthType = $.ldapAuthType;
         this.oidcAuthType = $.oidcAuthType;
@@ -269,6 +285,27 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder awsIamType(String awsIamType) {
             return awsIamType(Output.of(awsIamType));
+        }
+
+        /**
+         * @param description Description of this database user.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description Description of this database user.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         public Builder labels(@Nullable Output<List<DatabaseUserLabelArgs>> labels) {

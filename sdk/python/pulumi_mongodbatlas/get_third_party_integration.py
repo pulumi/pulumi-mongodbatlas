@@ -27,7 +27,7 @@ class GetThirdPartyIntegrationResult:
     """
     A collection of values returned by getThirdPartyIntegration.
     """
-    def __init__(__self__, account_id=None, api_key=None, channel_name=None, enabled=None, id=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, secret=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
+    def __init__(__self__, account_id=None, api_key=None, channel_name=None, enabled=None, id=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, secret=None, send_collection_latency_metrics=None, send_database_metrics=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
         pulumi.set(__self__, "account_id", account_id)
@@ -58,6 +58,12 @@ class GetThirdPartyIntegrationResult:
         if secret and not isinstance(secret, str):
             raise TypeError("Expected argument 'secret' to be a str")
         pulumi.set(__self__, "secret", secret)
+        if send_collection_latency_metrics and not isinstance(send_collection_latency_metrics, bool):
+            raise TypeError("Expected argument 'send_collection_latency_metrics' to be a bool")
+        pulumi.set(__self__, "send_collection_latency_metrics", send_collection_latency_metrics)
+        if send_database_metrics and not isinstance(send_database_metrics, bool):
+            raise TypeError("Expected argument 'send_database_metrics' to be a bool")
+        pulumi.set(__self__, "send_database_metrics", send_database_metrics)
         if service_discovery and not isinstance(service_discovery, str):
             raise TypeError("Expected argument 'service_discovery' to be a str")
         pulumi.set(__self__, "service_discovery", service_discovery)
@@ -97,7 +103,7 @@ class GetThirdPartyIntegrationResult:
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[builtins.bool]:
+    def enabled(self) -> builtins.bool:
         """
         Whether your cluster has Prometheus enabled.
         """
@@ -113,7 +119,7 @@ class GetThirdPartyIntegrationResult:
 
     @property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
-    def microsoft_teams_webhook_url(self) -> Optional[builtins.str]:
+    def microsoft_teams_webhook_url(self) -> builtins.str:
         """
         Your Microsoft Teams incoming webhook URL.
         * `PROMETHEUS`
@@ -153,8 +159,25 @@ class GetThirdPartyIntegrationResult:
         return pulumi.get(self, "secret")
 
     @property
+    @pulumi.getter(name="sendCollectionLatencyMetrics")
+    def send_collection_latency_metrics(self) -> builtins.bool:
+        """
+        Toggle sending collection latency metrics that includes database names and collection name sand latency metrics on reads, writes, commands, and transactions.
+        """
+        return pulumi.get(self, "send_collection_latency_metrics")
+
+    @property
+    @pulumi.getter(name="sendDatabaseMetrics")
+    def send_database_metrics(self) -> builtins.bool:
+        """
+        Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+        * `OPS_GENIE`
+        """
+        return pulumi.get(self, "send_database_metrics")
+
+    @property
     @pulumi.getter(name="serviceDiscovery")
-    def service_discovery(self) -> Optional[builtins.str]:
+    def service_discovery(self) -> builtins.str:
         """
         Indicates which service discovery method is used, either file or http.
         """
@@ -189,7 +212,7 @@ class GetThirdPartyIntegrationResult:
 
     @property
     @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[builtins.str]:
+    def user_name(self) -> builtins.str:
         """
         Your Prometheus username.
         """
@@ -212,6 +235,8 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
             region=self.region,
             routing_key=self.routing_key,
             secret=self.secret,
+            send_collection_latency_metrics=self.send_collection_latency_metrics,
+            send_database_metrics=self.send_database_metrics,
             service_discovery=self.service_discovery,
             service_key=self.service_key,
             team_name=self.team_name,
@@ -220,12 +245,8 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
             user_name=self.user_name)
 
 
-def get_third_party_integration(enabled: Optional[builtins.bool] = None,
-                                microsoft_teams_webhook_url: Optional[builtins.str] = None,
-                                project_id: Optional[builtins.str] = None,
-                                service_discovery: Optional[builtins.str] = None,
+def get_third_party_integration(project_id: Optional[builtins.str] = None,
                                 type: Optional[builtins.str] = None,
-                                user_name: Optional[builtins.str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetThirdPartyIntegrationResult:
     """
     ## # Data Source: ThirdPartyIntegration
@@ -250,11 +271,7 @@ def get_third_party_integration(enabled: Optional[builtins.bool] = None,
     ```
 
 
-    :param builtins.bool enabled: Whether your cluster has Prometheus enabled.
-    :param builtins.str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
-           * `PROMETHEUS`
     :param builtins.str project_id: The unique ID for the project to get all Third-Party service integrations
-    :param builtins.str service_discovery: Indicates which service discovery method is used, either file or http.
     :param builtins.str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG
@@ -263,15 +280,10 @@ def get_third_party_integration(enabled: Optional[builtins.bool] = None,
            * WEBHOOK
            * MICROSOFT_TEAMS
            * PROMETHEUS
-    :param builtins.str user_name: Your Prometheus username.
     """
     __args__ = dict()
-    __args__['enabled'] = enabled
-    __args__['microsoftTeamsWebhookUrl'] = microsoft_teams_webhook_url
     __args__['projectId'] = project_id
-    __args__['serviceDiscovery'] = service_discovery
     __args__['type'] = type
-    __args__['userName'] = user_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration', __args__, opts=opts, typ=GetThirdPartyIntegrationResult).value
 
@@ -286,18 +298,16 @@ def get_third_party_integration(enabled: Optional[builtins.bool] = None,
         region=pulumi.get(__ret__, 'region'),
         routing_key=pulumi.get(__ret__, 'routing_key'),
         secret=pulumi.get(__ret__, 'secret'),
+        send_collection_latency_metrics=pulumi.get(__ret__, 'send_collection_latency_metrics'),
+        send_database_metrics=pulumi.get(__ret__, 'send_database_metrics'),
         service_discovery=pulumi.get(__ret__, 'service_discovery'),
         service_key=pulumi.get(__ret__, 'service_key'),
         team_name=pulumi.get(__ret__, 'team_name'),
         type=pulumi.get(__ret__, 'type'),
         url=pulumi.get(__ret__, 'url'),
         user_name=pulumi.get(__ret__, 'user_name'))
-def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[builtins.bool]]] = None,
-                                       microsoft_teams_webhook_url: Optional[pulumi.Input[Optional[builtins.str]]] = None,
-                                       project_id: Optional[pulumi.Input[builtins.str]] = None,
-                                       service_discovery: Optional[pulumi.Input[Optional[builtins.str]]] = None,
+def get_third_party_integration_output(project_id: Optional[pulumi.Input[builtins.str]] = None,
                                        type: Optional[pulumi.Input[builtins.str]] = None,
-                                       user_name: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetThirdPartyIntegrationResult]:
     """
     ## # Data Source: ThirdPartyIntegration
@@ -322,11 +332,7 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
     ```
 
 
-    :param builtins.bool enabled: Whether your cluster has Prometheus enabled.
-    :param builtins.str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
-           * `PROMETHEUS`
     :param builtins.str project_id: The unique ID for the project to get all Third-Party service integrations
-    :param builtins.str service_discovery: Indicates which service discovery method is used, either file or http.
     :param builtins.str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG
@@ -335,15 +341,10 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
            * WEBHOOK
            * MICROSOFT_TEAMS
            * PROMETHEUS
-    :param builtins.str user_name: Your Prometheus username.
     """
     __args__ = dict()
-    __args__['enabled'] = enabled
-    __args__['microsoftTeamsWebhookUrl'] = microsoft_teams_webhook_url
     __args__['projectId'] = project_id
-    __args__['serviceDiscovery'] = service_discovery
     __args__['type'] = type
-    __args__['userName'] = user_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration', __args__, opts=opts, typ=GetThirdPartyIntegrationResult)
     return __ret__.apply(lambda __response__: GetThirdPartyIntegrationResult(
@@ -357,6 +358,8 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
         region=pulumi.get(__response__, 'region'),
         routing_key=pulumi.get(__response__, 'routing_key'),
         secret=pulumi.get(__response__, 'secret'),
+        send_collection_latency_metrics=pulumi.get(__response__, 'send_collection_latency_metrics'),
+        send_database_metrics=pulumi.get(__response__, 'send_database_metrics'),
         service_discovery=pulumi.get(__response__, 'service_discovery'),
         service_key=pulumi.get(__response__, 'service_key'),
         team_name=pulumi.get(__response__, 'team_name'),

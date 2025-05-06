@@ -21,6 +21,8 @@ import * as utilities from "./utilities";
  *
  * Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
  *
+ * After an import, a non-empty plan is expected if the configuration defines the `skipWaitOnUpdate` attribute. However, the update will not have any effect on the search deployment since `skipWaitOnUpdate` only relates to the update operations wait time.
+ *
  * For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
  */
 export class SearchDeployment extends pulumi.CustomResource {
@@ -56,9 +58,14 @@ export class SearchDeployment extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
+     * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+     */
+    public /*out*/ readonly encryptionAtRestProvider!: pulumi.Output<string>;
+    /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     public readonly projectId!: pulumi.Output<string>;
+    public readonly skipWaitOnUpdate!: pulumi.Output<boolean | undefined>;
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */
@@ -83,7 +90,9 @@ export class SearchDeployment extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SearchDeploymentState | undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["encryptionAtRestProvider"] = state ? state.encryptionAtRestProvider : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["skipWaitOnUpdate"] = state ? state.skipWaitOnUpdate : undefined;
             resourceInputs["specs"] = state ? state.specs : undefined;
             resourceInputs["stateName"] = state ? state.stateName : undefined;
             resourceInputs["timeouts"] = state ? state.timeouts : undefined;
@@ -100,8 +109,10 @@ export class SearchDeployment extends pulumi.CustomResource {
             }
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["skipWaitOnUpdate"] = args ? args.skipWaitOnUpdate : undefined;
             resourceInputs["specs"] = args ? args.specs : undefined;
             resourceInputs["timeouts"] = args ? args.timeouts : undefined;
+            resourceInputs["encryptionAtRestProvider"] = undefined /*out*/;
             resourceInputs["stateName"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -118,9 +129,14 @@ export interface SearchDeploymentState {
      */
     clusterName?: pulumi.Input<string>;
     /**
+     * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
+     */
+    encryptionAtRestProvider?: pulumi.Input<string>;
+    /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId?: pulumi.Input<string>;
+    skipWaitOnUpdate?: pulumi.Input<boolean>;
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */
@@ -144,6 +160,7 @@ export interface SearchDeploymentArgs {
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
+    skipWaitOnUpdate?: pulumi.Input<boolean>;
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */

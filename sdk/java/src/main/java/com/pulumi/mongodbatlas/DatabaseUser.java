@@ -248,9 +248,9 @@ import javax.annotation.Nullable;
  * 
  * Database users can be imported using project ID, username, and auth database name in the format:
  * 
- * 1. `project_id`-`username`-`auth_database_name` Only works if no `-` are used for `username`/`auth_database_name`. For example `my-username` should use (2).
+ * 1. `project_id`-`username`-`auth_database_name` Doesn&#39;t  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
  * 
- * 2.  `project_id`/`username`/`auth_database_name` Works in all cases (introduced after (1))
+ * 2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
  * 
  * ```sh
  * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
@@ -298,6 +298,20 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      */
     public Output<String> awsIamType() {
         return this.awsIamType;
+    }
+    /**
+     * Description of this database user.
+     * 
+     */
+    @Export(name="description", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> description;
+
+    /**
+     * @return Description of this database user.
+     * 
+     */
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
     }
     @Export(name="labels", refs={List.class,DatabaseUserLabel.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DatabaseUserLabel>> labels;

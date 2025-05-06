@@ -257,7 +257,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
         /// </summary>
-        [Obsolete(@"This parameter is deprecated and will be removed in version 1.23.0. Please transition to custom_zone_mapping_zone_id.")]
+        [Obsolete(@"This parameter is deprecated. Please transition to `custom_zone_mapping_zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide")]
         public InputMap<string> CustomZoneMapping
         {
             get => _customZoneMapping ?? (_customZoneMapping = new InputMap<string>());

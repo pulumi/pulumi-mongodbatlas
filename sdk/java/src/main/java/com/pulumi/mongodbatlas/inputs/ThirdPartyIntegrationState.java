@@ -87,6 +87,20 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.secret);
     }
 
+    @Import(name="sendCollectionLatencyMetrics")
+    private @Nullable Output<Boolean> sendCollectionLatencyMetrics;
+
+    public Optional<Output<Boolean>> sendCollectionLatencyMetrics() {
+        return Optional.ofNullable(this.sendCollectionLatencyMetrics);
+    }
+
+    @Import(name="sendDatabaseMetrics")
+    private @Nullable Output<Boolean> sendDatabaseMetrics;
+
+    public Optional<Output<Boolean>> sendDatabaseMetrics() {
+        return Optional.ofNullable(this.sendDatabaseMetrics);
+    }
+
     @Import(name="serviceDiscovery")
     private @Nullable Output<String> serviceDiscovery;
 
@@ -167,6 +181,8 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         this.region = $.region;
         this.routingKey = $.routingKey;
         this.secret = $.secret;
+        this.sendCollectionLatencyMetrics = $.sendCollectionLatencyMetrics;
+        this.sendDatabaseMetrics = $.sendDatabaseMetrics;
         this.serviceDiscovery = $.serviceDiscovery;
         this.serviceKey = $.serviceKey;
         this.teamName = $.teamName;
@@ -284,6 +300,24 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         public Builder secret(String secret) {
             return secret(Output.of(secret));
+        }
+
+        public Builder sendCollectionLatencyMetrics(@Nullable Output<Boolean> sendCollectionLatencyMetrics) {
+            $.sendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
+            return this;
+        }
+
+        public Builder sendCollectionLatencyMetrics(Boolean sendCollectionLatencyMetrics) {
+            return sendCollectionLatencyMetrics(Output.of(sendCollectionLatencyMetrics));
+        }
+
+        public Builder sendDatabaseMetrics(@Nullable Output<Boolean> sendDatabaseMetrics) {
+            $.sendDatabaseMetrics = sendDatabaseMetrics;
+            return this;
+        }
+
+        public Builder sendDatabaseMetrics(Boolean sendDatabaseMetrics) {
+            return sendDatabaseMetrics(Output.of(sendDatabaseMetrics));
         }
 
         public Builder serviceDiscovery(@Nullable Output<String> serviceDiscovery) {

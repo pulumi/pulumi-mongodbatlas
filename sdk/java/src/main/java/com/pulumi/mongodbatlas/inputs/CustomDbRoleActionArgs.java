@@ -40,7 +40,7 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
      * 
      * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
      * 
-     * * `resources.#.database_name`	Database on which the action is granted.
+     * * `resources.#.database_name` Database on which the action is granted. Use the empty string (&#34;&#34;) to allow an action on all databases.
      * 
      * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
      * 
@@ -59,7 +59,7 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
      * 
      * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
      * 
-     * * `resources.#.database_name`	Database on which the action is granted.
+     * * `resources.#.database_name` Database on which the action is granted. Use the empty string (&#34;&#34;) to allow an action on all databases.
      * 
      * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
      * 
@@ -127,7 +127,7 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
          * 
          * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
          * 
-         * * `resources.#.database_name`	Database on which the action is granted.
+         * * `resources.#.database_name` Database on which the action is granted. Use the empty string (&#34;&#34;) to allow an action on all databases.
          * 
          * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
          * 
@@ -150,7 +150,7 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
          * 
          * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
          * 
-         * * `resources.#.database_name`	Database on which the action is granted.
+         * * `resources.#.database_name` Database on which the action is granted. Use the empty string (&#34;&#34;) to allow an action on all databases.
          * 
          * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
          * 
@@ -172,7 +172,7 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
          * 
          * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
          * 
-         * * `resources.#.database_name`	Database on which the action is granted.
+         * * `resources.#.database_name` Database on which the action is granted. Use the empty string (&#34;&#34;) to allow an action on all databases.
          * 
          * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
          * 

@@ -18,14 +18,14 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     public static final StreamPrivatelinkEndpointArgs Empty = new StreamPrivatelinkEndpointArgs();
 
     /**
-     * Amazon Resource Name (ARN).
+     * Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      * 
      */
     @Import(name="arn")
     private @Nullable Output<String> arn;
 
     /**
-     * @return Amazon Resource Name (ARN).
+     * @return Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      * 
      */
     public Optional<Output<String>> arn() {
@@ -33,14 +33,14 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Domain name of Privatelink connected cluster.
+     * The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
      * 
      */
     @Import(name="dnsDomain")
     private @Nullable Output<String> dnsDomain;
 
     /**
-     * @return Domain name of Privatelink connected cluster.
+     * @return The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
      * 
      */
     public Optional<Output<String>> dnsDomain() {
@@ -48,14 +48,14 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Sub-Domain name of Confluent cluster. These are typically your availability zones.
+     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
      * 
      */
     @Import(name="dnsSubDomains")
     private @Nullable Output<List<String>> dnsSubDomains;
 
     /**
-     * @return Sub-Domain name of Confluent cluster. These are typically your availability zones.
+     * @return Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
      * 
      */
     public Optional<Output<List<String>>> dnsSubDomains() {
@@ -63,14 +63,14 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      * 
      */
     public Output<String> projectId() {
@@ -78,14 +78,14 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Provider where the Kafka cluster is deployed.
+     * Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
      * 
      */
     @Import(name="providerName", required=true)
     private Output<String> providerName;
 
     /**
-     * @return Provider where the Kafka cluster is deployed.
+     * @return Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
      * 
      */
     public Output<String> providerName() {
@@ -93,16 +93,14 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
-     * by the API from the provided `arn`.
+     * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
-     * by the API from the provided `arn`.
+     * @return The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      * 
      */
     public Optional<Output<String>> region() {
@@ -110,14 +108,14 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Service Endpoint ID.
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      * 
      */
     @Import(name="serviceEndpointId")
     private @Nullable Output<String> serviceEndpointId;
 
     /**
-     * @return Service Endpoint ID.
+     * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      * 
      */
     public Optional<Output<String>> serviceEndpointId() {
@@ -125,14 +123,14 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Vendor who manages the Kafka cluster.
+     * Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
      * 
      */
     @Import(name="vendor", required=true)
     private Output<String> vendor;
 
     /**
-     * @return Vendor who manages the Kafka cluster.
+     * @return Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
      * 
      */
     public Output<String> vendor() {
@@ -171,7 +169,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param arn Amazon Resource Name (ARN).
+         * @param arn Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
          * 
          * @return builder
          * 
@@ -182,7 +180,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param arn Amazon Resource Name (ARN).
+         * @param arn Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
          * 
          * @return builder
          * 
@@ -192,7 +190,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param dnsDomain Domain name of Privatelink connected cluster.
+         * @param dnsDomain The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
          * 
          * @return builder
          * 
@@ -203,7 +201,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param dnsDomain Domain name of Privatelink connected cluster.
+         * @param dnsDomain The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
          * 
          * @return builder
          * 
@@ -213,7 +211,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param dnsSubDomains Sub-Domain name of Confluent cluster. These are typically your availability zones.
+         * @param dnsSubDomains Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
          * 
          * @return builder
          * 
@@ -224,7 +222,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param dnsSubDomains Sub-Domain name of Confluent cluster. These are typically your availability zones.
+         * @param dnsSubDomains Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
          * 
          * @return builder
          * 
@@ -234,7 +232,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param dnsSubDomains Sub-Domain name of Confluent cluster. These are typically your availability zones.
+         * @param dnsSubDomains Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
          * 
          * @return builder
          * 
@@ -244,7 +242,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
          * 
          * @return builder
          * 
@@ -255,7 +253,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
          * 
          * @return builder
          * 
@@ -265,7 +263,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param providerName Provider where the Kafka cluster is deployed.
+         * @param providerName Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
          * 
          * @return builder
          * 
@@ -276,7 +274,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param providerName Provider where the Kafka cluster is deployed.
+         * @param providerName Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
          * 
          * @return builder
          * 
@@ -286,8 +284,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param region When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
-         * by the API from the provided `arn`.
+         * @param region The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
          * 
          * @return builder
          * 
@@ -298,8 +295,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param region When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed
-         * by the API from the provided `arn`.
+         * @param region The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
          * 
          * @return builder
          * 
@@ -309,7 +305,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param serviceEndpointId Service Endpoint ID.
+         * @param serviceEndpointId For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
          * 
          * @return builder
          * 
@@ -320,7 +316,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param serviceEndpointId Service Endpoint ID.
+         * @param serviceEndpointId For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
          * 
          * @return builder
          * 
@@ -330,7 +326,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param vendor Vendor who manages the Kafka cluster.
+         * @param vendor Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
          * 
          * @return builder
          * 
@@ -341,7 +337,7 @@ public final class StreamPrivatelinkEndpointArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param vendor Vendor who manages the Kafka cluster.
+         * @param vendor Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
          * 
          * @return builder
          * 

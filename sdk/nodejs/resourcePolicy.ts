@@ -7,6 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.ResourcePolicy
+ *
+ * `mongodbatlas.ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
+ *
  * ## Example Usage
  *
  * ## Import
@@ -52,6 +56,10 @@ export class ResourcePolicy extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdDate!: pulumi.Output<string>;
     /**
+     * Description of the Atlas resource policy.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
+    /**
      * The user that last updated the Atlas resource policy.
      */
     public /*out*/ readonly lastUpdatedByUser!: pulumi.Output<outputs.ResourcePolicyLastUpdatedByUser>;
@@ -91,6 +99,7 @@ export class ResourcePolicy extends pulumi.CustomResource {
             const state = argsOrState as ResourcePolicyState | undefined;
             resourceInputs["createdByUser"] = state ? state.createdByUser : undefined;
             resourceInputs["createdDate"] = state ? state.createdDate : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["lastUpdatedByUser"] = state ? state.lastUpdatedByUser : undefined;
             resourceInputs["lastUpdatedDate"] = state ? state.lastUpdatedDate : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -105,6 +114,7 @@ export class ResourcePolicy extends pulumi.CustomResource {
             if ((!args || args.policies === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policies'");
             }
+            resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
@@ -131,6 +141,10 @@ export interface ResourcePolicyState {
      * Date and time in UTC when the Atlas resource policy was created.
      */
     createdDate?: pulumi.Input<string>;
+    /**
+     * Description of the Atlas resource policy.
+     */
+    description?: pulumi.Input<string>;
     /**
      * The user that last updated the Atlas resource policy.
      */
@@ -161,6 +175,10 @@ export interface ResourcePolicyState {
  * The set of arguments for constructing a ResourcePolicy resource.
  */
 export interface ResourcePolicyArgs {
+    /**
+     * Description of the Atlas resource policy.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Human-readable label that describes the Atlas resource policy.
      */

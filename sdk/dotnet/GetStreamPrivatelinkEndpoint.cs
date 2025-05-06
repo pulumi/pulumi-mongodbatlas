@@ -58,7 +58,7 @@ namespace Pulumi.Mongodbatlas
         public string Id { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -78,7 +78,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Id { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -93,25 +93,61 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetStreamPrivatelinkEndpointResult
     {
+        /// <summary>
+        /// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+        /// </summary>
         public readonly string Arn;
+        /// <summary>
+        /// The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+        /// </summary>
         public readonly string DnsDomain;
+        /// <summary>
+        /// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+        /// </summary>
         public readonly ImmutableArray<string> DnsSubDomains;
+        /// <summary>
+        /// Error message if the connection is in a failed state.
+        /// </summary>
         public readonly string ErrorMessage;
         /// <summary>
         /// The ID of the Private Link connection.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Interface endpoint ID that is created from the specified service endpoint ID.
+        /// </summary>
         public readonly string InterfaceEndpointId;
+        /// <summary>
+        /// Name of interface endpoint that is created from the specified service endpoint ID.
+        /// </summary>
         public readonly string InterfaceEndpointName;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// Account ID from the cloud provider.
+        /// </summary>
         public readonly string ProviderAccountId;
+        /// <summary>
+        /// Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+        /// </summary>
         public readonly string ProviderName;
+        /// <summary>
+        /// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+        /// </summary>
         public readonly string Region;
+        /// <summary>
+        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        /// </summary>
         public readonly string ServiceEndpointId;
+        /// <summary>
+        /// Status of the connection.
+        /// </summary>
         public readonly string State;
+        /// <summary>
+        /// Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        /// </summary>
         public readonly string Vendor;
 
         [OutputConstructor]

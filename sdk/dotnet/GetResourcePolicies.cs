@@ -12,18 +12,30 @@ namespace Pulumi.Mongodbatlas
     public static class GetResourcePolicies
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getResourcePolicies
+        /// 
+        /// `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Task<GetResourcePoliciesResult> InvokeAsync(GetResourcePoliciesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetResourcePoliciesResult>("mongodbatlas:index/getResourcePolicies:getResourcePolicies", args ?? new GetResourcePoliciesArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getResourcePolicies
+        /// 
+        /// `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetResourcePoliciesResult> Invoke(GetResourcePoliciesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetResourcePoliciesResult>("mongodbatlas:index/getResourcePolicies:getResourcePolicies", args ?? new GetResourcePoliciesInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getResourcePolicies
+        /// 
+        /// `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetResourcePoliciesResult> Invoke(GetResourcePoliciesInvokeArgs args, InvokeOutputOptions options)

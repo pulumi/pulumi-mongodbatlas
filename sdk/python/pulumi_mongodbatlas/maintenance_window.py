@@ -14,6 +14,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['MaintenanceWindowArgs', 'MaintenanceWindow']
 
@@ -26,12 +28,14 @@ class MaintenanceWindowArgs:
                  auto_defer_once_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  defer: Optional[pulumi.Input[builtins.bool]] = None,
                  hour_of_day: Optional[pulumi.Input[builtins.int]] = None,
+                 protected_hours: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']] = None,
                  start_asap: Optional[pulumi.Input[builtins.bool]] = None):
         """
         The set of arguments for constructing a MaintenanceWindow resource.
         :param pulumi.Input[builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
         :param pulumi.Input[builtins.bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
+        :param pulumi.Input[builtins.bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[builtins.bool] defer: Defer the next scheduled maintenance for the given project for one week.
         :param pulumi.Input[builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         :param pulumi.Input[builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
@@ -46,6 +50,8 @@ class MaintenanceWindowArgs:
             pulumi.set(__self__, "defer", defer)
         if hour_of_day is not None:
             pulumi.set(__self__, "hour_of_day", hour_of_day)
+        if protected_hours is not None:
+            pulumi.set(__self__, "protected_hours", protected_hours)
         if start_asap is not None:
             pulumi.set(__self__, "start_asap", start_asap)
 
@@ -88,6 +94,9 @@ class MaintenanceWindowArgs:
     @property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @auto_defer_once_enabled.setter
@@ -119,6 +128,15 @@ class MaintenanceWindowArgs:
         pulumi.set(self, "hour_of_day", value)
 
     @property
+    @pulumi.getter(name="protectedHours")
+    def protected_hours(self) -> Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]:
+        return pulumi.get(self, "protected_hours")
+
+    @protected_hours.setter
+    def protected_hours(self, value: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]):
+        pulumi.set(self, "protected_hours", value)
+
+    @property
     @pulumi.getter(name="startAsap")
     def start_asap(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
@@ -141,16 +159,20 @@ class _MaintenanceWindowState:
                  hour_of_day: Optional[pulumi.Input[builtins.int]] = None,
                  number_of_deferrals: Optional[pulumi.Input[builtins.int]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
-                 start_asap: Optional[pulumi.Input[builtins.bool]] = None):
+                 protected_hours: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']] = None,
+                 start_asap: Optional[pulumi.Input[builtins.bool]] = None,
+                 time_zone_id: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering MaintenanceWindow resources.
         :param pulumi.Input[builtins.bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
+        :param pulumi.Input[builtins.bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[builtins.bool] defer: Defer the next scheduled maintenance for the given project for one week.
         :param pulumi.Input[builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         :param pulumi.Input[builtins.int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         :param pulumi.Input[builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
         :param pulumi.Input[builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        :param pulumi.Input[builtins.str] time_zone_id: Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
         """
         if auto_defer is not None:
             pulumi.set(__self__, "auto_defer", auto_defer)
@@ -166,8 +188,12 @@ class _MaintenanceWindowState:
             pulumi.set(__self__, "number_of_deferrals", number_of_deferrals)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if protected_hours is not None:
+            pulumi.set(__self__, "protected_hours", protected_hours)
         if start_asap is not None:
             pulumi.set(__self__, "start_asap", start_asap)
+        if time_zone_id is not None:
+            pulumi.set(__self__, "time_zone_id", time_zone_id)
 
     @property
     @pulumi.getter(name="autoDefer")
@@ -184,6 +210,9 @@ class _MaintenanceWindowState:
     @property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @auto_defer_once_enabled.setter
@@ -251,6 +280,15 @@ class _MaintenanceWindowState:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="protectedHours")
+    def protected_hours(self) -> Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]:
+        return pulumi.get(self, "protected_hours")
+
+    @protected_hours.setter
+    def protected_hours(self, value: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]):
+        pulumi.set(self, "protected_hours", value)
+
+    @property
     @pulumi.getter(name="startAsap")
     def start_asap(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
@@ -261,6 +299,18 @@ class _MaintenanceWindowState:
     @start_asap.setter
     def start_asap(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "start_asap", value)
+
+    @property
+    @pulumi.getter(name="timeZoneId")
+    def time_zone_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+        """
+        return pulumi.get(self, "time_zone_id")
+
+    @time_zone_id.setter
+    def time_zone_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "time_zone_id", value)
 
 
 class MaintenanceWindow(pulumi.CustomResource):
@@ -277,6 +327,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  defer: Optional[pulumi.Input[builtins.bool]] = None,
                  hour_of_day: Optional[pulumi.Input[builtins.int]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 protected_hours: Optional[pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
                  start_asap: Optional[pulumi.Input[builtins.bool]] = None,
                  __props__=None):
         """
@@ -305,7 +356,11 @@ class MaintenanceWindow(pulumi.CustomResource):
         test = mongodbatlas.MaintenanceWindow("test",
             project_id="<your-project-id>",
             day_of_week=3,
-            hour_of_day=4)
+            hour_of_day=4,
+            protected_hours={
+                "start_hour_of_day": 9,
+                "end_hour_of_day": 17,
+            })
         ```
 
         ```python
@@ -329,6 +384,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
+        :param pulumi.Input[builtins.bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[builtins.bool] defer: Defer the next scheduled maintenance for the given project for one week.
         :param pulumi.Input[builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
@@ -367,7 +423,11 @@ class MaintenanceWindow(pulumi.CustomResource):
         test = mongodbatlas.MaintenanceWindow("test",
             project_id="<your-project-id>",
             day_of_week=3,
-            hour_of_day=4)
+            hour_of_day=4,
+            protected_hours={
+                "start_hour_of_day": 9,
+                "end_hour_of_day": 17,
+            })
         ```
 
         ```python
@@ -409,6 +469,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  defer: Optional[pulumi.Input[builtins.bool]] = None,
                  hour_of_day: Optional[pulumi.Input[builtins.int]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 protected_hours: Optional[pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
                  start_asap: Optional[pulumi.Input[builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -429,8 +490,10 @@ class MaintenanceWindow(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["protected_hours"] = protected_hours
             __props__.__dict__["start_asap"] = start_asap
             __props__.__dict__["number_of_deferrals"] = None
+            __props__.__dict__["time_zone_id"] = None
         super(MaintenanceWindow, __self__).__init__(
             'mongodbatlas:index/maintenanceWindow:MaintenanceWindow',
             resource_name,
@@ -448,7 +511,9 @@ class MaintenanceWindow(pulumi.CustomResource):
             hour_of_day: Optional[pulumi.Input[builtins.int]] = None,
             number_of_deferrals: Optional[pulumi.Input[builtins.int]] = None,
             project_id: Optional[pulumi.Input[builtins.str]] = None,
-            start_asap: Optional[pulumi.Input[builtins.bool]] = None) -> 'MaintenanceWindow':
+            protected_hours: Optional[pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
+            start_asap: Optional[pulumi.Input[builtins.bool]] = None,
+            time_zone_id: Optional[pulumi.Input[builtins.str]] = None) -> 'MaintenanceWindow':
         """
         Get an existing MaintenanceWindow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -457,12 +522,14 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
+        :param pulumi.Input[builtins.bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[builtins.bool] defer: Defer the next scheduled maintenance for the given project for one week.
         :param pulumi.Input[builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
         :param pulumi.Input[builtins.int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         :param pulumi.Input[builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
         :param pulumi.Input[builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        :param pulumi.Input[builtins.str] time_zone_id: Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -475,7 +542,9 @@ class MaintenanceWindow(pulumi.CustomResource):
         __props__.__dict__["hour_of_day"] = hour_of_day
         __props__.__dict__["number_of_deferrals"] = number_of_deferrals
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["protected_hours"] = protected_hours
         __props__.__dict__["start_asap"] = start_asap
+        __props__.__dict__["time_zone_id"] = time_zone_id
         return MaintenanceWindow(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -489,6 +558,9 @@ class MaintenanceWindow(pulumi.CustomResource):
     @property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> pulumi.Output[builtins.bool]:
+        """
+        Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @property
@@ -532,10 +604,23 @@ class MaintenanceWindow(pulumi.CustomResource):
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="protectedHours")
+    def protected_hours(self) -> pulumi.Output[Optional['outputs.MaintenanceWindowProtectedHours']]:
+        return pulumi.get(self, "protected_hours")
+
+    @property
     @pulumi.getter(name="startAsap")
     def start_asap(self) -> pulumi.Output[builtins.bool]:
         """
         Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         """
         return pulumi.get(self, "start_asap")
+
+    @property
+    @pulumi.getter(name="timeZoneId")
+    def time_zone_id(self) -> pulumi.Output[builtins.str]:
+        """
+        Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+        """
+        return pulumi.get(self, "time_zone_id")
 

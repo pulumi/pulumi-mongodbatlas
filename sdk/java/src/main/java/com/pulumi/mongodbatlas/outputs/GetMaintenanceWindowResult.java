@@ -5,16 +5,17 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetMaintenanceWindowProtectedHour;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetMaintenanceWindowResult {
     /**
      * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-     * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
      * 
      */
     private Boolean autoDeferOnceEnabled;
@@ -40,15 +41,24 @@ public final class GetMaintenanceWindowResult {
     private Integer numberOfDeferrals;
     private String projectId;
     /**
+     * @return (Optional) Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     * 
+     */
+    private List<GetMaintenanceWindowProtectedHour> protectedHours;
+    /**
      * @return Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
      */
     private Boolean startAsap;
+    /**
+     * @return Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+     * 
+     */
+    private String timeZoneId;
 
     private GetMaintenanceWindowResult() {}
     /**
      * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-     * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
      * 
      */
     public Boolean autoDeferOnceEnabled() {
@@ -86,11 +96,25 @@ public final class GetMaintenanceWindowResult {
         return this.projectId;
     }
     /**
+     * @return (Optional) Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     * 
+     */
+    public List<GetMaintenanceWindowProtectedHour> protectedHours() {
+        return this.protectedHours;
+    }
+    /**
      * @return Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
      */
     public Boolean startAsap() {
         return this.startAsap;
+    }
+    /**
+     * @return Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+     * 
+     */
+    public String timeZoneId() {
+        return this.timeZoneId;
     }
 
     public static Builder builder() {
@@ -108,7 +132,9 @@ public final class GetMaintenanceWindowResult {
         private String id;
         private Integer numberOfDeferrals;
         private String projectId;
+        private List<GetMaintenanceWindowProtectedHour> protectedHours;
         private Boolean startAsap;
+        private String timeZoneId;
         public Builder() {}
         public Builder(GetMaintenanceWindowResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -118,7 +144,9 @@ public final class GetMaintenanceWindowResult {
     	      this.id = defaults.id;
     	      this.numberOfDeferrals = defaults.numberOfDeferrals;
     	      this.projectId = defaults.projectId;
+    	      this.protectedHours = defaults.protectedHours;
     	      this.startAsap = defaults.startAsap;
+    	      this.timeZoneId = defaults.timeZoneId;
         }
 
         @CustomType.Setter
@@ -170,11 +198,30 @@ public final class GetMaintenanceWindowResult {
             return this;
         }
         @CustomType.Setter
+        public Builder protectedHours(List<GetMaintenanceWindowProtectedHour> protectedHours) {
+            if (protectedHours == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "protectedHours");
+            }
+            this.protectedHours = protectedHours;
+            return this;
+        }
+        public Builder protectedHours(GetMaintenanceWindowProtectedHour... protectedHours) {
+            return protectedHours(List.of(protectedHours));
+        }
+        @CustomType.Setter
         public Builder startAsap(Boolean startAsap) {
             if (startAsap == null) {
               throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "startAsap");
             }
             this.startAsap = startAsap;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder timeZoneId(String timeZoneId) {
+            if (timeZoneId == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "timeZoneId");
+            }
+            this.timeZoneId = timeZoneId;
             return this;
         }
         public GetMaintenanceWindowResult build() {
@@ -185,7 +232,9 @@ public final class GetMaintenanceWindowResult {
             _resultValue.id = id;
             _resultValue.numberOfDeferrals = numberOfDeferrals;
             _resultValue.projectId = projectId;
+            _resultValue.protectedHours = protectedHours;
             _resultValue.startAsap = startAsap;
+            _resultValue.timeZoneId = timeZoneId;
             return _resultValue;
         }
     }

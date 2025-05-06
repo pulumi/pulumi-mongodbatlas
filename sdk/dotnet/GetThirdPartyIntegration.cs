@@ -127,41 +127,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetThirdPartyIntegrationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Whether your cluster has Prometheus enabled.
-        /// </summary>
-        [Input("enabled")]
-        public bool? Enabled { get; set; }
-
-        [Input("microsoftTeamsWebhookUrl")]
-        private string? _microsoftTeamsWebhookUrl;
-
-        /// <summary>
-        /// Your Microsoft Teams incoming webhook URL.
-        /// * `PROMETHEUS`
-        /// </summary>
-        public string? MicrosoftTeamsWebhookUrl
-        {
-            get => _microsoftTeamsWebhookUrl;
-            set => _microsoftTeamsWebhookUrl = value;
-        }
-
-        /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
-
-        [Input("serviceDiscovery")]
-        private string? _serviceDiscovery;
-
-        /// <summary>
-        /// Indicates which service discovery method is used, either file or http.
-        /// </summary>
-        public string? ServiceDiscovery
-        {
-            get => _serviceDiscovery;
-            set => _serviceDiscovery = value;
-        }
 
         /// <summary>
         /// Third-Party service integration type
@@ -176,18 +145,6 @@ namespace Pulumi.Mongodbatlas
         [Input("type", required: true)]
         public string Type { get; set; } = null!;
 
-        [Input("userName")]
-        private string? _userName;
-
-        /// <summary>
-        /// Your Prometheus username.
-        /// </summary>
-        public string? UserName
-        {
-            get => _userName;
-            set => _userName = value;
-        }
-
         public GetThirdPartyIntegrationArgs()
         {
         }
@@ -197,49 +154,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetThirdPartyIntegrationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Whether your cluster has Prometheus enabled.
-        /// </summary>
-        [Input("enabled")]
-        public Input<bool>? Enabled { get; set; }
-
-        [Input("microsoftTeamsWebhookUrl")]
-        private Input<string>? _microsoftTeamsWebhookUrl;
-
-        /// <summary>
-        /// Your Microsoft Teams incoming webhook URL.
-        /// * `PROMETHEUS`
-        /// </summary>
-        public Input<string>? MicrosoftTeamsWebhookUrl
-        {
-            get => _microsoftTeamsWebhookUrl;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _microsoftTeamsWebhookUrl = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
-
-        [Input("serviceDiscovery")]
-        private Input<string>? _serviceDiscovery;
-
-        /// <summary>
-        /// Indicates which service discovery method is used, either file or http.
-        /// </summary>
-        public Input<string>? ServiceDiscovery
-        {
-            get => _serviceDiscovery;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _serviceDiscovery = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         /// <summary>
         /// Third-Party service integration type
@@ -253,22 +171,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
-
-        [Input("userName")]
-        private Input<string>? _userName;
-
-        /// <summary>
-        /// Your Prometheus username.
-        /// </summary>
-        public Input<string>? UserName
-        {
-            get => _userName;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _userName = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         public GetThirdPartyIntegrationInvokeArgs()
         {
@@ -289,7 +191,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Whether your cluster has Prometheus enabled.
         /// </summary>
-        public readonly bool? Enabled;
+        public readonly bool Enabled;
         /// <summary>
         /// Unique identifier of the integration.
         /// </summary>
@@ -298,7 +200,7 @@ namespace Pulumi.Mongodbatlas
         /// Your Microsoft Teams incoming webhook URL.
         /// * `PROMETHEUS`
         /// </summary>
-        public readonly string? MicrosoftTeamsWebhookUrl;
+        public readonly string MicrosoftTeamsWebhookUrl;
         public readonly string ProjectId;
         /// <summary>
         /// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
@@ -316,9 +218,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Secret;
         /// <summary>
+        /// Toggle sending collection latency metrics that includes database names and collection name sand latency metrics on reads, writes, commands, and transactions.
+        /// </summary>
+        public readonly bool SendCollectionLatencyMetrics;
+        /// <summary>
+        /// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+        /// * `OPS_GENIE`
+        /// </summary>
+        public readonly bool SendDatabaseMetrics;
+        /// <summary>
         /// Indicates which service discovery method is used, either file or http.
         /// </summary>
-        public readonly string? ServiceDiscovery;
+        public readonly string ServiceDiscovery;
         /// <summary>
         /// Your Service Key.
         /// * `DATADOG`
@@ -333,7 +244,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Your Prometheus username.
         /// </summary>
-        public readonly string? UserName;
+        public readonly string UserName;
 
         [OutputConstructor]
         private GetThirdPartyIntegrationResult(
@@ -343,11 +254,11 @@ namespace Pulumi.Mongodbatlas
 
             string channelName,
 
-            bool? enabled,
+            bool enabled,
 
             string id,
 
-            string? microsoftTeamsWebhookUrl,
+            string microsoftTeamsWebhookUrl,
 
             string projectId,
 
@@ -357,7 +268,11 @@ namespace Pulumi.Mongodbatlas
 
             string secret,
 
-            string? serviceDiscovery,
+            bool sendCollectionLatencyMetrics,
+
+            bool sendDatabaseMetrics,
+
+            string serviceDiscovery,
 
             string serviceKey,
 
@@ -367,7 +282,7 @@ namespace Pulumi.Mongodbatlas
 
             string url,
 
-            string? userName)
+            string userName)
         {
             AccountId = accountId;
             ApiKey = apiKey;
@@ -379,6 +294,8 @@ namespace Pulumi.Mongodbatlas
             Region = region;
             RoutingKey = routingKey;
             Secret = secret;
+            SendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
+            SendDatabaseMetrics = sendDatabaseMetrics;
             ServiceDiscovery = serviceDiscovery;
             ServiceKey = serviceKey;
             TeamName = teamName;
