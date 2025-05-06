@@ -93,6 +93,9 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		DocRules:     &tfbridge.DocRuleInfo{EditRules: docEditRules},
+
+		UpstreamRepoPath: "./upstream",
+
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"mongodbatlas_mongodb_employee_access_grant": {
 				ComputeID: tfbridge.DelegateIDField(
