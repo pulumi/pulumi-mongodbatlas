@@ -946,10 +946,8 @@ class _AdvancedClusterState:
         pulumi.set(self, "version_release_system", value)
 
 
+@pulumi.type_token("mongodbatlas:index/advancedCluster:AdvancedCluster")
 class AdvancedCluster(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/advancedCluster:AdvancedCluster"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

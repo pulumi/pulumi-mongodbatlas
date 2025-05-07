@@ -293,10 +293,8 @@ class _AlertConfigurationState:
         pulumi.set(self, "updated", value)
 
 
+@pulumi.type_token("mongodbatlas:index/alertConfiguration:AlertConfiguration")
 class AlertConfiguration(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/alertConfiguration:AlertConfiguration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

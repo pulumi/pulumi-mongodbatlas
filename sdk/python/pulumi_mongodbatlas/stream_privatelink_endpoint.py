@@ -366,10 +366,8 @@ class _StreamPrivatelinkEndpointState:
         pulumi.set(self, "vendor", value)
 
 
+@pulumi.type_token("mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint")
 class StreamPrivatelinkEndpoint(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

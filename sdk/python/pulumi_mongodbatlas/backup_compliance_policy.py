@@ -527,10 +527,8 @@ class _BackupCompliancePolicyState:
         pulumi.set(self, "updated_user", value)
 
 
+@pulumi.type_token("mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy")
 class BackupCompliancePolicy(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

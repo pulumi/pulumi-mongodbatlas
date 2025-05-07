@@ -143,10 +143,8 @@ class _TeamState:
         pulumi.set(self, "usernames", value)
 
 
+@pulumi.type_token("mongodbatlas:index/team:Team")
 class Team(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/team:Team"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

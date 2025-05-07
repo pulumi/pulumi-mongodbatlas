@@ -137,10 +137,8 @@ class _ProjectApiKeyState:
         pulumi.set(self, "public_key", value)
 
 
+@pulumi.type_token("mongodbatlas:index/projectApiKey:ProjectApiKey")
 class ProjectApiKey(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/projectApiKey:ProjectApiKey"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

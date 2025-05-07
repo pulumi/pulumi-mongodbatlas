@@ -238,10 +238,8 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive")
 class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

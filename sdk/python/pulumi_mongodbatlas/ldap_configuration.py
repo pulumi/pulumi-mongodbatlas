@@ -362,10 +362,8 @@ class _LdapConfigurationState:
         pulumi.set(self, "user_to_dn_mappings", value)
 
 
+@pulumi.type_token("mongodbatlas:index/ldapConfiguration:LdapConfiguration")
 class LdapConfiguration(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/ldapConfiguration:LdapConfiguration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
