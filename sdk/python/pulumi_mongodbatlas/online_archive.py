@@ -446,10 +446,8 @@ class _OnlineArchiveState:
         pulumi.set(self, "sync_creation", value)
 
 
+@pulumi.type_token("mongodbatlas:index/onlineArchive:OnlineArchive")
 class OnlineArchive(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/onlineArchive:OnlineArchive"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -222,10 +222,8 @@ class _OrgInvitationState:
         pulumi.set(self, "username", value)
 
 
+@pulumi.type_token("mongodbatlas:index/orgInvitation:OrgInvitation")
 class OrgInvitation(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/orgInvitation:OrgInvitation"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -197,10 +197,8 @@ class _GlobalClusterConfigState:
         pulumi.set(self, "project_id", value)
 
 
+@pulumi.type_token("mongodbatlas:index/globalClusterConfig:GlobalClusterConfig")
 class GlobalClusterConfig(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

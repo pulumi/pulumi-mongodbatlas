@@ -305,10 +305,8 @@ class _FlexClusterState:
         pulumi.set(self, "version_release_system", value)
 
 
+@pulumi.type_token("mongodbatlas:index/flexCluster:FlexCluster")
 class FlexCluster(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/flexCluster:FlexCluster"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

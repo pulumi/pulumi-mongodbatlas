@@ -14805,6 +14805,9 @@
                 "type": "string",
                 "description": "AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.\n"
             }
+        },
+        "methods": {
+            "terraformConfig": "pulumi:providers:mongodbatlas/terraformConfig"
         }
     },
     "resources": {
@@ -32770,6 +32773,35 @@
                     "customerX509Cas",
                     "projectId",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "pulumi:providers:mongodbatlas/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:mongodbatlas"
+                    }
+                },
+                "type": "pulumi:providers:mongodbatlas/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
                 ],
                 "type": "object"
             }

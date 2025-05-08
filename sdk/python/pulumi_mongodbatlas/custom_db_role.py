@@ -173,10 +173,8 @@ class _CustomDbRoleState:
         pulumi.set(self, "role_name", value)
 
 
+@pulumi.type_token("mongodbatlas:index/customDbRole:CustomDbRole")
 class CustomDbRole(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/customDbRole:CustomDbRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

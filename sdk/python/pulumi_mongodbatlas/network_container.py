@@ -363,10 +363,8 @@ class _NetworkContainerState:
         pulumi.set(self, "vpc_id", value)
 
 
+@pulumi.type_token("mongodbatlas:index/networkContainer:NetworkContainer")
 class NetworkContainer(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/networkContainer:NetworkContainer"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

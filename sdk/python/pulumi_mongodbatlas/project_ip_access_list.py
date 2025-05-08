@@ -226,10 +226,8 @@ class _ProjectIpAccessListState:
         pulumi.set(self, "timeouts", value)
 
 
+@pulumi.type_token("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList")
 class ProjectIpAccessList(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

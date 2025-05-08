@@ -643,10 +643,8 @@ class _FederatedSettingsIdentityProviderState:
         pulumi.set(self, "user_claim", value)
 
 
+@pulumi.type_token("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider")
 class FederatedSettingsIdentityProvider(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

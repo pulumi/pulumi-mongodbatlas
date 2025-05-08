@@ -194,10 +194,8 @@ class _X509AuthenticationDatabaseUserState:
         pulumi.set(self, "username", value)
 
 
+@pulumi.type_token("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser")
 class X509AuthenticationDatabaseUser(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

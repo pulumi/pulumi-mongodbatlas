@@ -558,10 +558,8 @@ class _ProjectState:
         pulumi.set(self, "with_default_alerts_settings", value)
 
 
+@pulumi.type_token("mongodbatlas:index/project:Project")
 class Project(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/project:Project"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

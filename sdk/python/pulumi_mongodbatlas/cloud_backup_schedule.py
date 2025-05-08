@@ -561,10 +561,8 @@ class _CloudBackupScheduleState:
         pulumi.set(self, "use_org_and_group_names_in_export_prefix", value)
 
 
+@pulumi.type_token("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule")
 class CloudBackupSchedule(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
