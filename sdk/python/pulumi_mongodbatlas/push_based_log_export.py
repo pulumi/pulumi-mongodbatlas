@@ -216,10 +216,8 @@ class _PushBasedLogExportState:
         pulumi.set(self, "timeouts", value)
 
 
+@pulumi.type_token("mongodbatlas:index/pushBasedLogExport:PushBasedLogExport")
 class PushBasedLogExport(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

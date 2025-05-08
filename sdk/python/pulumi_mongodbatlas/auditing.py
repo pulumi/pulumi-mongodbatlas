@@ -190,10 +190,8 @@ class _AuditingState:
         pulumi.set(self, "project_id", value)
 
 
+@pulumi.type_token("mongodbatlas:index/auditing:Auditing")
 class Auditing(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/auditing:Auditing"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

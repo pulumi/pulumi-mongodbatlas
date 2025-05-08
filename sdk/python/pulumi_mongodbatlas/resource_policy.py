@@ -241,10 +241,8 @@ class _ResourcePolicyState:
         pulumi.set(self, "version", value)
 
 
+@pulumi.type_token("mongodbatlas:index/resourcePolicy:ResourcePolicy")
 class ResourcePolicy(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/resourcePolicy:ResourcePolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

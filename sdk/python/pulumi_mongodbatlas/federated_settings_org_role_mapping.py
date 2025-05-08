@@ -175,10 +175,8 @@ class _FederatedSettingsOrgRoleMappingState:
         pulumi.set(self, "role_mapping_id", value)
 
 
+@pulumi.type_token("mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping")
 class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

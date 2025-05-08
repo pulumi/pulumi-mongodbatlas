@@ -349,10 +349,8 @@ class _CloudBackupSnapshotRestoreJobState:
         pulumi.set(self, "timestamp", value)
 
 
+@pulumi.type_token("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob")
 class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

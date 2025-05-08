@@ -313,10 +313,8 @@ class _MaintenanceWindowState:
         pulumi.set(self, "time_zone_id", value)
 
 
+@pulumi.type_token("mongodbatlas:index/maintenanceWindow:MaintenanceWindow")
 class MaintenanceWindow(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/maintenanceWindow:MaintenanceWindow"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

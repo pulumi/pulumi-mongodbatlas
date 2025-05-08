@@ -188,10 +188,8 @@ class _ClusterOutageSimulationState:
         pulumi.set(self, "state", value)
 
 
+@pulumi.type_token("mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation")
 class ClusterOutageSimulation(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

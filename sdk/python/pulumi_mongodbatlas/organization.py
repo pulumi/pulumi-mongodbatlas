@@ -410,10 +410,8 @@ class _OrganizationState:
         pulumi.set(self, "skip_default_alerts_settings", value)
 
 
+@pulumi.type_token("mongodbatlas:index/organization:Organization")
 class Organization(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/organization:Organization"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

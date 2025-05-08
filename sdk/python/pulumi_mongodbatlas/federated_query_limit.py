@@ -296,10 +296,8 @@ class _FederatedQueryLimitState:
         pulumi.set(self, "value", value)
 
 
+@pulumi.type_token("mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit")
 class FederatedQueryLimit(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

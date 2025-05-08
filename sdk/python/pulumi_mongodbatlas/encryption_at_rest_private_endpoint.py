@@ -174,10 +174,8 @@ class _EncryptionAtRestPrivateEndpointState:
         pulumi.set(self, "status", value)
 
 
+@pulumi.type_token("mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint")
 class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

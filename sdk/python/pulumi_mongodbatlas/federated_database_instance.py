@@ -438,10 +438,8 @@ class _FederatedDatabaseInstanceState:
         pulumi.set(self, "storage_stores", value)
 
 
+@pulumi.type_token("mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance")
 class FederatedDatabaseInstance(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

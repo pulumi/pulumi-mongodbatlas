@@ -444,10 +444,8 @@ class _DatabaseUserState:
         pulumi.set(self, "x509_type", value)
 
 
+@pulumi.type_token("mongodbatlas:index/databaseUser:DatabaseUser")
 class DatabaseUser(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/databaseUser:DatabaseUser"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

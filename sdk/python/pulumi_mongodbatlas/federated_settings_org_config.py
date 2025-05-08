@@ -280,10 +280,8 @@ class _FederatedSettingsOrgConfigState:
         pulumi.set(self, "user_conflicts", value)
 
 
+@pulumi.type_token("mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig")
 class FederatedSettingsOrgConfig(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

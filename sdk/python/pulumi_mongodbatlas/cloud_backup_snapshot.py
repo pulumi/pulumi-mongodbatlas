@@ -367,10 +367,8 @@ class _CloudBackupSnapshotState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot")
 class CloudBackupSnapshot(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

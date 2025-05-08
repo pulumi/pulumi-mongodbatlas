@@ -338,10 +338,8 @@ class _PrivateLinkEndpointState:
         pulumi.set(self, "status", value)
 
 
+@pulumi.type_token("mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint")
 class PrivateLinkEndpoint(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

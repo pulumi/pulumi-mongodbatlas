@@ -1500,10 +1500,8 @@ class _ClusterState:
         pulumi.set(self, "version_release_system", value)
 
 
+@pulumi.type_token("mongodbatlas:index/cluster:Cluster")
 class Cluster(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/cluster:Cluster"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

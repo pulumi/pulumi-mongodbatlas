@@ -455,10 +455,8 @@ class _ServerlessInstanceState:
         pulumi.set(self, "termination_protection_enabled", value)
 
 
+@pulumi.type_token("mongodbatlas:index/serverlessInstance:ServerlessInstance")
 class ServerlessInstance(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/serverlessInstance:ServerlessInstance"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

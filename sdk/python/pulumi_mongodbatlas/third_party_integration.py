@@ -495,10 +495,8 @@ class _ThirdPartyIntegrationState:
         pulumi.set(self, "user_name", value)
 
 
+@pulumi.type_token("mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration")
 class ThirdPartyIntegration(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

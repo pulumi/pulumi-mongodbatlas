@@ -805,10 +805,8 @@ export type ProjectIpAccessList = import("./projectIpAccessList").ProjectIpAcces
 export const ProjectIpAccessList: typeof import("./projectIpAccessList").ProjectIpAccessList = null as any;
 utilities.lazyLoad(exports, ["ProjectIpAccessList"], () => require("./projectIpAccessList"));
 
-export { ProviderArgs } from "./provider";
-export type Provider = import("./provider").Provider;
-export const Provider: typeof import("./provider").Provider = null as any;
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+export * from "./provider";
+import { Provider } from "./provider";
 
 export { PushBasedLogExportArgs, PushBasedLogExportState } from "./pushBasedLogExport";
 export type PushBasedLogExport = import("./pushBasedLogExport").PushBasedLogExport;

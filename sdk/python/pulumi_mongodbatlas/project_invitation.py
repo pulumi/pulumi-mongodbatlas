@@ -190,10 +190,8 @@ class _ProjectInvitationState:
         pulumi.set(self, "username", value)
 
 
+@pulumi.type_token("mongodbatlas:index/projectInvitation:ProjectInvitation")
 class ProjectInvitation(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/projectInvitation:ProjectInvitation"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

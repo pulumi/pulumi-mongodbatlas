@@ -682,10 +682,8 @@ class _NetworkPeeringState:
         pulumi.set(self, "vpc_id", value)
 
 
+@pulumi.type_token("mongodbatlas:index/networkPeering:NetworkPeering")
 class NetworkPeering(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/networkPeering:NetworkPeering"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

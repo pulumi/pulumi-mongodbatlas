@@ -688,10 +688,8 @@ class _EventTriggerState:
         pulumi.set(self, "unordered", value)
 
 
+@pulumi.type_token("mongodbatlas:index/eventTrigger:EventTrigger")
 class EventTrigger(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/eventTrigger:EventTrigger"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

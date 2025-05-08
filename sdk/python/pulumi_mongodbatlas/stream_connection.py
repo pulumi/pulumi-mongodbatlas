@@ -399,10 +399,8 @@ class _StreamConnectionState:
         pulumi.set(self, "url", value)
 
 
+@pulumi.type_token("mongodbatlas:index/streamConnection:StreamConnection")
 class StreamConnection(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/streamConnection:StreamConnection"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

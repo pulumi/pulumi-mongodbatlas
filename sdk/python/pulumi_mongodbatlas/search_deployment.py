@@ -208,10 +208,8 @@ class _SearchDeploymentState:
         pulumi.set(self, "timeouts", value)
 
 
+@pulumi.type_token("mongodbatlas:index/searchDeployment:SearchDeployment")
 class SearchDeployment(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/searchDeployment:SearchDeployment"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

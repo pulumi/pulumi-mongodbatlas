@@ -176,10 +176,8 @@ class _StreamInstanceState:
         pulumi.set(self, "stream_config", value)
 
 
+@pulumi.type_token("mongodbatlas:index/streamInstance:StreamInstance")
 class StreamInstance(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/streamInstance:StreamInstance"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

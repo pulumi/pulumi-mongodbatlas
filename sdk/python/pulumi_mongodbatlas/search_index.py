@@ -619,10 +619,8 @@ class _SearchIndexState:
         pulumi.set(self, "wait_for_index_build_completion", value)
 
 
+@pulumi.type_token("mongodbatlas:index/searchIndex:SearchIndex")
 class SearchIndex(pulumi.CustomResource):
-
-    pulumi_type = "mongodbatlas:index/searchIndex:SearchIndex"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
