@@ -109,14 +109,14 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
         return Codegen.optional(this.comment);
     }
     /**
-     * Human-readable label to identify VPC endpoint DNS name.
+     * Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
      * 
      */
     @Export(name="customerEndpointDnsName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> customerEndpointDnsName;
 
     /**
-     * @return Human-readable label to identify VPC endpoint DNS name.
+     * @return Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
      * 
      */
     public Output<Optional<String>> customerEndpointDnsName() {
@@ -165,14 +165,14 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
         return this.providerName;
     }
     /**
-     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
-     * @return Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * @return Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
      * 
      */
     public Output<Optional<String>> region() {

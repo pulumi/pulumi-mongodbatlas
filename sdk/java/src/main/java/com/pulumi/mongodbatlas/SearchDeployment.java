@@ -60,6 +60,20 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
         return this.clusterName;
     }
     /**
+     * Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     * 
+     */
+    @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     * 
+     */
+    public Output<Optional<Boolean>> deleteOnCreateTimeout() {
+        return Codegen.optional(this.deleteOnCreateTimeout);
+    }
+    /**
      * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
      * 
      */

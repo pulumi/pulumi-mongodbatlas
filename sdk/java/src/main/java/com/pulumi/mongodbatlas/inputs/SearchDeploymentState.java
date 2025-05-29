@@ -35,6 +35,21 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     * 
+     */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
+    }
+
+    /**
      * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
      * 
      */
@@ -112,6 +127,7 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
 
     private SearchDeploymentState(SearchDeploymentState $) {
         this.clusterName = $.clusterName;
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.encryptionAtRestProvider = $.encryptionAtRestProvider;
         this.projectId = $.projectId;
         this.skipWaitOnUpdate = $.skipWaitOnUpdate;
@@ -157,6 +173,27 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
          */
         public Builder clusterName(String clusterName) {
             return clusterName(Output.of(clusterName));
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
         }
 
         /**

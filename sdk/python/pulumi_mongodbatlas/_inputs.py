@@ -11079,7 +11079,7 @@ if not MYPY:
         """
         protocol: NotRequired[pulumi.Input[builtins.str]]
         """
-        Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
 elif False:
     StreamConnectionSecurityArgsDict: TypeAlias = Mapping[str, Any]
@@ -11091,7 +11091,7 @@ class StreamConnectionSecurityArgs:
                  protocol: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-        :param pulumi.Input[builtins.str] protocol: Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        :param pulumi.Input[builtins.str] protocol: Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         if broker_public_certificate is not None:
             pulumi.set(__self__, "broker_public_certificate", broker_public_certificate)
@@ -11114,7 +11114,7 @@ class StreamConnectionSecurityArgs:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         return pulumi.get(self, "protocol")
 

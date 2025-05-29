@@ -2333,7 +2333,7 @@ export interface StreamConnectionSecurity {
      */
     brokerPublicCertificate?: pulumi.Input<string>;
     /**
-     * Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      */
     protocol?: pulumi.Input<string>;
 }

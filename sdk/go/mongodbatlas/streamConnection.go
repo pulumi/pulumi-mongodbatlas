@@ -50,7 +50,7 @@ import (
 //
 // ```
 //
-// ### Example Kafka Plaintext Connection
+// ### Example Kafka SASL Plaintext Connection
 //
 // ```go
 // package main
@@ -75,7 +75,7 @@ import (
 //					Password:  pulumi.String("somepassword"),
 //				},
 //				Security: &mongodbatlas.StreamConnectionSecurityArgs{
-//					Protocol: pulumi.String("PLAINTEXT"),
+//					Protocol: pulumi.String("SASL_PLAINTEXT"),
 //				},
 //				Config: pulumi.StringMap{
 //					"auto.offset.reset": pulumi.String("latest"),

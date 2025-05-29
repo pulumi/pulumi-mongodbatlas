@@ -31,14 +31,14 @@ public final class StreamConnectionSecurityArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      * 
      */
     @Import(name="protocol")
     private @Nullable Output<String> protocol;
 
     /**
-     * @return Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * @return Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      * 
      */
     public Optional<Output<String>> protocol() {
@@ -92,7 +92,7 @@ public final class StreamConnectionSecurityArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param protocol Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+         * @param protocol Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class StreamConnectionSecurityArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param protocol Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+         * @param protocol Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
          * 
          * @return builder
          * 

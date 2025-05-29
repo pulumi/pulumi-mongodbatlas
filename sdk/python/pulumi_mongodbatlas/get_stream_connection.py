@@ -163,7 +163,7 @@ class GetStreamConnectionResult:
     @pulumi.getter
     def security(self) -> 'outputs.GetStreamConnectionSecurityResult':
         """
-        Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+        Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
         """
         return pulumi.get(self, "security")
 

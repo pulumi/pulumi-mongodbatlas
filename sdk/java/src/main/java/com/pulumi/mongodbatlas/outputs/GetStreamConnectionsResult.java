@@ -73,7 +73,7 @@ public final class GetStreamConnectionsResult {
      */
     private String projectId;
     /**
-     * @return Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+     * @return Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
      * 
      */
     private GetStreamConnectionsResultSecurity security;
@@ -170,7 +170,7 @@ public final class GetStreamConnectionsResult {
         return this.projectId;
     }
     /**
-     * @return Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+     * @return Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
      * 
      */
     public GetStreamConnectionsResultSecurity security() {

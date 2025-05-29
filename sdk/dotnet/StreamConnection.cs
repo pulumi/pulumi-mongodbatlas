@@ -40,7 +40,7 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### Example Kafka Plaintext Connection
+    /// ### Example Kafka SASL Plaintext Connection
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///         Security = new Mongodbatlas.Inputs.StreamConnectionSecurityArgs
     ///         {
-    ///             Protocol = "PLAINTEXT",
+    ///             Protocol = "SASL_PLAINTEXT",
     ///         },
     ///         Config = 
     ///         {

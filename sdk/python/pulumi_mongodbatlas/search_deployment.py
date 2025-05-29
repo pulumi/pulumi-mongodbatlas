@@ -25,6 +25,7 @@ class SearchDeploymentArgs:
                  cluster_name: pulumi.Input[builtins.str],
                  project_id: pulumi.Input[builtins.str],
                  specs: pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]],
+                 delete_on_create_timeout: Optional[pulumi.Input[builtins.bool]] = None,
                  skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
                  timeouts: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']] = None):
         """
@@ -32,10 +33,13 @@ class SearchDeploymentArgs:
         :param pulumi.Input[builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
+        :param pulumi.Input[builtins.bool] delete_on_create_timeout: Flag that indicates whether to delete the search deployment if the creation times out, default is false.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "specs", specs)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if skip_wait_on_update is not None:
             pulumi.set(__self__, "skip_wait_on_update", skip_wait_on_update)
         if timeouts is not None:
@@ -78,6 +82,18 @@ class SearchDeploymentArgs:
         pulumi.set(self, "specs", value)
 
     @property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
+    @property
     @pulumi.getter(name="skipWaitOnUpdate")
     def skip_wait_on_update(self) -> Optional[pulumi.Input[builtins.bool]]:
         return pulumi.get(self, "skip_wait_on_update")
@@ -100,6 +116,7 @@ class SearchDeploymentArgs:
 class _SearchDeploymentState:
     def __init__(__self__, *,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[builtins.bool]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
                  skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
@@ -109,6 +126,7 @@ class _SearchDeploymentState:
         """
         Input properties used for looking up and filtering SearchDeployment resources.
         :param pulumi.Input[builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
+        :param pulumi.Input[builtins.bool] delete_on_create_timeout: Flag that indicates whether to delete the search deployment if the creation times out, default is false.
         :param pulumi.Input[builtins.str] encryption_at_rest_provider: Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
@@ -116,6 +134,8 @@ class _SearchDeploymentState:
         """
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if encryption_at_rest_provider is not None:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if project_id is not None:
@@ -140,6 +160,18 @@ class _SearchDeploymentState:
     @cluster_name.setter
     def cluster_name(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
 
     @property
     @pulumi.getter(name="encryptionAtRestProvider")
@@ -215,6 +247,7 @@ class SearchDeployment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
                  skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
                  specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
@@ -242,6 +275,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
+        :param pulumi.Input[builtins.bool] delete_on_create_timeout: Flag that indicates whether to delete the search deployment if the creation times out, default is false.
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
@@ -286,6 +320,7 @@ class SearchDeployment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
                  skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
                  specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
@@ -302,6 +337,7 @@ class SearchDeployment(pulumi.CustomResource):
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
+            __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -323,6 +359,7 @@ class SearchDeployment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+            delete_on_create_timeout: Optional[pulumi.Input[builtins.bool]] = None,
             encryption_at_rest_provider: Optional[pulumi.Input[builtins.str]] = None,
             project_id: Optional[pulumi.Input[builtins.str]] = None,
             skip_wait_on_update: Optional[pulumi.Input[builtins.bool]] = None,
@@ -337,6 +374,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
+        :param pulumi.Input[builtins.bool] delete_on_create_timeout: Flag that indicates whether to delete the search deployment if the creation times out, default is false.
         :param pulumi.Input[builtins.str] encryption_at_rest_provider: Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
@@ -347,6 +385,7 @@ class SearchDeployment(pulumi.CustomResource):
         __props__ = _SearchDeploymentState.__new__(_SearchDeploymentState)
 
         __props__.__dict__["cluster_name"] = cluster_name
+        __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
         __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["skip_wait_on_update"] = skip_wait_on_update
@@ -362,6 +401,14 @@ class SearchDeployment(pulumi.CustomResource):
         Label that identifies the cluster to return the search nodes for.
         """
         return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
 
     @property
     @pulumi.getter(name="encryptionAtRestProvider")

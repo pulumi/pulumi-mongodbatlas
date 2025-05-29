@@ -19140,7 +19140,7 @@ func (o StreamConnectionNetworkingAccessPtrOutput) Type() pulumi.StringPtrOutput
 type StreamConnectionSecurity struct {
 	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
 	BrokerPublicCertificate *string `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 	Protocol *string `pulumi:"protocol"`
 }
 
@@ -19158,7 +19158,7 @@ type StreamConnectionSecurityInput interface {
 type StreamConnectionSecurityArgs struct {
 	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
 	BrokerPublicCertificate pulumi.StringPtrInput `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 }
 
@@ -19244,7 +19244,7 @@ func (o StreamConnectionSecurityOutput) BrokerPublicCertificate() pulumi.StringP
 	return o.ApplyT(func(v StreamConnectionSecurity) *string { return v.BrokerPublicCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 func (o StreamConnectionSecurityOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionSecurity) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
@@ -19283,7 +19283,7 @@ func (o StreamConnectionSecurityPtrOutput) BrokerPublicCertificate() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 func (o StreamConnectionSecurityPtrOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionSecurity) *string {
 		if v == nil {
@@ -53876,7 +53876,7 @@ func (o GetStreamConnectionNetworkingAccessOutput) Type() pulumi.StringOutput {
 type GetStreamConnectionSecurity struct {
 	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
 	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 	Protocol string `pulumi:"protocol"`
 }
 
@@ -53894,7 +53894,7 @@ type GetStreamConnectionSecurityInput interface {
 type GetStreamConnectionSecurityArgs struct {
 	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
 	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
 }
 
@@ -53929,7 +53929,7 @@ func (o GetStreamConnectionSecurityOutput) BrokerPublicCertificate() pulumi.Stri
 	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
 }
 
-// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 func (o GetStreamConnectionSecurityOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.Protocol }).(pulumi.StringOutput)
 }
@@ -53958,7 +53958,7 @@ type GetStreamConnectionsResult struct {
 	Networking GetStreamConnectionsResultNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
-	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+	// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionsResultSecurity `pulumi:"security"`
 	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
@@ -54001,7 +54001,7 @@ type GetStreamConnectionsResultArgs struct {
 	Networking GetStreamConnectionsResultNetworkingInput `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+	// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionsResultSecurityInput `pulumi:"security"`
 	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -54119,7 +54119,7 @@ func (o GetStreamConnectionsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
 func (o GetStreamConnectionsResultOutput) Security() GetStreamConnectionsResultSecurityOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSecurity { return v.Security }).(GetStreamConnectionsResultSecurityOutput)
 }
@@ -54455,7 +54455,7 @@ func (o GetStreamConnectionsResultNetworkingAccessOutput) Type() pulumi.StringOu
 type GetStreamConnectionsResultSecurity struct {
 	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
 	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 	Protocol string `pulumi:"protocol"`
 }
 
@@ -54473,7 +54473,7 @@ type GetStreamConnectionsResultSecurityInput interface {
 type GetStreamConnectionsResultSecurityArgs struct {
 	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
 	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
 }
 
@@ -54508,7 +54508,7 @@ func (o GetStreamConnectionsResultSecurityOutput) BrokerPublicCertificate() pulu
 	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
 }
 
-// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
 func (o GetStreamConnectionsResultSecurityOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.Protocol }).(pulumi.StringOutput)
 }

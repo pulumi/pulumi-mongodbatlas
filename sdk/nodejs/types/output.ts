@@ -7135,7 +7135,7 @@ export interface GetStreamConnectionSecurity {
      */
     brokerPublicCertificate: string;
     /**
-     * Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      */
     protocol: string;
 }
@@ -7187,7 +7187,7 @@ export interface GetStreamConnectionsResult {
      */
     projectId: string;
     /**
-     * Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+     * Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
      */
     security: outputs.GetStreamConnectionsResultSecurity;
     /**
@@ -7257,7 +7257,7 @@ export interface GetStreamConnectionsResultSecurity {
      */
     brokerPublicCertificate: string;
     /**
-     * Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      */
     protocol: string;
 }
@@ -7941,7 +7941,7 @@ export interface StreamConnectionSecurity {
      */
     brokerPublicCertificate?: string;
     /**
-     * Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      */
     protocol?: string;
 }

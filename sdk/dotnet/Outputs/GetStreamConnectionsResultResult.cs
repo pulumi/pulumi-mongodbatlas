@@ -59,7 +59,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+        /// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultSecurityResult Security;
         /// <summary>

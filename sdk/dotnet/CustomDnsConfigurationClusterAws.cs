@@ -14,9 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// `mongodbatlas.CustomDnsConfigurationClusterAws` provides a Custom DNS Configuration for Atlas Clusters on AWS resource. This represents a Custom DNS Configuration for Atlas Clusters on AWS that can be updated in an Atlas project.
     /// 
-    /// &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
-    ///   * Organization Owner
-    ///   * Project Owner
+    /// &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource: &lt;br&gt; - Organization Owner &lt;br&gt; - Project Owner
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 

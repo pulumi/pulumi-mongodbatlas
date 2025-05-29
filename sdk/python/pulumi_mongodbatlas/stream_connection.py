@@ -443,7 +443,7 @@ class StreamConnection(pulumi.CustomResource):
             cluster_name="Cluster0")
         ```
 
-        ### Example Kafka Plaintext Connection
+        ### Example Kafka SASL Plaintext Connection
 
         ```python
         import pulumi
@@ -460,7 +460,7 @@ class StreamConnection(pulumi.CustomResource):
                 "password": "somepassword",
             },
             security={
-                "protocol": "PLAINTEXT",
+                "protocol": "SASL_PLAINTEXT",
             },
             config={
                 "auto.offset.reset": "latest",
@@ -532,7 +532,7 @@ class StreamConnection(pulumi.CustomResource):
             cluster_name="Cluster0")
         ```
 
-        ### Example Kafka Plaintext Connection
+        ### Example Kafka SASL Plaintext Connection
 
         ```python
         import pulumi
@@ -549,7 +549,7 @@ class StreamConnection(pulumi.CustomResource):
                 "password": "somepassword",
             },
             security={
-                "protocol": "PLAINTEXT",
+                "protocol": "SASL_PLAINTEXT",
             },
             config={
                 "auto.offset.reset": "latest",
