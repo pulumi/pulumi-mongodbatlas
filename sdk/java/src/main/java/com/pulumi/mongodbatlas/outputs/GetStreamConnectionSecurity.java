@@ -16,7 +16,7 @@ public final class GetStreamConnectionSecurity {
      */
     private String brokerPublicCertificate;
     /**
-     * @return Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * @return Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      * 
      */
     private String protocol;
@@ -30,7 +30,7 @@ public final class GetStreamConnectionSecurity {
         return this.brokerPublicCertificate;
     }
     /**
-     * @return Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * @return Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      * 
      */
     public String protocol() {

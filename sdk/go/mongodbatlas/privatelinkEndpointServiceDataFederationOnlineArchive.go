@@ -88,7 +88,7 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchive struct {
 
 	// Human-readable string to associate with this private endpoint.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Human-readable label to identify VPC endpoint DNS name.
+	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 	CustomerEndpointDnsName pulumi.StringPtrOutput `pulumi:"customerEndpointDnsName"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 	EndpointId pulumi.StringOutput `pulumi:"endpointId"`
@@ -96,7 +96,7 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchive struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -143,7 +143,7 @@ func GetPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx *pulumi.Contex
 type privatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	// Human-readable string to associate with this private endpoint.
 	Comment *string `pulumi:"comment"`
-	// Human-readable label to identify VPC endpoint DNS name.
+	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 	CustomerEndpointDnsName *string `pulumi:"customerEndpointDnsName"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 	EndpointId *string `pulumi:"endpointId"`
@@ -151,7 +151,7 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName *string `pulumi:"providerName"`
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region *string `pulumi:"region"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type *string `pulumi:"type"`
@@ -160,7 +160,7 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 type PrivatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	// Human-readable string to associate with this private endpoint.
 	Comment pulumi.StringPtrInput
-	// Human-readable label to identify VPC endpoint DNS name.
+	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 	CustomerEndpointDnsName pulumi.StringPtrInput
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 	EndpointId pulumi.StringPtrInput
@@ -168,7 +168,7 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	ProjectId pulumi.StringPtrInput
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringPtrInput
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region pulumi.StringPtrInput
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type pulumi.StringPtrInput
@@ -181,7 +181,7 @@ func (PrivatelinkEndpointServiceDataFederationOnlineArchiveState) ElementType() 
 type privatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	// Human-readable string to associate with this private endpoint.
 	Comment *string `pulumi:"comment"`
-	// Human-readable label to identify VPC endpoint DNS name.
+	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 	CustomerEndpointDnsName *string `pulumi:"customerEndpointDnsName"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 	EndpointId string `pulumi:"endpointId"`
@@ -189,7 +189,7 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region *string `pulumi:"region"`
 }
 
@@ -197,7 +197,7 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 type PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	// Human-readable string to associate with this private endpoint.
 	Comment pulumi.StringPtrInput
-	// Human-readable label to identify VPC endpoint DNS name.
+	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 	CustomerEndpointDnsName pulumi.StringPtrInput
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 	EndpointId pulumi.StringInput
@@ -205,7 +205,7 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	ProjectId pulumi.StringInput
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringInput
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region pulumi.StringPtrInput
 }
 
@@ -303,7 +303,7 @@ func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) Comment() p
 	}).(pulumi.StringPtrOutput)
 }
 
-// Human-readable label to identify VPC endpoint DNS name.
+// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) CustomerEndpointDnsName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.StringPtrOutput {
 		return v.CustomerEndpointDnsName
@@ -329,7 +329,7 @@ func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) ProviderNam
 	}).(pulumi.StringOutput)
 }
 
-// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }

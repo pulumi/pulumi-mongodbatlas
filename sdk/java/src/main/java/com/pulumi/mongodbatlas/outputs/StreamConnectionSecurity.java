@@ -17,7 +17,7 @@ public final class StreamConnectionSecurity {
      */
     private @Nullable String brokerPublicCertificate;
     /**
-     * @return Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * @return Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      * 
      */
     private @Nullable String protocol;
@@ -31,7 +31,7 @@ public final class StreamConnectionSecurity {
         return Optional.ofNullable(this.brokerPublicCertificate);
     }
     /**
-     * @return Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     * @return Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      * 
      */
     public Optional<String> protocol() {

@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Example Kafka Plaintext Connection
+ * ### Example Kafka SASL Plaintext Connection
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  *         password: "somepassword",
  *     },
  *     security: {
- *         protocol: "PLAINTEXT",
+ *         protocol: "SASL_PLAINTEXT",
  *     },
  *     config: {
  *         "auto.offset.reset": "latest",

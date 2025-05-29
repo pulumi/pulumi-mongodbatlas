@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Example Kafka Plaintext Connection
+ * ### Example Kafka SASL Plaintext Connection
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -106,7 +106,7 @@ import javax.annotation.Nullable;
  *                 .password("somepassword")
  *                 .build())
  *             .security(StreamConnectionSecurityArgs.builder()
- *                 .protocol("PLAINTEXT")
+ *                 .protocol("SASL_PLAINTEXT")
  *                 .build())
  *             .config(Map.of("auto.offset.reset", "latest"))
  *             .bootstrapServers("localhost:9091,localhost:9092")
@@ -118,7 +118,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Example Kafka SSL Connection
+ * ### Example Kafka SASL SSL Connection
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * &lt;!--End PulumiCodeChooser --&gt;

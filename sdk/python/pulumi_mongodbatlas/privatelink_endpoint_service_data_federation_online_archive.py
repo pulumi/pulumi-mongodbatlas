@@ -32,8 +32,8 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[builtins.str] comment: Human-readable string to associate with this private endpoint.
-        :param pulumi.Input[builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name.
-        :param pulumi.Input[builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        :param pulumi.Input[builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
+        :param pulumi.Input[builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         """
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "project_id", project_id)
@@ -97,7 +97,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
     @pulumi.getter(name="customerEndpointDnsName")
     def customer_endpoint_dns_name(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Human-readable label to identify VPC endpoint DNS name.
+        Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         """
         return pulumi.get(self, "customer_endpoint_dns_name")
 
@@ -109,7 +109,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         """
         return pulumi.get(self, "region")
 
@@ -131,11 +131,11 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
         """
         Input properties used for looking up and filtering PrivatelinkEndpointServiceDataFederationOnlineArchive resources.
         :param pulumi.Input[builtins.str] comment: Human-readable string to associate with this private endpoint.
-        :param pulumi.Input[builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name.
+        :param pulumi.Input[builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         :param pulumi.Input[builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
-        :param pulumi.Input[builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        :param pulumi.Input[builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         :param pulumi.Input[builtins.str] type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
         if comment is not None:
@@ -169,7 +169,7 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
     @pulumi.getter(name="customerEndpointDnsName")
     def customer_endpoint_dns_name(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Human-readable label to identify VPC endpoint DNS name.
+        Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         """
         return pulumi.get(self, "customer_endpoint_dns_name")
 
@@ -217,7 +217,7 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         """
         return pulumi.get(self, "region")
 
@@ -299,11 +299,11 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] comment: Human-readable string to associate with this private endpoint.
-        :param pulumi.Input[builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name.
+        :param pulumi.Input[builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         :param pulumi.Input[builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
-        :param pulumi.Input[builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        :param pulumi.Input[builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         """
         ...
     @overload
@@ -424,11 +424,11 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] comment: Human-readable string to associate with this private endpoint.
-        :param pulumi.Input[builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name.
+        :param pulumi.Input[builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         :param pulumi.Input[builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
         :param pulumi.Input[builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
-        :param pulumi.Input[builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        :param pulumi.Input[builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         :param pulumi.Input[builtins.str] type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -456,7 +456,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
     @pulumi.getter(name="customerEndpointDnsName")
     def customer_endpoint_dns_name(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        Human-readable label to identify VPC endpoint DNS name.
+        Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         """
         return pulumi.get(self, "customer_endpoint_dns_name")
 
@@ -488,7 +488,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
     @pulumi.getter
     def region(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         """
         return pulumi.get(self, "region")
 

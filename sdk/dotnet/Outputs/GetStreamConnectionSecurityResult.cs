@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string BrokerPublicCertificate;
         /// <summary>
-        /// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        /// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         /// </summary>
         public readonly string Protocol;
 

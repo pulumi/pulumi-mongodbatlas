@@ -34,6 +34,8 @@ type SearchDeployment struct {
 
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
+	// Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+	DeleteOnCreateTimeout pulumi.BoolPtrOutput `pulumi:"deleteOnCreateTimeout"`
 	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
 	EncryptionAtRestProvider pulumi.StringOutput `pulumi:"encryptionAtRestProvider"`
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -87,6 +89,8 @@ func GetSearchDeployment(ctx *pulumi.Context,
 type searchDeploymentState struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName *string `pulumi:"clusterName"`
+	// Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
 	EncryptionAtRestProvider *string `pulumi:"encryptionAtRestProvider"`
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -102,6 +106,8 @@ type searchDeploymentState struct {
 type SearchDeploymentState struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringPtrInput
+	// Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
 	EncryptionAtRestProvider pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -121,6 +127,8 @@ func (SearchDeploymentState) ElementType() reflect.Type {
 type searchDeploymentArgs struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName string `pulumi:"clusterName"`
+	// Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId        string `pulumi:"projectId"`
 	SkipWaitOnUpdate *bool  `pulumi:"skipWaitOnUpdate"`
@@ -133,6 +141,8 @@ type searchDeploymentArgs struct {
 type SearchDeploymentArgs struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringInput
+	// Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId        pulumi.StringInput
 	SkipWaitOnUpdate pulumi.BoolPtrInput
@@ -231,6 +241,11 @@ func (o SearchDeploymentOutput) ToSearchDeploymentOutputWithContext(ctx context.
 // Label that identifies the cluster to return the search nodes for.
 func (o SearchDeploymentOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+func (o SearchDeploymentOutput) DeleteOnCreateTimeout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SearchDeployment) pulumi.BoolPtrOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolPtrOutput)
 }
 
 // Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.

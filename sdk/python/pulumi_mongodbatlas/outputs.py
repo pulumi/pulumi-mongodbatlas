@@ -8781,7 +8781,7 @@ class StreamConnectionSecurity(dict):
                  protocol: Optional[builtins.str] = None):
         """
         :param builtins.str broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-        :param builtins.str protocol: Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        :param builtins.str protocol: Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         if broker_public_certificate is not None:
             pulumi.set(__self__, "broker_public_certificate", broker_public_certificate)
@@ -8800,7 +8800,7 @@ class StreamConnectionSecurity(dict):
     @pulumi.getter
     def protocol(self) -> Optional[builtins.str]:
         """
-        Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         return pulumi.get(self, "protocol")
 
@@ -24711,7 +24711,7 @@ class GetStreamConnectionSecurityResult(dict):
                  protocol: builtins.str):
         """
         :param builtins.str broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-        :param builtins.str protocol: Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        :param builtins.str protocol: Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         pulumi.set(__self__, "broker_public_certificate", broker_public_certificate)
         pulumi.set(__self__, "protocol", protocol)
@@ -24728,7 +24728,7 @@ class GetStreamConnectionSecurityResult(dict):
     @pulumi.getter
     def protocol(self) -> builtins.str:
         """
-        Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         return pulumi.get(self, "protocol")
 
@@ -24763,7 +24763,7 @@ class GetStreamConnectionsResultResult(dict):
         :param builtins.str instance_name: Human-readable label that identifies the stream instance.
         :param 'GetStreamConnectionsResultNetworkingArgs' networking: Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
         :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param 'GetStreamConnectionsResultSecurityArgs' security: Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+        :param 'GetStreamConnectionsResultSecurityArgs' security: Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
         :param builtins.str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         :param builtins.str url: URL of the HTTPs endpoint that will be used for creating a connection.
         """
@@ -24880,7 +24880,7 @@ class GetStreamConnectionsResultResult(dict):
     @pulumi.getter
     def security(self) -> 'outputs.GetStreamConnectionsResultSecurityResult':
         """
-        Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+        Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
         """
         return pulumi.get(self, "security")
 
@@ -25042,7 +25042,7 @@ class GetStreamConnectionsResultSecurityResult(dict):
                  protocol: builtins.str):
         """
         :param builtins.str broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-        :param builtins.str protocol: Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        :param builtins.str protocol: Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         pulumi.set(__self__, "broker_public_certificate", broker_public_certificate)
         pulumi.set(__self__, "protocol", protocol)
@@ -25059,7 +25059,7 @@ class GetStreamConnectionsResultSecurityResult(dict):
     @pulumi.getter
     def protocol(self) -> builtins.str:
         """
-        Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         return pulumi.get(self, "protocol")
 

@@ -85,7 +85,7 @@ export class PrivatelinkEndpointServiceDataFederationOnlineArchive extends pulum
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
-     * Human-readable label to identify VPC endpoint DNS name.
+     * Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
      */
     public readonly customerEndpointDnsName!: pulumi.Output<string | undefined>;
     /**
@@ -101,7 +101,7 @@ export class PrivatelinkEndpointServiceDataFederationOnlineArchive extends pulum
      */
     public readonly providerName!: pulumi.Output<string>;
     /**
-     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
      */
     public readonly region!: pulumi.Output<string | undefined>;
     /**
@@ -162,7 +162,7 @@ export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveState {
      */
     comment?: pulumi.Input<string>;
     /**
-     * Human-readable label to identify VPC endpoint DNS name.
+     * Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
      */
     customerEndpointDnsName?: pulumi.Input<string>;
     /**
@@ -178,7 +178,7 @@ export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveState {
      */
     providerName?: pulumi.Input<string>;
     /**
-     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
      */
     region?: pulumi.Input<string>;
     /**
@@ -196,7 +196,7 @@ export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs {
      */
     comment?: pulumi.Input<string>;
     /**
-     * Human-readable label to identify VPC endpoint DNS name.
+     * Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
      */
     customerEndpointDnsName?: pulumi.Input<string>;
     /**
@@ -212,7 +212,7 @@ export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs {
      */
     providerName: pulumi.Input<string>;
     /**
-     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
      */
     region?: pulumi.Input<string>;
 }

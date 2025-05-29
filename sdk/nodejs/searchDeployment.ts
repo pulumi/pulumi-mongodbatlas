@@ -58,6 +58,10 @@ export class SearchDeployment extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
+     * Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     */
+    public readonly deleteOnCreateTimeout!: pulumi.Output<boolean | undefined>;
+    /**
      * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
      */
     public /*out*/ readonly encryptionAtRestProvider!: pulumi.Output<string>;
@@ -90,6 +94,7 @@ export class SearchDeployment extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SearchDeploymentState | undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["deleteOnCreateTimeout"] = state ? state.deleteOnCreateTimeout : undefined;
             resourceInputs["encryptionAtRestProvider"] = state ? state.encryptionAtRestProvider : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["skipWaitOnUpdate"] = state ? state.skipWaitOnUpdate : undefined;
@@ -108,6 +113,7 @@ export class SearchDeployment extends pulumi.CustomResource {
                 throw new Error("Missing required property 'specs'");
             }
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["deleteOnCreateTimeout"] = args ? args.deleteOnCreateTimeout : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["skipWaitOnUpdate"] = args ? args.skipWaitOnUpdate : undefined;
             resourceInputs["specs"] = args ? args.specs : undefined;
@@ -128,6 +134,10 @@ export interface SearchDeploymentState {
      * Label that identifies the cluster to return the search nodes for.
      */
     clusterName?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
      */
@@ -156,6 +166,10 @@ export interface SearchDeploymentArgs {
      * Label that identifies the cluster to return the search nodes for.
      */
     clusterName: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */

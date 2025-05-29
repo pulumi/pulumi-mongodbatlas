@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? BrokerPublicCertificate { get; set; }
 
         /// <summary>
-        /// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        /// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

@@ -36,6 +36,21 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     * 
+     */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
+    }
+
+    /**
      * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
@@ -83,6 +98,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
 
     private SearchDeploymentArgs(SearchDeploymentArgs $) {
         this.clusterName = $.clusterName;
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.projectId = $.projectId;
         this.skipWaitOnUpdate = $.skipWaitOnUpdate;
         this.specs = $.specs;
@@ -126,6 +142,27 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder clusterName(String clusterName) {
             return clusterName(Output.of(clusterName));
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
         }
 
         /**
