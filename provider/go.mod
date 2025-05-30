@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-mongodbatlas/provider/v3
 
-go 1.24.1
+go 1.24.3
 
 replace github.com/mongodb/terraform-provider-mongodbatlas => ../upstream
 
