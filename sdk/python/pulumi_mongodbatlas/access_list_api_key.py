@@ -187,9 +187,9 @@ class AccessListApiKey(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AccessListApiKey("test",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             cidr_block="1.2.3.4/32",
-            api_key_id="a29120e123cd")
+            api_key_id="<API_KEY_ID>")
         ```
 
         ### Using IP Address
@@ -198,9 +198,9 @@ class AccessListApiKey(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AccessListApiKey("test",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             ip_address="2.3.4.5",
-            api_key_id="a29120e123cd")
+            api_key_id="<API_KEY_ID>")
         ```
 
         ## Import
@@ -236,9 +236,9 @@ class AccessListApiKey(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AccessListApiKey("test",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             cidr_block="1.2.3.4/32",
-            api_key_id="a29120e123cd")
+            api_key_id="<API_KEY_ID>")
         ```
 
         ### Using IP Address
@@ -247,9 +247,9 @@ class AccessListApiKey(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AccessListApiKey("test",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             ip_address="2.3.4.5",
-            api_key_id="a29120e123cd")
+            api_key_id="<API_KEY_ID>")
         ```
 
         ## Import

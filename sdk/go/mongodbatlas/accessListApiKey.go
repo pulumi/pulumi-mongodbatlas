@@ -28,9 +28,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewAccessListApiKey(ctx, "test", &mongodbatlas.AccessListApiKeyArgs{
-//				OrgId:     pulumi.String("<ORG-ID>"),
+//				OrgId:     pulumi.String("<ORG_ID>"),
 //				CidrBlock: pulumi.String("1.2.3.4/32"),
-//				ApiKeyId:  pulumi.String("a29120e123cd"),
+//				ApiKeyId:  pulumi.String("<API_KEY_ID>"),
 //			})
 //			if err != nil {
 //				return err
@@ -55,9 +55,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewAccessListApiKey(ctx, "test", &mongodbatlas.AccessListApiKeyArgs{
-//				OrgId:     pulumi.String("<ORG-ID>"),
+//				OrgId:     pulumi.String("<ORG_ID>"),
 //				IpAddress: pulumi.String("2.3.4.5"),
-//				ApiKeyId:  pulumi.String("a29120e123cd"),
+//				ApiKeyId:  pulumi.String("<API_KEY_ID>"),
 //			})
 //			if err != nil {
 //				return err

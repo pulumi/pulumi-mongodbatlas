@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test0 = new OrgInvitation("test0", OrgInvitationArgs.builder()
  *             .username("test0-acc-username")
- *             .orgId("<ORG-ID>")
+ *             .orgId("<ORG_ID>")
  *             .roles("ORG_OWNER")
  *             .build());
  * 
@@ -79,7 +79,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test0 = new OrgInvitation("test0", OrgInvitationArgs.builder()
  *             .username("test0-acc-username")
- *             .orgId("<ORG-ID>")
+ *             .orgId("<ORG_ID>")
  *             .roles(            
  *                 "ORG_MEMBER",
  *                 "ORG_BILLING_ADMIN")
@@ -116,7 +116,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test1 = new OrgInvitation("test1", OrgInvitationArgs.builder()
  *             .username("test1-acc-username")
- *             .orgId("<ORG-ID>")
+ *             .orgId("<ORG_ID>")
  *             .teamsIds(            
  *                 "<TEAM-0-ID>",
  *                 "<TEAM-1-ID>")

@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
     ///     {
     ///         Username = "test0-acc-username",
-    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         OrgId = "&lt;ORG_ID&gt;",
     ///         Roles = new[]
     ///         {
     ///             "ORG_OWNER",
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
     ///     {
     ///         Username = "test0-acc-username",
-    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         OrgId = "&lt;ORG_ID&gt;",
     ///         Roles = new[]
     ///         {
     ///             "ORG_MEMBER",
@@ -68,7 +68,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test1 = new Mongodbatlas.OrgInvitation("test1", new()
     ///     {
     ///         Username = "test1-acc-username",
-    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         OrgId = "&lt;ORG_ID&gt;",
     ///         TeamsIds = new[]
     ///         {
     ///             "&lt;TEAM-0-ID&gt;",

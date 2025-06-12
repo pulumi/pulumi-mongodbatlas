@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * const test0 = new mongodbatlas.OrgInvitation("test0", {
  *     username: "test0-acc-username",
- *     orgId: "<ORG-ID>",
+ *     orgId: "<ORG_ID>",
  *     roles: ["ORG_OWNER"],
  * });
  * ```
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *
  * const test0 = new mongodbatlas.OrgInvitation("test0", {
  *     username: "test0-acc-username",
- *     orgId: "<ORG-ID>",
+ *     orgId: "<ORG_ID>",
  *     roles: [
  *         "ORG_MEMBER",
  *         "ORG_BILLING_ADMIN",
@@ -40,7 +40,7 @@ import * as utilities from "./utilities";
  *
  * const test1 = new mongodbatlas.OrgInvitation("test1", {
  *     username: "test1-acc-username",
- *     orgId: "<ORG-ID>",
+ *     orgId: "<ORG_ID>",
  *     teamsIds: [
  *         "<TEAM-0-ID>",
  *         "<TEAM-1-ID>",
