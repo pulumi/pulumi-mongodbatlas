@@ -30,7 +30,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOrgInvitation(ctx, "test0", &mongodbatlas.OrgInvitationArgs{
 //				Username: pulumi.String("test0-acc-username"),
-//				OrgId:    pulumi.String("<ORG-ID>"),
+//				OrgId:    pulumi.String("<ORG_ID>"),
 //				Roles: pulumi.StringArray{
 //					pulumi.String("ORG_OWNER"),
 //				},
@@ -58,7 +58,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOrgInvitation(ctx, "test0", &mongodbatlas.OrgInvitationArgs{
 //				Username: pulumi.String("test0-acc-username"),
-//				OrgId:    pulumi.String("<ORG-ID>"),
+//				OrgId:    pulumi.String("<ORG_ID>"),
 //				Roles: pulumi.StringArray{
 //					pulumi.String("ORG_MEMBER"),
 //					pulumi.String("ORG_BILLING_ADMIN"),
@@ -87,7 +87,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOrgInvitation(ctx, "test1", &mongodbatlas.OrgInvitationArgs{
 //				Username: pulumi.String("test1-acc-username"),
-//				OrgId:    pulumi.String("<ORG-ID>"),
+//				OrgId:    pulumi.String("<ORG_ID>"),
 //				TeamsIds: pulumi.StringArray{
 //					pulumi.String("<TEAM-0-ID>"),
 //					pulumi.String("<TEAM-1-ID>"),

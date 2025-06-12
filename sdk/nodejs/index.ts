@@ -640,6 +640,11 @@ export const getSharedTierSnapshots: typeof import("./getSharedTierSnapshots").g
 export const getSharedTierSnapshotsOutput: typeof import("./getSharedTierSnapshots").getSharedTierSnapshotsOutput = null as any;
 utilities.lazyLoad(exports, ["getSharedTierSnapshots","getSharedTierSnapshotsOutput"], () => require("./getSharedTierSnapshots"));
 
+export { GetStreamAccountDetailsArgs, GetStreamAccountDetailsResult, GetStreamAccountDetailsOutputArgs } from "./getStreamAccountDetails";
+export const getStreamAccountDetails: typeof import("./getStreamAccountDetails").getStreamAccountDetails = null as any;
+export const getStreamAccountDetailsOutput: typeof import("./getStreamAccountDetails").getStreamAccountDetailsOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamAccountDetails","getStreamAccountDetailsOutput"], () => require("./getStreamAccountDetails"));
+
 export { GetStreamConnectionArgs, GetStreamConnectionResult, GetStreamConnectionOutputArgs } from "./getStreamConnection";
 export const getStreamConnection: typeof import("./getStreamConnection").getStreamConnection = null as any;
 export const getStreamConnectionOutput: typeof import("./getStreamConnection").getStreamConnectionOutput = null as any;

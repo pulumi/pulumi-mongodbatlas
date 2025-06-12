@@ -13,9 +13,9 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AccessListApiKey("test", {
- *     orgId: "<ORG-ID>",
+ *     orgId: "<ORG_ID>",
  *     cidrBlock: "1.2.3.4/32",
- *     apiKeyId: "a29120e123cd",
+ *     apiKeyId: "<API_KEY_ID>",
  * });
  * ```
  *
@@ -25,9 +25,9 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AccessListApiKey("test", {
- *     orgId: "<ORG-ID>",
+ *     orgId: "<ORG_ID>",
  *     ipAddress: "2.3.4.5",
- *     apiKeyId: "a29120e123cd",
+ *     apiKeyId: "<API_KEY_ID>",
  * });
  * ```
  *

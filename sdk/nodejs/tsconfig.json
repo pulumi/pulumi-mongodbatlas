@@ -142,6 +142,7 @@
         "getSharedTierRestoreJobs.ts",
         "getSharedTierSnapshot.ts",
         "getSharedTierSnapshots.ts",
+        "getStreamAccountDetails.ts",
         "getStreamConnection.ts",
         "getStreamConnections.ts",
         "getStreamInstance.ts",

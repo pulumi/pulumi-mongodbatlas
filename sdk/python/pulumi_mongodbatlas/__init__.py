@@ -133,6 +133,7 @@ from .get_shared_tier_restore_job import *
 from .get_shared_tier_restore_jobs import *
 from .get_shared_tier_snapshot import *
 from .get_shared_tier_snapshots import *
+from .get_stream_account_details import *
 from .get_stream_connection import *
 from .get_stream_connections import *
 from .get_stream_instance import *

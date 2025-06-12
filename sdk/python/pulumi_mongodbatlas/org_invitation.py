@@ -244,7 +244,7 @@ class OrgInvitation(pulumi.CustomResource):
 
         test0 = mongodbatlas.OrgInvitation("test0",
             username="test0-acc-username",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             roles=["ORG_OWNER"])
         ```
 
@@ -254,7 +254,7 @@ class OrgInvitation(pulumi.CustomResource):
 
         test0 = mongodbatlas.OrgInvitation("test0",
             username="test0-acc-username",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             roles=[
                 "ORG_MEMBER",
                 "ORG_BILLING_ADMIN",
@@ -267,7 +267,7 @@ class OrgInvitation(pulumi.CustomResource):
 
         test1 = mongodbatlas.OrgInvitation("test1",
             username="test1-acc-username",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             teams_ids=[
                 "<TEAM-0-ID>",
                 "<TEAM-1-ID>",
@@ -310,7 +310,7 @@ class OrgInvitation(pulumi.CustomResource):
 
         test0 = mongodbatlas.OrgInvitation("test0",
             username="test0-acc-username",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             roles=["ORG_OWNER"])
         ```
 
@@ -320,7 +320,7 @@ class OrgInvitation(pulumi.CustomResource):
 
         test0 = mongodbatlas.OrgInvitation("test0",
             username="test0-acc-username",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             roles=[
                 "ORG_MEMBER",
                 "ORG_BILLING_ADMIN",
@@ -333,7 +333,7 @@ class OrgInvitation(pulumi.CustomResource):
 
         test1 = mongodbatlas.OrgInvitation("test1",
             username="test1-acc-username",
-            org_id="<ORG-ID>",
+            org_id="<ORG_ID>",
             teams_ids=[
                 "<TEAM-0-ID>",
                 "<TEAM-1-ID>",

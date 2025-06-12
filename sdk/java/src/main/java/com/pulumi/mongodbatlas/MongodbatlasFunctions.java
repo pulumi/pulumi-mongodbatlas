@@ -203,6 +203,8 @@ import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotArgs;
 import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotsArgs;
 import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamConnectionPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
@@ -328,6 +330,7 @@ import com.pulumi.mongodbatlas.outputs.GetSharedTierRestoreJobResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierRestoreJobsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamAccountDetailsResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamInstanceResult;
@@ -30299,6 +30302,261 @@ public final class MongodbatlasFunctions {
     }
     public static CompletableFuture<GetSharedTierSnapshotsInvokeResult> getSharedTierSnapshotsPlain(GetSharedTierSnapshotsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", TypeShape.of(GetSharedTierSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamAccountDetails
+     * 
+     * `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountDetails = MongodbatlasFunctions.getStreamAccountDetails(GetStreamAccountDetailsArgs.builder()
+     *             .projectId(projectId)
+     *             .cloudProvider("aws")
+     *             .regionName("US_EAST_1")
+     *             .build());
+     * 
+     *         ctx.export("awsAccountId", accountDetails.awsAccountId());
+     *         ctx.export("cidrBlock", accountDetails.cidrBlock());
+     *         ctx.export("cloudProvider", accountDetails.cloudProvider());
+     *         ctx.export("vpcId", accountDetails.vpcId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamAccountDetailsResult> getStreamAccountDetails(GetStreamAccountDetailsArgs args) {
+        return getStreamAccountDetails(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamAccountDetails
+     * 
+     * `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountDetails = MongodbatlasFunctions.getStreamAccountDetails(GetStreamAccountDetailsArgs.builder()
+     *             .projectId(projectId)
+     *             .cloudProvider("aws")
+     *             .regionName("US_EAST_1")
+     *             .build());
+     * 
+     *         ctx.export("awsAccountId", accountDetails.awsAccountId());
+     *         ctx.export("cidrBlock", accountDetails.cidrBlock());
+     *         ctx.export("cloudProvider", accountDetails.cloudProvider());
+     *         ctx.export("vpcId", accountDetails.vpcId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamAccountDetailsResult> getStreamAccountDetailsPlain(GetStreamAccountDetailsPlainArgs args) {
+        return getStreamAccountDetailsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamAccountDetails
+     * 
+     * `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountDetails = MongodbatlasFunctions.getStreamAccountDetails(GetStreamAccountDetailsArgs.builder()
+     *             .projectId(projectId)
+     *             .cloudProvider("aws")
+     *             .regionName("US_EAST_1")
+     *             .build());
+     * 
+     *         ctx.export("awsAccountId", accountDetails.awsAccountId());
+     *         ctx.export("cidrBlock", accountDetails.cidrBlock());
+     *         ctx.export("cloudProvider", accountDetails.cloudProvider());
+     *         ctx.export("vpcId", accountDetails.vpcId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamAccountDetailsResult> getStreamAccountDetails(GetStreamAccountDetailsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails", TypeShape.of(GetStreamAccountDetailsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamAccountDetails
+     * 
+     * `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountDetails = MongodbatlasFunctions.getStreamAccountDetails(GetStreamAccountDetailsArgs.builder()
+     *             .projectId(projectId)
+     *             .cloudProvider("aws")
+     *             .regionName("US_EAST_1")
+     *             .build());
+     * 
+     *         ctx.export("awsAccountId", accountDetails.awsAccountId());
+     *         ctx.export("cidrBlock", accountDetails.cidrBlock());
+     *         ctx.export("cloudProvider", accountDetails.cloudProvider());
+     *         ctx.export("vpcId", accountDetails.vpcId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamAccountDetailsResult> getStreamAccountDetails(GetStreamAccountDetailsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails", TypeShape.of(GetStreamAccountDetailsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getStreamAccountDetails
+     * 
+     * `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountDetails = MongodbatlasFunctions.getStreamAccountDetails(GetStreamAccountDetailsArgs.builder()
+     *             .projectId(projectId)
+     *             .cloudProvider("aws")
+     *             .regionName("US_EAST_1")
+     *             .build());
+     * 
+     *         ctx.export("awsAccountId", accountDetails.awsAccountId());
+     *         ctx.export("cidrBlock", accountDetails.cidrBlock());
+     *         ctx.export("cloudProvider", accountDetails.cloudProvider());
+     *         ctx.export("vpcId", accountDetails.vpcId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamAccountDetailsResult> getStreamAccountDetailsPlain(GetStreamAccountDetailsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails", TypeShape.of(GetStreamAccountDetailsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## # Data Source: mongodbatlas.StreamConnection

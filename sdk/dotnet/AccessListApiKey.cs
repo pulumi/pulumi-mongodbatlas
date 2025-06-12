@@ -23,9 +23,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AccessListApiKey("test", new()
     ///     {
-    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         OrgId = "&lt;ORG_ID&gt;",
     ///         CidrBlock = "1.2.3.4/32",
-    ///         ApiKeyId = "a29120e123cd",
+    ///         ApiKeyId = "&lt;API_KEY_ID&gt;",
     ///     });
     /// 
     /// });
@@ -42,9 +42,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AccessListApiKey("test", new()
     ///     {
-    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         OrgId = "&lt;ORG_ID&gt;",
     ///         IpAddress = "2.3.4.5",
-    ///         ApiKeyId = "a29120e123cd",
+    ///         ApiKeyId = "&lt;API_KEY_ID&gt;",
     ///     });
     /// 
     /// });
