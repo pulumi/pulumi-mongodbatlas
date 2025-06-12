@@ -2763,6 +2763,10 @@
                     }
                 }
             },
+            "mongodbatlas_stream_account_details": {
+                "current": "mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails",
+                "majorVersion": 3
+            },
             "mongodbatlas_stream_connection": {
                 "current": "mongodbatlas:index/getStreamConnection:getStreamConnection",
                 "majorVersion": 3
@@ -3068,6 +3072,7 @@
             "mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs": 0,
             "mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot": 0,
             "mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots": 0,
+            "mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails": 1,
             "mongodbatlas:index/getStreamConnection:getStreamConnection": 1,
             "mongodbatlas:index/getStreamConnections:getStreamConnections": 1,
             "mongodbatlas:index/getStreamInstance:getStreamInstance": 1,
