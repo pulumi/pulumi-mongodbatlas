@@ -30,6 +30,7 @@ class StreamConnectionArgs:
                  aws: Optional[pulumi.Input['StreamConnectionAwsArgs']] = None,
                  bootstrap_servers: Optional[pulumi.Input[builtins.str]] = None,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+                 cluster_project_id: Optional[pulumi.Input[builtins.str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
@@ -55,6 +56,8 @@ class StreamConnectionArgs:
             pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
+        if cluster_project_id is not None:
+            pulumi.set(__self__, "cluster_project_id", cluster_project_id)
         if config is not None:
             pulumi.set(__self__, "config", config)
         if db_role_to_execute is not None:
@@ -153,6 +156,15 @@ class StreamConnectionArgs:
         pulumi.set(self, "cluster_name", value)
 
     @property
+    @pulumi.getter(name="clusterProjectId")
+    def cluster_project_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        return pulumi.get(self, "cluster_project_id")
+
+    @cluster_project_id.setter
+    def cluster_project_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "cluster_project_id", value)
+
+    @property
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
         return pulumi.get(self, "config")
@@ -214,6 +226,7 @@ class _StreamConnectionState:
                  aws: Optional[pulumi.Input['StreamConnectionAwsArgs']] = None,
                  bootstrap_servers: Optional[pulumi.Input[builtins.str]] = None,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+                 cluster_project_id: Optional[pulumi.Input[builtins.str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  connection_name: Optional[pulumi.Input[builtins.str]] = None,
                  db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
@@ -239,6 +252,8 @@ class _StreamConnectionState:
             pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
+        if cluster_project_id is not None:
+            pulumi.set(__self__, "cluster_project_id", cluster_project_id)
         if config is not None:
             pulumi.set(__self__, "config", config)
         if connection_name is not None:
@@ -295,6 +310,15 @@ class _StreamConnectionState:
     @cluster_name.setter
     def cluster_name(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="clusterProjectId")
+    def cluster_project_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        return pulumi.get(self, "cluster_project_id")
+
+    @cluster_project_id.setter
+    def cluster_project_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "cluster_project_id", value)
 
     @property
     @pulumi.getter
@@ -409,6 +433,7 @@ class StreamConnection(pulumi.CustomResource):
                  aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
                  bootstrap_servers: Optional[pulumi.Input[builtins.str]] = None,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+                 cluster_project_id: Optional[pulumi.Input[builtins.str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  connection_name: Optional[pulumi.Input[builtins.str]] = None,
                  db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
@@ -441,6 +466,21 @@ class StreamConnection(pulumi.CustomResource):
             connection_name="ConnectionName",
             type="Cluster",
             cluster_name="Cluster0")
+        ```
+
+        ### Example Cross Project Cluster Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            instance_name="InstanceName",
+            connection_name="ConnectionName",
+            type="Cluster",
+            cluster_name="OtherCluster",
+            cluster_project_id=other_project_id)
         ```
 
         ### Example Kafka SASL Plaintext Connection
@@ -532,6 +572,21 @@ class StreamConnection(pulumi.CustomResource):
             cluster_name="Cluster0")
         ```
 
+        ### Example Cross Project Cluster Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            instance_name="InstanceName",
+            connection_name="ConnectionName",
+            type="Cluster",
+            cluster_name="OtherCluster",
+            cluster_project_id=other_project_id)
+        ```
+
         ### Example Kafka SASL Plaintext Connection
 
         ```python
@@ -604,6 +659,7 @@ class StreamConnection(pulumi.CustomResource):
                  aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
                  bootstrap_servers: Optional[pulumi.Input[builtins.str]] = None,
                  cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+                 cluster_project_id: Optional[pulumi.Input[builtins.str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  connection_name: Optional[pulumi.Input[builtins.str]] = None,
                  db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
@@ -627,6 +683,7 @@ class StreamConnection(pulumi.CustomResource):
             __props__.__dict__["aws"] = aws
             __props__.__dict__["bootstrap_servers"] = bootstrap_servers
             __props__.__dict__["cluster_name"] = cluster_name
+            __props__.__dict__["cluster_project_id"] = cluster_project_id
             __props__.__dict__["config"] = config
             if connection_name is None and not opts.urn:
                 raise TypeError("Missing required property 'connection_name'")
@@ -659,6 +716,7 @@ class StreamConnection(pulumi.CustomResource):
             aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
             bootstrap_servers: Optional[pulumi.Input[builtins.str]] = None,
             cluster_name: Optional[pulumi.Input[builtins.str]] = None,
+            cluster_project_id: Optional[pulumi.Input[builtins.str]] = None,
             config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
             connection_name: Optional[pulumi.Input[builtins.str]] = None,
             db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
@@ -689,6 +747,7 @@ class StreamConnection(pulumi.CustomResource):
         __props__.__dict__["aws"] = aws
         __props__.__dict__["bootstrap_servers"] = bootstrap_servers
         __props__.__dict__["cluster_name"] = cluster_name
+        __props__.__dict__["cluster_project_id"] = cluster_project_id
         __props__.__dict__["config"] = config
         __props__.__dict__["connection_name"] = connection_name
         __props__.__dict__["db_role_to_execute"] = db_role_to_execute
@@ -720,6 +779,11 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Output[Optional[builtins.str]]:
         return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="clusterProjectId")
+    def cluster_project_id(self) -> pulumi.Output[Optional[builtins.str]]:
+        return pulumi.get(self, "cluster_project_id")
 
     @property
     @pulumi.getter

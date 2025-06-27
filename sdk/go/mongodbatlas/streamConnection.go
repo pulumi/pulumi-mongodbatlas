@@ -50,6 +50,37 @@ import (
 //
 // ```
 //
+// ### Example Cross Project Cluster Connection
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "test", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:        pulumi.Any(projectId),
+//				InstanceName:     pulumi.String("InstanceName"),
+//				ConnectionName:   pulumi.String("ConnectionName"),
+//				Type:             pulumi.String("Cluster"),
+//				ClusterName:      pulumi.String("OtherCluster"),
+//				ClusterProjectId: pulumi.Any(otherProjectId),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example Kafka SASL Plaintext Connection
 //
 // ```go
@@ -141,6 +172,7 @@ type StreamConnection struct {
 	Aws              StreamConnectionAwsPtrOutput            `pulumi:"aws"`
 	BootstrapServers pulumi.StringPtrOutput                  `pulumi:"bootstrapServers"`
 	ClusterName      pulumi.StringPtrOutput                  `pulumi:"clusterName"`
+	ClusterProjectId pulumi.StringPtrOutput                  `pulumi:"clusterProjectId"`
 	Config           pulumi.StringMapOutput                  `pulumi:"config"`
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringOutput                      `pulumi:"connectionName"`
@@ -203,6 +235,7 @@ type streamConnectionState struct {
 	Aws              *StreamConnectionAws            `pulumi:"aws"`
 	BootstrapServers *string                         `pulumi:"bootstrapServers"`
 	ClusterName      *string                         `pulumi:"clusterName"`
+	ClusterProjectId *string                         `pulumi:"clusterProjectId"`
 	Config           map[string]string               `pulumi:"config"`
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  *string                          `pulumi:"connectionName"`
@@ -224,6 +257,7 @@ type StreamConnectionState struct {
 	Aws              StreamConnectionAwsPtrInput
 	BootstrapServers pulumi.StringPtrInput
 	ClusterName      pulumi.StringPtrInput
+	ClusterProjectId pulumi.StringPtrInput
 	Config           pulumi.StringMapInput
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringPtrInput
@@ -249,6 +283,7 @@ type streamConnectionArgs struct {
 	Aws              *StreamConnectionAws            `pulumi:"aws"`
 	BootstrapServers *string                         `pulumi:"bootstrapServers"`
 	ClusterName      *string                         `pulumi:"clusterName"`
+	ClusterProjectId *string                         `pulumi:"clusterProjectId"`
 	Config           map[string]string               `pulumi:"config"`
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  string                           `pulumi:"connectionName"`
@@ -271,6 +306,7 @@ type StreamConnectionArgs struct {
 	Aws              StreamConnectionAwsPtrInput
 	BootstrapServers pulumi.StringPtrInput
 	ClusterName      pulumi.StringPtrInput
+	ClusterProjectId pulumi.StringPtrInput
 	Config           pulumi.StringMapInput
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringInput
@@ -388,6 +424,10 @@ func (o StreamConnectionOutput) BootstrapServers() pulumi.StringPtrOutput {
 
 func (o StreamConnectionOutput) ClusterName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringPtrOutput { return v.ClusterName }).(pulumi.StringPtrOutput)
+}
+
+func (o StreamConnectionOutput) ClusterProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnection) pulumi.StringPtrOutput { return v.ClusterProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o StreamConnectionOutput) Config() pulumi.StringMapOutput {

@@ -7,20 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.AdvancedCluster
- *
- * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
- *
- * This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
- * > **IMPORTANT:**
- * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
- * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- *
- * **NOTE:** This data source also includes Flex clusters.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -257,20 +243,6 @@ export interface GetAdvancedClusterResult {
     readonly versionReleaseSystem: string;
 }
 /**
- * ## # Data Source: mongodbatlas.AdvancedCluster
- *
- * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
- *
- * This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
- * > **IMPORTANT:**
- * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
- * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- *
- * **NOTE:** This data source also includes Flex clusters.
- *
  * ## Example Usage
  *
  * ```typescript

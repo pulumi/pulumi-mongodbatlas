@@ -24740,6 +24740,7 @@ class GetStreamConnectionsResultResult(dict):
                  aws: 'outputs.GetStreamConnectionsResultAwsResult',
                  bootstrap_servers: builtins.str,
                  cluster_name: builtins.str,
+                 cluster_project_id: builtins.str,
                  config: Mapping[str, builtins.str],
                  connection_name: builtins.str,
                  db_role_to_execute: 'outputs.GetStreamConnectionsResultDbRoleToExecuteResult',
@@ -24771,6 +24772,7 @@ class GetStreamConnectionsResultResult(dict):
         pulumi.set(__self__, "aws", aws)
         pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
         pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_project_id", cluster_project_id)
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "connection_name", connection_name)
         pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
@@ -24814,6 +24816,11 @@ class GetStreamConnectionsResultResult(dict):
         Name of the cluster configured for this connection.
         """
         return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="clusterProjectId")
+    def cluster_project_id(self) -> builtins.str:
+        return pulumi.get(self, "cluster_project_id")
 
     @property
     @pulumi.getter

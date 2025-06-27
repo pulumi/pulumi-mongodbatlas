@@ -68,6 +68,46 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ### Example Cross Project Cluster Connection
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName("InstanceName")
+ *             .connectionName("ConnectionName")
+ *             .type("Cluster")
+ *             .clusterName("OtherCluster")
+ *             .clusterProjectId(otherProjectId)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Example Kafka SASL Plaintext Connection
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -207,6 +247,12 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<String>> clusterName() {
         return Codegen.optional(this.clusterName);
+    }
+    @Export(name="clusterProjectId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clusterProjectId;
+
+    public Output<Optional<String>> clusterProjectId() {
+        return Codegen.optional(this.clusterProjectId);
     }
     @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> config;

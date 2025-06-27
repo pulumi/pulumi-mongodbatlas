@@ -36,6 +36,7 @@ public final class GetStreamConnectionsResult {
      * 
      */
     private String clusterName;
+    private String clusterProjectId;
     /**
      * @return A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
      * 
@@ -116,6 +117,9 @@ public final class GetStreamConnectionsResult {
      */
     public String clusterName() {
         return this.clusterName;
+    }
+    public String clusterProjectId() {
+        return this.clusterProjectId;
     }
     /**
      * @return A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
@@ -204,6 +208,7 @@ public final class GetStreamConnectionsResult {
         private GetStreamConnectionsResultAws aws;
         private String bootstrapServers;
         private String clusterName;
+        private String clusterProjectId;
         private Map<String,String> config;
         private String connectionName;
         private GetStreamConnectionsResultDbRoleToExecute dbRoleToExecute;
@@ -222,6 +227,7 @@ public final class GetStreamConnectionsResult {
     	      this.aws = defaults.aws;
     	      this.bootstrapServers = defaults.bootstrapServers;
     	      this.clusterName = defaults.clusterName;
+    	      this.clusterProjectId = defaults.clusterProjectId;
     	      this.config = defaults.config;
     	      this.connectionName = defaults.connectionName;
     	      this.dbRoleToExecute = defaults.dbRoleToExecute;
@@ -265,6 +271,14 @@ public final class GetStreamConnectionsResult {
               throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "clusterName");
             }
             this.clusterName = clusterName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clusterProjectId(String clusterProjectId) {
+            if (clusterProjectId == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "clusterProjectId");
+            }
+            this.clusterProjectId = clusterProjectId;
             return this;
         }
         @CustomType.Setter
@@ -361,6 +375,7 @@ public final class GetStreamConnectionsResult {
             _resultValue.aws = aws;
             _resultValue.bootstrapServers = bootstrapServers;
             _resultValue.clusterName = clusterName;
+            _resultValue.clusterProjectId = clusterProjectId;
             _resultValue.config = config;
             _resultValue.connectionName = connectionName;
             _resultValue.dbRoleToExecute = dbRoleToExecute;

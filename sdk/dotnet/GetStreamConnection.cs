@@ -170,6 +170,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ClusterName;
         /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+        /// </summary>
+        public readonly string ClusterProjectId;
+        /// <summary>
         /// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Config;
@@ -212,6 +216,8 @@ namespace Pulumi.Mongodbatlas
 
             string clusterName,
 
+            string clusterProjectId,
+
             ImmutableDictionary<string, string> config,
 
             string connectionName,
@@ -238,6 +244,7 @@ namespace Pulumi.Mongodbatlas
             Aws = aws;
             BootstrapServers = bootstrapServers;
             ClusterName = clusterName;
+            ClusterProjectId = clusterProjectId;
             Config = config;
             ConnectionName = connectionName;
             DbRoleToExecute = dbRoleToExecute;

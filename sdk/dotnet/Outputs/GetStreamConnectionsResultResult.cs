@@ -29,6 +29,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Name of the cluster configured for this connection.
         /// </summary>
         public readonly string ClusterName;
+        public readonly string ClusterProjectId;
         /// <summary>
         /// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
         /// </summary>
@@ -81,6 +82,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string clusterName,
 
+            string clusterProjectId,
+
             ImmutableDictionary<string, string> config,
 
             string connectionName,
@@ -107,6 +110,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Aws = aws;
             BootstrapServers = bootstrapServers;
             ClusterName = clusterName;
+            ClusterProjectId = clusterProjectId;
             Config = config;
             ConnectionName = connectionName;
             DbRoleToExecute = dbRoleToExecute;

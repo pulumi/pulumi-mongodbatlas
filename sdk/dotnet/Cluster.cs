@@ -604,7 +604,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.ClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
 
         /// <summary>
-        /// Set to true to retain backup snapshots for the deleted cluster. M10 and above only. This only applies to the `Delete` operation. If you see the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, set it to explicit `true`.
+        /// - (Optional) Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
         /// </summary>
         [Output("retainBackupsEnabled")]
         public Output<bool?> RetainBackupsEnabled { get; private set; } = null!;
@@ -928,7 +928,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Set to true to retain backup snapshots for the deleted cluster. M10 and above only. This only applies to the `Delete` operation. If you see the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, set it to explicit `true`.
+        /// - (Optional) Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
         /// </summary>
         [Input("retainBackupsEnabled")]
         public Input<bool>? RetainBackupsEnabled { get; set; }
@@ -1247,7 +1247,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Set to true to retain backup snapshots for the deleted cluster. M10 and above only. This only applies to the `Delete` operation. If you see the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, set it to explicit `true`.
+        /// - (Optional) Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
         /// </summary>
         [Input("retainBackupsEnabled")]
         public Input<bool>? RetainBackupsEnabled { get; set; }

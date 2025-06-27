@@ -581,17 +581,6 @@ def get_cluster(name: Optional[builtins.str] = None,
                 project_id: Optional[builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
-    ## # Data Source: Cluster
-
-    `Cluster` describes a Cluster. The data source requires your Project ID.
-
-    > **IMPORTANT:**
-    <br> &#8226; Multi Region Cluster: The `Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `AdvancedCluster` data source instead.
-    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -679,17 +668,6 @@ def get_cluster_output(name: Optional[pulumi.Input[builtins.str]] = None,
                        project_id: Optional[pulumi.Input[builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
-    ## # Data Source: Cluster
-
-    `Cluster` describes a Cluster. The data source requires your Project ID.
-
-    > **IMPORTANT:**
-    <br> &#8226; Multi Region Cluster: The `Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `AdvancedCluster` data source instead.
-    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
