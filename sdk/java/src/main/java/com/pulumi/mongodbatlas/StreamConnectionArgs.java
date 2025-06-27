@@ -50,6 +50,13 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.clusterName);
     }
 
+    @Import(name="clusterProjectId")
+    private @Nullable Output<String> clusterProjectId;
+
+    public Optional<Output<String>> clusterProjectId() {
+        return Optional.ofNullable(this.clusterProjectId);
+    }
+
     @Import(name="config")
     private @Nullable Output<Map<String,String>> config;
 
@@ -159,6 +166,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         this.aws = $.aws;
         this.bootstrapServers = $.bootstrapServers;
         this.clusterName = $.clusterName;
+        this.clusterProjectId = $.clusterProjectId;
         this.config = $.config;
         this.connectionName = $.connectionName;
         this.dbRoleToExecute = $.dbRoleToExecute;
@@ -223,6 +231,15 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
 
         public Builder clusterName(String clusterName) {
             return clusterName(Output.of(clusterName));
+        }
+
+        public Builder clusterProjectId(@Nullable Output<String> clusterProjectId) {
+            $.clusterProjectId = clusterProjectId;
+            return this;
+        }
+
+        public Builder clusterProjectId(String clusterProjectId) {
+            return clusterProjectId(Output.of(clusterProjectId));
         }
 
         public Builder config(@Nullable Output<Map<String,String>> config) {

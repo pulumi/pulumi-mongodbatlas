@@ -30,6 +30,22 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example Cross Project Cluster Connection
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.StreamConnection("test", {
+ *     projectId: projectId,
+ *     instanceName: "InstanceName",
+ *     connectionName: "ConnectionName",
+ *     type: "Cluster",
+ *     clusterName: "OtherCluster",
+ *     clusterProjectId: otherProjectId,
+ * });
+ * ```
+ *
  * ### Example Kafka SASL Plaintext Connection
  *
  * ```typescript
@@ -117,6 +133,7 @@ export class StreamConnection extends pulumi.CustomResource {
     public readonly aws!: pulumi.Output<outputs.StreamConnectionAws | undefined>;
     public readonly bootstrapServers!: pulumi.Output<string | undefined>;
     public readonly clusterName!: pulumi.Output<string | undefined>;
+    public readonly clusterProjectId!: pulumi.Output<string | undefined>;
     public readonly config!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
@@ -157,6 +174,7 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["aws"] = state ? state.aws : undefined;
             resourceInputs["bootstrapServers"] = state ? state.bootstrapServers : undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["clusterProjectId"] = state ? state.clusterProjectId : undefined;
             resourceInputs["config"] = state ? state.config : undefined;
             resourceInputs["connectionName"] = state ? state.connectionName : undefined;
             resourceInputs["dbRoleToExecute"] = state ? state.dbRoleToExecute : undefined;
@@ -185,6 +203,7 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["aws"] = args ? args.aws : undefined;
             resourceInputs["bootstrapServers"] = args ? args.bootstrapServers : undefined;
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["clusterProjectId"] = args ? args.clusterProjectId : undefined;
             resourceInputs["config"] = args ? args.config : undefined;
             resourceInputs["connectionName"] = args ? args.connectionName : undefined;
             resourceInputs["dbRoleToExecute"] = args ? args.dbRoleToExecute : undefined;
@@ -209,6 +228,7 @@ export interface StreamConnectionState {
     aws?: pulumi.Input<inputs.StreamConnectionAws>;
     bootstrapServers?: pulumi.Input<string>;
     clusterName?: pulumi.Input<string>;
+    clusterProjectId?: pulumi.Input<string>;
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
@@ -241,6 +261,7 @@ export interface StreamConnectionArgs {
     aws?: pulumi.Input<inputs.StreamConnectionAws>;
     bootstrapServers?: pulumi.Input<string>;
     clusterName?: pulumi.Input<string>;
+    clusterProjectId?: pulumi.Input<string>;
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.

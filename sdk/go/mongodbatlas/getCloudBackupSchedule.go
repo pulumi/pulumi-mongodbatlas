@@ -11,11 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: CloudBackupSchedule
-//
-// `CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+// ## Example Usage
 func LookupCloudBackupSchedule(ctx *pulumi.Context, args *LookupCloudBackupScheduleArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupScheduleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupScheduleResult

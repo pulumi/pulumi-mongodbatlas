@@ -7157,6 +7157,7 @@ export interface GetStreamConnectionsResult {
      * Name of the cluster configured for this connection.
      */
     clusterName: string;
+    clusterProjectId: string;
     /**
      * A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
      */

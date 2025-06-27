@@ -28,7 +28,7 @@ class GetStreamConnectionResult:
     """
     A collection of values returned by getStreamConnection.
     """
-    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, config=None, connection_name=None, db_role_to_execute=None, headers=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None, url=None):
+    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, cluster_project_id=None, config=None, connection_name=None, db_role_to_execute=None, headers=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None, url=None):
         if authentication and not isinstance(authentication, dict):
             raise TypeError("Expected argument 'authentication' to be a dict")
         pulumi.set(__self__, "authentication", authentication)
@@ -41,6 +41,9 @@ class GetStreamConnectionResult:
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
+        if cluster_project_id and not isinstance(cluster_project_id, str):
+            raise TypeError("Expected argument 'cluster_project_id' to be a str")
+        pulumi.set(__self__, "cluster_project_id", cluster_project_id)
         if config and not isinstance(config, dict):
             raise TypeError("Expected argument 'config' to be a dict")
         pulumi.set(__self__, "config", config)
@@ -106,6 +109,14 @@ class GetStreamConnectionResult:
         Name of the cluster configured for this connection.
         """
         return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="clusterProjectId")
+    def cluster_project_id(self) -> builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+        """
+        return pulumi.get(self, "cluster_project_id")
 
     @property
     @pulumi.getter
@@ -194,6 +205,7 @@ class AwaitableGetStreamConnectionResult(GetStreamConnectionResult):
             aws=self.aws,
             bootstrap_servers=self.bootstrap_servers,
             cluster_name=self.cluster_name,
+            cluster_project_id=self.cluster_project_id,
             config=self.config,
             connection_name=self.connection_name,
             db_role_to_execute=self.db_role_to_execute,
@@ -244,6 +256,7 @@ def get_stream_connection(connection_name: Optional[builtins.str] = None,
         aws=pulumi.get(__ret__, 'aws'),
         bootstrap_servers=pulumi.get(__ret__, 'bootstrap_servers'),
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        cluster_project_id=pulumi.get(__ret__, 'cluster_project_id'),
         config=pulumi.get(__ret__, 'config'),
         connection_name=pulumi.get(__ret__, 'connection_name'),
         db_role_to_execute=pulumi.get(__ret__, 'db_role_to_execute'),
@@ -291,6 +304,7 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[builtins
         aws=pulumi.get(__response__, 'aws'),
         bootstrap_servers=pulumi.get(__response__, 'bootstrap_servers'),
         cluster_name=pulumi.get(__response__, 'cluster_name'),
+        cluster_project_id=pulumi.get(__response__, 'cluster_project_id'),
         config=pulumi.get(__response__, 'config'),
         connection_name=pulumi.get(__response__, 'connection_name'),
         db_role_to_execute=pulumi.get(__response__, 'db_role_to_execute'),

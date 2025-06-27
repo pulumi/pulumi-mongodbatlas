@@ -12,20 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetAdvancedCluster
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.AdvancedCluster
-        /// 
-        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
-        /// 
-        /// This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-        /// 
-        /// &gt; **IMPORTANT:**
-        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// **NOTE:** This data source also includes Flex clusters.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -185,20 +171,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.AdvancedCluster
-        /// 
-        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
-        /// 
-        /// This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-        /// 
-        /// &gt; **IMPORTANT:**
-        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// **NOTE:** This data source also includes Flex clusters.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -358,20 +330,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.AdvancedCluster
-        /// 
-        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
-        /// 
-        /// This page describes the current version of `mongodbatlas.AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-        /// 
-        /// &gt; **IMPORTANT:**
-        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// **NOTE:** This data source also includes Flex clusters.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

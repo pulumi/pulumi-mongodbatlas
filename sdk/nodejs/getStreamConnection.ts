@@ -72,6 +72,10 @@ export interface GetStreamConnectionResult {
      */
     readonly clusterName: string;
     /**
+     * Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+     */
+    readonly clusterProjectId: string;
+    /**
      * A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
      */
     readonly config: {[key: string]: string};

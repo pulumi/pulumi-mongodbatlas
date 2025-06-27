@@ -72,6 +72,8 @@ type LookupStreamConnectionResult struct {
 	BootstrapServers string `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
 	ClusterName string `pulumi:"clusterName"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+	ClusterProjectId string `pulumi:"clusterProjectId"`
 	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
 	Config         map[string]string `pulumi:"config"`
 	ConnectionName string            `pulumi:"connectionName"`
@@ -148,6 +150,11 @@ func (o LookupStreamConnectionResultOutput) BootstrapServers() pulumi.StringOutp
 // Name of the cluster configured for this connection.
 func (o LookupStreamConnectionResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+func (o LookupStreamConnectionResultOutput) ClusterProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.ClusterProjectId }).(pulumi.StringOutput)
 }
 
 // A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.

@@ -376,20 +376,6 @@ def get_advanced_cluster(name: Optional[builtins.str] = None,
                          use_replication_spec_per_shard: Optional[builtins.bool] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClusterResult:
     """
-    ## # Data Source: AdvancedCluster
-
-    `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
-
-    This page describes the current version of `AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
-    > **IMPORTANT:**
-    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-
-    **NOTE:** This data source also includes Flex clusters.
-
     ## Example Usage
 
     ```python
@@ -529,20 +515,6 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[builtins.str]] = Non
                                 use_replication_spec_per_shard: Optional[pulumi.Input[Optional[builtins.bool]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAdvancedClusterResult]:
     """
-    ## # Data Source: AdvancedCluster
-
-    `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
-
-    This page describes the current version of `AdvancedCluster`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
-    > **IMPORTANT:**
-    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-
-    **NOTE:** This data source also includes Flex clusters.
-
     ## Example Usage
 
     ```python

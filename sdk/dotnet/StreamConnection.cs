@@ -40,6 +40,29 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example Cross Project Cluster Connection
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         InstanceName = "InstanceName",
+    ///         ConnectionName = "ConnectionName",
+    ///         Type = "Cluster",
+    ///         ClusterName = "OtherCluster",
+    ///         ClusterProjectId = otherProjectId,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example Kafka SASL Plaintext Connection
     /// 
     /// ```csharp
@@ -127,6 +150,9 @@ namespace Pulumi.Mongodbatlas
 
         [Output("clusterName")]
         public Output<string?> ClusterName { get; private set; } = null!;
+
+        [Output("clusterProjectId")]
+        public Output<string?> ClusterProjectId { get; private set; } = null!;
 
         [Output("config")]
         public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
@@ -228,6 +254,9 @@ namespace Pulumi.Mongodbatlas
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
 
+        [Input("clusterProjectId")]
+        public Input<string>? ClusterProjectId { get; set; }
+
         [Input("config")]
         private InputMap<string>? _config;
         public InputMap<string> Config
@@ -299,6 +328,9 @@ namespace Pulumi.Mongodbatlas
 
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
+
+        [Input("clusterProjectId")]
+        public Input<string>? ClusterProjectId { get; set; }
 
         [Input("config")]
         private InputMap<string>? _config;

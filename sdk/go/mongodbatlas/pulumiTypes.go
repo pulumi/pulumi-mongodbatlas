@@ -53942,7 +53942,8 @@ type GetStreamConnectionsResult struct {
 	// Comma separated list of server addresses.
 	BootstrapServers string `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
-	ClusterName string `pulumi:"clusterName"`
+	ClusterName      string `pulumi:"clusterName"`
+	ClusterProjectId string `pulumi:"clusterProjectId"`
 	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
 	Config map[string]string `pulumi:"config"`
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
@@ -53985,7 +53986,8 @@ type GetStreamConnectionsResultArgs struct {
 	// Comma separated list of server addresses.
 	BootstrapServers pulumi.StringInput `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
-	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	ClusterName      pulumi.StringInput `pulumi:"clusterName"`
+	ClusterProjectId pulumi.StringInput `pulumi:"clusterProjectId"`
 	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
 	Config pulumi.StringMapInput `pulumi:"config"`
 	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
@@ -54078,6 +54080,10 @@ func (o GetStreamConnectionsResultOutput) BootstrapServers() pulumi.StringOutput
 // Name of the cluster configured for this connection.
 func (o GetStreamConnectionsResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+func (o GetStreamConnectionsResultOutput) ClusterProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterProjectId }).(pulumi.StringOutput)
 }
 
 // A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.

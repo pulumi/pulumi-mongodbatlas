@@ -265,11 +265,7 @@ def get_cloud_backup_schedule(cluster_name: Optional[builtins.str] = None,
                               use_zone_id_for_copy_settings: Optional[builtins.bool] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupScheduleResult:
     """
-    ## # Data Source: CloudBackupSchedule
-
-    `CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    ## Example Usage
 
 
     :param builtins.str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
@@ -308,11 +304,7 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[builtin
                                      use_zone_id_for_copy_settings: Optional[pulumi.Input[Optional[builtins.bool]]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupScheduleResult]:
     """
-    ## # Data Source: CloudBackupSchedule
-
-    `CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    ## Example Usage
 
 
     :param builtins.str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
