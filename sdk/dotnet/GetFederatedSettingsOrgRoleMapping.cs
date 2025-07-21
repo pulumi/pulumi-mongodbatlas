@@ -243,6 +243,9 @@ namespace Pulumi.Mongodbatlas
         [Input("orgId", required: true)]
         public string OrgId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies this role mapping.
+        /// </summary>
         [Input("roleMappingId", required: true)]
         public string RoleMappingId { get; set; } = null!;
 
@@ -266,6 +269,9 @@ namespace Pulumi.Mongodbatlas
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies this role mapping.
+        /// </summary>
         [Input("roleMappingId", required: true)]
         public Input<string> RoleMappingId { get; set; } = null!;
 
@@ -280,7 +286,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetFederatedSettingsOrgRoleMappingResult
     {
         /// <summary>
-        /// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        /// Unique label that identifies the identity provider group to which this role mapping applies.
         /// </summary>
         public readonly string ExternalGroupName;
         public readonly string FederationSettingsId;

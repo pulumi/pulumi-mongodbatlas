@@ -3244,7 +3244,7 @@ type AlertConfigurationNotification struct {
 	ChannelName *string `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey *string `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion *string `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin *int `pulumi:"delayMin"`
@@ -3332,7 +3332,7 @@ type AlertConfigurationNotificationArgs struct {
 	ChannelName pulumi.StringPtrInput `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey pulumi.StringPtrInput `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion pulumi.StringPtrInput `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin pulumi.IntPtrInput `pulumi:"delayMin"`
@@ -3468,7 +3468,7 @@ func (o AlertConfigurationNotificationOutput) DatadogApiKey() pulumi.StringPtrOu
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.DatadogApiKey }).(pulumi.StringPtrOutput)
 }
 
-// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 func (o AlertConfigurationNotificationOutput) DatadogRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.DatadogRegion }).(pulumi.StringPtrOutput)
 }
@@ -4830,7 +4830,7 @@ type CloudBackupScheduleCopySetting struct {
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName *string `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId *string `pulumi:"replicationSpecId"`
@@ -4858,7 +4858,7 @@ type CloudBackupScheduleCopySettingArgs struct {
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId pulumi.StringPtrInput `pulumi:"replicationSpecId"`
@@ -4934,7 +4934,7 @@ func (o CloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.RegionName }).(pulumi.StringPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 //
 // Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o CloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringPtrOutput {
@@ -10843,7 +10843,7 @@ func (o DatabaseUserRoleArrayOutput) Index(i pulumi.IntInput) DatabaseUserRoleOu
 type DatabaseUserScope struct {
 	// Name of the cluster or Atlas Data Lake that the user has access to.
 	Name *string `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type *string `pulumi:"type"`
 }
 
@@ -10861,7 +10861,7 @@ type DatabaseUserScopeInput interface {
 type DatabaseUserScopeArgs struct {
 	// Name of the cluster or Atlas Data Lake that the user has access to.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -10921,7 +10921,7 @@ func (o DatabaseUserScopeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseUserScope) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 func (o DatabaseUserScopeOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseUserScope) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -15382,7 +15382,7 @@ func (o OnlineArchiveDataExpirationRulePtrOutput) ExpireAfterDays() pulumi.IntPt
 type OnlineArchiveDataProcessRegion struct {
 	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 	CloudProvider *string `pulumi:"cloudProvider"`
-	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
 	Region *string `pulumi:"region"`
 }
 
@@ -15400,7 +15400,7 @@ type OnlineArchiveDataProcessRegionInput interface {
 type OnlineArchiveDataProcessRegionArgs struct {
 	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
-	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -15486,7 +15486,7 @@ func (o OnlineArchiveDataProcessRegionOutput) CloudProvider() pulumi.StringPtrOu
 	return o.ApplyT(func(v OnlineArchiveDataProcessRegion) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
 }
 
-// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
 func (o OnlineArchiveDataProcessRegionOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveDataProcessRegion) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -15525,7 +15525,7 @@ func (o OnlineArchiveDataProcessRegionPtrOutput) CloudProvider() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
 func (o OnlineArchiveDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveDataProcessRegion) *string {
 		if v == nil {
@@ -24825,7 +24825,7 @@ type GetAlertConfigurationNotification struct {
 	ChannelName string `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey string `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion string `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin int `pulumi:"delayMin"`
@@ -24903,7 +24903,7 @@ type GetAlertConfigurationNotificationArgs struct {
 	ChannelName pulumi.StringInput `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey pulumi.StringInput `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion pulumi.StringInput `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin pulumi.IntInput `pulumi:"delayMin"`
@@ -25029,7 +25029,7 @@ func (o GetAlertConfigurationNotificationOutput) DatadogApiKey() pulumi.StringOu
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.DatadogApiKey }).(pulumi.StringOutput)
 }
 
-// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 func (o GetAlertConfigurationNotificationOutput) DatadogRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.DatadogRegion }).(pulumi.StringOutput)
 }
@@ -26017,7 +26017,7 @@ type GetAlertConfigurationsResultNotification struct {
 	ChannelName string `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey string `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion string `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin int `pulumi:"delayMin"`
@@ -26095,7 +26095,7 @@ type GetAlertConfigurationsResultNotificationArgs struct {
 	ChannelName pulumi.StringInput `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey pulumi.StringInput `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion pulumi.StringInput `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin pulumi.IntInput `pulumi:"delayMin"`
@@ -26221,7 +26221,7 @@ func (o GetAlertConfigurationsResultNotificationOutput) DatadogApiKey() pulumi.S
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.DatadogApiKey }).(pulumi.StringOutput)
 }
 
-// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 func (o GetAlertConfigurationsResultNotificationOutput) DatadogRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.DatadogRegion }).(pulumi.StringOutput)
 }
@@ -26614,6 +26614,121 @@ func (o GetAlertConfigurationsResultThresholdConfigArrayOutput) Index(i pulumi.I
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertConfigurationsResultThresholdConfig {
 		return vs[0].([]GetAlertConfigurationsResultThresholdConfig)[vs[1].(int)]
 	}).(GetAlertConfigurationsResultThresholdConfigOutput)
+}
+
+type GetApiKeyProjectAssignmentsResult struct {
+	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
+	ApiKeyId string `pulumi:"apiKeyId"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId string `pulumi:"projectId"`
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	Roles []string `pulumi:"roles"`
+}
+
+// GetApiKeyProjectAssignmentsResultInput is an input type that accepts GetApiKeyProjectAssignmentsResultArgs and GetApiKeyProjectAssignmentsResultOutput values.
+// You can construct a concrete instance of `GetApiKeyProjectAssignmentsResultInput` via:
+//
+//	GetApiKeyProjectAssignmentsResultArgs{...}
+type GetApiKeyProjectAssignmentsResultInput interface {
+	pulumi.Input
+
+	ToGetApiKeyProjectAssignmentsResultOutput() GetApiKeyProjectAssignmentsResultOutput
+	ToGetApiKeyProjectAssignmentsResultOutputWithContext(context.Context) GetApiKeyProjectAssignmentsResultOutput
+}
+
+type GetApiKeyProjectAssignmentsResultArgs struct {
+	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
+	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+}
+
+func (GetApiKeyProjectAssignmentsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiKeyProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (i GetApiKeyProjectAssignmentsResultArgs) ToGetApiKeyProjectAssignmentsResultOutput() GetApiKeyProjectAssignmentsResultOutput {
+	return i.ToGetApiKeyProjectAssignmentsResultOutputWithContext(context.Background())
+}
+
+func (i GetApiKeyProjectAssignmentsResultArgs) ToGetApiKeyProjectAssignmentsResultOutputWithContext(ctx context.Context) GetApiKeyProjectAssignmentsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiKeyProjectAssignmentsResultOutput)
+}
+
+// GetApiKeyProjectAssignmentsResultArrayInput is an input type that accepts GetApiKeyProjectAssignmentsResultArray and GetApiKeyProjectAssignmentsResultArrayOutput values.
+// You can construct a concrete instance of `GetApiKeyProjectAssignmentsResultArrayInput` via:
+//
+//	GetApiKeyProjectAssignmentsResultArray{ GetApiKeyProjectAssignmentsResultArgs{...} }
+type GetApiKeyProjectAssignmentsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetApiKeyProjectAssignmentsResultArrayOutput() GetApiKeyProjectAssignmentsResultArrayOutput
+	ToGetApiKeyProjectAssignmentsResultArrayOutputWithContext(context.Context) GetApiKeyProjectAssignmentsResultArrayOutput
+}
+
+type GetApiKeyProjectAssignmentsResultArray []GetApiKeyProjectAssignmentsResultInput
+
+func (GetApiKeyProjectAssignmentsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiKeyProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (i GetApiKeyProjectAssignmentsResultArray) ToGetApiKeyProjectAssignmentsResultArrayOutput() GetApiKeyProjectAssignmentsResultArrayOutput {
+	return i.ToGetApiKeyProjectAssignmentsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetApiKeyProjectAssignmentsResultArray) ToGetApiKeyProjectAssignmentsResultArrayOutputWithContext(ctx context.Context) GetApiKeyProjectAssignmentsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiKeyProjectAssignmentsResultArrayOutput)
+}
+
+type GetApiKeyProjectAssignmentsResultOutput struct{ *pulumi.OutputState }
+
+func (GetApiKeyProjectAssignmentsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiKeyProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (o GetApiKeyProjectAssignmentsResultOutput) ToGetApiKeyProjectAssignmentsResultOutput() GetApiKeyProjectAssignmentsResultOutput {
+	return o
+}
+
+func (o GetApiKeyProjectAssignmentsResultOutput) ToGetApiKeyProjectAssignmentsResultOutputWithContext(ctx context.Context) GetApiKeyProjectAssignmentsResultOutput {
+	return o
+}
+
+// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
+func (o GetApiKeyProjectAssignmentsResultOutput) ApiKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiKeyProjectAssignmentsResult) string { return v.ApiKeyId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+func (o GetApiKeyProjectAssignmentsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiKeyProjectAssignmentsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+func (o GetApiKeyProjectAssignmentsResultOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetApiKeyProjectAssignmentsResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+type GetApiKeyProjectAssignmentsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApiKeyProjectAssignmentsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiKeyProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (o GetApiKeyProjectAssignmentsResultArrayOutput) ToGetApiKeyProjectAssignmentsResultArrayOutput() GetApiKeyProjectAssignmentsResultArrayOutput {
+	return o
+}
+
+func (o GetApiKeyProjectAssignmentsResultArrayOutput) ToGetApiKeyProjectAssignmentsResultArrayOutputWithContext(ctx context.Context) GetApiKeyProjectAssignmentsResultArrayOutput {
+	return o
+}
+
+func (o GetApiKeyProjectAssignmentsResultArrayOutput) Index(i pulumi.IntInput) GetApiKeyProjectAssignmentsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiKeyProjectAssignmentsResult {
+		return vs[0].([]GetApiKeyProjectAssignmentsResult)[vs[1].(int)]
+	}).(GetApiKeyProjectAssignmentsResultOutput)
 }
 
 type GetApiKeysResult struct {
@@ -28060,7 +28175,7 @@ type GetCloudBackupScheduleCopySetting struct {
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName string `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId string `pulumi:"replicationSpecId"`
@@ -28088,7 +28203,7 @@ type GetCloudBackupScheduleCopySettingArgs struct {
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringInput `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId pulumi.StringInput `pulumi:"replicationSpecId"`
@@ -28164,7 +28279,7 @@ func (o GetCloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringOutpu
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 //
 // Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetCloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringOutput {
@@ -37524,7 +37639,7 @@ func (o GetDatabaseUserRoleArrayOutput) Index(i pulumi.IntInput) GetDatabaseUser
 type GetDatabaseUserScope struct {
 	// Name of the role to grant.
 	Name string `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type string `pulumi:"type"`
 }
 
@@ -37542,7 +37657,7 @@ type GetDatabaseUserScopeInput interface {
 type GetDatabaseUserScopeArgs struct {
 	// Name of the role to grant.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -37602,7 +37717,7 @@ func (o GetDatabaseUserScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUserScope) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 func (o GetDatabaseUserScopeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUserScope) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -38053,7 +38168,7 @@ func (o GetDatabaseUsersResultRoleArrayOutput) Index(i pulumi.IntInput) GetDatab
 type GetDatabaseUsersResultScope struct {
 	// Name of the role to grant.
 	Name string `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type string `pulumi:"type"`
 }
 
@@ -38071,7 +38186,7 @@ type GetDatabaseUsersResultScopeInput interface {
 type GetDatabaseUsersResultScopeArgs struct {
 	// Name of the role to grant.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -38131,7 +38246,7 @@ func (o GetDatabaseUsersResultScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultScope) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 func (o GetDatabaseUsersResultScopeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultScope) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -45236,7 +45351,7 @@ func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) Index(i pul
 }
 
 type GetFederatedSettingsOrgRoleMappingsResult struct {
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName string `pulumi:"externalGroupName"`
 	// Unique 24-hexadecimal digit string that identifies this role mapping.
 	Id string `pulumi:"id"`
@@ -45256,7 +45371,7 @@ type GetFederatedSettingsOrgRoleMappingsResultInput interface {
 }
 
 type GetFederatedSettingsOrgRoleMappingsResultArgs struct {
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName pulumi.StringInput `pulumi:"externalGroupName"`
 	// Unique 24-hexadecimal digit string that identifies this role mapping.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -45315,7 +45430,7 @@ func (o GetFederatedSettingsOrgRoleMappingsResultOutput) ToGetFederatedSettingsO
 	return o
 }
 
-// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+// Unique label that identifies the identity provider group to which this role mapping applies.
 func (o GetFederatedSettingsOrgRoleMappingsResultOutput) ExternalGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingsResult) string { return v.ExternalGroupName }).(pulumi.StringOutput)
 }
@@ -55522,7 +55637,7 @@ type GetThirdPartyIntegrationsResult struct {
 	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
-	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 	// * `VICTOR_OPS`
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
@@ -55534,8 +55649,10 @@ type GetThirdPartyIntegrationsResult struct {
 	// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
 	SendCollectionLatencyMetrics bool `pulumi:"sendCollectionLatencyMetrics"`
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-	// * `OPS_GENIE`
 	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
+	// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+	// * `OPS_GENIE`
+	SendUserProvidedResourceTags bool `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
@@ -55575,7 +55692,7 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 	// * `VICTOR_OPS`
 	Region pulumi.StringInput `pulumi:"region"`
 	// An optional field for your Routing Key.
@@ -55587,8 +55704,10 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
 	SendCollectionLatencyMetrics pulumi.BoolInput `pulumi:"sendCollectionLatencyMetrics"`
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-	// * `OPS_GENIE`
 	SendDatabaseMetrics pulumi.BoolInput `pulumi:"sendDatabaseMetrics"`
+	// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+	// * `OPS_GENIE`
+	SendUserProvidedResourceTags pulumi.BoolInput `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery pulumi.StringInput `pulumi:"serviceDiscovery"`
 	// Your Service Key.
@@ -55688,7 +55807,7 @@ func (o GetThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 // * `VICTOR_OPS`
 func (o GetThirdPartyIntegrationsResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Region }).(pulumi.StringOutput)
@@ -55712,9 +55831,14 @@ func (o GetThirdPartyIntegrationsResultOutput) SendCollectionLatencyMetrics() pu
 }
 
 // Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-// * `OPS_GENIE`
 func (o GetThirdPartyIntegrationsResultOutput) SendDatabaseMetrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
+}
+
+// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+// * `OPS_GENIE`
+func (o GetThirdPartyIntegrationsResultOutput) SendUserProvidedResourceTags() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendUserProvidedResourceTags }).(pulumi.BoolOutput)
 }
 
 // Indicates which service discovery method is used, either file or http.
@@ -56226,6 +56350,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationsResultOutputTypeArrayInput)(nil)).Elem(), GetAlertConfigurationsResultOutputTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationsResultThresholdConfigInput)(nil)).Elem(), GetAlertConfigurationsResultThresholdConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationsResultThresholdConfigArrayInput)(nil)).Elem(), GetAlertConfigurationsResultThresholdConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeyProjectAssignmentsResultInput)(nil)).Elem(), GetApiKeyProjectAssignmentsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeyProjectAssignmentsResultArrayInput)(nil)).Elem(), GetApiKeyProjectAssignmentsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeysResultInput)(nil)).Elem(), GetApiKeysResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeysResultArrayInput)(nil)).Elem(), GetApiKeysResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAtlasUserLinkInput)(nil)).Elem(), GetAtlasUserLinkArgs{})
@@ -57000,6 +57126,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAlertConfigurationsResultOutputTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationsResultThresholdConfigOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationsResultThresholdConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetApiKeyProjectAssignmentsResultOutput{})
+	pulumi.RegisterOutputType(GetApiKeyProjectAssignmentsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetApiKeysResultOutput{})
 	pulumi.RegisterOutputType(GetApiKeysResultArrayOutput{})
 	pulumi.RegisterOutputType(GetAtlasUserLinkOutput{})

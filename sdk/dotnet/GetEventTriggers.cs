@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         /// </summary>
         [Input("appId", required: true)]
         public string AppId { get; set; } = null!;
@@ -62,7 +62,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         /// </summary>
         [Input("appId", required: true)]
         public Input<string> AppId { get; set; } = null!;

@@ -437,7 +437,7 @@ export interface AlertConfigurationNotification {
      */
     datadogApiKey?: string;
     /**
-     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
      */
     datadogRegion?: string;
     /**
@@ -708,7 +708,7 @@ export interface CloudBackupScheduleCopySetting {
      */
     regionName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
      *
      * @deprecated This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
@@ -1387,7 +1387,7 @@ export interface DatabaseUserScope {
      */
     name?: string;
     /**
-     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
      */
     type?: string;
 }
@@ -2589,7 +2589,7 @@ export interface GetAlertConfigurationNotification {
      */
     datadogApiKey: string;
     /**
-     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
      */
     datadogRegion: string;
     /**
@@ -2840,7 +2840,7 @@ export interface GetAlertConfigurationsResultNotification {
      */
     datadogApiKey: string;
     /**
-     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
      */
     datadogRegion: string;
     /**
@@ -2974,6 +2974,21 @@ export interface GetAlertConfigurationsResultThresholdConfig {
      * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      */
     units: string;
+}
+
+export interface GetApiKeyProjectAssignmentsResult {
+    /**
+     * Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
+     */
+    apiKeyId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     */
+    projectId: string;
+    /**
+     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+     */
+    roles: string[];
 }
 
 export interface GetApiKeysResult {
@@ -3229,7 +3244,7 @@ export interface GetCloudBackupScheduleCopySetting {
      */
     regionName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
      *
      * @deprecated This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
@@ -4694,7 +4709,7 @@ export interface GetDatabaseUserScope {
      */
     name: string;
     /**
-     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
      */
     type: string;
 }
@@ -4780,7 +4795,7 @@ export interface GetDatabaseUsersResultScope {
      */
     name: string;
     /**
-     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
      */
     type: string;
 }
@@ -5795,7 +5810,7 @@ export interface GetFederatedSettingsOrgRoleMappingRoleAssignment {
 
 export interface GetFederatedSettingsOrgRoleMappingsResult {
     /**
-     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * Unique label that identifies the identity provider group to which this role mapping applies.
      */
     externalGroupName: string;
     /**
@@ -7488,7 +7503,7 @@ export interface GetThirdPartyIntegrationsResult {
      */
     projectId: string;
     /**
-     * Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
      * * `VICTOR_OPS`
      */
     region: string;
@@ -7508,9 +7523,13 @@ export interface GetThirdPartyIntegrationsResult {
     sendCollectionLatencyMetrics: boolean;
     /**
      * Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-     * * `OPS_GENIE`
      */
     sendDatabaseMetrics: boolean;
+    /**
+     * Toggle sending user provided group and cluster resource tags with the datadog metrics.
+     * * `OPS_GENIE`
+     */
+    sendUserProvidedResourceTags: boolean;
     /**
      * Indicates which service discovery method is used, either file or http.
      */
@@ -7649,7 +7668,7 @@ export interface OnlineArchiveDataProcessRegion {
      */
     cloudProvider: string;
     /**
-     * Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      */
     region: string;
 }

@@ -113,6 +113,15 @@
                     }
                 }
             },
+            "mongodbatlas_api_key_project_assignment": {
+                "current": "mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment",
+                "majorVersion": 3,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_auditing": {
                 "current": "mongodbatlas:index/auditing:Auditing",
                 "majorVersion": 3
@@ -1131,6 +1140,31 @@
                 "fields": {
                     "role_names": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_api_key_project_assignment": {
+                "current": "mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment",
+                "majorVersion": 3,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_api_key_project_assignments": {
+                "current": "mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "roles": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -2914,6 +2948,7 @@
             "mongodbatlas:index/advancedCluster:AdvancedCluster": 0,
             "mongodbatlas:index/alertConfiguration:AlertConfiguration": 1,
             "mongodbatlas:index/apiKey:ApiKey": 0,
+            "mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment": 1,
             "mongodbatlas:index/auditing:Auditing": 0,
             "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy": 0,
             "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule": 0,
@@ -2981,6 +3016,8 @@
             "mongodbatlas:index/getAlertConfiguration:getAlertConfiguration": 1,
             "mongodbatlas:index/getAlertConfigurations:getAlertConfigurations": 1,
             "mongodbatlas:index/getApiKey:getApiKey": 0,
+            "mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment": 1,
+            "mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments": 1,
             "mongodbatlas:index/getApiKeys:getApiKeys": 0,
             "mongodbatlas:index/getAtlasUser:getAtlasUser": 1,
             "mongodbatlas:index/getAtlasUsers:getAtlasUsers": 1,

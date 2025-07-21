@@ -25,6 +25,11 @@ export type ApiKey = import("./apiKey").ApiKey;
 export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
 utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
 
+export { ApiKeyProjectAssignmentArgs, ApiKeyProjectAssignmentState } from "./apiKeyProjectAssignment";
+export type ApiKeyProjectAssignment = import("./apiKeyProjectAssignment").ApiKeyProjectAssignment;
+export const ApiKeyProjectAssignment: typeof import("./apiKeyProjectAssignment").ApiKeyProjectAssignment = null as any;
+utilities.lazyLoad(exports, ["ApiKeyProjectAssignment"], () => require("./apiKeyProjectAssignment"));
+
 export { AuditingArgs, AuditingState } from "./auditing";
 export type Auditing = import("./auditing").Auditing;
 export const Auditing: typeof import("./auditing").Auditing = null as any;
@@ -184,6 +189,16 @@ export { GetApiKeyArgs, GetApiKeyResult, GetApiKeyOutputArgs } from "./getApiKey
 export const getApiKey: typeof import("./getApiKey").getApiKey = null as any;
 export const getApiKeyOutput: typeof import("./getApiKey").getApiKeyOutput = null as any;
 utilities.lazyLoad(exports, ["getApiKey","getApiKeyOutput"], () => require("./getApiKey"));
+
+export { GetApiKeyProjectAssignmentArgs, GetApiKeyProjectAssignmentResult, GetApiKeyProjectAssignmentOutputArgs } from "./getApiKeyProjectAssignment";
+export const getApiKeyProjectAssignment: typeof import("./getApiKeyProjectAssignment").getApiKeyProjectAssignment = null as any;
+export const getApiKeyProjectAssignmentOutput: typeof import("./getApiKeyProjectAssignment").getApiKeyProjectAssignmentOutput = null as any;
+utilities.lazyLoad(exports, ["getApiKeyProjectAssignment","getApiKeyProjectAssignmentOutput"], () => require("./getApiKeyProjectAssignment"));
+
+export { GetApiKeyProjectAssignmentsArgs, GetApiKeyProjectAssignmentsResult, GetApiKeyProjectAssignmentsOutputArgs } from "./getApiKeyProjectAssignments";
+export const getApiKeyProjectAssignments: typeof import("./getApiKeyProjectAssignments").getApiKeyProjectAssignments = null as any;
+export const getApiKeyProjectAssignmentsOutput: typeof import("./getApiKeyProjectAssignments").getApiKeyProjectAssignmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getApiKeyProjectAssignments","getApiKeyProjectAssignmentsOutput"], () => require("./getApiKeyProjectAssignments"));
 
 export { GetApiKeysArgs, GetApiKeysResult, GetApiKeysOutputArgs } from "./getApiKeys";
 export const getApiKeys: typeof import("./getApiKeys").getApiKeys = null as any;
@@ -900,6 +915,8 @@ const _module = {
                 return new AlertConfiguration(name, <any>undefined, { urn })
             case "mongodbatlas:index/apiKey:ApiKey":
                 return new ApiKey(name, <any>undefined, { urn })
+            case "mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment":
+                return new ApiKeyProjectAssignment(name, <any>undefined, { urn })
             case "mongodbatlas:index/auditing:Auditing":
                 return new Auditing(name, <any>undefined, { urn })
             case "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy":
@@ -1023,6 +1040,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/accessListApiKey", 
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/advancedCluster", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/alertConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/apiKey", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/apiKeyProjectAssignment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/auditing", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/backupCompliancePolicy", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSchedule", _module)

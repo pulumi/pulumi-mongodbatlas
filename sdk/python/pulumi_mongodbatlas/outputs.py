@@ -189,6 +189,7 @@ __all__ = [
     'GetAlertConfigurationsResultNotificationResult',
     'GetAlertConfigurationsResultOutputResult',
     'GetAlertConfigurationsResultThresholdConfigResult',
+    'GetApiKeyProjectAssignmentsResultResult',
     'GetApiKeysResultResult',
     'GetAtlasUserLinkResult',
     'GetAtlasUserRoleResult',
@@ -2089,7 +2090,7 @@ class AlertConfigurationNotification(dict):
         :param builtins.str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param builtins.str channel_name: Slack channel name. Required for the SLACK notifications type.
         :param builtins.str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        :param builtins.str datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+        :param builtins.str datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         :param builtins.int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param builtins.str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param builtins.bool email_enabled: Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -2221,7 +2222,7 @@ class AlertConfigurationNotification(dict):
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> Optional[builtins.str]:
         """
-        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         """
         return pulumi.get(self, "datadog_region")
 
@@ -2985,7 +2986,7 @@ class CloudBackupScheduleCopySetting(dict):
         :param builtins.str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[builtins.str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
         :param builtins.str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param builtins.str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
+        :param builtins.str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param builtins.bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param builtins.str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         """
@@ -3031,7 +3032,7 @@ class CloudBackupScheduleCopySetting(dict):
     @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def replication_spec_id(self) -> Optional[builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         """
         return pulumi.get(self, "replication_spec_id")
 
@@ -5856,7 +5857,7 @@ class DatabaseUserScope(dict):
                  type: Optional[builtins.str] = None):
         """
         :param builtins.str name: Name of the cluster or Atlas Data Lake that the user has access to.
-        :param builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        :param builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -5875,7 +5876,7 @@ class DatabaseUserScope(dict):
     @pulumi.getter
     def type(self) -> Optional[builtins.str]:
         """
-        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         return pulumi.get(self, "type")
 
@@ -7708,7 +7709,7 @@ class OnlineArchiveDataProcessRegion(dict):
                  region: Optional[builtins.str] = None):
         """
         :param builtins.str cloud_provider: Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
-        :param builtins.str region: Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        :param builtins.str region: Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         """
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -7727,7 +7728,7 @@ class OnlineArchiveDataProcessRegion(dict):
     @pulumi.getter
     def region(self) -> Optional[builtins.str]:
         """
-        Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         """
         return pulumi.get(self, "region")
 
@@ -11466,7 +11467,7 @@ class GetAlertConfigurationNotificationResult(dict):
         :param builtins.str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param builtins.str channel_name: Slack channel name. Required for the SLACK notifications type.
         :param builtins.str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        :param builtins.str datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+        :param builtins.str datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         :param builtins.int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param builtins.str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param builtins.bool email_enabled: Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
@@ -11557,7 +11558,7 @@ class GetAlertConfigurationNotificationResult(dict):
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> builtins.str:
         """
-        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         """
         return pulumi.get(self, "datadog_region")
 
@@ -12153,7 +12154,7 @@ class GetAlertConfigurationsResultNotificationResult(dict):
         :param builtins.str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param builtins.str channel_name: Slack channel name. Required for the SLACK notifications type.
         :param builtins.str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        :param builtins.str datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+        :param builtins.str datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         :param builtins.int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param builtins.str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param builtins.bool email_enabled: Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
@@ -12244,7 +12245,7 @@ class GetAlertConfigurationsResultNotificationResult(dict):
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> builtins.str:
         """
-        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         """
         return pulumi.get(self, "datadog_region")
 
@@ -12519,6 +12520,46 @@ class GetAlertConfigurationsResultThresholdConfigResult(dict):
         Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
         return pulumi.get(self, "units")
+
+
+@pulumi.output_type
+class GetApiKeyProjectAssignmentsResultResult(dict):
+    def __init__(__self__, *,
+                 api_key_id: builtins.str,
+                 project_id: builtins.str,
+                 roles: Sequence[builtins.str]):
+        """
+        :param builtins.str api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
+        :param builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param Sequence[builtins.str] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        """
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "roles", roles)
+
+    @property
+    @pulumi.getter(name="apiKeyId")
+    def api_key_id(self) -> builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
+        """
+        return pulumi.get(self, "api_key_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Sequence[builtins.str]:
+        """
+        Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        """
+        return pulumi.get(self, "roles")
 
 
 @pulumi.output_type
@@ -13215,7 +13256,7 @@ class GetCloudBackupScheduleCopySettingResult(dict):
         :param builtins.str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[builtins.str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
         :param builtins.str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param builtins.str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
+        :param builtins.str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param builtins.bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param builtins.str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster.
         """
@@ -13255,7 +13296,7 @@ class GetCloudBackupScheduleCopySettingResult(dict):
     @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def replication_spec_id(self) -> builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         """
         return pulumi.get(self, "replication_spec_id")
 
@@ -17456,7 +17497,7 @@ class GetDatabaseUserScopeResult(dict):
                  type: builtins.str):
         """
         :param builtins.str name: Name of the role to grant.
-        :param builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        :param builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
@@ -17473,7 +17514,7 @@ class GetDatabaseUserScopeResult(dict):
     @pulumi.getter
     def type(self) -> builtins.str:
         """
-        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         return pulumi.get(self, "type")
 
@@ -17693,7 +17734,7 @@ class GetDatabaseUsersResultScopeResult(dict):
                  type: builtins.str):
         """
         :param builtins.str name: Name of the role to grant.
-        :param builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        :param builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
@@ -17710,7 +17751,7 @@ class GetDatabaseUsersResultScopeResult(dict):
     @pulumi.getter
     def type(self) -> builtins.str:
         """
-        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         return pulumi.get(self, "type")
 
@@ -20773,7 +20814,7 @@ class GetFederatedSettingsOrgRoleMappingsResultResult(dict):
                  id: builtins.str,
                  role_assignments: Sequence['outputs.GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult']):
         """
-        :param builtins.str external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param builtins.str external_group_name: Unique label that identifies the identity provider group to which this role mapping applies.
         :param builtins.str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
@@ -20785,7 +20826,7 @@ class GetFederatedSettingsOrgRoleMappingsResultResult(dict):
     @pulumi.getter(name="externalGroupName")
     def external_group_name(self) -> builtins.str:
         """
-        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        Unique label that identifies the identity provider group to which this role mapping applies.
         """
         return pulumi.get(self, "external_group_name")
 
@@ -25625,6 +25666,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
                  secret: builtins.str,
                  send_collection_latency_metrics: builtins.bool,
                  send_database_metrics: builtins.bool,
+                 send_user_provided_resource_tags: builtins.bool,
                  service_discovery: builtins.str,
                  service_key: builtins.str,
                  team_name: builtins.str,
@@ -25638,7 +25680,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
         :param builtins.str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
                * `PROMETHEUS`
         :param builtins.str project_id: The unique ID for the project to get all Third-Party service integrations
-        :param builtins.str region: Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+        :param builtins.str region: Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
                * `VICTOR_OPS`
         :param builtins.str routing_key: An optional field for your Routing Key.
                * `WEBHOOK`
@@ -25646,6 +25688,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
                * `MICROSOFT_TEAMS`
         :param builtins.bool send_collection_latency_metrics: Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
         :param builtins.bool send_database_metrics: Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
+        :param builtins.bool send_user_provided_resource_tags: Toggle sending user provided group and cluster resource tags with the datadog metrics.
                * `OPS_GENIE`
         :param builtins.str service_discovery: Indicates which service discovery method is used, either file or http.
         :param builtins.str service_key: Your Service Key.
@@ -25666,6 +25709,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
         pulumi.set(__self__, "secret", secret)
         pulumi.set(__self__, "send_collection_latency_metrics", send_collection_latency_metrics)
         pulumi.set(__self__, "send_database_metrics", send_database_metrics)
+        pulumi.set(__self__, "send_user_provided_resource_tags", send_user_provided_resource_tags)
         pulumi.set(__self__, "service_discovery", service_discovery)
         pulumi.set(__self__, "service_key", service_key)
         pulumi.set(__self__, "team_name", team_name)
@@ -25728,7 +25772,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     @pulumi.getter
     def region(self) -> builtins.str:
         """
-        Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+        Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
         * `VICTOR_OPS`
         """
         return pulumi.get(self, "region")
@@ -25764,9 +25808,17 @@ class GetThirdPartyIntegrationsResultResult(dict):
     def send_database_metrics(self) -> builtins.bool:
         """
         Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-        * `OPS_GENIE`
         """
         return pulumi.get(self, "send_database_metrics")
+
+    @property
+    @pulumi.getter(name="sendUserProvidedResourceTags")
+    def send_user_provided_resource_tags(self) -> builtins.bool:
+        """
+        Toggle sending user provided group and cluster resource tags with the datadog metrics.
+        * `OPS_GENIE`
+        """
+        return pulumi.get(self, "send_user_provided_resource_tags")
 
     @property
     @pulumi.getter(name="serviceDiscovery")

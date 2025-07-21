@@ -44,7 +44,7 @@ class EventTriggerArgs:
         """
         The set of arguments for constructing a EventTrigger resource.
         :param pulumi.Input[builtins.str] app_id: The ObjectID of your application.
-               * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+               * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         :param pulumi.Input[builtins.str] project_id: The unique ID for the project to create the trigger.
         :param pulumi.Input[builtins.str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
         :param pulumi.Input[builtins.str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
@@ -106,7 +106,7 @@ class EventTriggerArgs:
     def app_id(self) -> pulumi.Input[builtins.str]:
         """
         The ObjectID of your application.
-        * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         """
         return pulumi.get(self, "app_id")
 
@@ -358,7 +358,7 @@ class _EventTriggerState:
         """
         Input properties used for looking up and filtering EventTrigger resources.
         :param pulumi.Input[builtins.str] app_id: The ObjectID of your application.
-               * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+               * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         :param pulumi.Input[builtins.str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         :param pulumi.Input[builtins.str] config_database: Required for `DATABASE` type. The name of the MongoDB database to watch.
         :param pulumi.Input[builtins.bool] config_full_document: Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
@@ -431,7 +431,7 @@ class _EventTriggerState:
     def app_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         The ObjectID of your application.
-        * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         """
         return pulumi.get(self, "app_id")
 
@@ -838,7 +838,7 @@ class EventTrigger(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] app_id: The ObjectID of your application.
-               * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+               * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         :param pulumi.Input[builtins.str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         :param pulumi.Input[builtins.str] config_database: Required for `DATABASE` type. The name of the MongoDB database to watch.
         :param pulumi.Input[builtins.bool] config_full_document: Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
@@ -1097,7 +1097,7 @@ class EventTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] app_id: The ObjectID of your application.
-               * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+               * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         :param pulumi.Input[builtins.str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         :param pulumi.Input[builtins.str] config_database: Required for `DATABASE` type. The name of the MongoDB database to watch.
         :param pulumi.Input[builtins.bool] config_full_document: Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
@@ -1153,7 +1153,7 @@ class EventTrigger(pulumi.CustomResource):
     def app_id(self) -> pulumi.Output[builtins.str]:
         """
         The ObjectID of your application.
-        * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         """
         return pulumi.get(self, "app_id")
 

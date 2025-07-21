@@ -53,6 +53,7 @@ class GetStreamConnectionsResult:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def id(self) -> builtins.str:
         return pulumi.get(self, "id")
 

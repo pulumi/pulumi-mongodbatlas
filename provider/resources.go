@@ -97,6 +97,12 @@ func Provider() tfbridge.ProviderInfo {
 		UpstreamRepoPath: "./upstream",
 
 		Resources: map[string]*tfbridge.ResourceInfo{
+			"mongodbatlas_api_key_project_assignment": {
+				ComputeID: tfbridge.DelegateIDField(
+					"projectId",
+					"mongodbatlas",
+					"https://github.com/pulumi/pulumi-mongodbatlas"),
+			},
 			"mongodbatlas_mongodb_employee_access_grant": {
 				ComputeID: tfbridge.DelegateIDField(
 					"projectId",

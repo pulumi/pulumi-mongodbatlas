@@ -15,6 +15,12 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetStreamInstancesInvokeResult {
+    /**
+     * @deprecated
+     * This parameter is deprecated.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. */
     private String id;
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
@@ -35,6 +41,12 @@ public final class GetStreamInstancesInvokeResult {
     private Integer totalCount;
 
     private GetStreamInstancesInvokeResult() {}
+    /**
+     * @deprecated
+     * This parameter is deprecated.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. */
     public String id() {
         return this.id;
     }
