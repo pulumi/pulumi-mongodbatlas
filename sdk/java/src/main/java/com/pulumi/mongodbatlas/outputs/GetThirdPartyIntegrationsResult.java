@@ -40,7 +40,7 @@ public final class GetThirdPartyIntegrationsResult {
      */
     private String projectId;
     /**
-     * @return Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * @return Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
      * * `VICTOR_OPS`
      * 
      */
@@ -64,10 +64,15 @@ public final class GetThirdPartyIntegrationsResult {
     private Boolean sendCollectionLatencyMetrics;
     /**
      * @return Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-     * * `OPS_GENIE`
      * 
      */
     private Boolean sendDatabaseMetrics;
+    /**
+     * @return Toggle sending user provided group and cluster resource tags with the datadog metrics.
+     * * `OPS_GENIE`
+     * 
+     */
+    private Boolean sendUserProvidedResourceTags;
     /**
      * @return Indicates which service discovery method is used, either file or http.
      * 
@@ -140,7 +145,7 @@ public final class GetThirdPartyIntegrationsResult {
         return this.projectId;
     }
     /**
-     * @return Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * @return Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
      * * `VICTOR_OPS`
      * 
      */
@@ -172,11 +177,18 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-     * * `OPS_GENIE`
      * 
      */
     public Boolean sendDatabaseMetrics() {
         return this.sendDatabaseMetrics;
+    }
+    /**
+     * @return Toggle sending user provided group and cluster resource tags with the datadog metrics.
+     * * `OPS_GENIE`
+     * 
+     */
+    public Boolean sendUserProvidedResourceTags() {
+        return this.sendUserProvidedResourceTags;
     }
     /**
      * @return Indicates which service discovery method is used, either file or http.
@@ -239,6 +251,7 @@ public final class GetThirdPartyIntegrationsResult {
         private String secret;
         private Boolean sendCollectionLatencyMetrics;
         private Boolean sendDatabaseMetrics;
+        private Boolean sendUserProvidedResourceTags;
         private String serviceDiscovery;
         private String serviceKey;
         private String teamName;
@@ -260,6 +273,7 @@ public final class GetThirdPartyIntegrationsResult {
     	      this.secret = defaults.secret;
     	      this.sendCollectionLatencyMetrics = defaults.sendCollectionLatencyMetrics;
     	      this.sendDatabaseMetrics = defaults.sendDatabaseMetrics;
+    	      this.sendUserProvidedResourceTags = defaults.sendUserProvidedResourceTags;
     	      this.serviceDiscovery = defaults.serviceDiscovery;
     	      this.serviceKey = defaults.serviceKey;
     	      this.teamName = defaults.teamName;
@@ -365,6 +379,14 @@ public final class GetThirdPartyIntegrationsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder sendUserProvidedResourceTags(Boolean sendUserProvidedResourceTags) {
+            if (sendUserProvidedResourceTags == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "sendUserProvidedResourceTags");
+            }
+            this.sendUserProvidedResourceTags = sendUserProvidedResourceTags;
+            return this;
+        }
+        @CustomType.Setter
         public Builder serviceDiscovery(String serviceDiscovery) {
             if (serviceDiscovery == null) {
               throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "serviceDiscovery");
@@ -426,6 +448,7 @@ public final class GetThirdPartyIntegrationsResult {
             _resultValue.secret = secret;
             _resultValue.sendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
             _resultValue.sendDatabaseMetrics = sendDatabaseMetrics;
+            _resultValue.sendUserProvidedResourceTags = sendUserProvidedResourceTags;
             _resultValue.serviceDiscovery = serviceDiscovery;
             _resultValue.serviceKey = serviceKey;
             _resultValue.teamName = teamName;

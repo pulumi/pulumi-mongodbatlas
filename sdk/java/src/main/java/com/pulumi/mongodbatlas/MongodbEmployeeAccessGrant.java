@@ -71,7 +71,7 @@ import javax.annotation.Nullable;
  * 
  * The resource can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
  * 
- * For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/grantMongoDBEmployeeAccess).
+ * For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-grantmongodbemployeeaccess).
  * 
  */
 @ResourceType(type="mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant")

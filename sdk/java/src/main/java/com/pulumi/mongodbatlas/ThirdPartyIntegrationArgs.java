@@ -102,6 +102,13 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.sendDatabaseMetrics);
     }
 
+    @Import(name="sendUserProvidedResourceTags")
+    private @Nullable Output<Boolean> sendUserProvidedResourceTags;
+
+    public Optional<Output<Boolean>> sendUserProvidedResourceTags() {
+        return Optional.ofNullable(this.sendUserProvidedResourceTags);
+    }
+
     @Import(name="serviceDiscovery")
     private @Nullable Output<String> serviceDiscovery;
 
@@ -184,6 +191,7 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         this.secret = $.secret;
         this.sendCollectionLatencyMetrics = $.sendCollectionLatencyMetrics;
         this.sendDatabaseMetrics = $.sendDatabaseMetrics;
+        this.sendUserProvidedResourceTags = $.sendUserProvidedResourceTags;
         this.serviceDiscovery = $.serviceDiscovery;
         this.serviceKey = $.serviceKey;
         this.teamName = $.teamName;
@@ -319,6 +327,15 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
 
         public Builder sendDatabaseMetrics(Boolean sendDatabaseMetrics) {
             return sendDatabaseMetrics(Output.of(sendDatabaseMetrics));
+        }
+
+        public Builder sendUserProvidedResourceTags(@Nullable Output<Boolean> sendUserProvidedResourceTags) {
+            $.sendUserProvidedResourceTags = sendUserProvidedResourceTags;
+            return this;
+        }
+
+        public Builder sendUserProvidedResourceTags(Boolean sendUserProvidedResourceTags) {
+            return sendUserProvidedResourceTags(Output.of(sendUserProvidedResourceTags));
         }
 
         public Builder serviceDiscovery(@Nullable Output<String> serviceDiscovery) {

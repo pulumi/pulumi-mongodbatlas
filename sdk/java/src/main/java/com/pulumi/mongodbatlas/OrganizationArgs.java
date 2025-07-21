@@ -5,7 +5,6 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -33,22 +32,22 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.apiAccessListRequired);
     }
 
-    @Import(name="description", required=true)
-    private Output<String> description;
+    @Import(name="description")
+    private @Nullable Output<String> description;
 
-    public Output<String> description() {
-        return this.description;
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can&#39;t be updated after creation.
      * 
      */
     @Import(name="federationSettingsId")
     private @Nullable Output<String> federationSettingsId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * @return Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can&#39;t be updated after creation.
      * 
      */
     public Optional<Output<String>> federationSettingsId() {
@@ -86,14 +85,14 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
+     * The name of the organization.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
+     * @return The name of the organization.
      * 
      */
     public Optional<Output<String>> name() {
@@ -101,18 +100,18 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
+     * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can&#39;t be updated later.
      * 
      */
-    @Import(name="orgOwnerId", required=true)
-    private Output<String> orgOwnerId;
+    @Import(name="orgOwnerId")
+    private @Nullable Output<String> orgOwnerId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
+     * @return Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can&#39;t be updated later.
      * 
      */
-    public Output<String> orgOwnerId() {
-        return this.orgOwnerId;
+    public Optional<Output<String>> orgOwnerId() {
+        return Optional.ofNullable(this.orgOwnerId);
     }
 
     /**
@@ -131,18 +130,18 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+     * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can&#39;t be updated later.
      * 
      */
-    @Import(name="roleNames", required=true)
-    private Output<List<String>> roleNames;
+    @Import(name="roleNames")
+    private @Nullable Output<List<String>> roleNames;
 
     /**
-     * @return List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+     * @return List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can&#39;t be updated later.
      * 
      */
-    public Output<List<String>> roleNames() {
-        return this.roleNames;
+    public Optional<Output<List<String>>> roleNames() {
+        return Optional.ofNullable(this.roleNames);
     }
 
     /**
@@ -222,7 +221,7 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
             return apiAccessListRequired(Output.of(apiAccessListRequired));
         }
 
-        public Builder description(Output<String> description) {
+        public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
@@ -232,7 +231,7 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param federationSettingsId Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+         * @param federationSettingsId Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can&#39;t be updated after creation.
          * 
          * @return builder
          * 
@@ -243,7 +242,7 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param federationSettingsId Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+         * @param federationSettingsId Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can&#39;t be updated after creation.
          * 
          * @return builder
          * 
@@ -295,7 +294,7 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
+         * @param name The name of the organization.
          * 
          * @return builder
          * 
@@ -306,7 +305,7 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
+         * @param name The name of the organization.
          * 
          * @return builder
          * 
@@ -316,18 +315,18 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orgOwnerId Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
+         * @param orgOwnerId Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can&#39;t be updated later.
          * 
          * @return builder
          * 
          */
-        public Builder orgOwnerId(Output<String> orgOwnerId) {
+        public Builder orgOwnerId(@Nullable Output<String> orgOwnerId) {
             $.orgOwnerId = orgOwnerId;
             return this;
         }
 
         /**
-         * @param orgOwnerId Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
+         * @param orgOwnerId Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can&#39;t be updated later.
          * 
          * @return builder
          * 
@@ -358,18 +357,18 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+         * @param roleNames List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can&#39;t be updated later.
          * 
          * @return builder
          * 
          */
-        public Builder roleNames(Output<List<String>> roleNames) {
+        public Builder roleNames(@Nullable Output<List<String>> roleNames) {
             $.roleNames = roleNames;
             return this;
         }
 
         /**
-         * @param roleNames List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+         * @param roleNames List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can&#39;t be updated later.
          * 
          * @return builder
          * 
@@ -379,7 +378,7 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+         * @param roleNames List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can&#39;t be updated later.
          * 
          * @return builder
          * 
@@ -419,15 +418,6 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public OrganizationArgs build() {
-            if ($.description == null) {
-                throw new MissingRequiredPropertyException("OrganizationArgs", "description");
-            }
-            if ($.orgOwnerId == null) {
-                throw new MissingRequiredPropertyException("OrganizationArgs", "orgOwnerId");
-            }
-            if ($.roleNames == null) {
-                throw new MissingRequiredPropertyException("OrganizationArgs", "roleNames");
-            }
             return $;
         }
     }
