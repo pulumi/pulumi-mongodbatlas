@@ -34,13 +34,13 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string> IamUserArn { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the role that the data lake can use to access the data stores.
+        /// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         /// </summary>
         [Input("roleId", required: true)]
         public Input<string> RoleId { get; set; } = null!;
 
-        [Input("testS3Bucket", required: true)]
-        public Input<string> TestS3Bucket { get; set; } = null!;
+        [Input("testS3Bucket")]
+        public Input<string>? TestS3Bucket { get; set; }
 
         public GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs()
         {

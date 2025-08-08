@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string Public;
         public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult> ReadPreferences;
         /// <summary>
-        /// Name of the region to which the Federanted Instnace routes client connections for data processing.
+        /// Name of the region to which the Federated Instance routes client connections for data processing.
         /// </summary>
         public readonly string Region;
         public readonly ImmutableArray<string> Urls;

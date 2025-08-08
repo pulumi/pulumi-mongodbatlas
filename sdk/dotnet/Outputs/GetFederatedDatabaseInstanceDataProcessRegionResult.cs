@@ -14,11 +14,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetFederatedDatabaseInstanceDataProcessRegionResult
     {
         /// <summary>
-        /// Name of the cloud service provider. Atlas Federated Database only supports AWS.
+        /// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>
-        /// Name of the region to which the Federanted Instnace routes client connections for data processing.
+        /// Name of the region to which the Federated Instance routes client connections for data processing.
         /// </summary>
         public readonly string Region;
 

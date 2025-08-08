@@ -62,6 +62,7 @@ type LookupStreamInstancesArgs struct {
 
 // A collection of values returned by getStreamInstances.
 type LookupStreamInstancesResult struct {
+	// Deprecated: This parameter is deprecated.
 	Id           string `pulumi:"id"`
 	ItemsPerPage *int   `pulumi:"itemsPerPage"`
 	PageNum      *int   `pulumi:"pageNum"`
@@ -111,6 +112,7 @@ func (o LookupStreamInstancesResultOutput) ToLookupStreamInstancesResultOutputWi
 	return o
 }
 
+// Deprecated: This parameter is deprecated.
 func (o LookupStreamInstancesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamInstancesResult) string { return v.Id }).(pulumi.StringOutput)
 }

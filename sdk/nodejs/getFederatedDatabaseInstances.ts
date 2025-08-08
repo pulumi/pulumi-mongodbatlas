@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
  *
- * `mongodbatlasFederatedDatabaseInstancess` provides a Federated Database Instance data source.
+ * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -51,7 +51,7 @@ export interface GetFederatedDatabaseInstancesResult {
 /**
  * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
  *
- * `mongodbatlasFederatedDatabaseInstancess` provides a Federated Database Instance data source.
+ * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *

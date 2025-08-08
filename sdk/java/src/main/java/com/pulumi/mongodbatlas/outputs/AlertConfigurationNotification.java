@@ -31,7 +31,7 @@ public final class AlertConfigurationNotification {
      */
     private @Nullable String datadogApiKey;
     /**
-     * @return Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+     * @return Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
      * 
      */
     private @Nullable String datadogRegion;
@@ -188,7 +188,7 @@ public final class AlertConfigurationNotification {
         return Optional.ofNullable(this.datadogApiKey);
     }
     /**
-     * @return Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+     * @return Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
      * 
      */
     public Optional<String> datadogRegion() {

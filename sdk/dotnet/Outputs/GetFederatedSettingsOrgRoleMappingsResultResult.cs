@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetFederatedSettingsOrgRoleMappingsResultResult
     {
         /// <summary>
-        /// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        /// Unique label that identifies the identity provider group to which this role mapping applies.
         /// </summary>
         public readonly string ExternalGroupName;
         /// <summary>

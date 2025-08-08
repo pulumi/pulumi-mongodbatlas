@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `global_cluster_self_managed_sharding` attribute in `mongodbatlas.AdvancedCluster` resource for more information.
  * 
- * &gt; **IMPORTANT:** You can update a Global Cluster Configuration to add new custom zone mappings and managed namespaces. However, once configured, you can&#39;t modify or partially delete custom zone mappings (you must remove them all at once). You can add or remove, but can&#39;t modify, managed namespaces. Any update that changes an existing managed namespace results in an error. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/). For more details, see [Global Clusters API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Global-Clusters)
+ * &gt; **IMPORTANT:** You can update a Global Cluster Configuration to add new custom zone mappings and managed namespaces. However, once configured, you can&#39;t modify or partially delete custom zone mappings (you must remove them all at once). You can add or remove, but can&#39;t modify, managed namespaces. Any update that changes an existing managed namespace results in an error. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/). For more details, see [Global Clusters API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-global-clusters)
  * 
  * ## Examples Usage
  * 

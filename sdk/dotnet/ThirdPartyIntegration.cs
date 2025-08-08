@@ -91,6 +91,9 @@ namespace Pulumi.Mongodbatlas
         [Output("sendDatabaseMetrics")]
         public Output<bool> SendDatabaseMetrics { get; private set; } = null!;
 
+        [Output("sendUserProvidedResourceTags")]
+        public Output<bool> SendUserProvidedResourceTags { get; private set; } = null!;
+
         [Output("serviceDiscovery")]
         public Output<string> ServiceDiscovery { get; private set; } = null!;
 
@@ -260,6 +263,9 @@ namespace Pulumi.Mongodbatlas
         [Input("sendDatabaseMetrics")]
         public Input<bool>? SendDatabaseMetrics { get; set; }
 
+        [Input("sendUserProvidedResourceTags")]
+        public Input<bool>? SendUserProvidedResourceTags { get; set; }
+
         [Input("serviceDiscovery")]
         private Input<string>? _serviceDiscovery;
         public Input<string>? ServiceDiscovery
@@ -406,6 +412,9 @@ namespace Pulumi.Mongodbatlas
 
         [Input("sendDatabaseMetrics")]
         public Input<bool>? SendDatabaseMetrics { get; set; }
+
+        [Input("sendUserProvidedResourceTags")]
+        public Input<bool>? SendUserProvidedResourceTags { get; set; }
 
         [Input("serviceDiscovery")]
         private Input<string>? _serviceDiscovery;

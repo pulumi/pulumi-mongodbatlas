@@ -13,7 +13,7 @@ import java.util.Objects;
 @CustomType
 public final class GetFederatedSettingsOrgRoleMappingResult {
     /**
-     * @return Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * @return Unique label that identifies the identity provider group to which this role mapping applies.
      * 
      */
     private String externalGroupName;
@@ -33,7 +33,7 @@ public final class GetFederatedSettingsOrgRoleMappingResult {
 
     private GetFederatedSettingsOrgRoleMappingResult() {}
     /**
-     * @return Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * @return Unique label that identifies the identity provider group to which this role mapping applies.
      * 
      */
     public String externalGroupName() {

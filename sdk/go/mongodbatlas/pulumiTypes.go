@@ -3244,7 +3244,7 @@ type AlertConfigurationNotification struct {
 	ChannelName *string `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey *string `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion *string `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin *int `pulumi:"delayMin"`
@@ -3332,7 +3332,7 @@ type AlertConfigurationNotificationArgs struct {
 	ChannelName pulumi.StringPtrInput `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey pulumi.StringPtrInput `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion pulumi.StringPtrInput `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin pulumi.IntPtrInput `pulumi:"delayMin"`
@@ -3468,7 +3468,7 @@ func (o AlertConfigurationNotificationOutput) DatadogApiKey() pulumi.StringPtrOu
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.DatadogApiKey }).(pulumi.StringPtrOutput)
 }
 
-// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 func (o AlertConfigurationNotificationOutput) DatadogRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.DatadogRegion }).(pulumi.StringPtrOutput)
 }
@@ -4830,7 +4830,7 @@ type CloudBackupScheduleCopySetting struct {
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName *string `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId *string `pulumi:"replicationSpecId"`
@@ -4858,7 +4858,7 @@ type CloudBackupScheduleCopySettingArgs struct {
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId pulumi.StringPtrInput `pulumi:"replicationSpecId"`
@@ -4934,7 +4934,7 @@ func (o CloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.RegionName }).(pulumi.StringPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 //
 // Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o CloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringPtrOutput {
@@ -10843,7 +10843,7 @@ func (o DatabaseUserRoleArrayOutput) Index(i pulumi.IntInput) DatabaseUserRoleOu
 type DatabaseUserScope struct {
 	// Name of the cluster or Atlas Data Lake that the user has access to.
 	Name *string `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type *string `pulumi:"type"`
 }
 
@@ -10861,7 +10861,7 @@ type DatabaseUserScopeInput interface {
 type DatabaseUserScopeArgs struct {
 	// Name of the cluster or Atlas Data Lake that the user has access to.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -10921,7 +10921,7 @@ func (o DatabaseUserScopeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseUserScope) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 func (o DatabaseUserScopeOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseUserScope) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -12022,7 +12022,9 @@ func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ConfigRegion() pulum
 
 type FederatedDatabaseInstanceCloudProviderConfig struct {
 	// Name of the cloud service that hosts the data lake's data stores.
-	Aws FederatedDatabaseInstanceCloudProviderConfigAws `pulumi:"aws"`
+	Aws *FederatedDatabaseInstanceCloudProviderConfigAws `pulumi:"aws"`
+	// Microsoft Azure cloud service configuration.
+	Azure *FederatedDatabaseInstanceCloudProviderConfigAzure `pulumi:"azure"`
 }
 
 // FederatedDatabaseInstanceCloudProviderConfigInput is an input type that accepts FederatedDatabaseInstanceCloudProviderConfigArgs and FederatedDatabaseInstanceCloudProviderConfigOutput values.
@@ -12038,7 +12040,9 @@ type FederatedDatabaseInstanceCloudProviderConfigInput interface {
 
 type FederatedDatabaseInstanceCloudProviderConfigArgs struct {
 	// Name of the cloud service that hosts the data lake's data stores.
-	Aws FederatedDatabaseInstanceCloudProviderConfigAwsInput `pulumi:"aws"`
+	Aws FederatedDatabaseInstanceCloudProviderConfigAwsPtrInput `pulumi:"aws"`
+	// Microsoft Azure cloud service configuration.
+	Azure FederatedDatabaseInstanceCloudProviderConfigAzurePtrInput `pulumi:"azure"`
 }
 
 func (FederatedDatabaseInstanceCloudProviderConfigArgs) ElementType() reflect.Type {
@@ -12119,10 +12123,17 @@ func (o FederatedDatabaseInstanceCloudProviderConfigOutput) ToFederatedDatabaseI
 }
 
 // Name of the cloud service that hosts the data lake's data stores.
-func (o FederatedDatabaseInstanceCloudProviderConfigOutput) Aws() FederatedDatabaseInstanceCloudProviderConfigAwsOutput {
-	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfig) FederatedDatabaseInstanceCloudProviderConfigAws {
+func (o FederatedDatabaseInstanceCloudProviderConfigOutput) Aws() FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfig) *FederatedDatabaseInstanceCloudProviderConfigAws {
 		return v.Aws
-	}).(FederatedDatabaseInstanceCloudProviderConfigAwsOutput)
+	}).(FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput)
+}
+
+// Microsoft Azure cloud service configuration.
+func (o FederatedDatabaseInstanceCloudProviderConfigOutput) Azure() FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfig) *FederatedDatabaseInstanceCloudProviderConfigAzure {
+		return v.Azure
+	}).(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput)
 }
 
 type FederatedDatabaseInstanceCloudProviderConfigPtrOutput struct{ *pulumi.OutputState }
@@ -12155,8 +12166,18 @@ func (o FederatedDatabaseInstanceCloudProviderConfigPtrOutput) Aws() FederatedDa
 		if v == nil {
 			return nil
 		}
-		return &v.Aws
+		return v.Aws
 	}).(FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput)
+}
+
+// Microsoft Azure cloud service configuration.
+func (o FederatedDatabaseInstanceCloudProviderConfigPtrOutput) Azure() FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfig) *FederatedDatabaseInstanceCloudProviderConfigAzure {
+		if v == nil {
+			return nil
+		}
+		return v.Azure
+	}).(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput)
 }
 
 type FederatedDatabaseInstanceCloudProviderConfigAws struct {
@@ -12373,6 +12394,192 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) TestS3Bucket()
 			return nil
 		}
 		return &v.TestS3Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+type FederatedDatabaseInstanceCloudProviderConfigAzure struct {
+	AtlasAppId *string `pulumi:"atlasAppId"`
+	RoleId     string  `pulumi:"roleId"`
+	// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+	ServicePrincipalId *string `pulumi:"servicePrincipalId"`
+	// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+	TenantId *string `pulumi:"tenantId"`
+}
+
+// FederatedDatabaseInstanceCloudProviderConfigAzureInput is an input type that accepts FederatedDatabaseInstanceCloudProviderConfigAzureArgs and FederatedDatabaseInstanceCloudProviderConfigAzureOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstanceCloudProviderConfigAzureInput` via:
+//
+//	FederatedDatabaseInstanceCloudProviderConfigAzureArgs{...}
+type FederatedDatabaseInstanceCloudProviderConfigAzureInput interface {
+	pulumi.Input
+
+	ToFederatedDatabaseInstanceCloudProviderConfigAzureOutput() FederatedDatabaseInstanceCloudProviderConfigAzureOutput
+	ToFederatedDatabaseInstanceCloudProviderConfigAzureOutputWithContext(context.Context) FederatedDatabaseInstanceCloudProviderConfigAzureOutput
+}
+
+type FederatedDatabaseInstanceCloudProviderConfigAzureArgs struct {
+	AtlasAppId pulumi.StringPtrInput `pulumi:"atlasAppId"`
+	RoleId     pulumi.StringInput    `pulumi:"roleId"`
+	// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+	ServicePrincipalId pulumi.StringPtrInput `pulumi:"servicePrincipalId"`
+	// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
+}
+
+func (FederatedDatabaseInstanceCloudProviderConfigAzureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (i FederatedDatabaseInstanceCloudProviderConfigAzureArgs) ToFederatedDatabaseInstanceCloudProviderConfigAzureOutput() FederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return i.ToFederatedDatabaseInstanceCloudProviderConfigAzureOutputWithContext(context.Background())
+}
+
+func (i FederatedDatabaseInstanceCloudProviderConfigAzureArgs) ToFederatedDatabaseInstanceCloudProviderConfigAzureOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceCloudProviderConfigAzureOutput)
+}
+
+func (i FederatedDatabaseInstanceCloudProviderConfigAzureArgs) ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput() FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return i.ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutputWithContext(context.Background())
+}
+
+func (i FederatedDatabaseInstanceCloudProviderConfigAzureArgs) ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceCloudProviderConfigAzureOutput).ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutputWithContext(ctx)
+}
+
+// FederatedDatabaseInstanceCloudProviderConfigAzurePtrInput is an input type that accepts FederatedDatabaseInstanceCloudProviderConfigAzureArgs, FederatedDatabaseInstanceCloudProviderConfigAzurePtr and FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstanceCloudProviderConfigAzurePtrInput` via:
+//
+//	        FederatedDatabaseInstanceCloudProviderConfigAzureArgs{...}
+//
+//	or:
+//
+//	        nil
+type FederatedDatabaseInstanceCloudProviderConfigAzurePtrInput interface {
+	pulumi.Input
+
+	ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput() FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput
+	ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutputWithContext(context.Context) FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput
+}
+
+type federatedDatabaseInstanceCloudProviderConfigAzurePtrType FederatedDatabaseInstanceCloudProviderConfigAzureArgs
+
+func FederatedDatabaseInstanceCloudProviderConfigAzurePtr(v *FederatedDatabaseInstanceCloudProviderConfigAzureArgs) FederatedDatabaseInstanceCloudProviderConfigAzurePtrInput {
+	return (*federatedDatabaseInstanceCloudProviderConfigAzurePtrType)(v)
+}
+
+func (*federatedDatabaseInstanceCloudProviderConfigAzurePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FederatedDatabaseInstanceCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (i *federatedDatabaseInstanceCloudProviderConfigAzurePtrType) ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput() FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return i.ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutputWithContext(context.Background())
+}
+
+func (i *federatedDatabaseInstanceCloudProviderConfigAzurePtrType) ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput)
+}
+
+type FederatedDatabaseInstanceCloudProviderConfigAzureOutput struct{ *pulumi.OutputState }
+
+func (FederatedDatabaseInstanceCloudProviderConfigAzureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) ToFederatedDatabaseInstanceCloudProviderConfigAzureOutput() FederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) ToFederatedDatabaseInstanceCloudProviderConfigAzureOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput() FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return o.ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutputWithContext(context.Background())
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FederatedDatabaseInstanceCloudProviderConfigAzure) *FederatedDatabaseInstanceCloudProviderConfigAzure {
+		return &v
+	}).(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput)
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) AtlasAppId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAzure) *string { return v.AtlasAppId }).(pulumi.StringPtrOutput)
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAzure) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) ServicePrincipalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAzure) *string { return v.ServicePrincipalId }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAzure) *string { return v.TenantId }).(pulumi.StringPtrOutput)
+}
+
+type FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput struct{ *pulumi.OutputState }
+
+func (FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FederatedDatabaseInstanceCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput() FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) ToFederatedDatabaseInstanceCloudProviderConfigAzurePtrOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) Elem() FederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAzure) FederatedDatabaseInstanceCloudProviderConfigAzure {
+		if v != nil {
+			return *v
+		}
+		var ret FederatedDatabaseInstanceCloudProviderConfigAzure
+		return ret
+	}).(FederatedDatabaseInstanceCloudProviderConfigAzureOutput)
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) AtlasAppId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AtlasAppId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RoleId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) ServicePrincipalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServicePrincipalId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TenantId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -15382,7 +15589,7 @@ func (o OnlineArchiveDataExpirationRulePtrOutput) ExpireAfterDays() pulumi.IntPt
 type OnlineArchiveDataProcessRegion struct {
 	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 	CloudProvider *string `pulumi:"cloudProvider"`
-	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
 	Region *string `pulumi:"region"`
 }
 
@@ -15400,7 +15607,7 @@ type OnlineArchiveDataProcessRegionInput interface {
 type OnlineArchiveDataProcessRegionArgs struct {
 	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
-	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -15486,7 +15693,7 @@ func (o OnlineArchiveDataProcessRegionOutput) CloudProvider() pulumi.StringPtrOu
 	return o.ApplyT(func(v OnlineArchiveDataProcessRegion) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
 }
 
-// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
 func (o OnlineArchiveDataProcessRegionOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveDataProcessRegion) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -15525,7 +15732,7 @@ func (o OnlineArchiveDataProcessRegionPtrOutput) CloudProvider() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
 func (o OnlineArchiveDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveDataProcessRegion) *string {
 		if v == nil {
@@ -24825,7 +25032,7 @@ type GetAlertConfigurationNotification struct {
 	ChannelName string `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey string `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion string `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin int `pulumi:"delayMin"`
@@ -24903,7 +25110,7 @@ type GetAlertConfigurationNotificationArgs struct {
 	ChannelName pulumi.StringInput `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey pulumi.StringInput `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion pulumi.StringInput `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin pulumi.IntInput `pulumi:"delayMin"`
@@ -25029,7 +25236,7 @@ func (o GetAlertConfigurationNotificationOutput) DatadogApiKey() pulumi.StringOu
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.DatadogApiKey }).(pulumi.StringOutput)
 }
 
-// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 func (o GetAlertConfigurationNotificationOutput) DatadogRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.DatadogRegion }).(pulumi.StringOutput)
 }
@@ -26017,7 +26224,7 @@ type GetAlertConfigurationsResultNotification struct {
 	ChannelName string `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey string `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion string `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin int `pulumi:"delayMin"`
@@ -26095,7 +26302,7 @@ type GetAlertConfigurationsResultNotificationArgs struct {
 	ChannelName pulumi.StringInput `pulumi:"channelName"`
 	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 	DatadogApiKey pulumi.StringInput `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 	DatadogRegion pulumi.StringInput `pulumi:"datadogRegion"`
 	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 	DelayMin pulumi.IntInput `pulumi:"delayMin"`
@@ -26221,7 +26428,7 @@ func (o GetAlertConfigurationsResultNotificationOutput) DatadogApiKey() pulumi.S
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.DatadogApiKey }).(pulumi.StringOutput)
 }
 
-// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
 func (o GetAlertConfigurationsResultNotificationOutput) DatadogRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.DatadogRegion }).(pulumi.StringOutput)
 }
@@ -26614,6 +26821,121 @@ func (o GetAlertConfigurationsResultThresholdConfigArrayOutput) Index(i pulumi.I
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertConfigurationsResultThresholdConfig {
 		return vs[0].([]GetAlertConfigurationsResultThresholdConfig)[vs[1].(int)]
 	}).(GetAlertConfigurationsResultThresholdConfigOutput)
+}
+
+type GetApiKeyProjectAssignmentsResult struct {
+	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
+	ApiKeyId string `pulumi:"apiKeyId"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId string `pulumi:"projectId"`
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	Roles []string `pulumi:"roles"`
+}
+
+// GetApiKeyProjectAssignmentsResultInput is an input type that accepts GetApiKeyProjectAssignmentsResultArgs and GetApiKeyProjectAssignmentsResultOutput values.
+// You can construct a concrete instance of `GetApiKeyProjectAssignmentsResultInput` via:
+//
+//	GetApiKeyProjectAssignmentsResultArgs{...}
+type GetApiKeyProjectAssignmentsResultInput interface {
+	pulumi.Input
+
+	ToGetApiKeyProjectAssignmentsResultOutput() GetApiKeyProjectAssignmentsResultOutput
+	ToGetApiKeyProjectAssignmentsResultOutputWithContext(context.Context) GetApiKeyProjectAssignmentsResultOutput
+}
+
+type GetApiKeyProjectAssignmentsResultArgs struct {
+	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
+	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
+	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+}
+
+func (GetApiKeyProjectAssignmentsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiKeyProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (i GetApiKeyProjectAssignmentsResultArgs) ToGetApiKeyProjectAssignmentsResultOutput() GetApiKeyProjectAssignmentsResultOutput {
+	return i.ToGetApiKeyProjectAssignmentsResultOutputWithContext(context.Background())
+}
+
+func (i GetApiKeyProjectAssignmentsResultArgs) ToGetApiKeyProjectAssignmentsResultOutputWithContext(ctx context.Context) GetApiKeyProjectAssignmentsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiKeyProjectAssignmentsResultOutput)
+}
+
+// GetApiKeyProjectAssignmentsResultArrayInput is an input type that accepts GetApiKeyProjectAssignmentsResultArray and GetApiKeyProjectAssignmentsResultArrayOutput values.
+// You can construct a concrete instance of `GetApiKeyProjectAssignmentsResultArrayInput` via:
+//
+//	GetApiKeyProjectAssignmentsResultArray{ GetApiKeyProjectAssignmentsResultArgs{...} }
+type GetApiKeyProjectAssignmentsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetApiKeyProjectAssignmentsResultArrayOutput() GetApiKeyProjectAssignmentsResultArrayOutput
+	ToGetApiKeyProjectAssignmentsResultArrayOutputWithContext(context.Context) GetApiKeyProjectAssignmentsResultArrayOutput
+}
+
+type GetApiKeyProjectAssignmentsResultArray []GetApiKeyProjectAssignmentsResultInput
+
+func (GetApiKeyProjectAssignmentsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiKeyProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (i GetApiKeyProjectAssignmentsResultArray) ToGetApiKeyProjectAssignmentsResultArrayOutput() GetApiKeyProjectAssignmentsResultArrayOutput {
+	return i.ToGetApiKeyProjectAssignmentsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetApiKeyProjectAssignmentsResultArray) ToGetApiKeyProjectAssignmentsResultArrayOutputWithContext(ctx context.Context) GetApiKeyProjectAssignmentsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiKeyProjectAssignmentsResultArrayOutput)
+}
+
+type GetApiKeyProjectAssignmentsResultOutput struct{ *pulumi.OutputState }
+
+func (GetApiKeyProjectAssignmentsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiKeyProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (o GetApiKeyProjectAssignmentsResultOutput) ToGetApiKeyProjectAssignmentsResultOutput() GetApiKeyProjectAssignmentsResultOutput {
+	return o
+}
+
+func (o GetApiKeyProjectAssignmentsResultOutput) ToGetApiKeyProjectAssignmentsResultOutputWithContext(ctx context.Context) GetApiKeyProjectAssignmentsResultOutput {
+	return o
+}
+
+// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
+func (o GetApiKeyProjectAssignmentsResultOutput) ApiKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiKeyProjectAssignmentsResult) string { return v.ApiKeyId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+func (o GetApiKeyProjectAssignmentsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiKeyProjectAssignmentsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+func (o GetApiKeyProjectAssignmentsResultOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetApiKeyProjectAssignmentsResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+type GetApiKeyProjectAssignmentsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApiKeyProjectAssignmentsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiKeyProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (o GetApiKeyProjectAssignmentsResultArrayOutput) ToGetApiKeyProjectAssignmentsResultArrayOutput() GetApiKeyProjectAssignmentsResultArrayOutput {
+	return o
+}
+
+func (o GetApiKeyProjectAssignmentsResultArrayOutput) ToGetApiKeyProjectAssignmentsResultArrayOutputWithContext(ctx context.Context) GetApiKeyProjectAssignmentsResultArrayOutput {
+	return o
+}
+
+func (o GetApiKeyProjectAssignmentsResultArrayOutput) Index(i pulumi.IntInput) GetApiKeyProjectAssignmentsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiKeyProjectAssignmentsResult {
+		return vs[0].([]GetApiKeyProjectAssignmentsResult)[vs[1].(int)]
+	}).(GetApiKeyProjectAssignmentsResultOutput)
 }
 
 type GetApiKeysResult struct {
@@ -28060,7 +28382,7 @@ type GetCloudBackupScheduleCopySetting struct {
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName string `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId string `pulumi:"replicationSpecId"`
@@ -28088,7 +28410,7 @@ type GetCloudBackupScheduleCopySettingArgs struct {
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringInput `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	ReplicationSpecId pulumi.StringInput `pulumi:"replicationSpecId"`
@@ -28164,7 +28486,7 @@ func (o GetCloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringOutpu
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
 //
 // Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetCloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringOutput {
@@ -37524,7 +37846,7 @@ func (o GetDatabaseUserRoleArrayOutput) Index(i pulumi.IntInput) GetDatabaseUser
 type GetDatabaseUserScope struct {
 	// Name of the role to grant.
 	Name string `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type string `pulumi:"type"`
 }
 
@@ -37542,7 +37864,7 @@ type GetDatabaseUserScopeInput interface {
 type GetDatabaseUserScopeArgs struct {
 	// Name of the role to grant.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -37602,7 +37924,7 @@ func (o GetDatabaseUserScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUserScope) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 func (o GetDatabaseUserScopeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUserScope) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -38053,7 +38375,7 @@ func (o GetDatabaseUsersResultRoleArrayOutput) Index(i pulumi.IntInput) GetDatab
 type GetDatabaseUsersResultScope struct {
 	// Name of the role to grant.
 	Name string `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type string `pulumi:"type"`
 }
 
@@ -38071,7 +38393,7 @@ type GetDatabaseUsersResultScopeInput interface {
 type GetDatabaseUsersResultScopeArgs struct {
 	// Name of the role to grant.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -38131,7 +38453,7 @@ func (o GetDatabaseUsersResultScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultScope) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 func (o GetDatabaseUsersResultScopeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultScope) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -39307,7 +39629,8 @@ func (o GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput) Index(i p
 }
 
 type GetFederatedDatabaseInstanceCloudProviderConfig struct {
-	Aws GetFederatedDatabaseInstanceCloudProviderConfigAws `pulumi:"aws"`
+	Aws    GetFederatedDatabaseInstanceCloudProviderConfigAws     `pulumi:"aws"`
+	Azures []GetFederatedDatabaseInstanceCloudProviderConfigAzure `pulumi:"azures"`
 }
 
 // GetFederatedDatabaseInstanceCloudProviderConfigInput is an input type that accepts GetFederatedDatabaseInstanceCloudProviderConfigArgs and GetFederatedDatabaseInstanceCloudProviderConfigOutput values.
@@ -39322,7 +39645,8 @@ type GetFederatedDatabaseInstanceCloudProviderConfigInput interface {
 }
 
 type GetFederatedDatabaseInstanceCloudProviderConfigArgs struct {
-	Aws GetFederatedDatabaseInstanceCloudProviderConfigAwsInput `pulumi:"aws"`
+	Aws    GetFederatedDatabaseInstanceCloudProviderConfigAwsInput        `pulumi:"aws"`
+	Azures GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayInput `pulumi:"azures"`
 }
 
 func (GetFederatedDatabaseInstanceCloudProviderConfigArgs) ElementType() reflect.Type {
@@ -39408,6 +39732,12 @@ func (o GetFederatedDatabaseInstanceCloudProviderConfigOutput) Aws() GetFederate
 	}).(GetFederatedDatabaseInstanceCloudProviderConfigAwsOutput)
 }
 
+func (o GetFederatedDatabaseInstanceCloudProviderConfigOutput) Azures() GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfig) []GetFederatedDatabaseInstanceCloudProviderConfigAzure {
+		return v.Azures
+	}).(GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput)
+}
+
 type GetFederatedDatabaseInstanceCloudProviderConfigPtrOutput struct{ *pulumi.OutputState }
 
 func (GetFederatedDatabaseInstanceCloudProviderConfigPtrOutput) ElementType() reflect.Type {
@@ -39441,6 +39771,15 @@ func (o GetFederatedDatabaseInstanceCloudProviderConfigPtrOutput) Aws() GetFeder
 	}).(GetFederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput)
 }
 
+func (o GetFederatedDatabaseInstanceCloudProviderConfigPtrOutput) Azures() GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput {
+	return o.ApplyT(func(v *GetFederatedDatabaseInstanceCloudProviderConfig) []GetFederatedDatabaseInstanceCloudProviderConfigAzure {
+		if v == nil {
+			return nil
+		}
+		return v.Azures
+	}).(GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput)
+}
+
 type GetFederatedDatabaseInstanceCloudProviderConfigAws struct {
 	// Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
 	ExternalId string `pulumi:"externalId"`
@@ -39451,9 +39790,9 @@ type GetFederatedDatabaseInstanceCloudProviderConfigAws struct {
 	IamAssumedRoleArn string `pulumi:"iamAssumedRoleArn"`
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
 	IamUserArn string `pulumi:"iamUserArn"`
-	// Unique identifier of the role that the data lake can use to access the data stores.
-	RoleId       string `pulumi:"roleId"`
-	TestS3Bucket string `pulumi:"testS3Bucket"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId       string  `pulumi:"roleId"`
+	TestS3Bucket *string `pulumi:"testS3Bucket"`
 }
 
 // GetFederatedDatabaseInstanceCloudProviderConfigAwsInput is an input type that accepts GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs and GetFederatedDatabaseInstanceCloudProviderConfigAwsOutput values.
@@ -39477,9 +39816,9 @@ type GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs struct {
 	IamAssumedRoleArn pulumi.StringInput `pulumi:"iamAssumedRoleArn"`
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
 	IamUserArn pulumi.StringInput `pulumi:"iamUserArn"`
-	// Unique identifier of the role that the data lake can use to access the data stores.
-	RoleId       pulumi.StringInput `pulumi:"roleId"`
-	TestS3Bucket pulumi.StringInput `pulumi:"testS3Bucket"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId       pulumi.StringInput    `pulumi:"roleId"`
+	TestS3Bucket pulumi.StringPtrInput `pulumi:"testS3Bucket"`
 }
 
 func (GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs) ElementType() reflect.Type {
@@ -39577,13 +39916,13 @@ func (o GetFederatedDatabaseInstanceCloudProviderConfigAwsOutput) IamUserArn() p
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigAws) string { return v.IamUserArn }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the role that the data lake can use to access the data stores.
+// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
 func (o GetFederatedDatabaseInstanceCloudProviderConfigAwsOutput) RoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigAws) string { return v.RoleId }).(pulumi.StringOutput)
 }
 
-func (o GetFederatedDatabaseInstanceCloudProviderConfigAwsOutput) TestS3Bucket() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigAws) string { return v.TestS3Bucket }).(pulumi.StringOutput)
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAwsOutput) TestS3Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigAws) *string { return v.TestS3Bucket }).(pulumi.StringPtrOutput)
 }
 
 type GetFederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput struct{ *pulumi.OutputState }
@@ -39643,7 +39982,7 @@ func (o GetFederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) IamUserArn(
 	}).(pulumi.StringPtrOutput)
 }
 
-// Unique identifier of the role that the data lake can use to access the data stores.
+// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
 func (o GetFederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) RoleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetFederatedDatabaseInstanceCloudProviderConfigAws) *string {
 		if v == nil {
@@ -39658,14 +39997,135 @@ func (o GetFederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) TestS3Bucke
 		if v == nil {
 			return nil
 		}
-		return &v.TestS3Bucket
+		return v.TestS3Bucket
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetFederatedDatabaseInstanceCloudProviderConfigAzure struct {
+	AtlasAppId string `pulumi:"atlasAppId"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId string `pulumi:"roleId"`
+	// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+	ServicePrincipalId string `pulumi:"servicePrincipalId"`
+	// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+	TenantId string `pulumi:"tenantId"`
+}
+
+// GetFederatedDatabaseInstanceCloudProviderConfigAzureInput is an input type that accepts GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs and GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstanceCloudProviderConfigAzureInput` via:
+//
+//	GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs{...}
+type GetFederatedDatabaseInstanceCloudProviderConfigAzureInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstanceCloudProviderConfigAzureOutput() GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput
+	ToGetFederatedDatabaseInstanceCloudProviderConfigAzureOutputWithContext(context.Context) GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput
+}
+
+type GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs struct {
+	AtlasAppId pulumi.StringInput `pulumi:"atlasAppId"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
+	// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
+	// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+	TenantId pulumi.StringInput `pulumi:"tenantId"`
+}
+
+func (GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs) ToGetFederatedDatabaseInstanceCloudProviderConfigAzureOutput() GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return i.ToGetFederatedDatabaseInstanceCloudProviderConfigAzureOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs) ToGetFederatedDatabaseInstanceCloudProviderConfigAzureOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput)
+}
+
+// GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayInput is an input type that accepts GetFederatedDatabaseInstanceCloudProviderConfigAzureArray and GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayInput` via:
+//
+//	GetFederatedDatabaseInstanceCloudProviderConfigAzureArray{ GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs{...} }
+type GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput() GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput
+	ToGetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutputWithContext(context.Context) GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput
+}
+
+type GetFederatedDatabaseInstanceCloudProviderConfigAzureArray []GetFederatedDatabaseInstanceCloudProviderConfigAzureInput
+
+func (GetFederatedDatabaseInstanceCloudProviderConfigAzureArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstanceCloudProviderConfigAzureArray) ToGetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput() GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput {
+	return i.ToGetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstanceCloudProviderConfigAzureArray) ToGetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput)
+}
+
+type GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput) ToGetFederatedDatabaseInstanceCloudProviderConfigAzureOutput() GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput) ToGetFederatedDatabaseInstanceCloudProviderConfigAzureOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput) AtlasAppId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigAzure) string { return v.AtlasAppId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigAzure) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput) ServicePrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigAzure) string { return v.ServicePrincipalId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigAzure) string { return v.TenantId }).(pulumi.StringOutput)
+}
+
+type GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput) ToGetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput() GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput) ToGetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstanceCloudProviderConfigAzure {
+		return vs[0].([]GetFederatedDatabaseInstanceCloudProviderConfigAzure)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput)
+}
+
 type GetFederatedDatabaseInstanceDataProcessRegion struct {
-	// Name of the cloud service provider. Atlas Federated Database only supports AWS.
+	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing.
+	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region string `pulumi:"region"`
 }
 
@@ -39681,9 +40141,9 @@ type GetFederatedDatabaseInstanceDataProcessRegionInput interface {
 }
 
 type GetFederatedDatabaseInstanceDataProcessRegionArgs struct {
-	// Name of the cloud service provider. Atlas Federated Database only supports AWS.
+	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing.
+	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region pulumi.StringInput `pulumi:"region"`
 }
 
@@ -39738,12 +40198,12 @@ func (o GetFederatedDatabaseInstanceDataProcessRegionOutput) ToGetFederatedDatab
 	return o
 }
 
-// Name of the cloud service provider. Atlas Federated Database only supports AWS.
+// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
 func (o GetFederatedDatabaseInstanceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// Name of the region to which the Federanted Instnace routes client connections for data processing.
+// Name of the region to which the Federated Instance routes client connections for data processing.
 func (o GetFederatedDatabaseInstanceDataProcessRegionOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -40275,7 +40735,7 @@ type GetFederatedDatabaseInstanceStorageStore struct {
 	Provider        string                                                   `pulumi:"provider"`
 	Public          string                                                   `pulumi:"public"`
 	ReadPreferences []GetFederatedDatabaseInstanceStorageStoreReadPreference `pulumi:"readPreferences"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing.
+	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region string   `pulumi:"region"`
 	Urls   []string `pulumi:"urls"`
 }
@@ -40307,7 +40767,7 @@ type GetFederatedDatabaseInstanceStorageStoreArgs struct {
 	Provider        pulumi.StringInput                                               `pulumi:"provider"`
 	Public          pulumi.StringInput                                               `pulumi:"public"`
 	ReadPreferences GetFederatedDatabaseInstanceStorageStoreReadPreferenceArrayInput `pulumi:"readPreferences"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing.
+	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region pulumi.StringInput      `pulumi:"region"`
 	Urls   pulumi.StringArrayInput `pulumi:"urls"`
 }
@@ -40419,7 +40879,7 @@ func (o GetFederatedDatabaseInstanceStorageStoreOutput) ReadPreferences() GetFed
 	}).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceArrayOutput)
 }
 
-// Name of the region to which the Federanted Instnace routes client connections for data processing.
+// Name of the region to which the Federated Instance routes client connections for data processing.
 func (o GetFederatedDatabaseInstanceStorageStoreOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -41038,7 +41498,8 @@ func (o GetFederatedDatabaseInstancesResultArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetFederatedDatabaseInstancesResultCloudProviderConfig struct {
-	Aws GetFederatedDatabaseInstancesResultCloudProviderConfigAws `pulumi:"aws"`
+	Aws    GetFederatedDatabaseInstancesResultCloudProviderConfigAws     `pulumi:"aws"`
+	Azures []GetFederatedDatabaseInstancesResultCloudProviderConfigAzure `pulumi:"azures"`
 }
 
 // GetFederatedDatabaseInstancesResultCloudProviderConfigInput is an input type that accepts GetFederatedDatabaseInstancesResultCloudProviderConfigArgs and GetFederatedDatabaseInstancesResultCloudProviderConfigOutput values.
@@ -41053,7 +41514,8 @@ type GetFederatedDatabaseInstancesResultCloudProviderConfigInput interface {
 }
 
 type GetFederatedDatabaseInstancesResultCloudProviderConfigArgs struct {
-	Aws GetFederatedDatabaseInstancesResultCloudProviderConfigAwsInput `pulumi:"aws"`
+	Aws    GetFederatedDatabaseInstancesResultCloudProviderConfigAwsInput        `pulumi:"aws"`
+	Azures GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayInput `pulumi:"azures"`
 }
 
 func (GetFederatedDatabaseInstancesResultCloudProviderConfigArgs) ElementType() reflect.Type {
@@ -41088,6 +41550,12 @@ func (o GetFederatedDatabaseInstancesResultCloudProviderConfigOutput) Aws() GetF
 	}).(GetFederatedDatabaseInstancesResultCloudProviderConfigAwsOutput)
 }
 
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigOutput) Azures() GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfig) []GetFederatedDatabaseInstancesResultCloudProviderConfigAzure {
+		return v.Azures
+	}).(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput)
+}
+
 type GetFederatedDatabaseInstancesResultCloudProviderConfigAws struct {
 	// Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
 	ExternalId string `pulumi:"externalId"`
@@ -41098,10 +41566,9 @@ type GetFederatedDatabaseInstancesResultCloudProviderConfigAws struct {
 	IamAssumedRoleArn string `pulumi:"iamAssumedRoleArn"`
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
 	IamUserArn string `pulumi:"iamUserArn"`
-	// Unique identifier of the role that the data lake can use to access the data stores.
-	// #### `dataProcessRegion` - The cloud provider region to which the Federated Instance routes client connections for data processing.
-	RoleId       string `pulumi:"roleId"`
-	TestS3Bucket string `pulumi:"testS3Bucket"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId       string  `pulumi:"roleId"`
+	TestS3Bucket *string `pulumi:"testS3Bucket"`
 }
 
 // GetFederatedDatabaseInstancesResultCloudProviderConfigAwsInput is an input type that accepts GetFederatedDatabaseInstancesResultCloudProviderConfigAwsArgs and GetFederatedDatabaseInstancesResultCloudProviderConfigAwsOutput values.
@@ -41125,10 +41592,9 @@ type GetFederatedDatabaseInstancesResultCloudProviderConfigAwsArgs struct {
 	IamAssumedRoleArn pulumi.StringInput `pulumi:"iamAssumedRoleArn"`
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
 	IamUserArn pulumi.StringInput `pulumi:"iamUserArn"`
-	// Unique identifier of the role that the data lake can use to access the data stores.
-	// #### `dataProcessRegion` - The cloud provider region to which the Federated Instance routes client connections for data processing.
-	RoleId       pulumi.StringInput `pulumi:"roleId"`
-	TestS3Bucket pulumi.StringInput `pulumi:"testS3Bucket"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId       pulumi.StringInput    `pulumi:"roleId"`
+	TestS3Bucket pulumi.StringPtrInput `pulumi:"testS3Bucket"`
 }
 
 func (GetFederatedDatabaseInstancesResultCloudProviderConfigAwsArgs) ElementType() reflect.Type {
@@ -41175,20 +41641,142 @@ func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAwsOutput) IamUser
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAws) string { return v.IamUserArn }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the role that the data lake can use to access the data stores.
-// #### `dataProcessRegion` - The cloud provider region to which the Federated Instance routes client connections for data processing.
+// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
 func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAwsOutput) RoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAws) string { return v.RoleId }).(pulumi.StringOutput)
 }
 
-func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAwsOutput) TestS3Bucket() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAws) string { return v.TestS3Bucket }).(pulumi.StringOutput)
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAwsOutput) TestS3Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAws) *string { return v.TestS3Bucket }).(pulumi.StringPtrOutput)
+}
+
+type GetFederatedDatabaseInstancesResultCloudProviderConfigAzure struct {
+	AtlasAppId string `pulumi:"atlasAppId"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId string `pulumi:"roleId"`
+	// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+	ServicePrincipalId string `pulumi:"servicePrincipalId"`
+	// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+	TenantId string `pulumi:"tenantId"`
+}
+
+// GetFederatedDatabaseInstancesResultCloudProviderConfigAzureInput is an input type that accepts GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs and GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultCloudProviderConfigAzureInput` via:
+//
+//	GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs{...}
+type GetFederatedDatabaseInstancesResultCloudProviderConfigAzureInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput
+	ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput
+}
+
+type GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs struct {
+	AtlasAppId pulumi.StringInput `pulumi:"atlasAppId"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
+	// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
+	// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+	TenantId pulumi.StringInput `pulumi:"tenantId"`
+}
+
+func (GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs) ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput {
+	return i.ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs) ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput)
+}
+
+// GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayInput is an input type that accepts GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArray and GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayInput` via:
+//
+//	GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArray{ GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs{...} }
+type GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput
+	ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput
+}
+
+type GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArray []GetFederatedDatabaseInstancesResultCloudProviderConfigAzureInput
+
+func (GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArray) ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput {
+	return i.ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArray) ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput)
+}
+
+type GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput) ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput) ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput) AtlasAppId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAzure) string { return v.AtlasAppId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAzure) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput) ServicePrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAzure) string {
+		return v.ServicePrincipalId
+	}).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Azure Active Directory tenant where the service principal resides.
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAzure) string { return v.TenantId }).(pulumi.StringOutput)
+}
+
+type GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultCloudProviderConfigAzure)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput) ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput) ToGetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstancesResultCloudProviderConfigAzure {
+		return vs[0].([]GetFederatedDatabaseInstancesResultCloudProviderConfigAzure)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput)
 }
 
 type GetFederatedDatabaseInstancesResultDataProcessRegion struct {
-	// Name of the cloud service provider. Atlas Federated Database only supports AWS.
+	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
 	CloudProvider string `pulumi:"cloudProvider"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing.
+	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region string `pulumi:"region"`
 }
 
@@ -41204,9 +41792,9 @@ type GetFederatedDatabaseInstancesResultDataProcessRegionInput interface {
 }
 
 type GetFederatedDatabaseInstancesResultDataProcessRegionArgs struct {
-	// Name of the cloud service provider. Atlas Federated Database only supports AWS.
+	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing.
+	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region pulumi.StringInput `pulumi:"region"`
 }
 
@@ -41261,12 +41849,12 @@ func (o GetFederatedDatabaseInstancesResultDataProcessRegionOutput) ToGetFederat
 	return o
 }
 
-// Name of the cloud service provider. Atlas Federated Database only supports AWS.
+// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
 func (o GetFederatedDatabaseInstancesResultDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// Name of the region to which the Federanted Instnace routes client connections for data processing.
+// Name of the region to which the Federated Instance routes client connections for data processing.
 func (o GetFederatedDatabaseInstancesResultDataProcessRegionOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -41802,7 +42390,7 @@ type GetFederatedDatabaseInstancesResultStorageStore struct {
 	Provider        string                                                          `pulumi:"provider"`
 	Public          string                                                          `pulumi:"public"`
 	ReadPreferences []GetFederatedDatabaseInstancesResultStorageStoreReadPreference `pulumi:"readPreferences"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing.
+	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region string   `pulumi:"region"`
 	Urls   []string `pulumi:"urls"`
 }
@@ -41833,7 +42421,7 @@ type GetFederatedDatabaseInstancesResultStorageStoreArgs struct {
 	Provider        pulumi.StringInput                                                      `pulumi:"provider"`
 	Public          pulumi.StringInput                                                      `pulumi:"public"`
 	ReadPreferences GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArrayInput `pulumi:"readPreferences"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing.
+	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region pulumi.StringInput      `pulumi:"region"`
 	Urls   pulumi.StringArrayInput `pulumi:"urls"`
 }
@@ -41944,7 +42532,7 @@ func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) ReadPreferences()
 	}).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArrayOutput)
 }
 
-// Name of the region to which the Federanted Instnace routes client connections for data processing.
+// Name of the region to which the Federated Instance routes client connections for data processing.
 func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -45236,7 +45824,7 @@ func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) Index(i pul
 }
 
 type GetFederatedSettingsOrgRoleMappingsResult struct {
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName string `pulumi:"externalGroupName"`
 	// Unique 24-hexadecimal digit string that identifies this role mapping.
 	Id string `pulumi:"id"`
@@ -45256,7 +45844,7 @@ type GetFederatedSettingsOrgRoleMappingsResultInput interface {
 }
 
 type GetFederatedSettingsOrgRoleMappingsResultArgs struct {
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName pulumi.StringInput `pulumi:"externalGroupName"`
 	// Unique 24-hexadecimal digit string that identifies this role mapping.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -45315,7 +45903,7 @@ func (o GetFederatedSettingsOrgRoleMappingsResultOutput) ToGetFederatedSettingsO
 	return o
 }
 
-// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+// Unique label that identifies the identity provider group to which this role mapping applies.
 func (o GetFederatedSettingsOrgRoleMappingsResultOutput) ExternalGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingsResult) string { return v.ExternalGroupName }).(pulumi.StringOutput)
 }
@@ -55522,7 +56110,7 @@ type GetThirdPartyIntegrationsResult struct {
 	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
-	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 	// * `VICTOR_OPS`
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
@@ -55534,8 +56122,10 @@ type GetThirdPartyIntegrationsResult struct {
 	// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
 	SendCollectionLatencyMetrics bool `pulumi:"sendCollectionLatencyMetrics"`
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-	// * `OPS_GENIE`
 	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
+	// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+	// * `OPS_GENIE`
+	SendUserProvidedResourceTags bool `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
@@ -55575,7 +56165,7 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 	// * `VICTOR_OPS`
 	Region pulumi.StringInput `pulumi:"region"`
 	// An optional field for your Routing Key.
@@ -55587,8 +56177,10 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
 	SendCollectionLatencyMetrics pulumi.BoolInput `pulumi:"sendCollectionLatencyMetrics"`
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-	// * `OPS_GENIE`
 	SendDatabaseMetrics pulumi.BoolInput `pulumi:"sendDatabaseMetrics"`
+	// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+	// * `OPS_GENIE`
+	SendUserProvidedResourceTags pulumi.BoolInput `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery pulumi.StringInput `pulumi:"serviceDiscovery"`
 	// Your Service Key.
@@ -55688,7 +56280,7 @@ func (o GetThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 // * `VICTOR_OPS`
 func (o GetThirdPartyIntegrationsResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Region }).(pulumi.StringOutput)
@@ -55712,9 +56304,14 @@ func (o GetThirdPartyIntegrationsResultOutput) SendCollectionLatencyMetrics() pu
 }
 
 // Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-// * `OPS_GENIE`
 func (o GetThirdPartyIntegrationsResultOutput) SendDatabaseMetrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
+}
+
+// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+// * `OPS_GENIE`
+func (o GetThirdPartyIntegrationsResultOutput) SendUserProvidedResourceTags() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendUserProvidedResourceTags }).(pulumi.BoolOutput)
 }
 
 // Indicates which service discovery method is used, either file or http.
@@ -56034,6 +56631,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigPtrInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAwsInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAwsPtrInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAzureInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigAzureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAzurePtrInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceDataProcessRegionInput)(nil)).Elem(), FederatedDatabaseInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceDataProcessRegionPtrInput)(nil)).Elem(), FederatedDatabaseInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageDatabaseInput)(nil)).Elem(), FederatedDatabaseInstanceStorageDatabaseArgs{})
@@ -56226,6 +56825,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationsResultOutputTypeArrayInput)(nil)).Elem(), GetAlertConfigurationsResultOutputTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationsResultThresholdConfigInput)(nil)).Elem(), GetAlertConfigurationsResultThresholdConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationsResultThresholdConfigArrayInput)(nil)).Elem(), GetAlertConfigurationsResultThresholdConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeyProjectAssignmentsResultInput)(nil)).Elem(), GetApiKeyProjectAssignmentsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeyProjectAssignmentsResultArrayInput)(nil)).Elem(), GetApiKeyProjectAssignmentsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeysResultInput)(nil)).Elem(), GetApiKeysResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeysResultArrayInput)(nil)).Elem(), GetApiKeysResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAtlasUserLinkInput)(nil)).Elem(), GetAtlasUserLinkArgs{})
@@ -56418,6 +57019,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigPtrInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAwsInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAwsPtrInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAzureInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigAzureArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceDataProcessRegionInput)(nil)).Elem(), GetFederatedDatabaseInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceDataProcessRegionArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceDataProcessRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageDatabaseInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageDatabaseArgs{})
@@ -56440,6 +57043,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigAwsInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigAzureInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultDataProcessRegionInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultDataProcessRegionArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultDataProcessRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageDatabaseInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageDatabaseArgs{})
@@ -56808,6 +57413,8 @@ func init() {
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigPtrOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigAwsOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigAzureOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceDataProcessRegionPtrOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageDatabaseOutput{})
@@ -57000,6 +57607,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAlertConfigurationsResultOutputTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationsResultThresholdConfigOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationsResultThresholdConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetApiKeyProjectAssignmentsResultOutput{})
+	pulumi.RegisterOutputType(GetApiKeyProjectAssignmentsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetApiKeysResultOutput{})
 	pulumi.RegisterOutputType(GetApiKeysResultArrayOutput{})
 	pulumi.RegisterOutputType(GetAtlasUserLinkOutput{})
@@ -57192,6 +57801,8 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigPtrOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigAwsOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceDataProcessRegionArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageDatabaseOutput{})
@@ -57214,6 +57825,8 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigAwsOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultDataProcessRegionArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageDatabaseOutput{})

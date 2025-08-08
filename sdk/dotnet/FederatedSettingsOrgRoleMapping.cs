@@ -83,7 +83,7 @@ namespace Pulumi.Mongodbatlas
     public partial class FederatedSettingsOrgRoleMapping : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        /// Unique label that identifies the identity provider group to which this role mapping applies.
         /// </summary>
         [Output("externalGroupName")]
         public Output<string> ExternalGroupName { get; private set; } = null!;
@@ -159,7 +159,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class FederatedSettingsOrgRoleMappingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        /// Unique label that identifies the identity provider group to which this role mapping applies.
         /// </summary>
         [Input("externalGroupName", required: true)]
         public Input<string> ExternalGroupName { get; set; } = null!;
@@ -197,7 +197,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class FederatedSettingsOrgRoleMappingState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        /// Unique label that identifies the identity provider group to which this role mapping applies.
         /// </summary>
         [Input("externalGroupName")]
         public Input<string>? ExternalGroupName { get; set; }

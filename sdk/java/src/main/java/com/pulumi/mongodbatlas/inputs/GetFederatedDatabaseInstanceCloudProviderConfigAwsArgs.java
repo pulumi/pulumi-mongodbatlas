@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs extends com.pulumi.resources.ResourceArgs {
@@ -66,25 +68,25 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs extend
     }
 
     /**
-     * Unique identifier of the role that the data lake can use to access the data stores.
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      * 
      */
     @Import(name="roleId", required=true)
     private Output<String> roleId;
 
     /**
-     * @return Unique identifier of the role that the data lake can use to access the data stores.
+     * @return Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      * 
      */
     public Output<String> roleId() {
         return this.roleId;
     }
 
-    @Import(name="testS3Bucket", required=true)
-    private Output<String> testS3Bucket;
+    @Import(name="testS3Bucket")
+    private @Nullable Output<String> testS3Bucket;
 
-    public Output<String> testS3Bucket() {
-        return this.testS3Bucket;
+    public Optional<Output<String>> testS3Bucket() {
+        return Optional.ofNullable(this.testS3Bucket);
     }
 
     private GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs() {}
@@ -185,7 +187,7 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs extend
         }
 
         /**
-         * @param roleId Unique identifier of the role that the data lake can use to access the data stores.
+         * @param roleId Unique identifier of the role that the Federated Database Instance can use to access the data stores.
          * 
          * @return builder
          * 
@@ -196,7 +198,7 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs extend
         }
 
         /**
-         * @param roleId Unique identifier of the role that the data lake can use to access the data stores.
+         * @param roleId Unique identifier of the role that the Federated Database Instance can use to access the data stores.
          * 
          * @return builder
          * 
@@ -205,7 +207,7 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs extend
             return roleId(Output.of(roleId));
         }
 
-        public Builder testS3Bucket(Output<String> testS3Bucket) {
+        public Builder testS3Bucket(@Nullable Output<String> testS3Bucket) {
             $.testS3Bucket = testS3Bucket;
             return this;
         }
@@ -226,9 +228,6 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs extend
             }
             if ($.roleId == null) {
                 throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs", "roleId");
-            }
-            if ($.testS3Bucket == null) {
-                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs", "testS3Bucket");
             }
             return $;
         }

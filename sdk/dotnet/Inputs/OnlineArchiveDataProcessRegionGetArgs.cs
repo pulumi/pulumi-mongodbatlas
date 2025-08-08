@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? CloudProvider { get; set; }
 
         /// <summary>
-        /// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        /// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

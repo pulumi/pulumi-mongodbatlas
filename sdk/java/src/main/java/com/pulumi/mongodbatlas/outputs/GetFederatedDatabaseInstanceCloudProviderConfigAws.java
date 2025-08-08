@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetFederatedDatabaseInstanceCloudProviderConfigAws {
@@ -29,11 +31,11 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAws {
      */
     private String iamUserArn;
     /**
-     * @return Unique identifier of the role that the data lake can use to access the data stores.
+     * @return Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      * 
      */
     private String roleId;
-    private String testS3Bucket;
+    private @Nullable String testS3Bucket;
 
     private GetFederatedDatabaseInstanceCloudProviderConfigAws() {}
     /**
@@ -61,14 +63,14 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAws {
         return this.iamUserArn;
     }
     /**
-     * @return Unique identifier of the role that the data lake can use to access the data stores.
+     * @return Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      * 
      */
     public String roleId() {
         return this.roleId;
     }
-    public String testS3Bucket() {
-        return this.testS3Bucket;
+    public Optional<String> testS3Bucket() {
+        return Optional.ofNullable(this.testS3Bucket);
     }
 
     public static Builder builder() {
@@ -84,7 +86,7 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAws {
         private String iamAssumedRoleArn;
         private String iamUserArn;
         private String roleId;
-        private String testS3Bucket;
+        private @Nullable String testS3Bucket;
         public Builder() {}
         public Builder(GetFederatedDatabaseInstanceCloudProviderConfigAws defaults) {
     	      Objects.requireNonNull(defaults);
@@ -128,10 +130,8 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAws {
             return this;
         }
         @CustomType.Setter
-        public Builder testS3Bucket(String testS3Bucket) {
-            if (testS3Bucket == null) {
-              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAws", "testS3Bucket");
-            }
+        public Builder testS3Bucket(@Nullable String testS3Bucket) {
+
             this.testS3Bucket = testS3Bucket;
             return this;
         }

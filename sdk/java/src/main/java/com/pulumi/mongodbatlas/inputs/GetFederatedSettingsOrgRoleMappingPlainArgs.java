@@ -43,9 +43,17 @@ public final class GetFederatedSettingsOrgRoleMappingPlainArgs extends com.pulum
         return this.orgId;
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     * 
+     */
     @Import(name="roleMappingId", required=true)
     private String roleMappingId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies this role mapping.
+     * 
+     */
     public String roleMappingId() {
         return this.roleMappingId;
     }
@@ -98,6 +106,12 @@ public final class GetFederatedSettingsOrgRoleMappingPlainArgs extends com.pulum
             return this;
         }
 
+        /**
+         * @param roleMappingId Unique 24-hexadecimal digit string that identifies this role mapping.
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleMappingId(String roleMappingId) {
             $.roleMappingId = roleMappingId;
             return this;

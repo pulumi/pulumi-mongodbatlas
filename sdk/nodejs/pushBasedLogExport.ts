@@ -52,7 +52,7 @@ import * as utilities from "./utilities";
  *
  * Push-based log export resource can be imported using the project ID, e.g.
  *
- * For more information see: [MongoDB Atlas API - Push-Based Log Export](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Push-Based-Log-Export) Documentation.
+ * For more information see: [MongoDB Atlas API - Push-Based Log Export](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-push-based-log-export) Documentation.
  */
 export class PushBasedLogExport extends pulumi.CustomResource {
     /**

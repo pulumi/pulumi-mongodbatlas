@@ -79,6 +79,9 @@ export interface GetFederatedSettingsOrgRoleMappingArgs {
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
     orgId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
     roleMappingId: string;
 }
 
@@ -87,7 +90,7 @@ export interface GetFederatedSettingsOrgRoleMappingArgs {
  */
 export interface GetFederatedSettingsOrgRoleMappingResult {
     /**
-     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * Unique label that identifies the identity provider group to which this role mapping applies.
      */
     readonly externalGroupName: string;
     readonly federationSettingsId: string;
@@ -175,5 +178,8 @@ export interface GetFederatedSettingsOrgRoleMappingOutputArgs {
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
     orgId: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
     roleMappingId: pulumi.Input<string>;
 }

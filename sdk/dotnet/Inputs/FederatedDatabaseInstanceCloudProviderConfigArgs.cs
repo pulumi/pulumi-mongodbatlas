@@ -15,8 +15,14 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Name of the cloud service that hosts the data lake's data stores.
         /// </summary>
-        [Input("aws", required: true)]
-        public Input<Inputs.FederatedDatabaseInstanceCloudProviderConfigAwsArgs> Aws { get; set; } = null!;
+        [Input("aws")]
+        public Input<Inputs.FederatedDatabaseInstanceCloudProviderConfigAwsArgs>? Aws { get; set; }
+
+        /// <summary>
+        /// Microsoft Azure cloud service configuration.
+        /// </summary>
+        [Input("azure")]
+        public Input<Inputs.FederatedDatabaseInstanceCloudProviderConfigAzureArgs>? Azure { get; set; }
 
         public FederatedDatabaseInstanceCloudProviderConfigArgs()
         {

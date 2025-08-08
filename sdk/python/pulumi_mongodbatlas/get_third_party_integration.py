@@ -26,7 +26,7 @@ class GetThirdPartyIntegrationResult:
     """
     A collection of values returned by getThirdPartyIntegration.
     """
-    def __init__(__self__, account_id=None, api_key=None, channel_name=None, enabled=None, id=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, secret=None, send_collection_latency_metrics=None, send_database_metrics=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
+    def __init__(__self__, account_id=None, api_key=None, channel_name=None, enabled=None, id=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, secret=None, send_collection_latency_metrics=None, send_database_metrics=None, send_user_provided_resource_tags=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
         pulumi.set(__self__, "account_id", account_id)
@@ -63,6 +63,9 @@ class GetThirdPartyIntegrationResult:
         if send_database_metrics and not isinstance(send_database_metrics, bool):
             raise TypeError("Expected argument 'send_database_metrics' to be a bool")
         pulumi.set(__self__, "send_database_metrics", send_database_metrics)
+        if send_user_provided_resource_tags and not isinstance(send_user_provided_resource_tags, bool):
+            raise TypeError("Expected argument 'send_user_provided_resource_tags' to be a bool")
+        pulumi.set(__self__, "send_user_provided_resource_tags", send_user_provided_resource_tags)
         if service_discovery and not isinstance(service_discovery, str):
             raise TypeError("Expected argument 'service_discovery' to be a str")
         pulumi.set(__self__, "service_discovery", service_discovery)
@@ -134,7 +137,7 @@ class GetThirdPartyIntegrationResult:
     @pulumi.getter
     def region(self) -> _builtins.str:
         """
-        Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+        Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
         * `VICTOR_OPS`
         """
         return pulumi.get(self, "region")
@@ -170,9 +173,17 @@ class GetThirdPartyIntegrationResult:
     def send_database_metrics(self) -> _builtins.bool:
         """
         Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-        * `OPS_GENIE`
         """
         return pulumi.get(self, "send_database_metrics")
+
+    @_builtins.property
+    @pulumi.getter(name="sendUserProvidedResourceTags")
+    def send_user_provided_resource_tags(self) -> _builtins.bool:
+        """
+        Toggle sending user provided group and cluster resource tags with the datadog metrics.
+        * `OPS_GENIE`
+        """
+        return pulumi.get(self, "send_user_provided_resource_tags")
 
     @_builtins.property
     @pulumi.getter(name="serviceDiscovery")
@@ -236,6 +247,7 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
             secret=self.secret,
             send_collection_latency_metrics=self.send_collection_latency_metrics,
             send_database_metrics=self.send_database_metrics,
+            send_user_provided_resource_tags=self.send_user_provided_resource_tags,
             service_discovery=self.service_discovery,
             service_key=self.service_key,
             team_name=self.team_name,
@@ -299,6 +311,7 @@ def get_third_party_integration(project_id: Optional[_builtins.str] = None,
         secret=pulumi.get(__ret__, 'secret'),
         send_collection_latency_metrics=pulumi.get(__ret__, 'send_collection_latency_metrics'),
         send_database_metrics=pulumi.get(__ret__, 'send_database_metrics'),
+        send_user_provided_resource_tags=pulumi.get(__ret__, 'send_user_provided_resource_tags'),
         service_discovery=pulumi.get(__ret__, 'service_discovery'),
         service_key=pulumi.get(__ret__, 'service_key'),
         team_name=pulumi.get(__ret__, 'team_name'),
@@ -359,6 +372,7 @@ def get_third_party_integration_output(project_id: Optional[pulumi.Input[_builti
         secret=pulumi.get(__response__, 'secret'),
         send_collection_latency_metrics=pulumi.get(__response__, 'send_collection_latency_metrics'),
         send_database_metrics=pulumi.get(__response__, 'send_database_metrics'),
+        send_user_provided_resource_tags=pulumi.get(__response__, 'send_user_provided_resource_tags'),
         service_discovery=pulumi.get(__response__, 'service_discovery'),
         service_key=pulumi.get(__response__, 'service_key'),
         team_name=pulumi.get(__response__, 'team_name'),

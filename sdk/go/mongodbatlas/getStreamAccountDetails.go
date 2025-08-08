@@ -61,7 +61,7 @@ func GetStreamAccountDetails(ctx *pulumi.Context, args *GetStreamAccountDetailsA
 type GetStreamAccountDetailsArgs struct {
 	// One of `aws` or `azure`.
 	CloudProvider string `pulumi:"cloudProvider"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId  string `pulumi:"projectId"`
 	RegionName string `pulumi:"regionName"`
 }
@@ -75,7 +75,7 @@ type GetStreamAccountDetailsResult struct {
 	CloudProvider string `pulumi:"cloudProvider"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId          string `pulumi:"projectId"`
 	RegionName         string `pulumi:"regionName"`
 	VirtualNetworkName string `pulumi:"virtualNetworkName"`
@@ -95,7 +95,7 @@ func GetStreamAccountDetailsOutput(ctx *pulumi.Context, args GetStreamAccountDet
 type GetStreamAccountDetailsOutputArgs struct {
 	// One of `aws` or `azure`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId  pulumi.StringInput `pulumi:"projectId"`
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
@@ -141,7 +141,7 @@ func (o GetStreamAccountDetailsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
 func (o GetStreamAccountDetailsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

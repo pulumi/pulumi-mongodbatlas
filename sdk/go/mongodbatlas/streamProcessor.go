@@ -27,7 +27,7 @@ import (
 //
 // Stream Processor resource can be imported using the Project ID, Stream Instance name and Stream Processor name, in the format `INSTANCE_NAME-PROJECT_ID-PROCESSOR_NAME`, e.g.
 //
-// For more information see: [MongoDB Atlas API - Stream Processor](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Streams/operation/createStreamProcessor) Documentation.
+// For more information see: [MongoDB Atlas API - Stream Processor](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createstreamprocessor) Documentation.
 type StreamProcessor struct {
 	pulumi.CustomResourceState
 

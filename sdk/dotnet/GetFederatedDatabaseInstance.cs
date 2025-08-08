@@ -34,7 +34,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         ProjectId = "PROJECT ID",
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///     });
         /// 
@@ -42,7 +42,7 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// 
-        /// ### S With Amazon S3 Bucket As Storage Database
+        /// ## Example of Azure Blob Storage as storage database
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -54,13 +54,16 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         ProjectId = "PROJECT ID",
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
         ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///         {
-        ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
+        ///             Azures = new[]
         ///             {
-        ///                 TestS3Bucket = "Amazon S3 Bucket Name",
+        ///                 new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
+        ///                 {
+        ///                     RoleId = "&lt;AZURE_ROLE_ID&gt;",
+        ///                 },
         ///             },
         ///         },
         ///     });
@@ -94,7 +97,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         ProjectId = "PROJECT ID",
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///     });
         /// 
@@ -102,7 +105,7 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// 
-        /// ### S With Amazon S3 Bucket As Storage Database
+        /// ## Example of Azure Blob Storage as storage database
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -114,13 +117,16 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         ProjectId = "PROJECT ID",
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
         ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///         {
-        ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
+        ///             Azures = new[]
         ///             {
-        ///                 TestS3Bucket = "Amazon S3 Bucket Name",
+        ///                 new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
+        ///                 {
+        ///                     RoleId = "&lt;AZURE_ROLE_ID&gt;",
+        ///                 },
         ///             },
         ///         },
         ///     });
@@ -154,7 +160,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         ProjectId = "PROJECT ID",
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///     });
         /// 
@@ -162,7 +168,7 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// 
-        /// ### S With Amazon S3 Bucket As Storage Database
+        /// ## Example of Azure Blob Storage as storage database
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -174,13 +180,16 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         ProjectId = "PROJECT ID",
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
         ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///         {
-        ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
+        ///             Azures = new[]
         ///             {
-        ///                 TestS3Bucket = "Amazon S3 Bucket Name",
+        ///                 new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
+        ///                 {
+        ///                     RoleId = "&lt;AZURE_ROLE_ID&gt;",
+        ///                 },
         ///             },
         ///         },
         ///     });

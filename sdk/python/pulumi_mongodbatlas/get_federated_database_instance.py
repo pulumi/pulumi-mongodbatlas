@@ -197,22 +197,22 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+    test = mongodbatlas.get_federated_database_instance(project_id="<PROJECT_ID>",
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
 
-    ### S With Amazon S3 Bucket As Storage Database
+    ## Example of Azure Blob Storage as storage database
 
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
-        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+    test = mongodbatlas.get_federated_database_instance(project_id="<PROJECT_ID>",
+        name="<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
         cloud_provider_config={
-            "aws": {
-                "test_s3_bucket": "Amazon S3 Bucket Name",
-            },
+            "azures": [{
+                "role_id": "<AZURE_ROLE_ID>",
+            }],
         })
     ```
 
@@ -258,22 +258,22 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+    test = mongodbatlas.get_federated_database_instance(project_id="<PROJECT_ID>",
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
 
-    ### S With Amazon S3 Bucket As Storage Database
+    ## Example of Azure Blob Storage as storage database
 
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
-        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+    test = mongodbatlas.get_federated_database_instance(project_id="<PROJECT_ID>",
+        name="<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
         cloud_provider_config={
-            "aws": {
-                "test_s3_bucket": "Amazon S3 Bucket Name",
-            },
+            "azures": [{
+                "role_id": "<AZURE_ROLE_ID>",
+            }],
         })
     ```
 

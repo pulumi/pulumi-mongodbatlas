@@ -53,6 +53,9 @@ export interface GetStreamInstancesArgs {
  * A collection of values returned by getStreamInstances.
  */
 export interface GetStreamInstancesResult {
+    /**
+     * @deprecated This parameter is deprecated.
+     */
     readonly id: string;
     readonly itemsPerPage?: number;
     readonly pageNum?: number;

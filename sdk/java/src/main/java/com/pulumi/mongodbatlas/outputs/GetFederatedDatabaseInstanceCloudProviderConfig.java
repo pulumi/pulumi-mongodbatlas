@@ -6,15 +6,21 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceCloudProviderConfigAws;
+import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceCloudProviderConfigAzure;
+import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetFederatedDatabaseInstanceCloudProviderConfig {
     private GetFederatedDatabaseInstanceCloudProviderConfigAws aws;
+    private List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures;
 
     private GetFederatedDatabaseInstanceCloudProviderConfig() {}
     public GetFederatedDatabaseInstanceCloudProviderConfigAws aws() {
         return this.aws;
+    }
+    public List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures() {
+        return this.azures;
     }
 
     public static Builder builder() {
@@ -27,10 +33,12 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig {
     @CustomType.Builder
     public static final class Builder {
         private GetFederatedDatabaseInstanceCloudProviderConfigAws aws;
+        private List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures;
         public Builder() {}
         public Builder(GetFederatedDatabaseInstanceCloudProviderConfig defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.aws = defaults.aws;
+    	      this.azures = defaults.azures;
         }
 
         @CustomType.Setter
@@ -41,9 +49,21 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig {
             this.aws = aws;
             return this;
         }
+        @CustomType.Setter
+        public Builder azures(List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures) {
+            if (azures == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfig", "azures");
+            }
+            this.azures = azures;
+            return this;
+        }
+        public Builder azures(GetFederatedDatabaseInstanceCloudProviderConfigAzure... azures) {
+            return azures(List.of(azures));
+        }
         public GetFederatedDatabaseInstanceCloudProviderConfig build() {
             final var _resultValue = new GetFederatedDatabaseInstanceCloudProviderConfig();
             _resultValue.aws = aws;
+            _resultValue.azures = azures;
             return _resultValue;
         }
     }

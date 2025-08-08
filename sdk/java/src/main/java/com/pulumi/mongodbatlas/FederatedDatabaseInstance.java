@@ -167,6 +167,82 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Example of Azure Blob Storage as storage database
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.FederatedDatabaseInstance;
+ * import com.pulumi.mongodbatlas.FederatedDatabaseInstanceArgs;
+ * import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceCloudProviderConfigArgs;
+ * import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceCloudProviderConfigAzureArgs;
+ * import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceStorageDatabaseArgs;
+ * import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceStorageStoreArgs;
+ * import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .name("<TENANT_NAME_OF_THE_FEDERATED DATABASE_INSTANCE>")
+ *             .cloudProviderConfig(FederatedDatabaseInstanceCloudProviderConfigArgs.builder()
+ *                 .azure(FederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
+ *                     .roleId("<AZURE_ROLE_ID>")
+ *                     .build())
+ *                 .build())
+ *             .storageDatabases(FederatedDatabaseInstanceStorageDatabaseArgs.builder()
+ *                 .name("VirtualDatabase0")
+ *                 .collections(FederatedDatabaseInstanceStorageDatabaseCollectionArgs.builder()
+ *                     .name("NAME OF THE COLLECTION")
+ *                     .dataSources(                    
+ *                         FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs.builder()
+ *                             .collection("COLLECTION IN THE CLUSTER")
+ *                             .database("DB IN THE CLUSTER")
+ *                             .storeName("CLUSTER NAME")
+ *                             .build(),
+ *                         FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs.builder()
+ *                             .storeName("AZURE BLOB STORAGE NAME")
+ *                             .path("AZURE BLOB PATH")
+ *                             .build())
+ *                     .build())
+ *                 .build())
+ *             .storageStores(            
+ *                 FederatedDatabaseInstanceStorageStoreArgs.builder()
+ *                     .name("STORE NAME")
+ *                     .clusterName("CLUSTER NAME")
+ *                     .projectId("PROJECT ID")
+ *                     .provider("atlas")
+ *                     .readPreference(FederatedDatabaseInstanceStorageStoreReadPreferenceArgs.builder()
+ *                         .mode("secondary")
+ *                         .build())
+ *                     .build(),
+ *                 FederatedDatabaseInstanceStorageStoreArgs.builder()
+ *                     .name("AZURE BLOB STORAGE NAME")
+ *                     .provider("azure")
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Example specifying data process region and provider
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -229,9 +305,11 @@ import javax.annotation.Nullable;
 public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResource {
     /**
      * Cloud provider linked to this data federated instance.
-     * * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     * * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
      * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
      * * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+     * * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
+     * * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      * 
      */
     @Export(name="cloudProviderConfig", refs={FederatedDatabaseInstanceCloudProviderConfig.class}, tree="[0]")
@@ -239,9 +317,11 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
 
     /**
      * @return Cloud provider linked to this data federated instance.
-     * * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     * * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
      * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
      * * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+     * * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
+     * * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      * 
      */
     public Output<FederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfig() {
@@ -249,8 +329,8 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
     }
     /**
      * The cloud provider region to which the Federated Instance routes client connections for data processing.
-     * * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
-     * * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+     * * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+     * * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
      * 
      */
     @Export(name="dataProcessRegion", refs={FederatedDatabaseInstanceDataProcessRegion.class}, tree="[0]")
@@ -258,8 +338,8 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
 
     /**
      * @return The cloud provider region to which the Federated Instance routes client connections for data processing.
-     * * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
-     * * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+     * * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+     * * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
      * 
      */
     public Output<FederatedDatabaseInstanceDataProcessRegion> dataProcessRegion() {

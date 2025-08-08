@@ -195,7 +195,7 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
 
         The resource can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
 
-        For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/grantMongoDBEmployeeAccess).
+        For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-grantmongodbemployeeaccess).
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -238,7 +238,7 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
 
         The resource can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
 
-        For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/grantMongoDBEmployeeAccess).
+        For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-grantmongodbemployeeaccess).
 
         :param str resource_name: The name of the resource.
         :param MongodbEmployeeAccessGrantArgs args: The arguments to use to populate this resource's properties.
