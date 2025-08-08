@@ -99,7 +99,7 @@ func Provider() tfbridge.ProviderInfo {
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"mongodbatlas_api_key_project_assignment": {
 				ComputeID: tfbridge.DelegateIDField(
-					"project_id",
+					"projectId",
 					"mongodbatlas",
 					"https://github.com/pulumi/pulumi-mongodbatlas"),
 			},
