@@ -15,6 +15,12 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetStreamConnectionsInvokeResult {
+    /**
+     * @deprecated
+     * This parameter is deprecated.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. */
     private String id;
     /**
      * @return Human-readable label that identifies the stream instance.
@@ -40,6 +46,12 @@ public final class GetStreamConnectionsInvokeResult {
     private Integer totalCount;
 
     private GetStreamConnectionsInvokeResult() {}
+    /**
+     * @deprecated
+     * This parameter is deprecated.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. */
     public String id() {
         return this.id;
     }

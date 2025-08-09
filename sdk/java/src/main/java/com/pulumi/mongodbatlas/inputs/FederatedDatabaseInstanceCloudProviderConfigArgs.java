@@ -5,9 +5,11 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceCloudProviderConfigAwsArgs;
+import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceCloudProviderConfigAzureArgs;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.pulumi.resources.ResourceArgs {
@@ -18,21 +20,37 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
      * Name of the cloud service that hosts the data lake&#39;s data stores.
      * 
      */
-    @Import(name="aws", required=true)
-    private Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws;
+    @Import(name="aws")
+    private @Nullable Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws;
 
     /**
      * @return Name of the cloud service that hosts the data lake&#39;s data stores.
      * 
      */
-    public Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws() {
-        return this.aws;
+    public Optional<Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs>> aws() {
+        return Optional.ofNullable(this.aws);
+    }
+
+    /**
+     * Microsoft Azure cloud service configuration.
+     * 
+     */
+    @Import(name="azure")
+    private @Nullable Output<FederatedDatabaseInstanceCloudProviderConfigAzureArgs> azure;
+
+    /**
+     * @return Microsoft Azure cloud service configuration.
+     * 
+     */
+    public Optional<Output<FederatedDatabaseInstanceCloudProviderConfigAzureArgs>> azure() {
+        return Optional.ofNullable(this.azure);
     }
 
     private FederatedDatabaseInstanceCloudProviderConfigArgs() {}
 
     private FederatedDatabaseInstanceCloudProviderConfigArgs(FederatedDatabaseInstanceCloudProviderConfigArgs $) {
         this.aws = $.aws;
+        this.azure = $.azure;
     }
 
     public static Builder builder() {
@@ -59,7 +77,7 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
          * @return builder
          * 
          */
-        public Builder aws(Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws) {
+        public Builder aws(@Nullable Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws) {
             $.aws = aws;
             return this;
         }
@@ -74,10 +92,28 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
             return aws(Output.of(aws));
         }
 
+        /**
+         * @param azure Microsoft Azure cloud service configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azure(@Nullable Output<FederatedDatabaseInstanceCloudProviderConfigAzureArgs> azure) {
+            $.azure = azure;
+            return this;
+        }
+
+        /**
+         * @param azure Microsoft Azure cloud service configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azure(FederatedDatabaseInstanceCloudProviderConfigAzureArgs azure) {
+            return azure(Output.of(azure));
+        }
+
         public FederatedDatabaseInstanceCloudProviderConfigArgs build() {
-            if ($.aws == null) {
-                throw new MissingRequiredPropertyException("FederatedDatabaseInstanceCloudProviderConfigArgs", "aws");
-            }
             return $;
         }
     }

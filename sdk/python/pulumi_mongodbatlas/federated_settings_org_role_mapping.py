@@ -27,7 +27,7 @@ class FederatedSettingsOrgRoleMappingArgs:
                  role_assignments: pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]):
         """
         The set of arguments for constructing a FederatedSettingsOrgRoleMapping resource.
-        :param pulumi.Input[_builtins.str] external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param pulumi.Input[_builtins.str] external_group_name: Unique label that identifies the identity provider group to which this role mapping applies.
         :param pulumi.Input[_builtins.str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
@@ -41,7 +41,7 @@ class FederatedSettingsOrgRoleMappingArgs:
     @pulumi.getter(name="externalGroupName")
     def external_group_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        Unique label that identifies the identity provider group to which this role mapping applies.
         """
         return pulumi.get(self, "external_group_name")
 
@@ -96,7 +96,7 @@ class _FederatedSettingsOrgRoleMappingState:
                  role_mapping_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FederatedSettingsOrgRoleMapping resources.
-        :param pulumi.Input[_builtins.str] external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param pulumi.Input[_builtins.str] external_group_name: Unique label that identifies the identity provider group to which this role mapping applies.
         :param pulumi.Input[_builtins.str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
@@ -117,7 +117,7 @@ class _FederatedSettingsOrgRoleMappingState:
     @pulumi.getter(name="externalGroupName")
     def external_group_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        Unique label that identifies the identity provider group to which this role mapping applies.
         """
         return pulumi.get(self, "external_group_name")
 
@@ -242,7 +242,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param pulumi.Input[_builtins.str] external_group_name: Unique label that identifies the identity provider group to which this role mapping applies.
         :param pulumi.Input[_builtins.str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
@@ -371,7 +371,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param pulumi.Input[_builtins.str] external_group_name: Unique label that identifies the identity provider group to which this role mapping applies.
         :param pulumi.Input[_builtins.str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
@@ -392,7 +392,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
     @pulumi.getter(name="externalGroupName")
     def external_group_name(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        Unique label that identifies the identity provider group to which this role mapping applies.
         """
         return pulumi.get(self, "external_group_name")
 

@@ -17,14 +17,14 @@ public final class FederatedSettingsOrgRoleMappingArgs extends com.pulumi.resour
     public static final FederatedSettingsOrgRoleMappingArgs Empty = new FederatedSettingsOrgRoleMappingArgs();
 
     /**
-     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * Unique label that identifies the identity provider group to which this role mapping applies.
      * 
      */
     @Import(name="externalGroupName", required=true)
     private Output<String> externalGroupName;
 
     /**
-     * @return Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * @return Unique label that identifies the identity provider group to which this role mapping applies.
      * 
      */
     public Output<String> externalGroupName() {
@@ -104,7 +104,7 @@ public final class FederatedSettingsOrgRoleMappingArgs extends com.pulumi.resour
         }
 
         /**
-         * @param externalGroupName Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+         * @param externalGroupName Unique label that identifies the identity provider group to which this role mapping applies.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class FederatedSettingsOrgRoleMappingArgs extends com.pulumi.resour
         }
 
         /**
-         * @param externalGroupName Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+         * @param externalGroupName Unique label that identifies the identity provider group to which this role mapping applies.
          * 
          * @return builder
          * 

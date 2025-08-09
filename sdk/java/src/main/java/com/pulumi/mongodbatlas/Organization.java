@@ -25,8 +25,6 @@ import javax.annotation.Nullable;
  * 
  * &gt; **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key&#39;s organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
  * 
- * &gt; **NOTE** Import command is currently not supported for this resource.
- * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -53,7 +51,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new Organization("test", OrganizationArgs.builder()
- *             .orgOwnerId("6205e5fffff79cde6f")
+ *             .orgOwnerId("<ORG_OWNER_ID>")
  *             .name("testCreateORG")
  *             .description("test API key from Org Creation Test")
  *             .roleNames("ORG_OWNER")
@@ -64,6 +62,19 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Import
+ * 
+ * You can import an existing organization using the organization ID, e.g.:
+ * 
+ * ```sh
+ * $ pulumi import mongodbatlas:index/organization:Organization example 5d09d6a59ccf6445652a444a
+ * ```
+ * ~&gt; __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`) in your Terraform configuration.
+ * 
+ * See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
+ * 
+ * For more information about the `mongodbatlas_organization` resource see: [MongoDB Atlas Admin API Organization](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations).
  * 
  */
 @ResourceType(type="mongodbatlas:index/organization:Organization")
@@ -83,20 +94,20 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return this.apiAccessListRequired;
     }
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output<String> description;
+    private Output</* @Nullable */ String> description;
 
-    public Output<String> description() {
-        return this.description;
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can&#39;t be updated after creation.
      * 
      */
     @Export(name="federationSettingsId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> federationSettingsId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * @return Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can&#39;t be updated after creation.
      * 
      */
     public Output<Optional<String>> federationSettingsId() {
@@ -131,14 +142,14 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return this.multiFactorAuthRequired;
     }
     /**
-     * The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
+     * The name of the organization.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
+     * @return The name of the organization.
      * 
      */
     public Output<String> name() {
@@ -159,18 +170,18 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return this.orgId;
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
+     * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can&#39;t be updated later.
      * 
      */
     @Export(name="orgOwnerId", refs={String.class}, tree="[0]")
-    private Output<String> orgOwnerId;
+    private Output</* @Nullable */ String> orgOwnerId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
+     * @return Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can&#39;t be updated later.
      * 
      */
-    public Output<String> orgOwnerId() {
-        return this.orgOwnerId;
+    public Output<Optional<String>> orgOwnerId() {
+        return Codegen.optional(this.orgOwnerId);
     }
     @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
@@ -207,18 +218,18 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return this.restrictEmployeeAccess;
     }
     /**
-     * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+     * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can&#39;t be updated later.
      * 
      */
     @Export(name="roleNames", refs={List.class,String.class}, tree="[0,1]")
-    private Output<List<String>> roleNames;
+    private Output</* @Nullable */ List<String>> roleNames;
 
     /**
-     * @return List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+     * @return List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can&#39;t be updated later.
      * 
      */
-    public Output<List<String>> roleNames() {
-        return this.roleNames;
+    public Output<Optional<List<String>>> roleNames() {
+        return Codegen.optional(this.roleNames);
     }
     /**
      * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
@@ -253,7 +264,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Organization(java.lang.String name, OrganizationArgs args) {
+    public Organization(java.lang.String name, @Nullable OrganizationArgs args) {
         this(name, args, null);
     }
     /**
@@ -262,7 +273,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Organization(java.lang.String name, OrganizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Organization(java.lang.String name, @Nullable OrganizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/organization:Organization", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -270,7 +281,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
         super("mongodbatlas:index/organization:Organization", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static OrganizationArgs makeArgs(OrganizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static OrganizationArgs makeArgs(@Nullable OrganizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

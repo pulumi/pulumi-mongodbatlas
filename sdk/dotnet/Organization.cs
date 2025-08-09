@@ -18,8 +18,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
     /// 
-    /// &gt; **NOTE** Import command is currently not supported for this resource.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -32,7 +30,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.Organization("test", new()
     ///     {
-    ///         OrgOwnerId = "6205e5fffff79cde6f",
+    ///         OrgOwnerId = "&lt;ORG_OWNER_ID&gt;",
     ///         Name = "testCreateORG",
     ///         Description = "test API key from Org Creation Test",
     ///         RoleNames = new[]
@@ -43,6 +41,19 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// You can import an existing organization using the organization ID, e.g.:
+    /// 
+    /// ```sh
+    /// $ pulumi import mongodbatlas:index/organization:Organization example 5d09d6a59ccf6445652a444a
+    /// ```
+    /// ~&gt; __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`) in your Terraform configuration.
+    /// 
+    /// See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
+    /// 
+    /// For more information about the `mongodbatlas_organization` resource see: [MongoDB Atlas Admin API Organization](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations).
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/organization:Organization")]
     public partial class Organization : global::Pulumi.CustomResource
@@ -54,10 +65,10 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> ApiAccessListRequired { get; private set; } = null!;
 
         [Output("description")]
-        public Output<string> Description { get; private set; } = null!;
+        public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        /// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
         /// </summary>
         [Output("federationSettingsId")]
         public Output<string?> FederationSettingsId { get; private set; } = null!;
@@ -75,7 +86,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> MultiFactorAuthRequired { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
+        /// The name of the organization.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -87,10 +98,10 @@ namespace Pulumi.Mongodbatlas
         public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
+        /// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
         /// </summary>
         [Output("orgOwnerId")]
-        public Output<string> OrgOwnerId { get; private set; } = null!;
+        public Output<string?> OrgOwnerId { get; private set; } = null!;
 
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
@@ -108,7 +119,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> RestrictEmployeeAccess { get; private set; } = null!;
 
         /// <summary>
-        /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+        /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         /// </summary>
         [Output("roleNames")]
         public Output<ImmutableArray<string>> RoleNames { get; private set; } = null!;
@@ -130,7 +141,7 @@ namespace Pulumi.Mongodbatlas
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Organization(string name, OrganizationArgs args, CustomResourceOptions? options = null)
+        public Organization(string name, OrganizationArgs? args = null, CustomResourceOptions? options = null)
             : base("mongodbatlas:index/organization:Organization", name, args ?? new OrganizationArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -179,11 +190,11 @@ namespace Pulumi.Mongodbatlas
         [Input("apiAccessListRequired")]
         public Input<bool>? ApiAccessListRequired { get; set; }
 
-        [Input("description", required: true)]
-        public Input<string> Description { get; set; } = null!;
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        /// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
         /// </summary>
         [Input("federationSettingsId")]
         public Input<string>? FederationSettingsId { get; set; }
@@ -201,16 +212,16 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? MultiFactorAuthRequired { get; set; }
 
         /// <summary>
-        /// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
+        /// The name of the organization.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
+        /// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
         /// </summary>
-        [Input("orgOwnerId", required: true)]
-        public Input<string> OrgOwnerId { get; set; } = null!;
+        [Input("orgOwnerId")]
+        public Input<string>? OrgOwnerId { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
@@ -218,11 +229,11 @@ namespace Pulumi.Mongodbatlas
         [Input("restrictEmployeeAccess")]
         public Input<bool>? RestrictEmployeeAccess { get; set; }
 
-        [Input("roleNames", required: true)]
+        [Input("roleNames")]
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+        /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         /// </summary>
         public InputList<string> RoleNames
         {
@@ -257,7 +268,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        /// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
         /// </summary>
         [Input("federationSettingsId")]
         public Input<string>? FederationSettingsId { get; set; }
@@ -275,7 +286,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? MultiFactorAuthRequired { get; set; }
 
         /// <summary>
-        /// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
+        /// The name of the organization.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -287,7 +298,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
+        /// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
         /// </summary>
         [Input("orgOwnerId")]
         public Input<string>? OrgOwnerId { get; set; }
@@ -330,7 +341,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+        /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         /// </summary>
         public InputList<string> RoleNames
         {

@@ -59,6 +59,9 @@ export interface GetStreamConnectionsArgs {
  * A collection of values returned by getStreamConnections.
  */
 export interface GetStreamConnectionsResult {
+    /**
+     * @deprecated This parameter is deprecated.
+     */
     readonly id: string;
     /**
      * Human-readable label that identifies the stream instance.

@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
         /// 
-        /// `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+        /// `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
         /// 
-        /// `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+        /// `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
@@ -42,7 +42,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
         /// 
-        /// `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+        /// `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 

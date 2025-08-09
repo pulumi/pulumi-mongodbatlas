@@ -84,7 +84,7 @@ import (
 type FederatedSettingsOrgRoleMapping struct {
 	pulumi.CustomResourceState
 
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName pulumi.StringOutput `pulumi:"externalGroupName"`
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringOutput `pulumi:"federationSettingsId"`
@@ -138,7 +138,7 @@ func GetFederatedSettingsOrgRoleMapping(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FederatedSettingsOrgRoleMapping resources.
 type federatedSettingsOrgRoleMappingState struct {
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName *string `pulumi:"externalGroupName"`
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId *string `pulumi:"federationSettingsId"`
@@ -151,7 +151,7 @@ type federatedSettingsOrgRoleMappingState struct {
 }
 
 type FederatedSettingsOrgRoleMappingState struct {
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringPtrInput
@@ -168,7 +168,7 @@ func (FederatedSettingsOrgRoleMappingState) ElementType() reflect.Type {
 }
 
 type federatedSettingsOrgRoleMappingArgs struct {
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName string `pulumi:"externalGroupName"`
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
@@ -180,7 +180,7 @@ type federatedSettingsOrgRoleMappingArgs struct {
 
 // The set of arguments for constructing a FederatedSettingsOrgRoleMapping resource.
 type FederatedSettingsOrgRoleMappingArgs struct {
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName pulumi.StringInput
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringInput
@@ -277,7 +277,7 @@ func (o FederatedSettingsOrgRoleMappingOutput) ToFederatedSettingsOrgRoleMapping
 	return o
 }
 
-// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+// Unique label that identifies the identity provider group to which this role mapping applies.
 func (o FederatedSettingsOrgRoleMappingOutput) ExternalGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedSettingsOrgRoleMapping) pulumi.StringOutput { return v.ExternalGroupName }).(pulumi.StringOutput)
 }

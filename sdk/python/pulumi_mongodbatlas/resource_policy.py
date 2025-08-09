@@ -262,7 +262,7 @@ class ResourcePolicy(pulumi.CustomResource):
 
         Resource Policy resource can be imported using the org ID and policy ID, in the format `{ORG_ID}-{POLICY_ID}`, e.g.
 
-        For more information see: [MongoDB Atlas API - Resource Policies](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Resource-Policies) Documentation.
+        For more information see: [MongoDB Atlas API - Resource Policies](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-resource-policies) Documentation.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -288,7 +288,7 @@ class ResourcePolicy(pulumi.CustomResource):
 
         Resource Policy resource can be imported using the org ID and policy ID, in the format `{ORG_ID}-{POLICY_ID}`, e.g.
 
-        For more information see: [MongoDB Atlas API - Resource Policies](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Resource-Policies) Documentation.
+        For more information see: [MongoDB Atlas API - Resource Policies](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-resource-policies) Documentation.
 
         :param str resource_name: The name of the resource.
         :param ResourcePolicyArgs args: The arguments to use to populate this resource's properties.

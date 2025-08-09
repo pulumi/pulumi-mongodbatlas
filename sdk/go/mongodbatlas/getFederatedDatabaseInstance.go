@@ -36,7 +36,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
-//				ProjectId: "PROJECT ID",
+//				ProjectId: "<PROJECT_ID>",
 //				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
 //			}, nil)
 //			if err != nil {
@@ -48,7 +48,7 @@ import (
 //
 // ```
 //
-// ### S With Amazon S3 Bucket As Storage Database
+// ## Example of Azure Blob Storage as storage database
 //
 // ```go
 // package main
@@ -63,11 +63,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
-//				ProjectId: "PROJECT ID",
-//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+//				ProjectId: "<PROJECT_ID>",
+//				Name:      "<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
 //				CloudProviderConfig: mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfig{
-//					Aws: mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAws{
-//						TestS3Bucket: "Amazon S3 Bucket Name",
+//					Azures: []mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAzure{
+//						{
+//							RoleId: "<AZURE_ROLE_ID>",
+//						},
 //					},
 //				},
 //			}, nil)

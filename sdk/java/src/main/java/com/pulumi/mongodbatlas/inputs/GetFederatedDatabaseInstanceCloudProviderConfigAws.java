@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetFederatedDatabaseInstanceCloudProviderConfigAws extends com.pulumi.resources.InvokeArgs {
@@ -65,25 +67,25 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAws extends co
     }
 
     /**
-     * Unique identifier of the role that the data lake can use to access the data stores.
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      * 
      */
     @Import(name="roleId", required=true)
     private String roleId;
 
     /**
-     * @return Unique identifier of the role that the data lake can use to access the data stores.
+     * @return Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      * 
      */
     public String roleId() {
         return this.roleId;
     }
 
-    @Import(name="testS3Bucket", required=true)
-    private String testS3Bucket;
+    @Import(name="testS3Bucket")
+    private @Nullable String testS3Bucket;
 
-    public String testS3Bucket() {
-        return this.testS3Bucket;
+    public Optional<String> testS3Bucket() {
+        return Optional.ofNullable(this.testS3Bucket);
     }
 
     private GetFederatedDatabaseInstanceCloudProviderConfigAws() {}
@@ -151,7 +153,7 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAws extends co
         }
 
         /**
-         * @param roleId Unique identifier of the role that the data lake can use to access the data stores.
+         * @param roleId Unique identifier of the role that the Federated Database Instance can use to access the data stores.
          * 
          * @return builder
          * 
@@ -161,7 +163,7 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAws extends co
             return this;
         }
 
-        public Builder testS3Bucket(String testS3Bucket) {
+        public Builder testS3Bucket(@Nullable String testS3Bucket) {
             $.testS3Bucket = testS3Bucket;
             return this;
         }
@@ -178,9 +180,6 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAws extends co
             }
             if ($.roleId == null) {
                 throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAws", "roleId");
-            }
-            if ($.testS3Bucket == null) {
-                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAws", "testS3Bucket");
             }
             return $;
         }

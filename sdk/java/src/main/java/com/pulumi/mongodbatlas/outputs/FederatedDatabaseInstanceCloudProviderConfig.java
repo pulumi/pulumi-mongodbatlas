@@ -4,9 +4,11 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceCloudProviderConfigAws;
+import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceCloudProviderConfigAzure;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class FederatedDatabaseInstanceCloudProviderConfig {
@@ -14,15 +16,27 @@ public final class FederatedDatabaseInstanceCloudProviderConfig {
      * @return Name of the cloud service that hosts the data lake&#39;s data stores.
      * 
      */
-    private FederatedDatabaseInstanceCloudProviderConfigAws aws;
+    private @Nullable FederatedDatabaseInstanceCloudProviderConfigAws aws;
+    /**
+     * @return Microsoft Azure cloud service configuration.
+     * 
+     */
+    private @Nullable FederatedDatabaseInstanceCloudProviderConfigAzure azure;
 
     private FederatedDatabaseInstanceCloudProviderConfig() {}
     /**
      * @return Name of the cloud service that hosts the data lake&#39;s data stores.
      * 
      */
-    public FederatedDatabaseInstanceCloudProviderConfigAws aws() {
-        return this.aws;
+    public Optional<FederatedDatabaseInstanceCloudProviderConfigAws> aws() {
+        return Optional.ofNullable(this.aws);
+    }
+    /**
+     * @return Microsoft Azure cloud service configuration.
+     * 
+     */
+    public Optional<FederatedDatabaseInstanceCloudProviderConfigAzure> azure() {
+        return Optional.ofNullable(this.azure);
     }
 
     public static Builder builder() {
@@ -34,24 +48,31 @@ public final class FederatedDatabaseInstanceCloudProviderConfig {
     }
     @CustomType.Builder
     public static final class Builder {
-        private FederatedDatabaseInstanceCloudProviderConfigAws aws;
+        private @Nullable FederatedDatabaseInstanceCloudProviderConfigAws aws;
+        private @Nullable FederatedDatabaseInstanceCloudProviderConfigAzure azure;
         public Builder() {}
         public Builder(FederatedDatabaseInstanceCloudProviderConfig defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.aws = defaults.aws;
+    	      this.azure = defaults.azure;
         }
 
         @CustomType.Setter
-        public Builder aws(FederatedDatabaseInstanceCloudProviderConfigAws aws) {
-            if (aws == null) {
-              throw new MissingRequiredPropertyException("FederatedDatabaseInstanceCloudProviderConfig", "aws");
-            }
+        public Builder aws(@Nullable FederatedDatabaseInstanceCloudProviderConfigAws aws) {
+
             this.aws = aws;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder azure(@Nullable FederatedDatabaseInstanceCloudProviderConfigAzure azure) {
+
+            this.azure = azure;
             return this;
         }
         public FederatedDatabaseInstanceCloudProviderConfig build() {
             final var _resultValue = new FederatedDatabaseInstanceCloudProviderConfig();
             _resultValue.aws = aws;
+            _resultValue.azure = azure;
             return _resultValue;
         }
     }

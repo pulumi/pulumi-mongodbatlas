@@ -91,13 +91,14 @@ type LookupFederatedSettingsOrgRoleMappingArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	OrgId         string `pulumi:"orgId"`
+	OrgId string `pulumi:"orgId"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
 	RoleMappingId string `pulumi:"roleMappingId"`
 }
 
 // A collection of values returned by getFederatedSettingsOrgRoleMapping.
 type LookupFederatedSettingsOrgRoleMappingResult struct {
-	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName    string `pulumi:"externalGroupName"`
 	FederationSettingsId string `pulumi:"federationSettingsId"`
 	// Unique 24-hexadecimal digit string that identifies this role mapping.
@@ -122,7 +123,8 @@ type LookupFederatedSettingsOrgRoleMappingOutputArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	OrgId         pulumi.StringInput `pulumi:"orgId"`
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
 	RoleMappingId pulumi.StringInput `pulumi:"roleMappingId"`
 }
 
@@ -145,7 +147,7 @@ func (o LookupFederatedSettingsOrgRoleMappingResultOutput) ToLookupFederatedSett
 	return o
 }
 
-// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+// Unique label that identifies the identity provider group to which this role mapping applies.
 func (o LookupFederatedSettingsOrgRoleMappingResultOutput) ExternalGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsOrgRoleMappingResult) string { return v.ExternalGroupName }).(pulumi.StringOutput)
 }

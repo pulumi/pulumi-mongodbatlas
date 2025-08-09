@@ -437,7 +437,7 @@ export interface AlertConfigurationNotification {
      */
     datadogApiKey?: pulumi.Input<string>;
     /**
-     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
      */
     datadogRegion?: pulumi.Input<string>;
     /**
@@ -708,7 +708,7 @@ export interface CloudBackupScheduleCopySetting {
      */
     regionName?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
      *
      * @deprecated This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
@@ -1387,7 +1387,7 @@ export interface DatabaseUserScope {
      */
     name?: pulumi.Input<string>;
     /**
-     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+     * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
      */
     type?: pulumi.Input<string>;
 }
@@ -1506,7 +1506,11 @@ export interface FederatedDatabaseInstanceCloudProviderConfig {
     /**
      * Name of the cloud service that hosts the data lake's data stores.
      */
-    aws: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAws>;
+    aws?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAws>;
+    /**
+     * Microsoft Azure cloud service configuration.
+     */
+    azure?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAzure>;
 }
 
 export interface FederatedDatabaseInstanceCloudProviderConfigAws {
@@ -1527,6 +1531,19 @@ export interface FederatedDatabaseInstanceCloudProviderConfigAws {
     iamUserArn?: pulumi.Input<string>;
     roleId: pulumi.Input<string>;
     testS3Bucket: pulumi.Input<string>;
+}
+
+export interface FederatedDatabaseInstanceCloudProviderConfigAzure {
+    atlasAppId?: pulumi.Input<string>;
+    roleId: pulumi.Input<string>;
+    /**
+     * Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+     */
+    servicePrincipalId?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the Azure Active Directory tenant where the service principal resides.
+     */
+    tenantId?: pulumi.Input<string>;
 }
 
 export interface FederatedDatabaseInstanceDataProcessRegion {
@@ -1787,10 +1804,12 @@ export interface GetCustomDbRoleInheritedRoleArgs {
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfig {
     aws?: inputs.GetFederatedDatabaseInstanceCloudProviderConfigAws;
+    azures?: inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzure[];
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfigArgs {
     aws?: pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs>;
+    azures?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>[]>;
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfigAws {
@@ -1810,7 +1829,7 @@ export interface GetFederatedDatabaseInstanceCloudProviderConfigAws {
      */
     iamUserArn?: string;
     /**
-     * Unique identifier of the role that the data lake can use to access the data stores.
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      */
     roleId?: string;
     testS3Bucket?: string;
@@ -1833,10 +1852,42 @@ export interface GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs {
      */
     iamUserArn?: pulumi.Input<string>;
     /**
-     * Unique identifier of the role that the data lake can use to access the data stores.
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      */
     roleId?: pulumi.Input<string>;
     testS3Bucket?: pulumi.Input<string>;
+}
+
+export interface GetFederatedDatabaseInstanceCloudProviderConfigAzure {
+    atlasAppId?: string;
+    /**
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+     */
+    roleId?: string;
+    /**
+     * Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+     */
+    servicePrincipalId?: string;
+    /**
+     * Unique identifier of the Azure Active Directory tenant where the service principal resides.
+     */
+    tenantId?: string;
+}
+
+export interface GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs {
+    atlasAppId?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+     */
+    roleId?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+     */
+    servicePrincipalId?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the Azure Active Directory tenant where the service principal resides.
+     */
+    tenantId?: pulumi.Input<string>;
 }
 
 export interface GetGlobalClusterConfigManagedNamespace {
@@ -2001,7 +2052,7 @@ export interface OnlineArchiveDataProcessRegion {
      */
     cloudProvider?: pulumi.Input<string>;
     /**
-     * Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      */
     region?: pulumi.Input<string>;
 }

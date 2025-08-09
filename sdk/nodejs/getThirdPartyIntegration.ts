@@ -83,7 +83,7 @@ export interface GetThirdPartyIntegrationResult {
     readonly microsoftTeamsWebhookUrl: string;
     readonly projectId: string;
     /**
-     * Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
      * * `VICTOR_OPS`
      */
     readonly region: string;
@@ -103,9 +103,13 @@ export interface GetThirdPartyIntegrationResult {
     readonly sendCollectionLatencyMetrics: boolean;
     /**
      * Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-     * * `OPS_GENIE`
      */
     readonly sendDatabaseMetrics: boolean;
+    /**
+     * Toggle sending user provided group and cluster resource tags with the datadog metrics.
+     * * `OPS_GENIE`
+     */
+    readonly sendUserProvidedResourceTags: boolean;
     /**
      * Indicates which service discovery method is used, either file or http.
      */

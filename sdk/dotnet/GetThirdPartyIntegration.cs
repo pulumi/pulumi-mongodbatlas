@@ -203,7 +203,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string MicrosoftTeamsWebhookUrl;
         public readonly string ProjectId;
         /// <summary>
-        /// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+        /// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
         /// * `VICTOR_OPS`
         /// </summary>
         public readonly string Region;
@@ -223,9 +223,13 @@ namespace Pulumi.Mongodbatlas
         public readonly bool SendCollectionLatencyMetrics;
         /// <summary>
         /// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-        /// * `OPS_GENIE`
         /// </summary>
         public readonly bool SendDatabaseMetrics;
+        /// <summary>
+        /// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+        /// * `OPS_GENIE`
+        /// </summary>
+        public readonly bool SendUserProvidedResourceTags;
         /// <summary>
         /// Indicates which service discovery method is used, either file or http.
         /// </summary>
@@ -272,6 +276,8 @@ namespace Pulumi.Mongodbatlas
 
             bool sendDatabaseMetrics,
 
+            bool sendUserProvidedResourceTags,
+
             string serviceDiscovery,
 
             string serviceKey,
@@ -296,6 +302,7 @@ namespace Pulumi.Mongodbatlas
             Secret = secret;
             SendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
             SendDatabaseMetrics = sendDatabaseMetrics;
+            SendUserProvidedResourceTags = sendUserProvidedResourceTags;
             ServiceDiscovery = serviceDiscovery;
             ServiceKey = serviceKey;
             TeamName = teamName;

@@ -6,6 +6,8 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAws;
+import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzure;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -20,10 +22,18 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig extends com.p
         return this.aws;
     }
 
+    @Import(name="azures", required=true)
+    private List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures;
+
+    public List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures() {
+        return this.azures;
+    }
+
     private GetFederatedDatabaseInstanceCloudProviderConfig() {}
 
     private GetFederatedDatabaseInstanceCloudProviderConfig(GetFederatedDatabaseInstanceCloudProviderConfig $) {
         this.aws = $.aws;
+        this.azures = $.azures;
     }
 
     public static Builder builder() {
@@ -49,9 +59,21 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig extends com.p
             return this;
         }
 
+        public Builder azures(List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures) {
+            $.azures = azures;
+            return this;
+        }
+
+        public Builder azures(GetFederatedDatabaseInstanceCloudProviderConfigAzure... azures) {
+            return azures(List.of(azures));
+        }
+
         public GetFederatedDatabaseInstanceCloudProviderConfig build() {
             if ($.aws == null) {
                 throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfig", "aws");
+            }
+            if ($.azures == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfig", "azures");
             }
             return $;
         }

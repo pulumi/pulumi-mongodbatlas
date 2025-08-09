@@ -31,7 +31,7 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
     private String public_;
     private List<GetFederatedDatabaseInstancesResultStorageStoreReadPreference> readPreferences;
     /**
-     * @return Name of the region to which the Federanted Instnace routes client connections for data processing.
+     * @return Name of the region to which the Federated Instance routes client connections for data processing.
      * 
      */
     private String region;
@@ -82,7 +82,7 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
         return this.readPreferences;
     }
     /**
-     * @return Name of the region to which the Federanted Instnace routes client connections for data processing.
+     * @return Name of the region to which the Federated Instance routes client connections for data processing.
      * 
      */
     public String region() {

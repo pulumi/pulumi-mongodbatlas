@@ -88,7 +88,7 @@ type LookupThirdPartyIntegrationResult struct {
 	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
 	ProjectId                string `pulumi:"projectId"`
-	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 	// * `VICTOR_OPS`
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
@@ -100,8 +100,10 @@ type LookupThirdPartyIntegrationResult struct {
 	// Toggle sending collection latency metrics that includes database names and collection name sand latency metrics on reads, writes, commands, and transactions.
 	SendCollectionLatencyMetrics bool `pulumi:"sendCollectionLatencyMetrics"`
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-	// * `OPS_GENIE`
 	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
+	// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+	// * `OPS_GENIE`
+	SendUserProvidedResourceTags bool `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
@@ -191,7 +193,7 @@ func (o LookupThirdPartyIntegrationResultOutput) ProjectId() pulumi.StringOutput
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 // * `VICTOR_OPS`
 func (o LookupThirdPartyIntegrationResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Region }).(pulumi.StringOutput)
@@ -215,9 +217,14 @@ func (o LookupThirdPartyIntegrationResultOutput) SendCollectionLatencyMetrics() 
 }
 
 // Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-// * `OPS_GENIE`
 func (o LookupThirdPartyIntegrationResultOutput) SendDatabaseMetrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
+}
+
+// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+// * `OPS_GENIE`
+func (o LookupThirdPartyIntegrationResultOutput) SendUserProvidedResourceTags() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendUserProvidedResourceTags }).(pulumi.BoolOutput)
 }
 
 // Indicates which service discovery method is used, either file or http.

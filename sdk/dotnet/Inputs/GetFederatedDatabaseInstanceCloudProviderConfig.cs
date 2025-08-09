@@ -15,6 +15,14 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("aws", required: true)]
         public Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs Aws { get; set; } = null!;
 
+        [Input("azures", required: true)]
+        private List<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>? _azures;
+        public List<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs> Azures
+        {
+            get => _azures ?? (_azures = new List<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>());
+            set => _azures = value;
+        }
+
         public GetFederatedDatabaseInstanceCloudProviderConfigArgs()
         {
         }

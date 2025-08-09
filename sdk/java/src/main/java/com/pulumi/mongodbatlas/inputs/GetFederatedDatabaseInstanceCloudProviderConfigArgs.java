@@ -7,6 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs;
+import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -21,10 +23,18 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigArgs extends c
         return this.aws;
     }
 
+    @Import(name="azures", required=true)
+    private Output<List<GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>> azures;
+
+    public Output<List<GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>> azures() {
+        return this.azures;
+    }
+
     private GetFederatedDatabaseInstanceCloudProviderConfigArgs() {}
 
     private GetFederatedDatabaseInstanceCloudProviderConfigArgs(GetFederatedDatabaseInstanceCloudProviderConfigArgs $) {
         this.aws = $.aws;
+        this.azures = $.azures;
     }
 
     public static Builder builder() {
@@ -54,9 +64,25 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigArgs extends c
             return aws(Output.of(aws));
         }
 
+        public Builder azures(Output<List<GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>> azures) {
+            $.azures = azures;
+            return this;
+        }
+
+        public Builder azures(List<GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs> azures) {
+            return azures(Output.of(azures));
+        }
+
+        public Builder azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs... azures) {
+            return azures(List.of(azures));
+        }
+
         public GetFederatedDatabaseInstanceCloudProviderConfigArgs build() {
             if ($.aws == null) {
                 throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigArgs", "aws");
+            }
+            if ($.azures == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigArgs", "azures");
             }
             return $;
         }

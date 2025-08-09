@@ -76,6 +76,7 @@ type ThirdPartyIntegration struct {
 	Secret                       pulumi.StringPtrOutput `pulumi:"secret"`
 	SendCollectionLatencyMetrics pulumi.BoolOutput      `pulumi:"sendCollectionLatencyMetrics"`
 	SendDatabaseMetrics          pulumi.BoolOutput      `pulumi:"sendDatabaseMetrics"`
+	SendUserProvidedResourceTags pulumi.BoolOutput      `pulumi:"sendUserProvidedResourceTags"`
 	ServiceDiscovery             pulumi.StringOutput    `pulumi:"serviceDiscovery"`
 	ServiceKey                   pulumi.StringOutput    `pulumi:"serviceKey"`
 	TeamName                     pulumi.StringOutput    `pulumi:"teamName"`
@@ -177,6 +178,7 @@ type thirdPartyIntegrationState struct {
 	Secret                       *string `pulumi:"secret"`
 	SendCollectionLatencyMetrics *bool   `pulumi:"sendCollectionLatencyMetrics"`
 	SendDatabaseMetrics          *bool   `pulumi:"sendDatabaseMetrics"`
+	SendUserProvidedResourceTags *bool   `pulumi:"sendUserProvidedResourceTags"`
 	ServiceDiscovery             *string `pulumi:"serviceDiscovery"`
 	ServiceKey                   *string `pulumi:"serviceKey"`
 	TeamName                     *string `pulumi:"teamName"`
@@ -208,6 +210,7 @@ type ThirdPartyIntegrationState struct {
 	Secret                       pulumi.StringPtrInput
 	SendCollectionLatencyMetrics pulumi.BoolPtrInput
 	SendDatabaseMetrics          pulumi.BoolPtrInput
+	SendUserProvidedResourceTags pulumi.BoolPtrInput
 	ServiceDiscovery             pulumi.StringPtrInput
 	ServiceKey                   pulumi.StringPtrInput
 	TeamName                     pulumi.StringPtrInput
@@ -243,6 +246,7 @@ type thirdPartyIntegrationArgs struct {
 	Secret                       *string `pulumi:"secret"`
 	SendCollectionLatencyMetrics *bool   `pulumi:"sendCollectionLatencyMetrics"`
 	SendDatabaseMetrics          *bool   `pulumi:"sendDatabaseMetrics"`
+	SendUserProvidedResourceTags *bool   `pulumi:"sendUserProvidedResourceTags"`
 	ServiceDiscovery             *string `pulumi:"serviceDiscovery"`
 	ServiceKey                   *string `pulumi:"serviceKey"`
 	TeamName                     *string `pulumi:"teamName"`
@@ -275,6 +279,7 @@ type ThirdPartyIntegrationArgs struct {
 	Secret                       pulumi.StringPtrInput
 	SendCollectionLatencyMetrics pulumi.BoolPtrInput
 	SendDatabaseMetrics          pulumi.BoolPtrInput
+	SendUserProvidedResourceTags pulumi.BoolPtrInput
 	ServiceDiscovery             pulumi.StringPtrInput
 	ServiceKey                   pulumi.StringPtrInput
 	TeamName                     pulumi.StringPtrInput
@@ -423,6 +428,10 @@ func (o ThirdPartyIntegrationOutput) SendCollectionLatencyMetrics() pulumi.BoolO
 
 func (o ThirdPartyIntegrationOutput) SendDatabaseMetrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolOutput { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
+}
+
+func (o ThirdPartyIntegrationOutput) SendUserProvidedResourceTags() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolOutput { return v.SendUserProvidedResourceTags }).(pulumi.BoolOutput)
 }
 
 func (o ThirdPartyIntegrationOutput) ServiceDiscovery() pulumi.StringOutput {

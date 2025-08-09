@@ -76,7 +76,7 @@ def get_federated_database_instances(project_id: Optional[_builtins.str] = None,
     """
     ## # Data Source: get_federated_database_instances
 
-    `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+    `get_federated_database_instances` provides a Federated Database Instance data source.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -101,7 +101,7 @@ def get_federated_database_instances_output(project_id: Optional[pulumi.Input[_b
     """
     ## # Data Source: get_federated_database_instances
 
-    `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+    `get_federated_database_instances` provides a Federated Database Instance data source.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
