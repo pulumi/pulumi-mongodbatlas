@@ -51,7 +51,7 @@ class GetFederatedSettingsOrgRoleMappingResult:
     @pulumi.getter(name="externalGroupName")
     def external_group_name(self) -> _builtins.str:
         """
-        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        Unique label that identifies the identity provider group to which this role mapping applies.
         """
         return pulumi.get(self, "external_group_name")
 
@@ -157,6 +157,7 @@ def get_federated_settings_org_role_mapping(federation_settings_id: Optional[_bu
 
     :param _builtins.str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+    :param _builtins.str role_mapping_id: Unique 24-hexadecimal digit string that identifies this role mapping.
     """
     __args__ = dict()
     __args__['federationSettingsId'] = federation_settings_id
@@ -228,6 +229,7 @@ def get_federated_settings_org_role_mapping_output(federation_settings_id: Optio
 
     :param _builtins.str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+    :param _builtins.str role_mapping_id: Unique 24-hexadecimal digit string that identifies this role mapping.
     """
     __args__ = dict()
     __args__['federationSettingsId'] = federation_settings_id

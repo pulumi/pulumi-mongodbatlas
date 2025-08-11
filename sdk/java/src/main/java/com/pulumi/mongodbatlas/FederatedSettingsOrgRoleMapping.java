@@ -96,14 +96,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping")
 public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.CustomResource {
     /**
-     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * Unique label that identifies the identity provider group to which this role mapping applies.
      * 
      */
     @Export(name="externalGroupName", refs={String.class}, tree="[0]")
     private Output<String> externalGroupName;
 
     /**
-     * @return Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * @return Unique label that identifies the identity provider group to which this role mapping applies.
      * 
      */
     public Output<String> externalGroupName() {

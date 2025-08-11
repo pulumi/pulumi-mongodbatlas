@@ -25,6 +25,10 @@ import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationsArgs;
 import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetApiKeyArgs;
 import com.pulumi.mongodbatlas.inputs.GetApiKeyPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetApiKeyProjectAssignmentArgs;
+import com.pulumi.mongodbatlas.inputs.GetApiKeyProjectAssignmentPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetApiKeyProjectAssignmentsArgs;
+import com.pulumi.mongodbatlas.inputs.GetApiKeyProjectAssignmentsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetApiKeysArgs;
 import com.pulumi.mongodbatlas.inputs.GetApiKeysPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
@@ -238,6 +242,8 @@ import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterResult;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationResult;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetApiKeyProjectAssignmentResult;
+import com.pulumi.mongodbatlas.outputs.GetApiKeyProjectAssignmentsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetApiKeyResult;
 import com.pulumi.mongodbatlas.outputs.GetApiKeysInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAtlasUserResult;
@@ -3842,6 +3848,836 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetApiKeyResult> getApiKeyPlain(GetApiKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKey:getApiKey", TypeShape.of(GetApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
+     * 
+     * `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignment(GetApiKeyProjectAssignmentArgs args) {
+        return getApiKeyProjectAssignment(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
+     * 
+     * `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignmentPlain(GetApiKeyProjectAssignmentPlainArgs args) {
+        return getApiKeyProjectAssignmentPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
+     * 
+     * `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignment(GetApiKeyProjectAssignmentArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment", TypeShape.of(GetApiKeyProjectAssignmentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
+     * 
+     * `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignment(GetApiKeyProjectAssignmentArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment", TypeShape.of(GetApiKeyProjectAssignmentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
+     * 
+     * `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignmentPlain(GetApiKeyProjectAssignmentPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment", TypeShape.of(GetApiKeyProjectAssignmentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
+     * 
+     * `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignments(GetApiKeyProjectAssignmentsArgs args) {
+        return getApiKeyProjectAssignments(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
+     * 
+     * `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignmentsPlain(GetApiKeyProjectAssignmentsPlainArgs args) {
+        return getApiKeyProjectAssignmentsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
+     * 
+     * `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignments(GetApiKeyProjectAssignmentsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments", TypeShape.of(GetApiKeyProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
+     * 
+     * `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignments(GetApiKeyProjectAssignmentsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments", TypeShape.of(GetApiKeyProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
+     * 
+     * `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ApiKey;
+     * import com.pulumi.mongodbatlas.ApiKeyArgs;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
+     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .description("Test API Key")
+     *             .roleNames("ORG_READ_ONLY")
+     *             .build());
+     * 
+     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
+     *             .name("First Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
+     *             .name("Second Project")
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(firstProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
+     *             .projectId(secondProject.id())
+     *             .apiKeyId(this_.apiKeyId())
+     *             .roles("GROUP_OWNER")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Programmatic API Key 
+     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .cidrBlock("0.0.0.0/1")
+     *             .apiKeyId(this_.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignmentsPlain(GetApiKeyProjectAssignmentsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments", TypeShape.of(GetApiKeyProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
@@ -12495,7 +13331,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
-     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -12709,7 +13545,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
-     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -12923,7 +13759,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
-     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -13137,7 +13973,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
-     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -13351,7 +14187,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
-     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management
+     * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -14581,7 +15417,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
+     *             .projectId("<PROJECT_ID>")
      *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
      *             .build());
      * 
@@ -14591,7 +15427,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### S With Amazon S3 Bucket As Storage Database
+     * ## Example of Azure Blob Storage as storage database
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -14604,7 +15440,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -14619,11 +15454,11 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
-     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
      *             .cloudProviderConfig(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .aws(GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs.builder()
-     *                     .testS3Bucket("Amazon S3 Bucket Name")
+     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
+     *                     .roleId("<AZURE_ROLE_ID>")
      *                     .build())
      *                 .build())
      *             .build());
@@ -14675,7 +15510,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
+     *             .projectId("<PROJECT_ID>")
      *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
      *             .build());
      * 
@@ -14685,7 +15520,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### S With Amazon S3 Bucket As Storage Database
+     * ## Example of Azure Blob Storage as storage database
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -14698,7 +15533,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -14713,11 +15547,11 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
-     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
      *             .cloudProviderConfig(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .aws(GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs.builder()
-     *                     .testS3Bucket("Amazon S3 Bucket Name")
+     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
+     *                     .roleId("<AZURE_ROLE_ID>")
      *                     .build())
      *                 .build())
      *             .build());
@@ -14769,7 +15603,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
+     *             .projectId("<PROJECT_ID>")
      *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
      *             .build());
      * 
@@ -14779,7 +15613,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### S With Amazon S3 Bucket As Storage Database
+     * ## Example of Azure Blob Storage as storage database
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -14792,7 +15626,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -14807,11 +15640,11 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
-     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
      *             .cloudProviderConfig(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .aws(GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs.builder()
-     *                     .testS3Bucket("Amazon S3 Bucket Name")
+     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
+     *                     .roleId("<AZURE_ROLE_ID>")
      *                     .build())
      *                 .build())
      *             .build());
@@ -14863,7 +15696,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
+     *             .projectId("<PROJECT_ID>")
      *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
      *             .build());
      * 
@@ -14873,7 +15706,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### S With Amazon S3 Bucket As Storage Database
+     * ## Example of Azure Blob Storage as storage database
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -14886,7 +15719,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -14901,11 +15733,11 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
-     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
      *             .cloudProviderConfig(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .aws(GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs.builder()
-     *                     .testS3Bucket("Amazon S3 Bucket Name")
+     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
+     *                     .roleId("<AZURE_ROLE_ID>")
      *                     .build())
      *                 .build())
      *             .build());
@@ -14957,7 +15789,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
+     *             .projectId("<PROJECT_ID>")
      *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
      *             .build());
      * 
@@ -14967,7 +15799,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### S With Amazon S3 Bucket As Storage Database
+     * ## Example of Azure Blob Storage as storage database
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -14980,7 +15812,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -14995,11 +15826,11 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
-     *             .projectId("PROJECT ID")
-     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
      *             .cloudProviderConfig(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .aws(GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs.builder()
-     *                     .testS3Bucket("Amazon S3 Bucket Name")
+     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
+     *                     .roleId("<AZURE_ROLE_ID>")
      *                     .build())
      *                 .build())
      *             .build());
@@ -15017,7 +15848,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
      * 
-     * `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+     * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -15037,7 +15868,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
      * 
-     * `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+     * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -15057,7 +15888,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
      * 
-     * `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+     * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -15077,7 +15908,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
      * 
-     * `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+     * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -15097,7 +15928,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.getFederatedDatabaseInstances
      * 
-     * `mongodbatlas_federated_database_instancess` provides a Federated Database Instance data source.
+     * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
@@ -21083,7 +21914,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
@@ -21175,7 +22006,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
@@ -21267,7 +22098,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
@@ -21359,7 +22190,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
@@ -21451,7 +22282,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
@@ -21542,7 +22373,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
@@ -21631,7 +22462,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
@@ -21720,7 +22551,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
@@ -21809,7 +22640,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
@@ -21898,7 +22729,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 

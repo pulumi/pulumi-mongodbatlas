@@ -16,12 +16,20 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Name of the cloud service that hosts the data lake's data stores.
         /// </summary>
-        public readonly Outputs.FederatedDatabaseInstanceCloudProviderConfigAws Aws;
+        public readonly Outputs.FederatedDatabaseInstanceCloudProviderConfigAws? Aws;
+        /// <summary>
+        /// Microsoft Azure cloud service configuration.
+        /// </summary>
+        public readonly Outputs.FederatedDatabaseInstanceCloudProviderConfigAzure? Azure;
 
         [OutputConstructor]
-        private FederatedDatabaseInstanceCloudProviderConfig(Outputs.FederatedDatabaseInstanceCloudProviderConfigAws aws)
+        private FederatedDatabaseInstanceCloudProviderConfig(
+            Outputs.FederatedDatabaseInstanceCloudProviderConfigAws? aws,
+
+            Outputs.FederatedDatabaseInstanceCloudProviderConfigAzure? azure)
         {
             Aws = aws;
+            Azure = azure;
         }
     }
 }

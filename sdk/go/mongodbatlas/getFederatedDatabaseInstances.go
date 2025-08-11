@@ -13,7 +13,7 @@ import (
 
 // ## # Data Source: getFederatedDatabaseInstances
 //
-// `mongodbatlasFederatedDatabaseInstancess` provides a Federated Database Instance data source.
+// `getFederatedDatabaseInstances` provides a Federated Database Instance data source.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //

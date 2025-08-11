@@ -152,6 +152,79 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ## Example of Azure Blob Storage as storage database
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED DATABASE_INSTANCE&gt;",
+    ///         CloudProviderConfig = new Mongodbatlas.Inputs.FederatedDatabaseInstanceCloudProviderConfigArgs
+    ///         {
+    ///             Azure = new Mongodbatlas.Inputs.FederatedDatabaseInstanceCloudProviderConfigAzureArgs
+    ///             {
+    ///                 RoleId = "&lt;AZURE_ROLE_ID&gt;",
+    ///             },
+    ///         },
+    ///         StorageDatabases = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseArgs
+    ///             {
+    ///                 Name = "VirtualDatabase0",
+    ///                 Collections = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionArgs
+    ///                     {
+    ///                         Name = "NAME OF THE COLLECTION",
+    ///                         DataSources = new[]
+    ///                         {
+    ///                             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs
+    ///                             {
+    ///                                 Collection = "COLLECTION IN THE CLUSTER",
+    ///                                 Database = "DB IN THE CLUSTER",
+    ///                                 StoreName = "CLUSTER NAME",
+    ///                             },
+    ///                             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs
+    ///                             {
+    ///                                 StoreName = "AZURE BLOB STORAGE NAME",
+    ///                                 Path = "AZURE BLOB PATH",
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///         StorageStores = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreArgs
+    ///             {
+    ///                 Name = "STORE NAME",
+    ///                 ClusterName = "CLUSTER NAME",
+    ///                 ProjectId = "PROJECT ID",
+    ///                 Provider = "atlas",
+    ///                 ReadPreference = new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs
+    ///                 {
+    ///                     Mode = "secondary",
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreArgs
+    ///             {
+    ///                 Name = "AZURE BLOB STORAGE NAME",
+    ///                 Provider = "azure",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Example specifying data process region and provider
     /// 
     /// ```csharp
@@ -197,17 +270,19 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Cloud provider linked to this data federated instance.
-        /// * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        /// * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
         /// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
         /// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+        /// * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
+        /// * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         /// </summary>
         [Output("cloudProviderConfig")]
         public Output<Outputs.FederatedDatabaseInstanceCloudProviderConfig> CloudProviderConfig { get; private set; } = null!;
 
         /// <summary>
         /// The cloud provider region to which the Federated Instance routes client connections for data processing.
-        /// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
-        /// * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+        /// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+        /// * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         /// </summary>
         [Output("dataProcessRegion")]
         public Output<Outputs.FederatedDatabaseInstanceDataProcessRegion> DataProcessRegion { get; private set; } = null!;
@@ -337,17 +412,19 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Cloud provider linked to this data federated instance.
-        /// * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        /// * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
         /// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
         /// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+        /// * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
+        /// * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         /// </summary>
         [Input("cloudProviderConfig")]
         public Input<Inputs.FederatedDatabaseInstanceCloudProviderConfigArgs>? CloudProviderConfig { get; set; }
 
         /// <summary>
         /// The cloud provider region to which the Federated Instance routes client connections for data processing.
-        /// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
-        /// * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+        /// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+        /// * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         /// </summary>
         [Input("dataProcessRegion")]
         public Input<Inputs.FederatedDatabaseInstanceDataProcessRegionArgs>? DataProcessRegion { get; set; }
@@ -437,17 +514,19 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Cloud provider linked to this data federated instance.
-        /// * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        /// * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
         /// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
         /// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+        /// * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
+        /// * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         /// </summary>
         [Input("cloudProviderConfig")]
         public Input<Inputs.FederatedDatabaseInstanceCloudProviderConfigGetArgs>? CloudProviderConfig { get; set; }
 
         /// <summary>
         /// The cloud provider region to which the Federated Instance routes client connections for data processing.
-        /// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
-        /// * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+        /// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+        /// * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         /// </summary>
         [Input("dataProcessRegion")]
         public Input<Inputs.FederatedDatabaseInstanceDataProcessRegionGetArgs>? DataProcessRegion { get; set; }

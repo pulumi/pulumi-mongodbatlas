@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        /// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

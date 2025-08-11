@@ -69,7 +69,7 @@ import (
 //
 // ### Data Process Region
 // * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-// * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+// * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
 //
 // ### Schedule
 //

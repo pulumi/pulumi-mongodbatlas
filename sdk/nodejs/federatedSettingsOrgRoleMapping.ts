@@ -91,7 +91,7 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
     }
 
     /**
-     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * Unique label that identifies the identity provider group to which this role mapping applies.
      */
     public readonly externalGroupName!: pulumi.Output<string>;
     /**
@@ -159,7 +159,7 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
  */
 export interface FederatedSettingsOrgRoleMappingState {
     /**
-     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * Unique label that identifies the identity provider group to which this role mapping applies.
      */
     externalGroupName?: pulumi.Input<string>;
     /**
@@ -185,7 +185,7 @@ export interface FederatedSettingsOrgRoleMappingState {
  */
 export interface FederatedSettingsOrgRoleMappingArgs {
     /**
-     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     * Unique label that identifies the identity provider group to which this role mapping applies.
      */
     externalGroupName: pulumi.Input<string>;
     /**

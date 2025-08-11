@@ -163,6 +163,8 @@ __all__ = [
     'FederatedDatabaseInstanceCloudProviderConfigArgsDict',
     'FederatedDatabaseInstanceCloudProviderConfigAwsArgs',
     'FederatedDatabaseInstanceCloudProviderConfigAwsArgsDict',
+    'FederatedDatabaseInstanceCloudProviderConfigAzureArgs',
+    'FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict',
     'FederatedDatabaseInstanceDataProcessRegionArgs',
     'FederatedDatabaseInstanceDataProcessRegionArgsDict',
     'FederatedDatabaseInstanceStorageDatabaseArgs',
@@ -283,6 +285,8 @@ __all__ = [
     'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict',
     'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs',
     'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgsDict',
+    'GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs',
+    'GetFederatedDatabaseInstanceCloudProviderConfigAzureArgsDict',
     'GetGlobalClusterConfigManagedNamespaceArgs',
     'GetGlobalClusterConfigManagedNamespaceArgsDict',
     'GetServerlessInstanceLinkArgs',
@@ -2314,7 +2318,7 @@ if not MYPY:
         """
         datadog_region: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         """
         delay_min: NotRequired[pulumi.Input[_builtins.int]]
         """
@@ -2456,7 +2460,7 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[_builtins.str] api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[_builtins.str] channel_name: Slack channel name. Required for the SLACK notifications type.
         :param pulumi.Input[_builtins.str] datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        :param pulumi.Input[_builtins.str] datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+        :param pulumi.Input[_builtins.str] datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         :param pulumi.Input[_builtins.int] delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param pulumi.Input[_builtins.str] email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param pulumi.Input[_builtins.bool] email_enabled: Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -2604,7 +2608,7 @@ class AlertConfigurationNotificationArgs:
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
+        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         """
         return pulumi.get(self, "datadog_region")
 
@@ -3582,7 +3586,7 @@ if not MYPY:
         """
         replication_spec_id: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         """
         should_copy_oplogs: NotRequired[pulumi.Input[_builtins.bool]]
         """
@@ -3608,7 +3612,7 @@ class CloudBackupScheduleCopySettingArgs:
         :param pulumi.Input[_builtins.str] cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
         :param pulumi.Input[_builtins.str] region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param pulumi.Input[_builtins.str] replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
+        :param pulumi.Input[_builtins.str] replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param pulumi.Input[_builtins.bool] should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param pulumi.Input[_builtins.str] zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         """
@@ -3669,7 +3673,7 @@ class CloudBackupScheduleCopySettingArgs:
     @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
     def replication_spec_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         """
         return pulumi.get(self, "replication_spec_id")
 
@@ -7151,7 +7155,7 @@ if not MYPY:
         """
         type: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
 elif False:
     DatabaseUserScopeArgsDict: TypeAlias = Mapping[str, Any]
@@ -7163,7 +7167,7 @@ class DatabaseUserScopeArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the cluster or Atlas Data Lake that the user has access to.
-        :param pulumi.Input[_builtins.str] type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        :param pulumi.Input[_builtins.str] type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -7186,7 +7190,7 @@ class DatabaseUserScopeArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Database-Users/operation/createDatabaseUser) for the list of valid values.
+        Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         return pulumi.get(self, "type")
 
@@ -7752,9 +7756,13 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
 
 if not MYPY:
     class FederatedDatabaseInstanceCloudProviderConfigArgsDict(TypedDict):
-        aws: pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgsDict']
+        aws: NotRequired[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgsDict']]
         """
         Name of the cloud service that hosts the data lake's data stores.
+        """
+        azure: NotRequired[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict']]
+        """
+        Microsoft Azure cloud service configuration.
         """
 elif False:
     FederatedDatabaseInstanceCloudProviderConfigArgsDict: TypeAlias = Mapping[str, Any]
@@ -7762,23 +7770,40 @@ elif False:
 @pulumi.input_type
 class FederatedDatabaseInstanceCloudProviderConfigArgs:
     def __init__(__self__, *,
-                 aws: pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']):
+                 aws: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']] = None,
+                 azure: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']] = None):
         """
         :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs'] aws: Name of the cloud service that hosts the data lake's data stores.
+        :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs'] azure: Microsoft Azure cloud service configuration.
         """
-        pulumi.set(__self__, "aws", aws)
+        if aws is not None:
+            pulumi.set(__self__, "aws", aws)
+        if azure is not None:
+            pulumi.set(__self__, "azure", azure)
 
     @_builtins.property
     @pulumi.getter
-    def aws(self) -> pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']:
+    def aws(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']]:
         """
         Name of the cloud service that hosts the data lake's data stores.
         """
         return pulumi.get(self, "aws")
 
     @aws.setter
-    def aws(self, value: pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']):
+    def aws(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']]):
         pulumi.set(self, "aws", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def azure(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']]:
+        """
+        Microsoft Azure cloud service configuration.
+        """
+        return pulumi.get(self, "azure")
+
+    @azure.setter
+    def azure(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']]):
+        pulumi.set(self, "azure", value)
 
 
 if not MYPY:
@@ -7884,6 +7909,83 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
     @iam_user_arn.setter
     def iam_user_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "iam_user_arn", value)
+
+
+if not MYPY:
+    class FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict(TypedDict):
+        role_id: pulumi.Input[_builtins.str]
+        atlas_app_id: NotRequired[pulumi.Input[_builtins.str]]
+        service_principal_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+        """
+        tenant_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique identifier of the Azure Active Directory tenant where the service principal resides.
+        """
+elif False:
+    FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class FederatedDatabaseInstanceCloudProviderConfigAzureArgs:
+    def __init__(__self__, *,
+                 role_id: pulumi.Input[_builtins.str],
+                 atlas_app_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_principal_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] service_principal_id: Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+        :param pulumi.Input[_builtins.str] tenant_id: Unique identifier of the Azure Active Directory tenant where the service principal resides.
+        """
+        pulumi.set(__self__, "role_id", role_id)
+        if atlas_app_id is not None:
+            pulumi.set(__self__, "atlas_app_id", atlas_app_id)
+        if service_principal_id is not None:
+            pulumi.set(__self__, "service_principal_id", service_principal_id)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "role_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="atlasAppId")
+    def atlas_app_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "atlas_app_id")
+
+    @atlas_app_id.setter
+    def atlas_app_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "atlas_app_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+        """
+        return pulumi.get(self, "service_principal_id")
+
+    @service_principal_id.setter
+    def service_principal_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_principal_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique identifier of the Azure Active Directory tenant where the service principal resides.
+        """
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tenant_id", value)
 
 
 if not MYPY:
@@ -9454,7 +9556,7 @@ if not MYPY:
         """
         region: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         """
 elif False:
     OnlineArchiveDataProcessRegionArgsDict: TypeAlias = Mapping[str, Any]
@@ -9466,7 +9568,7 @@ class OnlineArchiveDataProcessRegionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cloud_provider: Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
-        :param pulumi.Input[_builtins.str] region: Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        :param pulumi.Input[_builtins.str] region: Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         """
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -9489,7 +9591,7 @@ class OnlineArchiveDataProcessRegionArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         """
         return pulumi.get(self, "region")
 
@@ -11621,14 +11723,17 @@ class GetCustomDbRoleInheritedRoleArgs:
 if not MYPY:
     class GetFederatedDatabaseInstanceCloudProviderConfigArgsDict(TypedDict):
         aws: 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgsDict'
+        azures: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgsDict']
 elif False:
     GetFederatedDatabaseInstanceCloudProviderConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetFederatedDatabaseInstanceCloudProviderConfigArgs:
     def __init__(__self__, *,
-                 aws: 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs'):
+                 aws: 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs',
+                 azures: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs']):
         pulumi.set(__self__, "aws", aws)
+        pulumi.set(__self__, "azures", azures)
 
     @_builtins.property
     @pulumi.getter
@@ -11638,6 +11743,15 @@ class GetFederatedDatabaseInstanceCloudProviderConfigArgs:
     @aws.setter
     def aws(self, value: 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs'):
         pulumi.set(self, "aws", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def azures(self) -> Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs']:
+        return pulumi.get(self, "azures")
+
+    @azures.setter
+    def azures(self, value: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs']):
+        pulumi.set(self, "azures", value)
 
 
 if not MYPY:
@@ -11659,9 +11773,9 @@ if not MYPY:
         """
         role_id: _builtins.str
         """
-        Unique identifier of the role that the data lake can use to access the data stores.
+        Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         """
-        test_s3_bucket: _builtins.str
+        test_s3_bucket: NotRequired[_builtins.str]
 elif False:
     GetFederatedDatabaseInstanceCloudProviderConfigAwsArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -11672,7 +11786,7 @@ class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs:
                  iam_assumed_role_arn: _builtins.str,
                  iam_user_arn: _builtins.str,
                  role_id: _builtins.str,
-                 test_s3_bucket: _builtins.str):
+                 test_s3_bucket: Optional[_builtins.str] = None):
         """
         :param _builtins.str external_id: Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
         :param _builtins.str iam_assumed_role_arn: Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
@@ -11680,13 +11794,14 @@ class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs:
                * `s3:ListBucket`
                * `s3:GetObjectVersion`
         :param _builtins.str iam_user_arn: Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
-        :param _builtins.str role_id: Unique identifier of the role that the data lake can use to access the data stores.
+        :param _builtins.str role_id: Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         """
         pulumi.set(__self__, "external_id", external_id)
         pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
         pulumi.set(__self__, "iam_user_arn", iam_user_arn)
         pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        if test_s3_bucket is not None:
+            pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
 
     @_builtins.property
     @pulumi.getter(name="externalId")
@@ -11731,7 +11846,7 @@ class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs:
     @pulumi.getter(name="roleId")
     def role_id(self) -> _builtins.str:
         """
-        Unique identifier of the role that the data lake can use to access the data stores.
+        Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         """
         return pulumi.get(self, "role_id")
 
@@ -11741,12 +11856,93 @@ class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs:
 
     @_builtins.property
     @pulumi.getter(name="testS3Bucket")
-    def test_s3_bucket(self) -> _builtins.str:
+    def test_s3_bucket(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "test_s3_bucket")
 
     @test_s3_bucket.setter
-    def test_s3_bucket(self, value: _builtins.str):
+    def test_s3_bucket(self, value: Optional[_builtins.str]):
         pulumi.set(self, "test_s3_bucket", value)
+
+
+if not MYPY:
+    class GetFederatedDatabaseInstanceCloudProviderConfigAzureArgsDict(TypedDict):
+        atlas_app_id: _builtins.str
+        role_id: _builtins.str
+        """
+        Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+        """
+        service_principal_id: _builtins.str
+        """
+        Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+        """
+        tenant_id: _builtins.str
+        """
+        Unique identifier of the Azure Active Directory tenant where the service principal resides.
+        """
+elif False:
+    GetFederatedDatabaseInstanceCloudProviderConfigAzureArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs:
+    def __init__(__self__, *,
+                 atlas_app_id: _builtins.str,
+                 role_id: _builtins.str,
+                 service_principal_id: _builtins.str,
+                 tenant_id: _builtins.str):
+        """
+        :param _builtins.str role_id: Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+        :param _builtins.str service_principal_id: Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+        :param _builtins.str tenant_id: Unique identifier of the Azure Active Directory tenant where the service principal resides.
+        """
+        pulumi.set(__self__, "atlas_app_id", atlas_app_id)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @_builtins.property
+    @pulumi.getter(name="atlasAppId")
+    def atlas_app_id(self) -> _builtins.str:
+        return pulumi.get(self, "atlas_app_id")
+
+    @atlas_app_id.setter
+    def atlas_app_id(self, value: _builtins.str):
+        pulumi.set(self, "atlas_app_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> _builtins.str:
+        """
+        Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: _builtins.str):
+        pulumi.set(self, "role_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> _builtins.str:
+        """
+        Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
+        """
+        return pulumi.get(self, "service_principal_id")
+
+    @service_principal_id.setter
+    def service_principal_id(self, value: _builtins.str):
+        pulumi.set(self, "service_principal_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> _builtins.str:
+        """
+        Unique identifier of the Azure Active Directory tenant where the service principal resides.
+        """
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: _builtins.str):
+        pulumi.set(self, "tenant_id", value)
 
 
 if not MYPY:

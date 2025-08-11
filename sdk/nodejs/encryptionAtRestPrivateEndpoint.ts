@@ -98,7 +98,7 @@ import * as utilities from "./utilities";
  * Encryption At Rest Private Endpoint resource can be imported using the project ID, cloud provider, and private endpoint ID. The format must be `{project_id}-{cloud_provider}-{private_endpoint_id}` e.g.
  *
  * For more information see:
- * - [MongoDB Atlas API - Private Endpoint for Encryption at Rest Using Customer Key Management](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Encryption-at-Rest-using-Customer-Key-Management/operation/getEncryptionAtRestPrivateEndpoint) Documentation.
+ * - [MongoDB Atlas API - Private Endpoint for Encryption at Rest Using Customer Key Management](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getencryptionatrestprivateendpoint) Documentation.
  * - [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/).
  */
 export class EncryptionAtRestPrivateEndpoint extends pulumi.CustomResource {

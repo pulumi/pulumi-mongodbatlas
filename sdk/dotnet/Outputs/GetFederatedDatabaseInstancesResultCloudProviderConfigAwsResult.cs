@@ -29,11 +29,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string IamUserArn;
         /// <summary>
-        /// Unique identifier of the role that the data lake can use to access the data stores.
-        /// #### `data_process_region` - The cloud provider region to which the Federated Instance routes client connections for data processing.
+        /// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         /// </summary>
         public readonly string RoleId;
-        public readonly string TestS3Bucket;
+        public readonly string? TestS3Bucket;
 
         [OutputConstructor]
         private GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult(
@@ -45,7 +44,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string roleId,
 
-            string testS3Bucket)
+            string? testS3Bucket)
         {
             ExternalId = externalId;
             IamAssumedRoleArn = iamAssumedRoleArn;

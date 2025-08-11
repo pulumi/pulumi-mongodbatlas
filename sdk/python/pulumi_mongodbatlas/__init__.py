@@ -10,6 +10,7 @@ from .access_list_api_key import *
 from .advanced_cluster import *
 from .alert_configuration import *
 from .api_key import *
+from .api_key_project_assignment import *
 from .auditing import *
 from .backup_compliance_policy import *
 from .cloud_backup_schedule import *
@@ -42,6 +43,8 @@ from .get_advanced_clusters import *
 from .get_alert_configuration import *
 from .get_alert_configurations import *
 from .get_api_key import *
+from .get_api_key_project_assignment import *
+from .get_api_key_project_assignments import *
 from .get_api_keys import *
 from .get_atlas_user import *
 from .get_atlas_users import *
@@ -224,6 +227,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/apiKey:ApiKey": "ApiKey"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/apiKeyProjectAssignment",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment": "ApiKeyProjectAssignment"
   }
  },
  {

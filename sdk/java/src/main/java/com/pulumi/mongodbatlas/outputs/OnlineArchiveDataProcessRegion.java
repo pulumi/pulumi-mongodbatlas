@@ -17,7 +17,7 @@ public final class OnlineArchiveDataProcessRegion {
      */
     private @Nullable String cloudProvider;
     /**
-     * @return Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * @return Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      */
     private @Nullable String region;
@@ -31,7 +31,7 @@ public final class OnlineArchiveDataProcessRegion {
         return Optional.ofNullable(this.cloudProvider);
     }
     /**
-     * @return Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     * @return Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      */
     public Optional<String> region() {

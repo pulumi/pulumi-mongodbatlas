@@ -65,6 +65,7 @@ type LookupStreamConnectionsArgs struct {
 
 // A collection of values returned by getStreamConnections.
 type LookupStreamConnectionsResult struct {
+	// Deprecated: This parameter is deprecated.
 	Id string `pulumi:"id"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName string `pulumi:"instanceName"`
@@ -118,6 +119,7 @@ func (o LookupStreamConnectionsResultOutput) ToLookupStreamConnectionsResultOutp
 	return o
 }
 
+// Deprecated: This parameter is deprecated.
 func (o LookupStreamConnectionsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionsResult) string { return v.Id }).(pulumi.StringOutput)
 }
