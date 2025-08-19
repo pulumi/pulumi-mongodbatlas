@@ -33209,7 +33209,7 @@
                 "properties": {
                     "__self__": {
                         "type": "ref",
-                        "$ref": "#/resources/pulumi:providers:mongodbatlas"
+                        "$ref": "#/provider"
                     }
                 },
                 "type": "pulumi:providers:mongodbatlas/terraformConfig",
