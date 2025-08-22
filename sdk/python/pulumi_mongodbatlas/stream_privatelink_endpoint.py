@@ -29,14 +29,26 @@ class StreamPrivatelinkEndpointArgs:
                  service_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StreamPrivatelinkEndpoint resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-        :param pulumi.Input[_builtins.str] provider_name: Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
-        :param pulumi.Input[_builtins.str] vendor: Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
+               which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
+               same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
+               endpoints use the term groups.
+        :param pulumi.Input[_builtins.str] provider_name: Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        :param pulumi.Input[_builtins.str] vendor: Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
+               **Azure**: EVENTHUB and CONFLUENT
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
-        :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
-        :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
-        :param pulumi.Input[_builtins.str] service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
+               * AZURE provider with EVENTHUB or CONFLUENT vendor.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
+               CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+        :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See
+               [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
+               [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
+               vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
+               API from the provided `arn`.
+        :param pulumi.Input[_builtins.str] service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint
+               ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
+               Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -56,7 +68,10 @@ class StreamPrivatelinkEndpointArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
+        which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
+        same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
+        endpoints use the term groups.
         """
         return pulumi.get(self, "project_id")
 
@@ -68,7 +83,7 @@ class StreamPrivatelinkEndpointArgs:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+        Provider where the endpoint is deployed. Valid values are AWS and AZURE.
         """
         return pulumi.get(self, "provider_name")
 
@@ -80,7 +95,8 @@ class StreamPrivatelinkEndpointArgs:
     @pulumi.getter
     def vendor(self) -> pulumi.Input[_builtins.str]:
         """
-        Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
+        **Azure**: EVENTHUB and CONFLUENT
         """
         return pulumi.get(self, "vendor")
 
@@ -104,7 +120,8 @@ class StreamPrivatelinkEndpointArgs:
     @pulumi.getter(name="dnsDomain")
     def dns_domain(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+        The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
+        * AZURE provider with EVENTHUB or CONFLUENT vendor.
         """
         return pulumi.get(self, "dns_domain")
 
@@ -116,7 +133,8 @@ class StreamPrivatelinkEndpointArgs:
     @pulumi.getter(name="dnsSubDomains")
     def dns_sub_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+        Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
+        CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         """
         return pulumi.get(self, "dns_sub_domains")
 
@@ -128,7 +146,11 @@ class StreamPrivatelinkEndpointArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+        The region of the Provider’s cluster. See
+        [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
+        [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
+        vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
+        API from the provided `arn`.
         """
         return pulumi.get(self, "region")
 
@@ -140,7 +162,9 @@ class StreamPrivatelinkEndpointArgs:
     @pulumi.getter(name="serviceEndpointId")
     def service_endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        For AZURE EVENTHUB, this is the [namespace endpoint
+        ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
+        Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         """
         return pulumi.get(self, "service_endpoint_id")
 
@@ -168,18 +192,30 @@ class _StreamPrivatelinkEndpointState:
         """
         Input properties used for looking up and filtering StreamPrivatelinkEndpoint resources.
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
-        :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+        :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
+               * AZURE provider with EVENTHUB or CONFLUENT vendor.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
+               CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         :param pulumi.Input[_builtins.str] error_message: Error message if the connection is in a failed state.
         :param pulumi.Input[_builtins.str] interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
         :param pulumi.Input[_builtins.str] interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
+               which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
+               same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
+               endpoints use the term groups.
         :param pulumi.Input[_builtins.str] provider_account_id: Account ID from the cloud provider.
-        :param pulumi.Input[_builtins.str] provider_name: Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
-        :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
-        :param pulumi.Input[_builtins.str] service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        :param pulumi.Input[_builtins.str] provider_name: Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See
+               [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
+               [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
+               vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
+               API from the provided `arn`.
+        :param pulumi.Input[_builtins.str] service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint
+               ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
+               Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         :param pulumi.Input[_builtins.str] state: Status of the connection.
-        :param pulumi.Input[_builtins.str] vendor: Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        :param pulumi.Input[_builtins.str] vendor: Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
+               **Azure**: EVENTHUB and CONFLUENT
         """
         if arn is not None:
             pulumi.set(__self__, "arn", arn)
@@ -224,7 +260,8 @@ class _StreamPrivatelinkEndpointState:
     @pulumi.getter(name="dnsDomain")
     def dns_domain(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+        The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
+        * AZURE provider with EVENTHUB or CONFLUENT vendor.
         """
         return pulumi.get(self, "dns_domain")
 
@@ -236,7 +273,8 @@ class _StreamPrivatelinkEndpointState:
     @pulumi.getter(name="dnsSubDomains")
     def dns_sub_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+        Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
+        CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         """
         return pulumi.get(self, "dns_sub_domains")
 
@@ -284,7 +322,10 @@ class _StreamPrivatelinkEndpointState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
+        which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
+        same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
+        endpoints use the term groups.
         """
         return pulumi.get(self, "project_id")
 
@@ -308,7 +349,7 @@ class _StreamPrivatelinkEndpointState:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+        Provider where the endpoint is deployed. Valid values are AWS and AZURE.
         """
         return pulumi.get(self, "provider_name")
 
@@ -320,7 +361,11 @@ class _StreamPrivatelinkEndpointState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+        The region of the Provider’s cluster. See
+        [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
+        [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
+        vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
+        API from the provided `arn`.
         """
         return pulumi.get(self, "region")
 
@@ -332,7 +377,9 @@ class _StreamPrivatelinkEndpointState:
     @pulumi.getter(name="serviceEndpointId")
     def service_endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        For AZURE EVENTHUB, this is the [namespace endpoint
+        ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
+        Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         """
         return pulumi.get(self, "service_endpoint_id")
 
@@ -356,7 +403,8 @@ class _StreamPrivatelinkEndpointState:
     @pulumi.getter
     def vendor(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
+        **Azure**: EVENTHUB and CONFLUENT
         """
         return pulumi.get(self, "vendor")
 
@@ -389,16 +437,60 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
 
         ### S
 
+        ### AWS S3 Privatelink
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # S3 bucket for stream data
+        stream_bucket = aws.index.S3Bucket("stream_bucket",
+            bucket=s3_bucket_name,
+            force_destroy=True)
+        stream_bucket_versioning = aws.index.S3BucketVersioning("stream_bucket_versioning",
+            bucket=stream_bucket.id,
+            versioning_configuration=[{
+                status: Enabled,
+            }])
+        stream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
+            bucket=stream_bucket.id,
+            rule=[{
+                applyServerSideEncryptionByDefault: [{
+                    sseAlgorithm: AES256,
+                }],
+            }])
+        # PrivateLink for S3
+        this = mongodbatlas.StreamPrivatelinkEndpoint("this",
+            project_id=project_id,
+            provider_name="AWS",
+            vendor="S3",
+            region=region,
+            service_endpoint_id=service_endpoint_id)
+        pulumi.export("privatelinkEndpointId", this.id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
-        :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-        :param pulumi.Input[_builtins.str] provider_name: Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
-        :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
-        :param pulumi.Input[_builtins.str] service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
-        :param pulumi.Input[_builtins.str] vendor: Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
+               * AZURE provider with EVENTHUB or CONFLUENT vendor.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
+               CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
+               which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
+               same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
+               endpoints use the term groups.
+        :param pulumi.Input[_builtins.str] provider_name: Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See
+               [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
+               [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
+               vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
+               API from the provided `arn`.
+        :param pulumi.Input[_builtins.str] service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint
+               ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
+               Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        :param pulumi.Input[_builtins.str] vendor: Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
+               **Azure**: EVENTHUB and CONFLUENT
         """
         ...
     @overload
@@ -414,6 +506,38 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         ## Example Usage
 
         ### S
+
+        ### AWS S3 Privatelink
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # S3 bucket for stream data
+        stream_bucket = aws.index.S3Bucket("stream_bucket",
+            bucket=s3_bucket_name,
+            force_destroy=True)
+        stream_bucket_versioning = aws.index.S3BucketVersioning("stream_bucket_versioning",
+            bucket=stream_bucket.id,
+            versioning_configuration=[{
+                status: Enabled,
+            }])
+        stream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
+            bucket=stream_bucket.id,
+            rule=[{
+                applyServerSideEncryptionByDefault: [{
+                    sseAlgorithm: AES256,
+                }],
+            }])
+        # PrivateLink for S3
+        this = mongodbatlas.StreamPrivatelinkEndpoint("this",
+            project_id=project_id,
+            provider_name="AWS",
+            vendor="S3",
+            region=region,
+            service_endpoint_id=service_endpoint_id)
+        pulumi.export("privatelinkEndpointId", this.id)
+        ```
 
         :param str resource_name: The name of the resource.
         :param StreamPrivatelinkEndpointArgs args: The arguments to use to populate this resource's properties.
@@ -497,18 +621,30 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
-        :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+        :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
+               * AZURE provider with EVENTHUB or CONFLUENT vendor.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
+               CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         :param pulumi.Input[_builtins.str] error_message: Error message if the connection is in a failed state.
         :param pulumi.Input[_builtins.str] interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
         :param pulumi.Input[_builtins.str] interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
+               which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
+               same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
+               endpoints use the term groups.
         :param pulumi.Input[_builtins.str] provider_account_id: Account ID from the cloud provider.
-        :param pulumi.Input[_builtins.str] provider_name: Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
-        :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
-        :param pulumi.Input[_builtins.str] service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        :param pulumi.Input[_builtins.str] provider_name: Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See
+               [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
+               [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
+               vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
+               API from the provided `arn`.
+        :param pulumi.Input[_builtins.str] service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint
+               ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
+               Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         :param pulumi.Input[_builtins.str] state: Status of the connection.
-        :param pulumi.Input[_builtins.str] vendor: Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        :param pulumi.Input[_builtins.str] vendor: Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
+               **Azure**: EVENTHUB and CONFLUENT
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -541,7 +677,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="dnsDomain")
     def dns_domain(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+        The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
+        * AZURE provider with EVENTHUB or CONFLUENT vendor.
         """
         return pulumi.get(self, "dns_domain")
 
@@ -549,7 +686,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="dnsSubDomains")
     def dns_sub_domains(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+        Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
+        CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         """
         return pulumi.get(self, "dns_sub_domains")
 
@@ -581,7 +719,10 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
+        which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
+        same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
+        endpoints use the term groups.
         """
         return pulumi.get(self, "project_id")
 
@@ -597,7 +738,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Output[_builtins.str]:
         """
-        Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+        Provider where the endpoint is deployed. Valid values are AWS and AZURE.
         """
         return pulumi.get(self, "provider_name")
 
@@ -605,7 +746,11 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+        The region of the Provider’s cluster. See
+        [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
+        [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
+        vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
+        API from the provided `arn`.
         """
         return pulumi.get(self, "region")
 
@@ -613,7 +758,9 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="serviceEndpointId")
     def service_endpoint_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        For AZURE EVENTHUB, this is the [namespace endpoint
+        ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
+        Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         """
         return pulumi.get(self, "service_endpoint_id")
 
@@ -629,7 +776,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     @pulumi.getter
     def vendor(self) -> pulumi.Output[_builtins.str]:
         """
-        Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
+        **Azure**: EVENTHUB and CONFLUENT
         """
         return pulumi.get(self, "vendor")
 

@@ -19,6 +19,70 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// ### AWS S3 Privatelink
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Aws = Pulumi.Aws;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // S3 bucket for stream data
+        ///     var streamBucket = new Aws.Index.S3Bucket("stream_bucket", new()
+        ///     {
+        ///         Bucket = s3BucketName,
+        ///         ForceDestroy = true,
+        ///     });
+        /// 
+        ///     var streamBucketVersioning = new Aws.Index.S3BucketVersioning("stream_bucket_versioning", new()
+        ///     {
+        ///         Bucket = streamBucket.Id,
+        ///         VersioningConfiguration = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "status", "Enabled" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var streamBucketEncryption = new Aws.Index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption", new()
+        ///     {
+        ///         Bucket = streamBucket.Id,
+        ///         Rule = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "applyServerSideEncryptionByDefault", new[]
+        ///                 {
+        ///                     
+        ///                     {
+        ///                         { "sseAlgorithm", "AES256" },
+        ///                     },
+        ///                 } },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     // PrivateLink for S3
+        ///     var @this = new Mongodbatlas.StreamPrivatelinkEndpoint("this", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ProviderName = "AWS",
+        ///         Vendor = "S3",
+        ///         Region = region,
+        ///         ServiceEndpointId = serviceEndpointId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = @this.Id,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetStreamPrivatelinkEndpointsResult> InvokeAsync(GetStreamPrivatelinkEndpointsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamPrivatelinkEndpointsResult>("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", args ?? new GetStreamPrivatelinkEndpointsArgs(), options.WithDefaults());
@@ -31,6 +95,70 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// ### AWS S3 Privatelink
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Aws = Pulumi.Aws;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // S3 bucket for stream data
+        ///     var streamBucket = new Aws.Index.S3Bucket("stream_bucket", new()
+        ///     {
+        ///         Bucket = s3BucketName,
+        ///         ForceDestroy = true,
+        ///     });
+        /// 
+        ///     var streamBucketVersioning = new Aws.Index.S3BucketVersioning("stream_bucket_versioning", new()
+        ///     {
+        ///         Bucket = streamBucket.Id,
+        ///         VersioningConfiguration = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "status", "Enabled" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var streamBucketEncryption = new Aws.Index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption", new()
+        ///     {
+        ///         Bucket = streamBucket.Id,
+        ///         Rule = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "applyServerSideEncryptionByDefault", new[]
+        ///                 {
+        ///                     
+        ///                     {
+        ///                         { "sseAlgorithm", "AES256" },
+        ///                     },
+        ///                 } },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     // PrivateLink for S3
+        ///     var @this = new Mongodbatlas.StreamPrivatelinkEndpoint("this", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ProviderName = "AWS",
+        ///         Vendor = "S3",
+        ///         Region = region,
+        ///         ServiceEndpointId = serviceEndpointId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = @this.Id,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetStreamPrivatelinkEndpointsResult> Invoke(GetStreamPrivatelinkEndpointsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamPrivatelinkEndpointsResult>("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", args ?? new GetStreamPrivatelinkEndpointsInvokeArgs(), options.WithDefaults());
@@ -43,6 +171,70 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// ### AWS S3 Privatelink
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Aws = Pulumi.Aws;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // S3 bucket for stream data
+        ///     var streamBucket = new Aws.Index.S3Bucket("stream_bucket", new()
+        ///     {
+        ///         Bucket = s3BucketName,
+        ///         ForceDestroy = true,
+        ///     });
+        /// 
+        ///     var streamBucketVersioning = new Aws.Index.S3BucketVersioning("stream_bucket_versioning", new()
+        ///     {
+        ///         Bucket = streamBucket.Id,
+        ///         VersioningConfiguration = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "status", "Enabled" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var streamBucketEncryption = new Aws.Index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption", new()
+        ///     {
+        ///         Bucket = streamBucket.Id,
+        ///         Rule = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "applyServerSideEncryptionByDefault", new[]
+        ///                 {
+        ///                     
+        ///                     {
+        ///                         { "sseAlgorithm", "AES256" },
+        ///                     },
+        ///                 } },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     // PrivateLink for S3
+        ///     var @this = new Mongodbatlas.StreamPrivatelinkEndpoint("this", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ProviderName = "AWS",
+        ///         Vendor = "S3",
+        ///         Region = region,
+        ///         ServiceEndpointId = serviceEndpointId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = @this.Id,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetStreamPrivatelinkEndpointsResult> Invoke(GetStreamPrivatelinkEndpointsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamPrivatelinkEndpointsResult>("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", args ?? new GetStreamPrivatelinkEndpointsInvokeArgs(), options.WithDefaults());
@@ -51,9 +243,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetStreamPrivatelinkEndpointsArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-        /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
@@ -65,9 +254,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetStreamPrivatelinkEndpointsInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
@@ -85,13 +271,7 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-        /// </summary>
         public readonly string ProjectId;
-        /// <summary>
-        /// List of documents that MongoDB Cloud returns for this request.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetStreamPrivatelinkEndpointsResultResult> Results;
 
         [OutputConstructor]

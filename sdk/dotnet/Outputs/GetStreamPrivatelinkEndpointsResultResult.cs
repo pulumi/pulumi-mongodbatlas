@@ -18,7 +18,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Arn;
         /// <summary>
-        /// The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+        /// The domain hostname. Required for the following provider and vendor combinations:
+        /// 				
+        /// 	* AWS provider with CONFLUENT vendor.
+        /// 
+        /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
         /// </summary>
         public readonly string DnsDomain;
         /// <summary>
@@ -42,7 +46,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string InterfaceEndpointName;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.&lt;br&gt;**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
@@ -50,7 +54,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProviderAccountId;
         /// <summary>
-        /// Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+        /// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
         /// </summary>
         public readonly string ProviderName;
         /// <summary>
@@ -66,7 +70,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string State;
         /// <summary>
-        /// Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
+        /// Vendor that manages the endpoint. The following are the vendor values per provider:
+        /// 
+        /// 	* **AWS**: MSK, CONFLUENT, and S3
+        /// 
+        /// 	* **Azure**: EVENTHUB and CONFLUENT
         /// </summary>
         public readonly string Vendor;
 

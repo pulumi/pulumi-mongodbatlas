@@ -24,6 +24,68 @@ import javax.annotation.Nullable;
  * 
  * ### S
  * 
+ * ### AWS S3 Privatelink
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.aws.s3Bucket;
+ * import com.pulumi.aws.s3BucketArgs;
+ * import com.pulumi.aws.s3BucketVersioning;
+ * import com.pulumi.aws.s3BucketVersioningArgs;
+ * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+ * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // S3 bucket for stream data
+ *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+ *             .bucket(s3BucketName)
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+ *             .bucket(streamBucket.id())
+ *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+ *             .build());
+ * 
+ *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+ *             .bucket(streamBucket.id())
+ *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+ *             .build());
+ * 
+ *         // PrivateLink for S3
+ *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("AWS")
+ *             .vendor("S3")
+ *             .region(region)
+ *             .serviceEndpointId(serviceEndpointId)
+ *             .build());
+ * 
+ *         ctx.export("privatelinkEndpointId", this_.id());
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  */
 @ResourceType(type="mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint")
 public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResource {
@@ -42,28 +104,32 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return Codegen.optional(this.arn);
     }
     /**
-     * The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+     * The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
+     * * AZURE provider with EVENTHUB or CONFLUENT vendor.
      * 
      */
     @Export(name="dnsDomain", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dnsDomain;
 
     /**
-     * @return The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+     * @return The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
+     * * AZURE provider with EVENTHUB or CONFLUENT vendor.
      * 
      */
     public Output<Optional<String>> dnsDomain() {
         return Codegen.optional(this.dnsDomain);
     }
     /**
-     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
+     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
+     * CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
      * 
      */
     @Export(name="dnsSubDomains", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> dnsSubDomains;
 
     /**
-     * @return Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
+     * @return Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
+     * CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
      * 
      */
     public Output<Optional<List<String>>> dnsSubDomains() {
@@ -112,14 +178,20 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return this.interfaceEndpointName;
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
+     * which the authenticated user has access.&lt;br&gt;**NOTE**: Groups and projects are synonymous terms. Your group id is the
+     * same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
+     * endpoints use the term groups.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
+     * which the authenticated user has access.&lt;br&gt;**NOTE**: Groups and projects are synonymous terms. Your group id is the
+     * same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
+     * endpoints use the term groups.
      * 
      */
     public Output<String> projectId() {
@@ -140,42 +212,54 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return this.providerAccountId;
     }
     /**
-     * Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+     * Provider where the endpoint is deployed. Valid values are AWS and AZURE.
      * 
      */
     @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
-     * @return Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+     * @return Provider where the endpoint is deployed. Valid values are AWS and AZURE.
      * 
      */
     public Output<String> providerName() {
         return this.providerName;
     }
     /**
-     * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+     * The region of the Provider’s cluster. See
+     * [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
+     * [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
+     * vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
+     * API from the provided `arn`.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+     * @return The region of the Provider’s cluster. See
+     * [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
+     * [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
+     * vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
+     * API from the provided `arn`.
      * 
      */
     public Output<String> region() {
         return this.region;
     }
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * For AZURE EVENTHUB, this is the [namespace endpoint
+     * ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
+     * Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      * 
      */
     @Export(name="serviceEndpointId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceEndpointId;
 
     /**
-     * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * @return For AZURE EVENTHUB, this is the [namespace endpoint
+     * ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
+     * Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      * 
      */
     public Output<Optional<String>> serviceEndpointId() {
@@ -196,14 +280,16 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return this.state;
     }
     /**
-     * Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
+     * Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
+     * **Azure**: EVENTHUB and CONFLUENT
      * 
      */
     @Export(name="vendor", refs={String.class}, tree="[0]")
     private Output<String> vendor;
 
     /**
-     * @return Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
+     * @return Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
+     * **Azure**: EVENTHUB and CONFLUENT
      * 
      */
     public Output<String> vendor() {

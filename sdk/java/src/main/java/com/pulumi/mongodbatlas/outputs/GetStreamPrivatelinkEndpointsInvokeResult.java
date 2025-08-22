@@ -17,15 +17,7 @@ public final class GetStreamPrivatelinkEndpointsInvokeResult {
      * 
      */
     private String id;
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-     * 
-     */
     private String projectId;
-    /**
-     * @return List of documents that MongoDB Cloud returns for this request.
-     * 
-     */
     private List<GetStreamPrivatelinkEndpointsResult> results;
 
     private GetStreamPrivatelinkEndpointsInvokeResult() {}
@@ -36,17 +28,9 @@ public final class GetStreamPrivatelinkEndpointsInvokeResult {
     public String id() {
         return this.id;
     }
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-     * 
-     */
     public String projectId() {
         return this.projectId;
     }
-    /**
-     * @return List of documents that MongoDB Cloud returns for this request.
-     * 
-     */
     public List<GetStreamPrivatelinkEndpointsResult> results() {
         return this.results;
     }

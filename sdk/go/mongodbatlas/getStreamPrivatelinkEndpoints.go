@@ -18,6 +18,72 @@ import (
 // ## Example Usage
 //
 // ### S
+//
+// ### AWS S3 Privatelink
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// S3 bucket for stream data
+//			streamBucket, err := aws.NewS3Bucket(ctx, "stream_bucket", &aws.S3BucketArgs{
+//				Bucket:       s3BucketName,
+//				ForceDestroy: true,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewS3BucketVersioning(ctx, "stream_bucket_versioning", &aws.S3BucketVersioningArgs{
+//				Bucket: streamBucket.Id,
+//				VersioningConfiguration: []map[string]interface{}{
+//					map[string]interface{}{
+//						"status": "Enabled",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewS3BucketServerSideEncryptionConfiguration(ctx, "stream_bucket_encryption", &aws.S3BucketServerSideEncryptionConfigurationArgs{
+//				Bucket: streamBucket.Id,
+//				Rule: []map[string]interface{}{
+//					map[string]interface{}{
+//						"applyServerSideEncryptionByDefault": []map[string]interface{}{
+//							map[string]interface{}{
+//								"sseAlgorithm": "AES256",
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// PrivateLink for S3
+//			this, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, "this", &mongodbatlas.StreamPrivatelinkEndpointArgs{
+//				ProjectId:         pulumi.Any(projectId),
+//				ProviderName:      pulumi.String("AWS"),
+//				Vendor:            pulumi.String("S3"),
+//				Region:            pulumi.Any(region),
+//				ServiceEndpointId: pulumi.Any(serviceEndpointId),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("privatelinkEndpointId", this.ID())
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupStreamPrivatelinkEndpoints(ctx *pulumi.Context, args *LookupStreamPrivatelinkEndpointsArgs, opts ...pulumi.InvokeOption) (*LookupStreamPrivatelinkEndpointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStreamPrivatelinkEndpointsResult
@@ -30,18 +96,15 @@ func LookupStreamPrivatelinkEndpoints(ctx *pulumi.Context, args *LookupStreamPri
 
 // A collection of arguments for invoking getStreamPrivatelinkEndpoints.
 type LookupStreamPrivatelinkEndpointsArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getStreamPrivatelinkEndpoints.
 type LookupStreamPrivatelinkEndpointsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-	ProjectId string `pulumi:"projectId"`
-	// List of documents that MongoDB Cloud returns for this request.
-	Results []GetStreamPrivatelinkEndpointsResult `pulumi:"results"`
+	Id        string                                `pulumi:"id"`
+	ProjectId string                                `pulumi:"projectId"`
+	Results   []GetStreamPrivatelinkEndpointsResult `pulumi:"results"`
 }
 
 func LookupStreamPrivatelinkEndpointsOutput(ctx *pulumi.Context, args LookupStreamPrivatelinkEndpointsOutputArgs, opts ...pulumi.InvokeOption) LookupStreamPrivatelinkEndpointsResultOutput {
@@ -55,7 +118,6 @@ func LookupStreamPrivatelinkEndpointsOutput(ctx *pulumi.Context, args LookupStre
 
 // A collection of arguments for invoking getStreamPrivatelinkEndpoints.
 type LookupStreamPrivatelinkEndpointsOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -83,12 +145,10 @@ func (o LookupStreamPrivatelinkEndpointsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 func (o LookupStreamPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// List of documents that MongoDB Cloud returns for this request.
 func (o LookupStreamPrivatelinkEndpointsResultOutput) Results() GetStreamPrivatelinkEndpointsResultArrayOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointsResult) []GetStreamPrivatelinkEndpointsResult { return v.Results }).(GetStreamPrivatelinkEndpointsResultArrayOutput)
 }
