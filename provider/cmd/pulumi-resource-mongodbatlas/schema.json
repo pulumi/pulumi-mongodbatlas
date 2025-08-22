@@ -14489,7 +14489,7 @@
                 },
                 "dnsDomain": {
                     "type": "string",
-                    "description": "The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
+                    "description": "The domain hostname. Required for the following provider and vendor combinations:\n\t\t\t\t\n\t* AWS provider with CONFLUENT vendor.\n\n\t* AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
                 },
                 "dnsSubDomains": {
                     "type": "array",
@@ -14516,7 +14516,7 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.\n"
+                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.\n"
                 },
                 "providerAccountId": {
                     "type": "string",
@@ -14524,7 +14524,7 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.\n"
+                    "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE.\n"
                 },
                 "region": {
                     "type": "string",
@@ -14540,7 +14540,7 @@
                 },
                 "vendor": {
                     "type": "string",
-                    "description": "Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.\n"
+                    "description": "Vendor that manages the endpoint. The following are the vendor values per provider:\n\n\t* **AWS**: MSK, CONFLUENT, and S3\n\n\t* **Azure**: EVENTHUB and CONFLUENT\n"
                 }
             },
             "type": "object",
@@ -23862,7 +23862,7 @@
             }
         },
         "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint": {
-            "description": "## # Resource: mongodbatlas.StreamPrivatelinkEndpoint\n\n`mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n### S\n\n",
+            "description": "## # Resource: mongodbatlas.StreamPrivatelinkEndpoint\n\n`mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n### S\n\n### AWS S3 Privatelink\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\n// S3 bucket for stream data\nconst streamBucket = new aws.index.S3Bucket(\"stream_bucket\", {\n    bucket: s3BucketName,\n    forceDestroy: true,\n});\nconst streamBucketVersioning = new aws.index.S3BucketVersioning(\"stream_bucket_versioning\", {\n    bucket: streamBucket.id,\n    versioningConfiguration: [{\n        status: \"Enabled\",\n    }],\n});\nconst streamBucketEncryption = new aws.index.S3BucketServerSideEncryptionConfiguration(\"stream_bucket_encryption\", {\n    bucket: streamBucket.id,\n    rule: [{\n        applyServerSideEncryptionByDefault: [{\n            sseAlgorithm: \"AES256\",\n        }],\n    }],\n});\n// PrivateLink for S3\nconst _this = new mongodbatlas.StreamPrivatelinkEndpoint(\"this\", {\n    projectId: projectId,\n    providerName: \"AWS\",\n    vendor: \"S3\",\n    region: region,\n    serviceEndpointId: serviceEndpointId,\n});\nexport const privatelinkEndpointId = _this.id;\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\n# S3 bucket for stream data\nstream_bucket = aws.index.S3Bucket(\"stream_bucket\",\n    bucket=s3_bucket_name,\n    force_destroy=True)\nstream_bucket_versioning = aws.index.S3BucketVersioning(\"stream_bucket_versioning\",\n    bucket=stream_bucket.id,\n    versioning_configuration=[{\n        status: Enabled,\n    }])\nstream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration(\"stream_bucket_encryption\",\n    bucket=stream_bucket.id,\n    rule=[{\n        applyServerSideEncryptionByDefault: [{\n            sseAlgorithm: AES256,\n        }],\n    }])\n# PrivateLink for S3\nthis = mongodbatlas.StreamPrivatelinkEndpoint(\"this\",\n    project_id=project_id,\n    provider_name=\"AWS\",\n    vendor=\"S3\",\n    region=region,\n    service_endpoint_id=service_endpoint_id)\npulumi.export(\"privatelinkEndpointId\", this.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // S3 bucket for stream data\n    var streamBucket = new Aws.Index.S3Bucket(\"stream_bucket\", new()\n    {\n        Bucket = s3BucketName,\n        ForceDestroy = true,\n    });\n\n    var streamBucketVersioning = new Aws.Index.S3BucketVersioning(\"stream_bucket_versioning\", new()\n    {\n        Bucket = streamBucket.Id,\n        VersioningConfiguration = new[]\n        {\n            \n            {\n                { \"status\", \"Enabled\" },\n            },\n        },\n    });\n\n    var streamBucketEncryption = new Aws.Index.S3BucketServerSideEncryptionConfiguration(\"stream_bucket_encryption\", new()\n    {\n        Bucket = streamBucket.Id,\n        Rule = new[]\n        {\n            \n            {\n                { \"applyServerSideEncryptionByDefault\", new[]\n                {\n                    \n                    {\n                        { \"sseAlgorithm\", \"AES256\" },\n                    },\n                } },\n            },\n        },\n    });\n\n    // PrivateLink for S3\n    var @this = new Mongodbatlas.StreamPrivatelinkEndpoint(\"this\", new()\n    {\n        ProjectId = projectId,\n        ProviderName = \"AWS\",\n        Vendor = \"S3\",\n        Region = region,\n        ServiceEndpointId = serviceEndpointId,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"privatelinkEndpointId\"] = @this.Id,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// S3 bucket for stream data\n\t\tstreamBucket, err := aws.NewS3Bucket(ctx, \"stream_bucket\", \u0026aws.S3BucketArgs{\n\t\t\tBucket:       s3BucketName,\n\t\t\tForceDestroy: true,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewS3BucketVersioning(ctx, \"stream_bucket_versioning\", \u0026aws.S3BucketVersioningArgs{\n\t\t\tBucket: streamBucket.Id,\n\t\t\tVersioningConfiguration: []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"status\": \"Enabled\",\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewS3BucketServerSideEncryptionConfiguration(ctx, \"stream_bucket_encryption\", \u0026aws.S3BucketServerSideEncryptionConfigurationArgs{\n\t\t\tBucket: streamBucket.Id,\n\t\t\tRule: []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"applyServerSideEncryptionByDefault\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"sseAlgorithm\": \"AES256\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// PrivateLink for S3\n\t\tthis, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, \"this\", \u0026mongodbatlas.StreamPrivatelinkEndpointArgs{\n\t\t\tProjectId:         pulumi.Any(projectId),\n\t\t\tProviderName:      pulumi.String(\"AWS\"),\n\t\t\tVendor:            pulumi.String(\"S3\"),\n\t\t\tRegion:            pulumi.Any(region),\n\t\t\tServiceEndpointId: pulumi.Any(serviceEndpointId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"privatelinkEndpointId\", this.ID())\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.aws.s3Bucket;\nimport com.pulumi.aws.s3BucketArgs;\nimport com.pulumi.aws.s3BucketVersioning;\nimport com.pulumi.aws.s3BucketVersioningArgs;\nimport com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;\nimport com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;\nimport com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;\nimport com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // S3 bucket for stream data\n        var streamBucket = new S3Bucket(\"streamBucket\", S3BucketArgs.builder()\n            .bucket(s3BucketName)\n            .forceDestroy(true)\n            .build());\n\n        var streamBucketVersioning = new S3BucketVersioning(\"streamBucketVersioning\", S3BucketVersioningArgs.builder()\n            .bucket(streamBucket.id())\n            .versioningConfiguration(List.of(Map.of(\"status\", \"Enabled\")))\n            .build());\n\n        var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration(\"streamBucketEncryption\", S3BucketServerSideEncryptionConfigurationArgs.builder()\n            .bucket(streamBucket.id())\n            .rule(List.of(Map.of(\"applyServerSideEncryptionByDefault\", List.of(Map.of(\"sseAlgorithm\", \"AES256\")))))\n            .build());\n\n        // PrivateLink for S3\n        var this_ = new StreamPrivatelinkEndpoint(\"this\", StreamPrivatelinkEndpointArgs.builder()\n            .projectId(projectId)\n            .providerName(\"AWS\")\n            .vendor(\"S3\")\n            .region(region)\n            .serviceEndpointId(serviceEndpointId)\n            .build());\n\n        ctx.export(\"privatelinkEndpointId\", this_.id());\n    }\n}\n```\n```yaml\nresources:\n  # S3 bucket for stream data\n  streamBucket:\n    type: aws:s3Bucket\n    name: stream_bucket\n    properties:\n      bucket: ${s3BucketName}\n      forceDestroy: true\n  streamBucketVersioning:\n    type: aws:s3BucketVersioning\n    name: stream_bucket_versioning\n    properties:\n      bucket: ${streamBucket.id}\n      versioningConfiguration:\n        - status: Enabled\n  streamBucketEncryption:\n    type: aws:s3BucketServerSideEncryptionConfiguration\n    name: stream_bucket_encryption\n    properties:\n      bucket: ${streamBucket.id}\n      rule:\n        - applyServerSideEncryptionByDefault:\n            - sseAlgorithm: AES256\n  # PrivateLink for S3\n  this:\n    type: mongodbatlas:StreamPrivatelinkEndpoint\n    properties:\n      projectId: ${projectId}\n      providerName: AWS\n      vendor: S3\n      region: ${region}\n      serviceEndpointId: ${serviceEndpointId}\noutputs:\n  privatelinkEndpointId: ${this.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "arn": {
                     "type": "string",
@@ -23870,14 +23870,14 @@
                 },
                 "dnsDomain": {
                     "type": "string",
-                    "description": "The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
+                    "description": "The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.\n* AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
                 },
                 "dnsSubDomains": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n"
+                    "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and\nCONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n"
                 },
                 "errorMessage": {
                     "type": "string",
@@ -23893,7 +23893,7 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.\n"
+                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to\nwhich the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the\nsame as your project id. For existing groups, your group or project id remains the same. The resource and corresponding\nendpoints use the term groups.\n"
                 },
                 "providerAccountId": {
                     "type": "string",
@@ -23901,15 +23901,15 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.\n"
+                    "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.\n"
+                    "description": "The region of the Provider’s cluster. See\n[AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and\n[AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the\nvendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the\nAPI from the provided `arn`.\n"
                 },
                 "serviceEndpointId": {
                     "type": "string",
-                    "description": "For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n"
+                    "description": "For AZURE EVENTHUB, this is the [namespace endpoint\nID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC\nEndpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n"
                 },
                 "state": {
                     "type": "string",
@@ -23917,7 +23917,7 @@
                 },
                 "vendor": {
                     "type": "string",
-                    "description": "Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.\n"
+                    "description": "Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *\n**Azure**: EVENTHUB and CONFLUENT\n"
                 }
             },
             "required": [
@@ -23938,34 +23938,34 @@
                 },
                 "dnsDomain": {
                     "type": "string",
-                    "description": "The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
+                    "description": "The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.\n* AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
                 },
                 "dnsSubDomains": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n"
+                    "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and\nCONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n"
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.\n"
+                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to\nwhich the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the\nsame as your project id. For existing groups, your group or project id remains the same. The resource and corresponding\nendpoints use the term groups.\n"
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.\n"
+                    "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.\n"
+                    "description": "The region of the Provider’s cluster. See\n[AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and\n[AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the\nvendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the\nAPI from the provided `arn`.\n"
                 },
                 "serviceEndpointId": {
                     "type": "string",
-                    "description": "For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n"
+                    "description": "For AZURE EVENTHUB, this is the [namespace endpoint\nID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC\nEndpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n"
                 },
                 "vendor": {
                     "type": "string",
-                    "description": "Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.\n"
+                    "description": "Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *\n**Azure**: EVENTHUB and CONFLUENT\n"
                 }
             },
             "requiredInputs": [
@@ -23982,14 +23982,14 @@
                     },
                     "dnsDomain": {
                         "type": "string",
-                        "description": "The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
+                        "description": "The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.\n* AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
                     },
                     "dnsSubDomains": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n"
+                        "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and\nCONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n"
                     },
                     "errorMessage": {
                         "type": "string",
@@ -24005,7 +24005,7 @@
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.\n"
+                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to\nwhich the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the\nsame as your project id. For existing groups, your group or project id remains the same. The resource and corresponding\nendpoints use the term groups.\n"
                     },
                     "providerAccountId": {
                         "type": "string",
@@ -24013,15 +24013,15 @@
                     },
                     "providerName": {
                         "type": "string",
-                        "description": "Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.\n"
+                        "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE.\n"
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.\n"
+                        "description": "The region of the Provider’s cluster. See\n[AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and\n[AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the\nvendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the\nAPI from the provided `arn`.\n"
                     },
                     "serviceEndpointId": {
                         "type": "string",
-                        "description": "For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n"
+                        "description": "For AZURE EVENTHUB, this is the [namespace endpoint\nID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC\nEndpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n"
                     },
                     "state": {
                         "type": "string",
@@ -24029,7 +24029,7 @@
                     },
                     "vendor": {
                         "type": "string",
-                        "description": "Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.\n"
+                        "description": "Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *\n**Azure**: EVENTHUB and CONFLUENT\n"
                     }
                 },
                 "type": "object"
@@ -32605,17 +32605,15 @@
             }
         },
         "mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint": {
-            "description": "## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint\n\n`mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n### S\n\n",
+            "description": "## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint\n\n`mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n### S\n\n### AWS S3 Privatelink\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\n// S3 bucket for stream data\nconst streamBucket = new aws.index.S3Bucket(\"stream_bucket\", {\n    bucket: s3BucketName,\n    forceDestroy: true,\n});\nconst streamBucketVersioning = new aws.index.S3BucketVersioning(\"stream_bucket_versioning\", {\n    bucket: streamBucket.id,\n    versioningConfiguration: [{\n        status: \"Enabled\",\n    }],\n});\nconst streamBucketEncryption = new aws.index.S3BucketServerSideEncryptionConfiguration(\"stream_bucket_encryption\", {\n    bucket: streamBucket.id,\n    rule: [{\n        applyServerSideEncryptionByDefault: [{\n            sseAlgorithm: \"AES256\",\n        }],\n    }],\n});\n// PrivateLink for S3\nconst _this = new mongodbatlas.StreamPrivatelinkEndpoint(\"this\", {\n    projectId: projectId,\n    providerName: \"AWS\",\n    vendor: \"S3\",\n    region: region,\n    serviceEndpointId: serviceEndpointId,\n});\nexport const privatelinkEndpointId = _this.id;\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\n# S3 bucket for stream data\nstream_bucket = aws.index.S3Bucket(\"stream_bucket\",\n    bucket=s3_bucket_name,\n    force_destroy=True)\nstream_bucket_versioning = aws.index.S3BucketVersioning(\"stream_bucket_versioning\",\n    bucket=stream_bucket.id,\n    versioning_configuration=[{\n        status: Enabled,\n    }])\nstream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration(\"stream_bucket_encryption\",\n    bucket=stream_bucket.id,\n    rule=[{\n        applyServerSideEncryptionByDefault: [{\n            sseAlgorithm: AES256,\n        }],\n    }])\n# PrivateLink for S3\nthis = mongodbatlas.StreamPrivatelinkEndpoint(\"this\",\n    project_id=project_id,\n    provider_name=\"AWS\",\n    vendor=\"S3\",\n    region=region,\n    service_endpoint_id=service_endpoint_id)\npulumi.export(\"privatelinkEndpointId\", this.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // S3 bucket for stream data\n    var streamBucket = new Aws.Index.S3Bucket(\"stream_bucket\", new()\n    {\n        Bucket = s3BucketName,\n        ForceDestroy = true,\n    });\n\n    var streamBucketVersioning = new Aws.Index.S3BucketVersioning(\"stream_bucket_versioning\", new()\n    {\n        Bucket = streamBucket.Id,\n        VersioningConfiguration = new[]\n        {\n            \n            {\n                { \"status\", \"Enabled\" },\n            },\n        },\n    });\n\n    var streamBucketEncryption = new Aws.Index.S3BucketServerSideEncryptionConfiguration(\"stream_bucket_encryption\", new()\n    {\n        Bucket = streamBucket.Id,\n        Rule = new[]\n        {\n            \n            {\n                { \"applyServerSideEncryptionByDefault\", new[]\n                {\n                    \n                    {\n                        { \"sseAlgorithm\", \"AES256\" },\n                    },\n                } },\n            },\n        },\n    });\n\n    // PrivateLink for S3\n    var @this = new Mongodbatlas.StreamPrivatelinkEndpoint(\"this\", new()\n    {\n        ProjectId = projectId,\n        ProviderName = \"AWS\",\n        Vendor = \"S3\",\n        Region = region,\n        ServiceEndpointId = serviceEndpointId,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"privatelinkEndpointId\"] = @this.Id,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// S3 bucket for stream data\n\t\tstreamBucket, err := aws.NewS3Bucket(ctx, \"stream_bucket\", \u0026aws.S3BucketArgs{\n\t\t\tBucket:       s3BucketName,\n\t\t\tForceDestroy: true,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewS3BucketVersioning(ctx, \"stream_bucket_versioning\", \u0026aws.S3BucketVersioningArgs{\n\t\t\tBucket: streamBucket.Id,\n\t\t\tVersioningConfiguration: []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"status\": \"Enabled\",\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewS3BucketServerSideEncryptionConfiguration(ctx, \"stream_bucket_encryption\", \u0026aws.S3BucketServerSideEncryptionConfigurationArgs{\n\t\t\tBucket: streamBucket.Id,\n\t\t\tRule: []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"applyServerSideEncryptionByDefault\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"sseAlgorithm\": \"AES256\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// PrivateLink for S3\n\t\tthis, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, \"this\", \u0026mongodbatlas.StreamPrivatelinkEndpointArgs{\n\t\t\tProjectId:         pulumi.Any(projectId),\n\t\t\tProviderName:      pulumi.String(\"AWS\"),\n\t\t\tVendor:            pulumi.String(\"S3\"),\n\t\t\tRegion:            pulumi.Any(region),\n\t\t\tServiceEndpointId: pulumi.Any(serviceEndpointId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"privatelinkEndpointId\", this.ID())\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.aws.s3Bucket;\nimport com.pulumi.aws.s3BucketArgs;\nimport com.pulumi.aws.s3BucketVersioning;\nimport com.pulumi.aws.s3BucketVersioningArgs;\nimport com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;\nimport com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;\nimport com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;\nimport com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // S3 bucket for stream data\n        var streamBucket = new S3Bucket(\"streamBucket\", S3BucketArgs.builder()\n            .bucket(s3BucketName)\n            .forceDestroy(true)\n            .build());\n\n        var streamBucketVersioning = new S3BucketVersioning(\"streamBucketVersioning\", S3BucketVersioningArgs.builder()\n            .bucket(streamBucket.id())\n            .versioningConfiguration(List.of(Map.of(\"status\", \"Enabled\")))\n            .build());\n\n        var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration(\"streamBucketEncryption\", S3BucketServerSideEncryptionConfigurationArgs.builder()\n            .bucket(streamBucket.id())\n            .rule(List.of(Map.of(\"applyServerSideEncryptionByDefault\", List.of(Map.of(\"sseAlgorithm\", \"AES256\")))))\n            .build());\n\n        // PrivateLink for S3\n        var this_ = new StreamPrivatelinkEndpoint(\"this\", StreamPrivatelinkEndpointArgs.builder()\n            .projectId(projectId)\n            .providerName(\"AWS\")\n            .vendor(\"S3\")\n            .region(region)\n            .serviceEndpointId(serviceEndpointId)\n            .build());\n\n        ctx.export(\"privatelinkEndpointId\", this_.id());\n    }\n}\n```\n```yaml\nresources:\n  # S3 bucket for stream data\n  streamBucket:\n    type: aws:s3Bucket\n    name: stream_bucket\n    properties:\n      bucket: ${s3BucketName}\n      forceDestroy: true\n  streamBucketVersioning:\n    type: aws:s3BucketVersioning\n    name: stream_bucket_versioning\n    properties:\n      bucket: ${streamBucket.id}\n      versioningConfiguration:\n        - status: Enabled\n  streamBucketEncryption:\n    type: aws:s3BucketServerSideEncryptionConfiguration\n    name: stream_bucket_encryption\n    properties:\n      bucket: ${streamBucket.id}\n      rule:\n        - applyServerSideEncryptionByDefault:\n            - sseAlgorithm: AES256\n  # PrivateLink for S3\n  this:\n    type: mongodbatlas:StreamPrivatelinkEndpoint\n    properties:\n      projectId: ${projectId}\n      providerName: AWS\n      vendor: S3\n      region: ${region}\n      serviceEndpointId: ${serviceEndpointId}\noutputs:\n  privatelinkEndpointId: ${this.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getStreamPrivatelinkEndpoint.\n",
                 "properties": {
                     "id": {
-                        "type": "string",
-                        "description": "The ID of the Private Link connection.\n"
+                        "type": "string"
                     },
                     "projectId": {
-                        "type": "string",
-                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -32628,62 +32626,48 @@
                 "description": "A collection of values returned by getStreamPrivatelinkEndpoint.\n",
                 "properties": {
                     "arn": {
-                        "description": "Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.\n",
                         "type": "string"
                     },
                     "dnsDomain": {
-                        "description": "The domain hostname. Required for the following provider and vendor combinations:\\n\\n- AWS provider with CONFLUENT vendor.\\n\\n- AZURE provider with EVENTHUB or CONFLUENT vendor.\n",
                         "type": "string"
                     },
                     "dnsSubDomains": {
-                        "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n",
                         "items": {
                             "type": "string"
                         },
                         "type": "array"
                     },
                     "errorMessage": {
-                        "description": "Error message if the connection is in a failed state.\n",
                         "type": "string"
                     },
                     "id": {
-                        "description": "The ID of the Private Link connection.\n",
                         "type": "string"
                     },
                     "interfaceEndpointId": {
-                        "description": "Interface endpoint ID that is created from the specified service endpoint ID.\n",
                         "type": "string"
                     },
                     "interfaceEndpointName": {
-                        "description": "Name of interface endpoint that is created from the specified service endpoint ID.\n",
                         "type": "string"
                     },
                     "projectId": {
-                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.\n",
                         "type": "string"
                     },
                     "providerAccountId": {
-                        "description": "Account ID from the cloud provider.\n",
                         "type": "string"
                     },
                     "providerName": {
-                        "description": "Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.\n",
                         "type": "string"
                     },
                     "region": {
-                        "description": "The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.\n",
                         "type": "string"
                     },
                     "serviceEndpointId": {
-                        "description": "For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n",
                         "type": "string"
                     },
                     "state": {
-                        "description": "Status of the connection.\n",
                         "type": "string"
                     },
                     "vendor": {
-                        "description": "Vendor that manages the Kafka cluster. The following are the vendor values per provider:\\n\\n- MSK and CONFLUENT for the AWS provider.\\n\\n- EVENTHUB and CONFLUENT for the AZURE provider.\n",
                         "type": "string"
                     }
                 },
@@ -32707,13 +32691,12 @@
             }
         },
         "mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints": {
-            "description": "## # Data Source: mongodbatlas.getStreamPrivatelinkEndpoints\n\n`mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n### S\n\n",
+            "description": "## # Data Source: mongodbatlas.getStreamPrivatelinkEndpoints\n\n`mongodbatlas.getStreamPrivatelinkEndpoints` describes a Privatelink Endpoint for Streams.\n\n## Example Usage\n\n### S\n\n### AWS S3 Privatelink\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\n// S3 bucket for stream data\nconst streamBucket = new aws.index.S3Bucket(\"stream_bucket\", {\n    bucket: s3BucketName,\n    forceDestroy: true,\n});\nconst streamBucketVersioning = new aws.index.S3BucketVersioning(\"stream_bucket_versioning\", {\n    bucket: streamBucket.id,\n    versioningConfiguration: [{\n        status: \"Enabled\",\n    }],\n});\nconst streamBucketEncryption = new aws.index.S3BucketServerSideEncryptionConfiguration(\"stream_bucket_encryption\", {\n    bucket: streamBucket.id,\n    rule: [{\n        applyServerSideEncryptionByDefault: [{\n            sseAlgorithm: \"AES256\",\n        }],\n    }],\n});\n// PrivateLink for S3\nconst _this = new mongodbatlas.StreamPrivatelinkEndpoint(\"this\", {\n    projectId: projectId,\n    providerName: \"AWS\",\n    vendor: \"S3\",\n    region: region,\n    serviceEndpointId: serviceEndpointId,\n});\nexport const privatelinkEndpointId = _this.id;\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\n# S3 bucket for stream data\nstream_bucket = aws.index.S3Bucket(\"stream_bucket\",\n    bucket=s3_bucket_name,\n    force_destroy=True)\nstream_bucket_versioning = aws.index.S3BucketVersioning(\"stream_bucket_versioning\",\n    bucket=stream_bucket.id,\n    versioning_configuration=[{\n        status: Enabled,\n    }])\nstream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration(\"stream_bucket_encryption\",\n    bucket=stream_bucket.id,\n    rule=[{\n        applyServerSideEncryptionByDefault: [{\n            sseAlgorithm: AES256,\n        }],\n    }])\n# PrivateLink for S3\nthis = mongodbatlas.StreamPrivatelinkEndpoint(\"this\",\n    project_id=project_id,\n    provider_name=\"AWS\",\n    vendor=\"S3\",\n    region=region,\n    service_endpoint_id=service_endpoint_id)\npulumi.export(\"privatelinkEndpointId\", this.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // S3 bucket for stream data\n    var streamBucket = new Aws.Index.S3Bucket(\"stream_bucket\", new()\n    {\n        Bucket = s3BucketName,\n        ForceDestroy = true,\n    });\n\n    var streamBucketVersioning = new Aws.Index.S3BucketVersioning(\"stream_bucket_versioning\", new()\n    {\n        Bucket = streamBucket.Id,\n        VersioningConfiguration = new[]\n        {\n            \n            {\n                { \"status\", \"Enabled\" },\n            },\n        },\n    });\n\n    var streamBucketEncryption = new Aws.Index.S3BucketServerSideEncryptionConfiguration(\"stream_bucket_encryption\", new()\n    {\n        Bucket = streamBucket.Id,\n        Rule = new[]\n        {\n            \n            {\n                { \"applyServerSideEncryptionByDefault\", new[]\n                {\n                    \n                    {\n                        { \"sseAlgorithm\", \"AES256\" },\n                    },\n                } },\n            },\n        },\n    });\n\n    // PrivateLink for S3\n    var @this = new Mongodbatlas.StreamPrivatelinkEndpoint(\"this\", new()\n    {\n        ProjectId = projectId,\n        ProviderName = \"AWS\",\n        Vendor = \"S3\",\n        Region = region,\n        ServiceEndpointId = serviceEndpointId,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"privatelinkEndpointId\"] = @this.Id,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// S3 bucket for stream data\n\t\tstreamBucket, err := aws.NewS3Bucket(ctx, \"stream_bucket\", \u0026aws.S3BucketArgs{\n\t\t\tBucket:       s3BucketName,\n\t\t\tForceDestroy: true,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewS3BucketVersioning(ctx, \"stream_bucket_versioning\", \u0026aws.S3BucketVersioningArgs{\n\t\t\tBucket: streamBucket.Id,\n\t\t\tVersioningConfiguration: []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"status\": \"Enabled\",\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewS3BucketServerSideEncryptionConfiguration(ctx, \"stream_bucket_encryption\", \u0026aws.S3BucketServerSideEncryptionConfigurationArgs{\n\t\t\tBucket: streamBucket.Id,\n\t\t\tRule: []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"applyServerSideEncryptionByDefault\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"sseAlgorithm\": \"AES256\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// PrivateLink for S3\n\t\tthis, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, \"this\", \u0026mongodbatlas.StreamPrivatelinkEndpointArgs{\n\t\t\tProjectId:         pulumi.Any(projectId),\n\t\t\tProviderName:      pulumi.String(\"AWS\"),\n\t\t\tVendor:            pulumi.String(\"S3\"),\n\t\t\tRegion:            pulumi.Any(region),\n\t\t\tServiceEndpointId: pulumi.Any(serviceEndpointId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"privatelinkEndpointId\", this.ID())\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.aws.s3Bucket;\nimport com.pulumi.aws.s3BucketArgs;\nimport com.pulumi.aws.s3BucketVersioning;\nimport com.pulumi.aws.s3BucketVersioningArgs;\nimport com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;\nimport com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;\nimport com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;\nimport com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // S3 bucket for stream data\n        var streamBucket = new S3Bucket(\"streamBucket\", S3BucketArgs.builder()\n            .bucket(s3BucketName)\n            .forceDestroy(true)\n            .build());\n\n        var streamBucketVersioning = new S3BucketVersioning(\"streamBucketVersioning\", S3BucketVersioningArgs.builder()\n            .bucket(streamBucket.id())\n            .versioningConfiguration(List.of(Map.of(\"status\", \"Enabled\")))\n            .build());\n\n        var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration(\"streamBucketEncryption\", S3BucketServerSideEncryptionConfigurationArgs.builder()\n            .bucket(streamBucket.id())\n            .rule(List.of(Map.of(\"applyServerSideEncryptionByDefault\", List.of(Map.of(\"sseAlgorithm\", \"AES256\")))))\n            .build());\n\n        // PrivateLink for S3\n        var this_ = new StreamPrivatelinkEndpoint(\"this\", StreamPrivatelinkEndpointArgs.builder()\n            .projectId(projectId)\n            .providerName(\"AWS\")\n            .vendor(\"S3\")\n            .region(region)\n            .serviceEndpointId(serviceEndpointId)\n            .build());\n\n        ctx.export(\"privatelinkEndpointId\", this_.id());\n    }\n}\n```\n```yaml\nresources:\n  # S3 bucket for stream data\n  streamBucket:\n    type: aws:s3Bucket\n    name: stream_bucket\n    properties:\n      bucket: ${s3BucketName}\n      forceDestroy: true\n  streamBucketVersioning:\n    type: aws:s3BucketVersioning\n    name: stream_bucket_versioning\n    properties:\n      bucket: ${streamBucket.id}\n      versioningConfiguration:\n        - status: Enabled\n  streamBucketEncryption:\n    type: aws:s3BucketServerSideEncryptionConfiguration\n    name: stream_bucket_encryption\n    properties:\n      bucket: ${streamBucket.id}\n      rule:\n        - applyServerSideEncryptionByDefault:\n            - sseAlgorithm: AES256\n  # PrivateLink for S3\n  this:\n    type: mongodbatlas:StreamPrivatelinkEndpoint\n    properties:\n      projectId: ${projectId}\n      providerName: AWS\n      vendor: S3\n      region: ${region}\n      serviceEndpointId: ${serviceEndpointId}\noutputs:\n  privatelinkEndpointId: ${this.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getStreamPrivatelinkEndpoints.\n",
                 "properties": {
                     "projectId": {
-                        "type": "string",
-                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -32729,11 +32712,9 @@
                         "type": "string"
                     },
                     "projectId": {
-                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.\n",
                         "type": "string"
                     },
                     "results": {
-                        "description": "List of documents that MongoDB Cloud returns for this request.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getStreamPrivatelinkEndpointsResult:getStreamPrivatelinkEndpointsResult"
                         },

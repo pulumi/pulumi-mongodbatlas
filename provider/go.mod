@@ -1,8 +1,6 @@
 module github.com/pulumi/pulumi-mongodbatlas/provider/v3
 
-go 1.24.5
-
-toolchain go1.24.6
+go 1.24.6
 
 replace github.com/mongodb/terraform-provider-mongodbatlas => ../upstream
 
@@ -33,7 +31,7 @@ require (
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/atotto/clipboard v0.1.4 // indirect
-	github.com/aws/aws-sdk-go v1.55.7 // indirect
+	github.com/aws/aws-sdk-go v1.55.8 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d // indirect
 	github.com/bgentry/speakeasy v0.1.0 // indirect
@@ -122,7 +120,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/mongodb-forks/digest v1.1.0 // indirect
-	github.com/mongodb/atlas-sdk-go v1.0.1-0.20250709084037-30b22cb7796e // indirect
+	github.com/mongodb/atlas-sdk-go v1.0.1-0.20250806084240-f8831d13e1be // indirect
 	github.com/muesli/ansi v0.0.0-20230316100256-276c6243b2f6 // indirect
 	github.com/muesli/cancelreader v0.2.2 // indirect
 	github.com/muesli/reflow v0.3.0 // indirect
@@ -182,7 +180,7 @@ require (
 	go.mongodb.org/atlas-sdk/v20240530005 v20240530005.0.0 // indirect
 	go.mongodb.org/atlas-sdk/v20240805005 v20240805005.0.1-0.20250402112219-2468c5354718 // indirect
 	go.mongodb.org/atlas-sdk/v20241113005 v20241113005.0.0 // indirect
-	go.mongodb.org/atlas-sdk/v20250312005 v20250312005.0.0 // indirect
+	go.mongodb.org/atlas-sdk/v20250312006 v20250312006.0.0 // indirect
 	go.mongodb.org/realm v0.1.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
