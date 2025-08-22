@@ -17,7 +17,11 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String arn;
     /**
-     * @return The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+     * @return The domain hostname. Required for the following provider and vendor combinations:
+     * 
+     *     * AWS provider with CONFLUENT vendor.
+     *     
+     *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
      * 
      */
     private String dnsDomain;
@@ -47,7 +51,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String interfaceEndpointName;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.&lt;br&gt;**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      * 
      */
     private String projectId;
@@ -57,7 +61,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String providerAccountId;
     /**
-     * @return Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+     * @return Provider where the endpoint is deployed. Valid values are AWS and AZURE.
      * 
      */
     private String providerName;
@@ -77,7 +81,11 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String state;
     /**
-     * @return Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
+     * @return Vendor that manages the endpoint. The following are the vendor values per provider:
+     * 
+     *     * **AWS**: MSK, CONFLUENT, and S3
+     *     
+     *     * **Azure**: EVENTHUB and CONFLUENT
      * 
      */
     private String vendor;
@@ -91,7 +99,11 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.arn;
     }
     /**
-     * @return The domain hostname. Required for the following provider and vendor combinations:\n\n- AWS provider with CONFLUENT vendor.\n\n- AZURE provider with EVENTHUB or CONFLUENT vendor.
+     * @return The domain hostname. Required for the following provider and vendor combinations:
+     * 
+     *     * AWS provider with CONFLUENT vendor.
+     *     
+     *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
      * 
      */
     public String dnsDomain() {
@@ -133,7 +145,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.interfaceEndpointName;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.&lt;br&gt;**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      * 
      */
     public String projectId() {
@@ -147,7 +159,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.providerAccountId;
     }
     /**
-     * @return Provider where the Kafka cluster is deployed. Valid values are AWS and AZURE.
+     * @return Provider where the endpoint is deployed. Valid values are AWS and AZURE.
      * 
      */
     public String providerName() {
@@ -175,7 +187,11 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.state;
     }
     /**
-     * @return Vendor that manages the Kafka cluster. The following are the vendor values per provider:\n\n- MSK and CONFLUENT for the AWS provider.\n\n- EVENTHUB and CONFLUENT for the AZURE provider.
+     * @return Vendor that manages the endpoint. The following are the vendor values per provider:
+     * 
+     *     * **AWS**: MSK, CONFLUENT, and S3
+     *     
+     *     * **Azure**: EVENTHUB and CONFLUENT
      * 
      */
     public String vendor() {

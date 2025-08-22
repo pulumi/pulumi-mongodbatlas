@@ -49,17 +49,11 @@ class GetStreamPrivatelinkEndpointsResult:
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-        """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter
     def results(self) -> Sequence['outputs.GetStreamPrivatelinkEndpointsResultResult']:
-        """
-        List of documents that MongoDB Cloud returns for this request.
-        """
         return pulumi.get(self, "results")
 
 
@@ -85,8 +79,37 @@ def get_stream_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
 
     ### S
 
+    ### AWS S3 Privatelink
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+    import pulumi_mongodbatlas as mongodbatlas
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+    # S3 bucket for stream data
+    stream_bucket = aws.index.S3Bucket("stream_bucket",
+        bucket=s3_bucket_name,
+        force_destroy=True)
+    stream_bucket_versioning = aws.index.S3BucketVersioning("stream_bucket_versioning",
+        bucket=stream_bucket.id,
+        versioning_configuration=[{
+            status: Enabled,
+        }])
+    stream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
+        bucket=stream_bucket.id,
+        rule=[{
+            applyServerSideEncryptionByDefault: [{
+                sseAlgorithm: AES256,
+            }],
+        }])
+    # PrivateLink for S3
+    this = mongodbatlas.StreamPrivatelinkEndpoint("this",
+        project_id=project_id,
+        provider_name="AWS",
+        vendor="S3",
+        region=region,
+        service_endpoint_id=service_endpoint_id)
+    pulumi.export("privatelinkEndpointId", this.id)
+    ```
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -108,8 +131,37 @@ def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[_b
 
     ### S
 
+    ### AWS S3 Privatelink
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+    import pulumi_mongodbatlas as mongodbatlas
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\\n\\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+    # S3 bucket for stream data
+    stream_bucket = aws.index.S3Bucket("stream_bucket",
+        bucket=s3_bucket_name,
+        force_destroy=True)
+    stream_bucket_versioning = aws.index.S3BucketVersioning("stream_bucket_versioning",
+        bucket=stream_bucket.id,
+        versioning_configuration=[{
+            status: Enabled,
+        }])
+    stream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
+        bucket=stream_bucket.id,
+        rule=[{
+            applyServerSideEncryptionByDefault: [{
+                sseAlgorithm: AES256,
+            }],
+        }])
+    # PrivateLink for S3
+    this = mongodbatlas.StreamPrivatelinkEndpoint("this",
+        project_id=project_id,
+        provider_name="AWS",
+        vendor="S3",
+        region=region,
+        service_endpoint_id=service_endpoint_id)
+    pulumi.export("privatelinkEndpointId", this.id)
+    ```
     """
     __args__ = dict()
     __args__['projectId'] = project_id

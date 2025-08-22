@@ -14,6 +14,42 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### S
+ *
+ * ### AWS S3 Privatelink
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // S3 bucket for stream data
+ * const streamBucket = new aws.index.S3Bucket("stream_bucket", {
+ *     bucket: s3BucketName,
+ *     forceDestroy: true,
+ * });
+ * const streamBucketVersioning = new aws.index.S3BucketVersioning("stream_bucket_versioning", {
+ *     bucket: streamBucket.id,
+ *     versioningConfiguration: [{
+ *         status: "Enabled",
+ *     }],
+ * });
+ * const streamBucketEncryption = new aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption", {
+ *     bucket: streamBucket.id,
+ *     rule: [{
+ *         applyServerSideEncryptionByDefault: [{
+ *             sseAlgorithm: "AES256",
+ *         }],
+ *     }],
+ * });
+ * // PrivateLink for S3
+ * const _this = new mongodbatlas.StreamPrivatelinkEndpoint("this", {
+ *     projectId: projectId,
+ *     providerName: "AWS",
+ *     vendor: "S3",
+ *     region: region,
+ *     serviceEndpointId: serviceEndpointId,
+ * });
+ * export const privatelinkEndpointId = _this.id;
+ * ```
  */
 export function getStreamPrivatelinkEndpoints(args: GetStreamPrivatelinkEndpointsArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamPrivatelinkEndpointsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -26,9 +62,6 @@ export function getStreamPrivatelinkEndpoints(args: GetStreamPrivatelinkEndpoint
  * A collection of arguments for invoking getStreamPrivatelinkEndpoints.
  */
 export interface GetStreamPrivatelinkEndpointsArgs {
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-     */
     projectId: string;
 }
 
@@ -40,13 +73,7 @@ export interface GetStreamPrivatelinkEndpointsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-     */
     readonly projectId: string;
-    /**
-     * List of documents that MongoDB Cloud returns for this request.
-     */
     readonly results: outputs.GetStreamPrivatelinkEndpointsResult[];
 }
 /**
@@ -57,6 +84,42 @@ export interface GetStreamPrivatelinkEndpointsResult {
  * ## Example Usage
  *
  * ### S
+ *
+ * ### AWS S3 Privatelink
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // S3 bucket for stream data
+ * const streamBucket = new aws.index.S3Bucket("stream_bucket", {
+ *     bucket: s3BucketName,
+ *     forceDestroy: true,
+ * });
+ * const streamBucketVersioning = new aws.index.S3BucketVersioning("stream_bucket_versioning", {
+ *     bucket: streamBucket.id,
+ *     versioningConfiguration: [{
+ *         status: "Enabled",
+ *     }],
+ * });
+ * const streamBucketEncryption = new aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption", {
+ *     bucket: streamBucket.id,
+ *     rule: [{
+ *         applyServerSideEncryptionByDefault: [{
+ *             sseAlgorithm: "AES256",
+ *         }],
+ *     }],
+ * });
+ * // PrivateLink for S3
+ * const _this = new mongodbatlas.StreamPrivatelinkEndpoint("this", {
+ *     projectId: projectId,
+ *     providerName: "AWS",
+ *     vendor: "S3",
+ *     region: region,
+ *     serviceEndpointId: serviceEndpointId,
+ * });
+ * export const privatelinkEndpointId = _this.id;
+ * ```
  */
 export function getStreamPrivatelinkEndpointsOutput(args: GetStreamPrivatelinkEndpointsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamPrivatelinkEndpointsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -69,8 +132,5 @@ export function getStreamPrivatelinkEndpointsOutput(args: GetStreamPrivatelinkEn
  * A collection of arguments for invoking getStreamPrivatelinkEndpoints.
  */
 export interface GetStreamPrivatelinkEndpointsOutputArgs {
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-     */
     projectId: pulumi.Input<string>;
 }

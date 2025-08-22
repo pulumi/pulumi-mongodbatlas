@@ -14,17 +14,9 @@ public final class GetStreamPrivatelinkEndpointsArgs extends com.pulumi.resource
 
     public static final GetStreamPrivatelinkEndpointsArgs Empty = new GetStreamPrivatelinkEndpointsArgs();
 
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-     * 
-     */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-     * 
-     */
     public Output<String> projectId() {
         return this.projectId;
     }
@@ -53,23 +45,11 @@ public final class GetStreamPrivatelinkEndpointsArgs extends com.pulumi.resource
             $ = new GetStreamPrivatelinkEndpointsArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-         * 
-         * @return builder
-         * 
-         */
         public Builder projectId(Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
 
-        /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\n\n**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
-         * 
-         * @return builder
-         * 
-         */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
         }

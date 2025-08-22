@@ -32153,6 +32153,68 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args) {
         return getStreamPrivatelinkEndpoint(args, InvokeOptions.Empty);
@@ -32165,6 +32227,68 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpointPlain(GetStreamPrivatelinkEndpointPlainArgs args) {
@@ -32179,6 +32303,68 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", TypeShape.of(GetStreamPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
@@ -32191,6 +32377,68 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args, InvokeOutputOptions options) {
@@ -32205,6 +32453,68 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpointPlain(GetStreamPrivatelinkEndpointPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", TypeShape.of(GetStreamPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
@@ -32217,6 +32527,68 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args) {
@@ -32231,6 +32603,68 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpointsPlain(GetStreamPrivatelinkEndpointsPlainArgs args) {
         return getStreamPrivatelinkEndpointsPlain(args, InvokeOptions.Empty);
@@ -32243,6 +32677,68 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args, InvokeOptions options) {
@@ -32257,6 +32753,68 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", TypeShape.of(GetStreamPrivatelinkEndpointsInvokeResult.class), args, Utilities.withVersion(options));
@@ -32269,6 +32827,68 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### AWS S3 Privatelink
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.s3Bucket;
+     * import com.pulumi.aws.s3BucketArgs;
+     * import com.pulumi.aws.s3BucketVersioning;
+     * import com.pulumi.aws.s3BucketVersioningArgs;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
+     * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // S3 bucket for stream data
+     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *             .bucket(s3BucketName)
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .build());
+     * 
+     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *             .bucket(streamBucket.id())
+     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .build());
+     * 
+     *         // PrivateLink for S3
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("S3")
+     *             .region(region)
+     *             .serviceEndpointId(serviceEndpointId)
+     *             .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpointsPlain(GetStreamPrivatelinkEndpointsPlainArgs args, InvokeOptions options) {
