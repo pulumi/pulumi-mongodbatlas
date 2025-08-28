@@ -80,67 +80,63 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
     /**
      * Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      */
-    public readonly arn!: pulumi.Output<string | undefined>;
+    declare public readonly arn: pulumi.Output<string | undefined>;
     /**
-     * The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
-     * * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     * The domain hostname. Required for the following provider and vendor combinations:
+     * 				
+     * 	* AWS provider with CONFLUENT vendor.
+     *
+     * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
      */
-    public readonly dnsDomain!: pulumi.Output<string | undefined>;
+    declare public readonly dnsDomain: pulumi.Output<string | undefined>;
     /**
-     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
-     * CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
      */
-    public readonly dnsSubDomains!: pulumi.Output<string[] | undefined>;
+    declare public readonly dnsSubDomains: pulumi.Output<string[] | undefined>;
     /**
      * Error message if the connection is in a failed state.
      */
-    public /*out*/ readonly errorMessage!: pulumi.Output<string>;
+    declare public /*out*/ readonly errorMessage: pulumi.Output<string>;
     /**
      * Interface endpoint ID that is created from the specified service endpoint ID.
      */
-    public /*out*/ readonly interfaceEndpointId!: pulumi.Output<string>;
+    declare public /*out*/ readonly interfaceEndpointId: pulumi.Output<string>;
     /**
      * Name of interface endpoint that is created from the specified service endpoint ID.
      */
-    public /*out*/ readonly interfaceEndpointName!: pulumi.Output<string>;
+    declare public /*out*/ readonly interfaceEndpointName: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
-     * which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
-     * same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
-     * endpoints use the term groups.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Account ID from the cloud provider.
      */
-    public /*out*/ readonly providerAccountId!: pulumi.Output<string>;
+    declare public /*out*/ readonly providerAccountId: pulumi.Output<string>;
     /**
      * Provider where the endpoint is deployed. Valid values are AWS and AZURE.
      */
-    public readonly providerName!: pulumi.Output<string>;
+    declare public readonly providerName: pulumi.Output<string>;
     /**
-     * The region of the Provider’s cluster. See
-     * [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
-     * [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
-     * vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
-     * API from the provided `arn`.
+     * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint
-     * ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
-     * Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      */
-    public readonly serviceEndpointId!: pulumi.Output<string | undefined>;
+    declare public readonly serviceEndpointId: pulumi.Output<string | undefined>;
     /**
      * Status of the connection.
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
-     * Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
-     * **Azure**: EVENTHUB and CONFLUENT
+     * Vendor that manages the endpoint. The following are the vendor values per provider:
+     *
+     * 	* **AWS**: MSK, CONFLUENT, and S3
+     *
+     * 	* **Azure**: EVENTHUB and CONFLUENT
      */
-    public readonly vendor!: pulumi.Output<string>;
+    declare public readonly vendor: pulumi.Output<string>;
 
     /**
      * Create a StreamPrivatelinkEndpoint resource with the given unique name, arguments, and options.
@@ -155,38 +151,38 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StreamPrivatelinkEndpointState | undefined;
-            resourceInputs["arn"] = state ? state.arn : undefined;
-            resourceInputs["dnsDomain"] = state ? state.dnsDomain : undefined;
-            resourceInputs["dnsSubDomains"] = state ? state.dnsSubDomains : undefined;
-            resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
-            resourceInputs["interfaceEndpointId"] = state ? state.interfaceEndpointId : undefined;
-            resourceInputs["interfaceEndpointName"] = state ? state.interfaceEndpointName : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["providerAccountId"] = state ? state.providerAccountId : undefined;
-            resourceInputs["providerName"] = state ? state.providerName : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["serviceEndpointId"] = state ? state.serviceEndpointId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["vendor"] = state ? state.vendor : undefined;
+            resourceInputs["arn"] = state?.arn;
+            resourceInputs["dnsDomain"] = state?.dnsDomain;
+            resourceInputs["dnsSubDomains"] = state?.dnsSubDomains;
+            resourceInputs["errorMessage"] = state?.errorMessage;
+            resourceInputs["interfaceEndpointId"] = state?.interfaceEndpointId;
+            resourceInputs["interfaceEndpointName"] = state?.interfaceEndpointName;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["providerAccountId"] = state?.providerAccountId;
+            resourceInputs["providerName"] = state?.providerName;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["serviceEndpointId"] = state?.serviceEndpointId;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["vendor"] = state?.vendor;
         } else {
             const args = argsOrState as StreamPrivatelinkEndpointArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !opts.urn) {
+            if (args?.providerName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            if ((!args || args.vendor === undefined) && !opts.urn) {
+            if (args?.vendor === undefined && !opts.urn) {
                 throw new Error("Missing required property 'vendor'");
             }
-            resourceInputs["arn"] = args ? args.arn : undefined;
-            resourceInputs["dnsDomain"] = args ? args.dnsDomain : undefined;
-            resourceInputs["dnsSubDomains"] = args ? args.dnsSubDomains : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["providerName"] = args ? args.providerName : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["serviceEndpointId"] = args ? args.serviceEndpointId : undefined;
-            resourceInputs["vendor"] = args ? args.vendor : undefined;
+            resourceInputs["arn"] = args?.arn;
+            resourceInputs["dnsDomain"] = args?.dnsDomain;
+            resourceInputs["dnsSubDomains"] = args?.dnsSubDomains;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["providerName"] = args?.providerName;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["serviceEndpointId"] = args?.serviceEndpointId;
+            resourceInputs["vendor"] = args?.vendor;
             resourceInputs["errorMessage"] = undefined /*out*/;
             resourceInputs["interfaceEndpointId"] = undefined /*out*/;
             resourceInputs["interfaceEndpointName"] = undefined /*out*/;
@@ -207,13 +203,15 @@ export interface StreamPrivatelinkEndpointState {
      */
     arn?: pulumi.Input<string>;
     /**
-     * The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
-     * * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     * The domain hostname. Required for the following provider and vendor combinations:
+     * 				
+     * 	* AWS provider with CONFLUENT vendor.
+     *
+     * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
      */
     dnsDomain?: pulumi.Input<string>;
     /**
-     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
-     * CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
      */
     dnsSubDomains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -229,10 +227,7 @@ export interface StreamPrivatelinkEndpointState {
      */
     interfaceEndpointName?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
-     * which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
-     * same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
-     * endpoints use the term groups.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -244,17 +239,11 @@ export interface StreamPrivatelinkEndpointState {
      */
     providerName?: pulumi.Input<string>;
     /**
-     * The region of the Provider’s cluster. See
-     * [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
-     * [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
-     * vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
-     * API from the provided `arn`.
+     * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      */
     region?: pulumi.Input<string>;
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint
-     * ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
-     * Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      */
     serviceEndpointId?: pulumi.Input<string>;
     /**
@@ -262,8 +251,11 @@ export interface StreamPrivatelinkEndpointState {
      */
     state?: pulumi.Input<string>;
     /**
-     * Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
-     * **Azure**: EVENTHUB and CONFLUENT
+     * Vendor that manages the endpoint. The following are the vendor values per provider:
+     *
+     * 	* **AWS**: MSK, CONFLUENT, and S3
+     *
+     * 	* **Azure**: EVENTHUB and CONFLUENT
      */
     vendor?: pulumi.Input<string>;
 }
@@ -277,20 +269,19 @@ export interface StreamPrivatelinkEndpointArgs {
      */
     arn?: pulumi.Input<string>;
     /**
-     * The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.
-     * * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     * The domain hostname. Required for the following provider and vendor combinations:
+     * 				
+     * 	* AWS provider with CONFLUENT vendor.
+     *
+     * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
      */
     dnsDomain?: pulumi.Input<string>;
     /**
-     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and
-     * CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+     * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
      */
     dnsSubDomains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to
-     * which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the
-     * same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding
-     * endpoints use the term groups.
+     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
      */
     projectId: pulumi.Input<string>;
     /**
@@ -298,22 +289,19 @@ export interface StreamPrivatelinkEndpointArgs {
      */
     providerName: pulumi.Input<string>;
     /**
-     * The region of the Provider’s cluster. See
-     * [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and
-     * [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the
-     * vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the
-     * API from the provided `arn`.
+     * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      */
     region?: pulumi.Input<string>;
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint
-     * ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC
-     * Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      */
     serviceEndpointId?: pulumi.Input<string>;
     /**
-     * Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *
-     * **Azure**: EVENTHUB and CONFLUENT
+     * Vendor that manages the endpoint. The following are the vendor values per provider:
+     *
+     * 	* **AWS**: MSK, CONFLUENT, and S3
+     *
+     * 	* **Azure**: EVENTHUB and CONFLUENT
      */
     vendor: pulumi.Input<string>;
 }

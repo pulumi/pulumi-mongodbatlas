@@ -37,23 +37,23 @@ export class EncryptionAtRest extends pulumi.CustomResource {
     /**
      * Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
      */
-    public readonly awsKmsConfig!: pulumi.Output<outputs.EncryptionAtRestAwsKmsConfig | undefined>;
+    declare public readonly awsKmsConfig: pulumi.Output<outputs.EncryptionAtRestAwsKmsConfig | undefined>;
     /**
      * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
      */
-    public readonly azureKeyVaultConfig!: pulumi.Output<outputs.EncryptionAtRestAzureKeyVaultConfig | undefined>;
+    declare public readonly azureKeyVaultConfig: pulumi.Output<outputs.EncryptionAtRestAzureKeyVaultConfig | undefined>;
     /**
      * Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
      */
-    public readonly enabledForSearchNodes!: pulumi.Output<boolean>;
+    declare public readonly enabledForSearchNodes: pulumi.Output<boolean>;
     /**
      * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
      */
-    public readonly googleCloudKmsConfig!: pulumi.Output<outputs.EncryptionAtRestGoogleCloudKmsConfig | undefined>;
+    declare public readonly googleCloudKmsConfig: pulumi.Output<outputs.EncryptionAtRestGoogleCloudKmsConfig | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
 
     /**
      * Create a EncryptionAtRest resource with the given unique name, arguments, and options.
@@ -68,21 +68,21 @@ export class EncryptionAtRest extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EncryptionAtRestState | undefined;
-            resourceInputs["awsKmsConfig"] = state ? state.awsKmsConfig : undefined;
-            resourceInputs["azureKeyVaultConfig"] = state ? state.azureKeyVaultConfig : undefined;
-            resourceInputs["enabledForSearchNodes"] = state ? state.enabledForSearchNodes : undefined;
-            resourceInputs["googleCloudKmsConfig"] = state ? state.googleCloudKmsConfig : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["awsKmsConfig"] = state?.awsKmsConfig;
+            resourceInputs["azureKeyVaultConfig"] = state?.azureKeyVaultConfig;
+            resourceInputs["enabledForSearchNodes"] = state?.enabledForSearchNodes;
+            resourceInputs["googleCloudKmsConfig"] = state?.googleCloudKmsConfig;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as EncryptionAtRestArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["awsKmsConfig"] = args ? args.awsKmsConfig : undefined;
-            resourceInputs["azureKeyVaultConfig"] = args ? args.azureKeyVaultConfig : undefined;
-            resourceInputs["enabledForSearchNodes"] = args ? args.enabledForSearchNodes : undefined;
-            resourceInputs["googleCloudKmsConfig"] = args ? args.googleCloudKmsConfig : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["awsKmsConfig"] = args?.awsKmsConfig;
+            resourceInputs["azureKeyVaultConfig"] = args?.azureKeyVaultConfig;
+            resourceInputs["enabledForSearchNodes"] = args?.enabledForSearchNodes;
+            resourceInputs["googleCloudKmsConfig"] = args?.googleCloudKmsConfig;
+            resourceInputs["projectId"] = args?.projectId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EncryptionAtRest.__pulumiType, name, resourceInputs, opts);

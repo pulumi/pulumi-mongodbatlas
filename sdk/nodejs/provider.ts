@@ -30,43 +30,43 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * AWS API Access Key.
      */
-    public readonly awsAccessKeyId!: pulumi.Output<string | undefined>;
+    declare public readonly awsAccessKeyId: pulumi.Output<string | undefined>;
     /**
      * AWS API Access Secret Key.
      */
-    public readonly awsSecretAccessKey!: pulumi.Output<string | undefined>;
+    declare public readonly awsSecretAccessKey: pulumi.Output<string | undefined>;
     /**
      * AWS Security Token Service provided session token.
      */
-    public readonly awsSessionToken!: pulumi.Output<string | undefined>;
+    declare public readonly awsSessionToken: pulumi.Output<string | undefined>;
     /**
      * MongoDB Atlas Base URL
      */
-    public readonly baseUrl!: pulumi.Output<string | undefined>;
+    declare public readonly baseUrl: pulumi.Output<string | undefined>;
     /**
      * MongoDB Atlas Programmatic Private Key
      */
-    public readonly privateKey!: pulumi.Output<string | undefined>;
+    declare public readonly privateKey: pulumi.Output<string | undefined>;
     /**
      * MongoDB Atlas Programmatic Public Key
      */
-    public readonly publicKey!: pulumi.Output<string | undefined>;
+    declare public readonly publicKey: pulumi.Output<string | undefined>;
     /**
      * MongoDB Realm Base URL
      */
-    public readonly realmBaseUrl!: pulumi.Output<string | undefined>;
+    declare public readonly realmBaseUrl: pulumi.Output<string | undefined>;
     /**
      * Region where secret is stored as part of AWS Secret Manager.
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Name of secret stored in AWS Secret Manager.
      */
-    public readonly secretName!: pulumi.Output<string | undefined>;
+    declare public readonly secretName: pulumi.Output<string | undefined>;
     /**
      * AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
      */
-    public readonly stsEndpoint!: pulumi.Output<string | undefined>;
+    declare public readonly stsEndpoint: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -79,18 +79,18 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["assumeRole"] = pulumi.output(args ? args.assumeRole : undefined).apply(JSON.stringify);
-            resourceInputs["awsAccessKeyId"] = args ? args.awsAccessKeyId : undefined;
-            resourceInputs["awsSecretAccessKey"] = args ? args.awsSecretAccessKey : undefined;
-            resourceInputs["awsSessionToken"] = args ? args.awsSessionToken : undefined;
-            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
-            resourceInputs["isMongodbgovCloud"] = pulumi.output(args ? args.isMongodbgovCloud : undefined).apply(JSON.stringify);
+            resourceInputs["assumeRole"] = pulumi.output(args?.assumeRole).apply(JSON.stringify);
+            resourceInputs["awsAccessKeyId"] = args?.awsAccessKeyId;
+            resourceInputs["awsSecretAccessKey"] = args?.awsSecretAccessKey;
+            resourceInputs["awsSessionToken"] = args?.awsSessionToken;
+            resourceInputs["baseUrl"] = args?.baseUrl;
+            resourceInputs["isMongodbgovCloud"] = pulumi.output(args?.isMongodbgovCloud).apply(JSON.stringify);
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
-            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
-            resourceInputs["realmBaseUrl"] = args ? args.realmBaseUrl : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["secretName"] = args ? args.secretName : undefined;
-            resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
+            resourceInputs["publicKey"] = args?.publicKey;
+            resourceInputs["realmBaseUrl"] = args?.realmBaseUrl;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["secretName"] = args?.secretName;
+            resourceInputs["stsEndpoint"] = args?.stsEndpoint;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["privateKey"] };

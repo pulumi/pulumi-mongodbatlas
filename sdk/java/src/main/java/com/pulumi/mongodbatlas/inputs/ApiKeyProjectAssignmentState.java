@@ -47,16 +47,14 @@ public final class ApiKeyProjectAssignmentState extends com.pulumi.resources.Res
     }
 
     /**
-     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-     * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
      * 
      */
     @Import(name="roles")
     private @Nullable Output<List<String>> roles;
 
     /**
-     * @return Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-     * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+     * @return Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
      * 
      */
     public Optional<Output<List<String>>> roles() {
@@ -132,8 +130,7 @@ public final class ApiKeyProjectAssignmentState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param roles Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-         * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+         * @param roles Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
          * 
          * @return builder
          * 
@@ -144,8 +141,7 @@ public final class ApiKeyProjectAssignmentState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param roles Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-         * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+         * @param roles Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
          * 
          * @return builder
          * 
@@ -155,8 +151,7 @@ public final class ApiKeyProjectAssignmentState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param roles Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-         * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+         * @param roles Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
          * 
          * @return builder
          * 

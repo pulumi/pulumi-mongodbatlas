@@ -103,8 +103,7 @@ type ApiKeyProjectAssignment struct {
 	ApiKeyId pulumi.StringOutput `pulumi:"apiKeyId"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-	// Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
 	Roles pulumi.StringArrayOutput `pulumi:"roles"`
 }
 
@@ -151,8 +150,7 @@ type apiKeyProjectAssignmentState struct {
 	ApiKeyId *string `pulumi:"apiKeyId"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId *string `pulumi:"projectId"`
-	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-	// Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
 	Roles []string `pulumi:"roles"`
 }
 
@@ -161,8 +159,7 @@ type ApiKeyProjectAssignmentState struct {
 	ApiKeyId pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringPtrInput
-	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-	// Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
 	Roles pulumi.StringArrayInput
 }
 
@@ -175,8 +172,7 @@ type apiKeyProjectAssignmentArgs struct {
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId string `pulumi:"projectId"`
-	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-	// Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
 	Roles []string `pulumi:"roles"`
 }
 
@@ -186,8 +182,7 @@ type ApiKeyProjectAssignmentArgs struct {
 	ApiKeyId pulumi.StringInput
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringInput
-	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-	// Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
 	Roles pulumi.StringArrayInput
 }
 
@@ -288,8 +283,7 @@ func (o ApiKeyProjectAssignmentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiKeyProjectAssignment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-// Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
 func (o ApiKeyProjectAssignmentOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ApiKeyProjectAssignment) pulumi.StringArrayOutput { return v.Roles }).(pulumi.StringArrayOutput)
 }

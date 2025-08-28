@@ -52,23 +52,23 @@ export class StreamInstance extends pulumi.CustomResource {
     /**
      * Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
      */
-    public readonly dataProcessRegion!: pulumi.Output<outputs.StreamInstanceDataProcessRegion>;
+    declare public readonly dataProcessRegion: pulumi.Output<outputs.StreamInstanceDataProcessRegion>;
     /**
      * List that contains the hostnames assigned to the stream instance.
      */
-    public /*out*/ readonly hostnames!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly hostnames: pulumi.Output<string[]>;
     /**
      * Human-readable label that identifies the stream instance.
      */
-    public readonly instanceName!: pulumi.Output<string>;
+    declare public readonly instanceName: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Configuration options for an Atlas Stream Processing Instance. See stream config
      */
-    public readonly streamConfig!: pulumi.Output<outputs.StreamInstanceStreamConfig>;
+    declare public readonly streamConfig: pulumi.Output<outputs.StreamInstanceStreamConfig>;
 
     /**
      * Create a StreamInstance resource with the given unique name, arguments, and options.
@@ -83,26 +83,26 @@ export class StreamInstance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StreamInstanceState | undefined;
-            resourceInputs["dataProcessRegion"] = state ? state.dataProcessRegion : undefined;
-            resourceInputs["hostnames"] = state ? state.hostnames : undefined;
-            resourceInputs["instanceName"] = state ? state.instanceName : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["streamConfig"] = state ? state.streamConfig : undefined;
+            resourceInputs["dataProcessRegion"] = state?.dataProcessRegion;
+            resourceInputs["hostnames"] = state?.hostnames;
+            resourceInputs["instanceName"] = state?.instanceName;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["streamConfig"] = state?.streamConfig;
         } else {
             const args = argsOrState as StreamInstanceArgs | undefined;
-            if ((!args || args.dataProcessRegion === undefined) && !opts.urn) {
+            if (args?.dataProcessRegion === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dataProcessRegion'");
             }
-            if ((!args || args.instanceName === undefined) && !opts.urn) {
+            if (args?.instanceName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceName'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["dataProcessRegion"] = args ? args.dataProcessRegion : undefined;
-            resourceInputs["instanceName"] = args ? args.instanceName : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["streamConfig"] = args ? args.streamConfig : undefined;
+            resourceInputs["dataProcessRegion"] = args?.dataProcessRegion;
+            resourceInputs["instanceName"] = args?.instanceName;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["streamConfig"] = args?.streamConfig;
             resourceInputs["hostnames"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

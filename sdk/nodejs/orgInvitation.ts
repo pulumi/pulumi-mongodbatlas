@@ -91,35 +91,35 @@ export class OrgInvitation extends pulumi.CustomResource {
     /**
      * Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
      */
-    public /*out*/ readonly expiresAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly expiresAt: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
      */
-    public /*out*/ readonly invitationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly invitationId: pulumi.Output<string>;
     /**
      * Atlas user who invited `username` to the organization.
      */
-    public /*out*/ readonly inviterUsername!: pulumi.Output<string>;
+    declare public /*out*/ readonly inviterUsername: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      */
-    public readonly roles!: pulumi.Output<string[]>;
+    declare public readonly roles: pulumi.Output<string[]>;
     /**
      * An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
      */
-    public readonly teamsIds!: pulumi.Output<string[]>;
+    declare public readonly teamsIds: pulumi.Output<string[]>;
     /**
      * Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a OrgInvitation resource with the given unique name, arguments, and options.
@@ -134,29 +134,29 @@ export class OrgInvitation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OrgInvitationState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["invitationId"] = state ? state.invitationId : undefined;
-            resourceInputs["inviterUsername"] = state ? state.inviterUsername : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["roles"] = state ? state.roles : undefined;
-            resourceInputs["teamsIds"] = state ? state.teamsIds : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["invitationId"] = state?.invitationId;
+            resourceInputs["inviterUsername"] = state?.inviterUsername;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["roles"] = state?.roles;
+            resourceInputs["teamsIds"] = state?.teamsIds;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as OrgInvitationArgs | undefined;
-            if ((!args || args.orgId === undefined) && !opts.urn) {
+            if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            if ((!args || args.roles === undefined) && !opts.urn) {
+            if (args?.roles === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roles'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["roles"] = args ? args.roles : undefined;
-            resourceInputs["teamsIds"] = args ? args.teamsIds : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["roles"] = args?.roles;
+            resourceInputs["teamsIds"] = args?.teamsIds;
+            resourceInputs["username"] = args?.username;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;
             resourceInputs["invitationId"] = undefined /*out*/;

@@ -95,71 +95,71 @@ export class CloudBackupSnapshot extends pulumi.CustomResource {
     /**
      * Cloud provider that stores this snapshot.
      */
-    public /*out*/ readonly cloudProvider!: pulumi.Output<string>;
+    declare public /*out*/ readonly cloudProvider: pulumi.Output<string>;
     /**
      * The name of the Atlas cluster that contains the snapshots you want to retrieve.
      */
-    public readonly clusterName!: pulumi.Output<string>;
+    declare public readonly clusterName: pulumi.Output<string>;
     /**
      * UTC ISO 8601 formatted point in time when Atlas took the snapshot.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Description of the on-demand snapshot.
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
      */
-    public /*out*/ readonly expiresAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly expiresAt: pulumi.Output<string>;
     /**
      * Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
      */
-    public /*out*/ readonly masterKeyUuid!: pulumi.Output<string>;
+    declare public /*out*/ readonly masterKeyUuid: pulumi.Output<string>;
     /**
      * Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
      */
-    public /*out*/ readonly members!: pulumi.Output<outputs.CloudBackupSnapshotMember[]>;
+    declare public /*out*/ readonly members: pulumi.Output<outputs.CloudBackupSnapshotMember[]>;
     /**
      * Version of the MongoDB server.
      */
-    public /*out*/ readonly mongodVersion!: pulumi.Output<string>;
+    declare public /*out*/ readonly mongodVersion: pulumi.Output<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Label given to a shard or config server from which Atlas took this snapshot.
      */
-    public /*out*/ readonly replicaSetName!: pulumi.Output<string>;
+    declare public /*out*/ readonly replicaSetName: pulumi.Output<string>;
     /**
      * The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
      */
-    public readonly retentionInDays!: pulumi.Output<number>;
+    declare public readonly retentionInDays: pulumi.Output<number>;
     /**
      * Unique identifier of the snapshot.
      */
-    public /*out*/ readonly snapshotId!: pulumi.Output<string>;
+    declare public /*out*/ readonly snapshotId: pulumi.Output<string>;
     /**
      * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
      */
-    public /*out*/ readonly snapshotIds!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly snapshotIds: pulumi.Output<string[]>;
     /**
      * Specified the type of snapshot. Valid values are onDemand and scheduled.
      */
-    public /*out*/ readonly snapshotType!: pulumi.Output<string>;
+    declare public /*out*/ readonly snapshotType: pulumi.Output<string>;
     /**
      * Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Specifies the size of the snapshot in bytes.
      */
-    public /*out*/ readonly storageSizeBytes!: pulumi.Output<number>;
+    declare public /*out*/ readonly storageSizeBytes: pulumi.Output<number>;
     /**
      * Specifies the type of cluster: replicaSet or shardedCluster.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
 
     /**
      * Create a CloudBackupSnapshot resource with the given unique name, arguments, and options.
@@ -174,41 +174,41 @@ export class CloudBackupSnapshot extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudBackupSnapshotState | undefined;
-            resourceInputs["cloudProvider"] = state ? state.cloudProvider : undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["masterKeyUuid"] = state ? state.masterKeyUuid : undefined;
-            resourceInputs["members"] = state ? state.members : undefined;
-            resourceInputs["mongodVersion"] = state ? state.mongodVersion : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["replicaSetName"] = state ? state.replicaSetName : undefined;
-            resourceInputs["retentionInDays"] = state ? state.retentionInDays : undefined;
-            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
-            resourceInputs["snapshotIds"] = state ? state.snapshotIds : undefined;
-            resourceInputs["snapshotType"] = state ? state.snapshotType : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["storageSizeBytes"] = state ? state.storageSizeBytes : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["cloudProvider"] = state?.cloudProvider;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["masterKeyUuid"] = state?.masterKeyUuid;
+            resourceInputs["members"] = state?.members;
+            resourceInputs["mongodVersion"] = state?.mongodVersion;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["replicaSetName"] = state?.replicaSetName;
+            resourceInputs["retentionInDays"] = state?.retentionInDays;
+            resourceInputs["snapshotId"] = state?.snapshotId;
+            resourceInputs["snapshotIds"] = state?.snapshotIds;
+            resourceInputs["snapshotType"] = state?.snapshotType;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["storageSizeBytes"] = state?.storageSizeBytes;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as CloudBackupSnapshotArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !opts.urn) {
+            if (args?.clusterName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.description === undefined) && !opts.urn) {
+            if (args?.description === undefined && !opts.urn) {
                 throw new Error("Missing required property 'description'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.retentionInDays === undefined) && !opts.urn) {
+            if (args?.retentionInDays === undefined && !opts.urn) {
                 throw new Error("Missing required property 'retentionInDays'");
             }
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["retentionInDays"] = args ? args.retentionInDays : undefined;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["retentionInDays"] = args?.retentionInDays;
             resourceInputs["cloudProvider"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;

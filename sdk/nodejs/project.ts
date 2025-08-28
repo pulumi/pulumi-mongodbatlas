@@ -97,73 +97,73 @@ export class Project extends pulumi.CustomResource {
     /**
      * The number of Atlas clusters deployed in the project.
      */
-    public /*out*/ readonly clusterCount!: pulumi.Output<number>;
+    declare public /*out*/ readonly clusterCount: pulumi.Output<number>;
     /**
      * The ISO-8601-formatted timestamp of when Atlas created the project.
      */
-    public /*out*/ readonly created!: pulumi.Output<string>;
+    declare public /*out*/ readonly created: pulumi.Output<string>;
     /**
      * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      *
      * @deprecated This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      */
-    public /*out*/ readonly ipAddresses!: pulumi.Output<outputs.ProjectIpAddresses>;
+    declare public /*out*/ readonly ipAddresses: pulumi.Output<outputs.ProjectIpAddresses>;
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      */
-    public readonly isCollectDatabaseSpecificsStatisticsEnabled!: pulumi.Output<boolean>;
+    declare public readonly isCollectDatabaseSpecificsStatisticsEnabled: pulumi.Output<boolean>;
     /**
      * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
      */
-    public readonly isDataExplorerEnabled!: pulumi.Output<boolean>;
+    declare public readonly isDataExplorerEnabled: pulumi.Output<boolean>;
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
      */
-    public readonly isExtendedStorageSizesEnabled!: pulumi.Output<boolean>;
+    declare public readonly isExtendedStorageSizesEnabled: pulumi.Output<boolean>;
     /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
      */
-    public readonly isPerformanceAdvisorEnabled!: pulumi.Output<boolean>;
+    declare public readonly isPerformanceAdvisorEnabled: pulumi.Output<boolean>;
     /**
      * Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
      */
-    public readonly isRealtimePerformancePanelEnabled!: pulumi.Output<boolean>;
+    declare public readonly isRealtimePerformancePanelEnabled: pulumi.Output<boolean>;
     /**
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
      */
-    public readonly isSchemaAdvisorEnabled!: pulumi.Output<boolean>;
+    declare public readonly isSchemaAdvisorEnabled: pulumi.Output<boolean>;
     /**
      * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
      *
      * @deprecated This parameter is deprecated.
      */
-    public readonly isSlowOperationThresholdingEnabled!: pulumi.Output<boolean>;
-    public readonly limits!: pulumi.Output<outputs.ProjectLimit[] | undefined>;
+    declare public readonly isSlowOperationThresholdingEnabled: pulumi.Output<boolean>;
+    declare public readonly limits: pulumi.Output<outputs.ProjectLimit[] | undefined>;
     /**
      * The name of the project you want to create.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The ID of the organization you want to create the project within.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
-    public readonly projectOwnerId!: pulumi.Output<string | undefined>;
+    declare public readonly projectOwnerId: pulumi.Output<string | undefined>;
     /**
      * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
-    public readonly regionUsageRestrictions!: pulumi.Output<string>;
+    declare public readonly regionUsageRestrictions: pulumi.Output<string>;
     /**
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
      */
-    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
-    public readonly teams!: pulumi.Output<outputs.ProjectTeam[] | undefined>;
+    declare public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly teams: pulumi.Output<outputs.ProjectTeam[] | undefined>;
     /**
      * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
      */
-    public readonly withDefaultAlertsSettings!: pulumi.Output<boolean>;
+    declare public readonly withDefaultAlertsSettings: pulumi.Output<boolean>;
 
     /**
      * Create a Project resource with the given unique name, arguments, and options.
@@ -178,44 +178,44 @@ export class Project extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectState | undefined;
-            resourceInputs["clusterCount"] = state ? state.clusterCount : undefined;
-            resourceInputs["created"] = state ? state.created : undefined;
-            resourceInputs["ipAddresses"] = state ? state.ipAddresses : undefined;
-            resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = state ? state.isCollectDatabaseSpecificsStatisticsEnabled : undefined;
-            resourceInputs["isDataExplorerEnabled"] = state ? state.isDataExplorerEnabled : undefined;
-            resourceInputs["isExtendedStorageSizesEnabled"] = state ? state.isExtendedStorageSizesEnabled : undefined;
-            resourceInputs["isPerformanceAdvisorEnabled"] = state ? state.isPerformanceAdvisorEnabled : undefined;
-            resourceInputs["isRealtimePerformancePanelEnabled"] = state ? state.isRealtimePerformancePanelEnabled : undefined;
-            resourceInputs["isSchemaAdvisorEnabled"] = state ? state.isSchemaAdvisorEnabled : undefined;
-            resourceInputs["isSlowOperationThresholdingEnabled"] = state ? state.isSlowOperationThresholdingEnabled : undefined;
-            resourceInputs["limits"] = state ? state.limits : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["projectOwnerId"] = state ? state.projectOwnerId : undefined;
-            resourceInputs["regionUsageRestrictions"] = state ? state.regionUsageRestrictions : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["teams"] = state ? state.teams : undefined;
-            resourceInputs["withDefaultAlertsSettings"] = state ? state.withDefaultAlertsSettings : undefined;
+            resourceInputs["clusterCount"] = state?.clusterCount;
+            resourceInputs["created"] = state?.created;
+            resourceInputs["ipAddresses"] = state?.ipAddresses;
+            resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = state?.isCollectDatabaseSpecificsStatisticsEnabled;
+            resourceInputs["isDataExplorerEnabled"] = state?.isDataExplorerEnabled;
+            resourceInputs["isExtendedStorageSizesEnabled"] = state?.isExtendedStorageSizesEnabled;
+            resourceInputs["isPerformanceAdvisorEnabled"] = state?.isPerformanceAdvisorEnabled;
+            resourceInputs["isRealtimePerformancePanelEnabled"] = state?.isRealtimePerformancePanelEnabled;
+            resourceInputs["isSchemaAdvisorEnabled"] = state?.isSchemaAdvisorEnabled;
+            resourceInputs["isSlowOperationThresholdingEnabled"] = state?.isSlowOperationThresholdingEnabled;
+            resourceInputs["limits"] = state?.limits;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["projectOwnerId"] = state?.projectOwnerId;
+            resourceInputs["regionUsageRestrictions"] = state?.regionUsageRestrictions;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["teams"] = state?.teams;
+            resourceInputs["withDefaultAlertsSettings"] = state?.withDefaultAlertsSettings;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
-            if ((!args || args.orgId === undefined) && !opts.urn) {
+            if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = args ? args.isCollectDatabaseSpecificsStatisticsEnabled : undefined;
-            resourceInputs["isDataExplorerEnabled"] = args ? args.isDataExplorerEnabled : undefined;
-            resourceInputs["isExtendedStorageSizesEnabled"] = args ? args.isExtendedStorageSizesEnabled : undefined;
-            resourceInputs["isPerformanceAdvisorEnabled"] = args ? args.isPerformanceAdvisorEnabled : undefined;
-            resourceInputs["isRealtimePerformancePanelEnabled"] = args ? args.isRealtimePerformancePanelEnabled : undefined;
-            resourceInputs["isSchemaAdvisorEnabled"] = args ? args.isSchemaAdvisorEnabled : undefined;
-            resourceInputs["isSlowOperationThresholdingEnabled"] = args ? args.isSlowOperationThresholdingEnabled : undefined;
-            resourceInputs["limits"] = args ? args.limits : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["projectOwnerId"] = args ? args.projectOwnerId : undefined;
-            resourceInputs["regionUsageRestrictions"] = args ? args.regionUsageRestrictions : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["teams"] = args ? args.teams : undefined;
-            resourceInputs["withDefaultAlertsSettings"] = args ? args.withDefaultAlertsSettings : undefined;
+            resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = args?.isCollectDatabaseSpecificsStatisticsEnabled;
+            resourceInputs["isDataExplorerEnabled"] = args?.isDataExplorerEnabled;
+            resourceInputs["isExtendedStorageSizesEnabled"] = args?.isExtendedStorageSizesEnabled;
+            resourceInputs["isPerformanceAdvisorEnabled"] = args?.isPerformanceAdvisorEnabled;
+            resourceInputs["isRealtimePerformancePanelEnabled"] = args?.isRealtimePerformancePanelEnabled;
+            resourceInputs["isSchemaAdvisorEnabled"] = args?.isSchemaAdvisorEnabled;
+            resourceInputs["isSlowOperationThresholdingEnabled"] = args?.isSlowOperationThresholdingEnabled;
+            resourceInputs["limits"] = args?.limits;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["projectOwnerId"] = args?.projectOwnerId;
+            resourceInputs["regionUsageRestrictions"] = args?.regionUsageRestrictions;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["teams"] = args?.teams;
+            resourceInputs["withDefaultAlertsSettings"] = args?.withDefaultAlertsSettings;
             resourceInputs["clusterCount"] = undefined /*out*/;
             resourceInputs["created"] = undefined /*out*/;
             resourceInputs["ipAddresses"] = undefined /*out*/;

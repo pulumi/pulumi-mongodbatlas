@@ -71,50 +71,50 @@ export class Organization extends pulumi.CustomResource {
     /**
      * Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
      */
-    public readonly apiAccessListRequired!: pulumi.Output<boolean>;
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly apiAccessListRequired: pulumi.Output<boolean>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
      */
-    public readonly federationSettingsId!: pulumi.Output<string | undefined>;
+    declare public readonly federationSettingsId: pulumi.Output<string | undefined>;
     /**
      * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
      */
-    public readonly genAiFeaturesEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly genAiFeaturesEnabled: pulumi.Output<boolean | undefined>;
     /**
      * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
      */
-    public readonly multiFactorAuthRequired!: pulumi.Output<boolean>;
+    declare public readonly multiFactorAuthRequired: pulumi.Output<boolean>;
     /**
      * The name of the organization.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organization id.
      */
-    public /*out*/ readonly orgId!: pulumi.Output<string>;
+    declare public /*out*/ readonly orgId: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
      */
-    public readonly orgOwnerId!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly privateKey!: pulumi.Output<string>;
+    declare public readonly orgOwnerId: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly privateKey: pulumi.Output<string>;
     /**
      * Public API key value set for the specified organization API key.
      */
-    public /*out*/ readonly publicKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly publicKey: pulumi.Output<string>;
     /**
      * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
      */
-    public readonly restrictEmployeeAccess!: pulumi.Output<boolean>;
+    declare public readonly restrictEmployeeAccess: pulumi.Output<boolean>;
     /**
      * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
      */
-    public readonly roleNames!: pulumi.Output<string[] | undefined>;
+    declare public readonly roleNames: pulumi.Output<string[] | undefined>;
     /**
      * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
      */
-    public readonly securityContact!: pulumi.Output<string | undefined>;
-    public readonly skipDefaultAlertsSettings!: pulumi.Output<boolean>;
+    declare public readonly securityContact: pulumi.Output<string | undefined>;
+    declare public readonly skipDefaultAlertsSettings: pulumi.Output<boolean>;
 
     /**
      * Create a Organization resource with the given unique name, arguments, and options.
@@ -129,33 +129,33 @@ export class Organization extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OrganizationState | undefined;
-            resourceInputs["apiAccessListRequired"] = state ? state.apiAccessListRequired : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
-            resourceInputs["genAiFeaturesEnabled"] = state ? state.genAiFeaturesEnabled : undefined;
-            resourceInputs["multiFactorAuthRequired"] = state ? state.multiFactorAuthRequired : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["orgOwnerId"] = state ? state.orgOwnerId : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
-            resourceInputs["restrictEmployeeAccess"] = state ? state.restrictEmployeeAccess : undefined;
-            resourceInputs["roleNames"] = state ? state.roleNames : undefined;
-            resourceInputs["securityContact"] = state ? state.securityContact : undefined;
-            resourceInputs["skipDefaultAlertsSettings"] = state ? state.skipDefaultAlertsSettings : undefined;
+            resourceInputs["apiAccessListRequired"] = state?.apiAccessListRequired;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["federationSettingsId"] = state?.federationSettingsId;
+            resourceInputs["genAiFeaturesEnabled"] = state?.genAiFeaturesEnabled;
+            resourceInputs["multiFactorAuthRequired"] = state?.multiFactorAuthRequired;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["orgOwnerId"] = state?.orgOwnerId;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["publicKey"] = state?.publicKey;
+            resourceInputs["restrictEmployeeAccess"] = state?.restrictEmployeeAccess;
+            resourceInputs["roleNames"] = state?.roleNames;
+            resourceInputs["securityContact"] = state?.securityContact;
+            resourceInputs["skipDefaultAlertsSettings"] = state?.skipDefaultAlertsSettings;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
-            resourceInputs["apiAccessListRequired"] = args ? args.apiAccessListRequired : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
-            resourceInputs["genAiFeaturesEnabled"] = args ? args.genAiFeaturesEnabled : undefined;
-            resourceInputs["multiFactorAuthRequired"] = args ? args.multiFactorAuthRequired : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgOwnerId"] = args ? args.orgOwnerId : undefined;
-            resourceInputs["restrictEmployeeAccess"] = args ? args.restrictEmployeeAccess : undefined;
-            resourceInputs["roleNames"] = args ? args.roleNames : undefined;
-            resourceInputs["securityContact"] = args ? args.securityContact : undefined;
-            resourceInputs["skipDefaultAlertsSettings"] = args ? args.skipDefaultAlertsSettings : undefined;
+            resourceInputs["apiAccessListRequired"] = args?.apiAccessListRequired;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["federationSettingsId"] = args?.federationSettingsId;
+            resourceInputs["genAiFeaturesEnabled"] = args?.genAiFeaturesEnabled;
+            resourceInputs["multiFactorAuthRequired"] = args?.multiFactorAuthRequired;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgOwnerId"] = args?.orgOwnerId;
+            resourceInputs["restrictEmployeeAccess"] = args?.restrictEmployeeAccess;
+            resourceInputs["roleNames"] = args?.roleNames;
+            resourceInputs["securityContact"] = args?.securityContact;
+            resourceInputs["skipDefaultAlertsSettings"] = args?.skipDefaultAlertsSettings;
             resourceInputs["orgId"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;
             resourceInputs["publicKey"] = undefined /*out*/;

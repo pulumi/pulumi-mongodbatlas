@@ -177,11 +177,11 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
     /**
      * Indicates whether the restore job was canceled.
      */
-    public /*out*/ readonly cancelled!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly cancelled: pulumi.Output<boolean>;
     /**
      * The name of the Atlas cluster whose snapshot you want to restore.
      */
-    public readonly clusterName!: pulumi.Output<string>;
+    declare public readonly clusterName: pulumi.Output<string>;
     /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -193,39 +193,39 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      * * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
      * * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
      */
-    public readonly deliveryTypeConfig!: pulumi.Output<outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig | undefined>;
+    declare public readonly deliveryTypeConfig: pulumi.Output<outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig | undefined>;
     /**
      * One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
      */
-    public /*out*/ readonly deliveryUrls!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly deliveryUrls: pulumi.Output<string[]>;
     /**
      * Indicates whether the restore job expired.
      */
-    public /*out*/ readonly expired!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly expired: pulumi.Output<boolean>;
     /**
      * UTC ISO 8601 formatted point in time when the restore job expires.
      */
-    public /*out*/ readonly expiresAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly expiresAt: pulumi.Output<string>;
     /**
      * Indicates whether the restore job failed.
      */
-    public /*out*/ readonly failed!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly failed: pulumi.Output<boolean>;
     /**
      * UTC ISO 8601 formatted point in time when the restore job completed.
      */
-    public /*out*/ readonly finishedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly finishedAt: pulumi.Output<string>;
     /**
      * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      */
-    public readonly snapshotId!: pulumi.Output<string | undefined>;
+    declare public readonly snapshotId: pulumi.Output<string | undefined>;
     /**
      * The unique identifier of the restore job.
      */
-    public /*out*/ readonly snapshotRestoreJobId!: pulumi.Output<string>;
+    declare public /*out*/ readonly snapshotRestoreJobId: pulumi.Output<string>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
      * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
@@ -243,7 +243,7 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      * * Enable Continuous Cloud Backup on your cluster.
      * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
      */
-    public /*out*/ readonly timestamp!: pulumi.Output<string>;
+    declare public /*out*/ readonly timestamp: pulumi.Output<string>;
 
     /**
      * Create a CloudBackupSnapshotRestoreJob resource with the given unique name, arguments, and options.
@@ -258,30 +258,30 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudBackupSnapshotRestoreJobState | undefined;
-            resourceInputs["cancelled"] = state ? state.cancelled : undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["deliveryTypeConfig"] = state ? state.deliveryTypeConfig : undefined;
-            resourceInputs["deliveryUrls"] = state ? state.deliveryUrls : undefined;
-            resourceInputs["expired"] = state ? state.expired : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["failed"] = state ? state.failed : undefined;
-            resourceInputs["finishedAt"] = state ? state.finishedAt : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
-            resourceInputs["snapshotRestoreJobId"] = state ? state.snapshotRestoreJobId : undefined;
-            resourceInputs["timestamp"] = state ? state.timestamp : undefined;
+            resourceInputs["cancelled"] = state?.cancelled;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["deliveryTypeConfig"] = state?.deliveryTypeConfig;
+            resourceInputs["deliveryUrls"] = state?.deliveryUrls;
+            resourceInputs["expired"] = state?.expired;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["failed"] = state?.failed;
+            resourceInputs["finishedAt"] = state?.finishedAt;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["snapshotId"] = state?.snapshotId;
+            resourceInputs["snapshotRestoreJobId"] = state?.snapshotRestoreJobId;
+            resourceInputs["timestamp"] = state?.timestamp;
         } else {
             const args = argsOrState as CloudBackupSnapshotRestoreJobArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !opts.urn) {
+            if (args?.clusterName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["deliveryTypeConfig"] = args ? args.deliveryTypeConfig : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["deliveryTypeConfig"] = args?.deliveryTypeConfig;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["snapshotId"] = args?.snapshotId;
             resourceInputs["cancelled"] = undefined /*out*/;
             resourceInputs["deliveryUrls"] = undefined /*out*/;
             resourceInputs["expired"] = undefined /*out*/;

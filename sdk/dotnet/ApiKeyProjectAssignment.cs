@@ -101,8 +101,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-        /// Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        /// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<string>> Roles { get; private set; } = null!;
@@ -169,8 +168,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roles;
 
         /// <summary>
-        /// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-        /// Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        /// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         /// </summary>
         public InputList<string> Roles
         {
@@ -202,8 +200,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roles;
 
         /// <summary>
-        /// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-        /// Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        /// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         /// </summary>
         public InputList<string> Roles
         {

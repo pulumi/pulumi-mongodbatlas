@@ -34,13 +34,13 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
         return obj['__pulumiType'] === CloudProviderAccessSetup.__pulumiType;
     }
 
-    public /*out*/ readonly awsConfigs!: pulumi.Output<outputs.CloudProviderAccessSetupAwsConfig[]>;
-    public readonly azureConfigs!: pulumi.Output<outputs.CloudProviderAccessSetupAzureConfig[] | undefined>;
-    public /*out*/ readonly createdDate!: pulumi.Output<string>;
-    public /*out*/ readonly lastUpdatedDate!: pulumi.Output<string>;
-    public readonly projectId!: pulumi.Output<string>;
-    public readonly providerName!: pulumi.Output<string>;
-    public /*out*/ readonly roleId!: pulumi.Output<string>;
+    declare public /*out*/ readonly awsConfigs: pulumi.Output<outputs.CloudProviderAccessSetupAwsConfig[]>;
+    declare public readonly azureConfigs: pulumi.Output<outputs.CloudProviderAccessSetupAzureConfig[] | undefined>;
+    declare public /*out*/ readonly createdDate: pulumi.Output<string>;
+    declare public /*out*/ readonly lastUpdatedDate: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly providerName: pulumi.Output<string>;
+    declare public /*out*/ readonly roleId: pulumi.Output<string>;
 
     /**
      * Create a CloudProviderAccessSetup resource with the given unique name, arguments, and options.
@@ -55,24 +55,24 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudProviderAccessSetupState | undefined;
-            resourceInputs["awsConfigs"] = state ? state.awsConfigs : undefined;
-            resourceInputs["azureConfigs"] = state ? state.azureConfigs : undefined;
-            resourceInputs["createdDate"] = state ? state.createdDate : undefined;
-            resourceInputs["lastUpdatedDate"] = state ? state.lastUpdatedDate : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["providerName"] = state ? state.providerName : undefined;
-            resourceInputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["awsConfigs"] = state?.awsConfigs;
+            resourceInputs["azureConfigs"] = state?.azureConfigs;
+            resourceInputs["createdDate"] = state?.createdDate;
+            resourceInputs["lastUpdatedDate"] = state?.lastUpdatedDate;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["providerName"] = state?.providerName;
+            resourceInputs["roleId"] = state?.roleId;
         } else {
             const args = argsOrState as CloudProviderAccessSetupArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !opts.urn) {
+            if (args?.providerName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            resourceInputs["azureConfigs"] = args ? args.azureConfigs : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["azureConfigs"] = args?.azureConfigs;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["providerName"] = args?.providerName;
             resourceInputs["awsConfigs"] = undefined /*out*/;
             resourceInputs["createdDate"] = undefined /*out*/;
             resourceInputs["lastUpdatedDate"] = undefined /*out*/;

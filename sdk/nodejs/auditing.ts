@@ -63,28 +63,28 @@ export class Auditing extends pulumi.CustomResource {
     /**
      * Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      */
-    public readonly auditAuthorizationSuccess!: pulumi.Output<boolean>;
+    declare public readonly auditAuthorizationSuccess: pulumi.Output<boolean>;
     /**
      * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
      */
-    public readonly auditFilter!: pulumi.Output<string>;
+    declare public readonly auditFilter: pulumi.Output<string>;
     /**
      * Denotes the configuration method for the audit filter. Possible values are: 
      * * NONE - auditing not configured for the project.
      * * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
      * * FILTER_JSON - auditing configured via Atlas custom filter or API.
      */
-    public /*out*/ readonly configurationType!: pulumi.Output<string>;
+    declare public /*out*/ readonly configurationType: pulumi.Output<string>;
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
      *
      * > **NOTE:** Auditing created by API Keys must belong to an existing organization.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
 
     /**
      * Create a Auditing resource with the given unique name, arguments, and options.
@@ -99,20 +99,20 @@ export class Auditing extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuditingState | undefined;
-            resourceInputs["auditAuthorizationSuccess"] = state ? state.auditAuthorizationSuccess : undefined;
-            resourceInputs["auditFilter"] = state ? state.auditFilter : undefined;
-            resourceInputs["configurationType"] = state ? state.configurationType : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["auditAuthorizationSuccess"] = state?.auditAuthorizationSuccess;
+            resourceInputs["auditFilter"] = state?.auditFilter;
+            resourceInputs["configurationType"] = state?.configurationType;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as AuditingArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["auditAuthorizationSuccess"] = args ? args.auditAuthorizationSuccess : undefined;
-            resourceInputs["auditFilter"] = args ? args.auditFilter : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["auditAuthorizationSuccess"] = args?.auditAuthorizationSuccess;
+            resourceInputs["auditFilter"] = args?.auditFilter;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["configurationType"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

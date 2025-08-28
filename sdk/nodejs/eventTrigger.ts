@@ -163,87 +163,87 @@ export class EventTrigger extends pulumi.CustomResource {
      * The ObjectID of your application.
      * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
      */
-    public readonly appId!: pulumi.Output<string>;
+    declare public readonly appId: pulumi.Output<string>;
     /**
      * Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      */
-    public readonly configCollection!: pulumi.Output<string>;
+    declare public readonly configCollection: pulumi.Output<string>;
     /**
      * Required for `DATABASE` type. The name of the MongoDB database to watch.
      */
-    public readonly configDatabase!: pulumi.Output<string>;
+    declare public readonly configDatabase: pulumi.Output<string>;
     /**
      * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
-    public readonly configFullDocument!: pulumi.Output<boolean>;
-    public readonly configFullDocumentBefore!: pulumi.Output<boolean>;
+    declare public readonly configFullDocument: pulumi.Output<boolean>;
+    declare public readonly configFullDocumentBefore: pulumi.Output<boolean>;
     /**
      * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      */
-    public readonly configMatch!: pulumi.Output<string>;
+    declare public readonly configMatch: pulumi.Output<string>;
     /**
      * Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      */
-    public readonly configOperationType!: pulumi.Output<string>;
+    declare public readonly configOperationType: pulumi.Output<string>;
     /**
      * Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      */
-    public readonly configOperationTypes!: pulumi.Output<string[]>;
+    declare public readonly configOperationTypes: pulumi.Output<string[]>;
     /**
      * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
-    public readonly configProject!: pulumi.Output<string>;
+    declare public readonly configProject: pulumi.Output<string>;
     /**
      * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
      */
-    public readonly configProviders!: pulumi.Output<string[]>;
+    declare public readonly configProviders: pulumi.Output<string[]>;
     /**
      * Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
      */
-    public readonly configSchedule!: pulumi.Output<string>;
-    public /*out*/ readonly configScheduleType!: pulumi.Output<string>;
+    declare public readonly configSchedule: pulumi.Output<string>;
+    declare public /*out*/ readonly configScheduleType: pulumi.Output<string>;
     /**
      * Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
      */
-    public readonly configServiceId!: pulumi.Output<string>;
+    declare public readonly configServiceId: pulumi.Output<string>;
     /**
      * Default: `false` If `true`, the trigger is disabled.
      */
-    public readonly disabled!: pulumi.Output<boolean>;
+    declare public readonly disabled: pulumi.Output<boolean>;
     /**
      * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
      * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      */
-    public readonly eventProcessors!: pulumi.Output<outputs.EventTriggerEventProcessors | undefined>;
+    declare public readonly eventProcessors: pulumi.Output<outputs.EventTriggerEventProcessors | undefined>;
     /**
      * The ID of the function associated with the trigger.
      */
-    public readonly functionId!: pulumi.Output<string | undefined>;
+    declare public readonly functionId: pulumi.Output<string | undefined>;
     /**
      * The name of the function associated with the trigger.
      */
-    public /*out*/ readonly functionName!: pulumi.Output<string>;
+    declare public /*out*/ readonly functionName: pulumi.Output<string>;
     /**
      * The name of the trigger.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The unique ID for the project to create the trigger.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The unique ID of the trigger.
      */
-    public /*out*/ readonly triggerId!: pulumi.Output<string>;
+    declare public /*out*/ readonly triggerId: pulumi.Output<string>;
     /**
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
      */
-    public readonly unordered!: pulumi.Output<boolean>;
+    declare public readonly unordered: pulumi.Output<boolean>;
 
     /**
      * Create a EventTrigger resource with the given unique name, arguments, and options.
@@ -258,58 +258,58 @@ export class EventTrigger extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EventTriggerState | undefined;
-            resourceInputs["appId"] = state ? state.appId : undefined;
-            resourceInputs["configCollection"] = state ? state.configCollection : undefined;
-            resourceInputs["configDatabase"] = state ? state.configDatabase : undefined;
-            resourceInputs["configFullDocument"] = state ? state.configFullDocument : undefined;
-            resourceInputs["configFullDocumentBefore"] = state ? state.configFullDocumentBefore : undefined;
-            resourceInputs["configMatch"] = state ? state.configMatch : undefined;
-            resourceInputs["configOperationType"] = state ? state.configOperationType : undefined;
-            resourceInputs["configOperationTypes"] = state ? state.configOperationTypes : undefined;
-            resourceInputs["configProject"] = state ? state.configProject : undefined;
-            resourceInputs["configProviders"] = state ? state.configProviders : undefined;
-            resourceInputs["configSchedule"] = state ? state.configSchedule : undefined;
-            resourceInputs["configScheduleType"] = state ? state.configScheduleType : undefined;
-            resourceInputs["configServiceId"] = state ? state.configServiceId : undefined;
-            resourceInputs["disabled"] = state ? state.disabled : undefined;
-            resourceInputs["eventProcessors"] = state ? state.eventProcessors : undefined;
-            resourceInputs["functionId"] = state ? state.functionId : undefined;
-            resourceInputs["functionName"] = state ? state.functionName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["triggerId"] = state ? state.triggerId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["unordered"] = state ? state.unordered : undefined;
+            resourceInputs["appId"] = state?.appId;
+            resourceInputs["configCollection"] = state?.configCollection;
+            resourceInputs["configDatabase"] = state?.configDatabase;
+            resourceInputs["configFullDocument"] = state?.configFullDocument;
+            resourceInputs["configFullDocumentBefore"] = state?.configFullDocumentBefore;
+            resourceInputs["configMatch"] = state?.configMatch;
+            resourceInputs["configOperationType"] = state?.configOperationType;
+            resourceInputs["configOperationTypes"] = state?.configOperationTypes;
+            resourceInputs["configProject"] = state?.configProject;
+            resourceInputs["configProviders"] = state?.configProviders;
+            resourceInputs["configSchedule"] = state?.configSchedule;
+            resourceInputs["configScheduleType"] = state?.configScheduleType;
+            resourceInputs["configServiceId"] = state?.configServiceId;
+            resourceInputs["disabled"] = state?.disabled;
+            resourceInputs["eventProcessors"] = state?.eventProcessors;
+            resourceInputs["functionId"] = state?.functionId;
+            resourceInputs["functionName"] = state?.functionName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["triggerId"] = state?.triggerId;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["unordered"] = state?.unordered;
         } else {
             const args = argsOrState as EventTriggerArgs | undefined;
-            if ((!args || args.appId === undefined) && !opts.urn) {
+            if (args?.appId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'appId'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["appId"] = args ? args.appId : undefined;
-            resourceInputs["configCollection"] = args ? args.configCollection : undefined;
-            resourceInputs["configDatabase"] = args ? args.configDatabase : undefined;
-            resourceInputs["configFullDocument"] = args ? args.configFullDocument : undefined;
-            resourceInputs["configFullDocumentBefore"] = args ? args.configFullDocumentBefore : undefined;
-            resourceInputs["configMatch"] = args ? args.configMatch : undefined;
-            resourceInputs["configOperationType"] = args ? args.configOperationType : undefined;
-            resourceInputs["configOperationTypes"] = args ? args.configOperationTypes : undefined;
-            resourceInputs["configProject"] = args ? args.configProject : undefined;
-            resourceInputs["configProviders"] = args ? args.configProviders : undefined;
-            resourceInputs["configSchedule"] = args ? args.configSchedule : undefined;
-            resourceInputs["configServiceId"] = args ? args.configServiceId : undefined;
-            resourceInputs["disabled"] = args ? args.disabled : undefined;
-            resourceInputs["eventProcessors"] = args ? args.eventProcessors : undefined;
-            resourceInputs["functionId"] = args ? args.functionId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["unordered"] = args ? args.unordered : undefined;
+            resourceInputs["appId"] = args?.appId;
+            resourceInputs["configCollection"] = args?.configCollection;
+            resourceInputs["configDatabase"] = args?.configDatabase;
+            resourceInputs["configFullDocument"] = args?.configFullDocument;
+            resourceInputs["configFullDocumentBefore"] = args?.configFullDocumentBefore;
+            resourceInputs["configMatch"] = args?.configMatch;
+            resourceInputs["configOperationType"] = args?.configOperationType;
+            resourceInputs["configOperationTypes"] = args?.configOperationTypes;
+            resourceInputs["configProject"] = args?.configProject;
+            resourceInputs["configProviders"] = args?.configProviders;
+            resourceInputs["configSchedule"] = args?.configSchedule;
+            resourceInputs["configServiceId"] = args?.configServiceId;
+            resourceInputs["disabled"] = args?.disabled;
+            resourceInputs["eventProcessors"] = args?.eventProcessors;
+            resourceInputs["functionId"] = args?.functionId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["unordered"] = args?.unordered;
             resourceInputs["configScheduleType"] = undefined /*out*/;
             resourceInputs["functionName"] = undefined /*out*/;
             resourceInputs["triggerId"] = undefined /*out*/;

@@ -68,24 +68,24 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
         return obj['__pulumiType'] === ThirdPartyIntegration.__pulumiType;
     }
 
-    public readonly apiKey!: pulumi.Output<string>;
-    public readonly channelName!: pulumi.Output<string>;
-    public readonly enabled!: pulumi.Output<boolean>;
-    public readonly microsoftTeamsWebhookUrl!: pulumi.Output<string>;
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly apiKey: pulumi.Output<string>;
+    declare public readonly channelName: pulumi.Output<string>;
+    declare public readonly enabled: pulumi.Output<boolean>;
+    declare public readonly microsoftTeamsWebhookUrl: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
-    public readonly projectId!: pulumi.Output<string>;
-    public readonly region!: pulumi.Output<string>;
-    public readonly routingKey!: pulumi.Output<string>;
-    public readonly secret!: pulumi.Output<string | undefined>;
-    public readonly sendCollectionLatencyMetrics!: pulumi.Output<boolean>;
-    public readonly sendDatabaseMetrics!: pulumi.Output<boolean>;
-    public readonly sendUserProvidedResourceTags!: pulumi.Output<boolean>;
-    public readonly serviceDiscovery!: pulumi.Output<string>;
-    public readonly serviceKey!: pulumi.Output<string>;
-    public readonly teamName!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
+    declare public readonly routingKey: pulumi.Output<string>;
+    declare public readonly secret: pulumi.Output<string | undefined>;
+    declare public readonly sendCollectionLatencyMetrics: pulumi.Output<boolean>;
+    declare public readonly sendDatabaseMetrics: pulumi.Output<boolean>;
+    declare public readonly sendUserProvidedResourceTags: pulumi.Output<boolean>;
+    declare public readonly serviceDiscovery: pulumi.Output<string>;
+    declare public readonly serviceKey: pulumi.Output<string>;
+    declare public readonly teamName: pulumi.Output<string>;
     /**
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
@@ -99,9 +99,9 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      *
      * * `PAGER_DUTY`
      */
-    public readonly type!: pulumi.Output<string>;
-    public readonly url!: pulumi.Output<string>;
-    public readonly userName!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string>;
+    declare public readonly userName: pulumi.Output<string>;
 
     /**
      * Create a ThirdPartyIntegration resource with the given unique name, arguments, and options.
@@ -116,49 +116,49 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ThirdPartyIntegrationState | undefined;
-            resourceInputs["apiKey"] = state ? state.apiKey : undefined;
-            resourceInputs["channelName"] = state ? state.channelName : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["microsoftTeamsWebhookUrl"] = state ? state.microsoftTeamsWebhookUrl : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["routingKey"] = state ? state.routingKey : undefined;
-            resourceInputs["secret"] = state ? state.secret : undefined;
-            resourceInputs["sendCollectionLatencyMetrics"] = state ? state.sendCollectionLatencyMetrics : undefined;
-            resourceInputs["sendDatabaseMetrics"] = state ? state.sendDatabaseMetrics : undefined;
-            resourceInputs["sendUserProvidedResourceTags"] = state ? state.sendUserProvidedResourceTags : undefined;
-            resourceInputs["serviceDiscovery"] = state ? state.serviceDiscovery : undefined;
-            resourceInputs["serviceKey"] = state ? state.serviceKey : undefined;
-            resourceInputs["teamName"] = state ? state.teamName : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["userName"] = state ? state.userName : undefined;
+            resourceInputs["apiKey"] = state?.apiKey;
+            resourceInputs["channelName"] = state?.channelName;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["microsoftTeamsWebhookUrl"] = state?.microsoftTeamsWebhookUrl;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["routingKey"] = state?.routingKey;
+            resourceInputs["secret"] = state?.secret;
+            resourceInputs["sendCollectionLatencyMetrics"] = state?.sendCollectionLatencyMetrics;
+            resourceInputs["sendDatabaseMetrics"] = state?.sendDatabaseMetrics;
+            resourceInputs["sendUserProvidedResourceTags"] = state?.sendUserProvidedResourceTags;
+            resourceInputs["serviceDiscovery"] = state?.serviceDiscovery;
+            resourceInputs["serviceKey"] = state?.serviceKey;
+            resourceInputs["teamName"] = state?.teamName;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["userName"] = state?.userName;
         } else {
             const args = argsOrState as ThirdPartyIntegrationArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
-            resourceInputs["channelName"] = args ? args.channelName : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["channelName"] = args?.channelName;
+            resourceInputs["enabled"] = args?.enabled;
             resourceInputs["microsoftTeamsWebhookUrl"] = args?.microsoftTeamsWebhookUrl ? pulumi.secret(args.microsoftTeamsWebhookUrl) : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["routingKey"] = args?.routingKey ? pulumi.secret(args.routingKey) : undefined;
             resourceInputs["secret"] = args?.secret ? pulumi.secret(args.secret) : undefined;
-            resourceInputs["sendCollectionLatencyMetrics"] = args ? args.sendCollectionLatencyMetrics : undefined;
-            resourceInputs["sendDatabaseMetrics"] = args ? args.sendDatabaseMetrics : undefined;
-            resourceInputs["sendUserProvidedResourceTags"] = args ? args.sendUserProvidedResourceTags : undefined;
+            resourceInputs["sendCollectionLatencyMetrics"] = args?.sendCollectionLatencyMetrics;
+            resourceInputs["sendDatabaseMetrics"] = args?.sendDatabaseMetrics;
+            resourceInputs["sendUserProvidedResourceTags"] = args?.sendUserProvidedResourceTags;
             resourceInputs["serviceDiscovery"] = args?.serviceDiscovery ? pulumi.secret(args.serviceDiscovery) : undefined;
             resourceInputs["serviceKey"] = args?.serviceKey ? pulumi.secret(args.serviceKey) : undefined;
-            resourceInputs["teamName"] = args ? args.teamName : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["teamName"] = args?.teamName;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["url"] = args?.url;
             resourceInputs["userName"] = args?.userName ? pulumi.secret(args.userName) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -76,31 +76,31 @@ export class ProjectInvitation extends pulumi.CustomResource {
     /**
      * Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
      */
-    public /*out*/ readonly expiresAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly expiresAt: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
      */
-    public /*out*/ readonly invitationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly invitationId: pulumi.Output<string>;
     /**
      * Atlas user who invited `username` to the project.
      */
-    public /*out*/ readonly inviterUsername!: pulumi.Output<string>;
+    declare public /*out*/ readonly inviterUsername: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      */
-    public readonly roles!: pulumi.Output<string[]>;
+    declare public readonly roles: pulumi.Output<string[]>;
     /**
      * Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a ProjectInvitation resource with the given unique name, arguments, and options.
@@ -115,27 +115,27 @@ export class ProjectInvitation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectInvitationState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["invitationId"] = state ? state.invitationId : undefined;
-            resourceInputs["inviterUsername"] = state ? state.inviterUsername : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["roles"] = state ? state.roles : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["invitationId"] = state?.invitationId;
+            resourceInputs["inviterUsername"] = state?.inviterUsername;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["roles"] = state?.roles;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as ProjectInvitationArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.roles === undefined) && !opts.urn) {
+            if (args?.roles === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roles'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["roles"] = args ? args.roles : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["roles"] = args?.roles;
+            resourceInputs["username"] = args?.username;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;
             resourceInputs["invitationId"] = undefined /*out*/;

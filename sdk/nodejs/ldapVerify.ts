@@ -89,47 +89,47 @@ export class LdapVerify extends pulumi.CustomResource {
     /**
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      */
-    public readonly authzQueryTemplate!: pulumi.Output<string>;
+    declare public readonly authzQueryTemplate: pulumi.Output<string>;
     /**
      * The password used to authenticate the `bindUsername`.
      */
-    public readonly bindPassword!: pulumi.Output<string>;
+    declare public readonly bindPassword: pulumi.Output<string>;
     /**
      * The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
      */
-    public readonly bindUsername!: pulumi.Output<string>;
+    declare public readonly bindUsername: pulumi.Output<string>;
     /**
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      */
-    public readonly caCertificate!: pulumi.Output<string>;
+    declare public readonly caCertificate: pulumi.Output<string>;
     /**
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      */
-    public readonly hostname!: pulumi.Output<string>;
+    declare public readonly hostname: pulumi.Output<string>;
     /**
      * One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
      */
-    public /*out*/ readonly links!: pulumi.Output<outputs.LdapVerifyLink[]>;
+    declare public /*out*/ readonly links: pulumi.Output<outputs.LdapVerifyLink[]>;
     /**
      * The port to which the LDAP server listens for client connections. Default: `636`
      */
-    public readonly port!: pulumi.Output<number>;
+    declare public readonly port: pulumi.Output<number>;
     /**
      * The unique ID for the project to configure LDAP.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
      */
-    public /*out*/ readonly requestId!: pulumi.Output<string>;
+    declare public /*out*/ readonly requestId: pulumi.Output<string>;
     /**
      * The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
      */
-    public /*out*/ readonly validations!: pulumi.Output<outputs.LdapVerifyValidation[]>;
+    declare public /*out*/ readonly validations: pulumi.Output<outputs.LdapVerifyValidation[]>;
 
     /**
      * Create a LdapVerify resource with the given unique name, arguments, and options.
@@ -144,41 +144,41 @@ export class LdapVerify extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LdapVerifyState | undefined;
-            resourceInputs["authzQueryTemplate"] = state ? state.authzQueryTemplate : undefined;
-            resourceInputs["bindPassword"] = state ? state.bindPassword : undefined;
-            resourceInputs["bindUsername"] = state ? state.bindUsername : undefined;
-            resourceInputs["caCertificate"] = state ? state.caCertificate : undefined;
-            resourceInputs["hostname"] = state ? state.hostname : undefined;
-            resourceInputs["links"] = state ? state.links : undefined;
-            resourceInputs["port"] = state ? state.port : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["requestId"] = state ? state.requestId : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["validations"] = state ? state.validations : undefined;
+            resourceInputs["authzQueryTemplate"] = state?.authzQueryTemplate;
+            resourceInputs["bindPassword"] = state?.bindPassword;
+            resourceInputs["bindUsername"] = state?.bindUsername;
+            resourceInputs["caCertificate"] = state?.caCertificate;
+            resourceInputs["hostname"] = state?.hostname;
+            resourceInputs["links"] = state?.links;
+            resourceInputs["port"] = state?.port;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["requestId"] = state?.requestId;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["validations"] = state?.validations;
         } else {
             const args = argsOrState as LdapVerifyArgs | undefined;
-            if ((!args || args.bindPassword === undefined) && !opts.urn) {
+            if (args?.bindPassword === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bindPassword'");
             }
-            if ((!args || args.bindUsername === undefined) && !opts.urn) {
+            if (args?.bindUsername === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bindUsername'");
             }
-            if ((!args || args.hostname === undefined) && !opts.urn) {
+            if (args?.hostname === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hostname'");
             }
-            if ((!args || args.port === undefined) && !opts.urn) {
+            if (args?.port === undefined && !opts.urn) {
                 throw new Error("Missing required property 'port'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["authzQueryTemplate"] = args ? args.authzQueryTemplate : undefined;
-            resourceInputs["bindPassword"] = args ? args.bindPassword : undefined;
-            resourceInputs["bindUsername"] = args ? args.bindUsername : undefined;
-            resourceInputs["caCertificate"] = args ? args.caCertificate : undefined;
-            resourceInputs["hostname"] = args ? args.hostname : undefined;
-            resourceInputs["port"] = args ? args.port : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["authzQueryTemplate"] = args?.authzQueryTemplate;
+            resourceInputs["bindPassword"] = args?.bindPassword;
+            resourceInputs["bindUsername"] = args?.bindUsername;
+            resourceInputs["caCertificate"] = args?.caCertificate;
+            resourceInputs["hostname"] = args?.hostname;
+            resourceInputs["port"] = args?.port;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["links"] = undefined /*out*/;
             resourceInputs["requestId"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;

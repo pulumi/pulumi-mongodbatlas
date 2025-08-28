@@ -52,51 +52,51 @@ export class FlexCluster extends pulumi.CustomResource {
     /**
      * Flex backup configuration
      */
-    public /*out*/ readonly backupSettings!: pulumi.Output<outputs.FlexClusterBackupSettings>;
+    declare public /*out*/ readonly backupSettings: pulumi.Output<outputs.FlexClusterBackupSettings>;
     /**
      * Flex cluster topology.
      */
-    public /*out*/ readonly clusterType!: pulumi.Output<string>;
+    declare public /*out*/ readonly clusterType: pulumi.Output<string>;
     /**
      * Collection of Uniform Resource Locators that point to the MongoDB database.
      */
-    public /*out*/ readonly connectionStrings!: pulumi.Output<outputs.FlexClusterConnectionStrings>;
+    declare public /*out*/ readonly connectionStrings: pulumi.Output<outputs.FlexClusterConnectionStrings>;
     /**
      * Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
      */
-    public /*out*/ readonly createDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly createDate: pulumi.Output<string>;
     /**
      * Version of MongoDB that the instance runs.
      */
-    public /*out*/ readonly mongoDbVersion!: pulumi.Output<string>;
+    declare public /*out*/ readonly mongoDbVersion: pulumi.Output<string>;
     /**
      * Human-readable label that identifies the instance.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal character string that identifies the project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
      */
-    public readonly providerSettings!: pulumi.Output<outputs.FlexClusterProviderSettings>;
+    declare public readonly providerSettings: pulumi.Output<outputs.FlexClusterProviderSettings>;
     /**
      * Human-readable label that indicates the current operating condition of this instance.
      */
-    public /*out*/ readonly stateName!: pulumi.Output<string>;
+    declare public /*out*/ readonly stateName: pulumi.Output<string>;
     /**
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
      */
-    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
      */
-    public readonly terminationProtectionEnabled!: pulumi.Output<boolean>;
+    declare public readonly terminationProtectionEnabled: pulumi.Output<boolean>;
     /**
      * Method by which the cluster maintains the MongoDB versions.
      */
-    public /*out*/ readonly versionReleaseSystem!: pulumi.Output<string>;
+    declare public /*out*/ readonly versionReleaseSystem: pulumi.Output<string>;
 
     /**
      * Create a FlexCluster resource with the given unique name, arguments, and options.
@@ -111,31 +111,31 @@ export class FlexCluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FlexClusterState | undefined;
-            resourceInputs["backupSettings"] = state ? state.backupSettings : undefined;
-            resourceInputs["clusterType"] = state ? state.clusterType : undefined;
-            resourceInputs["connectionStrings"] = state ? state.connectionStrings : undefined;
-            resourceInputs["createDate"] = state ? state.createDate : undefined;
-            resourceInputs["mongoDbVersion"] = state ? state.mongoDbVersion : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["providerSettings"] = state ? state.providerSettings : undefined;
-            resourceInputs["stateName"] = state ? state.stateName : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["terminationProtectionEnabled"] = state ? state.terminationProtectionEnabled : undefined;
-            resourceInputs["versionReleaseSystem"] = state ? state.versionReleaseSystem : undefined;
+            resourceInputs["backupSettings"] = state?.backupSettings;
+            resourceInputs["clusterType"] = state?.clusterType;
+            resourceInputs["connectionStrings"] = state?.connectionStrings;
+            resourceInputs["createDate"] = state?.createDate;
+            resourceInputs["mongoDbVersion"] = state?.mongoDbVersion;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["providerSettings"] = state?.providerSettings;
+            resourceInputs["stateName"] = state?.stateName;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["terminationProtectionEnabled"] = state?.terminationProtectionEnabled;
+            resourceInputs["versionReleaseSystem"] = state?.versionReleaseSystem;
         } else {
             const args = argsOrState as FlexClusterArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerSettings === undefined) && !opts.urn) {
+            if (args?.providerSettings === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerSettings'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["providerSettings"] = args ? args.providerSettings : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["providerSettings"] = args?.providerSettings;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["terminationProtectionEnabled"] = args?.terminationProtectionEnabled;
             resourceInputs["backupSettings"] = undefined /*out*/;
             resourceInputs["clusterType"] = undefined /*out*/;
             resourceInputs["connectionStrings"] = undefined /*out*/;

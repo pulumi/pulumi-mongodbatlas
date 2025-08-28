@@ -149,59 +149,59 @@ export class OnlineArchive extends pulumi.CustomResource {
     /**
      * ID of the online archive.
      */
-    public /*out*/ readonly archiveId!: pulumi.Output<string>;
+    declare public /*out*/ readonly archiveId: pulumi.Output<string>;
     /**
      * Name of the cluster that contains the collection.
      */
-    public readonly clusterName!: pulumi.Output<string>;
+    declare public readonly clusterName: pulumi.Output<string>;
     /**
      * Name of the collection.
      */
-    public readonly collName!: pulumi.Output<string>;
+    declare public readonly collName: pulumi.Output<string>;
     /**
      * Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
      */
-    public readonly collectionType!: pulumi.Output<string>;
+    declare public readonly collectionType: pulumi.Output<string>;
     /**
      * Criteria to use for archiving data. See criteria.
      */
-    public readonly criteria!: pulumi.Output<outputs.OnlineArchiveCriteria>;
+    declare public readonly criteria: pulumi.Output<outputs.OnlineArchiveCriteria>;
     /**
      * Rule for specifying when data should be deleted from the archive. See data expiration rule.
      */
-    public readonly dataExpirationRule!: pulumi.Output<outputs.OnlineArchiveDataExpirationRule | undefined>;
+    declare public readonly dataExpirationRule: pulumi.Output<outputs.OnlineArchiveDataExpirationRule | undefined>;
     /**
      * Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
      */
-    public readonly dataProcessRegion!: pulumi.Output<outputs.OnlineArchiveDataProcessRegion>;
+    declare public readonly dataProcessRegion: pulumi.Output<outputs.OnlineArchiveDataProcessRegion>;
     /**
      * Name of the database that contains the collection.
      */
-    public readonly dbName!: pulumi.Output<string>;
+    declare public readonly dbName: pulumi.Output<string>;
     /**
      * Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `dateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      */
-    public readonly partitionFields!: pulumi.Output<outputs.OnlineArchivePartitionField[]>;
+    declare public readonly partitionFields: pulumi.Output<outputs.OnlineArchivePartitionField[]>;
     /**
      * State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      */
-    public readonly paused!: pulumi.Output<boolean>;
+    declare public readonly paused: pulumi.Output<boolean>;
     /**
      * The unique ID for the project
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Regular frequency and duration when archiving process occurs. See schedule.
      */
-    public readonly schedule!: pulumi.Output<outputs.OnlineArchiveSchedule | undefined>;
+    declare public readonly schedule: pulumi.Output<outputs.OnlineArchiveSchedule | undefined>;
     /**
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
      */
-    public readonly syncCreation!: pulumi.Output<boolean | undefined>;
+    declare public readonly syncCreation: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a OnlineArchive resource with the given unique name, arguments, and options.
@@ -216,49 +216,49 @@ export class OnlineArchive extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OnlineArchiveState | undefined;
-            resourceInputs["archiveId"] = state ? state.archiveId : undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["collName"] = state ? state.collName : undefined;
-            resourceInputs["collectionType"] = state ? state.collectionType : undefined;
-            resourceInputs["criteria"] = state ? state.criteria : undefined;
-            resourceInputs["dataExpirationRule"] = state ? state.dataExpirationRule : undefined;
-            resourceInputs["dataProcessRegion"] = state ? state.dataProcessRegion : undefined;
-            resourceInputs["dbName"] = state ? state.dbName : undefined;
-            resourceInputs["partitionFields"] = state ? state.partitionFields : undefined;
-            resourceInputs["paused"] = state ? state.paused : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["schedule"] = state ? state.schedule : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["syncCreation"] = state ? state.syncCreation : undefined;
+            resourceInputs["archiveId"] = state?.archiveId;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["collName"] = state?.collName;
+            resourceInputs["collectionType"] = state?.collectionType;
+            resourceInputs["criteria"] = state?.criteria;
+            resourceInputs["dataExpirationRule"] = state?.dataExpirationRule;
+            resourceInputs["dataProcessRegion"] = state?.dataProcessRegion;
+            resourceInputs["dbName"] = state?.dbName;
+            resourceInputs["partitionFields"] = state?.partitionFields;
+            resourceInputs["paused"] = state?.paused;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["schedule"] = state?.schedule;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["syncCreation"] = state?.syncCreation;
         } else {
             const args = argsOrState as OnlineArchiveArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !opts.urn) {
+            if (args?.clusterName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.collName === undefined) && !opts.urn) {
+            if (args?.collName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'collName'");
             }
-            if ((!args || args.criteria === undefined) && !opts.urn) {
+            if (args?.criteria === undefined && !opts.urn) {
                 throw new Error("Missing required property 'criteria'");
             }
-            if ((!args || args.dbName === undefined) && !opts.urn) {
+            if (args?.dbName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dbName'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["collName"] = args ? args.collName : undefined;
-            resourceInputs["collectionType"] = args ? args.collectionType : undefined;
-            resourceInputs["criteria"] = args ? args.criteria : undefined;
-            resourceInputs["dataExpirationRule"] = args ? args.dataExpirationRule : undefined;
-            resourceInputs["dataProcessRegion"] = args ? args.dataProcessRegion : undefined;
-            resourceInputs["dbName"] = args ? args.dbName : undefined;
-            resourceInputs["partitionFields"] = args ? args.partitionFields : undefined;
-            resourceInputs["paused"] = args ? args.paused : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["schedule"] = args ? args.schedule : undefined;
-            resourceInputs["syncCreation"] = args ? args.syncCreation : undefined;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["collName"] = args?.collName;
+            resourceInputs["collectionType"] = args?.collectionType;
+            resourceInputs["criteria"] = args?.criteria;
+            resourceInputs["dataExpirationRule"] = args?.dataExpirationRule;
+            resourceInputs["dataProcessRegion"] = args?.dataProcessRegion;
+            resourceInputs["dbName"] = args?.dbName;
+            resourceInputs["partitionFields"] = args?.partitionFields;
+            resourceInputs["paused"] = args?.paused;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["schedule"] = args?.schedule;
+            resourceInputs["syncCreation"] = args?.syncCreation;
             resourceInputs["archiveId"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
         }

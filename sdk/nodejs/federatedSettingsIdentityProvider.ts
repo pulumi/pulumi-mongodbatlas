@@ -91,83 +91,83 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
     /**
      * List that contains the domains associated with the identity provider.
      */
-    public readonly associatedDomains!: pulumi.Output<string[] | undefined>;
+    declare public readonly associatedDomains: pulumi.Output<string[] | undefined>;
     /**
      * Identifier of the intended recipient of the token used in OIDC IdP.
      */
-    public readonly audience!: pulumi.Output<string | undefined>;
+    declare public readonly audience: pulumi.Output<string | undefined>;
     /**
      * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
      */
-    public readonly authorizationType!: pulumi.Output<string | undefined>;
+    declare public readonly authorizationType: pulumi.Output<string | undefined>;
     /**
      * Client identifier that is assigned to an application by the OIDC Identity Provider.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The description of the identity provider.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
-    public readonly federationSettingsId!: pulumi.Output<string>;
+    declare public readonly federationSettingsId: pulumi.Output<string>;
     /**
      * Identifier of the claim which contains OIDC IdP Group IDs in the token.
      */
-    public readonly groupsClaim!: pulumi.Output<string | undefined>;
+    declare public readonly groupsClaim: pulumi.Output<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the IdP.
      */
-    public /*out*/ readonly idpId!: pulumi.Output<string>;
-    public readonly idpType!: pulumi.Output<string>;
+    declare public /*out*/ readonly idpId: pulumi.Output<string>;
+    declare public readonly idpType: pulumi.Output<string>;
     /**
      * Unique string that identifies the issuer of the IdP.
      */
-    public readonly issuerUri!: pulumi.Output<string>;
+    declare public readonly issuerUri: pulumi.Output<string>;
     /**
      * Human-readable label that identifies the identity provider.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Unique 20-hexadecimal digit string that identifies the IdP.
      */
-    public /*out*/ readonly oktaIdpId!: pulumi.Output<string>;
+    declare public /*out*/ readonly oktaIdpId: pulumi.Output<string>;
     /**
      * The protocol of the identity provider. Either `SAML` or `OIDC`.
      */
-    public readonly protocol!: pulumi.Output<string>;
+    declare public readonly protocol: pulumi.Output<string>;
     /**
      * SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      */
-    public readonly requestBinding!: pulumi.Output<string | undefined>;
+    declare public readonly requestBinding: pulumi.Output<string | undefined>;
     /**
      * Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
      */
-    public readonly requestedScopes!: pulumi.Output<string[] | undefined>;
+    declare public readonly requestedScopes: pulumi.Output<string[] | undefined>;
     /**
      * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
      */
-    public readonly responseSignatureAlgorithm!: pulumi.Output<string | undefined>;
+    declare public readonly responseSignatureAlgorithm: pulumi.Output<string | undefined>;
     /**
      * Flag that indicates whether the identity provider has SSO debug enabled.
      */
-    public readonly ssoDebugEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly ssoDebugEnabled: pulumi.Output<boolean | undefined>;
     /**
      * Unique string that identifies the intended audience of the SAML assertion.
      */
-    public readonly ssoUrl!: pulumi.Output<string | undefined>;
+    declare public readonly ssoUrl: pulumi.Output<string | undefined>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      */
-    public readonly status!: pulumi.Output<string | undefined>;
+    declare public readonly status: pulumi.Output<string | undefined>;
     /**
      * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
      * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      */
-    public readonly userClaim!: pulumi.Output<string | undefined>;
+    declare public readonly userClaim: pulumi.Output<string | undefined>;
 
     /**
      * Create a FederatedSettingsIdentityProvider resource with the given unique name, arguments, and options.
@@ -182,52 +182,52 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FederatedSettingsIdentityProviderState | undefined;
-            resourceInputs["associatedDomains"] = state ? state.associatedDomains : undefined;
-            resourceInputs["audience"] = state ? state.audience : undefined;
-            resourceInputs["authorizationType"] = state ? state.authorizationType : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
-            resourceInputs["groupsClaim"] = state ? state.groupsClaim : undefined;
-            resourceInputs["idpId"] = state ? state.idpId : undefined;
-            resourceInputs["idpType"] = state ? state.idpType : undefined;
-            resourceInputs["issuerUri"] = state ? state.issuerUri : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["oktaIdpId"] = state ? state.oktaIdpId : undefined;
-            resourceInputs["protocol"] = state ? state.protocol : undefined;
-            resourceInputs["requestBinding"] = state ? state.requestBinding : undefined;
-            resourceInputs["requestedScopes"] = state ? state.requestedScopes : undefined;
-            resourceInputs["responseSignatureAlgorithm"] = state ? state.responseSignatureAlgorithm : undefined;
-            resourceInputs["ssoDebugEnabled"] = state ? state.ssoDebugEnabled : undefined;
-            resourceInputs["ssoUrl"] = state ? state.ssoUrl : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["userClaim"] = state ? state.userClaim : undefined;
+            resourceInputs["associatedDomains"] = state?.associatedDomains;
+            resourceInputs["audience"] = state?.audience;
+            resourceInputs["authorizationType"] = state?.authorizationType;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["federationSettingsId"] = state?.federationSettingsId;
+            resourceInputs["groupsClaim"] = state?.groupsClaim;
+            resourceInputs["idpId"] = state?.idpId;
+            resourceInputs["idpType"] = state?.idpType;
+            resourceInputs["issuerUri"] = state?.issuerUri;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["oktaIdpId"] = state?.oktaIdpId;
+            resourceInputs["protocol"] = state?.protocol;
+            resourceInputs["requestBinding"] = state?.requestBinding;
+            resourceInputs["requestedScopes"] = state?.requestedScopes;
+            resourceInputs["responseSignatureAlgorithm"] = state?.responseSignatureAlgorithm;
+            resourceInputs["ssoDebugEnabled"] = state?.ssoDebugEnabled;
+            resourceInputs["ssoUrl"] = state?.ssoUrl;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["userClaim"] = state?.userClaim;
         } else {
             const args = argsOrState as FederatedSettingsIdentityProviderArgs | undefined;
-            if ((!args || args.federationSettingsId === undefined) && !opts.urn) {
+            if (args?.federationSettingsId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'federationSettingsId'");
             }
-            if ((!args || args.issuerUri === undefined) && !opts.urn) {
+            if (args?.issuerUri === undefined && !opts.urn) {
                 throw new Error("Missing required property 'issuerUri'");
             }
-            resourceInputs["associatedDomains"] = args ? args.associatedDomains : undefined;
-            resourceInputs["audience"] = args ? args.audience : undefined;
-            resourceInputs["authorizationType"] = args ? args.authorizationType : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
-            resourceInputs["groupsClaim"] = args ? args.groupsClaim : undefined;
-            resourceInputs["idpType"] = args ? args.idpType : undefined;
-            resourceInputs["issuerUri"] = args ? args.issuerUri : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["protocol"] = args ? args.protocol : undefined;
-            resourceInputs["requestBinding"] = args ? args.requestBinding : undefined;
-            resourceInputs["requestedScopes"] = args ? args.requestedScopes : undefined;
-            resourceInputs["responseSignatureAlgorithm"] = args ? args.responseSignatureAlgorithm : undefined;
-            resourceInputs["ssoDebugEnabled"] = args ? args.ssoDebugEnabled : undefined;
-            resourceInputs["ssoUrl"] = args ? args.ssoUrl : undefined;
-            resourceInputs["status"] = args ? args.status : undefined;
-            resourceInputs["userClaim"] = args ? args.userClaim : undefined;
+            resourceInputs["associatedDomains"] = args?.associatedDomains;
+            resourceInputs["audience"] = args?.audience;
+            resourceInputs["authorizationType"] = args?.authorizationType;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["federationSettingsId"] = args?.federationSettingsId;
+            resourceInputs["groupsClaim"] = args?.groupsClaim;
+            resourceInputs["idpType"] = args?.idpType;
+            resourceInputs["issuerUri"] = args?.issuerUri;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["protocol"] = args?.protocol;
+            resourceInputs["requestBinding"] = args?.requestBinding;
+            resourceInputs["requestedScopes"] = args?.requestedScopes;
+            resourceInputs["responseSignatureAlgorithm"] = args?.responseSignatureAlgorithm;
+            resourceInputs["ssoDebugEnabled"] = args?.ssoDebugEnabled;
+            resourceInputs["ssoUrl"] = args?.ssoUrl;
+            resourceInputs["status"] = args?.status;
+            resourceInputs["userClaim"] = args?.userClaim;
             resourceInputs["idpId"] = undefined /*out*/;
             resourceInputs["oktaIdpId"] = undefined /*out*/;
         }

@@ -49,72 +49,72 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      */
-    public readonly autoExportEnabled!: pulumi.Output<boolean>;
+    declare public readonly autoExportEnabled: pulumi.Output<boolean>;
     /**
      * Unique identifier of the Atlas cluster.
      */
-    public /*out*/ readonly clusterId!: pulumi.Output<string>;
+    declare public /*out*/ readonly clusterId: pulumi.Output<string>;
     /**
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
-    public readonly clusterName!: pulumi.Output<string>;
+    declare public readonly clusterName: pulumi.Output<string>;
     /**
      * List that contains a document for each copy setting item in the desired backup policy. See below
      */
-    public readonly copySettings!: pulumi.Output<outputs.CloudBackupScheduleCopySetting[] | undefined>;
+    declare public readonly copySettings: pulumi.Output<outputs.CloudBackupScheduleCopySetting[] | undefined>;
     /**
      * Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
      */
-    public readonly export!: pulumi.Output<outputs.CloudBackupScheduleExport>;
+    declare public readonly export: pulumi.Output<outputs.CloudBackupScheduleExport>;
     /**
      * Unique identifier of the backup policy.
      */
-    public /*out*/ readonly idPolicy!: pulumi.Output<string>;
+    declare public /*out*/ readonly idPolicy: pulumi.Output<string>;
     /**
      * Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
      */
-    public /*out*/ readonly nextSnapshot!: pulumi.Output<string>;
+    declare public /*out*/ readonly nextSnapshot: pulumi.Output<string>;
     /**
      * Daily policy item. See below
      */
-    public readonly policyItemDaily!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemDaily | undefined>;
+    declare public readonly policyItemDaily: pulumi.Output<outputs.CloudBackupSchedulePolicyItemDaily | undefined>;
     /**
      * Hourly policy item. See below
      */
-    public readonly policyItemHourly!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemHourly | undefined>;
+    declare public readonly policyItemHourly: pulumi.Output<outputs.CloudBackupSchedulePolicyItemHourly | undefined>;
     /**
      * Monthly policy item. See below
      */
-    public readonly policyItemMonthlies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemMonthly[] | undefined>;
+    declare public readonly policyItemMonthlies: pulumi.Output<outputs.CloudBackupSchedulePolicyItemMonthly[] | undefined>;
     /**
      * Weekly policy item. See below
      */
-    public readonly policyItemWeeklies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemWeekly[] | undefined>;
+    declare public readonly policyItemWeeklies: pulumi.Output<outputs.CloudBackupSchedulePolicyItemWeekly[] | undefined>;
     /**
      * Yearly policy item. See below
      */
-    public readonly policyItemYearlies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemYearly[] | undefined>;
+    declare public readonly policyItemYearlies: pulumi.Output<outputs.CloudBackupSchedulePolicyItemYearly[] | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
      */
-    public readonly referenceHourOfDay!: pulumi.Output<number>;
+    declare public readonly referenceHourOfDay: pulumi.Output<number>;
     /**
      * UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      */
-    public readonly referenceMinuteOfHour!: pulumi.Output<number>;
+    declare public readonly referenceMinuteOfHour: pulumi.Output<number>;
     /**
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
-    public readonly restoreWindowDays!: pulumi.Output<number>;
-    public readonly updateSnapshots!: pulumi.Output<boolean>;
+    declare public readonly restoreWindowDays: pulumi.Output<number>;
+    declare public readonly updateSnapshots: pulumi.Output<boolean>;
     /**
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
      */
-    public readonly useOrgAndGroupNamesInExportPrefix!: pulumi.Output<boolean>;
+    declare public readonly useOrgAndGroupNamesInExportPrefix: pulumi.Output<boolean>;
 
     /**
      * Create a CloudBackupSchedule resource with the given unique name, arguments, and options.
@@ -129,47 +129,47 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudBackupScheduleState | undefined;
-            resourceInputs["autoExportEnabled"] = state ? state.autoExportEnabled : undefined;
-            resourceInputs["clusterId"] = state ? state.clusterId : undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["copySettings"] = state ? state.copySettings : undefined;
-            resourceInputs["export"] = state ? state.export : undefined;
-            resourceInputs["idPolicy"] = state ? state.idPolicy : undefined;
-            resourceInputs["nextSnapshot"] = state ? state.nextSnapshot : undefined;
-            resourceInputs["policyItemDaily"] = state ? state.policyItemDaily : undefined;
-            resourceInputs["policyItemHourly"] = state ? state.policyItemHourly : undefined;
-            resourceInputs["policyItemMonthlies"] = state ? state.policyItemMonthlies : undefined;
-            resourceInputs["policyItemWeeklies"] = state ? state.policyItemWeeklies : undefined;
-            resourceInputs["policyItemYearlies"] = state ? state.policyItemYearlies : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["referenceHourOfDay"] = state ? state.referenceHourOfDay : undefined;
-            resourceInputs["referenceMinuteOfHour"] = state ? state.referenceMinuteOfHour : undefined;
-            resourceInputs["restoreWindowDays"] = state ? state.restoreWindowDays : undefined;
-            resourceInputs["updateSnapshots"] = state ? state.updateSnapshots : undefined;
-            resourceInputs["useOrgAndGroupNamesInExportPrefix"] = state ? state.useOrgAndGroupNamesInExportPrefix : undefined;
+            resourceInputs["autoExportEnabled"] = state?.autoExportEnabled;
+            resourceInputs["clusterId"] = state?.clusterId;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["copySettings"] = state?.copySettings;
+            resourceInputs["export"] = state?.export;
+            resourceInputs["idPolicy"] = state?.idPolicy;
+            resourceInputs["nextSnapshot"] = state?.nextSnapshot;
+            resourceInputs["policyItemDaily"] = state?.policyItemDaily;
+            resourceInputs["policyItemHourly"] = state?.policyItemHourly;
+            resourceInputs["policyItemMonthlies"] = state?.policyItemMonthlies;
+            resourceInputs["policyItemWeeklies"] = state?.policyItemWeeklies;
+            resourceInputs["policyItemYearlies"] = state?.policyItemYearlies;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["referenceHourOfDay"] = state?.referenceHourOfDay;
+            resourceInputs["referenceMinuteOfHour"] = state?.referenceMinuteOfHour;
+            resourceInputs["restoreWindowDays"] = state?.restoreWindowDays;
+            resourceInputs["updateSnapshots"] = state?.updateSnapshots;
+            resourceInputs["useOrgAndGroupNamesInExportPrefix"] = state?.useOrgAndGroupNamesInExportPrefix;
         } else {
             const args = argsOrState as CloudBackupScheduleArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !opts.urn) {
+            if (args?.clusterName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["autoExportEnabled"] = args ? args.autoExportEnabled : undefined;
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["copySettings"] = args ? args.copySettings : undefined;
-            resourceInputs["export"] = args ? args.export : undefined;
-            resourceInputs["policyItemDaily"] = args ? args.policyItemDaily : undefined;
-            resourceInputs["policyItemHourly"] = args ? args.policyItemHourly : undefined;
-            resourceInputs["policyItemMonthlies"] = args ? args.policyItemMonthlies : undefined;
-            resourceInputs["policyItemWeeklies"] = args ? args.policyItemWeeklies : undefined;
-            resourceInputs["policyItemYearlies"] = args ? args.policyItemYearlies : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["referenceHourOfDay"] = args ? args.referenceHourOfDay : undefined;
-            resourceInputs["referenceMinuteOfHour"] = args ? args.referenceMinuteOfHour : undefined;
-            resourceInputs["restoreWindowDays"] = args ? args.restoreWindowDays : undefined;
-            resourceInputs["updateSnapshots"] = args ? args.updateSnapshots : undefined;
-            resourceInputs["useOrgAndGroupNamesInExportPrefix"] = args ? args.useOrgAndGroupNamesInExportPrefix : undefined;
+            resourceInputs["autoExportEnabled"] = args?.autoExportEnabled;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["copySettings"] = args?.copySettings;
+            resourceInputs["export"] = args?.export;
+            resourceInputs["policyItemDaily"] = args?.policyItemDaily;
+            resourceInputs["policyItemHourly"] = args?.policyItemHourly;
+            resourceInputs["policyItemMonthlies"] = args?.policyItemMonthlies;
+            resourceInputs["policyItemWeeklies"] = args?.policyItemWeeklies;
+            resourceInputs["policyItemYearlies"] = args?.policyItemYearlies;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["referenceHourOfDay"] = args?.referenceHourOfDay;
+            resourceInputs["referenceMinuteOfHour"] = args?.referenceMinuteOfHour;
+            resourceInputs["restoreWindowDays"] = args?.restoreWindowDays;
+            resourceInputs["updateSnapshots"] = args?.updateSnapshots;
+            resourceInputs["useOrgAndGroupNamesInExportPrefix"] = args?.useOrgAndGroupNamesInExportPrefix;
             resourceInputs["clusterId"] = undefined /*out*/;
             resourceInputs["idPolicy"] = undefined /*out*/;
             resourceInputs["nextSnapshot"] = undefined /*out*/;

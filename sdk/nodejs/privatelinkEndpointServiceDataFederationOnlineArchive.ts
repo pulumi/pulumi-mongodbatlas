@@ -83,31 +83,31 @@ export class PrivatelinkEndpointServiceDataFederationOnlineArchive extends pulum
     /**
      * Human-readable string to associate with this private endpoint.
      */
-    public readonly comment!: pulumi.Output<string | undefined>;
+    declare public readonly comment: pulumi.Output<string | undefined>;
     /**
      * Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
      */
-    public readonly customerEndpointDnsName!: pulumi.Output<string | undefined>;
+    declare public readonly customerEndpointDnsName: pulumi.Output<string | undefined>;
     /**
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
      */
-    public readonly endpointId!: pulumi.Output<string>;
+    declare public readonly endpointId: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Human-readable label that identifies the cloud service provider.
      */
-    public readonly providerName!: pulumi.Output<string>;
+    declare public readonly providerName: pulumi.Output<string>;
     /**
      * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Human-readable label that identifies the resource type associated with this private endpoint.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
 
     /**
      * Create a PrivatelinkEndpointServiceDataFederationOnlineArchive resource with the given unique name, arguments, and options.
@@ -122,30 +122,30 @@ export class PrivatelinkEndpointServiceDataFederationOnlineArchive extends pulum
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivatelinkEndpointServiceDataFederationOnlineArchiveState | undefined;
-            resourceInputs["comment"] = state ? state.comment : undefined;
-            resourceInputs["customerEndpointDnsName"] = state ? state.customerEndpointDnsName : undefined;
-            resourceInputs["endpointId"] = state ? state.endpointId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["providerName"] = state ? state.providerName : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["comment"] = state?.comment;
+            resourceInputs["customerEndpointDnsName"] = state?.customerEndpointDnsName;
+            resourceInputs["endpointId"] = state?.endpointId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["providerName"] = state?.providerName;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs | undefined;
-            if ((!args || args.endpointId === undefined) && !opts.urn) {
+            if (args?.endpointId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'endpointId'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !opts.urn) {
+            if (args?.providerName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            resourceInputs["comment"] = args ? args.comment : undefined;
-            resourceInputs["customerEndpointDnsName"] = args ? args.customerEndpointDnsName : undefined;
-            resourceInputs["endpointId"] = args ? args.endpointId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["providerName"] = args ? args.providerName : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["comment"] = args?.comment;
+            resourceInputs["customerEndpointDnsName"] = args?.customerEndpointDnsName;
+            resourceInputs["endpointId"] = args?.endpointId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["providerName"] = args?.providerName;
+            resourceInputs["region"] = args?.region;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
