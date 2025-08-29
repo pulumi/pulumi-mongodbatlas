@@ -69,14 +69,14 @@ export class FederatedQueryLimit extends pulumi.CustomResource {
     /**
      * Amount that indicates the current usage of the limit.
      */
-    public /*out*/ readonly currentUsage!: pulumi.Output<number>;
+    declare public /*out*/ readonly currentUsage: pulumi.Output<number>;
     /**
      * Default value of the limit.
      * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
      * * `maximumLimit` - Maximum value of the limit.
      */
-    public readonly defaultLimit!: pulumi.Output<number | undefined>;
-    public /*out*/ readonly lastModifiedDate!: pulumi.Output<string>;
+    declare public readonly defaultLimit: pulumi.Output<number | undefined>;
+    declare public /*out*/ readonly lastModifiedDate: pulumi.Output<string>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are:
      * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
@@ -84,24 +84,24 @@ export class FederatedQueryLimit extends pulumi.CustomResource {
      * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
      * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      */
-    public readonly limitName!: pulumi.Output<string>;
-    public readonly maximumLimit!: pulumi.Output<number | undefined>;
+    declare public readonly limitName: pulumi.Output<string>;
+    declare public readonly maximumLimit: pulumi.Output<number | undefined>;
     /**
      * String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
      */
-    public readonly overrunPolicy!: pulumi.Output<string>;
+    declare public readonly overrunPolicy: pulumi.Output<string>;
     /**
      * The unique ID for the project to create a Federated Database Instance.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Name of the Atlas Federated Database Instance.
      */
-    public readonly tenantName!: pulumi.Output<string>;
+    declare public readonly tenantName: pulumi.Output<string>;
     /**
      * Amount to set the limit to.
      */
-    public readonly value!: pulumi.Output<number>;
+    declare public readonly value: pulumi.Output<number>;
 
     /**
      * Create a FederatedQueryLimit resource with the given unique name, arguments, and options.
@@ -116,39 +116,39 @@ export class FederatedQueryLimit extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FederatedQueryLimitState | undefined;
-            resourceInputs["currentUsage"] = state ? state.currentUsage : undefined;
-            resourceInputs["defaultLimit"] = state ? state.defaultLimit : undefined;
-            resourceInputs["lastModifiedDate"] = state ? state.lastModifiedDate : undefined;
-            resourceInputs["limitName"] = state ? state.limitName : undefined;
-            resourceInputs["maximumLimit"] = state ? state.maximumLimit : undefined;
-            resourceInputs["overrunPolicy"] = state ? state.overrunPolicy : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["tenantName"] = state ? state.tenantName : undefined;
-            resourceInputs["value"] = state ? state.value : undefined;
+            resourceInputs["currentUsage"] = state?.currentUsage;
+            resourceInputs["defaultLimit"] = state?.defaultLimit;
+            resourceInputs["lastModifiedDate"] = state?.lastModifiedDate;
+            resourceInputs["limitName"] = state?.limitName;
+            resourceInputs["maximumLimit"] = state?.maximumLimit;
+            resourceInputs["overrunPolicy"] = state?.overrunPolicy;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["tenantName"] = state?.tenantName;
+            resourceInputs["value"] = state?.value;
         } else {
             const args = argsOrState as FederatedQueryLimitArgs | undefined;
-            if ((!args || args.limitName === undefined) && !opts.urn) {
+            if (args?.limitName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'limitName'");
             }
-            if ((!args || args.overrunPolicy === undefined) && !opts.urn) {
+            if (args?.overrunPolicy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'overrunPolicy'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.tenantName === undefined) && !opts.urn) {
+            if (args?.tenantName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tenantName'");
             }
-            if ((!args || args.value === undefined) && !opts.urn) {
+            if (args?.value === undefined && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            resourceInputs["defaultLimit"] = args ? args.defaultLimit : undefined;
-            resourceInputs["limitName"] = args ? args.limitName : undefined;
-            resourceInputs["maximumLimit"] = args ? args.maximumLimit : undefined;
-            resourceInputs["overrunPolicy"] = args ? args.overrunPolicy : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["tenantName"] = args ? args.tenantName : undefined;
-            resourceInputs["value"] = args ? args.value : undefined;
+            resourceInputs["defaultLimit"] = args?.defaultLimit;
+            resourceInputs["limitName"] = args?.limitName;
+            resourceInputs["maximumLimit"] = args?.maximumLimit;
+            resourceInputs["overrunPolicy"] = args?.overrunPolicy;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["tenantName"] = args?.tenantName;
+            resourceInputs["value"] = args?.value;
             resourceInputs["currentUsage"] = undefined /*out*/;
             resourceInputs["lastModifiedDate"] = undefined /*out*/;
         }

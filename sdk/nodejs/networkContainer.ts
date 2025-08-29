@@ -111,55 +111,55 @@ export class NetworkContainer extends pulumi.CustomResource {
      *
      * **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.
      */
-    public readonly atlasCidrBlock!: pulumi.Output<string>;
+    declare public readonly atlasCidrBlock: pulumi.Output<string>;
     /**
      * Unique identifier of the Azure subscription in which the VNet resides.
      */
-    public /*out*/ readonly azureSubscriptionId!: pulumi.Output<string>;
+    declare public /*out*/ readonly azureSubscriptionId: pulumi.Output<string>;
     /**
      * The Network Peering Container ID.
      */
-    public /*out*/ readonly containerId!: pulumi.Output<string>;
+    declare public /*out*/ readonly containerId: pulumi.Output<string>;
     /**
      * Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
-    public /*out*/ readonly gcpProjectId!: pulumi.Output<string>;
+    declare public /*out*/ readonly gcpProjectId: pulumi.Output<string>;
     /**
      * Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
-    public /*out*/ readonly networkName!: pulumi.Output<string>;
+    declare public /*out*/ readonly networkName: pulumi.Output<string>;
     /**
      * Unique identifier for the Atlas project for this Network Peering Container.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
      */
-    public readonly providerName!: pulumi.Output<string | undefined>;
+    declare public readonly providerName: pulumi.Output<string | undefined>;
     /**
      * Indicates whether the project has Network Peering connections deployed in the container.
      */
-    public /*out*/ readonly provisioned!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly provisioned: pulumi.Output<boolean>;
     /**
      * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
-    public readonly regionName!: pulumi.Output<string>;
+    declare public readonly regionName: pulumi.Output<string>;
     /**
      * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
      */
-    public readonly regions!: pulumi.Output<string[]>;
+    declare public readonly regions: pulumi.Output<string[]>;
     /**
      * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
-    public /*out*/ readonly vnetName!: pulumi.Output<string>;
+    declare public /*out*/ readonly vnetName: pulumi.Output<string>;
     /**
      * Unique identifier of Atlas' AWS VPC.
      */
-    public /*out*/ readonly vpcId!: pulumi.Output<string>;
+    declare public /*out*/ readonly vpcId: pulumi.Output<string>;
 
     /**
      * Create a NetworkContainer resource with the given unique name, arguments, and options.
@@ -174,33 +174,33 @@ export class NetworkContainer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NetworkContainerState | undefined;
-            resourceInputs["atlasCidrBlock"] = state ? state.atlasCidrBlock : undefined;
-            resourceInputs["azureSubscriptionId"] = state ? state.azureSubscriptionId : undefined;
-            resourceInputs["containerId"] = state ? state.containerId : undefined;
-            resourceInputs["gcpProjectId"] = state ? state.gcpProjectId : undefined;
-            resourceInputs["networkName"] = state ? state.networkName : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["providerName"] = state ? state.providerName : undefined;
-            resourceInputs["provisioned"] = state ? state.provisioned : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["regionName"] = state ? state.regionName : undefined;
-            resourceInputs["regions"] = state ? state.regions : undefined;
-            resourceInputs["vnetName"] = state ? state.vnetName : undefined;
-            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["atlasCidrBlock"] = state?.atlasCidrBlock;
+            resourceInputs["azureSubscriptionId"] = state?.azureSubscriptionId;
+            resourceInputs["containerId"] = state?.containerId;
+            resourceInputs["gcpProjectId"] = state?.gcpProjectId;
+            resourceInputs["networkName"] = state?.networkName;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["providerName"] = state?.providerName;
+            resourceInputs["provisioned"] = state?.provisioned;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["regionName"] = state?.regionName;
+            resourceInputs["regions"] = state?.regions;
+            resourceInputs["vnetName"] = state?.vnetName;
+            resourceInputs["vpcId"] = state?.vpcId;
         } else {
             const args = argsOrState as NetworkContainerArgs | undefined;
-            if ((!args || args.atlasCidrBlock === undefined) && !opts.urn) {
+            if (args?.atlasCidrBlock === undefined && !opts.urn) {
                 throw new Error("Missing required property 'atlasCidrBlock'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["atlasCidrBlock"] = args ? args.atlasCidrBlock : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["providerName"] = args ? args.providerName : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["regionName"] = args ? args.regionName : undefined;
-            resourceInputs["regions"] = args ? args.regions : undefined;
+            resourceInputs["atlasCidrBlock"] = args?.atlasCidrBlock;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["providerName"] = args?.providerName;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["regionName"] = args?.regionName;
+            resourceInputs["regions"] = args?.regions;
             resourceInputs["azureSubscriptionId"] = undefined /*out*/;
             resourceInputs["containerId"] = undefined /*out*/;
             resourceInputs["gcpProjectId"] = undefined /*out*/;

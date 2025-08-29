@@ -126,43 +126,43 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
     /**
      * Name of the Atlas cluster whose snapshot you want to export.
      */
-    public readonly clusterName!: pulumi.Output<string>;
+    declare public readonly clusterName: pulumi.Output<string>;
     /**
      * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
      */
-    public /*out*/ readonly components!: pulumi.Output<outputs.CloudBackupSnapshotExportJobComponent[]>;
+    declare public /*out*/ readonly components: pulumi.Output<outputs.CloudBackupSnapshotExportJobComponent[]>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the export job was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      */
-    public readonly customDatas!: pulumi.Output<outputs.CloudBackupSnapshotExportJobCustomData[] | undefined>;
+    declare public readonly customDatas: pulumi.Output<outputs.CloudBackupSnapshotExportJobCustomData[] | undefined>;
     /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */
-    public readonly exportBucketId!: pulumi.Output<string>;
+    declare public readonly exportBucketId: pulumi.Output<string>;
     /**
      * Unique identifier of the export job.
      * * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
      */
-    public /*out*/ readonly exportJobId!: pulumi.Output<string>;
-    public /*out*/ readonly exportStatusExportedCollections!: pulumi.Output<number>;
-    public /*out*/ readonly exportStatusTotalCollections!: pulumi.Output<number>;
+    declare public /*out*/ readonly exportJobId: pulumi.Output<string>;
+    declare public /*out*/ readonly exportStatusExportedCollections: pulumi.Output<number>;
+    declare public /*out*/ readonly exportStatusTotalCollections: pulumi.Output<number>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.
      */
-    public /*out*/ readonly finishedAt!: pulumi.Output<string>;
-    public /*out*/ readonly prefix!: pulumi.Output<string>;
+    declare public /*out*/ readonly finishedAt: pulumi.Output<string>;
+    declare public /*out*/ readonly prefix: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
      */
-    public readonly snapshotId!: pulumi.Output<string>;
+    declare public readonly snapshotId: pulumi.Output<string>;
     /**
      * Status of the export job. Value can be one of the following:
      * * `Queued` - indicates that the export job is queued
@@ -171,7 +171,7 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      * * `Failed` - indicates that the export job has failed
      * * `Cancelled` - indicates that the export job has cancelled
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
 
     /**
      * Create a CloudBackupSnapshotExportJob resource with the given unique name, arguments, and options.
@@ -186,38 +186,38 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudBackupSnapshotExportJobState | undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["components"] = state ? state.components : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["customDatas"] = state ? state.customDatas : undefined;
-            resourceInputs["exportBucketId"] = state ? state.exportBucketId : undefined;
-            resourceInputs["exportJobId"] = state ? state.exportJobId : undefined;
-            resourceInputs["exportStatusExportedCollections"] = state ? state.exportStatusExportedCollections : undefined;
-            resourceInputs["exportStatusTotalCollections"] = state ? state.exportStatusTotalCollections : undefined;
-            resourceInputs["finishedAt"] = state ? state.finishedAt : undefined;
-            resourceInputs["prefix"] = state ? state.prefix : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["components"] = state?.components;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["customDatas"] = state?.customDatas;
+            resourceInputs["exportBucketId"] = state?.exportBucketId;
+            resourceInputs["exportJobId"] = state?.exportJobId;
+            resourceInputs["exportStatusExportedCollections"] = state?.exportStatusExportedCollections;
+            resourceInputs["exportStatusTotalCollections"] = state?.exportStatusTotalCollections;
+            resourceInputs["finishedAt"] = state?.finishedAt;
+            resourceInputs["prefix"] = state?.prefix;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["snapshotId"] = state?.snapshotId;
+            resourceInputs["state"] = state?.state;
         } else {
             const args = argsOrState as CloudBackupSnapshotExportJobArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !opts.urn) {
+            if (args?.clusterName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.exportBucketId === undefined) && !opts.urn) {
+            if (args?.exportBucketId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'exportBucketId'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.snapshotId === undefined) && !opts.urn) {
+            if (args?.snapshotId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'snapshotId'");
             }
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["customDatas"] = args ? args.customDatas : undefined;
-            resourceInputs["exportBucketId"] = args ? args.exportBucketId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["customDatas"] = args?.customDatas;
+            resourceInputs["exportBucketId"] = args?.exportBucketId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["snapshotId"] = args?.snapshotId;
             resourceInputs["components"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["exportJobId"] = undefined /*out*/;

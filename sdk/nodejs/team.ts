@@ -70,19 +70,19 @@ export class Team extends pulumi.CustomResource {
     /**
      * The name of the team you want to create.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The unique identifier for the organization you want to associate the team with.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * The unique identifier for the team.
      */
-    public /*out*/ readonly teamId!: pulumi.Output<string>;
+    declare public /*out*/ readonly teamId: pulumi.Output<string>;
     /**
      * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
      */
-    public readonly usernames!: pulumi.Output<string[]>;
+    declare public readonly usernames: pulumi.Output<string[]>;
 
     /**
      * Create a Team resource with the given unique name, arguments, and options.
@@ -97,21 +97,21 @@ export class Team extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TeamState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
-            resourceInputs["usernames"] = state ? state.usernames : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["teamId"] = state?.teamId;
+            resourceInputs["usernames"] = state?.usernames;
         } else {
             const args = argsOrState as TeamArgs | undefined;
-            if ((!args || args.orgId === undefined) && !opts.urn) {
+            if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            if ((!args || args.usernames === undefined) && !opts.urn) {
+            if (args?.usernames === undefined && !opts.urn) {
                 throw new Error("Missing required property 'usernames'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["usernames"] = args ? args.usernames : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["usernames"] = args?.usernames;
             resourceInputs["teamId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

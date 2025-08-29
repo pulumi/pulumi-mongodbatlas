@@ -73,19 +73,19 @@ export class AccessListApiKey extends pulumi.CustomResource {
      *
      * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
      */
-    public readonly apiKeyId!: pulumi.Output<string>;
+    declare public readonly apiKeyId: pulumi.Output<string>;
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
      */
-    public readonly cidrBlock!: pulumi.Output<string>;
+    declare public readonly cidrBlock: pulumi.Output<string>;
     /**
      * Single IP address to be added to the access list.
      */
-    public readonly ipAddress!: pulumi.Output<string>;
+    declare public readonly ipAddress: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    declare public readonly orgId: pulumi.Output<string>;
 
     /**
      * Create a AccessListApiKey resource with the given unique name, arguments, and options.
@@ -100,22 +100,22 @@ export class AccessListApiKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccessListApiKeyState | undefined;
-            resourceInputs["apiKeyId"] = state ? state.apiKeyId : undefined;
-            resourceInputs["cidrBlock"] = state ? state.cidrBlock : undefined;
-            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["apiKeyId"] = state?.apiKeyId;
+            resourceInputs["cidrBlock"] = state?.cidrBlock;
+            resourceInputs["ipAddress"] = state?.ipAddress;
+            resourceInputs["orgId"] = state?.orgId;
         } else {
             const args = argsOrState as AccessListApiKeyArgs | undefined;
-            if ((!args || args.apiKeyId === undefined) && !opts.urn) {
+            if (args?.apiKeyId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'apiKeyId'");
             }
-            if ((!args || args.orgId === undefined) && !opts.urn) {
+            if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            resourceInputs["apiKeyId"] = args ? args.apiKeyId : undefined;
-            resourceInputs["cidrBlock"] = args ? args.cidrBlock : undefined;
-            resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["apiKeyId"] = args?.apiKeyId;
+            resourceInputs["cidrBlock"] = args?.cidrBlock;
+            resourceInputs["ipAddress"] = args?.ipAddress;
+            resourceInputs["orgId"] = args?.orgId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AccessListApiKey.__pulumiType, name, resourceInputs, opts);

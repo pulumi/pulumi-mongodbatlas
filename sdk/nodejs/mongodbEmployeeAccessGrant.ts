@@ -68,19 +68,19 @@ export class MongodbEmployeeAccessGrant extends pulumi.CustomResource {
     /**
      * Human-readable label that identifies this cluster.
      */
-    public readonly clusterName!: pulumi.Output<string>;
+    declare public readonly clusterName: pulumi.Output<string>;
     /**
      * Expiration date for the employee access grant.
      */
-    public readonly expirationTime!: pulumi.Output<string>;
+    declare public readonly expirationTime: pulumi.Output<string>;
     /**
      * Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
      */
-    public readonly grantType!: pulumi.Output<string>;
+    declare public readonly grantType: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
 
     /**
      * Create a MongodbEmployeeAccessGrant resource with the given unique name, arguments, and options.
@@ -95,28 +95,28 @@ export class MongodbEmployeeAccessGrant extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MongodbEmployeeAccessGrantState | undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["expirationTime"] = state ? state.expirationTime : undefined;
-            resourceInputs["grantType"] = state ? state.grantType : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["expirationTime"] = state?.expirationTime;
+            resourceInputs["grantType"] = state?.grantType;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as MongodbEmployeeAccessGrantArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !opts.urn) {
+            if (args?.clusterName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.expirationTime === undefined) && !opts.urn) {
+            if (args?.expirationTime === undefined && !opts.urn) {
                 throw new Error("Missing required property 'expirationTime'");
             }
-            if ((!args || args.grantType === undefined) && !opts.urn) {
+            if (args?.grantType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'grantType'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["expirationTime"] = args ? args.expirationTime : undefined;
-            resourceInputs["grantType"] = args ? args.grantType : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["expirationTime"] = args?.expirationTime;
+            resourceInputs["grantType"] = args?.grantType;
+            resourceInputs["projectId"] = args?.projectId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MongodbEmployeeAccessGrant.__pulumiType, name, resourceInputs, opts);

@@ -58,11 +58,11 @@ export class PrivateEndpointRegionalMode extends pulumi.CustomResource {
      * * More than one private endpoint in one region and one private endpoint in one or more regions.
      * You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * Unique identifier for the project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
 
     /**
      * Create a PrivateEndpointRegionalMode resource with the given unique name, arguments, and options.
@@ -77,15 +77,15 @@ export class PrivateEndpointRegionalMode extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateEndpointRegionalModeState | undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as PrivateEndpointRegionalModeArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["projectId"] = args?.projectId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PrivateEndpointRegionalMode.__pulumiType, name, resourceInputs, opts);

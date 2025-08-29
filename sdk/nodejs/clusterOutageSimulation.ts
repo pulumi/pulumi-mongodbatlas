@@ -83,23 +83,23 @@ export class ClusterOutageSimulation extends pulumi.CustomResource {
     /**
      * Name of the Atlas Cluster that is/will undergoing outage simulation.
      */
-    public readonly clusterName!: pulumi.Output<string>;
+    declare public readonly clusterName: pulumi.Output<string>;
     /**
      * List of settings that specify the type of cluster outage simulation.
      */
-    public readonly outageFilters!: pulumi.Output<outputs.ClusterOutageSimulationOutageFilter[]>;
+    declare public readonly outageFilters: pulumi.Output<outputs.ClusterOutageSimulationOutageFilter[]>;
     /**
      * The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal character string that identifies the outage simulation.
      */
-    public /*out*/ readonly simulationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly simulationId: pulumi.Output<string>;
     /**
      * Date and time when MongoDB Cloud started the regional outage simulation.
      */
-    public /*out*/ readonly startRequestDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly startRequestDate: pulumi.Output<string>;
     /**
      * Current phase of the outage simulation:
      * * `START_REQUESTED` - User has requested cluster outage simulation.
@@ -109,7 +109,7 @@ export class ClusterOutageSimulation extends pulumi.CustomResource {
      * * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
      * * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
 
     /**
      * Create a ClusterOutageSimulation resource with the given unique name, arguments, and options.
@@ -124,26 +124,26 @@ export class ClusterOutageSimulation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClusterOutageSimulationState | undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["outageFilters"] = state ? state.outageFilters : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["simulationId"] = state ? state.simulationId : undefined;
-            resourceInputs["startRequestDate"] = state ? state.startRequestDate : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["outageFilters"] = state?.outageFilters;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["simulationId"] = state?.simulationId;
+            resourceInputs["startRequestDate"] = state?.startRequestDate;
+            resourceInputs["state"] = state?.state;
         } else {
             const args = argsOrState as ClusterOutageSimulationArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !opts.urn) {
+            if (args?.clusterName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.outageFilters === undefined) && !opts.urn) {
+            if (args?.outageFilters === undefined && !opts.urn) {
                 throw new Error("Missing required property 'outageFilters'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["outageFilters"] = args ? args.outageFilters : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["outageFilters"] = args?.outageFilters;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["simulationId"] = undefined /*out*/;
             resourceInputs["startRequestDate"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;

@@ -146,12 +146,12 @@ export class CustomDbRole extends pulumi.CustomResource {
         return obj['__pulumiType'] === CustomDbRole.__pulumiType;
     }
 
-    public readonly actions!: pulumi.Output<outputs.CustomDbRoleAction[] | undefined>;
-    public readonly inheritedRoles!: pulumi.Output<outputs.CustomDbRoleInheritedRole[] | undefined>;
+    declare public readonly actions: pulumi.Output<outputs.CustomDbRoleAction[] | undefined>;
+    declare public readonly inheritedRoles: pulumi.Output<outputs.CustomDbRoleInheritedRole[] | undefined>;
     /**
      * The unique ID for the project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Name of the custom role.
      *
@@ -162,7 +162,7 @@ export class CustomDbRole extends pulumi.CustomResource {
      * * Is `atlasAdmin`
      * * Starts with `xgen-`
      */
-    public readonly roleName!: pulumi.Output<string>;
+    declare public readonly roleName: pulumi.Output<string>;
 
     /**
      * Create a CustomDbRole resource with the given unique name, arguments, and options.
@@ -177,22 +177,22 @@ export class CustomDbRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomDbRoleState | undefined;
-            resourceInputs["actions"] = state ? state.actions : undefined;
-            resourceInputs["inheritedRoles"] = state ? state.inheritedRoles : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["roleName"] = state ? state.roleName : undefined;
+            resourceInputs["actions"] = state?.actions;
+            resourceInputs["inheritedRoles"] = state?.inheritedRoles;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["roleName"] = state?.roleName;
         } else {
             const args = argsOrState as CustomDbRoleArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.roleName === undefined) && !opts.urn) {
+            if (args?.roleName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            resourceInputs["actions"] = args ? args.actions : undefined;
-            resourceInputs["inheritedRoles"] = args ? args.inheritedRoles : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["roleName"] = args ? args.roleName : undefined;
+            resourceInputs["actions"] = args?.actions;
+            resourceInputs["inheritedRoles"] = args?.inheritedRoles;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["roleName"] = args?.roleName;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomDbRole.__pulumiType, name, resourceInputs, opts);

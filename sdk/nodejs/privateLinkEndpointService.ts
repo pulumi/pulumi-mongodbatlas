@@ -54,7 +54,7 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
      * * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
      * * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
      */
-    public /*out*/ readonly awsConnectionStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly awsConnectionStatus: pulumi.Output<string>;
     /**
      * Status of the interface endpoint for AZURE.
      * Returns one of the following values:
@@ -63,31 +63,31 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
      * * `FAILED` - Atlas failed to accept the connection your private endpoint.
      * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      */
-    public /*out*/ readonly azureStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly azureStatus: pulumi.Output<string>;
     /**
      * Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
      */
-    public /*out*/ readonly deleteRequested!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly deleteRequested: pulumi.Output<boolean>;
     /**
      * (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
      */
-    public /*out*/ readonly endpointGroupName!: pulumi.Output<string>;
+    declare public /*out*/ readonly endpointGroupName: pulumi.Output<string>;
     /**
      * Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
      */
-    public readonly endpointServiceId!: pulumi.Output<string>;
+    declare public readonly endpointServiceId: pulumi.Output<string>;
     /**
      * Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
      */
-    public readonly endpoints!: pulumi.Output<outputs.PrivateLinkEndpointServiceEndpoint[]>;
+    declare public readonly endpoints: pulumi.Output<outputs.PrivateLinkEndpointServiceEndpoint[]>;
     /**
      * Error message pertaining to the interface endpoint. Returns null if there are no errors.
      */
-    public /*out*/ readonly errorMessage!: pulumi.Output<string>;
+    declare public /*out*/ readonly errorMessage: pulumi.Output<string>;
     /**
      * Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
      */
-    public readonly gcpProjectId!: pulumi.Output<string | undefined>;
+    declare public readonly gcpProjectId: pulumi.Output<string | undefined>;
     /**
      * Status of the interface endpoint for GCP.
      * Returns one of the following values:
@@ -96,35 +96,35 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
      * * `FAILED` - Atlas failed to accept the connection your private endpoint.
      * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      */
-    public /*out*/ readonly gcpStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly gcpStatus: pulumi.Output<string>;
     /**
      * Unique identifier of the interface endpoint.
      */
-    public /*out*/ readonly interfaceEndpointId!: pulumi.Output<string>;
+    declare public /*out*/ readonly interfaceEndpointId: pulumi.Output<string>;
     /**
      * Name of the connection for this private endpoint that Atlas generates.
      */
-    public /*out*/ readonly privateEndpointConnectionName!: pulumi.Output<string>;
+    declare public /*out*/ readonly privateEndpointConnectionName: pulumi.Output<string>;
     /**
      * Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
      */
-    public readonly privateEndpointIpAddress!: pulumi.Output<string>;
+    declare public readonly privateEndpointIpAddress: pulumi.Output<string>;
     /**
      * Unique identifier of the private endpoint.
      */
-    public /*out*/ readonly privateEndpointResourceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly privateEndpointResourceId: pulumi.Output<string>;
     /**
      * Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      */
-    public readonly privateLinkId!: pulumi.Output<string>;
+    declare public readonly privateLinkId: pulumi.Output<string>;
     /**
      * Unique identifier for the project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
      */
-    public readonly providerName!: pulumi.Output<string>;
+    declare public readonly providerName: pulumi.Output<string>;
 
     /**
      * Create a PrivateLinkEndpointService resource with the given unique name, arguments, and options.
@@ -139,43 +139,43 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateLinkEndpointServiceState | undefined;
-            resourceInputs["awsConnectionStatus"] = state ? state.awsConnectionStatus : undefined;
-            resourceInputs["azureStatus"] = state ? state.azureStatus : undefined;
-            resourceInputs["deleteRequested"] = state ? state.deleteRequested : undefined;
-            resourceInputs["endpointGroupName"] = state ? state.endpointGroupName : undefined;
-            resourceInputs["endpointServiceId"] = state ? state.endpointServiceId : undefined;
-            resourceInputs["endpoints"] = state ? state.endpoints : undefined;
-            resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
-            resourceInputs["gcpProjectId"] = state ? state.gcpProjectId : undefined;
-            resourceInputs["gcpStatus"] = state ? state.gcpStatus : undefined;
-            resourceInputs["interfaceEndpointId"] = state ? state.interfaceEndpointId : undefined;
-            resourceInputs["privateEndpointConnectionName"] = state ? state.privateEndpointConnectionName : undefined;
-            resourceInputs["privateEndpointIpAddress"] = state ? state.privateEndpointIpAddress : undefined;
-            resourceInputs["privateEndpointResourceId"] = state ? state.privateEndpointResourceId : undefined;
-            resourceInputs["privateLinkId"] = state ? state.privateLinkId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["providerName"] = state ? state.providerName : undefined;
+            resourceInputs["awsConnectionStatus"] = state?.awsConnectionStatus;
+            resourceInputs["azureStatus"] = state?.azureStatus;
+            resourceInputs["deleteRequested"] = state?.deleteRequested;
+            resourceInputs["endpointGroupName"] = state?.endpointGroupName;
+            resourceInputs["endpointServiceId"] = state?.endpointServiceId;
+            resourceInputs["endpoints"] = state?.endpoints;
+            resourceInputs["errorMessage"] = state?.errorMessage;
+            resourceInputs["gcpProjectId"] = state?.gcpProjectId;
+            resourceInputs["gcpStatus"] = state?.gcpStatus;
+            resourceInputs["interfaceEndpointId"] = state?.interfaceEndpointId;
+            resourceInputs["privateEndpointConnectionName"] = state?.privateEndpointConnectionName;
+            resourceInputs["privateEndpointIpAddress"] = state?.privateEndpointIpAddress;
+            resourceInputs["privateEndpointResourceId"] = state?.privateEndpointResourceId;
+            resourceInputs["privateLinkId"] = state?.privateLinkId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["providerName"] = state?.providerName;
         } else {
             const args = argsOrState as PrivateLinkEndpointServiceArgs | undefined;
-            if ((!args || args.endpointServiceId === undefined) && !opts.urn) {
+            if (args?.endpointServiceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'endpointServiceId'");
             }
-            if ((!args || args.privateLinkId === undefined) && !opts.urn) {
+            if (args?.privateLinkId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateLinkId'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !opts.urn) {
+            if (args?.providerName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            resourceInputs["endpointServiceId"] = args ? args.endpointServiceId : undefined;
-            resourceInputs["endpoints"] = args ? args.endpoints : undefined;
-            resourceInputs["gcpProjectId"] = args ? args.gcpProjectId : undefined;
-            resourceInputs["privateEndpointIpAddress"] = args ? args.privateEndpointIpAddress : undefined;
-            resourceInputs["privateLinkId"] = args ? args.privateLinkId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["endpointServiceId"] = args?.endpointServiceId;
+            resourceInputs["endpoints"] = args?.endpoints;
+            resourceInputs["gcpProjectId"] = args?.gcpProjectId;
+            resourceInputs["privateEndpointIpAddress"] = args?.privateEndpointIpAddress;
+            resourceInputs["privateLinkId"] = args?.privateLinkId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["providerName"] = args?.providerName;
             resourceInputs["awsConnectionStatus"] = undefined /*out*/;
             resourceInputs["azureStatus"] = undefined /*out*/;
             resourceInputs["deleteRequested"] = undefined /*out*/;

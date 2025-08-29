@@ -151,71 +151,71 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
     /**
      * Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
      */
-    public readonly authorizedEmail!: pulumi.Output<string>;
+    declare public readonly authorizedEmail: pulumi.Output<string>;
     /**
      * First name of the user who authorized to update the Backup Compliance Policy settings.
      */
-    public readonly authorizedUserFirstName!: pulumi.Output<string>;
+    declare public readonly authorizedUserFirstName: pulumi.Output<string>;
     /**
      * Last name of the user who authorized to update the Backup Compliance Policy settings.
      */
-    public readonly authorizedUserLastName!: pulumi.Output<string>;
+    declare public readonly authorizedUserLastName: pulumi.Output<string>;
     /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      */
-    public readonly copyProtectionEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly copyProtectionEnabled: pulumi.Output<boolean | undefined>;
     /**
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    public readonly encryptionAtRestEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly encryptionAtRestEnabled: pulumi.Output<boolean | undefined>;
     /**
      * Specifications for on-demand policy.
      */
-    public readonly onDemandPolicyItem!: pulumi.Output<outputs.BackupCompliancePolicyOnDemandPolicyItem | undefined>;
+    declare public readonly onDemandPolicyItem: pulumi.Output<outputs.BackupCompliancePolicyOnDemandPolicyItem | undefined>;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    public readonly pitEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly pitEnabled: pulumi.Output<boolean | undefined>;
     /**
      * Scheduled policy using a daily frequency type, see block fields.
      */
-    public readonly policyItemDaily!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemDaily | undefined>;
+    declare public readonly policyItemDaily: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemDaily | undefined>;
     /**
      * Scheduled policy using an hourly frequency type, see block fields.
      */
-    public readonly policyItemHourly!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemHourly | undefined>;
+    declare public readonly policyItemHourly: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemHourly | undefined>;
     /**
      * Scheduled policy using a monthly frequency type, see block fields.
      */
-    public readonly policyItemMonthlies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemMonthly[] | undefined>;
+    declare public readonly policyItemMonthlies: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemMonthly[] | undefined>;
     /**
      * Scheduled policy using a weekly frequency type, see block fields.
      */
-    public readonly policyItemWeeklies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemWeekly[] | undefined>;
+    declare public readonly policyItemWeeklies: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemWeekly[] | undefined>;
     /**
      * Scheduled policy using a yearly frequency type, see block fields.
      */
-    public readonly policyItemYearlies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemYearly[] | undefined>;
+    declare public readonly policyItemYearlies: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemYearly[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
      */
-    public readonly restoreWindowDays!: pulumi.Output<number>;
+    declare public readonly restoreWindowDays: pulumi.Output<number>;
     /**
      * Label that indicates the state of the Backup Compliance Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
      */
-    public /*out*/ readonly updatedDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedDate: pulumi.Output<string>;
     /**
      * Email address that identifies the user who updated the Backup Compliance Policy settings. MongoDB Cloud ignores this email setting when you enable or update the Backup Compliance Policy settings.
      */
-    public /*out*/ readonly updatedUser!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedUser: pulumi.Output<string>;
 
     /**
      * Create a BackupCompliancePolicy resource with the given unique name, arguments, and options.
@@ -230,51 +230,51 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackupCompliancePolicyState | undefined;
-            resourceInputs["authorizedEmail"] = state ? state.authorizedEmail : undefined;
-            resourceInputs["authorizedUserFirstName"] = state ? state.authorizedUserFirstName : undefined;
-            resourceInputs["authorizedUserLastName"] = state ? state.authorizedUserLastName : undefined;
-            resourceInputs["copyProtectionEnabled"] = state ? state.copyProtectionEnabled : undefined;
-            resourceInputs["encryptionAtRestEnabled"] = state ? state.encryptionAtRestEnabled : undefined;
-            resourceInputs["onDemandPolicyItem"] = state ? state.onDemandPolicyItem : undefined;
-            resourceInputs["pitEnabled"] = state ? state.pitEnabled : undefined;
-            resourceInputs["policyItemDaily"] = state ? state.policyItemDaily : undefined;
-            resourceInputs["policyItemHourly"] = state ? state.policyItemHourly : undefined;
-            resourceInputs["policyItemMonthlies"] = state ? state.policyItemMonthlies : undefined;
-            resourceInputs["policyItemWeeklies"] = state ? state.policyItemWeeklies : undefined;
-            resourceInputs["policyItemYearlies"] = state ? state.policyItemYearlies : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["restoreWindowDays"] = state ? state.restoreWindowDays : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["updatedDate"] = state ? state.updatedDate : undefined;
-            resourceInputs["updatedUser"] = state ? state.updatedUser : undefined;
+            resourceInputs["authorizedEmail"] = state?.authorizedEmail;
+            resourceInputs["authorizedUserFirstName"] = state?.authorizedUserFirstName;
+            resourceInputs["authorizedUserLastName"] = state?.authorizedUserLastName;
+            resourceInputs["copyProtectionEnabled"] = state?.copyProtectionEnabled;
+            resourceInputs["encryptionAtRestEnabled"] = state?.encryptionAtRestEnabled;
+            resourceInputs["onDemandPolicyItem"] = state?.onDemandPolicyItem;
+            resourceInputs["pitEnabled"] = state?.pitEnabled;
+            resourceInputs["policyItemDaily"] = state?.policyItemDaily;
+            resourceInputs["policyItemHourly"] = state?.policyItemHourly;
+            resourceInputs["policyItemMonthlies"] = state?.policyItemMonthlies;
+            resourceInputs["policyItemWeeklies"] = state?.policyItemWeeklies;
+            resourceInputs["policyItemYearlies"] = state?.policyItemYearlies;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["restoreWindowDays"] = state?.restoreWindowDays;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["updatedDate"] = state?.updatedDate;
+            resourceInputs["updatedUser"] = state?.updatedUser;
         } else {
             const args = argsOrState as BackupCompliancePolicyArgs | undefined;
-            if ((!args || args.authorizedEmail === undefined) && !opts.urn) {
+            if (args?.authorizedEmail === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authorizedEmail'");
             }
-            if ((!args || args.authorizedUserFirstName === undefined) && !opts.urn) {
+            if (args?.authorizedUserFirstName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authorizedUserFirstName'");
             }
-            if ((!args || args.authorizedUserLastName === undefined) && !opts.urn) {
+            if (args?.authorizedUserLastName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authorizedUserLastName'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["authorizedEmail"] = args ? args.authorizedEmail : undefined;
-            resourceInputs["authorizedUserFirstName"] = args ? args.authorizedUserFirstName : undefined;
-            resourceInputs["authorizedUserLastName"] = args ? args.authorizedUserLastName : undefined;
-            resourceInputs["copyProtectionEnabled"] = args ? args.copyProtectionEnabled : undefined;
-            resourceInputs["encryptionAtRestEnabled"] = args ? args.encryptionAtRestEnabled : undefined;
-            resourceInputs["onDemandPolicyItem"] = args ? args.onDemandPolicyItem : undefined;
-            resourceInputs["pitEnabled"] = args ? args.pitEnabled : undefined;
-            resourceInputs["policyItemDaily"] = args ? args.policyItemDaily : undefined;
-            resourceInputs["policyItemHourly"] = args ? args.policyItemHourly : undefined;
-            resourceInputs["policyItemMonthlies"] = args ? args.policyItemMonthlies : undefined;
-            resourceInputs["policyItemWeeklies"] = args ? args.policyItemWeeklies : undefined;
-            resourceInputs["policyItemYearlies"] = args ? args.policyItemYearlies : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["restoreWindowDays"] = args ? args.restoreWindowDays : undefined;
+            resourceInputs["authorizedEmail"] = args?.authorizedEmail;
+            resourceInputs["authorizedUserFirstName"] = args?.authorizedUserFirstName;
+            resourceInputs["authorizedUserLastName"] = args?.authorizedUserLastName;
+            resourceInputs["copyProtectionEnabled"] = args?.copyProtectionEnabled;
+            resourceInputs["encryptionAtRestEnabled"] = args?.encryptionAtRestEnabled;
+            resourceInputs["onDemandPolicyItem"] = args?.onDemandPolicyItem;
+            resourceInputs["pitEnabled"] = args?.pitEnabled;
+            resourceInputs["policyItemDaily"] = args?.policyItemDaily;
+            resourceInputs["policyItemHourly"] = args?.policyItemHourly;
+            resourceInputs["policyItemMonthlies"] = args?.policyItemMonthlies;
+            resourceInputs["policyItemWeeklies"] = args?.policyItemWeeklies;
+            resourceInputs["policyItemYearlies"] = args?.policyItemYearlies;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["restoreWindowDays"] = args?.restoreWindowDays;
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["updatedDate"] = undefined /*out*/;
             resourceInputs["updatedUser"] = undefined /*out*/;

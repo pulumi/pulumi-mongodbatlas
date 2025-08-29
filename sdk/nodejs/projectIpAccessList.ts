@@ -113,26 +113,26 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
     /**
      * Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
      */
-    public readonly awsSecurityGroup!: pulumi.Output<string>;
+    declare public readonly awsSecurityGroup: pulumi.Output<string>;
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
      */
-    public readonly cidrBlock!: pulumi.Output<string>;
+    declare public readonly cidrBlock: pulumi.Output<string>;
     /**
      * Comment to add to the access list entry.
      *
      * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      */
-    public readonly comment!: pulumi.Output<string>;
+    declare public readonly comment: pulumi.Output<string>;
     /**
      * Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
      */
-    public readonly ipAddress!: pulumi.Output<string>;
+    declare public readonly ipAddress: pulumi.Output<string>;
     /**
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
-    public readonly projectId!: pulumi.Output<string>;
-    public readonly timeouts!: pulumi.Output<outputs.ProjectIpAccessListTimeouts | undefined>;
+    declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly timeouts: pulumi.Output<outputs.ProjectIpAccessListTimeouts | undefined>;
 
     /**
      * Create a ProjectIpAccessList resource with the given unique name, arguments, and options.
@@ -147,23 +147,23 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectIpAccessListState | undefined;
-            resourceInputs["awsSecurityGroup"] = state ? state.awsSecurityGroup : undefined;
-            resourceInputs["cidrBlock"] = state ? state.cidrBlock : undefined;
-            resourceInputs["comment"] = state ? state.comment : undefined;
-            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["timeouts"] = state ? state.timeouts : undefined;
+            resourceInputs["awsSecurityGroup"] = state?.awsSecurityGroup;
+            resourceInputs["cidrBlock"] = state?.cidrBlock;
+            resourceInputs["comment"] = state?.comment;
+            resourceInputs["ipAddress"] = state?.ipAddress;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["timeouts"] = state?.timeouts;
         } else {
             const args = argsOrState as ProjectIpAccessListArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["awsSecurityGroup"] = args ? args.awsSecurityGroup : undefined;
-            resourceInputs["cidrBlock"] = args ? args.cidrBlock : undefined;
-            resourceInputs["comment"] = args ? args.comment : undefined;
-            resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["timeouts"] = args ? args.timeouts : undefined;
+            resourceInputs["awsSecurityGroup"] = args?.awsSecurityGroup;
+            resourceInputs["cidrBlock"] = args?.cidrBlock;
+            resourceInputs["comment"] = args?.comment;
+            resourceInputs["ipAddress"] = args?.ipAddress;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["timeouts"] = args?.timeouts;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ProjectIpAccessList.__pulumiType, name, resourceInputs, opts);

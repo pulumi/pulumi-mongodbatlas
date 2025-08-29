@@ -132,27 +132,27 @@ export class EncryptionAtRestPrivateEndpoint extends pulumi.CustomResource {
     /**
      * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      */
-    public readonly cloudProvider!: pulumi.Output<string>;
+    declare public readonly cloudProvider: pulumi.Output<string>;
     /**
      * Error message for failures associated with the Encryption At Rest private endpoint.
      */
-    public /*out*/ readonly errorMessage!: pulumi.Output<string>;
+    declare public /*out*/ readonly errorMessage: pulumi.Output<string>;
     /**
      * Connection name of the Azure Private Endpoint.
      */
-    public /*out*/ readonly privateEndpointConnectionName!: pulumi.Output<string>;
+    declare public /*out*/ readonly privateEndpointConnectionName: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Cloud provider region in which the Encryption At Rest private endpoint is located.
      */
-    public readonly regionName!: pulumi.Output<string>;
+    declare public readonly regionName: pulumi.Output<string>;
     /**
      * State of the Encryption At Rest private endpoint.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
 
     /**
      * Create a EncryptionAtRestPrivateEndpoint resource with the given unique name, arguments, and options.
@@ -167,26 +167,26 @@ export class EncryptionAtRestPrivateEndpoint extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EncryptionAtRestPrivateEndpointState | undefined;
-            resourceInputs["cloudProvider"] = state ? state.cloudProvider : undefined;
-            resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
-            resourceInputs["privateEndpointConnectionName"] = state ? state.privateEndpointConnectionName : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["regionName"] = state ? state.regionName : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["cloudProvider"] = state?.cloudProvider;
+            resourceInputs["errorMessage"] = state?.errorMessage;
+            resourceInputs["privateEndpointConnectionName"] = state?.privateEndpointConnectionName;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["regionName"] = state?.regionName;
+            resourceInputs["status"] = state?.status;
         } else {
             const args = argsOrState as EncryptionAtRestPrivateEndpointArgs | undefined;
-            if ((!args || args.cloudProvider === undefined) && !opts.urn) {
+            if (args?.cloudProvider === undefined && !opts.urn) {
                 throw new Error("Missing required property 'cloudProvider'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.regionName === undefined) && !opts.urn) {
+            if (args?.regionName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'regionName'");
             }
-            resourceInputs["cloudProvider"] = args ? args.cloudProvider : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["regionName"] = args ? args.regionName : undefined;
+            resourceInputs["cloudProvider"] = args?.cloudProvider;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["regionName"] = args?.regionName;
             resourceInputs["errorMessage"] = undefined /*out*/;
             resourceInputs["privateEndpointConnectionName"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;

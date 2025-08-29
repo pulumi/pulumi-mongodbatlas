@@ -135,39 +135,39 @@ export class PrivatelinkEndpointServiceServerless extends pulumi.CustomResource 
     /**
      * Unique string that identifies the private endpoint's network interface.
      */
-    public readonly cloudProviderEndpointId!: pulumi.Output<string>;
+    declare public readonly cloudProviderEndpointId: pulumi.Output<string>;
     /**
      * Human-readable string to associate with this private endpoint.
      */
-    public readonly comment!: pulumi.Output<string | undefined>;
+    declare public readonly comment: pulumi.Output<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the private endpoint.
      */
-    public readonly endpointId!: pulumi.Output<string>;
+    declare public readonly endpointId: pulumi.Output<string>;
     /**
      * Human-readable label that identifies the serverless instance.
      */
-    public readonly instanceName!: pulumi.Output<string>;
+    declare public readonly instanceName: pulumi.Output<string>;
     /**
      * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
      */
-    public readonly privateEndpointIpAddress!: pulumi.Output<string>;
+    declare public readonly privateEndpointIpAddress: pulumi.Output<string>;
     /**
      * Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
      */
-    public /*out*/ readonly privateLinkServiceResourceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly privateLinkServiceResourceId: pulumi.Output<string>;
     /**
      * Unique 24-digit hexadecimal string that identifies the project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE`.
      */
-    public readonly providerName!: pulumi.Output<string>;
+    declare public readonly providerName: pulumi.Output<string>;
     /**
      * Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
 
     /**
      * Create a PrivatelinkEndpointServiceServerless resource with the given unique name, arguments, and options.
@@ -182,36 +182,36 @@ export class PrivatelinkEndpointServiceServerless extends pulumi.CustomResource 
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivatelinkEndpointServiceServerlessState | undefined;
-            resourceInputs["cloudProviderEndpointId"] = state ? state.cloudProviderEndpointId : undefined;
-            resourceInputs["comment"] = state ? state.comment : undefined;
-            resourceInputs["endpointId"] = state ? state.endpointId : undefined;
-            resourceInputs["instanceName"] = state ? state.instanceName : undefined;
-            resourceInputs["privateEndpointIpAddress"] = state ? state.privateEndpointIpAddress : undefined;
-            resourceInputs["privateLinkServiceResourceId"] = state ? state.privateLinkServiceResourceId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["providerName"] = state ? state.providerName : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["cloudProviderEndpointId"] = state?.cloudProviderEndpointId;
+            resourceInputs["comment"] = state?.comment;
+            resourceInputs["endpointId"] = state?.endpointId;
+            resourceInputs["instanceName"] = state?.instanceName;
+            resourceInputs["privateEndpointIpAddress"] = state?.privateEndpointIpAddress;
+            resourceInputs["privateLinkServiceResourceId"] = state?.privateLinkServiceResourceId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["providerName"] = state?.providerName;
+            resourceInputs["status"] = state?.status;
         } else {
             const args = argsOrState as PrivatelinkEndpointServiceServerlessArgs | undefined;
-            if ((!args || args.endpointId === undefined) && !opts.urn) {
+            if (args?.endpointId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'endpointId'");
             }
-            if ((!args || args.instanceName === undefined) && !opts.urn) {
+            if (args?.instanceName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceName'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !opts.urn) {
+            if (args?.providerName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            resourceInputs["cloudProviderEndpointId"] = args ? args.cloudProviderEndpointId : undefined;
-            resourceInputs["comment"] = args ? args.comment : undefined;
-            resourceInputs["endpointId"] = args ? args.endpointId : undefined;
-            resourceInputs["instanceName"] = args ? args.instanceName : undefined;
-            resourceInputs["privateEndpointIpAddress"] = args ? args.privateEndpointIpAddress : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["cloudProviderEndpointId"] = args?.cloudProviderEndpointId;
+            resourceInputs["comment"] = args?.comment;
+            resourceInputs["endpointId"] = args?.endpointId;
+            resourceInputs["instanceName"] = args?.instanceName;
+            resourceInputs["privateEndpointIpAddress"] = args?.privateEndpointIpAddress;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["providerName"] = args?.providerName;
             resourceInputs["privateLinkServiceResourceId"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }

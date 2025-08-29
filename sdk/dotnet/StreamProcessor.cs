@@ -61,19 +61,15 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-        /// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        /// created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-        /// specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-        /// specifying the state, it is stopped and then restored to previous state upon update completion.
+        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+        /// 
+        /// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
 
         /// <summary>
-        /// The stats associated with the stream processor. Refer to the [MongoDB Atlas
-        /// Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-        /// for more information.
+        /// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         /// </summary>
         [Output("stats")]
         public Output<string> Stats { get; private set; } = null!;
@@ -155,11 +151,9 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-        /// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        /// created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-        /// specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-        /// specifying the state, it is stopped and then restored to previous state upon update completion.
+        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+        /// 
+        /// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
@@ -203,19 +197,15 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-        /// start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        /// created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-        /// specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-        /// specifying the state, it is stopped and then restored to previous state upon update completion.
+        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+        /// 
+        /// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
 
         /// <summary>
-        /// The stats associated with the stream processor. Refer to the [MongoDB Atlas
-        /// Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-        /// for more information.
+        /// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         /// </summary>
         [Input("stats")]
         public Input<string>? Stats { get; set; }

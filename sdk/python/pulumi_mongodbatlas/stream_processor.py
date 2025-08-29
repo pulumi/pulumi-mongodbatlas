@@ -34,11 +34,9 @@ class StreamProcessorArgs:
         :param pulumi.Input[_builtins.str] processor_name: Human-readable label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input['StreamProcessorOptionsArgs'] options: Optional configuration for the stream processor.
-        :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-               start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-               created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-               specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-               specifying the state, it is stopped and then restored to previous state upon update completion.
+        :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+               
+               **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "pipeline", pipeline)
@@ -113,11 +111,9 @@ class StreamProcessorArgs:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-        start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-        specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-        specifying the state, it is stopped and then restored to previous state upon update completion.
+        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+
+        **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         return pulumi.get(self, "state")
 
@@ -143,14 +139,10 @@ class _StreamProcessorState:
         :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         :param pulumi.Input[_builtins.str] processor_name: Human-readable label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-        :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-               start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-               created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-               specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-               specifying the state, it is stopped and then restored to previous state upon update completion.
-        :param pulumi.Input[_builtins.str] stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas
-               Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-               for more information.
+        :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+               
+               **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
+        :param pulumi.Input[_builtins.str] stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         """
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
@@ -231,11 +223,9 @@ class _StreamProcessorState:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-        start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-        specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-        specifying the state, it is stopped and then restored to previous state upon update completion.
+        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+
+        **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         return pulumi.get(self, "state")
 
@@ -247,9 +237,7 @@ class _StreamProcessorState:
     @pulumi.getter
     def stats(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The stats associated with the stream processor. Refer to the [MongoDB Atlas
-        Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-        for more information.
+        The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         """
         return pulumi.get(self, "stats")
 
@@ -296,11 +284,9 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         :param pulumi.Input[_builtins.str] processor_name: Human-readable label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-        :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-               start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-               created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-               specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-               specifying the state, it is stopped and then restored to previous state upon update completion.
+        :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+               
+               **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         ...
     @overload
@@ -400,14 +386,10 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         :param pulumi.Input[_builtins.str] processor_name: Human-readable label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-        :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-               start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-               created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-               specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-               specifying the state, it is stopped and then restored to previous state upon update completion.
-        :param pulumi.Input[_builtins.str] stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas
-               Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-               for more information.
+        :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+               
+               **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
+        :param pulumi.Input[_builtins.str] stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -466,11 +448,9 @@ class StreamProcessor(pulumi.CustomResource):
     @pulumi.getter
     def state(self) -> pulumi.Output[_builtins.str]:
         """
-        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-        start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-        created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-        specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-        specifying the state, it is stopped and then restored to previous state upon update completion.
+        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+
+        **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         """
         return pulumi.get(self, "state")
 
@@ -478,9 +458,7 @@ class StreamProcessor(pulumi.CustomResource):
     @pulumi.getter
     def stats(self) -> pulumi.Output[_builtins.str]:
         """
-        The stats associated with the stream processor. Refer to the [MongoDB Atlas
-        Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-        for more information.
+        The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         """
         return pulumi.get(self, "stats")
 

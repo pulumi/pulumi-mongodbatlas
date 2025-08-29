@@ -131,16 +131,14 @@ public class ApiKeyProjectAssignment extends com.pulumi.resources.CustomResource
         return this.projectId;
     }
     /**
-     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-     * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
      * 
      */
     @Export(name="roles", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roles;
 
     /**
-     * @return Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-     * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+     * @return Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
      * 
      */
     public Output<List<String>> roles() {

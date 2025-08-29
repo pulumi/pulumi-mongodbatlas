@@ -85,16 +85,15 @@ export class ApiKeyProjectAssignment extends pulumi.CustomResource {
     /**
      * Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
      */
-    public readonly apiKeyId!: pulumi.Output<string>;
+    declare public readonly apiKeyId: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
-     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-     * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
      */
-    public readonly roles!: pulumi.Output<string[]>;
+    declare public readonly roles: pulumi.Output<string[]>;
 
     /**
      * Create a ApiKeyProjectAssignment resource with the given unique name, arguments, and options.
@@ -109,23 +108,23 @@ export class ApiKeyProjectAssignment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApiKeyProjectAssignmentState | undefined;
-            resourceInputs["apiKeyId"] = state ? state.apiKeyId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["roles"] = state ? state.roles : undefined;
+            resourceInputs["apiKeyId"] = state?.apiKeyId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["roles"] = state?.roles;
         } else {
             const args = argsOrState as ApiKeyProjectAssignmentArgs | undefined;
-            if ((!args || args.apiKeyId === undefined) && !opts.urn) {
+            if (args?.apiKeyId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'apiKeyId'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.roles === undefined) && !opts.urn) {
+            if (args?.roles === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roles'");
             }
-            resourceInputs["apiKeyId"] = args ? args.apiKeyId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["roles"] = args ? args.roles : undefined;
+            resourceInputs["apiKeyId"] = args?.apiKeyId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["roles"] = args?.roles;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ApiKeyProjectAssignment.__pulumiType, name, resourceInputs, opts);
@@ -145,8 +144,7 @@ export interface ApiKeyProjectAssignmentState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-     * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -164,8 +162,7 @@ export interface ApiKeyProjectAssignmentArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-     * Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+     * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
      */
     roles: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -218,31 +218,31 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
      * * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
      * * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      */
-    public readonly cloudProviderConfig!: pulumi.Output<outputs.FederatedDatabaseInstanceCloudProviderConfig>;
+    declare public readonly cloudProviderConfig: pulumi.Output<outputs.FederatedDatabaseInstanceCloudProviderConfig>;
     /**
      * The cloud provider region to which the Federated Instance routes client connections for data processing.
      * * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
      * * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
      */
-    public readonly dataProcessRegion!: pulumi.Output<outputs.FederatedDatabaseInstanceDataProcessRegion>;
+    declare public readonly dataProcessRegion: pulumi.Output<outputs.FederatedDatabaseInstanceDataProcessRegion>;
     /**
      * The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
      */
-    public /*out*/ readonly hostnames!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly hostnames: pulumi.Output<string[]>;
     /**
      * Name of the Atlas Federated Database Instance.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The unique ID for the project to create a Federated Database Instance.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Current state of the Federated Database Instance:
      * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
      * * `DELETED` - The Federated Database Instance was deleted.
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
      * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -266,7 +266,7 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
      * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
      */
-    public readonly storageDatabases!: pulumi.Output<outputs.FederatedDatabaseInstanceStorageDatabase[]>;
+    declare public readonly storageDatabases: pulumi.Output<outputs.FederatedDatabaseInstanceStorageDatabase[]>;
     /**
      * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
@@ -289,7 +289,7 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
      * * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
      * * `storage_stores.#.read_preference.tags.value` - Value of the tag.
      */
-    public readonly storageStores!: pulumi.Output<outputs.FederatedDatabaseInstanceStorageStore[]>;
+    declare public readonly storageStores: pulumi.Output<outputs.FederatedDatabaseInstanceStorageStore[]>;
 
     /**
      * Create a FederatedDatabaseInstance resource with the given unique name, arguments, and options.
@@ -304,25 +304,25 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FederatedDatabaseInstanceState | undefined;
-            resourceInputs["cloudProviderConfig"] = state ? state.cloudProviderConfig : undefined;
-            resourceInputs["dataProcessRegion"] = state ? state.dataProcessRegion : undefined;
-            resourceInputs["hostnames"] = state ? state.hostnames : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["storageDatabases"] = state ? state.storageDatabases : undefined;
-            resourceInputs["storageStores"] = state ? state.storageStores : undefined;
+            resourceInputs["cloudProviderConfig"] = state?.cloudProviderConfig;
+            resourceInputs["dataProcessRegion"] = state?.dataProcessRegion;
+            resourceInputs["hostnames"] = state?.hostnames;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["storageDatabases"] = state?.storageDatabases;
+            resourceInputs["storageStores"] = state?.storageStores;
         } else {
             const args = argsOrState as FederatedDatabaseInstanceArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["cloudProviderConfig"] = args ? args.cloudProviderConfig : undefined;
-            resourceInputs["dataProcessRegion"] = args ? args.dataProcessRegion : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["storageDatabases"] = args ? args.storageDatabases : undefined;
-            resourceInputs["storageStores"] = args ? args.storageStores : undefined;
+            resourceInputs["cloudProviderConfig"] = args?.cloudProviderConfig;
+            resourceInputs["dataProcessRegion"] = args?.dataProcessRegion;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["storageDatabases"] = args?.storageDatabases;
+            resourceInputs["storageStores"] = args?.storageStores;
             resourceInputs["hostnames"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
         }
