@@ -82,62 +82,62 @@ export class ServerlessInstance extends pulumi.CustomResource {
      *
      * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
-    public readonly autoIndexing!: pulumi.Output<boolean>;
+    declare public readonly autoIndexing: pulumi.Output<boolean>;
     /**
      * List of Serverless Private Endpoint Connections
      */
-    public /*out*/ readonly connectionStringsPrivateEndpointSrvs!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly connectionStringsPrivateEndpointSrvs: pulumi.Output<string[]>;
     /**
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      */
-    public /*out*/ readonly connectionStringsStandardSrv!: pulumi.Output<string>;
+    declare public /*out*/ readonly connectionStringsStandardSrv: pulumi.Output<string>;
     /**
      * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
      *
      * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
-    public readonly continuousBackupEnabled!: pulumi.Output<boolean>;
+    declare public readonly continuousBackupEnabled: pulumi.Output<boolean>;
     /**
      * Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
      */
-    public /*out*/ readonly createDate!: pulumi.Output<string>;
-    public readonly links!: pulumi.Output<outputs.ServerlessInstanceLink[]>;
+    declare public /*out*/ readonly createDate: pulumi.Output<string>;
+    declare public readonly links: pulumi.Output<outputs.ServerlessInstanceLink[]>;
     /**
      * Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
      */
-    public /*out*/ readonly mongoDbVersion!: pulumi.Output<string>;
+    declare public /*out*/ readonly mongoDbVersion: pulumi.Output<string>;
     /**
      * Human-readable label that identifies the serverless instance.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The ID of the organization or project you want to create the serverless instance within.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
      */
-    public readonly providerSettingsBackingProviderName!: pulumi.Output<string>;
+    declare public readonly providerSettingsBackingProviderName: pulumi.Output<string>;
     /**
      * Cloud service provider that applies to the provisioned the serverless instance.
      */
-    public readonly providerSettingsProviderName!: pulumi.Output<string>;
+    declare public readonly providerSettingsProviderName: pulumi.Output<string>;
     /**
      * Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
      */
-    public readonly providerSettingsRegionName!: pulumi.Output<string>;
+    declare public readonly providerSettingsRegionName: pulumi.Output<string>;
     /**
      * Stage of deployment of this serverless instance when the resource made its request.
      */
-    public readonly stateName!: pulumi.Output<string>;
+    declare public readonly stateName: pulumi.Output<string>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      */
-    public readonly tags!: pulumi.Output<outputs.ServerlessInstanceTag[] | undefined>;
+    declare public readonly tags: pulumi.Output<outputs.ServerlessInstanceTag[] | undefined>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
-    public readonly terminationProtectionEnabled!: pulumi.Output<boolean>;
+    declare public readonly terminationProtectionEnabled: pulumi.Output<boolean>;
 
     /**
      * Create a ServerlessInstance resource with the given unique name, arguments, and options.
@@ -152,46 +152,46 @@ export class ServerlessInstance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServerlessInstanceState | undefined;
-            resourceInputs["autoIndexing"] = state ? state.autoIndexing : undefined;
-            resourceInputs["connectionStringsPrivateEndpointSrvs"] = state ? state.connectionStringsPrivateEndpointSrvs : undefined;
-            resourceInputs["connectionStringsStandardSrv"] = state ? state.connectionStringsStandardSrv : undefined;
-            resourceInputs["continuousBackupEnabled"] = state ? state.continuousBackupEnabled : undefined;
-            resourceInputs["createDate"] = state ? state.createDate : undefined;
-            resourceInputs["links"] = state ? state.links : undefined;
-            resourceInputs["mongoDbVersion"] = state ? state.mongoDbVersion : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["providerSettingsBackingProviderName"] = state ? state.providerSettingsBackingProviderName : undefined;
-            resourceInputs["providerSettingsProviderName"] = state ? state.providerSettingsProviderName : undefined;
-            resourceInputs["providerSettingsRegionName"] = state ? state.providerSettingsRegionName : undefined;
-            resourceInputs["stateName"] = state ? state.stateName : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["terminationProtectionEnabled"] = state ? state.terminationProtectionEnabled : undefined;
+            resourceInputs["autoIndexing"] = state?.autoIndexing;
+            resourceInputs["connectionStringsPrivateEndpointSrvs"] = state?.connectionStringsPrivateEndpointSrvs;
+            resourceInputs["connectionStringsStandardSrv"] = state?.connectionStringsStandardSrv;
+            resourceInputs["continuousBackupEnabled"] = state?.continuousBackupEnabled;
+            resourceInputs["createDate"] = state?.createDate;
+            resourceInputs["links"] = state?.links;
+            resourceInputs["mongoDbVersion"] = state?.mongoDbVersion;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["providerSettingsBackingProviderName"] = state?.providerSettingsBackingProviderName;
+            resourceInputs["providerSettingsProviderName"] = state?.providerSettingsProviderName;
+            resourceInputs["providerSettingsRegionName"] = state?.providerSettingsRegionName;
+            resourceInputs["stateName"] = state?.stateName;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["terminationProtectionEnabled"] = state?.terminationProtectionEnabled;
         } else {
             const args = argsOrState as ServerlessInstanceArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerSettingsBackingProviderName === undefined) && !opts.urn) {
+            if (args?.providerSettingsBackingProviderName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerSettingsBackingProviderName'");
             }
-            if ((!args || args.providerSettingsProviderName === undefined) && !opts.urn) {
+            if (args?.providerSettingsProviderName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerSettingsProviderName'");
             }
-            if ((!args || args.providerSettingsRegionName === undefined) && !opts.urn) {
+            if (args?.providerSettingsRegionName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerSettingsRegionName'");
             }
-            resourceInputs["autoIndexing"] = args ? args.autoIndexing : undefined;
-            resourceInputs["continuousBackupEnabled"] = args ? args.continuousBackupEnabled : undefined;
-            resourceInputs["links"] = args ? args.links : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["providerSettingsBackingProviderName"] = args ? args.providerSettingsBackingProviderName : undefined;
-            resourceInputs["providerSettingsProviderName"] = args ? args.providerSettingsProviderName : undefined;
-            resourceInputs["providerSettingsRegionName"] = args ? args.providerSettingsRegionName : undefined;
-            resourceInputs["stateName"] = args ? args.stateName : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
+            resourceInputs["autoIndexing"] = args?.autoIndexing;
+            resourceInputs["continuousBackupEnabled"] = args?.continuousBackupEnabled;
+            resourceInputs["links"] = args?.links;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["providerSettingsBackingProviderName"] = args?.providerSettingsBackingProviderName;
+            resourceInputs["providerSettingsProviderName"] = args?.providerSettingsProviderName;
+            resourceInputs["providerSettingsRegionName"] = args?.providerSettingsRegionName;
+            resourceInputs["stateName"] = args?.stateName;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["terminationProtectionEnabled"] = args?.terminationProtectionEnabled;
             resourceInputs["connectionStringsPrivateEndpointSrvs"] = undefined /*out*/;
             resourceInputs["connectionStringsStandardSrv"] = undefined /*out*/;
             resourceInputs["createDate"] = undefined /*out*/;

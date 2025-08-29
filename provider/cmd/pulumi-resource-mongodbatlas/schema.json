@@ -53,48 +53,48 @@
             },
             "awsAccessKeyId": {
                 "type": "string",
-                "description": "AWS API Access Key.\n"
+                "description": "AWS API Access Key."
             },
             "awsSecretAccessKey": {
                 "type": "string",
-                "description": "AWS API Access Secret Key.\n"
+                "description": "AWS API Access Secret Key."
             },
             "awsSessionToken": {
                 "type": "string",
-                "description": "AWS Security Token Service provided session token.\n"
+                "description": "AWS Security Token Service provided session token."
             },
             "baseUrl": {
                 "type": "string",
-                "description": "MongoDB Atlas Base URL\n"
+                "description": "MongoDB Atlas Base URL"
             },
             "isMongodbgovCloud": {
                 "type": "boolean",
-                "description": "MongoDB Atlas Base URL default to gov\n"
+                "description": "MongoDB Atlas Base URL default to gov"
             },
             "privateKey": {
                 "type": "string",
-                "description": "MongoDB Atlas Programmatic Private Key\n",
+                "description": "MongoDB Atlas Programmatic Private Key",
                 "secret": true
             },
             "publicKey": {
                 "type": "string",
-                "description": "MongoDB Atlas Programmatic Public Key\n"
+                "description": "MongoDB Atlas Programmatic Public Key"
             },
             "realmBaseUrl": {
                 "type": "string",
-                "description": "MongoDB Realm Base URL\n"
+                "description": "MongoDB Realm Base URL"
             },
             "region": {
                 "type": "string",
-                "description": "Region where secret is stored as part of AWS Secret Manager.\n"
+                "description": "Region where secret is stored as part of AWS Secret Manager."
             },
             "secretName": {
                 "type": "string",
-                "description": "Name of secret stored in AWS Secret Manager.\n"
+                "description": "Name of secret stored in AWS Secret Manager."
             },
             "stsEndpoint": {
                 "type": "string",
-                "description": "AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.\n"
+                "description": "AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets."
             }
         }
     },
@@ -14858,48 +14858,48 @@
             },
             "awsAccessKeyId": {
                 "type": "string",
-                "description": "AWS API Access Key.\n"
+                "description": "AWS API Access Key."
             },
             "awsSecretAccessKey": {
                 "type": "string",
-                "description": "AWS API Access Secret Key.\n"
+                "description": "AWS API Access Secret Key."
             },
             "awsSessionToken": {
                 "type": "string",
-                "description": "AWS Security Token Service provided session token.\n"
+                "description": "AWS Security Token Service provided session token."
             },
             "baseUrl": {
                 "type": "string",
-                "description": "MongoDB Atlas Base URL\n"
+                "description": "MongoDB Atlas Base URL"
             },
             "isMongodbgovCloud": {
                 "type": "boolean",
-                "description": "MongoDB Atlas Base URL default to gov\n"
+                "description": "MongoDB Atlas Base URL default to gov"
             },
             "privateKey": {
                 "type": "string",
-                "description": "MongoDB Atlas Programmatic Private Key\n",
+                "description": "MongoDB Atlas Programmatic Private Key",
                 "secret": true
             },
             "publicKey": {
                 "type": "string",
-                "description": "MongoDB Atlas Programmatic Public Key\n"
+                "description": "MongoDB Atlas Programmatic Public Key"
             },
             "realmBaseUrl": {
                 "type": "string",
-                "description": "MongoDB Realm Base URL\n"
+                "description": "MongoDB Realm Base URL"
             },
             "region": {
                 "type": "string",
-                "description": "Region where secret is stored as part of AWS Secret Manager.\n"
+                "description": "Region where secret is stored as part of AWS Secret Manager."
             },
             "secretName": {
                 "type": "string",
-                "description": "Name of secret stored in AWS Secret Manager.\n"
+                "description": "Name of secret stored in AWS Secret Manager."
             },
             "stsEndpoint": {
                 "type": "string",
-                "description": "AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.\n"
+                "description": "AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets."
             }
         },
         "inputProperties": {
@@ -14908,48 +14908,48 @@
             },
             "awsAccessKeyId": {
                 "type": "string",
-                "description": "AWS API Access Key.\n"
+                "description": "AWS API Access Key."
             },
             "awsSecretAccessKey": {
                 "type": "string",
-                "description": "AWS API Access Secret Key.\n"
+                "description": "AWS API Access Secret Key."
             },
             "awsSessionToken": {
                 "type": "string",
-                "description": "AWS Security Token Service provided session token.\n"
+                "description": "AWS Security Token Service provided session token."
             },
             "baseUrl": {
                 "type": "string",
-                "description": "MongoDB Atlas Base URL\n"
+                "description": "MongoDB Atlas Base URL"
             },
             "isMongodbgovCloud": {
                 "type": "boolean",
-                "description": "MongoDB Atlas Base URL default to gov\n"
+                "description": "MongoDB Atlas Base URL default to gov"
             },
             "privateKey": {
                 "type": "string",
-                "description": "MongoDB Atlas Programmatic Private Key\n",
+                "description": "MongoDB Atlas Programmatic Private Key",
                 "secret": true
             },
             "publicKey": {
                 "type": "string",
-                "description": "MongoDB Atlas Programmatic Public Key\n"
+                "description": "MongoDB Atlas Programmatic Public Key"
             },
             "realmBaseUrl": {
                 "type": "string",
-                "description": "MongoDB Realm Base URL\n"
+                "description": "MongoDB Realm Base URL"
             },
             "region": {
                 "type": "string",
-                "description": "Region where secret is stored as part of AWS Secret Manager.\n"
+                "description": "Region where secret is stored as part of AWS Secret Manager."
             },
             "secretName": {
                 "type": "string",
-                "description": "Name of secret stored in AWS Secret Manager.\n"
+                "description": "Name of secret stored in AWS Secret Manager."
             },
             "stsEndpoint": {
                 "type": "string",
-                "description": "AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.\n"
+                "description": "AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets."
             }
         },
         "methods": {
@@ -15144,7 +15144,7 @@
                 },
                 "retainBackupsEnabled": {
                     "type": "boolean",
-                    "description": "Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster\n"
+                    "description": "Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster"
                 },
                 "rootCertType": {
                     "type": "string",
@@ -15287,7 +15287,7 @@
                 },
                 "retainBackupsEnabled": {
                     "type": "boolean",
-                    "description": "Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster\n"
+                    "description": "Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster"
                 },
                 "rootCertType": {
                     "type": "string",
@@ -15428,7 +15428,7 @@
                     },
                     "retainBackupsEnabled": {
                         "type": "boolean",
-                        "description": "Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster\n"
+                        "description": "Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster"
                     },
                     "rootCertType": {
                         "type": "string",
@@ -15703,7 +15703,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB\nCloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.\n"
+                    "description": "Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles."
                 }
             },
             "required": [
@@ -15725,7 +15725,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB\nCloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.\n"
+                    "description": "Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles."
                 }
             },
             "requiredInputs": [
@@ -15749,7 +15749,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB\nCloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.\n"
+                        "description": "Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles."
                     }
                 },
                 "type": "object"
@@ -22793,7 +22793,7 @@
                 },
                 "createDate": {
                     "type": "string",
-                    "description": "Date and time that this feature was enabled on.\n"
+                    "description": "Date and time that this feature was enabled on."
                 },
                 "iamRoleId": {
                     "type": "string",
@@ -22801,7 +22801,7 @@
                 },
                 "prefixPath": {
                     "type": "string",
-                    "description": "S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.\n"
+                    "description": "S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory."
                 },
                 "projectId": {
                     "type": "string",
@@ -22809,7 +22809,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "Describes whether or not the feature is enabled and what status it is in.\n"
+                    "description": "Describes whether or not the feature is enabled and what status it is in."
                 },
                 "timeouts": {
                     "$ref": "#/types/mongodbatlas:index/PushBasedLogExportTimeouts:PushBasedLogExportTimeouts"
@@ -22834,7 +22834,7 @@
                 },
                 "prefixPath": {
                     "type": "string",
-                    "description": "S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.\n"
+                    "description": "S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory."
                 },
                 "projectId": {
                     "type": "string",
@@ -22858,7 +22858,7 @@
                     },
                     "createDate": {
                         "type": "string",
-                        "description": "Date and time that this feature was enabled on.\n"
+                        "description": "Date and time that this feature was enabled on."
                     },
                     "iamRoleId": {
                         "type": "string",
@@ -22866,7 +22866,7 @@
                     },
                     "prefixPath": {
                         "type": "string",
-                        "description": "S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.\n"
+                        "description": "S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory."
                     },
                     "projectId": {
                         "type": "string",
@@ -22874,7 +22874,7 @@
                     },
                     "state": {
                         "type": "string",
-                        "description": "Describes whether or not the feature is enabled and what status it is in.\n"
+                        "description": "Describes whether or not the feature is enabled and what status it is in."
                     },
                     "timeouts": {
                         "$ref": "#/types/mongodbatlas:index/PushBasedLogExportTimeouts:PushBasedLogExportTimeouts"
@@ -23866,58 +23866,58 @@
             "properties": {
                 "arn": {
                     "type": "string",
-                    "description": "Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.\n"
+                    "description": "Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor."
                 },
                 "dnsDomain": {
                     "type": "string",
-                    "description": "The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.\n* AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
+                    "description": "The domain hostname. Required for the following provider and vendor combinations:\n\t\t\t\t\n\t* AWS provider with CONFLUENT vendor.\n\n\t* AZURE provider with EVENTHUB or CONFLUENT vendor."
                 },
                 "dnsSubDomains": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and\nCONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n"
+                    "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array []."
                 },
                 "errorMessage": {
                     "type": "string",
-                    "description": "Error message if the connection is in a failed state.\n"
+                    "description": "Error message if the connection is in a failed state."
                 },
                 "interfaceEndpointId": {
                     "type": "string",
-                    "description": "Interface endpoint ID that is created from the specified service endpoint ID.\n"
+                    "description": "Interface endpoint ID that is created from the specified service endpoint ID."
                 },
                 "interfaceEndpointName": {
                     "type": "string",
-                    "description": "Name of interface endpoint that is created from the specified service endpoint ID.\n"
+                    "description": "Name of interface endpoint that is created from the specified service endpoint ID."
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to\nwhich the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the\nsame as your project id. For existing groups, your group or project id remains the same. The resource and corresponding\nendpoints use the term groups.\n"
+                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups."
                 },
                 "providerAccountId": {
                     "type": "string",
-                    "description": "Account ID from the cloud provider.\n"
+                    "description": "Account ID from the cloud provider."
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE.\n"
+                    "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE."
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region of the Provider’s cluster. See\n[AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and\n[AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the\nvendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the\nAPI from the provided `arn`.\n"
+                    "description": "The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`."
                 },
                 "serviceEndpointId": {
                     "type": "string",
-                    "description": "For AZURE EVENTHUB, this is the [namespace endpoint\nID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC\nEndpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n"
+                    "description": "For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html)."
                 },
                 "state": {
                     "type": "string",
-                    "description": "Status of the connection.\n"
+                    "description": "Status of the connection."
                 },
                 "vendor": {
                     "type": "string",
-                    "description": "Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *\n**Azure**: EVENTHUB and CONFLUENT\n"
+                    "description": "Vendor that manages the endpoint. The following are the vendor values per provider:\n\n\t* **AWS**: MSK, CONFLUENT, and S3\n\n\t* **Azure**: EVENTHUB and CONFLUENT"
                 }
             },
             "required": [
@@ -23934,38 +23934,38 @@
             "inputProperties": {
                 "arn": {
                     "type": "string",
-                    "description": "Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.\n"
+                    "description": "Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor."
                 },
                 "dnsDomain": {
                     "type": "string",
-                    "description": "The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.\n* AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
+                    "description": "The domain hostname. Required for the following provider and vendor combinations:\n\t\t\t\t\n\t* AWS provider with CONFLUENT vendor.\n\n\t* AZURE provider with EVENTHUB or CONFLUENT vendor."
                 },
                 "dnsSubDomains": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and\nCONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n"
+                    "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array []."
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to\nwhich the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the\nsame as your project id. For existing groups, your group or project id remains the same. The resource and corresponding\nendpoints use the term groups.\n"
+                    "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups."
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE.\n"
+                    "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE."
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region of the Provider’s cluster. See\n[AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and\n[AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the\nvendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the\nAPI from the provided `arn`.\n"
+                    "description": "The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`."
                 },
                 "serviceEndpointId": {
                     "type": "string",
-                    "description": "For AZURE EVENTHUB, this is the [namespace endpoint\nID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC\nEndpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n"
+                    "description": "For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html)."
                 },
                 "vendor": {
                     "type": "string",
-                    "description": "Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *\n**Azure**: EVENTHUB and CONFLUENT\n"
+                    "description": "Vendor that manages the endpoint. The following are the vendor values per provider:\n\n\t* **AWS**: MSK, CONFLUENT, and S3\n\n\t* **Azure**: EVENTHUB and CONFLUENT"
                 }
             },
             "requiredInputs": [
@@ -23978,58 +23978,58 @@
                 "properties": {
                     "arn": {
                         "type": "string",
-                        "description": "Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.\n"
+                        "description": "Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor."
                     },
                     "dnsDomain": {
                         "type": "string",
-                        "description": "The domain hostname. Required for the following provider and vendor combinations: * AWS provider with CONFLUENT vendor.\n* AZURE provider with EVENTHUB or CONFLUENT vendor.\n"
+                        "description": "The domain hostname. Required for the following provider and vendor combinations:\n\t\t\t\t\n\t* AWS provider with CONFLUENT vendor.\n\n\t* AZURE provider with EVENTHUB or CONFLUENT vendor."
                     },
                     "dnsSubDomains": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and\nCONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].\n"
+                        "description": "Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array []."
                     },
                     "errorMessage": {
                         "type": "string",
-                        "description": "Error message if the connection is in a failed state.\n"
+                        "description": "Error message if the connection is in a failed state."
                     },
                     "interfaceEndpointId": {
                         "type": "string",
-                        "description": "Interface endpoint ID that is created from the specified service endpoint ID.\n"
+                        "description": "Interface endpoint ID that is created from the specified service endpoint ID."
                     },
                     "interfaceEndpointName": {
                         "type": "string",
-                        "description": "Name of interface endpoint that is created from the specified service endpoint ID.\n"
+                        "description": "Name of interface endpoint that is created from the specified service endpoint ID."
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to\nwhich the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the\nsame as your project id. For existing groups, your group or project id remains the same. The resource and corresponding\nendpoints use the term groups.\n"
+                        "description": "Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.\u003cbr\u003e**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups."
                     },
                     "providerAccountId": {
                         "type": "string",
-                        "description": "Account ID from the cloud provider.\n"
+                        "description": "Account ID from the cloud provider."
                     },
                     "providerName": {
                         "type": "string",
-                        "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE.\n"
+                        "description": "Provider where the endpoint is deployed. Valid values are AWS and AZURE."
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region of the Provider’s cluster. See\n[AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and\n[AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the\nvendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the\nAPI from the provided `arn`.\n"
+                        "description": "The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`."
                     },
                     "serviceEndpointId": {
                         "type": "string",
-                        "description": "For AZURE EVENTHUB, this is the [namespace endpoint\nID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC\nEndpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).\n"
+                        "description": "For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html)."
                     },
                     "state": {
                         "type": "string",
-                        "description": "Status of the connection.\n"
+                        "description": "Status of the connection."
                     },
                     "vendor": {
                         "type": "string",
-                        "description": "Vendor that manages the endpoint. The following are the vendor values per provider: * **AWS**: MSK, CONFLUENT, and S3 *\n**Azure**: EVENTHUB and CONFLUENT\n"
+                        "description": "Vendor that manages the endpoint. The following are the vendor values per provider:\n\n\t* **AWS**: MSK, CONFLUENT, and S3\n\n\t* **Azure**: EVENTHUB and CONFLUENT"
                     }
                 },
                 "type": "object"
@@ -24044,7 +24044,7 @@
                 },
                 "options": {
                     "$ref": "#/types/mongodbatlas:index/StreamProcessorOptions:StreamProcessorOptions",
-                    "description": "Optional configuration for the stream processor.\n"
+                    "description": "Optional configuration for the stream processor."
                 },
                 "pipeline": {
                     "type": "string",
@@ -24060,11 +24060,11 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to\nstart or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is\ncreated without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without\nspecifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without\nspecifying the state, it is stopped and then restored to previous state upon update completion.\n"
+                    "description": "The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. \n\n**NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion."
                 },
                 "stats": {
                     "type": "string",
-                    "description": "The stats associated with the stream processor. Refer to the [MongoDB Atlas\nDocs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)\nfor more information.\n"
+                    "description": "The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information."
                 }
             },
             "required": [
@@ -24082,7 +24082,7 @@
                 },
                 "options": {
                     "$ref": "#/types/mongodbatlas:index/StreamProcessorOptions:StreamProcessorOptions",
-                    "description": "Optional configuration for the stream processor.\n"
+                    "description": "Optional configuration for the stream processor."
                 },
                 "pipeline": {
                     "type": "string",
@@ -24098,7 +24098,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to\nstart or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is\ncreated without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without\nspecifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without\nspecifying the state, it is stopped and then restored to previous state upon update completion.\n"
+                    "description": "The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. \n\n**NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion."
                 }
             },
             "requiredInputs": [
@@ -24116,7 +24116,7 @@
                     },
                     "options": {
                         "$ref": "#/types/mongodbatlas:index/StreamProcessorOptions:StreamProcessorOptions",
-                        "description": "Optional configuration for the stream processor.\n"
+                        "description": "Optional configuration for the stream processor."
                     },
                     "pipeline": {
                         "type": "string",
@@ -24132,11 +24132,11 @@
                     },
                     "state": {
                         "type": "string",
-                        "description": "The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to\nstart or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is\ncreated without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without\nspecifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without\nspecifying the state, it is stopped and then restored to previous state upon update completion.\n"
+                        "description": "The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. \n\n**NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion."
                     },
                     "stats": {
                         "type": "string",
-                        "description": "The stats associated with the stream processor. Refer to the [MongoDB Atlas\nDocs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)\nfor more information.\n"
+                        "description": "The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information."
                     }
                 },
                 "type": "object"
@@ -24662,7 +24662,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -24722,7 +24722,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ipAddress": {
@@ -24785,7 +24785,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -24896,7 +24896,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "labels": {
@@ -25033,7 +25033,7 @@
                 "description": "A collection of values returned by getAdvancedClusters.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -25266,7 +25266,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "orgId": {
@@ -25323,7 +25323,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -25365,7 +25365,7 @@
                 "description": "A collection of values returned by getApiKeyProjectAssignments.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -25414,7 +25414,7 @@
                 "description": "A collection of values returned by getApiKeys.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -25639,7 +25639,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -25696,7 +25696,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "onDemandPolicyItem": {
@@ -25832,7 +25832,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "idPolicy": {
@@ -25972,7 +25972,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "masterKeyUuid": {
@@ -26145,7 +26145,7 @@
                 "description": "A collection of values returned by getCloudBackupSnapshotExportBuckets.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -26317,7 +26317,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -26416,7 +26416,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "oplogInc": {
@@ -26509,7 +26509,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -26576,7 +26576,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -26670,7 +26670,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "lastUpdatedDate": {
@@ -26781,7 +26781,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "labels": {
@@ -27002,7 +27002,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "outageFilters": {
@@ -27059,7 +27059,7 @@
                 "description": "A collection of values returned by getClusters.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -27087,7 +27087,7 @@
                 "description": "A collection of values returned by getControlPlaneIpAddresses.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "inbound": {
@@ -27143,7 +27143,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "inheritedRoles": {
@@ -27188,7 +27188,7 @@
                 "description": "A collection of values returned by getCustomDbRoles.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -27233,7 +27233,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -27467,7 +27467,7 @@
                 "description": "A collection of values returned by getDataLakePipelineRuns.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "pipelineName": {
@@ -27512,7 +27512,7 @@
                 "description": "A collection of values returned by getDataLakePipelines.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -27827,7 +27827,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -27954,7 +27954,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -28031,7 +28031,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -28097,7 +28097,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -28158,7 +28158,7 @@
                 "description": "A collection of values returned by getFederatedDatabaseInstances.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -28217,7 +28217,7 @@
                         "type": "integer"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "lastModifiedDate": {
@@ -28281,7 +28281,7 @@
                 "description": "A collection of values returned by getFederatedQueryLimits.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -28437,7 +28437,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "identityProviderId": {
@@ -28569,7 +28569,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "idpTypes": {
@@ -28646,7 +28646,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "identityProviderId": {
@@ -28724,7 +28724,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -28848,7 +28848,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -28993,7 +28993,7 @@
                 "description": "A collection of values returned by getFlexClusters.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -29050,7 +29050,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -29132,7 +29132,7 @@
                 "description": "A collection of values returned by getFlexRestoreJobs.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -29193,7 +29193,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "mongoDbVersion": {
@@ -29259,7 +29259,7 @@
                 "description": "A collection of values returned by getFlexSnapshots.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -29335,7 +29335,7 @@
                         "type": "object"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "managedNamespaces": {
@@ -29407,7 +29407,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "port": {
@@ -29473,7 +29473,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "links": {
@@ -29551,7 +29551,7 @@
                         "type": "integer"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "numberOfDeferrals": {
@@ -29625,7 +29625,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -29682,7 +29682,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "networkName": {
@@ -29767,7 +29767,7 @@
                 "description": "A collection of values returned by getNetworkContainers.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -29863,7 +29863,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "networkName": {
@@ -29952,7 +29952,7 @@
                 "description": "A collection of values returned by getNetworkPeerings.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -30036,7 +30036,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "partitionFields": {
@@ -30107,7 +30107,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -30170,7 +30170,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "invitationId": {
@@ -30242,7 +30242,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "isDeleted": {
@@ -30317,7 +30317,7 @@
                 "description": "A collection of values returned by getOrganizations.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -30373,7 +30373,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -30434,7 +30434,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "interfaceEndpoints": {
@@ -30571,7 +30571,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "interfaceEndpointId": {
@@ -30655,7 +30655,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -30706,7 +30706,7 @@
                 "description": "A collection of values returned by getPrivatelinkEndpointServiceDataFederationOnlineArchives.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -30776,7 +30776,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceName": {
@@ -30839,7 +30839,7 @@
                 "description": "A collection of values returned by getPrivatelinkEndpointsServiceServerless.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceName": {
@@ -31018,7 +31018,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "privateKey": {
@@ -31079,7 +31079,7 @@
                 "description": "A collection of values returned by getProjectApiKeys.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "itemsPerPage": {
@@ -31145,7 +31145,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "invitationId": {
@@ -31262,7 +31262,7 @@
                 "description": "A collection of values returned by getProjectIpAddresses.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -31357,7 +31357,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "prefixPath": {
@@ -31402,7 +31402,7 @@
                 "description": "A collection of values returned by getResourcePolicies.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "orgId": {
@@ -31521,7 +31521,7 @@
                 "description": "A collection of values returned by getRolesOrgId.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "orgId": {
@@ -31649,7 +31649,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "indexId": {
@@ -31760,7 +31760,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -31945,7 +31945,7 @@
                 "description": "A collection of values returned by getServerlessInstances.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -32001,7 +32001,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "jobId": {
@@ -32078,7 +32078,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -32138,7 +32138,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "mongoDbVersion": {
@@ -32199,7 +32199,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -32266,7 +32266,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -32708,7 +32708,7 @@
                 "description": "A collection of values returned by getStreamPrivatelinkEndpoints.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -32822,7 +32822,7 @@
                 "description": "A collection of values returned by getStreamProcessors.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceName": {
@@ -32876,7 +32876,7 @@
                 "description": "A collection of values returned by getTeam.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -32932,7 +32932,7 @@
                 "description": "A collection of values returned by getTeams.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -33106,7 +33106,7 @@
                 "description": "A collection of values returned by getThirdPartyIntegrations.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -33165,7 +33165,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {

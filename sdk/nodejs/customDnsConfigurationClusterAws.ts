@@ -65,11 +65,11 @@ export class CustomDnsConfigurationClusterAws extends pulumi.CustomResource {
     /**
      * Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * Required 	Unique identifier for the project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
 
     /**
      * Create a CustomDnsConfigurationClusterAws resource with the given unique name, arguments, and options.
@@ -84,18 +84,18 @@ export class CustomDnsConfigurationClusterAws extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomDnsConfigurationClusterAwsState | undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as CustomDnsConfigurationClusterAwsArgs | undefined;
-            if ((!args || args.enabled === undefined) && !opts.urn) {
+            if (args?.enabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["projectId"] = args?.projectId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomDnsConfigurationClusterAws.__pulumiType, name, resourceInputs, opts);

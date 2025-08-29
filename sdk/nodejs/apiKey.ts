@@ -61,17 +61,17 @@ export class ApiKey extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApiKey.__pulumiType;
     }
 
-    public /*out*/ readonly apiKeyId!: pulumi.Output<string>;
+    declare public /*out*/ readonly apiKeyId: pulumi.Output<string>;
     /**
      * Description of this Organization API key.
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
      */
-    public readonly orgId!: pulumi.Output<string>;
-    public /*out*/ readonly privateKey!: pulumi.Output<string>;
-    public /*out*/ readonly publicKey!: pulumi.Output<string>;
+    declare public readonly orgId: pulumi.Output<string>;
+    declare public /*out*/ readonly privateKey: pulumi.Output<string>;
+    declare public /*out*/ readonly publicKey: pulumi.Output<string>;
     /**
      * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
@@ -81,7 +81,7 @@ export class ApiKey extends pulumi.CustomResource {
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
      */
-    public readonly roleNames!: pulumi.Output<string[]>;
+    declare public readonly roleNames: pulumi.Output<string[]>;
 
     /**
      * Create a ApiKey resource with the given unique name, arguments, and options.
@@ -96,26 +96,26 @@ export class ApiKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApiKeyState | undefined;
-            resourceInputs["apiKeyId"] = state ? state.apiKeyId : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
-            resourceInputs["roleNames"] = state ? state.roleNames : undefined;
+            resourceInputs["apiKeyId"] = state?.apiKeyId;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["publicKey"] = state?.publicKey;
+            resourceInputs["roleNames"] = state?.roleNames;
         } else {
             const args = argsOrState as ApiKeyArgs | undefined;
-            if ((!args || args.description === undefined) && !opts.urn) {
+            if (args?.description === undefined && !opts.urn) {
                 throw new Error("Missing required property 'description'");
             }
-            if ((!args || args.orgId === undefined) && !opts.urn) {
+            if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            if ((!args || args.roleNames === undefined) && !opts.urn) {
+            if (args?.roleNames === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleNames'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["roleNames"] = args ? args.roleNames : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["roleNames"] = args?.roleNames;
             resourceInputs["apiKeyId"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;
             resourceInputs["publicKey"] = undefined /*out*/;

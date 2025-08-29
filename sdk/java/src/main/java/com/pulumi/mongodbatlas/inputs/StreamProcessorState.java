@@ -92,22 +92,18 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
-     * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-     * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-     * specifying the state, it is stopped and then restored to previous state upon update completion.
+     * The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+     * 
+     * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      * 
      */
     @Import(name="state")
     private @Nullable Output<String> state;
 
     /**
-     * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
-     * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-     * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-     * specifying the state, it is stopped and then restored to previous state upon update completion.
+     * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+     * 
+     * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      * 
      */
     public Optional<Output<String>> state() {
@@ -115,18 +111,14 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The stats associated with the stream processor. Refer to the [MongoDB Atlas
-     * Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-     * for more information.
+     * The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      * 
      */
     @Import(name="stats")
     private @Nullable Output<String> stats;
 
     /**
-     * @return The stats associated with the stream processor. Refer to the [MongoDB Atlas
-     * Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-     * for more information.
+     * @return The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      * 
      */
     public Optional<Output<String>> stats() {
@@ -269,11 +261,9 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param state The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
-         * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-         * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-         * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-         * specifying the state, it is stopped and then restored to previous state upon update completion.
+         * @param state The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+         * 
+         * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
          * 
          * @return builder
          * 
@@ -284,11 +274,9 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param state The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to
-         * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-         * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-         * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-         * specifying the state, it is stopped and then restored to previous state upon update completion.
+         * @param state The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+         * 
+         * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
          * 
          * @return builder
          * 
@@ -298,9 +286,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param stats The stats associated with the stream processor. Refer to the [MongoDB Atlas
-         * Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-         * for more information.
+         * @param stats The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
          * 
          * @return builder
          * 
@@ -311,9 +297,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param stats The stats associated with the stream processor. Refer to the [MongoDB Atlas
-         * Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-         * for more information.
+         * @param stats The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
          * 
          * @return builder
          * 

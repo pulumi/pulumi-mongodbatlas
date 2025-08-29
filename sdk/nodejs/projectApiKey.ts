@@ -88,16 +88,16 @@ export class ProjectApiKey extends pulumi.CustomResource {
     /**
      * Unique identifier for this Project API key.
      */
-    public /*out*/ readonly apiKeyId!: pulumi.Output<string>;
+    declare public /*out*/ readonly apiKeyId: pulumi.Output<string>;
     /**
      * Description of this Project API key.
      *
      * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
-    public readonly description!: pulumi.Output<string>;
-    public /*out*/ readonly privateKey!: pulumi.Output<string>;
-    public readonly projectAssignments!: pulumi.Output<outputs.ProjectApiKeyProjectAssignment[]>;
-    public /*out*/ readonly publicKey!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
+    declare public /*out*/ readonly privateKey: pulumi.Output<string>;
+    declare public readonly projectAssignments: pulumi.Output<outputs.ProjectApiKeyProjectAssignment[]>;
+    declare public /*out*/ readonly publicKey: pulumi.Output<string>;
 
     /**
      * Create a ProjectApiKey resource with the given unique name, arguments, and options.
@@ -112,21 +112,21 @@ export class ProjectApiKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectApiKeyState | undefined;
-            resourceInputs["apiKeyId"] = state ? state.apiKeyId : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["projectAssignments"] = state ? state.projectAssignments : undefined;
-            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["apiKeyId"] = state?.apiKeyId;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["projectAssignments"] = state?.projectAssignments;
+            resourceInputs["publicKey"] = state?.publicKey;
         } else {
             const args = argsOrState as ProjectApiKeyArgs | undefined;
-            if ((!args || args.description === undefined) && !opts.urn) {
+            if (args?.description === undefined && !opts.urn) {
                 throw new Error("Missing required property 'description'");
             }
-            if ((!args || args.projectAssignments === undefined) && !opts.urn) {
+            if (args?.projectAssignments === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectAssignments'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["projectAssignments"] = args ? args.projectAssignments : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["projectAssignments"] = args?.projectAssignments;
             resourceInputs["apiKeyId"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;
             resourceInputs["publicKey"] = undefined /*out*/;

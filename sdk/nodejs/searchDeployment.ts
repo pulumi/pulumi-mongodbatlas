@@ -56,29 +56,29 @@ export class SearchDeployment extends pulumi.CustomResource {
     /**
      * Label that identifies the cluster to return the search nodes for.
      */
-    public readonly clusterName!: pulumi.Output<string>;
+    declare public readonly clusterName: pulumi.Output<string>;
     /**
      * Flag that indicates whether to delete the search deployment if the creation times out, default is false.
      */
-    public readonly deleteOnCreateTimeout!: pulumi.Output<boolean | undefined>;
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean | undefined>;
     /**
      * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
      */
-    public /*out*/ readonly encryptionAtRestProvider!: pulumi.Output<string>;
+    declare public /*out*/ readonly encryptionAtRestProvider: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
-    public readonly projectId!: pulumi.Output<string>;
-    public readonly skipWaitOnUpdate!: pulumi.Output<boolean | undefined>;
+    declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly skipWaitOnUpdate: pulumi.Output<boolean | undefined>;
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */
-    public readonly specs!: pulumi.Output<outputs.SearchDeploymentSpec[]>;
+    declare public readonly specs: pulumi.Output<outputs.SearchDeploymentSpec[]>;
     /**
      * Human-readable label that indicates the current operating condition of this search deployment.
      */
-    public /*out*/ readonly stateName!: pulumi.Output<string>;
-    public readonly timeouts!: pulumi.Output<outputs.SearchDeploymentTimeouts | undefined>;
+    declare public /*out*/ readonly stateName: pulumi.Output<string>;
+    declare public readonly timeouts: pulumi.Output<outputs.SearchDeploymentTimeouts | undefined>;
 
     /**
      * Create a SearchDeployment resource with the given unique name, arguments, and options.
@@ -93,31 +93,31 @@ export class SearchDeployment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SearchDeploymentState | undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["deleteOnCreateTimeout"] = state ? state.deleteOnCreateTimeout : undefined;
-            resourceInputs["encryptionAtRestProvider"] = state ? state.encryptionAtRestProvider : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["skipWaitOnUpdate"] = state ? state.skipWaitOnUpdate : undefined;
-            resourceInputs["specs"] = state ? state.specs : undefined;
-            resourceInputs["stateName"] = state ? state.stateName : undefined;
-            resourceInputs["timeouts"] = state ? state.timeouts : undefined;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
+            resourceInputs["encryptionAtRestProvider"] = state?.encryptionAtRestProvider;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["skipWaitOnUpdate"] = state?.skipWaitOnUpdate;
+            resourceInputs["specs"] = state?.specs;
+            resourceInputs["stateName"] = state?.stateName;
+            resourceInputs["timeouts"] = state?.timeouts;
         } else {
             const args = argsOrState as SearchDeploymentArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !opts.urn) {
+            if (args?.clusterName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.specs === undefined) && !opts.urn) {
+            if (args?.specs === undefined && !opts.urn) {
                 throw new Error("Missing required property 'specs'");
             }
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["deleteOnCreateTimeout"] = args ? args.deleteOnCreateTimeout : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["skipWaitOnUpdate"] = args ? args.skipWaitOnUpdate : undefined;
-            resourceInputs["specs"] = args ? args.specs : undefined;
-            resourceInputs["timeouts"] = args ? args.timeouts : undefined;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["skipWaitOnUpdate"] = args?.skipWaitOnUpdate;
+            resourceInputs["specs"] = args?.specs;
+            resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["encryptionAtRestProvider"] = undefined /*out*/;
             resourceInputs["stateName"] = undefined /*out*/;
         }

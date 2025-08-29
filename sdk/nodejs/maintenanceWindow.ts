@@ -90,40 +90,40 @@ export class MaintenanceWindow extends pulumi.CustomResource {
     /**
      * Defer any scheduled maintenance for the given project for one week.
      */
-    public readonly autoDefer!: pulumi.Output<boolean>;
+    declare public readonly autoDefer: pulumi.Output<boolean>;
     /**
      * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
      */
-    public readonly autoDeferOnceEnabled!: pulumi.Output<boolean>;
+    declare public readonly autoDeferOnceEnabled: pulumi.Output<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      */
-    public readonly dayOfWeek!: pulumi.Output<number>;
+    declare public readonly dayOfWeek: pulumi.Output<number>;
     /**
      * Defer the next scheduled maintenance for the given project for one week.
      */
-    public readonly defer!: pulumi.Output<boolean>;
+    declare public readonly defer: pulumi.Output<boolean>;
     /**
      * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
      */
-    public readonly hourOfDay!: pulumi.Output<number>;
+    declare public readonly hourOfDay: pulumi.Output<number>;
     /**
      * Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
      */
-    public /*out*/ readonly numberOfDeferrals!: pulumi.Output<number>;
+    declare public /*out*/ readonly numberOfDeferrals: pulumi.Output<number>;
     /**
      * The unique identifier of the project for the Maintenance Window.
      */
-    public readonly projectId!: pulumi.Output<string>;
-    public readonly protectedHours!: pulumi.Output<outputs.MaintenanceWindowProtectedHours | undefined>;
+    declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly protectedHours: pulumi.Output<outputs.MaintenanceWindowProtectedHours | undefined>;
     /**
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      */
-    public readonly startAsap!: pulumi.Output<boolean>;
+    declare public readonly startAsap: pulumi.Output<boolean>;
     /**
      * Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
      */
-    public /*out*/ readonly timeZoneId!: pulumi.Output<string>;
+    declare public /*out*/ readonly timeZoneId: pulumi.Output<string>;
 
     /**
      * Create a MaintenanceWindow resource with the given unique name, arguments, and options.
@@ -138,32 +138,32 @@ export class MaintenanceWindow extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MaintenanceWindowState | undefined;
-            resourceInputs["autoDefer"] = state ? state.autoDefer : undefined;
-            resourceInputs["autoDeferOnceEnabled"] = state ? state.autoDeferOnceEnabled : undefined;
-            resourceInputs["dayOfWeek"] = state ? state.dayOfWeek : undefined;
-            resourceInputs["defer"] = state ? state.defer : undefined;
-            resourceInputs["hourOfDay"] = state ? state.hourOfDay : undefined;
-            resourceInputs["numberOfDeferrals"] = state ? state.numberOfDeferrals : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["protectedHours"] = state ? state.protectedHours : undefined;
-            resourceInputs["startAsap"] = state ? state.startAsap : undefined;
-            resourceInputs["timeZoneId"] = state ? state.timeZoneId : undefined;
+            resourceInputs["autoDefer"] = state?.autoDefer;
+            resourceInputs["autoDeferOnceEnabled"] = state?.autoDeferOnceEnabled;
+            resourceInputs["dayOfWeek"] = state?.dayOfWeek;
+            resourceInputs["defer"] = state?.defer;
+            resourceInputs["hourOfDay"] = state?.hourOfDay;
+            resourceInputs["numberOfDeferrals"] = state?.numberOfDeferrals;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["protectedHours"] = state?.protectedHours;
+            resourceInputs["startAsap"] = state?.startAsap;
+            resourceInputs["timeZoneId"] = state?.timeZoneId;
         } else {
             const args = argsOrState as MaintenanceWindowArgs | undefined;
-            if ((!args || args.dayOfWeek === undefined) && !opts.urn) {
+            if (args?.dayOfWeek === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dayOfWeek'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["autoDefer"] = args ? args.autoDefer : undefined;
-            resourceInputs["autoDeferOnceEnabled"] = args ? args.autoDeferOnceEnabled : undefined;
-            resourceInputs["dayOfWeek"] = args ? args.dayOfWeek : undefined;
-            resourceInputs["defer"] = args ? args.defer : undefined;
-            resourceInputs["hourOfDay"] = args ? args.hourOfDay : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["protectedHours"] = args ? args.protectedHours : undefined;
-            resourceInputs["startAsap"] = args ? args.startAsap : undefined;
+            resourceInputs["autoDefer"] = args?.autoDefer;
+            resourceInputs["autoDeferOnceEnabled"] = args?.autoDeferOnceEnabled;
+            resourceInputs["dayOfWeek"] = args?.dayOfWeek;
+            resourceInputs["defer"] = args?.defer;
+            resourceInputs["hourOfDay"] = args?.hourOfDay;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["protectedHours"] = args?.protectedHours;
+            resourceInputs["startAsap"] = args?.startAsap;
             resourceInputs["numberOfDeferrals"] = undefined /*out*/;
             resourceInputs["timeZoneId"] = undefined /*out*/;
         }

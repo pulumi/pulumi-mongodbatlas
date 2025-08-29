@@ -61,56 +61,56 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
     /**
      * GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
      */
-    public /*out*/ readonly endpointGroupNames!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly endpointGroupNames: pulumi.Output<string[]>;
     /**
      * Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
      */
-    public /*out*/ readonly endpointServiceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly endpointServiceName: pulumi.Output<string>;
     /**
      * Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
      * AWS:
      */
-    public /*out*/ readonly errorMessage!: pulumi.Output<string>;
+    declare public /*out*/ readonly errorMessage: pulumi.Output<string>;
     /**
      * Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
      * AZURE:
      */
-    public /*out*/ readonly interfaceEndpoints!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly interfaceEndpoints: pulumi.Output<string[]>;
     /**
      * All private endpoints that you have added to this Azure Private Link Service.
      */
-    public /*out*/ readonly privateEndpoints!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly privateEndpoints: pulumi.Output<string[]>;
     /**
      * Unique identifier of the AWS PrivateLink connection.
      */
-    public /*out*/ readonly privateLinkId!: pulumi.Output<string>;
+    declare public /*out*/ readonly privateLinkId: pulumi.Output<string>;
     /**
      * Name of the Azure Private Link Service that Atlas manages.
      * GCP:
      */
-    public /*out*/ readonly privateLinkServiceName!: pulumi.Output<string>;
-    public /*out*/ readonly privateLinkServiceResourceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly privateLinkServiceName: pulumi.Output<string>;
+    declare public /*out*/ readonly privateLinkServiceResourceId: pulumi.Output<string>;
     /**
      * Required 	Unique identifier for the project.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
      */
-    public readonly providerName!: pulumi.Output<string>;
+    declare public readonly providerName: pulumi.Output<string>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
      * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * GCP region for the Private Service Connect endpoint service.
      */
-    public /*out*/ readonly regionName!: pulumi.Output<string>;
+    declare public /*out*/ readonly regionName: pulumi.Output<string>;
     /**
      * Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
      */
-    public /*out*/ readonly serviceAttachmentNames!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly serviceAttachmentNames: pulumi.Output<string[]>;
     /**
      * Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
      * AWS:
@@ -129,7 +129,7 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
      * * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
      * * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
 
     /**
      * Create a PrivateLinkEndpoint resource with the given unique name, arguments, and options.
@@ -144,34 +144,34 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateLinkEndpointState | undefined;
-            resourceInputs["endpointGroupNames"] = state ? state.endpointGroupNames : undefined;
-            resourceInputs["endpointServiceName"] = state ? state.endpointServiceName : undefined;
-            resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
-            resourceInputs["interfaceEndpoints"] = state ? state.interfaceEndpoints : undefined;
-            resourceInputs["privateEndpoints"] = state ? state.privateEndpoints : undefined;
-            resourceInputs["privateLinkId"] = state ? state.privateLinkId : undefined;
-            resourceInputs["privateLinkServiceName"] = state ? state.privateLinkServiceName : undefined;
-            resourceInputs["privateLinkServiceResourceId"] = state ? state.privateLinkServiceResourceId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["providerName"] = state ? state.providerName : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["regionName"] = state ? state.regionName : undefined;
-            resourceInputs["serviceAttachmentNames"] = state ? state.serviceAttachmentNames : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["endpointGroupNames"] = state?.endpointGroupNames;
+            resourceInputs["endpointServiceName"] = state?.endpointServiceName;
+            resourceInputs["errorMessage"] = state?.errorMessage;
+            resourceInputs["interfaceEndpoints"] = state?.interfaceEndpoints;
+            resourceInputs["privateEndpoints"] = state?.privateEndpoints;
+            resourceInputs["privateLinkId"] = state?.privateLinkId;
+            resourceInputs["privateLinkServiceName"] = state?.privateLinkServiceName;
+            resourceInputs["privateLinkServiceResourceId"] = state?.privateLinkServiceResourceId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["providerName"] = state?.providerName;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["regionName"] = state?.regionName;
+            resourceInputs["serviceAttachmentNames"] = state?.serviceAttachmentNames;
+            resourceInputs["status"] = state?.status;
         } else {
             const args = argsOrState as PrivateLinkEndpointArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !opts.urn) {
+            if (args?.providerName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["providerName"] = args ? args.providerName : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["providerName"] = args?.providerName;
+            resourceInputs["region"] = args?.region;
             resourceInputs["endpointGroupNames"] = undefined /*out*/;
             resourceInputs["endpointServiceName"] = undefined /*out*/;
             resourceInputs["errorMessage"] = undefined /*out*/;

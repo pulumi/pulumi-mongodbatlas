@@ -129,33 +129,33 @@ export class StreamConnection extends pulumi.CustomResource {
         return obj['__pulumiType'] === StreamConnection.__pulumiType;
     }
 
-    public readonly authentication!: pulumi.Output<outputs.StreamConnectionAuthentication | undefined>;
-    public readonly aws!: pulumi.Output<outputs.StreamConnectionAws | undefined>;
-    public readonly bootstrapServers!: pulumi.Output<string | undefined>;
-    public readonly clusterName!: pulumi.Output<string | undefined>;
-    public readonly clusterProjectId!: pulumi.Output<string | undefined>;
-    public readonly config!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly authentication: pulumi.Output<outputs.StreamConnectionAuthentication | undefined>;
+    declare public readonly aws: pulumi.Output<outputs.StreamConnectionAws | undefined>;
+    declare public readonly bootstrapServers: pulumi.Output<string | undefined>;
+    declare public readonly clusterName: pulumi.Output<string | undefined>;
+    declare public readonly clusterProjectId: pulumi.Output<string | undefined>;
+    declare public readonly config: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      */
-    public readonly connectionName!: pulumi.Output<string>;
-    public readonly dbRoleToExecute!: pulumi.Output<outputs.StreamConnectionDbRoleToExecute | undefined>;
-    public readonly headers!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly connectionName: pulumi.Output<string>;
+    declare public readonly dbRoleToExecute: pulumi.Output<outputs.StreamConnectionDbRoleToExecute | undefined>;
+    declare public readonly headers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Human-readable label that identifies the stream instance.
      */
-    public readonly instanceName!: pulumi.Output<string>;
-    public readonly networking!: pulumi.Output<outputs.StreamConnectionNetworking>;
+    declare public readonly instanceName: pulumi.Output<string>;
+    declare public readonly networking: pulumi.Output<outputs.StreamConnectionNetworking>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
-    public readonly projectId!: pulumi.Output<string>;
-    public readonly security!: pulumi.Output<outputs.StreamConnectionSecurity | undefined>;
+    declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly security: pulumi.Output<outputs.StreamConnectionSecurity | undefined>;
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      */
-    public readonly type!: pulumi.Output<string>;
-    public readonly url!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string | undefined>;
 
     /**
      * Create a StreamConnection resource with the given unique name, arguments, and options.
@@ -170,50 +170,50 @@ export class StreamConnection extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StreamConnectionState | undefined;
-            resourceInputs["authentication"] = state ? state.authentication : undefined;
-            resourceInputs["aws"] = state ? state.aws : undefined;
-            resourceInputs["bootstrapServers"] = state ? state.bootstrapServers : undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["clusterProjectId"] = state ? state.clusterProjectId : undefined;
-            resourceInputs["config"] = state ? state.config : undefined;
-            resourceInputs["connectionName"] = state ? state.connectionName : undefined;
-            resourceInputs["dbRoleToExecute"] = state ? state.dbRoleToExecute : undefined;
-            resourceInputs["headers"] = state ? state.headers : undefined;
-            resourceInputs["instanceName"] = state ? state.instanceName : undefined;
-            resourceInputs["networking"] = state ? state.networking : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["security"] = state ? state.security : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["authentication"] = state?.authentication;
+            resourceInputs["aws"] = state?.aws;
+            resourceInputs["bootstrapServers"] = state?.bootstrapServers;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["clusterProjectId"] = state?.clusterProjectId;
+            resourceInputs["config"] = state?.config;
+            resourceInputs["connectionName"] = state?.connectionName;
+            resourceInputs["dbRoleToExecute"] = state?.dbRoleToExecute;
+            resourceInputs["headers"] = state?.headers;
+            resourceInputs["instanceName"] = state?.instanceName;
+            resourceInputs["networking"] = state?.networking;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["security"] = state?.security;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as StreamConnectionArgs | undefined;
-            if ((!args || args.connectionName === undefined) && !opts.urn) {
+            if (args?.connectionName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'connectionName'");
             }
-            if ((!args || args.instanceName === undefined) && !opts.urn) {
+            if (args?.instanceName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceName'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["authentication"] = args ? args.authentication : undefined;
-            resourceInputs["aws"] = args ? args.aws : undefined;
-            resourceInputs["bootstrapServers"] = args ? args.bootstrapServers : undefined;
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["clusterProjectId"] = args ? args.clusterProjectId : undefined;
-            resourceInputs["config"] = args ? args.config : undefined;
-            resourceInputs["connectionName"] = args ? args.connectionName : undefined;
-            resourceInputs["dbRoleToExecute"] = args ? args.dbRoleToExecute : undefined;
-            resourceInputs["headers"] = args ? args.headers : undefined;
-            resourceInputs["instanceName"] = args ? args.instanceName : undefined;
-            resourceInputs["networking"] = args ? args.networking : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["security"] = args ? args.security : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["authentication"] = args?.authentication;
+            resourceInputs["aws"] = args?.aws;
+            resourceInputs["bootstrapServers"] = args?.bootstrapServers;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["clusterProjectId"] = args?.clusterProjectId;
+            resourceInputs["config"] = args?.config;
+            resourceInputs["connectionName"] = args?.connectionName;
+            resourceInputs["dbRoleToExecute"] = args?.dbRoleToExecute;
+            resourceInputs["headers"] = args?.headers;
+            resourceInputs["instanceName"] = args?.instanceName;
+            resourceInputs["networking"] = args?.networking;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["security"] = args?.security;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["url"] = args?.url;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(StreamConnection.__pulumiType, name, resourceInputs, opts);

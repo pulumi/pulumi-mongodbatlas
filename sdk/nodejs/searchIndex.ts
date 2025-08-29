@@ -153,7 +153,7 @@ export class SearchIndex extends pulumi.CustomResource {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    public readonly analyzer!: pulumi.Output<string | undefined>;
+    declare public readonly analyzer: pulumi.Output<string | undefined>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
      * ```
@@ -178,64 +178,64 @@ export class SearchIndex extends pulumi.CustomResource {
      * EOF
      * ```
      */
-    public readonly analyzers!: pulumi.Output<string | undefined>;
+    declare public readonly analyzers: pulumi.Output<string | undefined>;
     /**
      * The name of the cluster where you want to create the search index within.
      */
-    public readonly clusterName!: pulumi.Output<string>;
+    declare public readonly clusterName: pulumi.Output<string>;
     /**
      * Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
      */
-    public readonly collectionName!: pulumi.Output<string>;
+    declare public readonly collectionName: pulumi.Output<string>;
     /**
      * Name of the database the collection is in.
      */
-    public readonly database!: pulumi.Output<string>;
+    declare public readonly database: pulumi.Output<string>;
     /**
      * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
      */
-    public readonly fields!: pulumi.Output<string | undefined>;
+    declare public readonly fields: pulumi.Output<string | undefined>;
     /**
      * The unique identifier of the Atlas Search index.
      */
-    public /*out*/ readonly indexId!: pulumi.Output<string>;
+    declare public /*out*/ readonly indexId: pulumi.Output<string>;
     /**
      * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
      */
-    public readonly mappingsDynamic!: pulumi.Output<boolean | undefined>;
+    declare public readonly mappingsDynamic: pulumi.Output<boolean | undefined>;
     /**
      * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
-    public readonly mappingsFields!: pulumi.Output<string | undefined>;
+    declare public readonly mappingsFields: pulumi.Output<string | undefined>;
     /**
      * The name of the search index you want to create.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The ID of the organization or project you want to create the search index within.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    public readonly searchAnalyzer!: pulumi.Output<string | undefined>;
+    declare public readonly searchAnalyzer: pulumi.Output<string | undefined>;
     /**
      * Current status of the index.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
      */
-    public readonly storedSource!: pulumi.Output<string | undefined>;
+    declare public readonly storedSource: pulumi.Output<string | undefined>;
     /**
      * Synonyms mapping definition to use in this index.
      */
-    public readonly synonyms!: pulumi.Output<outputs.SearchIndexSynonym[] | undefined>;
+    declare public readonly synonyms: pulumi.Output<outputs.SearchIndexSynonym[] | undefined>;
     /**
      * Type of index: `search` or `vectorSearch`. Default type is `search`.
      */
-    public readonly type!: pulumi.Output<string | undefined>;
-    public readonly waitForIndexBuildCompletion!: pulumi.Output<boolean | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
+    declare public readonly waitForIndexBuildCompletion: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a SearchIndex resource with the given unique name, arguments, and options.
@@ -250,52 +250,52 @@ export class SearchIndex extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SearchIndexState | undefined;
-            resourceInputs["analyzer"] = state ? state.analyzer : undefined;
-            resourceInputs["analyzers"] = state ? state.analyzers : undefined;
-            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["collectionName"] = state ? state.collectionName : undefined;
-            resourceInputs["database"] = state ? state.database : undefined;
-            resourceInputs["fields"] = state ? state.fields : undefined;
-            resourceInputs["indexId"] = state ? state.indexId : undefined;
-            resourceInputs["mappingsDynamic"] = state ? state.mappingsDynamic : undefined;
-            resourceInputs["mappingsFields"] = state ? state.mappingsFields : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["searchAnalyzer"] = state ? state.searchAnalyzer : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["storedSource"] = state ? state.storedSource : undefined;
-            resourceInputs["synonyms"] = state ? state.synonyms : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["waitForIndexBuildCompletion"] = state ? state.waitForIndexBuildCompletion : undefined;
+            resourceInputs["analyzer"] = state?.analyzer;
+            resourceInputs["analyzers"] = state?.analyzers;
+            resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["collectionName"] = state?.collectionName;
+            resourceInputs["database"] = state?.database;
+            resourceInputs["fields"] = state?.fields;
+            resourceInputs["indexId"] = state?.indexId;
+            resourceInputs["mappingsDynamic"] = state?.mappingsDynamic;
+            resourceInputs["mappingsFields"] = state?.mappingsFields;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["searchAnalyzer"] = state?.searchAnalyzer;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["storedSource"] = state?.storedSource;
+            resourceInputs["synonyms"] = state?.synonyms;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["waitForIndexBuildCompletion"] = state?.waitForIndexBuildCompletion;
         } else {
             const args = argsOrState as SearchIndexArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !opts.urn) {
+            if (args?.clusterName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.collectionName === undefined) && !opts.urn) {
+            if (args?.collectionName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'collectionName'");
             }
-            if ((!args || args.database === undefined) && !opts.urn) {
+            if (args?.database === undefined && !opts.urn) {
                 throw new Error("Missing required property 'database'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["analyzer"] = args ? args.analyzer : undefined;
-            resourceInputs["analyzers"] = args ? args.analyzers : undefined;
-            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["collectionName"] = args ? args.collectionName : undefined;
-            resourceInputs["database"] = args ? args.database : undefined;
-            resourceInputs["fields"] = args ? args.fields : undefined;
-            resourceInputs["mappingsDynamic"] = args ? args.mappingsDynamic : undefined;
-            resourceInputs["mappingsFields"] = args ? args.mappingsFields : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["searchAnalyzer"] = args ? args.searchAnalyzer : undefined;
-            resourceInputs["storedSource"] = args ? args.storedSource : undefined;
-            resourceInputs["synonyms"] = args ? args.synonyms : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["waitForIndexBuildCompletion"] = args ? args.waitForIndexBuildCompletion : undefined;
+            resourceInputs["analyzer"] = args?.analyzer;
+            resourceInputs["analyzers"] = args?.analyzers;
+            resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["collectionName"] = args?.collectionName;
+            resourceInputs["database"] = args?.database;
+            resourceInputs["fields"] = args?.fields;
+            resourceInputs["mappingsDynamic"] = args?.mappingsDynamic;
+            resourceInputs["mappingsFields"] = args?.mappingsFields;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["searchAnalyzer"] = args?.searchAnalyzer;
+            resourceInputs["storedSource"] = args?.storedSource;
+            resourceInputs["synonyms"] = args?.synonyms;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["waitForIndexBuildCompletion"] = args?.waitForIndexBuildCompletion;
             resourceInputs["indexId"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }

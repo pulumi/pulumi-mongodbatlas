@@ -34,12 +34,12 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
         return obj['__pulumiType'] === CloudProviderAccessAuthorization.__pulumiType;
     }
 
-    public /*out*/ readonly authorizedDate!: pulumi.Output<string>;
-    public readonly aws!: pulumi.Output<outputs.CloudProviderAccessAuthorizationAws | undefined>;
-    public readonly azure!: pulumi.Output<outputs.CloudProviderAccessAuthorizationAzure | undefined>;
-    public /*out*/ readonly featureUsages!: pulumi.Output<outputs.CloudProviderAccessAuthorizationFeatureUsage[]>;
-    public readonly projectId!: pulumi.Output<string>;
-    public readonly roleId!: pulumi.Output<string>;
+    declare public /*out*/ readonly authorizedDate: pulumi.Output<string>;
+    declare public readonly aws: pulumi.Output<outputs.CloudProviderAccessAuthorizationAws | undefined>;
+    declare public readonly azure: pulumi.Output<outputs.CloudProviderAccessAuthorizationAzure | undefined>;
+    declare public /*out*/ readonly featureUsages: pulumi.Output<outputs.CloudProviderAccessAuthorizationFeatureUsage[]>;
+    declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly roleId: pulumi.Output<string>;
 
     /**
      * Create a CloudProviderAccessAuthorization resource with the given unique name, arguments, and options.
@@ -54,24 +54,24 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudProviderAccessAuthorizationState | undefined;
-            resourceInputs["authorizedDate"] = state ? state.authorizedDate : undefined;
-            resourceInputs["aws"] = state ? state.aws : undefined;
-            resourceInputs["azure"] = state ? state.azure : undefined;
-            resourceInputs["featureUsages"] = state ? state.featureUsages : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["authorizedDate"] = state?.authorizedDate;
+            resourceInputs["aws"] = state?.aws;
+            resourceInputs["azure"] = state?.azure;
+            resourceInputs["featureUsages"] = state?.featureUsages;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["roleId"] = state?.roleId;
         } else {
             const args = argsOrState as CloudProviderAccessAuthorizationArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.roleId === undefined) && !opts.urn) {
+            if (args?.roleId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
-            resourceInputs["aws"] = args ? args.aws : undefined;
-            resourceInputs["azure"] = args ? args.azure : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["roleId"] = args ? args.roleId : undefined;
+            resourceInputs["aws"] = args?.aws;
+            resourceInputs["azure"] = args?.azure;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["roleId"] = args?.roleId;
             resourceInputs["authorizedDate"] = undefined /*out*/;
             resourceInputs["featureUsages"] = undefined /*out*/;
         }

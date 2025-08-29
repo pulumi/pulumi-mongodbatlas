@@ -93,23 +93,23 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
     /**
      * Unique label that identifies the identity provider group to which this role mapping applies.
      */
-    public readonly externalGroupName!: pulumi.Output<string>;
+    declare public readonly externalGroupName: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
-    public readonly federationSettingsId!: pulumi.Output<string>;
+    declare public readonly federationSettingsId: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
      */
-    public readonly roleAssignments!: pulumi.Output<outputs.FederatedSettingsOrgRoleMappingRoleAssignment[]>;
+    declare public readonly roleAssignments: pulumi.Output<outputs.FederatedSettingsOrgRoleMappingRoleAssignment[]>;
     /**
      * Unique 24-hexadecimal digit string that identifies this role mapping.
      */
-    public /*out*/ readonly roleMappingId!: pulumi.Output<string>;
+    declare public /*out*/ readonly roleMappingId: pulumi.Output<string>;
 
     /**
      * Create a FederatedSettingsOrgRoleMapping resource with the given unique name, arguments, and options.
@@ -124,29 +124,29 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FederatedSettingsOrgRoleMappingState | undefined;
-            resourceInputs["externalGroupName"] = state ? state.externalGroupName : undefined;
-            resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["roleAssignments"] = state ? state.roleAssignments : undefined;
-            resourceInputs["roleMappingId"] = state ? state.roleMappingId : undefined;
+            resourceInputs["externalGroupName"] = state?.externalGroupName;
+            resourceInputs["federationSettingsId"] = state?.federationSettingsId;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["roleAssignments"] = state?.roleAssignments;
+            resourceInputs["roleMappingId"] = state?.roleMappingId;
         } else {
             const args = argsOrState as FederatedSettingsOrgRoleMappingArgs | undefined;
-            if ((!args || args.externalGroupName === undefined) && !opts.urn) {
+            if (args?.externalGroupName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'externalGroupName'");
             }
-            if ((!args || args.federationSettingsId === undefined) && !opts.urn) {
+            if (args?.federationSettingsId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'federationSettingsId'");
             }
-            if ((!args || args.orgId === undefined) && !opts.urn) {
+            if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            if ((!args || args.roleAssignments === undefined) && !opts.urn) {
+            if (args?.roleAssignments === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleAssignments'");
             }
-            resourceInputs["externalGroupName"] = args ? args.externalGroupName : undefined;
-            resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["roleAssignments"] = args ? args.roleAssignments : undefined;
+            resourceInputs["externalGroupName"] = args?.externalGroupName;
+            resourceInputs["federationSettingsId"] = args?.federationSettingsId;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["roleAssignments"] = args?.roleAssignments;
             resourceInputs["roleMappingId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

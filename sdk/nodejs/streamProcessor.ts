@@ -55,37 +55,33 @@ export class StreamProcessor extends pulumi.CustomResource {
     /**
      * Human-readable label that identifies the stream instance.
      */
-    public readonly instanceName!: pulumi.Output<string>;
+    declare public readonly instanceName: pulumi.Output<string>;
     /**
      * Optional configuration for the stream processor.
      */
-    public readonly options!: pulumi.Output<outputs.StreamProcessorOptions | undefined>;
+    declare public readonly options: pulumi.Output<outputs.StreamProcessorOptions | undefined>;
     /**
      * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
      */
-    public readonly pipeline!: pulumi.Output<string>;
+    declare public readonly pipeline: pulumi.Output<string>;
     /**
      * Human-readable label that identifies the stream processor.
      */
-    public readonly processorName!: pulumi.Output<string>;
+    declare public readonly processorName: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
-     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-     * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-     * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-     * specifying the state, it is stopped and then restored to previous state upon update completion.
+     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+     *
+     * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      */
-    public readonly state!: pulumi.Output<string>;
+    declare public readonly state: pulumi.Output<string>;
     /**
-     * The stats associated with the stream processor. Refer to the [MongoDB Atlas
-     * Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-     * for more information.
+     * The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      */
-    public /*out*/ readonly stats!: pulumi.Output<string>;
+    declare public /*out*/ readonly stats: pulumi.Output<string>;
 
     /**
      * Create a StreamProcessor resource with the given unique name, arguments, and options.
@@ -100,33 +96,33 @@ export class StreamProcessor extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StreamProcessorState | undefined;
-            resourceInputs["instanceName"] = state ? state.instanceName : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["pipeline"] = state ? state.pipeline : undefined;
-            resourceInputs["processorName"] = state ? state.processorName : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["stats"] = state ? state.stats : undefined;
+            resourceInputs["instanceName"] = state?.instanceName;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["pipeline"] = state?.pipeline;
+            resourceInputs["processorName"] = state?.processorName;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["stats"] = state?.stats;
         } else {
             const args = argsOrState as StreamProcessorArgs | undefined;
-            if ((!args || args.instanceName === undefined) && !opts.urn) {
+            if (args?.instanceName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceName'");
             }
-            if ((!args || args.pipeline === undefined) && !opts.urn) {
+            if (args?.pipeline === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipeline'");
             }
-            if ((!args || args.processorName === undefined) && !opts.urn) {
+            if (args?.processorName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'processorName'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["instanceName"] = args ? args.instanceName : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["pipeline"] = args ? args.pipeline : undefined;
-            resourceInputs["processorName"] = args ? args.processorName : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["state"] = args ? args.state : undefined;
+            resourceInputs["instanceName"] = args?.instanceName;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["pipeline"] = args?.pipeline;
+            resourceInputs["processorName"] = args?.processorName;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["state"] = args?.state;
             resourceInputs["stats"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -159,17 +155,13 @@ export interface StreamProcessorState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-     * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-     * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-     * specifying the state, it is stopped and then restored to previous state upon update completion.
+     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+     *
+     * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      */
     state?: pulumi.Input<string>;
     /**
-     * The stats associated with the stream processor. Refer to the [MongoDB Atlas
-     * Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor)
-     * for more information.
+     * The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      */
     stats?: pulumi.Input<string>;
 }
@@ -199,11 +191,9 @@ export interface StreamProcessorArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to
-     * start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is
-     * created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without
-     * specifying the state, it will default to the Previous state. **NOTE** When a Stream Processor is updated without
-     * specifying the state, it is stopped and then restored to previous state upon update completion.
+     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
+     *
+     * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      */
     state?: pulumi.Input<string>;
 }

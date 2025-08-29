@@ -26,8 +26,7 @@ class ApiKeyProjectAssignmentArgs:
         The set of arguments for constructing a ApiKeyProjectAssignment resource.
         :param pulumi.Input[_builtins.str] api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-               Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         """
         pulumi.set(__self__, "api_key_id", api_key_id)
         pulumi.set(__self__, "project_id", project_id)
@@ -61,8 +60,7 @@ class ApiKeyProjectAssignmentArgs:
     @pulumi.getter
     def roles(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-        Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         """
         return pulumi.get(self, "roles")
 
@@ -81,8 +79,7 @@ class _ApiKeyProjectAssignmentState:
         Input properties used for looking up and filtering ApiKeyProjectAssignment resources.
         :param pulumi.Input[_builtins.str] api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-               Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         """
         if api_key_id is not None:
             pulumi.set(__self__, "api_key_id", api_key_id)
@@ -119,8 +116,7 @@ class _ApiKeyProjectAssignmentState:
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-        Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         """
         return pulumi.get(self, "roles")
 
@@ -187,8 +183,7 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-               Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         """
         ...
     @overload
@@ -298,8 +293,7 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-               Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -330,8 +324,7 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
     @pulumi.getter
     def roles(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB
-        Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         """
         return pulumi.get(self, "roles")
 

@@ -97,46 +97,46 @@ export class LdapConfiguration extends pulumi.CustomResource {
     /**
      * Specifies whether user authentication with LDAP is enabled.
      */
-    public readonly authenticationEnabled!: pulumi.Output<boolean>;
+    declare public readonly authenticationEnabled: pulumi.Output<boolean>;
     /**
      * Specifies whether user authorization with LDAP is enabled. You cannot enable user authorization with LDAP without first enabling user authentication with LDAP.
      */
-    public readonly authorizationEnabled!: pulumi.Output<boolean>;
+    declare public readonly authorizationEnabled: pulumi.Output<boolean>;
     /**
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      */
-    public readonly authzQueryTemplate!: pulumi.Output<string>;
+    declare public readonly authzQueryTemplate: pulumi.Output<string>;
     /**
      * The password used to authenticate the `bindUsername`.
      */
-    public readonly bindPassword!: pulumi.Output<string>;
+    declare public readonly bindPassword: pulumi.Output<string>;
     /**
      * The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
      */
-    public readonly bindUsername!: pulumi.Output<string>;
+    declare public readonly bindUsername: pulumi.Output<string>;
     /**
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      */
-    public readonly caCertificate!: pulumi.Output<string>;
+    declare public readonly caCertificate: pulumi.Output<string>;
     /**
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      */
-    public readonly hostname!: pulumi.Output<string>;
+    declare public readonly hostname: pulumi.Output<string>;
     /**
      * The port to which the LDAP server listens for client connections. Default: `636`
      */
-    public readonly port!: pulumi.Output<number | undefined>;
+    declare public readonly port: pulumi.Output<number | undefined>;
     /**
      * The unique ID for the project to configure LDAP.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldapQuery` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
      * * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
      * * `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
      * * `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
      */
-    public readonly userToDnMappings!: pulumi.Output<outputs.LdapConfigurationUserToDnMapping[]>;
+    declare public readonly userToDnMappings: pulumi.Output<outputs.LdapConfigurationUserToDnMapping[]>;
 
     /**
      * Create a LdapConfiguration resource with the given unique name, arguments, and options.
@@ -151,43 +151,43 @@ export class LdapConfiguration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LdapConfigurationState | undefined;
-            resourceInputs["authenticationEnabled"] = state ? state.authenticationEnabled : undefined;
-            resourceInputs["authorizationEnabled"] = state ? state.authorizationEnabled : undefined;
-            resourceInputs["authzQueryTemplate"] = state ? state.authzQueryTemplate : undefined;
-            resourceInputs["bindPassword"] = state ? state.bindPassword : undefined;
-            resourceInputs["bindUsername"] = state ? state.bindUsername : undefined;
-            resourceInputs["caCertificate"] = state ? state.caCertificate : undefined;
-            resourceInputs["hostname"] = state ? state.hostname : undefined;
-            resourceInputs["port"] = state ? state.port : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["userToDnMappings"] = state ? state.userToDnMappings : undefined;
+            resourceInputs["authenticationEnabled"] = state?.authenticationEnabled;
+            resourceInputs["authorizationEnabled"] = state?.authorizationEnabled;
+            resourceInputs["authzQueryTemplate"] = state?.authzQueryTemplate;
+            resourceInputs["bindPassword"] = state?.bindPassword;
+            resourceInputs["bindUsername"] = state?.bindUsername;
+            resourceInputs["caCertificate"] = state?.caCertificate;
+            resourceInputs["hostname"] = state?.hostname;
+            resourceInputs["port"] = state?.port;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["userToDnMappings"] = state?.userToDnMappings;
         } else {
             const args = argsOrState as LdapConfigurationArgs | undefined;
-            if ((!args || args.authenticationEnabled === undefined) && !opts.urn) {
+            if (args?.authenticationEnabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authenticationEnabled'");
             }
-            if ((!args || args.bindPassword === undefined) && !opts.urn) {
+            if (args?.bindPassword === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bindPassword'");
             }
-            if ((!args || args.bindUsername === undefined) && !opts.urn) {
+            if (args?.bindUsername === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bindUsername'");
             }
-            if ((!args || args.hostname === undefined) && !opts.urn) {
+            if (args?.hostname === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hostname'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["authenticationEnabled"] = args ? args.authenticationEnabled : undefined;
-            resourceInputs["authorizationEnabled"] = args ? args.authorizationEnabled : undefined;
-            resourceInputs["authzQueryTemplate"] = args ? args.authzQueryTemplate : undefined;
+            resourceInputs["authenticationEnabled"] = args?.authenticationEnabled;
+            resourceInputs["authorizationEnabled"] = args?.authorizationEnabled;
+            resourceInputs["authzQueryTemplate"] = args?.authzQueryTemplate;
             resourceInputs["bindPassword"] = args?.bindPassword ? pulumi.secret(args.bindPassword) : undefined;
-            resourceInputs["bindUsername"] = args ? args.bindUsername : undefined;
-            resourceInputs["caCertificate"] = args ? args.caCertificate : undefined;
-            resourceInputs["hostname"] = args ? args.hostname : undefined;
-            resourceInputs["port"] = args ? args.port : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["userToDnMappings"] = args ? args.userToDnMappings : undefined;
+            resourceInputs["bindUsername"] = args?.bindUsername;
+            resourceInputs["caCertificate"] = args?.caCertificate;
+            resourceInputs["hostname"] = args?.hostname;
+            resourceInputs["port"] = args?.port;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["userToDnMappings"] = args?.userToDnMappings;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["bindPassword"] };

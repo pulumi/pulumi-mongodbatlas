@@ -50,39 +50,39 @@ export class ResourcePolicy extends pulumi.CustomResource {
     /**
      * The user that last updated the Atlas resource policy.
      */
-    public /*out*/ readonly createdByUser!: pulumi.Output<outputs.ResourcePolicyCreatedByUser>;
+    declare public /*out*/ readonly createdByUser: pulumi.Output<outputs.ResourcePolicyCreatedByUser>;
     /**
      * Date and time in UTC when the Atlas resource policy was created.
      */
-    public /*out*/ readonly createdDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdDate: pulumi.Output<string>;
     /**
      * Description of the Atlas resource policy.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The user that last updated the Atlas resource policy.
      */
-    public /*out*/ readonly lastUpdatedByUser!: pulumi.Output<outputs.ResourcePolicyLastUpdatedByUser>;
+    declare public /*out*/ readonly lastUpdatedByUser: pulumi.Output<outputs.ResourcePolicyLastUpdatedByUser>;
     /**
      * Date and time in UTC when the Atlas resource policy was last updated.
      */
-    public /*out*/ readonly lastUpdatedDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastUpdatedDate: pulumi.Output<string>;
     /**
      * Human-readable label that describes the Atlas resource policy.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * List of policies that make up the Atlas resource policy.
      */
-    public readonly policies!: pulumi.Output<outputs.ResourcePolicyPolicy[]>;
+    declare public readonly policies: pulumi.Output<outputs.ResourcePolicyPolicy[]>;
     /**
      * A string that identifies the version of the Atlas resource policy.
      */
-    public /*out*/ readonly version!: pulumi.Output<string>;
+    declare public /*out*/ readonly version: pulumi.Output<string>;
 
     /**
      * Create a ResourcePolicy resource with the given unique name, arguments, and options.
@@ -97,27 +97,27 @@ export class ResourcePolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ResourcePolicyState | undefined;
-            resourceInputs["createdByUser"] = state ? state.createdByUser : undefined;
-            resourceInputs["createdDate"] = state ? state.createdDate : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["lastUpdatedByUser"] = state ? state.lastUpdatedByUser : undefined;
-            resourceInputs["lastUpdatedDate"] = state ? state.lastUpdatedDate : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["createdByUser"] = state?.createdByUser;
+            resourceInputs["createdDate"] = state?.createdDate;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["lastUpdatedByUser"] = state?.lastUpdatedByUser;
+            resourceInputs["lastUpdatedDate"] = state?.lastUpdatedDate;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as ResourcePolicyArgs | undefined;
-            if ((!args || args.orgId === undefined) && !opts.urn) {
+            if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            if ((!args || args.policies === undefined) && !opts.urn) {
+            if (args?.policies === undefined && !opts.urn) {
                 throw new Error("Missing required property 'policies'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["policies"] = args?.policies;
             resourceInputs["createdByUser"] = undefined /*out*/;
             resourceInputs["createdDate"] = undefined /*out*/;
             resourceInputs["lastUpdatedByUser"] = undefined /*out*/;

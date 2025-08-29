@@ -187,15 +187,15 @@ export class AlertConfiguration extends pulumi.CustomResource {
     /**
      * Unique identifier for the alert configuration.
      */
-    public /*out*/ readonly alertConfigurationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly alertConfigurationId: pulumi.Output<string>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
      */
-    public /*out*/ readonly created!: pulumi.Output<string>;
+    declare public /*out*/ readonly created: pulumi.Output<string>;
     /**
      * It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The type of event that will trigger an alert.
      *
@@ -204,19 +204,19 @@ export class AlertConfiguration extends pulumi.CustomResource {
      *
      * > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
      */
-    public readonly eventType!: pulumi.Output<string>;
-    public readonly matchers!: pulumi.Output<outputs.AlertConfigurationMatcher[] | undefined>;
-    public readonly metricThresholdConfig!: pulumi.Output<outputs.AlertConfigurationMetricThresholdConfig | undefined>;
-    public readonly notifications!: pulumi.Output<outputs.AlertConfigurationNotification[] | undefined>;
+    declare public readonly eventType: pulumi.Output<string>;
+    declare public readonly matchers: pulumi.Output<outputs.AlertConfigurationMatcher[] | undefined>;
+    declare public readonly metricThresholdConfig: pulumi.Output<outputs.AlertConfigurationMetricThresholdConfig | undefined>;
+    declare public readonly notifications: pulumi.Output<outputs.AlertConfigurationNotification[] | undefined>;
     /**
      * The ID of the project where the alert configuration will create.
      */
-    public readonly projectId!: pulumi.Output<string>;
-    public readonly thresholdConfig!: pulumi.Output<outputs.AlertConfigurationThresholdConfig | undefined>;
+    declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly thresholdConfig: pulumi.Output<outputs.AlertConfigurationThresholdConfig | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */
-    public /*out*/ readonly updated!: pulumi.Output<string>;
+    declare public /*out*/ readonly updated: pulumi.Output<string>;
 
     /**
      * Create a AlertConfiguration resource with the given unique name, arguments, and options.
@@ -231,31 +231,31 @@ export class AlertConfiguration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AlertConfigurationState | undefined;
-            resourceInputs["alertConfigurationId"] = state ? state.alertConfigurationId : undefined;
-            resourceInputs["created"] = state ? state.created : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["eventType"] = state ? state.eventType : undefined;
-            resourceInputs["matchers"] = state ? state.matchers : undefined;
-            resourceInputs["metricThresholdConfig"] = state ? state.metricThresholdConfig : undefined;
-            resourceInputs["notifications"] = state ? state.notifications : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["thresholdConfig"] = state ? state.thresholdConfig : undefined;
-            resourceInputs["updated"] = state ? state.updated : undefined;
+            resourceInputs["alertConfigurationId"] = state?.alertConfigurationId;
+            resourceInputs["created"] = state?.created;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["eventType"] = state?.eventType;
+            resourceInputs["matchers"] = state?.matchers;
+            resourceInputs["metricThresholdConfig"] = state?.metricThresholdConfig;
+            resourceInputs["notifications"] = state?.notifications;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["thresholdConfig"] = state?.thresholdConfig;
+            resourceInputs["updated"] = state?.updated;
         } else {
             const args = argsOrState as AlertConfigurationArgs | undefined;
-            if ((!args || args.eventType === undefined) && !opts.urn) {
+            if (args?.eventType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'eventType'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["eventType"] = args ? args.eventType : undefined;
-            resourceInputs["matchers"] = args ? args.matchers : undefined;
-            resourceInputs["metricThresholdConfig"] = args ? args.metricThresholdConfig : undefined;
-            resourceInputs["notifications"] = args ? args.notifications : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["thresholdConfig"] = args ? args.thresholdConfig : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["eventType"] = args?.eventType;
+            resourceInputs["matchers"] = args?.matchers;
+            resourceInputs["metricThresholdConfig"] = args?.metricThresholdConfig;
+            resourceInputs["notifications"] = args?.notifications;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["thresholdConfig"] = args?.thresholdConfig;
             resourceInputs["alertConfigurationId"] = undefined /*out*/;
             resourceInputs["created"] = undefined /*out*/;
             resourceInputs["updated"] = undefined /*out*/;

@@ -71,27 +71,27 @@ export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
     /**
      * Array of objects where each details one unexpired database user certificate.
      */
-    public /*out*/ readonly certificates!: pulumi.Output<outputs.X509AuthenticationDatabaseUserCertificate[]>;
+    declare public /*out*/ readonly certificates: pulumi.Output<outputs.X509AuthenticationDatabaseUserCertificate[]>;
     /**
      * Contains the last X.509 certificate and private key created for a database user.
      */
-    public /*out*/ readonly currentCertificate!: pulumi.Output<string>;
+    declare public /*out*/ readonly currentCertificate: pulumi.Output<string>;
     /**
      * PEM string containing one or more customer CAs for database user authentication.
      */
-    public readonly customerX509Cas!: pulumi.Output<string | undefined>;
+    declare public readonly customerX509Cas: pulumi.Output<string | undefined>;
     /**
      * A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
      */
-    public readonly monthsUntilExpiration!: pulumi.Output<number | undefined>;
+    declare public readonly monthsUntilExpiration: pulumi.Output<number | undefined>;
     /**
      * Identifier for the Atlas project associated with the X.509 configuration.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Username of the database user to create a certificate for.
      */
-    public readonly username!: pulumi.Output<string | undefined>;
+    declare public readonly username: pulumi.Output<string | undefined>;
 
     /**
      * Create a X509AuthenticationDatabaseUser resource with the given unique name, arguments, and options.
@@ -106,21 +106,21 @@ export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as X509AuthenticationDatabaseUserState | undefined;
-            resourceInputs["certificates"] = state ? state.certificates : undefined;
-            resourceInputs["currentCertificate"] = state ? state.currentCertificate : undefined;
-            resourceInputs["customerX509Cas"] = state ? state.customerX509Cas : undefined;
-            resourceInputs["monthsUntilExpiration"] = state ? state.monthsUntilExpiration : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["certificates"] = state?.certificates;
+            resourceInputs["currentCertificate"] = state?.currentCertificate;
+            resourceInputs["customerX509Cas"] = state?.customerX509Cas;
+            resourceInputs["monthsUntilExpiration"] = state?.monthsUntilExpiration;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as X509AuthenticationDatabaseUserArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             resourceInputs["customerX509Cas"] = args?.customerX509Cas ? pulumi.secret(args.customerX509Cas) : undefined;
-            resourceInputs["monthsUntilExpiration"] = args ? args.monthsUntilExpiration : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["monthsUntilExpiration"] = args?.monthsUntilExpiration;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["username"] = args?.username;
             resourceInputs["certificates"] = undefined /*out*/;
             resourceInputs["currentCertificate"] = undefined /*out*/;
         }

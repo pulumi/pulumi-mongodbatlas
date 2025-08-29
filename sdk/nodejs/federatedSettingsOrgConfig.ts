@@ -73,37 +73,37 @@ export class FederatedSettingsOrgConfig extends pulumi.CustomResource {
     /**
      * The collection of unique ids representing the identity providers that can be used for data access in this organization.
      */
-    public readonly dataAccessIdentityProviderIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly dataAccessIdentityProviderIds: pulumi.Output<string[] | undefined>;
     /**
      * List that contains the approved domains from which organization users can log in.
      */
-    public readonly domainAllowLists!: pulumi.Output<string[] | undefined>;
+    declare public readonly domainAllowLists: pulumi.Output<string[] | undefined>;
     /**
      * Flag that indicates whether domain restriction is enabled for the connected organization.
      */
-    public readonly domainRestrictionEnabled!: pulumi.Output<boolean>;
+    declare public readonly domainRestrictionEnabled: pulumi.Output<boolean>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
-    public readonly federationSettingsId!: pulumi.Output<string>;
+    declare public readonly federationSettingsId: pulumi.Output<string>;
     /**
      * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
      * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
      * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      */
-    public readonly identityProviderId!: pulumi.Output<string | undefined>;
+    declare public readonly identityProviderId: pulumi.Output<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
      */
-    public readonly postAuthRoleGrants!: pulumi.Output<string[] | undefined>;
+    declare public readonly postAuthRoleGrants: pulumi.Output<string[] | undefined>;
     /**
      * List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
      */
-    public /*out*/ readonly userConflicts!: pulumi.Output<outputs.FederatedSettingsOrgConfigUserConflict[]>;
+    declare public /*out*/ readonly userConflicts: pulumi.Output<outputs.FederatedSettingsOrgConfigUserConflict[]>;
 
     /**
      * Create a FederatedSettingsOrgConfig resource with the given unique name, arguments, and options.
@@ -118,32 +118,32 @@ export class FederatedSettingsOrgConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FederatedSettingsOrgConfigState | undefined;
-            resourceInputs["dataAccessIdentityProviderIds"] = state ? state.dataAccessIdentityProviderIds : undefined;
-            resourceInputs["domainAllowLists"] = state ? state.domainAllowLists : undefined;
-            resourceInputs["domainRestrictionEnabled"] = state ? state.domainRestrictionEnabled : undefined;
-            resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
-            resourceInputs["identityProviderId"] = state ? state.identityProviderId : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["postAuthRoleGrants"] = state ? state.postAuthRoleGrants : undefined;
-            resourceInputs["userConflicts"] = state ? state.userConflicts : undefined;
+            resourceInputs["dataAccessIdentityProviderIds"] = state?.dataAccessIdentityProviderIds;
+            resourceInputs["domainAllowLists"] = state?.domainAllowLists;
+            resourceInputs["domainRestrictionEnabled"] = state?.domainRestrictionEnabled;
+            resourceInputs["federationSettingsId"] = state?.federationSettingsId;
+            resourceInputs["identityProviderId"] = state?.identityProviderId;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["postAuthRoleGrants"] = state?.postAuthRoleGrants;
+            resourceInputs["userConflicts"] = state?.userConflicts;
         } else {
             const args = argsOrState as FederatedSettingsOrgConfigArgs | undefined;
-            if ((!args || args.domainRestrictionEnabled === undefined) && !opts.urn) {
+            if (args?.domainRestrictionEnabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domainRestrictionEnabled'");
             }
-            if ((!args || args.federationSettingsId === undefined) && !opts.urn) {
+            if (args?.federationSettingsId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'federationSettingsId'");
             }
-            if ((!args || args.orgId === undefined) && !opts.urn) {
+            if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            resourceInputs["dataAccessIdentityProviderIds"] = args ? args.dataAccessIdentityProviderIds : undefined;
-            resourceInputs["domainAllowLists"] = args ? args.domainAllowLists : undefined;
-            resourceInputs["domainRestrictionEnabled"] = args ? args.domainRestrictionEnabled : undefined;
-            resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
-            resourceInputs["identityProviderId"] = args ? args.identityProviderId : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["postAuthRoleGrants"] = args ? args.postAuthRoleGrants : undefined;
+            resourceInputs["dataAccessIdentityProviderIds"] = args?.dataAccessIdentityProviderIds;
+            resourceInputs["domainAllowLists"] = args?.domainAllowLists;
+            resourceInputs["domainRestrictionEnabled"] = args?.domainRestrictionEnabled;
+            resourceInputs["federationSettingsId"] = args?.federationSettingsId;
+            resourceInputs["identityProviderId"] = args?.identityProviderId;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["postAuthRoleGrants"] = args?.postAuthRoleGrants;
             resourceInputs["userConflicts"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

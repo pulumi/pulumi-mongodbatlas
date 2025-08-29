@@ -56,7 +56,7 @@ export class DataLakePipeline extends pulumi.CustomResource {
     /**
      * Timestamp that indicates when the Data Lake Pipeline was created.
      */
-    public /*out*/ readonly createdDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdDate: pulumi.Output<string>;
     /**
      * List of backup schedule policy items that you can use as a Data Lake Pipeline source.
      * * `ingestion_schedules.#.id` - Unique 24-hexadecimal digit string that identifies this backup policy item.
@@ -65,20 +65,20 @@ export class DataLakePipeline extends pulumi.CustomResource {
      * * `ingestion_schedules.#.retention_unit` - Unit of time in which MongoDB Atlas measures snapshot retention.
      * * `ingestion_schedules.#.retention_value` - Duration in days, weeks, or months that MongoDB Atlas retains the snapshot.
      */
-    public /*out*/ readonly ingestionSchedules!: pulumi.Output<outputs.DataLakePipelineIngestionSchedule[]>;
+    declare public /*out*/ readonly ingestionSchedules: pulumi.Output<outputs.DataLakePipelineIngestionSchedule[]>;
     /**
      * Timestamp that indicates the last time that the Data Lake Pipeline was updated.
      */
-    public /*out*/ readonly lastUpdatedDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastUpdatedDate: pulumi.Output<string>;
     /**
      * Name of the Atlas Data Lake Pipeline.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The unique ID for the project to create a data lake pipeline.
      */
-    public readonly projectId!: pulumi.Output<string>;
-    public readonly sink!: pulumi.Output<outputs.DataLakePipelineSink | undefined>;
+    declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly sink: pulumi.Output<outputs.DataLakePipelineSink | undefined>;
     /**
      * List of backup snapshots that you can use to trigger an on demand pipeline run.
      * * `snapshots.#.id` - Unique 24-hexadecimal digit string that identifies the snapshot.
@@ -96,18 +96,18 @@ export class DataLakePipeline extends pulumi.CustomResource {
      * * `snapshots.#.copy_region` - List that identifies the regions to which MongoDB Atlas copies the snapshot.
      * * `snapshots.#.policies` - List that contains unique identifiers for the policy items.
      */
-    public /*out*/ readonly snapshots!: pulumi.Output<outputs.DataLakePipelineSnapshot[]>;
-    public readonly source!: pulumi.Output<outputs.DataLakePipelineSource | undefined>;
+    declare public /*out*/ readonly snapshots: pulumi.Output<outputs.DataLakePipelineSnapshot[]>;
+    declare public readonly source: pulumi.Output<outputs.DataLakePipelineSource | undefined>;
     /**
      * State of this Data Lake Pipeline.
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * Fields to be excluded for this Data Lake Pipeline.
      * * `transformations.#.field` - Key in the document.
      * * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
      */
-    public readonly transformations!: pulumi.Output<outputs.DataLakePipelineTransformation[] | undefined>;
+    declare public readonly transformations: pulumi.Output<outputs.DataLakePipelineTransformation[] | undefined>;
 
     /**
      * Create a DataLakePipeline resource with the given unique name, arguments, and options.
@@ -122,26 +122,26 @@ export class DataLakePipeline extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DataLakePipelineState | undefined;
-            resourceInputs["createdDate"] = state ? state.createdDate : undefined;
-            resourceInputs["ingestionSchedules"] = state ? state.ingestionSchedules : undefined;
-            resourceInputs["lastUpdatedDate"] = state ? state.lastUpdatedDate : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["sink"] = state ? state.sink : undefined;
-            resourceInputs["snapshots"] = state ? state.snapshots : undefined;
-            resourceInputs["source"] = state ? state.source : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["transformations"] = state ? state.transformations : undefined;
+            resourceInputs["createdDate"] = state?.createdDate;
+            resourceInputs["ingestionSchedules"] = state?.ingestionSchedules;
+            resourceInputs["lastUpdatedDate"] = state?.lastUpdatedDate;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["sink"] = state?.sink;
+            resourceInputs["snapshots"] = state?.snapshots;
+            resourceInputs["source"] = state?.source;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["transformations"] = state?.transformations;
         } else {
             const args = argsOrState as DataLakePipelineArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["sink"] = args ? args.sink : undefined;
-            resourceInputs["source"] = args ? args.source : undefined;
-            resourceInputs["transformations"] = args ? args.transformations : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["sink"] = args?.sink;
+            resourceInputs["source"] = args?.source;
+            resourceInputs["transformations"] = args?.transformations;
             resourceInputs["createdDate"] = undefined /*out*/;
             resourceInputs["ingestionSchedules"] = undefined /*out*/;
             resourceInputs["lastUpdatedDate"] = undefined /*out*/;

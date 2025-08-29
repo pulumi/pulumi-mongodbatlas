@@ -85,28 +85,28 @@ export class PushBasedLogExport extends pulumi.CustomResource {
     /**
      * The name of the bucket to which the agent sends the logs to.
      */
-    public readonly bucketName!: pulumi.Output<string>;
+    declare public readonly bucketName: pulumi.Output<string>;
     /**
      * Date and time that this feature was enabled on.
      */
-    public /*out*/ readonly createDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly createDate: pulumi.Output<string>;
     /**
      * ID of the AWS IAM role that is used to write to the S3 bucket.
      */
-    public readonly iamRoleId!: pulumi.Output<string>;
+    declare public readonly iamRoleId: pulumi.Output<string>;
     /**
      * S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
      */
-    public readonly prefixPath!: pulumi.Output<string>;
+    declare public readonly prefixPath: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Describes whether or not the feature is enabled and what status it is in.
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
-    public readonly timeouts!: pulumi.Output<outputs.PushBasedLogExportTimeouts | undefined>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
+    declare public readonly timeouts: pulumi.Output<outputs.PushBasedLogExportTimeouts | undefined>;
 
     /**
      * Create a PushBasedLogExport resource with the given unique name, arguments, and options.
@@ -121,29 +121,29 @@ export class PushBasedLogExport extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PushBasedLogExportState | undefined;
-            resourceInputs["bucketName"] = state ? state.bucketName : undefined;
-            resourceInputs["createDate"] = state ? state.createDate : undefined;
-            resourceInputs["iamRoleId"] = state ? state.iamRoleId : undefined;
-            resourceInputs["prefixPath"] = state ? state.prefixPath : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["timeouts"] = state ? state.timeouts : undefined;
+            resourceInputs["bucketName"] = state?.bucketName;
+            resourceInputs["createDate"] = state?.createDate;
+            resourceInputs["iamRoleId"] = state?.iamRoleId;
+            resourceInputs["prefixPath"] = state?.prefixPath;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["timeouts"] = state?.timeouts;
         } else {
             const args = argsOrState as PushBasedLogExportArgs | undefined;
-            if ((!args || args.bucketName === undefined) && !opts.urn) {
+            if (args?.bucketName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bucketName'");
             }
-            if ((!args || args.iamRoleId === undefined) && !opts.urn) {
+            if (args?.iamRoleId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'iamRoleId'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["bucketName"] = args ? args.bucketName : undefined;
-            resourceInputs["iamRoleId"] = args ? args.iamRoleId : undefined;
-            resourceInputs["prefixPath"] = args ? args.prefixPath : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["timeouts"] = args ? args.timeouts : undefined;
+            resourceInputs["bucketName"] = args?.bucketName;
+            resourceInputs["iamRoleId"] = args?.iamRoleId;
+            resourceInputs["prefixPath"] = args?.prefixPath;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["createDate"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
         }

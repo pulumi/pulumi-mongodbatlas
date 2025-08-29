@@ -85,37 +85,37 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
     /**
      * Name of the bucket that the provided role ID is authorized to access.
      */
-    public readonly bucketName!: pulumi.Output<string>;
+    declare public readonly bucketName: pulumi.Output<string>;
     /**
      * Name of the provider of the cloud service where Atlas can access the S3 bucket.
      */
-    public readonly cloudProvider!: pulumi.Output<string>;
+    declare public readonly cloudProvider: pulumi.Output<string>;
     /**
      * Unique identifier of the snapshot export bucket.
      */
-    public /*out*/ readonly exportBucketId!: pulumi.Output<string>;
+    declare public /*out*/ readonly exportBucketId: pulumi.Output<string>;
     /**
      * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      */
-    public readonly iamRoleId!: pulumi.Output<string | undefined>;
+    declare public readonly iamRoleId: pulumi.Output<string | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
      */
-    public readonly roleId!: pulumi.Output<string | undefined>;
+    declare public readonly roleId: pulumi.Output<string | undefined>;
     /**
      * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
      */
-    public readonly serviceUrl!: pulumi.Output<string | undefined>;
+    declare public readonly serviceUrl: pulumi.Output<string | undefined>;
     /**
      * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      *
      * @deprecated This parameter is deprecated.
      */
-    public readonly tenantId!: pulumi.Output<string>;
+    declare public readonly tenantId: pulumi.Output<string>;
 
     /**
      * Create a CloudBackupSnapshotExportBucket resource with the given unique name, arguments, and options.
@@ -130,32 +130,32 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudBackupSnapshotExportBucketState | undefined;
-            resourceInputs["bucketName"] = state ? state.bucketName : undefined;
-            resourceInputs["cloudProvider"] = state ? state.cloudProvider : undefined;
-            resourceInputs["exportBucketId"] = state ? state.exportBucketId : undefined;
-            resourceInputs["iamRoleId"] = state ? state.iamRoleId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["roleId"] = state ? state.roleId : undefined;
-            resourceInputs["serviceUrl"] = state ? state.serviceUrl : undefined;
-            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["bucketName"] = state?.bucketName;
+            resourceInputs["cloudProvider"] = state?.cloudProvider;
+            resourceInputs["exportBucketId"] = state?.exportBucketId;
+            resourceInputs["iamRoleId"] = state?.iamRoleId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["roleId"] = state?.roleId;
+            resourceInputs["serviceUrl"] = state?.serviceUrl;
+            resourceInputs["tenantId"] = state?.tenantId;
         } else {
             const args = argsOrState as CloudBackupSnapshotExportBucketArgs | undefined;
-            if ((!args || args.bucketName === undefined) && !opts.urn) {
+            if (args?.bucketName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bucketName'");
             }
-            if ((!args || args.cloudProvider === undefined) && !opts.urn) {
+            if (args?.cloudProvider === undefined && !opts.urn) {
                 throw new Error("Missing required property 'cloudProvider'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["bucketName"] = args ? args.bucketName : undefined;
-            resourceInputs["cloudProvider"] = args ? args.cloudProvider : undefined;
-            resourceInputs["iamRoleId"] = args ? args.iamRoleId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["roleId"] = args ? args.roleId : undefined;
-            resourceInputs["serviceUrl"] = args ? args.serviceUrl : undefined;
-            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["bucketName"] = args?.bucketName;
+            resourceInputs["cloudProvider"] = args?.cloudProvider;
+            resourceInputs["iamRoleId"] = args?.iamRoleId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["roleId"] = args?.roleId;
+            resourceInputs["serviceUrl"] = args?.serviceUrl;
+            resourceInputs["tenantId"] = args?.tenantId;
             resourceInputs["exportBucketId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
