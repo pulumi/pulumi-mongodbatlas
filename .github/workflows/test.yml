@@ -33,6 +33,7 @@ jobs:
         persist-credentials: false    
     - env:
         ESC_ACTION_ENVIRONMENT: github-secrets/${{ github.repository_owner }}-${{ github.event.repository.name }}
+        ESC_ACTION_EXPORT_ENVIRONMENT_VARIABLES: "false"
         ESC_ACTION_OIDC_AUTH: "true"
         ESC_ACTION_OIDC_ORGANIZATION: pulumi
         ESC_ACTION_OIDC_REQUESTED_TOKEN_TYPE: urn:pulumi:token-type:access_token:organization
@@ -75,11 +76,17 @@ jobs:
       run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language }} -skip TestPulumiExamples -parallel 4 .
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MONGODB_ATLAS_ORG_ID: ${{ steps.esc-secrets.outputs.MONGODB_ATLAS_ORG_ID }}
+        MONGODB_ATLAS_PRIVATE_KEY: ${{ steps.esc-secrets.outputs.MONGODB_ATLAS_PRIVATE_KEY }}
+        MONGODB_ATLAS_PUBLIC_KEY: ${{ steps.esc-secrets.outputs.MONGODB_ATLAS_PUBLIC_KEY }}
     - name: Run pulumi/examples tests
       if: matrix.testTarget == 'pulumiExamples'
       run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language }} -run TestPulumiExamples -parallel 4 .
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MONGODB_ATLAS_ORG_ID: ${{ steps.esc-secrets.outputs.MONGODB_ATLAS_ORG_ID }}
+        MONGODB_ATLAS_PRIVATE_KEY: ${{ steps.esc-secrets.outputs.MONGODB_ATLAS_PRIVATE_KEY }}
+        MONGODB_ATLAS_PUBLIC_KEY: ${{ steps.esc-secrets.outputs.MONGODB_ATLAS_PUBLIC_KEY }}
     strategy:
       fail-fast: false
       matrix:
