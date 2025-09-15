@@ -129,7 +129,7 @@ type Project struct {
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
 	Tags  pulumi.StringMapOutput `pulumi:"tags"`
 	Teams ProjectTeamArrayOutput `pulumi:"teams"`
-	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings pulumi.BoolOutput `pulumi:"withDefaultAlertsSettings"`
 }
 
@@ -202,7 +202,7 @@ type projectState struct {
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
 	Tags  map[string]string `pulumi:"tags"`
 	Teams []ProjectTeam     `pulumi:"teams"`
-	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings *bool `pulumi:"withDefaultAlertsSettings"`
 }
 
@@ -243,7 +243,7 @@ type ProjectState struct {
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
 	Tags  pulumi.StringMapInput
 	Teams ProjectTeamArrayInput
-	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
@@ -280,7 +280,7 @@ type projectArgs struct {
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
 	Tags  map[string]string `pulumi:"tags"`
 	Teams []ProjectTeam     `pulumi:"teams"`
-	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings *bool `pulumi:"withDefaultAlertsSettings"`
 }
 
@@ -314,7 +314,7 @@ type ProjectArgs struct {
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
 	Tags  pulumi.StringMapInput
 	Teams ProjectTeamArrayInput
-	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
@@ -492,7 +492,7 @@ func (o ProjectOutput) Teams() ProjectTeamArrayOutput {
 	return o.ApplyT(func(v *Project) ProjectTeamArrayOutput { return v.Teams }).(ProjectTeamArrayOutput)
 }
 
-// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 func (o ProjectOutput) WithDefaultAlertsSettings() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.WithDefaultAlertsSettings }).(pulumi.BoolOutput)
 }

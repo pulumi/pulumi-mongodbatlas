@@ -13,6 +13,7 @@ import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationState;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessAuthorizationAws;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessAuthorizationAzure;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessAuthorizationFeatureUsage;
+import com.pulumi.mongodbatlas.outputs.CloudProviderAccessAuthorizationGcp;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +44,12 @@ public class CloudProviderAccessAuthorization extends com.pulumi.resources.Custo
 
     public Output<List<CloudProviderAccessAuthorizationFeatureUsage>> featureUsages() {
         return this.featureUsages;
+    }
+    @Export(name="gcps", refs={List.class,CloudProviderAccessAuthorizationGcp.class}, tree="[0,1]")
+    private Output<List<CloudProviderAccessAuthorizationGcp>> gcps;
+
+    public Output<List<CloudProviderAccessAuthorizationGcp>> gcps() {
+        return this.gcps;
     }
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;

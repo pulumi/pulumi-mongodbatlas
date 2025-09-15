@@ -47,6 +47,21 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
     }
 
     /**
+     * Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+     * 
+     */
+    @Import(name="roleId")
+    private @Nullable Output<String> roleId;
+
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+     * 
+     */
+    public Optional<Output<String>> roleId() {
+        return Optional.ofNullable(this.roleId);
+    }
+
+    /**
      * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      * 
      */
@@ -81,6 +96,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
     private EncryptionAtRestGoogleCloudKmsConfigArgs(EncryptionAtRestGoogleCloudKmsConfigArgs $) {
         this.enabled = $.enabled;
         this.keyVersionResourceId = $.keyVersionResourceId;
+        this.roleId = $.roleId;
         this.serviceAccountKey = $.serviceAccountKey;
         this.valid = $.valid;
     }
@@ -143,6 +159,27 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
          */
         public Builder keyVersionResourceId(String keyVersionResourceId) {
             return keyVersionResourceId(Output.of(keyVersionResourceId));
+        }
+
+        /**
+         * @param roleId Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleId(@Nullable Output<String> roleId) {
+            $.roleId = roleId;
+            return this;
+        }
+
+        /**
+         * @param roleId Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleId(String roleId) {
+            return roleId(Output.of(roleId));
         }
 
         /**

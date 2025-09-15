@@ -18,6 +18,7 @@ type CloudProviderAccessSetup struct {
 	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayOutput   `pulumi:"awsConfigs"`
 	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayOutput `pulumi:"azureConfigs"`
 	CreatedDate     pulumi.StringOutput                            `pulumi:"createdDate"`
+	GcpConfigs      CloudProviderAccessSetupGcpConfigArrayOutput   `pulumi:"gcpConfigs"`
 	LastUpdatedDate pulumi.StringOutput                            `pulumi:"lastUpdatedDate"`
 	ProjectId       pulumi.StringOutput                            `pulumi:"projectId"`
 	ProviderName    pulumi.StringOutput                            `pulumi:"providerName"`
@@ -63,6 +64,7 @@ type cloudProviderAccessSetupState struct {
 	AwsConfigs      []CloudProviderAccessSetupAwsConfig   `pulumi:"awsConfigs"`
 	AzureConfigs    []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
 	CreatedDate     *string                               `pulumi:"createdDate"`
+	GcpConfigs      []CloudProviderAccessSetupGcpConfig   `pulumi:"gcpConfigs"`
 	LastUpdatedDate *string                               `pulumi:"lastUpdatedDate"`
 	ProjectId       *string                               `pulumi:"projectId"`
 	ProviderName    *string                               `pulumi:"providerName"`
@@ -73,6 +75,7 @@ type CloudProviderAccessSetupState struct {
 	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayInput
 	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayInput
 	CreatedDate     pulumi.StringPtrInput
+	GcpConfigs      CloudProviderAccessSetupGcpConfigArrayInput
 	LastUpdatedDate pulumi.StringPtrInput
 	ProjectId       pulumi.StringPtrInput
 	ProviderName    pulumi.StringPtrInput
@@ -195,6 +198,10 @@ func (o CloudProviderAccessSetupOutput) AzureConfigs() CloudProviderAccessSetupA
 
 func (o CloudProviderAccessSetupOutput) CreatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessSetupOutput) GcpConfigs() CloudProviderAccessSetupGcpConfigArrayOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) CloudProviderAccessSetupGcpConfigArrayOutput { return v.GcpConfigs }).(CloudProviderAccessSetupGcpConfigArrayOutput)
 }
 
 func (o CloudProviderAccessSetupOutput) LastUpdatedDate() pulumi.StringOutput {

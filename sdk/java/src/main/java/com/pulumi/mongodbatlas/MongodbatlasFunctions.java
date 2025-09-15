@@ -9312,7 +9312,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -9396,6 +9396,50 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### With GCP
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -9417,7 +9461,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -9501,6 +9545,50 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### With GCP
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -9522,7 +9610,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -9606,6 +9694,50 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### With GCP
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -9627,7 +9759,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -9711,6 +9843,50 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### With GCP
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -9732,7 +9908,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -9816,6 +9992,50 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### With GCP
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -13484,6 +13704,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -13698,6 +13920,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -13912,6 +14136,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -14126,6 +14352,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -14340,6 +14568,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code

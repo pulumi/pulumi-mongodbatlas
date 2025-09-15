@@ -918,6 +918,10 @@ export interface CloudProviderAccessAuthorizationFeatureUsage {
     featureType: string;
 }
 
+export interface CloudProviderAccessAuthorizationGcp {
+    serviceAccountForAtlas: string;
+}
+
 export interface CloudProviderAccessSetupAwsConfig {
     atlasAssumedRoleExternalId: string;
     atlasAwsAccountArn: string;
@@ -927,6 +931,11 @@ export interface CloudProviderAccessSetupAzureConfig {
     atlasAzureAppId: string;
     servicePrincipalId: string;
     tenantId: string;
+}
+
+export interface CloudProviderAccessSetupGcpConfig {
+    serviceAccountForAtlas: string;
+    status: string;
 }
 
 export interface ClusterAdvancedConfiguration {
@@ -1483,6 +1492,10 @@ export interface EncryptionAtRestGoogleCloudKmsConfig {
      * Resource path that displays the key version resource ID for your Google Cloud KMS.
      */
     keyVersionResourceId?: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+     */
+    roleId?: string;
     /**
      * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      */
@@ -3695,6 +3708,17 @@ export interface GetCloudProviderAccessSetupAzureConfig {
     tenantId: string;
 }
 
+export interface GetCloudProviderAccessSetupGcpConfig {
+    /**
+     * The GCP service account email that Atlas uses.
+     */
+    serviceAccountForAtlas: string;
+    /**
+     * The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+     */
+    status: string;
+}
+
 export interface GetClusterAdvancedConfiguration {
     /**
      * (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
@@ -4908,6 +4932,10 @@ export interface GetEncryptionAtRestGoogleCloudKmsConfig {
      * Resource path that displays the key version resource ID for your Google Cloud KMS.
      */
     keyVersionResourceId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+     */
+    roleId: string;
     /**
      * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      */

@@ -340,14 +340,14 @@ public class Project extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.teams);
     }
     /**
-     * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
      * 
      */
     @Export(name="withDefaultAlertsSettings", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> withDefaultAlertsSettings;
 
     /**
-     * @return It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     * @return Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
      * 
      */
     public Output<Boolean> withDefaultAlertsSettings() {
