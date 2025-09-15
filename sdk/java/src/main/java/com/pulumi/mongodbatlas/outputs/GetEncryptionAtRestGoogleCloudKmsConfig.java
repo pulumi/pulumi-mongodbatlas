@@ -22,6 +22,11 @@ public final class GetEncryptionAtRestGoogleCloudKmsConfig {
      */
     private String keyVersionResourceId;
     /**
+     * @return Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+     * 
+     */
+    private String roleId;
+    /**
      * @return JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      * 
      */
@@ -46,6 +51,13 @@ public final class GetEncryptionAtRestGoogleCloudKmsConfig {
      */
     public String keyVersionResourceId() {
         return this.keyVersionResourceId;
+    }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+     * 
+     */
+    public String roleId() {
+        return this.roleId;
     }
     /**
      * @return JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
@@ -73,6 +85,7 @@ public final class GetEncryptionAtRestGoogleCloudKmsConfig {
     public static final class Builder {
         private Boolean enabled;
         private String keyVersionResourceId;
+        private String roleId;
         private String serviceAccountKey;
         private Boolean valid;
         public Builder() {}
@@ -80,6 +93,7 @@ public final class GetEncryptionAtRestGoogleCloudKmsConfig {
     	      Objects.requireNonNull(defaults);
     	      this.enabled = defaults.enabled;
     	      this.keyVersionResourceId = defaults.keyVersionResourceId;
+    	      this.roleId = defaults.roleId;
     	      this.serviceAccountKey = defaults.serviceAccountKey;
     	      this.valid = defaults.valid;
         }
@@ -98,6 +112,14 @@ public final class GetEncryptionAtRestGoogleCloudKmsConfig {
               throw new MissingRequiredPropertyException("GetEncryptionAtRestGoogleCloudKmsConfig", "keyVersionResourceId");
             }
             this.keyVersionResourceId = keyVersionResourceId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder roleId(String roleId) {
+            if (roleId == null) {
+              throw new MissingRequiredPropertyException("GetEncryptionAtRestGoogleCloudKmsConfig", "roleId");
+            }
+            this.roleId = roleId;
             return this;
         }
         @CustomType.Setter
@@ -120,6 +142,7 @@ public final class GetEncryptionAtRestGoogleCloudKmsConfig {
             final var _resultValue = new GetEncryptionAtRestGoogleCloudKmsConfig();
             _resultValue.enabled = enabled;
             _resultValue.keyVersionResourceId = keyVersionResourceId;
+            _resultValue.roleId = roleId;
             _resultValue.serviceAccountKey = serviceAccountKey;
             _resultValue.valid = valid;
             return _resultValue;

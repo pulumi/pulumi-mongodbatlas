@@ -161,7 +161,7 @@ export class Project extends pulumi.CustomResource {
     declare public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
     declare public readonly teams: pulumi.Output<outputs.ProjectTeam[] | undefined>;
     /**
-     * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
      */
     declare public readonly withDefaultAlertsSettings: pulumi.Output<boolean>;
 
@@ -296,7 +296,7 @@ export interface ProjectState {
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
     /**
-     * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
      */
     withDefaultAlertsSettings?: pulumi.Input<boolean>;
 }
@@ -358,7 +358,7 @@ export interface ProjectArgs {
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
     /**
-     * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
      */
     withDefaultAlertsSettings?: pulumi.Input<boolean>;
 }

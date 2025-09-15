@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupState;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAwsConfig;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAzureConfig;
+import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupGcpConfig;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +37,12 @@ public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResourc
 
     public Output<String> createdDate() {
         return this.createdDate;
+    }
+    @Export(name="gcpConfigs", refs={List.class,CloudProviderAccessSetupGcpConfig.class}, tree="[0,1]")
+    private Output<List<CloudProviderAccessSetupGcpConfig>> gcpConfigs;
+
+    public Output<List<CloudProviderAccessSetupGcpConfig>> gcpConfigs() {
+        return this.gcpConfigs;
     }
     @Export(name="lastUpdatedDate", refs={String.class}, tree="[0]")
     private Output<String> lastUpdatedDate;

@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAwsConfigArgs;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupGcpConfigArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +38,13 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
 
     public Optional<Output<String>> createdDate() {
         return Optional.ofNullable(this.createdDate);
+    }
+
+    @Import(name="gcpConfigs")
+    private @Nullable Output<List<CloudProviderAccessSetupGcpConfigArgs>> gcpConfigs;
+
+    public Optional<Output<List<CloudProviderAccessSetupGcpConfigArgs>>> gcpConfigs() {
+        return Optional.ofNullable(this.gcpConfigs);
     }
 
     @Import(name="lastUpdatedDate")
@@ -73,6 +81,7 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
         this.awsConfigs = $.awsConfigs;
         this.azureConfigs = $.azureConfigs;
         this.createdDate = $.createdDate;
+        this.gcpConfigs = $.gcpConfigs;
         this.lastUpdatedDate = $.lastUpdatedDate;
         this.projectId = $.projectId;
         this.providerName = $.providerName;
@@ -130,6 +139,19 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
 
         public Builder createdDate(String createdDate) {
             return createdDate(Output.of(createdDate));
+        }
+
+        public Builder gcpConfigs(@Nullable Output<List<CloudProviderAccessSetupGcpConfigArgs>> gcpConfigs) {
+            $.gcpConfigs = gcpConfigs;
+            return this;
+        }
+
+        public Builder gcpConfigs(List<CloudProviderAccessSetupGcpConfigArgs> gcpConfigs) {
+            return gcpConfigs(Output.of(gcpConfigs));
+        }
+
+        public Builder gcpConfigs(CloudProviderAccessSetupGcpConfigArgs... gcpConfigs) {
+            return gcpConfigs(List.of(gcpConfigs));
         }
 
         public Builder lastUpdatedDate(@Nullable Output<String> lastUpdatedDate) {

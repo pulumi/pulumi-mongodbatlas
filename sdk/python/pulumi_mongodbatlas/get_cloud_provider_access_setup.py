@@ -28,7 +28,7 @@ class GetCloudProviderAccessSetupResult:
     """
     A collection of values returned by getCloudProviderAccessSetup.
     """
-    def __init__(__self__, aws=None, aws_configs=None, azure_configs=None, created_date=None, id=None, last_updated_date=None, project_id=None, provider_name=None, role_id=None):
+    def __init__(__self__, aws=None, aws_configs=None, azure_configs=None, created_date=None, gcp_configs=None, id=None, last_updated_date=None, project_id=None, provider_name=None, role_id=None):
         if aws and not isinstance(aws, dict):
             raise TypeError("Expected argument 'aws' to be a dict")
         pulumi.set(__self__, "aws", aws)
@@ -41,6 +41,9 @@ class GetCloudProviderAccessSetupResult:
         if created_date and not isinstance(created_date, str):
             raise TypeError("Expected argument 'created_date' to be a str")
         pulumi.set(__self__, "created_date", created_date)
+        if gcp_configs and not isinstance(gcp_configs, list):
+            raise TypeError("Expected argument 'gcp_configs' to be a list")
+        pulumi.set(__self__, "gcp_configs", gcp_configs)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -60,9 +63,6 @@ class GetCloudProviderAccessSetupResult:
     @_builtins.property
     @pulumi.getter
     def aws(self) -> Mapping[str, _builtins.str]:
-        """
-        aws related role information
-        """
         return pulumi.get(self, "aws")
 
     @_builtins.property
@@ -88,6 +88,14 @@ class GetCloudProviderAccessSetupResult:
         Date on which this role was created.
         """
         return pulumi.get(self, "created_date")
+
+    @_builtins.property
+    @pulumi.getter(name="gcpConfigs")
+    def gcp_configs(self) -> Sequence['outputs.GetCloudProviderAccessSetupGcpConfigResult']:
+        """
+        gcp related configurations
+        """
+        return pulumi.get(self, "gcp_configs")
 
     @_builtins.property
     @pulumi.getter
@@ -131,6 +139,7 @@ class AwaitableGetCloudProviderAccessSetupResult(GetCloudProviderAccessSetupResu
             aws_configs=self.aws_configs,
             azure_configs=self.azure_configs,
             created_date=self.created_date,
+            gcp_configs=self.gcp_configs,
             id=self.id,
             last_updated_date=self.last_updated_date,
             project_id=self.project_id,
@@ -146,7 +155,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
     """
     ## # Data Source: CloudProviderAccessSetup
 
-    `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+    `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -183,11 +192,25 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
         role_id=test_role.role_id)
     ```
 
+    ### With GCP
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
+        project_id="64259ee860c43338194b0f8e",
+        provider_name="GCP")
+    single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
+        provider_name=test_role.provider_name,
+        role_id=test_role.role_id)
+    ```
+
 
     :param Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']] azure_configs: azure related configurations
     :param _builtins.str project_id: The unique ID for the project to get all Cloud Provider Access
-    :param _builtins.str provider_name: cloud provider name, currently only AWS is supported
-    :param _builtins.str role_id: unique role id among all the aws roles provided by mongodb atlas
+    :param _builtins.str provider_name: cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
+    :param _builtins.str role_id: unique role id among all the roles provided by MongoDB Atlas.
     """
     __args__ = dict()
     __args__['azureConfigs'] = azure_configs
@@ -202,6 +225,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
         aws_configs=pulumi.get(__ret__, 'aws_configs'),
         azure_configs=pulumi.get(__ret__, 'azure_configs'),
         created_date=pulumi.get(__ret__, 'created_date'),
+        gcp_configs=pulumi.get(__ret__, 'gcp_configs'),
         id=pulumi.get(__ret__, 'id'),
         last_updated_date=pulumi.get(__ret__, 'last_updated_date'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -215,7 +239,7 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
     """
     ## # Data Source: CloudProviderAccessSetup
 
-    `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+    `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -252,11 +276,25 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
         role_id=test_role.role_id)
     ```
 
+    ### With GCP
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
+        project_id="64259ee860c43338194b0f8e",
+        provider_name="GCP")
+    single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
+        provider_name=test_role.provider_name,
+        role_id=test_role.role_id)
+    ```
+
 
     :param Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']] azure_configs: azure related configurations
     :param _builtins.str project_id: The unique ID for the project to get all Cloud Provider Access
-    :param _builtins.str provider_name: cloud provider name, currently only AWS is supported
-    :param _builtins.str role_id: unique role id among all the aws roles provided by mongodb atlas
+    :param _builtins.str provider_name: cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
+    :param _builtins.str role_id: unique role id among all the roles provided by MongoDB Atlas.
     """
     __args__ = dict()
     __args__['azureConfigs'] = azure_configs
@@ -270,6 +308,7 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
         aws_configs=pulumi.get(__response__, 'aws_configs'),
         azure_configs=pulumi.get(__response__, 'azure_configs'),
         created_date=pulumi.get(__response__, 'created_date'),
+        gcp_configs=pulumi.get(__response__, 'gcp_configs'),
         id=pulumi.get(__response__, 'id'),
         last_updated_date=pulumi.get(__response__, 'last_updated_date'),
         project_id=pulumi.get(__response__, 'project_id'),

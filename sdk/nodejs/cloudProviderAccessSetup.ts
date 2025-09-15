@@ -37,6 +37,7 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
     declare public /*out*/ readonly awsConfigs: pulumi.Output<outputs.CloudProviderAccessSetupAwsConfig[]>;
     declare public readonly azureConfigs: pulumi.Output<outputs.CloudProviderAccessSetupAzureConfig[] | undefined>;
     declare public /*out*/ readonly createdDate: pulumi.Output<string>;
+    declare public /*out*/ readonly gcpConfigs: pulumi.Output<outputs.CloudProviderAccessSetupGcpConfig[]>;
     declare public /*out*/ readonly lastUpdatedDate: pulumi.Output<string>;
     declare public readonly projectId: pulumi.Output<string>;
     declare public readonly providerName: pulumi.Output<string>;
@@ -58,6 +59,7 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
             resourceInputs["awsConfigs"] = state?.awsConfigs;
             resourceInputs["azureConfigs"] = state?.azureConfigs;
             resourceInputs["createdDate"] = state?.createdDate;
+            resourceInputs["gcpConfigs"] = state?.gcpConfigs;
             resourceInputs["lastUpdatedDate"] = state?.lastUpdatedDate;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["providerName"] = state?.providerName;
@@ -75,6 +77,7 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
             resourceInputs["providerName"] = args?.providerName;
             resourceInputs["awsConfigs"] = undefined /*out*/;
             resourceInputs["createdDate"] = undefined /*out*/;
+            resourceInputs["gcpConfigs"] = undefined /*out*/;
             resourceInputs["lastUpdatedDate"] = undefined /*out*/;
             resourceInputs["roleId"] = undefined /*out*/;
         }
@@ -90,6 +93,7 @@ export interface CloudProviderAccessSetupState {
     awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[]>;
     azureConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAzureConfig>[]>;
     createdDate?: pulumi.Input<string>;
+    gcpConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupGcpConfig>[]>;
     lastUpdatedDate?: pulumi.Input<string>;
     projectId?: pulumi.Input<string>;
     providerName?: pulumi.Input<string>;

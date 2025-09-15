@@ -34,6 +34,12 @@ namespace Pulumi.Mongodbatlas.Inputs
             }
         }
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+        /// </summary>
+        [Input("roleId")]
+        public Input<string>? RoleId { get; set; }
+
         [Input("serviceAccountKey")]
         private Input<string>? _serviceAccountKey;
 
