@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? RegionName { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
+        /// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `ZoneId` instead. To learn more, see the 1.18.0 upgrade guide.
         /// </summary>
         [Input("replicationSpecId")]
         public Input<string>? ReplicationSpecId { get; set; }
@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<bool>? ShouldCopyOplogs { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `mongodbatlas.AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+        /// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `ZoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `mongodbatlas.AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         /// </summary>
         [Input("zoneId")]
         public Input<string>? ZoneId { get; set; }

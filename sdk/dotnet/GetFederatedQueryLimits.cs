@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/. 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -48,7 +48,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/. 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -80,7 +80,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/. 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 

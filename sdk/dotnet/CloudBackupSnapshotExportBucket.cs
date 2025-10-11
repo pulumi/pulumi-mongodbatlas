@@ -95,7 +95,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ExportBucketId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+        /// Unique identifier of the role that Atlas can use to access the bucket. Required if `CloudProvider` is set to `AWS`.
         /// </summary>
         [Output("iamRoleId")]
         public Output<string?> IamRoleId { get; private set; } = null!;
@@ -107,13 +107,13 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        /// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `CloudProvider` is set to `AZURE`.
         /// </summary>
         [Output("roleId")]
         public Output<string?> RoleId { get; private set; } = null!;
 
         /// <summary>
-        /// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        /// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `CloudProvider` is set to `AZURE`.
         /// </summary>
         [Output("serviceUrl")]
         public Output<string?> ServiceUrl { get; private set; } = null!;
@@ -183,7 +183,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> CloudProvider { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+        /// Unique identifier of the role that Atlas can use to access the bucket. Required if `CloudProvider` is set to `AWS`.
         /// </summary>
         [Input("iamRoleId")]
         public Input<string>? IamRoleId { get; set; }
@@ -195,13 +195,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        /// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `CloudProvider` is set to `AZURE`.
         /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 
         /// <summary>
-        /// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        /// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `CloudProvider` is set to `AZURE`.
         /// </summary>
         [Input("serviceUrl")]
         public Input<string>? ServiceUrl { get; set; }
@@ -239,7 +239,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ExportBucketId { get; set; }
 
         /// <summary>
-        /// Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+        /// Unique identifier of the role that Atlas can use to access the bucket. Required if `CloudProvider` is set to `AWS`.
         /// </summary>
         [Input("iamRoleId")]
         public Input<string>? IamRoleId { get; set; }
@@ -251,13 +251,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        /// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `CloudProvider` is set to `AZURE`.
         /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 
         /// <summary>
-        /// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        /// URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `CloudProvider` is set to `AZURE`.
         /// </summary>
         [Input("serviceUrl")]
         public Input<string>? ServiceUrl { get; set; }

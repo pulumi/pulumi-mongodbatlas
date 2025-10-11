@@ -211,7 +211,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ErrorMessage;
         /// <summary>
-        /// Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
+        /// Description of the Atlas error when `Status` is `Failed`, Otherwise, Atlas returns `Null`.
         /// </summary>
         public readonly string ErrorState;
         /// <summary>

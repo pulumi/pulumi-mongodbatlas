@@ -152,6 +152,10 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Example Kafka SASL SSL Connection
+ * 
+ * ### Example AWSLambda Connection
+ * 
  * ### Example Https Connection
  * 
  * <pre>

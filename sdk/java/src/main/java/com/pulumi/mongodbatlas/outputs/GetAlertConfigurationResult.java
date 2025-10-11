@@ -41,7 +41,7 @@ public final class GetAlertConfigurationResult {
      */
     private List<GetAlertConfigurationMatcher> matchers;
     /**
-     * @return The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
+     * @return The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
      * 
      */
     private List<GetAlertConfigurationMetricThresholdConfig> metricThresholdConfigs;
@@ -49,7 +49,7 @@ public final class GetAlertConfigurationResult {
     private @Nullable List<GetAlertConfigurationOutput> outputs;
     private String projectId;
     /**
-     * @return Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
+     * @return Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
      * 
      */
     private List<GetAlertConfigurationThresholdConfig> thresholdConfigs;
@@ -95,7 +95,7 @@ public final class GetAlertConfigurationResult {
         return this.matchers;
     }
     /**
-     * @return The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
+     * @return The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
      * 
      */
     public List<GetAlertConfigurationMetricThresholdConfig> metricThresholdConfigs() {
@@ -111,7 +111,7 @@ public final class GetAlertConfigurationResult {
         return this.projectId;
     }
     /**
-     * @return Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
+     * @return Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
      * 
      */
     public List<GetAlertConfigurationThresholdConfig> thresholdConfigs() {

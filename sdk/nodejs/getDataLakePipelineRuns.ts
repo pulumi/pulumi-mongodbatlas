@@ -12,6 +12,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
  */
 export function getDataLakePipelineRuns(args: GetDataLakePipelineRunsArgs, opts?: pulumi.InvokeOptions): Promise<GetDataLakePipelineRunsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -56,6 +58,8 @@ export interface GetDataLakePipelineRunsResult {
  * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
  */
 export function getDataLakePipelineRunsOutput(args: GetDataLakePipelineRunsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataLakePipelineRunsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

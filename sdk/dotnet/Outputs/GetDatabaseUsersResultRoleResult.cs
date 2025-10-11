@@ -14,11 +14,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetDatabaseUsersResultRoleResult
     {
         /// <summary>
-        /// Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
+        /// Collection for which the role applies. You can specify a collection for the `Read` and `readWrite` roles. If you do not specify a collection for `Read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `System`. database).
         /// </summary>
         public readonly string CollectionName;
         /// <summary>
-        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        /// Database on which the user has the specified role. A role on the `Admin` database can include privileges that apply to the other databases.
         /// </summary>
         public readonly string DatabaseName;
         public readonly string RoleName;

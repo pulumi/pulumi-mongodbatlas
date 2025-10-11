@@ -24,7 +24,7 @@ public final class GetAlertConfigurationsInvokeResult {
      */
     private String projectId;
     /**
-     * @return A list of alert configurations for the project_id, constrained by the `list_options`.
+     * @return A list of alert configurations for the project_id, constrained by the `listOptions`.
      * 
      */
     private List<GetAlertConfigurationsResult> results;
@@ -52,7 +52,7 @@ public final class GetAlertConfigurationsInvokeResult {
         return this.projectId;
     }
     /**
-     * @return A list of alert configurations for the project_id, constrained by the `list_options`.
+     * @return A list of alert configurations for the project_id, constrained by the `listOptions`.
      * 
      */
     public List<GetAlertConfigurationsResult> results() {

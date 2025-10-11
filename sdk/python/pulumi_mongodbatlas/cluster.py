@@ -1740,6 +1740,13 @@ class Cluster(pulumi.CustomResource):
         ```
 
         By endpoint_service_id
+
+        Refer to the following for full privatelink endpoint connection string examples:
+        * GCP Private Endpoint
+        * Azure Private Endpoint
+        * AWS, Private Endpoint
+        * AWS, Regionalized Private Endpoints
+
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -2028,6 +2035,13 @@ class Cluster(pulumi.CustomResource):
         ```
 
         By endpoint_service_id
+
+        Refer to the following for full privatelink endpoint connection string examples:
+        * GCP Private Endpoint
+        * Azure Private Endpoint
+        * AWS, Private Endpoint
+        * AWS, Regionalized Private Endpoints
+
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

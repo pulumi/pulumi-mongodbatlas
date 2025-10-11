@@ -124,7 +124,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamAccountDetailsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// One of `aws` or `azure`.
+        /// One of `Aws` or `Azure`.
         /// </summary>
         [Input("cloudProvider", required: true)]
         public string CloudProvider { get; set; } = null!;
@@ -147,7 +147,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamAccountDetailsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// One of `aws` or `azure`.
+        /// One of `Aws` or `Azure`.
         /// </summary>
         [Input("cloudProvider", required: true)]
         public Input<string> CloudProvider { get; set; } = null!;
@@ -175,7 +175,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string AzureSubscriptionId;
         public readonly string CidrBlock;
         /// <summary>
-        /// One of `aws` or `azure`.
+        /// One of `Aws` or `Azure`.
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>

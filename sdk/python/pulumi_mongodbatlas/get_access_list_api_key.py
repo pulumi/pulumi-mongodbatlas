@@ -128,6 +128,10 @@ def get_access_list_api_key(api_key_id: Optional[_builtins.str] = None,
     """
     ## Example Usage
 
+    ### Using CIDR Block
+
+    ### Using IP Address
+
 
     :param _builtins.str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
            *
@@ -158,6 +162,10 @@ def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.s
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessListApiKeyResult]:
     """
     ## Example Usage
+
+    ### Using CIDR Block
+
+    ### Using IP Address
 
 
     :param _builtins.str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.

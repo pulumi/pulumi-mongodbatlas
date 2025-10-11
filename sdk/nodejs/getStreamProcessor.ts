@@ -12,6 +12,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.StreamProcessor` describes a stream processor.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getStreamProcessor(args: GetStreamProcessorArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamProcessorResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -68,6 +70,8 @@ export interface GetStreamProcessorResult {
  * `mongodbatlas.StreamProcessor` describes a stream processor.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getStreamProcessorOutput(args: GetStreamProcessorOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamProcessorResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -85,25 +85,6 @@ import * as utilities from "./utilities";
  * ```
  *
  * Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getAlertConfiguration({
- *     projectId: projectId,
- *     alertConfigurationId: alertConfigurationId,
- *     outputs: [
- *         {
- *             type: "resource_hcl",
- *             label: "test",
- *         },
- *         {
- *             type: "resource_import",
- *             label: "test",
- *         },
- *     ],
- * });
- * ```
  */
 export function getAlertConfiguration(args: GetAlertConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -250,25 +231,6 @@ export interface GetAlertConfigurationResult {
  * ```
  *
  * Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getAlertConfiguration({
- *     projectId: projectId,
- *     alertConfigurationId: alertConfigurationId,
- *     outputs: [
- *         {
- *             type: "resource_hcl",
- *             label: "test",
- *         },
- *         {
- *             type: "resource_import",
- *             label: "test",
- *         },
- *     ],
- * });
- * ```
  */
 export function getAlertConfigurationOutput(args: GetAlertConfigurationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAlertConfigurationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -16,6 +16,8 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getFederatedDatabaseInstances(args: GetFederatedDatabaseInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedDatabaseInstancesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -58,6 +60,8 @@ export interface GetFederatedDatabaseInstancesResult {
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getFederatedDatabaseInstancesOutput(args: GetFederatedDatabaseInstancesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedDatabaseInstancesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

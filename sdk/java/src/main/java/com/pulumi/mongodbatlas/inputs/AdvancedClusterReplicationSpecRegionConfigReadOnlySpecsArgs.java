@@ -19,14 +19,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
     public static final AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs Empty = new AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs();
 
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebsVolumeType` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
      * 
      */
     @Import(name="diskIops")
     private @Nullable Output<Integer> diskIops;
 
     /**
-     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
+     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebsVolumeType` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
      * 
      */
     public Optional<Output<Integer>> diskIops() {
@@ -34,14 +34,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
     }
 
     /**
-     * Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
      * 
      */
     @Import(name="diskSizeGb")
     private @Nullable Output<Double> diskSizeGb;
 
     /**
-     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
      * 
      */
     public Optional<Output<Double>> diskSizeGb() {
@@ -126,7 +126,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
         }
 
         /**
-         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
+         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebsVolumeType` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
          * 
          * @return builder
          * 
@@ -137,7 +137,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
         }
 
         /**
-         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
+         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebsVolumeType` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
          * 
          * @return builder
          * 
@@ -147,7 +147,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
         }
 
         /**
-         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
         }
 
         /**
-         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
          * 
          * @return builder
          * 

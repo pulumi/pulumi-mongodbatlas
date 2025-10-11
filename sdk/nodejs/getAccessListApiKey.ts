@@ -6,6 +6,10 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
+ * ### Using CIDR Block
+ *
+ * ### Using IP Address
  */
 export function getAccessListApiKey(args: GetAccessListApiKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessListApiKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -55,6 +59,10 @@ export interface GetAccessListApiKeyResult {
 }
 /**
  * ## Example Usage
+ *
+ * ### Using CIDR Block
+ *
+ * ### Using IP Address
  */
 export function getAccessListApiKeyOutput(args: GetAccessListApiKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccessListApiKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -122,6 +122,10 @@ import (
 //
 // ```
 //
+// ### Example Kafka SASL SSL Connection
+//
+// ### Example AWSLambda Connection
+//
 // ### Example Https Connection
 //
 // ```go

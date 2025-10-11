@@ -16,6 +16,8 @@ import (
 // `getDataLakePipelineRun` describes a Data Lake Pipeline Run.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
 func GetDataLakePipelineRun(ctx *pulumi.Context, args *GetDataLakePipelineRunArgs, opts ...pulumi.InvokeOption) (*GetDataLakePipelineRunResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDataLakePipelineRunResult

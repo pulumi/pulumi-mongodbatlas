@@ -47,14 +47,14 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
     }
 
     /**
-     * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+     * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      * 
      */
     @Import(name="iamRoleId")
     private @Nullable Output<String> iamRoleId;
 
     /**
-     * @return Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+     * @return Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      * 
      */
     public Optional<Output<String>> iamRoleId() {
@@ -77,14 +77,14 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
     }
 
     /**
-     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
      * 
      */
     @Import(name="roleId")
     private @Nullable Output<String> roleId;
 
     /**
-     * @return Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+     * @return Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
      * 
      */
     public Optional<Output<String>> roleId() {
@@ -92,14 +92,14 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
     }
 
     /**
-     * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+     * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
      * 
      */
     @Import(name="serviceUrl")
     private @Nullable Output<String> serviceUrl;
 
     /**
-     * @return URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+     * @return URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
      * 
      */
     public Optional<Output<String>> serviceUrl() {
@@ -202,7 +202,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param iamRoleId Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+         * @param iamRoleId Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
          * 
          * @return builder
          * 
@@ -213,7 +213,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param iamRoleId Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+         * @param iamRoleId Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
          * 
          * @return builder
          * 
@@ -244,7 +244,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param roleId Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+         * @param roleId Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
          * 
          * @return builder
          * 
@@ -255,7 +255,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param roleId Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+         * @param roleId Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
          * 
          * @return builder
          * 
@@ -265,7 +265,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param serviceUrl URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+         * @param serviceUrl URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
          * 
          * @return builder
          * 
@@ -276,7 +276,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param serviceUrl URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+         * @param serviceUrl URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
          * 
          * @return builder
          * 

@@ -15,12 +15,12 @@ import java.util.Objects;
 @CustomType
 public final class GetAdvancedClustersResultReplicationSpec {
     /**
-     * @return A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
+     * @return A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
      * 
      */
     private Map<String,String> containerId;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
      * 
      */
     private String externalId;
@@ -32,7 +32,7 @@ public final class GetAdvancedClustersResultReplicationSpec {
     @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
     private String id;
     /**
-     * @return Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
+     * @return Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
      * 
      * @deprecated
      * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
@@ -41,7 +41,7 @@ public final class GetAdvancedClustersResultReplicationSpec {
     @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
     private Integer numShards;
     /**
-     * @return Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
+     * @return Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      * 
      */
     private List<GetAdvancedClustersResultReplicationSpecRegionConfig> regionConfigs;
@@ -58,14 +58,14 @@ public final class GetAdvancedClustersResultReplicationSpec {
 
     private GetAdvancedClustersResultReplicationSpec() {}
     /**
-     * @return A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
+     * @return A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
      * 
      */
     public Map<String,String> containerId() {
         return this.containerId;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
      * 
      */
     public String externalId() {
@@ -81,7 +81,7 @@ public final class GetAdvancedClustersResultReplicationSpec {
         return this.id;
     }
     /**
-     * @return Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
+     * @return Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
      * 
      * @deprecated
      * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
@@ -92,7 +92,7 @@ public final class GetAdvancedClustersResultReplicationSpec {
         return this.numShards;
     }
     /**
-     * @return Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
+     * @return Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      * 
      */
     public List<GetAdvancedClustersResultReplicationSpecRegionConfig> regionConfigs() {

@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// In addition to all arguments above, the following attributes are exported:
     /// 
-    /// * `api_key_id` - Unique identifier for this Organization API key.
+    /// * `ApiKeyId` - Unique identifier for this Organization API key.
     /// 
     /// ## Import
     /// 

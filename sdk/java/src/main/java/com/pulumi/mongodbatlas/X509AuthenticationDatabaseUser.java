@@ -27,13 +27,17 @@ import javax.annotation.Nullable;
  * | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
  * | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  * 
  * &gt; **NOTE:** Before provider version 1.14.0, Self-managed X.509 Authentication was disabled for the project when this resource was deleted. Starting from that version onward, it will not be disabled, allowing other users to continue using X.509 within the same project.
  * 
  * ## Example Usage
  * 
  * ### S
+ * 
+ * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+ * 
+ * ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
  * 
  * ## Import
  * 

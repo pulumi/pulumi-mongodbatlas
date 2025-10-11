@@ -16,6 +16,8 @@ import (
 // `getFlexRestoreJobs` returns all flex restore job of a flex cluster.
 //
 // ## Example Usage
+//
+// ### S
 func LookupFlexRestoreJobs(ctx *pulumi.Context, args *LookupFlexRestoreJobsArgs, opts ...pulumi.InvokeOption) (*LookupFlexRestoreJobsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFlexRestoreJobsResult

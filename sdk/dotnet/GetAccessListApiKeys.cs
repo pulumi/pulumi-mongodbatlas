@@ -13,18 +13,33 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ### Using CIDR Block
+        /// 
+        /// 
+        /// ### Using IP Address
         /// </summary>
         public static Task<GetAccessListApiKeysResult> InvokeAsync(GetAccessListApiKeysArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccessListApiKeysResult>("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", args ?? new GetAccessListApiKeysArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ### Using CIDR Block
+        /// 
+        /// 
+        /// ### Using IP Address
         /// </summary>
         public static Output<GetAccessListApiKeysResult> Invoke(GetAccessListApiKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessListApiKeysResult>("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", args ?? new GetAccessListApiKeysInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ### Using CIDR Block
+        /// 
+        /// 
+        /// ### Using IP Address
         /// </summary>
         public static Output<GetAccessListApiKeysResult> Invoke(GetAccessListApiKeysInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessListApiKeysResult>("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", args ?? new GetAccessListApiKeysInvokeArgs(), options.WithDefaults());

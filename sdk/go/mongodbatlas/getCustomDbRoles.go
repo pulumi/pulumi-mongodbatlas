@@ -16,6 +16,8 @@ import (
 // `getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
 func LookupCustomDbRoles(ctx *pulumi.Context, args *LookupCustomDbRolesArgs, opts ...pulumi.InvokeOption) (*LookupCustomDbRolesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCustomDbRolesResult

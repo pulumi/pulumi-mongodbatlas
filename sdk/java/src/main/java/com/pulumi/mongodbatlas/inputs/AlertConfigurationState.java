@@ -71,7 +71,7 @@ public final class AlertConfigurationState extends com.pulumi.resources.Resource
      * 
      * &gt; ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) and checking the latest eventTypeName options.
      * 
-     * &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
+     * &gt; **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
      * 
      */
     @Import(name="eventType")
@@ -82,7 +82,7 @@ public final class AlertConfigurationState extends com.pulumi.resources.Resource
      * 
      * &gt; ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) and checking the latest eventTypeName options.
      * 
-     * &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
+     * &gt; **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
      * 
      */
     public Optional<Output<String>> eventType() {
@@ -248,7 +248,7 @@ public final class AlertConfigurationState extends com.pulumi.resources.Resource
          * 
          * &gt; ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) and checking the latest eventTypeName options.
          * 
-         * &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
+         * &gt; **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
          * 
          * @return builder
          * 
@@ -263,7 +263,7 @@ public final class AlertConfigurationState extends com.pulumi.resources.Resource
          * 
          * &gt; ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) and checking the latest eventTypeName options.
          * 
-         * &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
+         * &gt; **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
          * 
          * @return builder
          * 

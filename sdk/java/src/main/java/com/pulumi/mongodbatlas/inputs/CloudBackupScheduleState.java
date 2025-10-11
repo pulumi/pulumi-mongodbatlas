@@ -90,14 +90,14 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+     * Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
      * 
      */
     @Import(name="export")
     private @Nullable Output<CloudBackupScheduleExportArgs> export;
 
     /**
-     * @return Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+     * @return Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
      * 
      */
     public Optional<Output<CloudBackupScheduleExportArgs>> export() {
@@ -240,14 +240,14 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+     * UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      * 
      */
     @Import(name="referenceMinuteOfHour")
     private @Nullable Output<Integer> referenceMinuteOfHour;
 
     /**
-     * @return UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+     * @return UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      * 
      */
     public Optional<Output<Integer>> referenceMinuteOfHour() {
@@ -431,7 +431,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param export Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+         * @param export Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
          * 
          * @return builder
          * 
@@ -442,7 +442,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param export Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+         * @param export Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
          * 
          * @return builder
          * 
@@ -671,7 +671,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param referenceMinuteOfHour UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+         * @param referenceMinuteOfHour UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
          * 
          * @return builder
          * 
@@ -682,7 +682,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param referenceMinuteOfHour UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+         * @param referenceMinuteOfHour UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
          * 
          * @return builder
          * 

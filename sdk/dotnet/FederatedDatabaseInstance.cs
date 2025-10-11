@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance resource.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
     /// 
     /// ## Example Usage
     /// 
@@ -271,8 +271,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Cloud provider linked to this data federated instance.
         /// * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
-        /// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-        /// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+        /// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `TestS3Bucket`.
+        /// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `RoleId`.
         /// * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
         /// * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         /// </summary>
@@ -413,8 +413,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Cloud provider linked to this data federated instance.
         /// * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
-        /// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-        /// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+        /// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `TestS3Bucket`.
+        /// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `RoleId`.
         /// * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
         /// * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         /// </summary>
@@ -515,8 +515,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Cloud provider linked to this data federated instance.
         /// * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
-        /// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-        /// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+        /// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `TestS3Bucket`.
+        /// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `RoleId`.
         /// * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
         /// * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
         /// </summary>

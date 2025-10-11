@@ -129,35 +129,22 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// Utilize DataSource to generate resource hcl and import statement. Useful if you have a specific AlertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on DataSourceMongodbatlasAlertConfigurations
+        /// ```
+        /// data "mongodbatlas_alert_configuration" "test" {
+        ///     project_id             = var.project_id
+        ///     alert_configuration_id = var.alert_configuration_id
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetAlertConfiguration.Invoke(new()
-        ///     {
-        ///         ProjectId = projectId,
-        ///         AlertConfigurationId = alertConfigurationId,
-        ///         Outputs = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
-        ///             {
-        ///                 Type = "resource_hcl",
-        ///                 Label = "test",
-        ///             },
-        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
-        ///             {
-        ///                 Type = "resource_import",
-        ///                 Label = "test",
-        ///             },
-        ///         },
-        ///     });
+        ///     output {
+        ///         type = "resource_hcl"
+        ///         label = "test"
+        ///     }
         /// 
-        /// });
+        ///     output {
+        ///         type = "resource_import"
+        ///         label = "test"
+        ///     }
+        /// }
         /// ```
         /// </summary>
         public static Task<GetAlertConfigurationResult> InvokeAsync(GetAlertConfigurationArgs args, InvokeOptions? options = null)
@@ -281,35 +268,22 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// Utilize DataSource to generate resource hcl and import statement. Useful if you have a specific AlertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on DataSourceMongodbatlasAlertConfigurations
+        /// ```
+        /// data "mongodbatlas_alert_configuration" "test" {
+        ///     project_id             = var.project_id
+        ///     alert_configuration_id = var.alert_configuration_id
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetAlertConfiguration.Invoke(new()
-        ///     {
-        ///         ProjectId = projectId,
-        ///         AlertConfigurationId = alertConfigurationId,
-        ///         Outputs = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
-        ///             {
-        ///                 Type = "resource_hcl",
-        ///                 Label = "test",
-        ///             },
-        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
-        ///             {
-        ///                 Type = "resource_import",
-        ///                 Label = "test",
-        ///             },
-        ///         },
-        ///     });
+        ///     output {
+        ///         type = "resource_hcl"
+        ///         label = "test"
+        ///     }
         /// 
-        /// });
+        ///     output {
+        ///         type = "resource_import"
+        ///         label = "test"
+        ///     }
+        /// }
         /// ```
         /// </summary>
         public static Output<GetAlertConfigurationResult> Invoke(GetAlertConfigurationInvokeArgs args, InvokeOptions? options = null)
@@ -433,35 +407,22 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// Utilize DataSource to generate resource hcl and import statement. Useful if you have a specific AlertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on DataSourceMongodbatlasAlertConfigurations
+        /// ```
+        /// data "mongodbatlas_alert_configuration" "test" {
+        ///     project_id             = var.project_id
+        ///     alert_configuration_id = var.alert_configuration_id
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetAlertConfiguration.Invoke(new()
-        ///     {
-        ///         ProjectId = projectId,
-        ///         AlertConfigurationId = alertConfigurationId,
-        ///         Outputs = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
-        ///             {
-        ///                 Type = "resource_hcl",
-        ///                 Label = "test",
-        ///             },
-        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
-        ///             {
-        ///                 Type = "resource_import",
-        ///                 Label = "test",
-        ///             },
-        ///         },
-        ///     });
+        ///     output {
+        ///         type = "resource_hcl"
+        ///         label = "test"
+        ///     }
         /// 
-        /// });
+        ///     output {
+        ///         type = "resource_import"
+        ///         label = "test"
+        ///     }
+        /// }
         /// ```
         /// </summary>
         public static Output<GetAlertConfigurationResult> Invoke(GetAlertConfigurationInvokeArgs args, InvokeOutputOptions options)
@@ -558,14 +519,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationMatcherResult> Matchers;
         /// <summary>
-        /// The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
+        /// The threshold that causes an alert to be triggered. Required if `EventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationMetricThresholdConfigResult> MetricThresholdConfigs;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationNotificationResult> Notifications;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationOutputResult> Outputs;
         public readonly string ProjectId;
         /// <summary>
-        /// Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
+        /// Threshold that triggers an alert. Required if `EventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationThresholdConfigResult> ThresholdConfigs;
         /// <summary>

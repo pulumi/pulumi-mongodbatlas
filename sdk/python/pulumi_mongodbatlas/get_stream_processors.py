@@ -93,6 +93,8 @@ def get_stream_processors(instance_name: Optional[_builtins.str] = None,
 
     ## Example Usage
 
+    ### S
+
 
     :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -117,6 +119,8 @@ def get_stream_processors_output(instance_name: Optional[pulumi.Input[_builtins.
     `get_stream_processors` returns all stream processors in a stream instance.
 
     ## Example Usage
+
+    ### S
 
 
     :param _builtins.str instance_name: Human-readable label that identifies the stream instance.

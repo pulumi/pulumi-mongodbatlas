@@ -384,7 +384,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Single IP address to be added to the access list.
         /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
         /// </summary>
         [Input("ipAddress")]
         public string? IpAddress { get; set; }
@@ -418,7 +418,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Single IP address to be added to the access list.
         /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }

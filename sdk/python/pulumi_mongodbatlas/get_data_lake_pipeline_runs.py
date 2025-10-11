@@ -90,6 +90,8 @@ def get_data_lake_pipeline_runs(pipeline_name: Optional[_builtins.str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
 
     :param _builtins.str pipeline_name: Human-readable label that identifies the Data Lake Pipeline.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
@@ -114,6 +116,8 @@ def get_data_lake_pipeline_runs_output(pipeline_name: Optional[pulumi.Input[_bui
     `get_data_lake_pipeline_run` describes Data Lake Pipeline Runs.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
 
 
     :param _builtins.str pipeline_name: Human-readable label that identifies the Data Lake Pipeline.

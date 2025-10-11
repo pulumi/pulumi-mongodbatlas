@@ -120,6 +120,8 @@ def get_cloud_backup_snapshots(cluster_name: Optional[_builtins.str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -152,6 +154,8 @@ def get_cloud_backup_snapshots_output(cluster_name: Optional[pulumi.Input[_built
     `get_cloud_backup_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.

@@ -12,6 +12,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.SearchDeployment` describes a search node deployment.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getSearchDeployment(args: GetSearchDeploymentArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchDeploymentResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -70,6 +72,8 @@ export interface GetSearchDeploymentResult {
  * `mongodbatlas.SearchDeployment` describes a search node deployment.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getSearchDeploymentOutput(args: GetSearchDeploymentOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSearchDeploymentResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

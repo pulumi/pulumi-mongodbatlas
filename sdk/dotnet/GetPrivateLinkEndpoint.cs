@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
         /// ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
@@ -59,7 +59,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
         /// ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
@@ -102,7 +102,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
         /// ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.

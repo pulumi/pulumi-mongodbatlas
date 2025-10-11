@@ -12,6 +12,13 @@ import * as utilities from "./utilities";
  * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example with AWS
+ *
+ * ## Example with Azure
+ *
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
  */
 export function getPrivateLinkEndpointService(args: GetPrivateLinkEndpointServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -121,6 +128,13 @@ export interface GetPrivateLinkEndpointServiceResult {
  * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example with AWS
+ *
+ * ## Example with Azure
+ *
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
  */
 export function getPrivateLinkEndpointServiceOutput(args: GetPrivateLinkEndpointServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivateLinkEndpointServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
