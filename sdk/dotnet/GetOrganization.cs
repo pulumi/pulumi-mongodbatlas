@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using project_id attribute to query
+        /// ### Using ProjectId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -45,7 +45,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using project_id attribute to query
+        /// ### Using ProjectId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -72,7 +72,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using project_id attribute to query
+        /// ### Using ProjectId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -131,7 +131,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool ApiAccessListRequired;
         /// <summary>
-        /// (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
+        /// (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `True`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         /// </summary>
         public readonly bool GenAiFeaturesEnabled;
         /// <summary>

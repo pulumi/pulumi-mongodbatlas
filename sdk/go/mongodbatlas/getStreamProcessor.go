@@ -16,6 +16,8 @@ import (
 // `StreamProcessor` describes a stream processor.
 //
 // ## Example Usage
+//
+// ### S
 func LookupStreamProcessor(ctx *pulumi.Context, args *LookupStreamProcessorArgs, opts ...pulumi.InvokeOption) (*LookupStreamProcessorResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStreamProcessorResult

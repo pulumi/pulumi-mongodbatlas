@@ -18,7 +18,7 @@ public final class AccessListApiKeyState extends com.pulumi.resources.ResourceAr
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
      * 
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+     * &gt; **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
      * 
      */
     @Import(name="apiKeyId")
@@ -27,7 +27,7 @@ public final class AccessListApiKeyState extends com.pulumi.resources.ResourceAr
     /**
      * @return Unique identifier for the Organization API Key for which you want to create a new access list entry.
      * 
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+     * &gt; **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
      * 
      */
     public Optional<Output<String>> apiKeyId() {
@@ -109,7 +109,7 @@ public final class AccessListApiKeyState extends com.pulumi.resources.ResourceAr
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to create a new access list entry.
          * 
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+         * &gt; **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
          * 
          * @return builder
          * 
@@ -122,7 +122,7 @@ public final class AccessListApiKeyState extends com.pulumi.resources.ResourceAr
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to create a new access list entry.
          * 
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+         * &gt; **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
          * 
          * @return builder
          * 

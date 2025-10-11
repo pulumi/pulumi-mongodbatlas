@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        /// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `NumShards` greater than 1) this value is not populated.
         /// </summary>
         [Input("externalId")]
         public Input<string>? ExternalId { get; set; }
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
+        /// Provide this value if you set a `ClusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `ClusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `NumShards` value of 1 and a `ClusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
         /// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
         /// </summary>
         [Input("numShards")]
@@ -43,7 +43,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         private InputList<Inputs.AdvancedClusterReplicationSpecRegionConfigGetArgs>? _regionConfigs;
 
         /// <summary>
-        /// Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
+        /// Configuration for the hardware specifications for nodes set for a given region. Each `RegionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `RegionConfigs` object must have either an `AnalyticsSpecs` object, `ElectableSpecs` object, or `ReadOnlySpecs` object. See below.
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecRegionConfigGetArgs> RegionConfigs
         {

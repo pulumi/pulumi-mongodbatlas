@@ -88,7 +88,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to `True`, MongoDB Cloud won't delete the cluster. If set to `False`, MongoDB Cloud will delete the cluster.
         /// </summary>
         [Output("terminationProtectionEnabled")]
         public Output<bool> TerminationProtectionEnabled { get; private set; } = null!;
@@ -176,7 +176,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to `True`, MongoDB Cloud won't delete the cluster. If set to `False`, MongoDB Cloud will delete the cluster.
         /// </summary>
         [Input("terminationProtectionEnabled")]
         public Input<bool>? TerminationProtectionEnabled { get; set; }
@@ -256,7 +256,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to `True`, MongoDB Cloud won't delete the cluster. If set to `False`, MongoDB Cloud will delete the cluster.
         /// </summary>
         [Input("terminationProtectionEnabled")]
         public Input<bool>? TerminationProtectionEnabled { get; set; }

@@ -16,11 +16,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Task<GetFederatedDatabaseInstancesResult> InvokeAsync(GetFederatedDatabaseInstancesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedDatabaseInstancesResult>("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args ?? new GetFederatedDatabaseInstancesArgs(), options.WithDefaults());
@@ -30,11 +32,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetFederatedDatabaseInstancesResult> Invoke(GetFederatedDatabaseInstancesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedDatabaseInstancesResult>("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args ?? new GetFederatedDatabaseInstancesInvokeArgs(), options.WithDefaults());
@@ -44,11 +48,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetFederatedDatabaseInstancesResult> Invoke(GetFederatedDatabaseInstancesInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedDatabaseInstancesResult>("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args ?? new GetFederatedDatabaseInstancesInvokeArgs(), options.WithDefaults());

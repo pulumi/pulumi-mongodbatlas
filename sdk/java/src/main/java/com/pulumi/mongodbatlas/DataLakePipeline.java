@@ -25,9 +25,11 @@ import javax.annotation.Nullable;
  * 
  * `mongodbatlas.DataLakePipeline` provides a Data Lake Pipeline resource.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
  * ## Example Usage
+ * 
+ * ### S
  * 
  * ## Import
  * 

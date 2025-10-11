@@ -20,12 +20,12 @@ public final class GetFederatedSettingsOrgConfigResult {
      */
     private List<String> dataAccessIdentityProviderIds;
     /**
-     * @return List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domain_allow_list` includes: any SSO domains associated with organization&#39;s identity provider and any custom domains associated with the specific organization.
+     * @return List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domainAllowList` includes: any SSO domains associated with organization&#39;s identity provider and any custom domains associated with the specific organization.
      * 
      */
     private List<String> domainAllowLists;
     /**
-     * @return Flag that indicates whether domain restriction is enabled for the connected organization.  User Conflicts returns null when `domain_restriction_enabled` is false.
+     * @return Flag that indicates whether domain restriction is enabled for the connected organization.  User Conflicts returns null when `domainRestrictionEnabled` is false.
      * 
      */
     private Boolean domainRestrictionEnabled;
@@ -42,7 +42,7 @@ public final class GetFederatedSettingsOrgConfigResult {
     /**
      * @return Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
      * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
-     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
+     * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
     private String identityProviderId;
@@ -72,14 +72,14 @@ public final class GetFederatedSettingsOrgConfigResult {
         return this.dataAccessIdentityProviderIds;
     }
     /**
-     * @return List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domain_allow_list` includes: any SSO domains associated with organization&#39;s identity provider and any custom domains associated with the specific organization.
+     * @return List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domainAllowList` includes: any SSO domains associated with organization&#39;s identity provider and any custom domains associated with the specific organization.
      * 
      */
     public List<String> domainAllowLists() {
         return this.domainAllowLists;
     }
     /**
-     * @return Flag that indicates whether domain restriction is enabled for the connected organization.  User Conflicts returns null when `domain_restriction_enabled` is false.
+     * @return Flag that indicates whether domain restriction is enabled for the connected organization.  User Conflicts returns null when `domainRestrictionEnabled` is false.
      * 
      */
     public Boolean domainRestrictionEnabled() {
@@ -102,7 +102,7 @@ public final class GetFederatedSettingsOrgConfigResult {
     /**
      * @return Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
      * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
-     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
+     * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
     public String identityProviderId() {

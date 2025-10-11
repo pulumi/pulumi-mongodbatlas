@@ -95,7 +95,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> AuthzQueryTemplate { get; private set; } = null!;
 
         /// <summary>
-        /// The password used to authenticate the `bind_username`.
+        /// The password used to authenticate the `BindUsername`.
         /// </summary>
         [Output("bindPassword")]
         public Output<string> BindPassword { get; private set; } = null!;
@@ -207,7 +207,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AuthzQueryTemplate { get; set; }
 
         /// <summary>
-        /// The password used to authenticate the `bind_username`.
+        /// The password used to authenticate the `BindUsername`.
         /// </summary>
         [Input("bindPassword", required: true)]
         public Input<string> BindPassword { get; set; } = null!;
@@ -257,7 +257,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AuthzQueryTemplate { get; set; }
 
         /// <summary>
-        /// The password used to authenticate the `bind_username`.
+        /// The password used to authenticate the `BindUsername`.
         /// </summary>
         [Input("bindPassword")]
         public Input<string>? BindPassword { get; set; }

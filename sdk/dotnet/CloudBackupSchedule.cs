@@ -23,7 +23,7 @@ namespace Pulumi.Mongodbatlas
     public partial class CloudBackupSchedule : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `False`. Value can be one of the following:
         /// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         /// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         /// </summary>
@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.CloudBackupScheduleCopySetting>> CopySettings { get; private set; } = null!;
 
         /// <summary>
-        /// Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        /// Policy for automatically exporting Cloud Backup Snapshots. `AutoExportEnabled` must be set to true when defining this attribute. See below
         /// </summary>
         [Output("export")]
         public Output<Outputs.CloudBackupScheduleExport> Export { get; private set; } = null!;
@@ -109,7 +109,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> ReferenceHourOfDay { get; private set; } = null!;
 
         /// <summary>
-        /// UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+        /// UTC Minutes after `ReferenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         /// </summary>
         [Output("referenceMinuteOfHour")]
         public Output<int> ReferenceMinuteOfHour { get; private set; } = null!;
@@ -176,7 +176,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class CloudBackupScheduleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `False`. Value can be one of the following:
         /// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         /// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         /// </summary>
@@ -202,7 +202,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        /// Policy for automatically exporting Cloud Backup Snapshots. `AutoExportEnabled` must be set to true when defining this attribute. See below
         /// </summary>
         [Input("export")]
         public Input<Inputs.CloudBackupScheduleExportArgs>? Export { get; set; }
@@ -268,7 +268,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? ReferenceHourOfDay { get; set; }
 
         /// <summary>
-        /// UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+        /// UTC Minutes after `ReferenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         /// </summary>
         [Input("referenceMinuteOfHour")]
         public Input<int>? ReferenceMinuteOfHour { get; set; }
@@ -297,7 +297,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class CloudBackupScheduleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `False`. Value can be one of the following:
         /// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         /// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         /// </summary>
@@ -329,7 +329,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        /// Policy for automatically exporting Cloud Backup Snapshots. `AutoExportEnabled` must be set to true when defining this attribute. See below
         /// </summary>
         [Input("export")]
         public Input<Inputs.CloudBackupScheduleExportGetArgs>? Export { get; set; }
@@ -407,7 +407,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? ReferenceHourOfDay { get; set; }
 
         /// <summary>
-        /// UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+        /// UTC Minutes after `ReferenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         /// </summary>
         [Input("referenceMinuteOfHour")]
         public Input<int>? ReferenceMinuteOfHour { get; set; }

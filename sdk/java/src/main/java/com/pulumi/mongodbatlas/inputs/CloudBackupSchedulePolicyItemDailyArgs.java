@@ -18,14 +18,14 @@ public final class CloudBackupSchedulePolicyItemDailyArgs extends com.pulumi.res
     public static final CloudBackupSchedulePolicyItemDailyArgs Empty = new CloudBackupSchedulePolicyItemDailyArgs();
 
     /**
-     * Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (daily in this case). The only supported value for daily policies is `1` day.
      * 
      */
     @Import(name="frequencyInterval", required=true)
     private Output<Integer> frequencyInterval;
 
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (daily in this case). The only supported value for daily policies is `1` day.
      * 
      */
     public Output<Integer> frequencyInterval() {
@@ -78,14 +78,14 @@ public final class CloudBackupSchedulePolicyItemDailyArgs extends com.pulumi.res
     }
 
     /**
-     * Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
+     * Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
      * 
      */
     @Import(name="retentionValue", required=true)
     private Output<Integer> retentionValue;
 
     /**
-     * @return Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
+     * @return Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
      * 
      */
     public Output<Integer> retentionValue() {
@@ -121,7 +121,7 @@ public final class CloudBackupSchedulePolicyItemDailyArgs extends com.pulumi.res
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequencyType` (daily in this case). The only supported value for daily policies is `1` day.
          * 
          * @return builder
          * 
@@ -132,7 +132,7 @@ public final class CloudBackupSchedulePolicyItemDailyArgs extends com.pulumi.res
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequencyType` (daily in this case). The only supported value for daily policies is `1` day.
          * 
          * @return builder
          * 
@@ -205,7 +205,7 @@ public final class CloudBackupSchedulePolicyItemDailyArgs extends com.pulumi.res
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
+         * @param retentionValue Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
          * 
          * @return builder
          * 
@@ -216,7 +216,7 @@ public final class CloudBackupSchedulePolicyItemDailyArgs extends com.pulumi.res
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
+         * @param retentionValue Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
          * 
          * @return builder
          * 

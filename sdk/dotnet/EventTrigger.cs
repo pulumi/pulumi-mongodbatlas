@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// `mongodbatlas.EventTrigger` provides a Event Trigger resource.
     /// 
-    /// Note: If the `app_id` changes in the mongodbatlas.EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
+    /// Note: If the `AppId` changes in the mongodbatlas.EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
     /// 
     /// ## Example Usage
     /// 
@@ -179,7 +179,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
+        /// * For more details on `ProjectId` and `AppId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         /// </summary>
         [Output("appId")]
         public Output<string> AppId { get; private set; } = null!;
@@ -251,7 +251,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ConfigServiceId { get; private set; } = null!;
 
         /// <summary>
-        /// Default: `false` If `true`, the trigger is disabled.
+        /// Default: `False` If `True`, the trigger is disabled.
         /// </summary>
         [Output("disabled")]
         public Output<bool> Disabled { get; private set; } = null!;
@@ -354,7 +354,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
+        /// * For more details on `ProjectId` and `AppId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         /// </summary>
         [Input("appId", required: true)]
         public Input<string> AppId { get; set; } = null!;
@@ -435,7 +435,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ConfigServiceId { get; set; }
 
         /// <summary>
-        /// Default: `false` If `true`, the trigger is disabled.
+        /// Default: `False` If `True`, the trigger is disabled.
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
@@ -488,7 +488,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The ObjectID of your application.
-        /// * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
+        /// * For more details on `ProjectId` and `AppId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         /// </summary>
         [Input("appId")]
         public Input<string>? AppId { get; set; }
@@ -572,7 +572,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ConfigServiceId { get; set; }
 
         /// <summary>
-        /// Default: `false` If `true`, the trigger is disabled.
+        /// Default: `False` If `True`, the trigger is disabled.
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }

@@ -507,6 +507,10 @@ class StreamConnection(pulumi.CustomResource):
             bootstrap_servers="localhost:9091,localhost:9092")
         ```
 
+        ### Example Kafka SASL SSL Connection
+
+        ### Example AWSLambda Connection
+
         ### Example Https Connection
 
         ```python
@@ -610,6 +614,10 @@ class StreamConnection(pulumi.CustomResource):
             },
             bootstrap_servers="localhost:9091,localhost:9092")
         ```
+
+        ### Example Kafka SASL SSL Connection
+
+        ### Example AWSLambda Connection
 
         ### Example Https Connection
 

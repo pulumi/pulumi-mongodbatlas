@@ -249,6 +249,10 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[_builtins.str] 
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+
 
     :param _builtins.str cluster_name: The name of the Atlas cluster for which you want to retrieve the restore job.
     :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
@@ -290,6 +294,10 @@ def get_cloud_backup_snapshot_restore_job_output(cluster_name: Optional[pulumi.I
     `CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster for which you want to retrieve the restore job.

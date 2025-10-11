@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// </summary>
@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// </summary>
@@ -40,7 +40,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// </summary>

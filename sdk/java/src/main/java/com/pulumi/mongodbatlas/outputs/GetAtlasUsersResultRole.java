@@ -12,7 +12,7 @@ import java.util.Objects;
 public final class GetAtlasUsersResultRole {
     private String groupId;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+     * @return Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `teamId` attributes is defined.
      * 
      */
     private String orgId;
@@ -23,7 +23,7 @@ public final class GetAtlasUsersResultRole {
         return this.groupId;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+     * @return Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `teamId` attributes is defined.
      * 
      */
     public String orgId() {

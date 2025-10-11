@@ -13,7 +13,7 @@ public final class GetAlertConfigurationsResultOutput {
     private String label;
     private String type;
     /**
-     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * @return Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      * - `PRIMARY`
      * - `SECONDARY`
      * - `STANDALONE`
@@ -31,7 +31,7 @@ public final class GetAlertConfigurationsResultOutput {
         return this.type;
     }
     /**
-     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * @return Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      * - `PRIMARY`
      * - `SECONDARY`
      * - `STANDALONE`

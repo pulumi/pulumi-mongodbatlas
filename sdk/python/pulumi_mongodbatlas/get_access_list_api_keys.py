@@ -103,6 +103,10 @@ def get_access_list_api_keys(api_key_id: Optional[_builtins.str] = None,
     """
     ## Example Usage
 
+    ### Using CIDR Block
+
+    ### Using IP Address
+
 
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param _builtins.int page_num: The page to return. Defaults to `1`.
@@ -129,6 +133,10 @@ def get_access_list_api_keys_output(api_key_id: Optional[pulumi.Input[_builtins.
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessListApiKeysResult]:
     """
     ## Example Usage
+
+    ### Using CIDR Block
+
+    ### Using IP Address
 
 
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

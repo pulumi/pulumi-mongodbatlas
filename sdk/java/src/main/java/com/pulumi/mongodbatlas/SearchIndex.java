@@ -305,28 +305,28 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
         return this.indexId;
     }
     /**
-     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
      * 
      */
     @Export(name="mappingsDynamic", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> mappingsDynamic;
 
     /**
-     * @return Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+     * @return Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
      * 
      */
     public Output<Optional<Boolean>> mappingsDynamic() {
         return Codegen.optional(this.mappingsDynamic);
     }
     /**
-     * attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     @Export(name="mappingsFields", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mappingsFields;
 
     /**
-     * @return attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+     * @return attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     public Output<Optional<String>> mappingsFields() {

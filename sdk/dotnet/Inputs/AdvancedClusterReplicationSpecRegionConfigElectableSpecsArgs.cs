@@ -13,13 +13,13 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+        /// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `InstanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `EbsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         /// </summary>
         [Input("diskIops")]
         public Input<int>? DiskIops { get; set; }
 
         /// <summary>
-        /// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        /// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `DiskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the DiskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `DiskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
         /// </summary>
         [Input("diskSizeGb")]
         public Input<double>? DiskSizeGb { get; set; }

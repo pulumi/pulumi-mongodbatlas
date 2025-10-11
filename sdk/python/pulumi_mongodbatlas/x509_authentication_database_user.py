@@ -222,6 +222,10 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
         ### S
 
+        ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+
+        ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
+
         ## Import
 
         X.509 Certificates for a User can be imported using project ID and username, in the format `project_id-username`, e.g.
@@ -268,6 +272,10 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         ## Example Usage
 
         ### S
+
+        ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+
+        ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
 
         ## Import
 

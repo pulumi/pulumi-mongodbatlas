@@ -120,6 +120,8 @@ def get_search_deployment(cluster_name: Optional[_builtins.str] = None,
 
     ## Example Usage
 
+    ### S
+
 
     :param _builtins.str cluster_name: Label that identifies the cluster to return the search nodes for.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
@@ -146,6 +148,8 @@ def get_search_deployment_output(cluster_name: Optional[pulumi.Input[_builtins.s
     `SearchDeployment` describes a search node deployment.
 
     ## Example Usage
+
+    ### S
 
 
     :param _builtins.str cluster_name: Label that identifies the cluster to return the search nodes for.

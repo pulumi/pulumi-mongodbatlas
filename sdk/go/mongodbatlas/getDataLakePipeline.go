@@ -18,6 +18,8 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
 // ## Example Usage
+//
+// ### S
 func LookupDataLakePipeline(ctx *pulumi.Context, args *LookupDataLakePipelineArgs, opts ...pulumi.InvokeOption) (*LookupDataLakePipelineResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDataLakePipelineResult

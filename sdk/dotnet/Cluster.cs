@@ -329,7 +329,14 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// By endpoint_service_id
+    /// By EndpointServiceId
+    /// 
+    /// Refer to the following for full privatelink endpoint connection string examples:
+    /// * GCP Private Endpoint
+    /// * Azure Private Endpoint
+    /// * AWS, Private Endpoint
+    /// * AWS, Regionalized Private Endpoints
+    /// 
     /// ## Import
     /// 
     /// Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -343,7 +350,7 @@ namespace Pulumi.Mongodbatlas
     public partial class Cluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         /// </summary>
         [Output("acceptDataRisksAndForceReplicaSetReconfig")]
         public Output<string> AcceptDataRisksAndForceReplicaSetReconfig { get; private set; } = null!;
@@ -355,7 +362,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> AutoScalingComputeEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
+        /// Set to `True` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `True`.
         /// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
         /// </summary>
         [Output("autoScalingComputeScaleDownEnabled")]
@@ -381,7 +388,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
         /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-        /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+        /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `CloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `BackupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         /// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
         /// ```
         /// backup_enabled = "false"
@@ -450,7 +457,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
 
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<Outputs.ClusterLabel>> Labels { get; private set; } = null!;
@@ -501,13 +508,13 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> Paused { get; private set; } = null!;
 
         /// <summary>
-        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `PinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `MongoDbMajorVersion`. It is advised that updates to `PinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `PinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         /// </summary>
         [Output("pinnedFcv")]
         public Output<Outputs.ClusterPinnedFcv?> PinnedFcv { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        /// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, CloudBackup must also be set to true.
         /// </summary>
         [Output("pitEnabled")]
         public Output<bool> PitEnabled { get; private set; } = null!;
@@ -519,19 +526,19 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
+        /// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `True`.
         /// </summary>
         [Output("providerAutoScalingComputeMaxInstanceSize")]
         public Output<string> ProviderAutoScalingComputeMaxInstanceSize { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
+        /// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `True`.
         /// </summary>
         [Output("providerAutoScalingComputeMinInstanceSize")]
         public Output<string> ProviderAutoScalingComputeMinInstanceSize { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `ProviderInstanceSizeName` and `DiskSizeGb`.  This setting requires that `ProviderInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `ProviderDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         /// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
         /// </summary>
         [Output("providerDiskIops")]
@@ -646,7 +653,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> TerminationProtectionEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `MongoDbMajorVersion` field. Atlas accepts:
         /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
         /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
@@ -700,7 +707,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class ClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         /// </summary>
         [Input("acceptDataRisksAndForceReplicaSetReconfig")]
         public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
@@ -712,7 +719,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? AutoScalingComputeEnabled { get; set; }
 
         /// <summary>
-        /// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
+        /// Set to `True` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `True`.
         /// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
         /// </summary>
         [Input("autoScalingComputeScaleDownEnabled")]
@@ -738,7 +745,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
         /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-        /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+        /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `CloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `BackupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         /// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
         /// ```
         /// backup_enabled = "false"
@@ -792,7 +799,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.ClusterLabelArgs>? _labels;
 
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
         public InputList<Inputs.ClusterLabelArgs> Labels
         {
@@ -822,13 +829,13 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Paused { get; set; }
 
         /// <summary>
-        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `PinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `MongoDbMajorVersion`. It is advised that updates to `PinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `PinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         /// </summary>
         [Input("pinnedFcv")]
         public Input<Inputs.ClusterPinnedFcvArgs>? PinnedFcv { get; set; }
 
         /// <summary>
-        /// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        /// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, CloudBackup must also be set to true.
         /// </summary>
         [Input("pitEnabled")]
         public Input<bool>? PitEnabled { get; set; }
@@ -840,19 +847,19 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
+        /// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `True`.
         /// </summary>
         [Input("providerAutoScalingComputeMaxInstanceSize")]
         public Input<string>? ProviderAutoScalingComputeMaxInstanceSize { get; set; }
 
         /// <summary>
-        /// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
+        /// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `True`.
         /// </summary>
         [Input("providerAutoScalingComputeMinInstanceSize")]
         public Input<string>? ProviderAutoScalingComputeMinInstanceSize { get; set; }
 
         /// <summary>
-        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `ProviderInstanceSizeName` and `DiskSizeGb`.  This setting requires that `ProviderInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `ProviderDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         /// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
         /// </summary>
         [Input("providerDiskIops")]
@@ -952,7 +959,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? TerminationProtectionEnabled { get; set; }
 
         /// <summary>
-        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `MongoDbMajorVersion` field. Atlas accepts:
         /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
         /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
@@ -968,7 +975,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class ClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         /// </summary>
         [Input("acceptDataRisksAndForceReplicaSetReconfig")]
         public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
@@ -980,7 +987,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? AutoScalingComputeEnabled { get; set; }
 
         /// <summary>
-        /// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
+        /// Set to `True` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `True`.
         /// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
         /// </summary>
         [Input("autoScalingComputeScaleDownEnabled")]
@@ -1006,7 +1013,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
         /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-        /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+        /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `CloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `BackupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         /// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
         /// ```
         /// backup_enabled = "false"
@@ -1084,7 +1091,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.ClusterLabelGetArgs>? _labels;
 
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
         public InputList<Inputs.ClusterLabelGetArgs> Labels
         {
@@ -1138,13 +1145,13 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Paused { get; set; }
 
         /// <summary>
-        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `PinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `MongoDbMajorVersion`. It is advised that updates to `PinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `PinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         /// </summary>
         [Input("pinnedFcv")]
         public Input<Inputs.ClusterPinnedFcvGetArgs>? PinnedFcv { get; set; }
 
         /// <summary>
-        /// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        /// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, CloudBackup must also be set to true.
         /// </summary>
         [Input("pitEnabled")]
         public Input<bool>? PitEnabled { get; set; }
@@ -1156,19 +1163,19 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
+        /// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `True`.
         /// </summary>
         [Input("providerAutoScalingComputeMaxInstanceSize")]
         public Input<string>? ProviderAutoScalingComputeMaxInstanceSize { get; set; }
 
         /// <summary>
-        /// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
+        /// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `True`.
         /// </summary>
         [Input("providerAutoScalingComputeMinInstanceSize")]
         public Input<string>? ProviderAutoScalingComputeMinInstanceSize { get; set; }
 
         /// <summary>
-        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `ProviderInstanceSizeName` and `DiskSizeGb`.  This setting requires that `ProviderInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `ProviderDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         /// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
         /// </summary>
         [Input("providerDiskIops")]
@@ -1301,7 +1308,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? TerminationProtectionEnabled { get; set; }
 
         /// <summary>
-        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `MongoDbMajorVersion` field. Atlas accepts:
         /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
         /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>

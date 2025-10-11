@@ -29,7 +29,7 @@ public final class GetProjectLimit {
     /**
      * @return The unique ID for the project.
      * 
-     * &gt; **IMPORTANT:** Either `project_id` or `name` must be configurated.
+     * &gt; **IMPORTANT:** Either `projectId` or `name` must be configurated.
      * 
      */
     private String name;
@@ -64,7 +64,7 @@ public final class GetProjectLimit {
     /**
      * @return The unique ID for the project.
      * 
-     * &gt; **IMPORTANT:** Either `project_id` or `name` must be configurated.
+     * &gt; **IMPORTANT:** Either `projectId` or `name` must be configurated.
      * 
      */
     public String name() {

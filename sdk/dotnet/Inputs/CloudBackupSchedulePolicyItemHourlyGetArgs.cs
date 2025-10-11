@@ -13,13 +13,13 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class CloudBackupSchedulePolicyItemHourlyGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
+        /// Desired frequency of the new backup policy item specified by `FrequencyType` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
         /// </summary>
         [Input("frequencyInterval", required: true)]
         public Input<int> FrequencyInterval { get; set; } = null!;
 
         /// <summary>
-        /// Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        /// Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `Hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         /// </summary>
         [Input("frequencyType")]
         public Input<string>? FrequencyType { get; set; }
@@ -31,13 +31,13 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        /// Scope of the backup policy item: `Days`, `Weeks`, `Months`, or `Years`.
         /// </summary>
         [Input("retentionUnit", required: true)]
         public Input<string> RetentionUnit { get; set; } = null!;
 
         /// <summary>
-        /// Value to associate with `retention_unit`.
+        /// Value to associate with `RetentionUnit`.
         /// </summary>
         [Input("retentionValue", required: true)]
         public Input<int> RetentionValue { get; set; } = null!;

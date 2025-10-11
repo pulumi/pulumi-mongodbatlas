@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string DatadogApiKey;
         /// <summary>
-        /// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
+        /// Region that indicates which API URL to use. See the `datadogRegion` field in the `Notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         /// </summary>
         public readonly string DatadogRegion;
         /// <summary>
@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string EmailAddress;
         /// <summary>
-        /// Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
+        /// Flag indicating email notifications should be sent. Atlas returns this value if `TypeName` is set  to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         public readonly bool EmailEnabled;
         /// <summary>
@@ -70,7 +70,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string OpsGenieRegion;
         /// <summary>
-        /// Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+        /// Atlas role in current Project or Organization. Atlas returns this value if you set `TypeName` to `ORG` or `GROUP`.
         /// </summary>
         public readonly ImmutableArray<string> Roles;
         /// <summary>
@@ -78,7 +78,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ServiceKey;
         /// <summary>
-        /// Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        /// Flag indicating text notifications should be sent. Atlas returns this value if `TypeName` is set to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         public readonly bool SmsEnabled;
         /// <summary>

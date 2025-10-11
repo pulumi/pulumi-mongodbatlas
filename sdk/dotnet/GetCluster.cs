@@ -263,7 +263,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetClusterLabelResult> Labels;
         /// <summary>
@@ -325,7 +325,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ProviderDiskTypeName;
         /// <summary>
-        /// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
+        /// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `ProviderEncryptEbsVolumeFlag` computed attribute.
         /// </summary>
         public readonly bool ProviderEncryptEbsVolume;
         public readonly bool ProviderEncryptEbsVolumeFlag;

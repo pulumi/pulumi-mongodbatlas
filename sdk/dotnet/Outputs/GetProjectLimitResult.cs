@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// The unique ID for the project.
         /// 
-        /// &gt; **IMPORTANT:** Either `project_id` or `name` must be configurated.
+        /// &gt; **IMPORTANT:** Either `ProjectId` or `Name` must be configurated.
         /// </summary>
         public readonly string Name;
         /// <summary>

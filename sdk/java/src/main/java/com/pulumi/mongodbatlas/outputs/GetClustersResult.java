@@ -33,7 +33,7 @@ public final class GetClustersResult {
      */
     private Boolean autoScalingComputeEnabled;
     /**
-     * @return * `auto_scaling_compute_scale_down_enabled` - Specifies whether cluster tier auto-down-scaling is enabled.
+     * @return * `autoScalingComputeScaleDownEnabled` - Specifies whether cluster tier auto-down-scaling is enabled.
      * 
      */
     private Boolean autoScalingComputeScaleDownEnabled;
@@ -148,7 +148,7 @@ public final class GetClustersResult {
      */
     private String providerAutoScalingComputeMinInstanceSize;
     /**
-     * @return Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloud_backup` instead.
+     * @return Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
      * 
      */
     private Boolean providerBackupEnabled;
@@ -163,7 +163,7 @@ public final class GetClustersResult {
      */
     private String providerDiskTypeName;
     /**
-     * @return **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
+     * @return **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
      * 
      */
     private Boolean providerEncryptEbsVolume;
@@ -256,7 +256,7 @@ public final class GetClustersResult {
         return this.autoScalingComputeEnabled;
     }
     /**
-     * @return * `auto_scaling_compute_scale_down_enabled` - Specifies whether cluster tier auto-down-scaling is enabled.
+     * @return * `autoScalingComputeScaleDownEnabled` - Specifies whether cluster tier auto-down-scaling is enabled.
      * 
      */
     public Boolean autoScalingComputeScaleDownEnabled() {
@@ -417,7 +417,7 @@ public final class GetClustersResult {
         return this.providerAutoScalingComputeMinInstanceSize;
     }
     /**
-     * @return Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloud_backup` instead.
+     * @return Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
      * 
      */
     public Boolean providerBackupEnabled() {
@@ -438,7 +438,7 @@ public final class GetClustersResult {
         return this.providerDiskTypeName;
     }
     /**
-     * @return **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
+     * @return **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
      * 
      */
     public Boolean providerEncryptEbsVolume() {

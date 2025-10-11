@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource: &lt;br&gt; - Organization Owner &lt;br&gt; - Project Owner
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
     /// 
     /// ## Example Usage
     /// 
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
     public partial class CustomDnsConfigurationClusterAws : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
+        /// Indicates whether the project's clusters deployed to AWS use custom DNS. If `True`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
@@ -108,7 +108,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class CustomDnsConfigurationClusterAwsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
+        /// Indicates whether the project's clusters deployed to AWS use custom DNS. If `True`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
         /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
@@ -128,7 +128,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class CustomDnsConfigurationClusterAwsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
+        /// Indicates whether the project's clusters deployed to AWS use custom DNS. If `True`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

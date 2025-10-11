@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool AutoScalingComputeEnabled;
         /// <summary>
-        /// * `auto_scaling_compute_scale_down_enabled` - Specifies whether cluster tier auto-down-scaling is enabled.
+        /// * `AutoScalingComputeScaleDownEnabled` - Specifies whether cluster tier auto-down-scaling is enabled.
         /// </summary>
         public readonly bool AutoScalingComputeScaleDownEnabled;
         /// <summary>
@@ -62,7 +62,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string EncryptionAtRestProvider;
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetClustersResultLabelResult> Labels;
         /// <summary>
@@ -114,7 +114,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProviderAutoScalingComputeMinInstanceSize;
         /// <summary>
-        /// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloud_backup` instead.
+        /// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `CloudBackup` instead.
         /// </summary>
         public readonly bool ProviderBackupEnabled;
         /// <summary>
@@ -126,7 +126,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProviderDiskTypeName;
         /// <summary>
-        /// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
+        /// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `ProviderEncryptEbsVolumeFlag` computed attribute.
         /// </summary>
         public readonly bool ProviderEncryptEbsVolume;
         /// <summary>

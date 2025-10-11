@@ -26,7 +26,7 @@ public final class OnlineArchiveCriteria {
     /**
      * @return Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
      * 
-     * **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+     * **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
      * 
      * The only field required for criteria type `CUSTOM`
      * 
@@ -63,7 +63,7 @@ public final class OnlineArchiveCriteria {
     /**
      * @return Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
      * 
-     * **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+     * **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
      * 
      * The only field required for criteria type `CUSTOM`
      * 

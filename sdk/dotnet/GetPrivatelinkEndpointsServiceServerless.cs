@@ -14,9 +14,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
         /// 
-        /// `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
+        /// `PrivatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example with AWS
         /// 
@@ -114,9 +114,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
         /// 
-        /// `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
+        /// `PrivatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example with AWS
         /// 
@@ -214,9 +214,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
         /// 
-        /// `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
+        /// `PrivatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example with AWS
         /// 
@@ -364,7 +364,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string InstanceName;
         public readonly string ProjectId;
         /// <summary>
-        /// Each element in the `result` array is one private serverless endpoint.
+        /// Each element in the `Result` array is one private serverless endpoint.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPrivatelinkEndpointsServiceServerlessResultResult> Results;
 

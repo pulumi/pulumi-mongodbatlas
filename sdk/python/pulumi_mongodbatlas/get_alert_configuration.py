@@ -245,23 +245,6 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
     ```
 
     Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_alert_configuration(project_id=project_id,
-        alert_configuration_id=alert_configuration_id,
-        outputs=[
-            {
-                "type": "resource_hcl",
-                "label": "test",
-            },
-            {
-                "type": "resource_import",
-                "label": "test",
-            },
-        ])
-    ```
 
 
     :param _builtins.str alert_configuration_id: Unique identifier for the alert configuration.
@@ -366,23 +349,6 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
     ```
 
     Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_alert_configuration(project_id=project_id,
-        alert_configuration_id=alert_configuration_id,
-        outputs=[
-            {
-                "type": "resource_hcl",
-                "label": "test",
-            },
-            {
-                "type": "resource_import",
-                "label": "test",
-            },
-        ])
-    ```
 
 
     :param _builtins.str alert_configuration_id: Unique identifier for the alert configuration.

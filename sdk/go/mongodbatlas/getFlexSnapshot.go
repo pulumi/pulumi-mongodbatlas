@@ -16,6 +16,8 @@ import (
 // `getFlexSnapshot` describes a flex snapshot.
 //
 // ## Example Usage
+//
+// ### S
 func GetFlexSnapshot(ctx *pulumi.Context, args *GetFlexSnapshotArgs, opts ...pulumi.InvokeOption) (*GetFlexSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFlexSnapshotResult

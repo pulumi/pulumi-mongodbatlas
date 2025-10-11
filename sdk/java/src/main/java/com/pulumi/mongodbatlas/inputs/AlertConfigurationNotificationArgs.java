@@ -110,14 +110,14 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     }
 
     /**
-     * Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     @Import(name="emailEnabled")
     private @Nullable Output<Boolean> emailEnabled;
 
     /**
-     * @return Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     public Optional<Output<Boolean>> emailEnabled() {
@@ -155,14 +155,14 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     }
 
     /**
-     * Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     * Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
      * 
      */
     @Import(name="microsoftTeamsWebhookUrl")
     private @Nullable Output<String> microsoftTeamsWebhookUrl;
 
     /**
-     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
      * 
      */
     public Optional<Output<String>> microsoftTeamsWebhookUrl() {
@@ -230,7 +230,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     }
 
     /**
-     * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
      * 
      * | Project roles                   | Organization roles  |
@@ -247,7 +247,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     private @Nullable Output<List<String>> roles;
 
     /**
-     * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
      * 
      * | Project roles                   | Organization roles  |
@@ -280,14 +280,14 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     }
 
     /**
-     * Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     @Import(name="smsEnabled")
     private @Nullable Output<Boolean> smsEnabled;
 
     /**
-     * @return Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     public Optional<Output<Boolean>> smsEnabled() {
@@ -617,7 +617,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param emailEnabled Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+         * @param emailEnabled Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
          * 
          * @return builder
          * 
@@ -628,7 +628,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param emailEnabled Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+         * @param emailEnabled Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
          * 
          * @return builder
          * 
@@ -680,7 +680,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param microsoftTeamsWebhookUrl Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+         * @param microsoftTeamsWebhookUrl Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
          * 
          * @return builder
          * 
@@ -691,7 +691,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param microsoftTeamsWebhookUrl Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+         * @param microsoftTeamsWebhookUrl Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
          * 
          * @return builder
          * 
@@ -785,7 +785,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param roles Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+         * @param roles Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
          * Accepted values are:
          * 
          * | Project roles                   | Organization roles  |
@@ -806,7 +806,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param roles Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+         * @param roles Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
          * Accepted values are:
          * 
          * | Project roles                   | Organization roles  |
@@ -826,7 +826,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param roles Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+         * @param roles Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
          * Accepted values are:
          * 
          * | Project roles                   | Organization roles  |
@@ -867,7 +867,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param smsEnabled Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+         * @param smsEnabled Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
          * 
          * @return builder
          * 
@@ -878,7 +878,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param smsEnabled Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+         * @param smsEnabled Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
          * 
          * @return builder
          * 

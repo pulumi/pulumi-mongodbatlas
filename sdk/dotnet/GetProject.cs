@@ -16,11 +16,11 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using project_id attribute to query
+        /// ### Using ProjectId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -132,11 +132,11 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using project_id attribute to query
+        /// ### Using ProjectId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -248,11 +248,11 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using project_id attribute to query
+        /// ### Using ProjectId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -366,7 +366,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The unique ID for the project.
         /// 
-        /// &gt; **IMPORTANT:** Either `project_id` or `name` must be configurated.
+        /// &gt; **IMPORTANT:** Either `ProjectId` or `Name` must be configurated.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -388,7 +388,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The unique ID for the project.
         /// 
-        /// &gt; **IMPORTANT:** Either `project_id` or `name` must be configurated.
+        /// &gt; **IMPORTANT:** Either `ProjectId` or `Name` must be configurated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -447,7 +447,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool IsSchemaAdvisorEnabled;
         /// <summary>
-        /// (Deprecated) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
+        /// (Deprecated) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `False`. If you are not using this field, you don't need to take any action.
         /// </summary>
         public readonly bool IsSlowOperationThresholdingEnabled;
         /// <summary>

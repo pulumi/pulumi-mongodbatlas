@@ -57,7 +57,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      * - `PRIMARY`
      * - `SECONDARY`
      * - `STANDALONE`
@@ -69,7 +69,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
     private Output<String> value;
 
     /**
-     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * @return Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      * - `PRIMARY`
      * - `SECONDARY`
      * - `STANDALONE`
@@ -158,7 +158,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+         * @param value Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
          * - `PRIMARY`
          * - `SECONDARY`
          * - `STANDALONE`
@@ -174,7 +174,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+         * @param value Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
          * - `PRIMARY`
          * - `SECONDARY`
          * - `STANDALONE`

@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
     public partial class AdvancedCluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         /// </summary>
         [Output("acceptDataRisksAndForceReplicaSetReconfig")]
         public Output<string?> AcceptDataRisksAndForceReplicaSetReconfig { get; private set; } = null!;
@@ -36,12 +36,12 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Flag that indicates whether the cluster can perform backups.
-        /// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+        /// If `True`, the cluster can perform backups. You must set this value to `True` for NVMe clusters.
         /// 
         /// Backup uses:
         /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
         /// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-        /// If "`backup_enabled`"  is `false` (default), the cluster doesn't use Atlas backups.
+        /// If "`BackupEnabled`"  is `False` (default), the cluster doesn't use Atlas backups.
         /// </summary>
         [Output("backupEnabled")]
         public Output<bool> BackupEnabled { get; private set; } = null!;
@@ -102,7 +102,7 @@ namespace Pulumi.Mongodbatlas
         public Output<double> DiskSizeGb { get; private set; } = null!;
 
         /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `BackupEnabled` is false or omitted.
         /// </summary>
         [Output("encryptionAtRestProvider")]
         public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
@@ -114,13 +114,13 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> GlobalClusterSelfManagedSharding { get; private set; } = null!;
 
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<Outputs.AdvancedClusterLabel>> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        /// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `VersionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `VersionReleaseSystem`: `LTS`.
         /// </summary>
         [Output("mongoDbMajorVersion")]
         public Output<string> MongoDbMajorVersion { get; private set; } = null!;
@@ -141,7 +141,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> Paused { get; private set; } = null!;
 
         /// <summary>
-        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `PinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `MongoDbMajorVersion`. It is advised that updates to `PinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `PinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         /// </summary>
         [Output("pinnedFcv")]
         public Output<Outputs.AdvancedClusterPinnedFcv?> PinnedFcv { get; private set; } = null!;
@@ -171,7 +171,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ReplicaSetScalingStrategy { get; private set; } = null!;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `ReplicationSpecs` a `NumShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         /// </summary>
         [Output("replicationSpecs")]
         public Output<ImmutableArray<Outputs.AdvancedClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
@@ -196,7 +196,7 @@ namespace Pulumi.Mongodbatlas
         /// - DELETING
         /// - DELETED
         /// - REPAIRING
-        /// * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        /// * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `RegionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         /// </summary>
         [Output("stateName")]
         public Output<string> StateName { get; private set; } = null!;
@@ -214,7 +214,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> TerminationProtectionEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `MongoDbMajorVersion` field. Atlas accepts:
         /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
         /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
@@ -268,7 +268,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class AdvancedClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         /// </summary>
         [Input("acceptDataRisksAndForceReplicaSetReconfig")]
         public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
@@ -278,12 +278,12 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Flag that indicates whether the cluster can perform backups.
-        /// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+        /// If `True`, the cluster can perform backups. You must set this value to `True` for NVMe clusters.
         /// 
         /// Backup uses:
         /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
         /// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-        /// If "`backup_enabled`"  is `false` (default), the cluster doesn't use Atlas backups.
+        /// If "`BackupEnabled`"  is `False` (default), the cluster doesn't use Atlas backups.
         /// </summary>
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
@@ -323,7 +323,7 @@ namespace Pulumi.Mongodbatlas
         public Input<double>? DiskSizeGb { get; set; }
 
         /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `BackupEnabled` is false or omitted.
         /// </summary>
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }
@@ -338,7 +338,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterLabelArgs>? _labels;
 
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
         public InputList<Inputs.AdvancedClusterLabelArgs> Labels
         {
@@ -347,7 +347,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        /// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `VersionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `VersionReleaseSystem`: `LTS`.
         /// </summary>
         [Input("mongoDbMajorVersion")]
         public Input<string>? MongoDbMajorVersion { get; set; }
@@ -362,7 +362,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Paused { get; set; }
 
         /// <summary>
-        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `PinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `MongoDbMajorVersion`. It is advised that updates to `PinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `PinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         /// </summary>
         [Input("pinnedFcv")]
         public Input<Inputs.AdvancedClusterPinnedFcvArgs>? PinnedFcv { get; set; }
@@ -395,7 +395,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `ReplicationSpecs` a `NumShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecArgs> ReplicationSpecs
         {
@@ -434,7 +434,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? TerminationProtectionEnabled { get; set; }
 
         /// <summary>
-        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `MongoDbMajorVersion` field. Atlas accepts:
         /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
         /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
@@ -450,7 +450,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class AdvancedClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         /// </summary>
         [Input("acceptDataRisksAndForceReplicaSetReconfig")]
         public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
@@ -460,12 +460,12 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Flag that indicates whether the cluster can perform backups.
-        /// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+        /// If `True`, the cluster can perform backups. You must set this value to `True` for NVMe clusters.
         /// 
         /// Backup uses:
         /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
         /// [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
-        /// If "`backup_enabled`"  is `false` (default), the cluster doesn't use Atlas backups.
+        /// If "`BackupEnabled`"  is `False` (default), the cluster doesn't use Atlas backups.
         /// </summary>
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
@@ -532,7 +532,7 @@ namespace Pulumi.Mongodbatlas
         public Input<double>? DiskSizeGb { get; set; }
 
         /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `BackupEnabled` is false or omitted.
         /// </summary>
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }
@@ -547,7 +547,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterLabelGetArgs>? _labels;
 
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
         public InputList<Inputs.AdvancedClusterLabelGetArgs> Labels
         {
@@ -556,7 +556,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+        /// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `VersionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `VersionReleaseSystem`: `LTS`.
         /// </summary>
         [Input("mongoDbMajorVersion")]
         public Input<string>? MongoDbMajorVersion { get; set; }
@@ -577,7 +577,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Paused { get; set; }
 
         /// <summary>
-        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
+        /// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `PinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `MongoDbMajorVersion`. It is advised that updates to `PinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `PinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         /// </summary>
         [Input("pinnedFcv")]
         public Input<Inputs.AdvancedClusterPinnedFcvGetArgs>? PinnedFcv { get; set; }
@@ -610,7 +610,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecGetArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `ReplicationSpecs` a `NumShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecGetArgs> ReplicationSpecs
         {
@@ -638,7 +638,7 @@ namespace Pulumi.Mongodbatlas
         /// - DELETING
         /// - DELETED
         /// - REPAIRING
-        /// * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        /// * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `RegionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         /// </summary>
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
@@ -662,7 +662,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? TerminationProtectionEnabled { get; set; }
 
         /// <summary>
-        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `MongoDbMajorVersion` field. Atlas accepts:
         /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
         /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>

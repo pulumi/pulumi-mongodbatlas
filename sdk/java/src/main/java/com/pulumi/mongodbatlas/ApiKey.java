@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * 
  * In addition to all arguments above, the following attributes are exported:
  * 
- * * `api_key_id` - Unique identifier for this Organization API key.
+ * * `apiKeyId` - Unique identifier for this Organization API key.
  * 
  * ## Import
  * 

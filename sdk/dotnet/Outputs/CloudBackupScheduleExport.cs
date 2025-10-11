@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? ExportBucketId;
         /// <summary>
-        /// Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
+        /// Frequency associated with the export snapshot item: `Weekly`, `Monthly`, `Yearly`, `Daily` (requires reaching out to Customer Support)
         /// </summary>
         public readonly string? FrequencyType;
 

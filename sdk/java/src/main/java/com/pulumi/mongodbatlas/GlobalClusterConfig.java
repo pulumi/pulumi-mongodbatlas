@@ -23,9 +23,9 @@ import javax.annotation.Nullable;
  * 
  * `mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  * 
- * &gt; **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `global_cluster_self_managed_sharding` attribute in `mongodbatlas.AdvancedCluster` resource for more information.
+ * &gt; **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `globalClusterSelfManagedSharding` attribute in `mongodbatlas.AdvancedCluster` resource for more information.
  * 
  * &gt; **IMPORTANT:** You can update a Global Cluster Configuration to add new custom zone mappings and managed namespaces. However, once configured, you can&#39;t modify or partially delete custom zone mappings (you must remove them all at once). You can add or remove, but can&#39;t modify, managed namespaces. Any update that changes an existing managed namespace results in an error. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/). For more details, see [Global Clusters API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-global-clusters)
  * 
@@ -140,18 +140,18 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
         return this.clusterName;
     }
     /**
-     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
+     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
      * 
      * @deprecated
-     * This parameter is deprecated. Please transition to `custom_zone_mapping_zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
+     * This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `custom_zone_mapping_zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
+    @Deprecated /* This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
     @Export(name="customZoneMapping", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> customZoneMapping;
 
     /**
-     * @return (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
+     * @return (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
      * 
      */
     public Output<Map<String,String>> customZoneMapping() {

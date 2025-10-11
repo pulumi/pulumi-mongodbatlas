@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CloudBackupSchedulePolicyItemDaily {
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (daily in this case). The only supported value for daily policies is `1` day.
      * 
      */
     private Integer frequencyInterval;
@@ -34,14 +34,14 @@ public final class CloudBackupSchedulePolicyItemDaily {
      */
     private String retentionUnit;
     /**
-     * @return Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
+     * @return Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
      * 
      */
     private Integer retentionValue;
 
     private CloudBackupSchedulePolicyItemDaily() {}
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (daily in this case). The only supported value for daily policies is `1` day.
      * 
      */
     public Integer frequencyInterval() {
@@ -69,7 +69,7 @@ public final class CloudBackupSchedulePolicyItemDaily {
         return this.retentionUnit;
     }
     /**
-     * @return Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
+     * @return Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
      * 
      */
     public Integer retentionValue() {

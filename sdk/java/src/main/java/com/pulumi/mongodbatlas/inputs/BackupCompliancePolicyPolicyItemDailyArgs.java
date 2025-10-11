@@ -18,14 +18,14 @@ public final class BackupCompliancePolicyPolicyItemDailyArgs extends com.pulumi.
     public static final BackupCompliancePolicyPolicyItemDailyArgs Empty = new BackupCompliancePolicyPolicyItemDailyArgs();
 
     /**
-     * Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      * 
      */
     @Import(name="frequencyInterval", required=true)
     private Output<Integer> frequencyInterval;
 
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      * 
      */
     public Output<Integer> frequencyInterval() {
@@ -78,14 +78,14 @@ public final class BackupCompliancePolicyPolicyItemDailyArgs extends com.pulumi.
     }
 
     /**
-     * Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      * 
      */
     @Import(name="retentionValue", required=true)
     private Output<Integer> retentionValue;
 
     /**
-     * @return Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+     * @return Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      * 
      */
     public Output<Integer> retentionValue() {
@@ -121,7 +121,7 @@ public final class BackupCompliancePolicyPolicyItemDailyArgs extends com.pulumi.
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
          * 
          * @return builder
          * 
@@ -132,7 +132,7 @@ public final class BackupCompliancePolicyPolicyItemDailyArgs extends com.pulumi.
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
          * 
          * @return builder
          * 
@@ -205,7 +205,7 @@ public final class BackupCompliancePolicyPolicyItemDailyArgs extends com.pulumi.
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+         * @param retentionValue Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
          * 
          * @return builder
          * 
@@ -216,7 +216,7 @@ public final class BackupCompliancePolicyPolicyItemDailyArgs extends com.pulumi.
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+         * @param retentionValue Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
          * 
          * @return builder
          * 

@@ -17,6 +17,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.StreamProcessor` describes a stream processor.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Task<GetStreamProcessorResult> InvokeAsync(GetStreamProcessorArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamProcessorResult>("mongodbatlas:index/getStreamProcessor:getStreamProcessor", args ?? new GetStreamProcessorArgs(), options.WithDefaults());
@@ -27,6 +29,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.StreamProcessor` describes a stream processor.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetStreamProcessorResult> Invoke(GetStreamProcessorInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamProcessorResult>("mongodbatlas:index/getStreamProcessor:getStreamProcessor", args ?? new GetStreamProcessorInvokeArgs(), options.WithDefaults());
@@ -37,6 +41,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.StreamProcessor` describes a stream processor.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetStreamProcessorResult> Invoke(GetStreamProcessorInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamProcessorResult>("mongodbatlas:index/getStreamProcessor:getStreamProcessor", args ?? new GetStreamProcessorInvokeArgs(), options.WithDefaults());

@@ -16,6 +16,8 @@ import (
 // `getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 //
 // Note: This implementation returns a maximum of 100 results.
+//
+// ## Example Usage
 func LookupFederatedSettingsIdentityProviders(ctx *pulumi.Context, args *LookupFederatedSettingsIdentityProvidersArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsIdentityProvidersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsIdentityProvidersResult

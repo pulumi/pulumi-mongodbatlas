@@ -82,7 +82,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ReplicaSetScalingStrategy;
         /// <summary>
-        /// List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
+        /// List of settings that configure your cluster regions. If `UseReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecResult> ReplicationSpecs;
         /// <summary>

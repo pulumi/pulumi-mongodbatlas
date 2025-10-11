@@ -12,6 +12,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
  */
 export function getCustomDbRoles(args: GetCustomDbRolesArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRolesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -50,6 +52,8 @@ export interface GetCustomDbRolesResult {
  * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
  */
 export function getCustomDbRolesOutput(args: GetCustomDbRolesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCustomDbRolesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

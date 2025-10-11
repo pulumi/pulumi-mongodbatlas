@@ -20,7 +20,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using user_id attribute to query
+        /// ### Using UserId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using user_id attribute to query
+        /// ### Using UserId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -112,7 +112,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using user_id attribute to query
+        /// ### Using UserId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -162,7 +162,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Email address that belongs to the MongoDB Atlas user account. You can't modify this address after creating the user.
         /// 
-        /// &gt; **IMPORTANT:** Either `user_id` or `username` must be configurated.
+        /// &gt; **IMPORTANT:** Either `UserId` or `Username` must be configurated.
         /// </summary>
         [Input("username")]
         public string? Username { get; set; }
@@ -184,7 +184,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Email address that belongs to the MongoDB Atlas user account. You can't modify this address after creating the user.
         /// 
-        /// &gt; **IMPORTANT:** Either `user_id` or `username` must be configurated.
+        /// &gt; **IMPORTANT:** Either `UserId` or `Username` must be configurated.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

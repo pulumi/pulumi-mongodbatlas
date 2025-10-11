@@ -195,6 +195,8 @@ def get_data_lake_pipeline(name: Optional[_builtins.str] = None,
 
     ## Example Usage
 
+    ### S
+
 
     :param _builtins.str name: Name of the Atlas Data Lake Pipeline.
     :param _builtins.str project_id: The unique ID for the project to create a Data Lake Pipeline.
@@ -228,6 +230,8 @@ def get_data_lake_pipeline_output(name: Optional[pulumi.Input[_builtins.str]] = 
     > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
 
     ## Example Usage
+
+    ### S
 
 
     :param _builtins.str name: Name of the Atlas Data Lake Pipeline.

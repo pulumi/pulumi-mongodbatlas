@@ -14,11 +14,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class BackupCompliancePolicyOnDemandPolicyItem
     {
         /// <summary>
-        /// Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        /// Desired frequency of the new backup policy item specified by `FrequencyType` (yearly in this case). The supported values for yearly policies are
         /// </summary>
         public readonly int FrequencyInterval;
         /// <summary>
-        /// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        /// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `Yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         /// </summary>
         public readonly string? FrequencyType;
         /// <summary>
@@ -26,11 +26,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        /// Scope of the backup policy item: `Days`, `Weeks`, `Months`, or `Years`.
         /// </summary>
         public readonly string RetentionUnit;
         /// <summary>
-        /// Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        /// Value to associate with `RetentionUnit`. Yearly policy must have retention of at least 1 year.
         /// </summary>
         public readonly int RetentionValue;
 

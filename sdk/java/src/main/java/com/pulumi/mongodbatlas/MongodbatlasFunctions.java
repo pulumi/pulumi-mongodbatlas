@@ -359,11 +359,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -434,11 +436,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -509,11 +513,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -584,11 +590,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -659,11 +667,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -732,12 +742,20 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
+     * 
      */
     public static Output<GetAccessListApiKeyResult> getAccessListApiKey(GetAccessListApiKeyArgs args) {
         return getAccessListApiKey(args, InvokeOptions.Empty);
     }
     /**
      * ## Example Usage
+     * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
      * 
      */
     public static CompletableFuture<GetAccessListApiKeyResult> getAccessListApiKeyPlain(GetAccessListApiKeyPlainArgs args) {
@@ -746,12 +764,20 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
+     * 
      */
     public static Output<GetAccessListApiKeyResult> getAccessListApiKey(GetAccessListApiKeyArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", TypeShape.of(GetAccessListApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
+     * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
      * 
      */
     public static Output<GetAccessListApiKeyResult> getAccessListApiKey(GetAccessListApiKeyArgs args, InvokeOutputOptions options) {
@@ -760,12 +786,20 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
+     * 
      */
     public static CompletableFuture<GetAccessListApiKeyResult> getAccessListApiKeyPlain(GetAccessListApiKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", TypeShape.of(GetAccessListApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
+     * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
      * 
      */
     public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args) {
@@ -774,12 +808,20 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
+     * 
      */
     public static CompletableFuture<GetAccessListApiKeysInvokeResult> getAccessListApiKeysPlain(GetAccessListApiKeysPlainArgs args) {
         return getAccessListApiKeysPlain(args, InvokeOptions.Empty);
     }
     /**
      * ## Example Usage
+     * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
      * 
      */
     public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args, InvokeOptions options) {
@@ -788,12 +830,20 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
+     * 
      */
     public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", TypeShape.of(GetAccessListApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
+     * 
+     * ### Using CIDR Block
+     * 
+     * ### Using IP Address
      * 
      */
     public static CompletableFuture<GetAccessListApiKeysInvokeResult> getAccessListApiKeysPlain(GetAccessListApiKeysPlainArgs args, InvokeOptions options) {
@@ -1706,7 +1756,7 @@ public final class MongodbatlasFunctions {
      * 
      * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
@@ -1898,7 +1948,7 @@ public final class MongodbatlasFunctions {
      * 
      * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
@@ -2090,7 +2140,7 @@ public final class MongodbatlasFunctions {
      * 
      * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
@@ -2282,7 +2332,7 @@ public final class MongodbatlasFunctions {
      * 
      * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
@@ -2474,7 +2524,7 @@ public final class MongodbatlasFunctions {
      * 
      * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
@@ -2793,47 +2843,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getAlertConfiguration(GetAlertConfigurationArgs.builder()
-     *             .projectId(projectId)
-     *             .alertConfigurationId(alertConfigurationId)
-     *             .outputs(            
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_hcl")
-     *                     .label("test")
-     *                     .build(),
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_import")
-     *                     .label("test")
-     *                     .build())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
+     * Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
      * 
      */
     public static Output<GetAlertConfigurationResult> getAlertConfiguration(GetAlertConfigurationArgs args) {
@@ -2973,47 +2983,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getAlertConfiguration(GetAlertConfigurationArgs.builder()
-     *             .projectId(projectId)
-     *             .alertConfigurationId(alertConfigurationId)
-     *             .outputs(            
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_hcl")
-     *                     .label("test")
-     *                     .build(),
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_import")
-     *                     .label("test")
-     *                     .build())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
+     * Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
      * 
      */
     public static CompletableFuture<GetAlertConfigurationResult> getAlertConfigurationPlain(GetAlertConfigurationPlainArgs args) {
@@ -3153,47 +3123,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getAlertConfiguration(GetAlertConfigurationArgs.builder()
-     *             .projectId(projectId)
-     *             .alertConfigurationId(alertConfigurationId)
-     *             .outputs(            
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_hcl")
-     *                     .label("test")
-     *                     .build(),
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_import")
-     *                     .label("test")
-     *                     .build())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
+     * Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
      * 
      */
     public static Output<GetAlertConfigurationResult> getAlertConfiguration(GetAlertConfigurationArgs args, InvokeOptions options) {
@@ -3333,47 +3263,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getAlertConfiguration(GetAlertConfigurationArgs.builder()
-     *             .projectId(projectId)
-     *             .alertConfigurationId(alertConfigurationId)
-     *             .outputs(            
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_hcl")
-     *                     .label("test")
-     *                     .build(),
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_import")
-     *                     .label("test")
-     *                     .build())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
+     * Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
      * 
      */
     public static Output<GetAlertConfigurationResult> getAlertConfiguration(GetAlertConfigurationArgs args, InvokeOutputOptions options) {
@@ -3513,47 +3403,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getAlertConfiguration(GetAlertConfigurationArgs.builder()
-     *             .projectId(projectId)
-     *             .alertConfigurationId(alertConfigurationId)
-     *             .outputs(            
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_hcl")
-     *                     .label("test")
-     *                     .build(),
-     *                 GetAlertConfigurationOutputArgs.builder()
-     *                     .type("resource_import")
-     *                     .label("test")
-     *                     .build())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
+     * Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
      * 
      */
     public static CompletableFuture<GetAlertConfigurationResult> getAlertConfigurationPlain(GetAlertConfigurationPlainArgs args, InvokeOptions options) {
@@ -3564,7 +3414,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args) {
@@ -3575,7 +3425,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args) {
@@ -3586,7 +3436,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args, InvokeOptions options) {
@@ -3597,7 +3447,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args, InvokeOutputOptions options) {
@@ -3608,7 +3458,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args, InvokeOptions options) {
@@ -4503,7 +4353,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using user_id attribute to query
+     * ### Using userId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -4580,7 +4430,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using user_id attribute to query
+     * ### Using userId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -4657,7 +4507,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using user_id attribute to query
+     * ### Using userId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -4734,7 +4584,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using user_id attribute to query
+     * ### Using userId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -4811,7 +4661,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using user_id attribute to query
+     * ### Using userId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -4888,7 +4738,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using user_id attribute to query
+     * ### Using userId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -4965,7 +4815,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using user_id attribute to query
+     * ### Using userId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -5034,15 +4884,15 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAtlasUser:getAtlasUser", TypeShape.of(GetAtlasUserResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: atlas_users
+     * ## # Data Source: atlasUsers
      * 
-     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using org_id attribute to query Organization Atlas Users
+     * ### Using orgId attribute to query Organization Atlas Users
      * 
      * <pre>
      * {@code
@@ -5075,7 +4925,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using project_id attribute to query Project Atlas Users
+     * ### Using projectId attribute to query Project Atlas Users
      * 
      * <pre>
      * {@code
@@ -5108,7 +4958,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ### Using teamId and orgId attribute to query Team Atlas Users
      * 
      * <pre>
      * {@code
@@ -5147,15 +4997,15 @@ public final class MongodbatlasFunctions {
         return getAtlasUsers(GetAtlasUsersArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: atlas_users
+     * ## # Data Source: atlasUsers
      * 
-     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using org_id attribute to query Organization Atlas Users
+     * ### Using orgId attribute to query Organization Atlas Users
      * 
      * <pre>
      * {@code
@@ -5188,7 +5038,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using project_id attribute to query Project Atlas Users
+     * ### Using projectId attribute to query Project Atlas Users
      * 
      * <pre>
      * {@code
@@ -5221,7 +5071,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ### Using teamId and orgId attribute to query Team Atlas Users
      * 
      * <pre>
      * {@code
@@ -5260,15 +5110,15 @@ public final class MongodbatlasFunctions {
         return getAtlasUsersPlain(GetAtlasUsersPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: atlas_users
+     * ## # Data Source: atlasUsers
      * 
-     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using org_id attribute to query Organization Atlas Users
+     * ### Using orgId attribute to query Organization Atlas Users
      * 
      * <pre>
      * {@code
@@ -5301,7 +5151,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using project_id attribute to query Project Atlas Users
+     * ### Using projectId attribute to query Project Atlas Users
      * 
      * <pre>
      * {@code
@@ -5334,7 +5184,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ### Using teamId and orgId attribute to query Team Atlas Users
      * 
      * <pre>
      * {@code
@@ -5373,15 +5223,15 @@ public final class MongodbatlasFunctions {
         return getAtlasUsers(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: atlas_users
+     * ## # Data Source: atlasUsers
      * 
-     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using org_id attribute to query Organization Atlas Users
+     * ### Using orgId attribute to query Organization Atlas Users
      * 
      * <pre>
      * {@code
@@ -5414,7 +5264,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using project_id attribute to query Project Atlas Users
+     * ### Using projectId attribute to query Project Atlas Users
      * 
      * <pre>
      * {@code
@@ -5447,7 +5297,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ### Using teamId and orgId attribute to query Team Atlas Users
      * 
      * <pre>
      * {@code
@@ -5486,15 +5336,15 @@ public final class MongodbatlasFunctions {
         return getAtlasUsersPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: atlas_users
+     * ## # Data Source: atlasUsers
      * 
-     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using org_id attribute to query Organization Atlas Users
+     * ### Using orgId attribute to query Organization Atlas Users
      * 
      * <pre>
      * {@code
@@ -5527,7 +5377,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using project_id attribute to query Project Atlas Users
+     * ### Using projectId attribute to query Project Atlas Users
      * 
      * <pre>
      * {@code
@@ -5560,7 +5410,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ### Using teamId and orgId attribute to query Team Atlas Users
      * 
      * <pre>
      * {@code
@@ -5599,15 +5449,15 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAtlasUsers:getAtlasUsers", TypeShape.of(GetAtlasUsersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: atlas_users
+     * ## # Data Source: atlasUsers
      * 
-     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using org_id attribute to query Organization Atlas Users
+     * ### Using orgId attribute to query Organization Atlas Users
      * 
      * <pre>
      * {@code
@@ -5640,7 +5490,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using project_id attribute to query Project Atlas Users
+     * ### Using projectId attribute to query Project Atlas Users
      * 
      * <pre>
      * {@code
@@ -5673,7 +5523,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ### Using teamId and orgId attribute to query Team Atlas Users
      * 
      * <pre>
      * {@code
@@ -5712,15 +5562,15 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAtlasUsers:getAtlasUsers", TypeShape.of(GetAtlasUsersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: atlas_users
+     * ## # Data Source: atlasUsers
      * 
-     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using org_id attribute to query Organization Atlas Users
+     * ### Using orgId attribute to query Organization Atlas Users
      * 
      * <pre>
      * {@code
@@ -5753,7 +5603,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using project_id attribute to query Project Atlas Users
+     * ### Using projectId attribute to query Project Atlas Users
      * 
      * <pre>
      * {@code
@@ -5786,7 +5636,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ### Using teamId and orgId attribute to query Team Atlas Users
      * 
      * <pre>
      * {@code
@@ -8396,6 +8246,10 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
+     * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
      */
     public static Output<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs args) {
         return getCloudBackupSnapshotRestoreJob(args, InvokeOptions.Empty);
@@ -8406,6 +8260,10 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJobPlain(GetCloudBackupSnapshotRestoreJobPlainArgs args) {
@@ -8418,6 +8276,10 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
+     * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
      */
     public static Output<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", TypeShape.of(GetCloudBackupSnapshotRestoreJobResult.class), args, Utilities.withVersion(options));
@@ -8429,6 +8291,10 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
+     * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
      */
     public static Output<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", TypeShape.of(GetCloudBackupSnapshotRestoreJobResult.class), args, Utilities.withVersion(options));
@@ -8439,6 +8305,10 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJobPlain(GetCloudBackupSnapshotRestoreJobPlainArgs args, InvokeOptions options) {
@@ -8831,6 +8701,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs args) {
         return getCloudBackupSnapshots(args, InvokeOptions.Empty);
@@ -8841,6 +8713,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshotsPlain(GetCloudBackupSnapshotsPlainArgs args) {
@@ -8853,6 +8727,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", TypeShape.of(GetCloudBackupSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
@@ -8864,6 +8740,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", TypeShape.of(GetCloudBackupSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
@@ -8874,6 +8752,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshotsPlain(GetCloudBackupSnapshotsPlainArgs args, InvokeOptions options) {
@@ -9900,11 +9780,11 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
      * 
      * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -9971,11 +9851,11 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
      * 
      * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10042,11 +9922,11 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
      * 
      * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10113,11 +9993,11 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
      * 
      * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10184,11 +10064,11 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
      * 
      * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10541,7 +10421,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10609,7 +10489,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10677,7 +10557,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10745,7 +10625,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10813,7 +10693,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10883,6 +10763,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args) {
         return getCustomDbRoles(args, InvokeOptions.Empty);
@@ -10893,6 +10775,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetCustomDbRolesInvokeResult> getCustomDbRolesPlain(GetCustomDbRolesPlainArgs args) {
@@ -10905,6 +10789,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", TypeShape.of(GetCustomDbRolesInvokeResult.class), args, Utilities.withVersion(options));
@@ -10916,6 +10802,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", TypeShape.of(GetCustomDbRolesInvokeResult.class), args, Utilities.withVersion(options));
@@ -10926,6 +10814,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetCustomDbRolesInvokeResult> getCustomDbRolesPlain(GetCustomDbRolesPlainArgs args, InvokeOptions options) {
@@ -11191,9 +11081,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetDataLakePipelineResult> getDataLakePipeline(GetDataLakePipelineArgs args) {
@@ -11204,9 +11096,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetDataLakePipelineResult> getDataLakePipelinePlain(GetDataLakePipelinePlainArgs args) {
@@ -11217,9 +11111,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetDataLakePipelineResult> getDataLakePipeline(GetDataLakePipelineArgs args, InvokeOptions options) {
@@ -11230,9 +11126,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetDataLakePipelineResult> getDataLakePipeline(GetDataLakePipelineArgs args, InvokeOutputOptions options) {
@@ -11243,9 +11141,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetDataLakePipelineResult> getDataLakePipelinePlain(GetDataLakePipelinePlainArgs args, InvokeOptions options) {
@@ -11258,6 +11158,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetDataLakePipelineRunResult> getDataLakePipelineRun(GetDataLakePipelineRunArgs args) {
         return getDataLakePipelineRun(args, InvokeOptions.Empty);
@@ -11268,6 +11170,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getDataLakePipelineRun` describes a Data Lake Pipeline Run.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetDataLakePipelineRunResult> getDataLakePipelineRunPlain(GetDataLakePipelineRunPlainArgs args) {
@@ -11280,6 +11184,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetDataLakePipelineRunResult> getDataLakePipelineRun(GetDataLakePipelineRunArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun", TypeShape.of(GetDataLakePipelineRunResult.class), args, Utilities.withVersion(options));
@@ -11290,6 +11196,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getDataLakePipelineRun` describes a Data Lake Pipeline Run.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetDataLakePipelineRunResult> getDataLakePipelineRun(GetDataLakePipelineRunArgs args, InvokeOutputOptions options) {
@@ -11302,6 +11210,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static CompletableFuture<GetDataLakePipelineRunResult> getDataLakePipelineRunPlain(GetDataLakePipelineRunPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun", TypeShape.of(GetDataLakePipelineRunResult.class), args, Utilities.withVersion(options));
@@ -11312,6 +11222,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRuns(GetDataLakePipelineRunsArgs args) {
@@ -11324,6 +11236,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static CompletableFuture<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRunsPlain(GetDataLakePipelineRunsPlainArgs args) {
         return getDataLakePipelineRunsPlain(args, InvokeOptions.Empty);
@@ -11334,6 +11248,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getDataLakePipelineRun` describes Data Lake Pipeline Runs.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRuns(GetDataLakePipelineRunsArgs args, InvokeOptions options) {
@@ -11346,6 +11262,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRuns(GetDataLakePipelineRunsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", TypeShape.of(GetDataLakePipelineRunsInvokeResult.class), args, Utilities.withVersion(options));
@@ -11357,6 +11275,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static CompletableFuture<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRunsPlain(GetDataLakePipelineRunsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", TypeShape.of(GetDataLakePipelineRunsInvokeResult.class), args, Utilities.withVersion(options));
@@ -11366,7 +11286,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11379,7 +11299,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11392,7 +11312,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11405,7 +11325,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11418,7 +11338,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11433,7 +11353,7 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11559,7 +11479,7 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11685,7 +11605,7 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11811,7 +11731,7 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11937,7 +11857,7 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -14661,7 +14581,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
@@ -14750,7 +14670,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
@@ -14839,7 +14759,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
@@ -14928,7 +14848,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
@@ -15017,7 +14937,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
@@ -15106,11 +15026,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs args) {
@@ -15121,11 +15043,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstancesPlain(GetFederatedDatabaseInstancesPlainArgs args) {
@@ -15136,11 +15060,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs args, InvokeOptions options) {
@@ -15151,11 +15077,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs args, InvokeOutputOptions options) {
@@ -15166,11 +15094,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstancesPlain(GetFederatedDatabaseInstancesPlainArgs args, InvokeOptions options) {
@@ -15181,7 +15111,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -15227,7 +15157,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -15273,7 +15203,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -15319,7 +15249,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -15365,7 +15295,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -15411,7 +15341,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -15458,7 +15388,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -15505,7 +15435,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -15552,7 +15482,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -15599,7 +15529,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -16143,6 +16073,8 @@ public final class MongodbatlasFunctions {
      * 
      * Note: This implementation returns a maximum of 100 results.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs args) {
         return getFederatedSettingsIdentityProviders(args, InvokeOptions.Empty);
@@ -16153,6 +16085,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * Note: This implementation returns a maximum of 100 results.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProvidersPlain(GetFederatedSettingsIdentityProvidersPlainArgs args) {
@@ -16165,6 +16099,8 @@ public final class MongodbatlasFunctions {
      * 
      * Note: This implementation returns a maximum of 100 results.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", TypeShape.of(GetFederatedSettingsIdentityProvidersInvokeResult.class), args, Utilities.withVersion(options));
@@ -16176,6 +16112,8 @@ public final class MongodbatlasFunctions {
      * 
      * Note: This implementation returns a maximum of 100 results.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", TypeShape.of(GetFederatedSettingsIdentityProvidersInvokeResult.class), args, Utilities.withVersion(options));
@@ -16186,6 +16124,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * Note: This implementation returns a maximum of 100 results.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProvidersPlain(GetFederatedSettingsIdentityProvidersPlainArgs args, InvokeOptions options) {
@@ -17131,6 +17071,8 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args) {
         return getFederatedSettingsOrgRoleMappings(args, InvokeOptions.Empty);
@@ -17139,6 +17081,8 @@ public final class MongodbatlasFunctions {
      * ## # Data Source: mongodbatlas.getFederatedSettingsOrgRoleMappings
      * 
      * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappingsPlain(GetFederatedSettingsOrgRoleMappingsPlainArgs args) {
@@ -17149,6 +17093,8 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", TypeShape.of(GetFederatedSettingsOrgRoleMappingsInvokeResult.class), args, Utilities.withVersion(options));
@@ -17158,6 +17104,8 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", TypeShape.of(GetFederatedSettingsOrgRoleMappingsInvokeResult.class), args, Utilities.withVersion(options));
@@ -17166,6 +17114,8 @@ public final class MongodbatlasFunctions {
      * ## # Data Source: mongodbatlas.getFederatedSettingsOrgRoleMappings
      * 
      * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappingsPlain(GetFederatedSettingsOrgRoleMappingsPlainArgs args, InvokeOptions options) {
@@ -17308,6 +17258,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetFlexRestoreJobResult> getFlexRestoreJob(GetFlexRestoreJobArgs args) {
         return getFlexRestoreJob(args, InvokeOptions.Empty);
@@ -17318,6 +17270,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFlexRestoreJob` describes a flex restore job.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetFlexRestoreJobResult> getFlexRestoreJobPlain(GetFlexRestoreJobPlainArgs args) {
@@ -17330,6 +17284,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetFlexRestoreJobResult> getFlexRestoreJob(GetFlexRestoreJobArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFlexRestoreJob:getFlexRestoreJob", TypeShape.of(GetFlexRestoreJobResult.class), args, Utilities.withVersion(options));
@@ -17340,6 +17296,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFlexRestoreJob` describes a flex restore job.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetFlexRestoreJobResult> getFlexRestoreJob(GetFlexRestoreJobArgs args, InvokeOutputOptions options) {
@@ -17352,6 +17310,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetFlexRestoreJobResult> getFlexRestoreJobPlain(GetFlexRestoreJobPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexRestoreJob:getFlexRestoreJob", TypeShape.of(GetFlexRestoreJobResult.class), args, Utilities.withVersion(options));
@@ -17362,6 +17322,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetFlexRestoreJobsInvokeResult> getFlexRestoreJobs(GetFlexRestoreJobsArgs args) {
@@ -17374,6 +17336,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetFlexRestoreJobsInvokeResult> getFlexRestoreJobsPlain(GetFlexRestoreJobsPlainArgs args) {
         return getFlexRestoreJobsPlain(args, InvokeOptions.Empty);
@@ -17384,6 +17348,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetFlexRestoreJobsInvokeResult> getFlexRestoreJobs(GetFlexRestoreJobsArgs args, InvokeOptions options) {
@@ -17396,6 +17362,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetFlexRestoreJobsInvokeResult> getFlexRestoreJobs(GetFlexRestoreJobsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs", TypeShape.of(GetFlexRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
@@ -17406,6 +17374,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetFlexRestoreJobsInvokeResult> getFlexRestoreJobsPlain(GetFlexRestoreJobsPlainArgs args, InvokeOptions options) {
@@ -17418,6 +17388,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetFlexSnapshotResult> getFlexSnapshot(GetFlexSnapshotArgs args) {
         return getFlexSnapshot(args, InvokeOptions.Empty);
@@ -17428,6 +17400,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetFlexSnapshotResult> getFlexSnapshotPlain(GetFlexSnapshotPlainArgs args) {
@@ -17440,6 +17414,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetFlexSnapshotResult> getFlexSnapshot(GetFlexSnapshotArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFlexSnapshot:getFlexSnapshot", TypeShape.of(GetFlexSnapshotResult.class), args, Utilities.withVersion(options));
@@ -17450,6 +17426,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetFlexSnapshotResult> getFlexSnapshot(GetFlexSnapshotArgs args, InvokeOutputOptions options) {
@@ -17462,6 +17440,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetFlexSnapshotResult> getFlexSnapshotPlain(GetFlexSnapshotPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexSnapshot:getFlexSnapshot", TypeShape.of(GetFlexSnapshotResult.class), args, Utilities.withVersion(options));
@@ -17472,6 +17452,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFlexSnapshots` returns all snapshots of a flex cluster.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetFlexSnapshotsInvokeResult> getFlexSnapshots(GetFlexSnapshotsArgs args) {
@@ -17484,6 +17466,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetFlexSnapshotsInvokeResult> getFlexSnapshotsPlain(GetFlexSnapshotsPlainArgs args) {
         return getFlexSnapshotsPlain(args, InvokeOptions.Empty);
@@ -17494,6 +17478,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFlexSnapshots` returns all snapshots of a flex cluster.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetFlexSnapshotsInvokeResult> getFlexSnapshots(GetFlexSnapshotsArgs args, InvokeOptions options) {
@@ -17506,6 +17492,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetFlexSnapshotsInvokeResult> getFlexSnapshots(GetFlexSnapshotsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFlexSnapshots:getFlexSnapshots", TypeShape.of(GetFlexSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
@@ -17517,6 +17505,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetFlexSnapshotsInvokeResult> getFlexSnapshotsPlain(GetFlexSnapshotsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFlexSnapshots:getFlexSnapshots", TypeShape.of(GetFlexSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
@@ -17526,7 +17516,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -17648,7 +17638,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -17770,7 +17760,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -17892,7 +17882,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -18014,7 +18004,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -20781,7 +20771,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` describes an Online Archive
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -20820,45 +20810,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name`          -  Name of the database that contains the collection.
-     * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName`          -  Name of the database that contains the collection.
+     * * `collName`        -  Name of the collection.
+     * * `collectionType`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
-     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
-     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
+     * * `startHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour`      - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute`     - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
+     * * `dayOfWeek`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
      * 
@@ -20871,7 +20861,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` describes an Online Archive
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -20910,45 +20900,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name`          -  Name of the database that contains the collection.
-     * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName`          -  Name of the database that contains the collection.
+     * * `collName`        -  Name of the collection.
+     * * `collectionType`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
-     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
-     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
+     * * `startHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour`      - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute`     - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
+     * * `dayOfWeek`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
      * 
@@ -20961,7 +20951,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` describes an Online Archive
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21000,45 +20990,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name`          -  Name of the database that contains the collection.
-     * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName`          -  Name of the database that contains the collection.
+     * * `collName`        -  Name of the collection.
+     * * `collectionType`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
-     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
-     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
+     * * `startHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour`      - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute`     - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
+     * * `dayOfWeek`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
      * 
@@ -21051,7 +21041,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` describes an Online Archive
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21090,45 +21080,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name`          -  Name of the database that contains the collection.
-     * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName`          -  Name of the database that contains the collection.
+     * * `collName`        -  Name of the collection.
+     * * `collectionType`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
-     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
-     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
+     * * `startHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour`      - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute`     - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
+     * * `dayOfWeek`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
      * 
@@ -21141,7 +21131,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` describes an Online Archive
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21180,45 +21170,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name`          -  Name of the database that contains the collection.
-     * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName`          -  Name of the database that contains the collection.
+     * * `collName`        -  Name of the collection.
+     * * `collectionType`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
-     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
-     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
+     * * `startHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour`      - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute`     - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth`   - Day of the month when the scheduled archive starts. Set this parameter when `type` is `MONTHLY`.
+     * * `dayOfWeek`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).Set this parameter when `type` is `WEEKLY`.
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
      * 
@@ -21231,7 +21221,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21269,45 +21259,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name` - Name of the database that contains the collection.
-     * * `coll_name` -  Name of the collection.
-     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName` - Name of the database that contains the collection.
+     * * `collName` -  Name of the collection.
+     * * `collectionType` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
-     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month` - Day of the month when the scheduled archive starts.
-     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * * `startHour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth` - Day of the month when the scheduled archive starts.
+     * * `dayOfWeek` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      */
     public static Output<GetOnlineArchivesInvokeResult> getOnlineArchives(GetOnlineArchivesArgs args) {
@@ -21318,7 +21308,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21356,45 +21346,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name` - Name of the database that contains the collection.
-     * * `coll_name` -  Name of the collection.
-     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName` - Name of the database that contains the collection.
+     * * `collName` -  Name of the collection.
+     * * `collectionType` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
-     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month` - Day of the month when the scheduled archive starts.
-     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * * `startHour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth` - Day of the month when the scheduled archive starts.
+     * * `dayOfWeek` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      */
     public static CompletableFuture<GetOnlineArchivesInvokeResult> getOnlineArchivesPlain(GetOnlineArchivesPlainArgs args) {
@@ -21405,7 +21395,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21443,45 +21433,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name` - Name of the database that contains the collection.
-     * * `coll_name` -  Name of the collection.
-     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName` - Name of the database that contains the collection.
+     * * `collName` -  Name of the collection.
+     * * `collectionType` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
-     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month` - Day of the month when the scheduled archive starts.
-     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * * `startHour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth` - Day of the month when the scheduled archive starts.
+     * * `dayOfWeek` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      */
     public static Output<GetOnlineArchivesInvokeResult> getOnlineArchives(GetOnlineArchivesArgs args, InvokeOptions options) {
@@ -21492,7 +21482,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21530,45 +21520,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name` - Name of the database that contains the collection.
-     * * `coll_name` -  Name of the collection.
-     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName` - Name of the database that contains the collection.
+     * * `collName` -  Name of the collection.
+     * * `collectionType` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
-     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month` - Day of the month when the scheduled archive starts.
-     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * * `startHour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth` - Day of the month when the scheduled archive starts.
+     * * `dayOfWeek` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      */
     public static Output<GetOnlineArchivesInvokeResult> getOnlineArchives(GetOnlineArchivesArgs args, InvokeOutputOptions options) {
@@ -21579,7 +21569,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21617,45 +21607,45 @@ public final class MongodbatlasFunctions {
      * 
      * ## Attributes reference
      * 
-     * * `db_name` - Name of the database that contains the collection.
-     * * `coll_name` -  Name of the collection.
-     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `dbName` - Name of the database that contains the collection.
+     * * `collName` -  Name of the collection.
+     * * `collectionType` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria` - Criteria to use for archiving data. See criteria.
-     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
-     * * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
+     * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
      * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
-     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
-     * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
+     * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
      * ### Data Expiration Rule
-     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Data Process Region
-     * * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
      * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
      * 
      * ### Schedule
      * 
      * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month` - Day of the month when the scheduled archive starts.
-     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * * `startHour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `endHour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `startMinute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `endMinute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `dayOfMonth` - Day of the month when the scheduled archive starts.
+     * * `dayOfWeek` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
      * 
      * ### Partition
-     * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     * * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * * `field_type` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
      */
     public static CompletableFuture<GetOnlineArchivesInvokeResult> getOnlineArchivesPlain(GetOnlineArchivesPlainArgs args, InvokeOptions options) {
@@ -21713,7 +21703,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -21756,7 +21746,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -21799,7 +21789,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -21842,7 +21832,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -21885,7 +21875,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -22223,55 +22213,55 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOrganizations:getOrganizations", TypeShape.of(GetOrganizationsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: private_endpoint_regional_mode
+     * ## # Data Source: privateEndpointRegionalMode
      * 
-     * `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
+     * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static Output<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalMode(GetPrivateEndpointRegionalModeArgs args) {
         return getPrivateEndpointRegionalMode(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: private_endpoint_regional_mode
+     * ## # Data Source: privateEndpointRegionalMode
      * 
-     * `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
+     * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static CompletableFuture<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalModePlain(GetPrivateEndpointRegionalModePlainArgs args) {
         return getPrivateEndpointRegionalModePlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # Data Source: private_endpoint_regional_mode
+     * ## # Data Source: privateEndpointRegionalMode
      * 
-     * `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
+     * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static Output<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalMode(GetPrivateEndpointRegionalModeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", TypeShape.of(GetPrivateEndpointRegionalModeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: private_endpoint_regional_mode
+     * ## # Data Source: privateEndpointRegionalMode
      * 
-     * `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
+     * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static Output<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalMode(GetPrivateEndpointRegionalModeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", TypeShape.of(GetPrivateEndpointRegionalModeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # Data Source: private_endpoint_regional_mode
+     * ## # Data Source: privateEndpointRegionalMode
      * 
-     * `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
+     * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      */
     public static CompletableFuture<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalModePlain(GetPrivateEndpointRegionalModePlainArgs args, InvokeOptions options) {
@@ -22282,7 +22272,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
      * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
@@ -22342,7 +22332,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
      * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
@@ -22402,7 +22392,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
      * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
@@ -22462,7 +22452,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
      * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
@@ -22522,7 +22512,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
      * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
@@ -22582,7 +22572,14 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
+     * ## Example with AWS
+     * 
+     * ## Example with Azure
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args) {
@@ -22593,7 +22590,14 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
+     * ## Example with AWS
+     * 
+     * ## Example with Azure
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args) {
@@ -22604,7 +22608,14 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
+     * ## Example with AWS
+     * 
+     * ## Example with Azure
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args, InvokeOptions options) {
@@ -22615,7 +22626,14 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
+     * ## Example with AWS
+     * 
+     * ## Example with Azure
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args, InvokeOutputOptions options) {
@@ -22626,7 +22644,14 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
+     * ## Example with AWS
+     * 
+     * ## Example with Azure
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args, InvokeOptions options) {
@@ -23260,9 +23285,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -23402,9 +23427,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -23544,9 +23569,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -23686,9 +23711,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -23828,9 +23853,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -23970,9 +23995,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -24107,9 +24132,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -24244,9 +24269,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -24381,9 +24406,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -24518,9 +24543,9 @@ public final class MongodbatlasFunctions {
     /**
      * **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
      * 
-     * `privatelink_endpoints_service_serverless` describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example with AWS
      * 
@@ -24657,11 +24682,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -24784,11 +24809,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -24911,11 +24936,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -25038,11 +25063,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -25165,11 +25190,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -25292,11 +25317,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -25419,11 +25444,11 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using projectId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -25544,7 +25569,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using project_id and api_key_id attribute to query
+     * ### Using projectId and apiKeyId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -25595,7 +25620,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using project_id and api_key_id attribute to query
+     * ### Using projectId and apiKeyId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -25646,7 +25671,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using project_id and api_key_id attribute to query
+     * ### Using projectId and apiKeyId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -25697,7 +25722,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using project_id and api_key_id attribute to query
+     * ### Using projectId and apiKeyId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -25748,7 +25773,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using project_id and api_key_id attribute to query
+     * ### Using projectId and apiKeyId attribute to query
      * <pre>
      * {@code
      * package generated_program;
@@ -28617,6 +28642,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetSearchDeploymentResult> getSearchDeployment(GetSearchDeploymentArgs args) {
         return getSearchDeployment(args, InvokeOptions.Empty);
@@ -28627,6 +28654,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.SearchDeployment` describes a search node deployment.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetSearchDeploymentResult> getSearchDeploymentPlain(GetSearchDeploymentPlainArgs args) {
@@ -28639,6 +28668,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetSearchDeploymentResult> getSearchDeployment(GetSearchDeploymentArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSearchDeployment:getSearchDeployment", TypeShape.of(GetSearchDeploymentResult.class), args, Utilities.withVersion(options));
@@ -28650,6 +28681,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetSearchDeploymentResult> getSearchDeployment(GetSearchDeploymentArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSearchDeployment:getSearchDeployment", TypeShape.of(GetSearchDeploymentResult.class), args, Utilities.withVersion(options));
@@ -28660,6 +28693,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.SearchDeployment` describes a search node deployment.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetSearchDeploymentResult> getSearchDeploymentPlain(GetSearchDeploymentPlainArgs args, InvokeOptions options) {
@@ -28902,6 +28937,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args) {
         return getSearchIndexes(args, InvokeOptions.Empty);
@@ -28912,6 +28949,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetSearchIndexesInvokeResult> getSearchIndexesPlain(GetSearchIndexesPlainArgs args) {
@@ -28924,6 +28963,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", TypeShape.of(GetSearchIndexesInvokeResult.class), args, Utilities.withVersion(options));
@@ -28935,6 +28976,8 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", TypeShape.of(GetSearchIndexesInvokeResult.class), args, Utilities.withVersion(options));
@@ -28945,6 +28988,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetSearchIndexesInvokeResult> getSearchIndexesPlain(GetSearchIndexesPlainArgs args, InvokeOptions options) {
@@ -28995,11 +29040,11 @@ public final class MongodbatlasFunctions {
      * </pre>
      * 
      * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
-     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
-     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
+     * and the `privatelinkEndpointService` must exist before the `serverlessInstance` gets its respective `connectionStringsPrivateEndpointSrv` values.
      * 
-     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
-     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * Because of this, the `serverlessInstance` data source has particular value as a source of the `connectionStringsPrivateEndpointSrv`.\
+     * When using the dataSource in-tandem with the afforementioned resources, we can create and retrieve the `connectionStringsPrivateEndpointSrv` in a single `pulumi up`.
      * 
      * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
      * 
@@ -29052,11 +29097,11 @@ public final class MongodbatlasFunctions {
      * </pre>
      * 
      * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
-     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
-     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
+     * and the `privatelinkEndpointService` must exist before the `serverlessInstance` gets its respective `connectionStringsPrivateEndpointSrv` values.
      * 
-     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
-     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * Because of this, the `serverlessInstance` data source has particular value as a source of the `connectionStringsPrivateEndpointSrv`.\
+     * When using the dataSource in-tandem with the afforementioned resources, we can create and retrieve the `connectionStringsPrivateEndpointSrv` in a single `pulumi up`.
      * 
      * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
      * 
@@ -29109,11 +29154,11 @@ public final class MongodbatlasFunctions {
      * </pre>
      * 
      * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
-     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
-     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
+     * and the `privatelinkEndpointService` must exist before the `serverlessInstance` gets its respective `connectionStringsPrivateEndpointSrv` values.
      * 
-     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
-     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * Because of this, the `serverlessInstance` data source has particular value as a source of the `connectionStringsPrivateEndpointSrv`.\
+     * When using the dataSource in-tandem with the afforementioned resources, we can create and retrieve the `connectionStringsPrivateEndpointSrv` in a single `pulumi up`.
      * 
      * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
      * 
@@ -29166,11 +29211,11 @@ public final class MongodbatlasFunctions {
      * </pre>
      * 
      * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
-     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
-     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
+     * and the `privatelinkEndpointService` must exist before the `serverlessInstance` gets its respective `connectionStringsPrivateEndpointSrv` values.
      * 
-     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
-     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * Because of this, the `serverlessInstance` data source has particular value as a source of the `connectionStringsPrivateEndpointSrv`.\
+     * When using the dataSource in-tandem with the afforementioned resources, we can create and retrieve the `connectionStringsPrivateEndpointSrv` in a single `pulumi up`.
      * 
      * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
      * 
@@ -29223,11 +29268,11 @@ public final class MongodbatlasFunctions {
      * </pre>
      * 
      * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
-     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
-     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
+     * and the `privatelinkEndpointService` must exist before the `serverlessInstance` gets its respective `connectionStringsPrivateEndpointSrv` values.
      * 
-     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
-     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * Because of this, the `serverlessInstance` data source has particular value as a source of the `connectionStringsPrivateEndpointSrv`.\
+     * When using the dataSource in-tandem with the afforementioned resources, we can create and retrieve the `connectionStringsPrivateEndpointSrv` in a single `pulumi up`.
      * 
      * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
      * 
@@ -31372,6 +31417,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetStreamProcessorResult> getStreamProcessor(GetStreamProcessorArgs args) {
         return getStreamProcessor(args, InvokeOptions.Empty);
@@ -31382,6 +31429,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.StreamProcessor` describes a stream processor.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static CompletableFuture<GetStreamProcessorResult> getStreamProcessorPlain(GetStreamProcessorPlainArgs args) {
@@ -31394,6 +31443,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetStreamProcessorResult> getStreamProcessor(GetStreamProcessorArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamProcessor:getStreamProcessor", TypeShape.of(GetStreamProcessorResult.class), args, Utilities.withVersion(options));
@@ -31404,6 +31455,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.StreamProcessor` describes a stream processor.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetStreamProcessorResult> getStreamProcessor(GetStreamProcessorArgs args, InvokeOutputOptions options) {
@@ -31416,6 +31469,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetStreamProcessorResult> getStreamProcessorPlain(GetStreamProcessorPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamProcessor:getStreamProcessor", TypeShape.of(GetStreamProcessorResult.class), args, Utilities.withVersion(options));
@@ -31426,6 +31481,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetStreamProcessorsInvokeResult> getStreamProcessors(GetStreamProcessorsArgs args) {
@@ -31438,6 +31495,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetStreamProcessorsInvokeResult> getStreamProcessorsPlain(GetStreamProcessorsPlainArgs args) {
         return getStreamProcessorsPlain(args, InvokeOptions.Empty);
@@ -31448,6 +31507,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getStreamProcessors` returns all stream processors in a stream instance.
      * 
      * ## Example Usage
+     * 
+     * ### S
      * 
      */
     public static Output<GetStreamProcessorsInvokeResult> getStreamProcessors(GetStreamProcessorsArgs args, InvokeOptions options) {
@@ -31460,6 +31521,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static Output<GetStreamProcessorsInvokeResult> getStreamProcessors(GetStreamProcessorsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamProcessors:getStreamProcessors", TypeShape.of(GetStreamProcessorsInvokeResult.class), args, Utilities.withVersion(options));
@@ -31471,6 +31534,8 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * 
      */
     public static CompletableFuture<GetStreamProcessorsInvokeResult> getStreamProcessorsPlain(GetStreamProcessorsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamProcessors:getStreamProcessors", TypeShape.of(GetStreamProcessorsInvokeResult.class), args, Utilities.withVersion(options));
@@ -31480,7 +31545,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31579,7 +31644,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31678,7 +31743,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31777,7 +31842,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31876,7 +31941,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -32600,11 +32665,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -32671,11 +32738,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -32742,11 +32811,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -32813,11 +32884,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -32884,11 +32957,13 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
      * ### S
+     * 
+     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>

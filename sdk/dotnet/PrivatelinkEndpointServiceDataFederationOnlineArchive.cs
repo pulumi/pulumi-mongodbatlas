@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
-    /// &gt; **NOTE:** Updates are limited to the `comment` argument.
+    /// &gt; **NOTE:** Updates are limited to the `Comment` argument.
     /// 
     /// ## Example Usage
     /// 
@@ -63,7 +63,7 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// The `service_name` value for the region in question can be found in the [MongoDB Atlas Administration](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatafederationprivateendpoint) documentation.
+    /// The `ServiceName` value for the region in question can be found in the [MongoDB Atlas Administration](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatafederationprivateendpoint) documentation.
     /// 
     /// ## Import
     /// 
@@ -84,7 +84,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> Comment { get; private set; } = null!;
 
         /// <summary>
-        /// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
+        /// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `Region`.
         /// </summary>
         [Output("customerEndpointDnsName")]
         public Output<string?> CustomerEndpointDnsName { get; private set; } = null!;
@@ -108,7 +108,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProviderName { get; private set; } = null!;
 
         /// <summary>
-        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
+        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `CustomerEndpointDnsName`.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -172,7 +172,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
+        /// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `Region`.
         /// </summary>
         [Input("customerEndpointDnsName")]
         public Input<string>? CustomerEndpointDnsName { get; set; }
@@ -196,7 +196,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProviderName { get; set; } = null!;
 
         /// <summary>
-        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
+        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `CustomerEndpointDnsName`.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -216,7 +216,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
+        /// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `Region`.
         /// </summary>
         [Input("customerEndpointDnsName")]
         public Input<string>? CustomerEndpointDnsName { get; set; }
@@ -240,7 +240,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderName { get; set; }
 
         /// <summary>
-        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
+        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `CustomerEndpointDnsName`.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

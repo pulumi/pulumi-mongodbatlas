@@ -39,14 +39,14 @@ public final class GetAlertConfigurationsPlainArgs extends com.pulumi.resources.
     }
 
     /**
-     * List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
+     * List of requested string formatted output to be included on each individual result. Options are `resourceHcl` and `resourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
      * 
      */
     @Import(name="outputTypes")
     private @Nullable List<String> outputTypes;
 
     /**
-     * @return List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
+     * @return List of requested string formatted output to be included on each individual result. Options are `resourceHcl` and `resourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
      * 
      */
     public Optional<List<String>> outputTypes() {
@@ -122,7 +122,7 @@ public final class GetAlertConfigurationsPlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param outputTypes List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
+         * @param outputTypes List of requested string formatted output to be included on each individual result. Options are `resourceHcl` and `resourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
          * 
          * @return builder
          * 
@@ -133,7 +133,7 @@ public final class GetAlertConfigurationsPlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param outputTypes List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
+         * @param outputTypes List of requested string formatted output to be included on each individual result. Options are `resourceHcl` and `resourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
          * 
          * @return builder
          * 

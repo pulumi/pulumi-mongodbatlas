@@ -17,6 +17,8 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### S
+ *
  * ## Import
  *
  * Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.

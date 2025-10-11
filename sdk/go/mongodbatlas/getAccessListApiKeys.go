@@ -12,6 +12,10 @@ import (
 )
 
 // ## Example Usage
+//
+// ### Using CIDR Block
+//
+// ### Using IP Address
 func LookupAccessListApiKeys(ctx *pulumi.Context, args *LookupAccessListApiKeysArgs, opts ...pulumi.InvokeOption) (*LookupAccessListApiKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccessListApiKeysResult

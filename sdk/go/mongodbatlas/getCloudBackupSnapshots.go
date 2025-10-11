@@ -16,6 +16,8 @@ import (
 // `getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
 func LookupCloudBackupSnapshots(ctx *pulumi.Context, args *LookupCloudBackupSnapshotsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotsResult

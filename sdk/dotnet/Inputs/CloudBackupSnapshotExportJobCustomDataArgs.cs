@@ -13,13 +13,13 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class CloudBackupSnapshotExportJobCustomDataArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+        /// Required if you want to include custom data using `CustomData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         /// <summary>
-        /// Required if you specify `key`.
+        /// Required if you specify `Key`.
         /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;

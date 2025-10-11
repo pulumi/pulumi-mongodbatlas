@@ -205,7 +205,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Database { get; private set; } = null!;
 
         /// <summary>
-        /// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        /// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `Vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Output("fields")]
         public Output<string?> Fields { get; private set; } = null!;
@@ -217,13 +217,13 @@ namespace Pulumi.Mongodbatlas
         public Output<string> IndexId { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        /// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `True`. For static mapping, specify the fields to index using `MappingsFields`
         /// </summary>
         [Output("mappingsDynamic")]
         public Output<bool?> MappingsDynamic { get; private set; } = null!;
 
         /// <summary>
-        /// attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required in search indexes when `MappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Output("mappingsFields")]
         public Output<string?> MappingsFields { get; private set; } = null!;
@@ -265,7 +265,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.SearchIndexSynonym>> Synonyms { get; private set; } = null!;
 
         /// <summary>
-        /// Type of index: `search` or `vectorSearch`. Default type is `search`.
+        /// Type of index: `Search` or `vectorSearch`. Default type is `Search`.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -371,19 +371,19 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Database { get; set; } = null!;
 
         /// <summary>
-        /// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        /// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `Vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("fields")]
         public Input<string>? Fields { get; set; }
 
         /// <summary>
-        /// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        /// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `True`. For static mapping, specify the fields to index using `MappingsFields`
         /// </summary>
         [Input("mappingsDynamic")]
         public Input<bool>? MappingsDynamic { get; set; }
 
         /// <summary>
-        /// attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required in search indexes when `MappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("mappingsFields")]
         public Input<string>? MappingsFields { get; set; }
@@ -425,7 +425,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Type of index: `search` or `vectorSearch`. Default type is `search`.
+        /// Type of index: `Search` or `vectorSearch`. Default type is `Search`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -493,7 +493,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Database { get; set; }
 
         /// <summary>
-        /// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        /// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `Vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("fields")]
         public Input<string>? Fields { get; set; }
@@ -505,13 +505,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? IndexId { get; set; }
 
         /// <summary>
-        /// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        /// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `True`. For static mapping, specify the fields to index using `MappingsFields`
         /// </summary>
         [Input("mappingsDynamic")]
         public Input<bool>? MappingsDynamic { get; set; }
 
         /// <summary>
-        /// attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required in search indexes when `MappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("mappingsFields")]
         public Input<string>? MappingsFields { get; set; }
@@ -559,7 +559,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Type of index: `search` or `vectorSearch`. Default type is `search`.
+        /// Type of index: `Search` or `vectorSearch`. Default type is `Search`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

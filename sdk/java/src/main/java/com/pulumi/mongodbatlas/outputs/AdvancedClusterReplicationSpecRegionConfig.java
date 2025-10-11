@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AdvancedClusterReplicationSpecRegionConfig {
     /**
-     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
      * 
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling;
@@ -29,23 +29,23 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
     /**
-     * @return Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
+     * @return Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
      * 
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigAutoScaling autoScaling;
     /**
-     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
+     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
      * 
      */
     private @Nullable String backingProviderName;
     /**
-     * @return Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+     * @return Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      * 
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigElectableSpecs electableSpecs;
     /**
      * @return Election priority of the region. For regions with only read-only nodes, set this value to 0.
-     * * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
+     * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
      * * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
      * 
      */
@@ -61,7 +61,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
      */
     private String providerName;
     /**
-     * @return Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
+     * @return Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
      * 
      */
     private @Nullable AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs;
@@ -73,7 +73,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
 
     private AdvancedClusterReplicationSpecRegionConfig() {}
     /**
-     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
      * 
      */
     public Optional<AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScaling() {
@@ -87,21 +87,21 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
         return Optional.ofNullable(this.analyticsSpecs);
     }
     /**
-     * @return Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
+     * @return Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
      * 
      */
     public Optional<AdvancedClusterReplicationSpecRegionConfigAutoScaling> autoScaling() {
         return Optional.ofNullable(this.autoScaling);
     }
     /**
-     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
+     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
      * 
      */
     public Optional<String> backingProviderName() {
         return Optional.ofNullable(this.backingProviderName);
     }
     /**
-     * @return Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+     * @return Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      * 
      */
     public Optional<AdvancedClusterReplicationSpecRegionConfigElectableSpecs> electableSpecs() {
@@ -109,7 +109,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
     }
     /**
      * @return Election priority of the region. For regions with only read-only nodes, set this value to 0.
-     * * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
+     * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
      * * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
      * 
      */
@@ -129,7 +129,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
         return this.providerName;
     }
     /**
-     * @return Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
+     * @return Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don&#39;t specify this parameter, no read-only nodes are deployed to the region. See below.
      * 
      */
     public Optional<AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs> readOnlySpecs() {

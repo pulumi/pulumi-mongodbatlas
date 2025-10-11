@@ -206,7 +206,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string Id;
         public readonly string InvitationId;
         /// <summary>
-        /// Atlas user who invited `username` to the project.
+        /// Atlas user who invited `Username` to the project.
         /// </summary>
         public readonly string InviterUsername;
         public readonly string ProjectId;

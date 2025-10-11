@@ -33,14 +33,14 @@ public final class LdapVerifyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The password used to authenticate the `bind_username`.
+     * The password used to authenticate the `bindUsername`.
      * 
      */
     @Import(name="bindPassword", required=true)
     private Output<String> bindPassword;
 
     /**
-     * @return The password used to authenticate the `bind_username`.
+     * @return The password used to authenticate the `bindUsername`.
      * 
      */
     public Output<String> bindPassword() {
@@ -174,7 +174,7 @@ public final class LdapVerifyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bindPassword The password used to authenticate the `bind_username`.
+         * @param bindPassword The password used to authenticate the `bindUsername`.
          * 
          * @return builder
          * 
@@ -185,7 +185,7 @@ public final class LdapVerifyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bindPassword The password used to authenticate the `bind_username`.
+         * @param bindPassword The password used to authenticate the `bindUsername`.
          * 
          * @return builder
          * 

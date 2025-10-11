@@ -18,14 +18,14 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
     public static final CloudBackupSchedulePolicyItemMonthlyArgs Empty = new CloudBackupSchedulePolicyItemMonthlyArgs();
 
     /**
-     * Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      * 
      */
     @Import(name="frequencyInterval", required=true)
     private Output<Integer> frequencyInterval;
 
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      * 
      */
     public Output<Integer> frequencyInterval() {
@@ -78,14 +78,14 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
     }
 
     /**
-     * Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      * 
      */
     @Import(name="retentionValue", required=true)
     private Output<Integer> retentionValue;
 
     /**
-     * @return Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * @return Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      * 
      */
     public Output<Integer> retentionValue() {
@@ -121,7 +121,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
          * 
          * @return builder
          * 
@@ -132,7 +132,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
          * 
          * @return builder
          * 
@@ -205,7 +205,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+         * @param retentionValue Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
          * 
          * @return builder
          * 
@@ -216,7 +216,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+         * @param retentionValue Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
          * 
          * @return builder
          * 

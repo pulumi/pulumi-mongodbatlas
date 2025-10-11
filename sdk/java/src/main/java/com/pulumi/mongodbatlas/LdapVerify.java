@@ -117,14 +117,14 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
         return this.authzQueryTemplate;
     }
     /**
-     * The password used to authenticate the `bind_username`.
+     * The password used to authenticate the `bindUsername`.
      * 
      */
     @Export(name="bindPassword", refs={String.class}, tree="[0]")
     private Output<String> bindPassword;
 
     /**
-     * @return The password used to authenticate the `bind_username`.
+     * @return The password used to authenticate the `bindUsername`.
      * 
      */
     public Output<String> bindPassword() {

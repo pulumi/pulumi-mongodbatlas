@@ -129,40 +129,6 @@ import (
 // ```
 //
 // Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupAlertConfiguration(ctx, &mongodbatlas.LookupAlertConfigurationArgs{
-//				ProjectId:            projectId,
-//				AlertConfigurationId: alertConfigurationId,
-//				Outputs: []mongodbatlas.GetAlertConfigurationOutput{
-//					{
-//						Type:  "resource_hcl",
-//						Label: pulumi.StringRef("test"),
-//					},
-//					{
-//						Type:  "resource_import",
-//						Label: pulumi.StringRef("test"),
-//					},
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupAlertConfiguration(ctx *pulumi.Context, args *LookupAlertConfigurationArgs, opts ...pulumi.InvokeOption) (*LookupAlertConfigurationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAlertConfigurationResult

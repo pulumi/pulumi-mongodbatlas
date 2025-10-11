@@ -14,11 +14,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class OnlineArchiveSchedule
     {
         /// <summary>
-        /// Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
+        /// Day of the month when the scheduled archive starts. This field should be provided only when schedule `Type` is `MONTHLY`.
         /// </summary>
         public readonly int? DayOfMonth;
         /// <summary>
-        /// Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
+        /// Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `Type` is `WEEKLY`.
         /// </summary>
         public readonly int? DayOfWeek;
         /// <summary>

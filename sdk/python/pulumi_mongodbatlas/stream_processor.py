@@ -271,6 +271,8 @@ class StreamProcessor(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### S
+
         ## Import
 
         Stream Processor resource can be imported using the Project ID, Stream Instance name and Stream Processor name, in the format `INSTANCE_NAME-PROJECT_ID-PROCESSOR_NAME`, e.g.
@@ -305,6 +307,8 @@ class StreamProcessor(pulumi.CustomResource):
         3. If the processor was originally in `STARTED` state, it will be restarted after the update
 
         ## Example Usage
+
+        ### S
 
         ## Import
 

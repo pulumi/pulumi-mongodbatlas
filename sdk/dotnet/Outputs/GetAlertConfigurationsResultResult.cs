@@ -35,7 +35,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultMatcherResult> Matchers;
         /// <summary>
-        /// The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
+        /// The threshold that causes an alert to be triggered. Required if `EventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultMetricThresholdConfigResult> MetricThresholdConfigs;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultNotificationResult> Notifications;
@@ -48,7 +48,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
+        /// Threshold that triggers an alert. Required if `EventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultThresholdConfigResult> ThresholdConfigs;
         /// <summary>

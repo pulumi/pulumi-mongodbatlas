@@ -114,14 +114,14 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+     * Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
      * 
      */
     @Import(name="containerId", required=true)
     private Output<String> containerId;
 
     /**
-     * @return Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+     * @return Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
      * 
      */
     public Output<String> containerId() {
@@ -246,14 +246,14 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
+     * Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
      * 
      */
     @Import(name="vpcId")
     private @Nullable Output<String> vpcId;
 
     /**
-     * @return Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
+     * @return Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
      * 
      */
     public Optional<Output<String>> vpcId() {
@@ -435,7 +435,7 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param containerId Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+         * @param containerId Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
          * 
          * @return builder
          * 
@@ -446,7 +446,7 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param containerId Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+         * @param containerId Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
          * 
          * @return builder
          * 
@@ -615,7 +615,7 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param vpcId Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
+         * @param vpcId Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
          * 
          * @return builder
          * 
@@ -626,7 +626,7 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param vpcId Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
+         * @param vpcId Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
          * 
          * @return builder
          * 

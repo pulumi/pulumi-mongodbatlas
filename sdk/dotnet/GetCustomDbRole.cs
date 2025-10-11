@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -78,7 +78,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -140,7 +140,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 

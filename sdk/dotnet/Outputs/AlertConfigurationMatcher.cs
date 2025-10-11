@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string FieldName;
         public readonly string Operator;
         /// <summary>
-        /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        /// Value to test with the specified operator. If `FieldName` is set to TYPE_NAME, you can match on the following values:
         /// - `PRIMARY`
         /// - `SECONDARY`
         /// - `STANDALONE`

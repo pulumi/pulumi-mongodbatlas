@@ -16,6 +16,8 @@ import (
 // `SearchDeployment` describes a search node deployment.
 //
 // ## Example Usage
+//
+// ### S
 func LookupSearchDeployment(ctx *pulumi.Context, args *LookupSearchDeploymentArgs, opts ...pulumi.InvokeOption) (*LookupSearchDeploymentResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSearchDeploymentResult

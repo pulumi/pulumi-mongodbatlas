@@ -16,6 +16,10 @@ import (
 // `CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
 func LookupCloudBackupSnapshotRestoreJob(ctx *pulumi.Context, args *LookupCloudBackupSnapshotRestoreJobArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotRestoreJobResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotRestoreJobResult

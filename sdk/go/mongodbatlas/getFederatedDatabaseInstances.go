@@ -20,6 +20,8 @@ import (
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 //
 // ## Example Usage
+//
+// ### S
 func LookupFederatedDatabaseInstances(ctx *pulumi.Context, args *LookupFederatedDatabaseInstancesArgs, opts ...pulumi.InvokeOption) (*LookupFederatedDatabaseInstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedDatabaseInstancesResult

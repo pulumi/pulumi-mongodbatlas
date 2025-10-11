@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -86,7 +86,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -156,7 +156,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -228,7 +228,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The team name.
         /// 
-        /// &gt; **IMPORTANT:** Either `team_id` or `name` must be configured.
+        /// &gt; **IMPORTANT:** Either `TeamId` or `Name` must be configured.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -256,7 +256,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The team name.
         /// 
-        /// &gt; **IMPORTANT:** Either `team_id` or `name` must be configured.
+        /// &gt; **IMPORTANT:** Either `TeamId` or `Name` must be configured.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

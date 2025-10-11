@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * 
  * `mongodbatlas.StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
  * 
+ * ## Example Usage
+ * 
  * ## Import
  * 
  * You can import stream instance resource using the project ID and instance name, in the format `PROJECT_ID-INSTANCE_NAME`. For example:

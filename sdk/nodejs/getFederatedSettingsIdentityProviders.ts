@@ -12,6 +12,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
  *
  * Note: This implementation returns a maximum of 100 results.
+ *
+ * ## Example Usage
  */
 export function getFederatedSettingsIdentityProviders(args: GetFederatedSettingsIdentityProvidersArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProvidersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -66,6 +68,8 @@ export interface GetFederatedSettingsIdentityProvidersResult {
  * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
  *
  * Note: This implementation returns a maximum of 100 results.
+ *
+ * ## Example Usage
  */
 export function getFederatedSettingsIdentityProvidersOutput(args: GetFederatedSettingsIdentityProvidersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsIdentityProvidersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

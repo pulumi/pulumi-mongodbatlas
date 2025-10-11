@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? ExportBucketId { get; set; }
 
         /// <summary>
-        /// Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
+        /// Frequency associated with the export snapshot item: `Weekly`, `Monthly`, `Yearly`, `Daily` (requires reaching out to Customer Support)
         /// </summary>
         [Input("frequencyType")]
         public Input<string>? FrequencyType { get; set; }

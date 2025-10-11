@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Using project_id and api_key_id attribute to query
+        /// ### Using ProjectId and ApiKeyId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Using project_id and api_key_id attribute to query
+        /// ### Using ProjectId and ApiKeyId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -94,7 +94,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Using project_id and api_key_id attribute to query
+        /// ### Using ProjectId and ApiKeyId attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;

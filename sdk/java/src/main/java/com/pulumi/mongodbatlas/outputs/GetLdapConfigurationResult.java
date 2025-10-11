@@ -30,7 +30,7 @@ public final class GetLdapConfigurationResult {
      */
     private String authzQueryTemplate;
     /**
-     * @return The password used to authenticate the `bind_username`.
+     * @return The password used to authenticate the `bindUsername`.
      * 
      */
     private String bindPassword;
@@ -89,7 +89,7 @@ public final class GetLdapConfigurationResult {
         return this.authzQueryTemplate;
     }
     /**
-     * @return The password used to authenticate the `bind_username`.
+     * @return The password used to authenticate the `bindUsername`.
      * 
      */
     public String bindPassword() {

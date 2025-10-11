@@ -14,9 +14,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
         /// 
-        /// `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+        /// `PrivatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example with AWS
         /// 
@@ -119,9 +119,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
         /// 
-        /// `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+        /// `PrivatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example with AWS
         /// 
@@ -224,9 +224,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// **WARNING:** This data source is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
         /// 
-        /// `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
+        /// `PrivatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example with AWS
         /// 

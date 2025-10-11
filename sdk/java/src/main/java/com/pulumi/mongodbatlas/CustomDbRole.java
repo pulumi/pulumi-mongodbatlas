@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  * 
  * &gt; **IMPORTANT**  You define custom roles at the project level for all clusters in the project. The `mongodbatlas.CustomDbRole` resource supports a subset of MongoDB privilege actions. For a complete list of [privilege actions](https://docs.mongodb.com/manual/reference/privilege-actions/) available for this resource, see [Custom Role actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions/). Custom roles must include actions that all project&#39;s clusters support, and that are compatible with each MongoDB version used by your project&#39;s clusters. For example, if your project has MongoDB 4.2 clusters, you can&#39;t create custom roles that use actions introduced in MongoDB 4.4.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  * 
  * ## Example Usage
  * 

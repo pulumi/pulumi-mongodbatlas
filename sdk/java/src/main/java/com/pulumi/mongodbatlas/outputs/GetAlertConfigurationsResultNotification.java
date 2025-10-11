@@ -44,7 +44,7 @@ public final class GetAlertConfigurationsResultNotification {
      */
     private String emailAddress;
     /**
-     * @return Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
      * 
      */
     private Boolean emailEnabled;
@@ -84,7 +84,7 @@ public final class GetAlertConfigurationsResultNotification {
      */
     private String opsGenieRegion;
     /**
-     * @return Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+     * @return Atlas role in current Project or Organization. Atlas returns this value if you set `typeName` to `ORG` or `GROUP`.
      * 
      */
     private List<String> roles;
@@ -94,7 +94,7 @@ public final class GetAlertConfigurationsResultNotification {
      */
     private String serviceKey;
     /**
-     * @return Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating text notifications should be sent. Atlas returns this value if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     private Boolean smsEnabled;
@@ -197,7 +197,7 @@ public final class GetAlertConfigurationsResultNotification {
         return this.emailAddress;
     }
     /**
-     * @return Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
      * 
      */
     public Boolean emailEnabled() {
@@ -253,7 +253,7 @@ public final class GetAlertConfigurationsResultNotification {
         return this.opsGenieRegion;
     }
     /**
-     * @return Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+     * @return Atlas role in current Project or Organization. Atlas returns this value if you set `typeName` to `ORG` or `GROUP`.
      * 
      */
     public List<String> roles() {
@@ -267,7 +267,7 @@ public final class GetAlertConfigurationsResultNotification {
         return this.serviceKey;
     }
     /**
-     * @return Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating text notifications should be sent. Atlas returns this value if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     public Boolean smsEnabled() {

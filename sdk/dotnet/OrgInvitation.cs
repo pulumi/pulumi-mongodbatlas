@@ -116,7 +116,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> InvitationId { get; private set; } = null!;
 
         /// <summary>
-        /// Atlas user who invited `username` to the organization.
+        /// Atlas user who invited `Username` to the organization.
         /// </summary>
         [Output("inviterUsername")]
         public Output<string> InviterUsername { get; private set; } = null!;
@@ -254,7 +254,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? InvitationId { get; set; }
 
         /// <summary>
-        /// Atlas user who invited `username` to the organization.
+        /// Atlas user who invited `Username` to the organization.
         /// </summary>
         [Input("inviterUsername")]
         public Input<string>? InviterUsername { get; set; }

@@ -18,7 +18,7 @@ public final class GetTeamPlainArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * The team name.
      * 
-     * &gt; **IMPORTANT:** Either `team_id` or `name` must be configured.
+     * &gt; **IMPORTANT:** Either `teamId` or `name` must be configured.
      * 
      */
     @Import(name="name")
@@ -27,7 +27,7 @@ public final class GetTeamPlainArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return The team name.
      * 
-     * &gt; **IMPORTANT:** Either `team_id` or `name` must be configured.
+     * &gt; **IMPORTANT:** Either `teamId` or `name` must be configured.
      * 
      */
     public Optional<String> name() {
@@ -93,7 +93,7 @@ public final class GetTeamPlainArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param name The team name.
          * 
-         * &gt; **IMPORTANT:** Either `team_id` or `name` must be configured.
+         * &gt; **IMPORTANT:** Either `teamId` or `name` must be configured.
          * 
          * @return builder
          * 

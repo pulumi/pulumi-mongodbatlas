@@ -30,7 +30,7 @@ public final class GetAlertConfigurationOutput extends com.pulumi.resources.Invo
     }
 
     /**
-     * Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      * - `PRIMARY`
      * - `SECONDARY`
      * - `STANDALONE`
@@ -42,7 +42,7 @@ public final class GetAlertConfigurationOutput extends com.pulumi.resources.Invo
     private String value;
 
     /**
-     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * @return Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      * - `PRIMARY`
      * - `SECONDARY`
      * - `STANDALONE`
@@ -91,7 +91,7 @@ public final class GetAlertConfigurationOutput extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+         * @param value Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
          * - `PRIMARY`
          * - `SECONDARY`
          * - `STANDALONE`

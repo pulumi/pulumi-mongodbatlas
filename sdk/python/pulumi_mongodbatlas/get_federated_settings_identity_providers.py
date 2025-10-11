@@ -104,6 +104,8 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[_
 
     Note: This implementation returns a maximum of 100 results.
 
+    ## Example Usage
+
 
     :param _builtins.str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param Sequence[_builtins.str] idp_types: The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
@@ -132,6 +134,8 @@ def get_federated_settings_identity_providers_output(federation_settings_id: Opt
     `get_federated_settings_identity_providers` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 
     Note: This implementation returns a maximum of 100 results.
+
+    ## Example Usage
 
 
     :param _builtins.str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

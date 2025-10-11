@@ -12,7 +12,7 @@ import java.util.Objects;
 @CustomType
 public final class GetBackupCompliancePolicyPolicyItemDaily {
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      * 
      */
     private Integer frequencyInterval;
@@ -32,14 +32,14 @@ public final class GetBackupCompliancePolicyPolicyItemDaily {
      */
     private String retentionUnit;
     /**
-     * @return Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+     * @return Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      * 
      */
     private Integer retentionValue;
 
     private GetBackupCompliancePolicyPolicyItemDaily() {}
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      * 
      */
     public Integer frequencyInterval() {
@@ -67,7 +67,7 @@ public final class GetBackupCompliancePolicyPolicyItemDaily {
         return this.retentionUnit;
     }
     /**
-     * @return Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+     * @return Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      * 
      */
     public Integer retentionValue() {

@@ -167,14 +167,14 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
+     * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
+     * @return Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
      * 
      */
     public Output<String> username() {
@@ -450,7 +450,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param username Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
+         * @param username Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
          * 
          * @return builder
          * 
@@ -461,7 +461,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param username Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
+         * @param username Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
          * 
          * @return builder
          * 

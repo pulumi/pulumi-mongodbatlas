@@ -13,18 +13,33 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ### Using CIDR Block
+        /// 
+        /// 
+        /// ### Using IP Address
         /// </summary>
         public static Task<GetAccessListApiKeyResult> InvokeAsync(GetAccessListApiKeyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccessListApiKeyResult>("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", args ?? new GetAccessListApiKeyArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ### Using CIDR Block
+        /// 
+        /// 
+        /// ### Using IP Address
         /// </summary>
         public static Output<GetAccessListApiKeyResult> Invoke(GetAccessListApiKeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessListApiKeyResult>("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", args ?? new GetAccessListApiKeyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ### Using CIDR Block
+        /// 
+        /// 
+        /// ### Using IP Address
         /// </summary>
         public static Output<GetAccessListApiKeyResult> Invoke(GetAccessListApiKeyInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessListApiKeyResult>("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", args ?? new GetAccessListApiKeyInvokeArgs(), options.WithDefaults());
@@ -36,7 +51,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
         /// *
-        /// -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
+        /// -&gt;**NOTE:** You must set either the `CidrBlock` attribute or the `IpAddress` attribute. Don't set both.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public string ApiKeyId { get; set; } = null!;
@@ -64,7 +79,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
         /// *
-        /// -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
+        /// -&gt;**NOTE:** You must set either the `CidrBlock` attribute or the `IpAddress` attribute. Don't set both.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;

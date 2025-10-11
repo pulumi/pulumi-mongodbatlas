@@ -98,14 +98,14 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.copySettings);
     }
     /**
-     * Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+     * Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
      * 
      */
     @Export(name="export", refs={CloudBackupScheduleExport.class}, tree="[0]")
     private Output<CloudBackupScheduleExport> export;
 
     /**
-     * @return Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+     * @return Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
      * 
      */
     public Output<CloudBackupScheduleExport> export() {
@@ -238,14 +238,14 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
         return this.referenceHourOfDay;
     }
     /**
-     * UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+     * UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      * 
      */
     @Export(name="referenceMinuteOfHour", refs={Integer.class}, tree="[0]")
     private Output<Integer> referenceMinuteOfHour;
 
     /**
-     * @return UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+     * @return UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      * 
      */
     public Output<Integer> referenceMinuteOfHour() {

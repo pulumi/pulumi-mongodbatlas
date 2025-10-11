@@ -511,7 +511,7 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `ReplicationSpecs` object. This enables representing clusters with independent shard scaling.
         /// </summary>
         [Input("useReplicationSpecPerShard")]
         public bool? UseReplicationSpecPerShard { get; set; }
@@ -543,7 +543,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `ReplicationSpecs` object. This enables representing clusters with independent shard scaling.
         /// </summary>
         [Input("useReplicationSpecPerShard")]
         public Input<bool>? UseReplicationSpecPerShard { get; set; }
@@ -598,7 +598,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `Tags` instead.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterLabelResult> Labels;
         /// <summary>
@@ -632,7 +632,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ReplicaSetScalingStrategy;
         /// <summary>
-        /// List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
+        /// List of settings that configure your cluster regions. If `UseReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecResult> ReplicationSpecs;
         /// <summary>

@@ -65,7 +65,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to create a new access list entry.
         /// 
-        /// &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+        /// &gt; **NOTE:** One of the following attributes must set: `CidrBlock`  or `IpAddress` but not both.
         /// </summary>
         [Output("apiKeyId")]
         public Output<string> ApiKeyId { get; private set; } = null!;
@@ -137,7 +137,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to create a new access list entry.
         /// 
-        /// &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+        /// &gt; **NOTE:** One of the following attributes must set: `CidrBlock`  or `IpAddress` but not both.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;
@@ -171,7 +171,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to create a new access list entry.
         /// 
-        /// &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+        /// &gt; **NOTE:** One of the following attributes must set: `CidrBlock`  or `IpAddress` but not both.
         /// </summary>
         [Input("apiKeyId")]
         public Input<string>? ApiKeyId { get; set; }
