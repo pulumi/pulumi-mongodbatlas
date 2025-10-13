@@ -154,14 +154,14 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
         return this.exportBucketId;
     }
     /**
-     * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+     * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      * 
      */
     @Export(name="iamRoleId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamRoleId;
 
     /**
-     * @return Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+     * @return Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      * 
      */
     public Output<Optional<String>> iamRoleId() {
@@ -182,28 +182,28 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
         return this.projectId;
     }
     /**
-     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
      * 
      */
     @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> roleId;
 
     /**
-     * @return Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+     * @return Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
      * 
      */
     public Output<Optional<String>> roleId() {
         return Codegen.optional(this.roleId);
     }
     /**
-     * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+     * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
      * 
      */
     @Export(name="serviceUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceUrl;
 
     /**
-     * @return URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+     * @return URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
      * 
      */
     public Output<Optional<String>> serviceUrl() {

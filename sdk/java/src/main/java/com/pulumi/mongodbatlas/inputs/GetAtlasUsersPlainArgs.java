@@ -18,7 +18,7 @@ public final class GetAtlasUsersPlainArgs extends com.pulumi.resources.InvokeArg
     /**
      * Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
      * 
-     * &gt; **IMPORTANT:** Either `org_id`, `project_id`, or `team_id` with `org_id` must be configurated.
+     * &gt; **IMPORTANT:** Either `orgId`, `projectId`, or `teamId` with `orgId` must be configurated.
      * 
      */
     @Import(name="itemsPerPage")
@@ -27,7 +27,7 @@ public final class GetAtlasUsersPlainArgs extends com.pulumi.resources.InvokeArg
     /**
      * @return Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
      * 
-     * &gt; **IMPORTANT:** Either `org_id`, `project_id`, or `team_id` with `org_id` must be configurated.
+     * &gt; **IMPORTANT:** Either `orgId`, `projectId`, or `teamId` with `orgId` must be configurated.
      * 
      */
     public Optional<Integer> itemsPerPage() {
@@ -35,14 +35,14 @@ public final class GetAtlasUsersPlainArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+     * Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `teamId` attributes is defined.
      * 
      */
     @Import(name="orgId")
     private @Nullable String orgId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+     * @return Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `teamId` attributes is defined.
      * 
      */
     public Optional<String> orgId() {
@@ -125,7 +125,7 @@ public final class GetAtlasUsersPlainArgs extends com.pulumi.resources.InvokeArg
         /**
          * @param itemsPerPage Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
          * 
-         * &gt; **IMPORTANT:** Either `org_id`, `project_id`, or `team_id` with `org_id` must be configurated.
+         * &gt; **IMPORTANT:** Either `orgId`, `projectId`, or `teamId` with `orgId` must be configurated.
          * 
          * @return builder
          * 
@@ -136,7 +136,7 @@ public final class GetAtlasUsersPlainArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param orgId Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+         * @param orgId Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `teamId` attributes is defined.
          * 
          * @return builder
          * 

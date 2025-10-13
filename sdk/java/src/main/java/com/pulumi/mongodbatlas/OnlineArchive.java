@@ -26,11 +26,11 @@ import javax.annotation.Nullable;
  * 
  * `mongodbatlas.OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  * 
  * &gt; **IMPORTANT:** The collection must exists before performing an online archive.
  * 
- * &gt; **IMPORTANT:** There are fields that are immutable after creation, i.e if `date_field` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
+ * &gt; **IMPORTANT:** There are fields that are immutable after creation, i.e if `dateField` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
  * 
  * &gt; **IMPORTANT:** Support for Online Archive on `GCP` is available in Private Preview. To request access and participate in the Private Preview release of this feature, complete the [sign-up form](https://www.mongodb.com/products/platform/atlas-online-archive#promo).
  * 
@@ -321,14 +321,14 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
         return this.dbName;
     }
     /**
-     * Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `dateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * 
      */
     @Export(name="partitionFields", refs={List.class,OnlineArchivePartitionField.class}, tree="[0,1]")
     private Output<List<OnlineArchivePartitionField>> partitionFields;
 
     /**
-     * @return Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * @return Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `dateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * 
      */
     public Output<List<OnlineArchivePartitionField>> partitionFields() {

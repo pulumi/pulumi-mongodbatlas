@@ -16,11 +16,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+        /// 
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
@@ -69,11 +72,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+        /// 
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
@@ -122,11 +128,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+        /// 
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp

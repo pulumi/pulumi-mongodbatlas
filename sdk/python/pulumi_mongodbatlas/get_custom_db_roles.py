@@ -80,6 +80,8 @@ def get_custom_db_roles(project_id: Optional[_builtins.str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
 
     :param _builtins.str project_id: The unique ID for the project to get all custom db roles.
     """
@@ -100,6 +102,8 @@ def get_custom_db_roles_output(project_id: Optional[pulumi.Input[_builtins.str]]
     `get_custom_db_roles` describes all Custom DB Roles. This represents a custom db roles.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
 
 
     :param _builtins.str project_id: The unique ID for the project to get all custom db roles.

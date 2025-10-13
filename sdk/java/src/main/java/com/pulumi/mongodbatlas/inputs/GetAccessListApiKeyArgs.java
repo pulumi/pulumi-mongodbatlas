@@ -17,7 +17,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
      * *
-     * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
+     * -&gt;**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don&#39;t set both.
      * 
      */
     @Import(name="apiKeyId", required=true)
@@ -26,7 +26,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
     /**
      * @return Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
      * *
-     * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
+     * -&gt;**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don&#39;t set both.
      * 
      */
     public Output<String> apiKeyId() {
@@ -92,7 +92,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
          * *
-         * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
+         * -&gt;**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don&#39;t set both.
          * 
          * @return builder
          * 
@@ -105,7 +105,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
          * *
-         * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
+         * -&gt;**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don&#39;t set both.
          * 
          * @return builder
          * 

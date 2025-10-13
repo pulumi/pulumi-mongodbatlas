@@ -14,6 +14,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getDataLakePipeline(args: GetDataLakePipelineArgs, opts?: pulumi.InvokeOptions): Promise<GetDataLakePipelineResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -107,6 +109,8 @@ export interface GetDataLakePipelineResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
+ * ### S
  */
 export function getDataLakePipelineOutput(args: GetDataLakePipelineOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataLakePipelineResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

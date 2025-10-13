@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? DatadogApiKey;
         /// <summary>
-        /// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
+        /// Region that indicates which API URL to use. See the `datadogRegion` field in the `Notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         /// </summary>
         public readonly string? DatadogRegion;
         /// <summary>
@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? EmailAddress;
         /// <summary>
-        /// Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        /// Flag indicating email notifications should be sent. This flag is only valid if `TypeName` is set to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         public readonly bool? EmailEnabled;
         /// <summary>
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int? IntervalMin;
         /// <summary>
-        /// Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+        /// Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `TypeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
         /// </summary>
         public readonly string? MicrosoftTeamsWebhookUrl;
         /// <summary>
@@ -70,7 +70,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? OpsGenieRegion;
         /// <summary>
-        /// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        /// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `TypeName` is set to `ORG`, `GROUP`, or `USER`.
         /// Accepted values are:
         /// 
         /// | Project roles                   | Organization roles  |
@@ -88,7 +88,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? ServiceKey;
         /// <summary>
-        /// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        /// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `TypeName` is set to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         public readonly bool? SmsEnabled;
         /// <summary>

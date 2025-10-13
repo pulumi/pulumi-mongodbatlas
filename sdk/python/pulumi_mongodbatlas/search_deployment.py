@@ -263,6 +263,8 @@ class SearchDeployment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### S
+
         ## Import
 
         Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
@@ -294,6 +296,8 @@ class SearchDeployment(pulumi.CustomResource):
         > **NOTE:** Only a single search deployment resource can be defined for each cluster.
 
         ## Example Usage
+
+        ### S
 
         ## Import
 

@@ -17,6 +17,8 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
+ * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+ *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -95,6 +97,8 @@ export interface GetX509AuthenticationDatabaseUserResult {
  * ## Example Usage
  *
  * ### S
+ *
+ * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript

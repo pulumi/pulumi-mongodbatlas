@@ -324,6 +324,8 @@ class DataLakePipeline(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### S
+
         ## Import
 
         Data Lake Pipeline can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`, e.g.
@@ -356,6 +358,8 @@ class DataLakePipeline(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
 
         ## Example Usage
+
+        ### S
 
         ## Import
 

@@ -109,7 +109,7 @@ public final class GetAdvancedClustersResult {
      */
     private String replicaSetScalingStrategy;
     /**
-     * @return List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
+     * @return List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
      * 
      */
     private List<GetAdvancedClustersResultReplicationSpec> replicationSpecs;
@@ -269,7 +269,7 @@ public final class GetAdvancedClustersResult {
         return this.replicaSetScalingStrategy;
     }
     /**
-     * @return List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
+     * @return List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
      * 
      */
     public List<GetAdvancedClustersResultReplicationSpec> replicationSpecs() {

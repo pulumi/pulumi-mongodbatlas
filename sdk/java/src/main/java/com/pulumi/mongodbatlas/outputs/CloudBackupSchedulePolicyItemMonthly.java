@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CloudBackupSchedulePolicyItemMonthly {
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      * 
      */
     private Integer frequencyInterval;
@@ -34,14 +34,14 @@ public final class CloudBackupSchedulePolicyItemMonthly {
      */
     private String retentionUnit;
     /**
-     * @return Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * @return Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      * 
      */
     private Integer retentionValue;
 
     private CloudBackupSchedulePolicyItemMonthly() {}
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      * 
      */
     public Integer frequencyInterval() {
@@ -69,7 +69,7 @@ public final class CloudBackupSchedulePolicyItemMonthly {
         return this.retentionUnit;
     }
     /**
-     * @return Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * @return Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      * 
      */
     public Integer retentionValue() {

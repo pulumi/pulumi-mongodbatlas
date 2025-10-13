@@ -20,11 +20,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
+    /// ### S
+    /// 
     /// ## Import
     /// 
     /// Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
     /// 
-    /// After an import, a non-empty plan is expected if the configuration defines the `skip_wait_on_update` attribute. However, the update will not have any effect on the search deployment since `skip_wait_on_update` only relates to the update operations wait time.
+    /// After an import, a non-empty plan is expected if the configuration defines the `SkipWaitOnUpdate` attribute. However, the update will not have any effect on the search deployment since `SkipWaitOnUpdate` only relates to the update operations wait time.
     /// 
     /// For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
     /// </summary>

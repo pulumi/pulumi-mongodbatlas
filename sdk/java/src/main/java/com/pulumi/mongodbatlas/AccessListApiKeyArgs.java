@@ -19,7 +19,7 @@ public final class AccessListApiKeyArgs extends com.pulumi.resources.ResourceArg
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
      * 
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+     * &gt; **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
      * 
      */
     @Import(name="apiKeyId", required=true)
@@ -28,7 +28,7 @@ public final class AccessListApiKeyArgs extends com.pulumi.resources.ResourceArg
     /**
      * @return Unique identifier for the Organization API Key for which you want to create a new access list entry.
      * 
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+     * &gt; **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
      * 
      */
     public Output<String> apiKeyId() {
@@ -110,7 +110,7 @@ public final class AccessListApiKeyArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to create a new access list entry.
          * 
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+         * &gt; **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
          * 
          * @return builder
          * 
@@ -123,7 +123,7 @@ public final class AccessListApiKeyArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to create a new access list entry.
          * 
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+         * &gt; **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
          * 
          * @return builder
          * 

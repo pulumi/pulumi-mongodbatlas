@@ -46,7 +46,7 @@ public final class AlertConfigurationNotification {
      */
     private @Nullable String emailAddress;
     /**
-     * @return Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     private @Nullable Boolean emailEnabled;
@@ -61,7 +61,7 @@ public final class AlertConfigurationNotification {
      */
     private @Nullable Integer intervalMin;
     /**
-     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
      * 
      */
     private @Nullable String microsoftTeamsWebhookUrl;
@@ -86,7 +86,7 @@ public final class AlertConfigurationNotification {
      */
     private @Nullable String opsGenieRegion;
     /**
-     * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
      * 
      * | Project roles                   | Organization roles  |
@@ -106,7 +106,7 @@ public final class AlertConfigurationNotification {
      */
     private @Nullable String serviceKey;
     /**
-     * @return Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     private @Nullable Boolean smsEnabled;
@@ -209,7 +209,7 @@ public final class AlertConfigurationNotification {
         return Optional.ofNullable(this.emailAddress);
     }
     /**
-     * @return Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     public Optional<Boolean> emailEnabled() {
@@ -230,7 +230,7 @@ public final class AlertConfigurationNotification {
         return Optional.ofNullable(this.intervalMin);
     }
     /**
-     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
      * 
      */
     public Optional<String> microsoftTeamsWebhookUrl() {
@@ -265,7 +265,7 @@ public final class AlertConfigurationNotification {
         return Optional.ofNullable(this.opsGenieRegion);
     }
     /**
-     * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
      * 
      * | Project roles                   | Organization roles  |
@@ -289,7 +289,7 @@ public final class AlertConfigurationNotification {
         return Optional.ofNullable(this.serviceKey);
     }
     /**
-     * @return Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * @return Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * 
      */
     public Optional<Boolean> smsEnabled() {

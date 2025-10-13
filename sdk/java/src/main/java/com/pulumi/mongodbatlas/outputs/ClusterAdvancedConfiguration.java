@@ -21,7 +21,7 @@ public final class ClusterAdvancedConfiguration {
      */
     private @Nullable Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
     /**
-     * @return The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+     * @return The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
      * 
      */
     private @Nullable List<String> customOpensslCipherConfigTls12s;
@@ -108,7 +108,7 @@ public final class ClusterAdvancedConfiguration {
         return Optional.ofNullable(this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds);
     }
     /**
-     * @return The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+     * @return The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
      * 
      */
     public List<String> customOpensslCipherConfigTls12s() {

@@ -58,7 +58,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string> Tags;
         /// <summary>
-        /// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to `True`, MongoDB Cloud won't delete the cluster. If set to `False`, MongoDB Cloud will delete the cluster.
         /// </summary>
         public readonly bool TerminationProtectionEnabled;
         /// <summary>

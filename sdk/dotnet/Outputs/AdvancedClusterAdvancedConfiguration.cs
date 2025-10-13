@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int? ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         /// <summary>
-        /// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        /// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `TlsCipherConfigMode` is set to `CUSTOM`.
         /// </summary>
         public readonly ImmutableArray<string> CustomOpensslCipherConfigTls12s;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int? DefaultMaxTimeMs;
         /// <summary>
-        /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `Local`. To use a custom read concern level, please refer to your driver documentation.
         /// </summary>
         public readonly string? DefaultReadConcern;
         /// <summary>

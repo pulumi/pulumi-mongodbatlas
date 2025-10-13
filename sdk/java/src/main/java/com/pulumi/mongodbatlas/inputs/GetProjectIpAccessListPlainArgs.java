@@ -48,7 +48,7 @@ public final class GetProjectIpAccessListPlainArgs extends com.pulumi.resources.
     /**
      * Single IP address to be added to the access list.
      * 
-     * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      * 
      */
     @Import(name="ipAddress")
@@ -57,7 +57,7 @@ public final class GetProjectIpAccessListPlainArgs extends com.pulumi.resources.
     /**
      * @return Single IP address to be added to the access list.
      * 
-     * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      * 
      */
     public Optional<String> ipAddress() {
@@ -131,7 +131,7 @@ public final class GetProjectIpAccessListPlainArgs extends com.pulumi.resources.
         /**
          * @param ipAddress Single IP address to be added to the access list.
          * 
-         * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+         * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
          * 
          * @return builder
          * 

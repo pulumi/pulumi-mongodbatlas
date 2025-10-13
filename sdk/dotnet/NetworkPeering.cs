@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
     /// 
-    /// Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
+    /// Ensure you have first created a network container if it is required for your configuration.  See the NetworkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
     /// 
     /// &gt; **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details
     /// 
@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
     ///     Microsoft.Network/virtualNetworks/peer/action
     /// For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
     /// 
-    /// &gt; **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
+    /// &gt; **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the ProjectIpWhitelist resource.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
     /// 
@@ -150,7 +150,7 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// 
     /// ### Peering Connection Only, Container Exists
-    /// You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the network_container resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `container_id` from the cluster resource as shown in the examples below.
+    /// You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the NetworkContainer resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `ContainerId` from the cluster resource as shown in the examples below.
     /// 
     /// ## Import
     /// 
@@ -220,7 +220,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ConnectionId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+        /// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the NetworkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         /// </summary>
         [Output("containerId")]
         public Output<string> ContainerId { get; private set; } = null!;
@@ -232,7 +232,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ErrorMessage { get; private set; } = null!;
 
         /// <summary>
-        /// Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
+        /// Description of the Atlas error when `Status` is `Failed`, Otherwise, Atlas returns `Null`.
         /// </summary>
         [Output("errorState")]
         public Output<string> ErrorState { get; private set; } = null!;
@@ -310,7 +310,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> VnetName { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
+        /// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the NetworkContainer resource).
         /// </summary>
         [Output("vpcId")]
         public Output<string> VpcId { get; private set; } = null!;
@@ -401,7 +401,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AzureSubscriptionId { get; set; }
 
         /// <summary>
-        /// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+        /// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the NetworkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         /// </summary>
         [Input("containerId", required: true)]
         public Input<string> ContainerId { get; set; } = null!;
@@ -455,7 +455,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? VnetName { get; set; }
 
         /// <summary>
-        /// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
+        /// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the NetworkContainer resource).
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
@@ -517,7 +517,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ConnectionId { get; set; }
 
         /// <summary>
-        /// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+        /// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the NetworkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
@@ -529,7 +529,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ErrorMessage { get; set; }
 
         /// <summary>
-        /// Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
+        /// Description of the Atlas error when `Status` is `Failed`, Otherwise, Atlas returns `Null`.
         /// </summary>
         [Input("errorState")]
         public Input<string>? ErrorState { get; set; }
@@ -607,7 +607,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? VnetName { get; set; }
 
         /// <summary>
-        /// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
+        /// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the NetworkContainer resource).
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

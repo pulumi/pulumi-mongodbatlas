@@ -16,9 +16,11 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Task<GetDataLakePipelineResult> InvokeAsync(GetDataLakePipelineArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataLakePipelineResult>("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", args ?? new GetDataLakePipelineArgs(), options.WithDefaults());
@@ -28,9 +30,11 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetDataLakePipelineResult> Invoke(GetDataLakePipelineInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataLakePipelineResult>("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", args ?? new GetDataLakePipelineInvokeArgs(), options.WithDefaults());
@@ -40,9 +44,11 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
         /// </summary>
         public static Output<GetDataLakePipelineResult> Invoke(GetDataLakePipelineInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataLakePipelineResult>("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", args ?? new GetDataLakePipelineInvokeArgs(), options.WithDefaults());

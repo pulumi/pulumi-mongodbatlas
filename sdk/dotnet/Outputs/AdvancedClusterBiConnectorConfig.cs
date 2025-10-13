@@ -16,8 +16,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
         /// *
-        /// - Set to `true` to enable BI Connector for Atlas.
-        /// - Set to `false` to disable BI Connector for Atlas.
+        /// - Set to `True` to enable BI Connector for Atlas.
+        /// - Set to `False` to disable BI Connector for Atlas.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>

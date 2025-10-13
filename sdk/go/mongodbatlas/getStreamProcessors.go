@@ -16,6 +16,8 @@ import (
 // `getStreamProcessors` returns all stream processors in a stream instance.
 //
 // ## Example Usage
+//
+// ### S
 func LookupStreamProcessors(ctx *pulumi.Context, args *LookupStreamProcessorsArgs, opts ...pulumi.InvokeOption) (*LookupStreamProcessorsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStreamProcessorsResult

@@ -16,10 +16,10 @@ import javax.annotation.Nullable;
 /**
  * **WARNING:** This resource is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
  * 
- * `privatelink_endpoint_serverless` Provides a Serverless PrivateLink Endpoint resource.
+ * `privatelinkEndpointServerless` Provides a Serverless PrivateLink Endpoint resource.
  * This is the first of two resources required to configure PrivateLink for Serverless, the second is mongodbatlas_privatelink_endpoint_service_serverless.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  * 
  * ## Example Usage
  * 

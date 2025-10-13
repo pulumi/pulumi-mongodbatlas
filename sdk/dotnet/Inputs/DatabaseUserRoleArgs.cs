@@ -13,13 +13,13 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class DatabaseUserRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
+        /// Collection for which the role applies. You can specify a collection for the `Read` and `readWrite` roles. If you do not specify a collection for `Read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `System`. database).
         /// </summary>
         [Input("collectionName")]
         public Input<string>? CollectionName { get; set; }
 
         /// <summary>
-        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
+        /// Database on which the user has the specified role. A role on the `Admin` database can include privileges that apply to the other databases. This field should be set to `Admin` for a custom MongoDB role.
         /// </summary>
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;

@@ -128,6 +128,8 @@ def get_search_indexes(cluster_name: Optional[_builtins.str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
 
     :param _builtins.str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
     :param _builtins.str collection_name: Name of the collection with one or more Atlas Search indexes.
@@ -161,6 +163,8 @@ def get_search_indexes_output(cluster_name: Optional[pulumi.Input[_builtins.str]
     `get_search_indexes` describes all search indexes. This represents search indexes that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
 
 
     :param _builtins.str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.

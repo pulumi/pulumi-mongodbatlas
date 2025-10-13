@@ -15,14 +15,14 @@ public final class CloudBackupSnapshotExportJobCustomDataArgs extends com.pulumi
     public static final CloudBackupSnapshotExportJobCustomDataArgs Empty = new CloudBackupSnapshotExportJobCustomDataArgs();
 
     /**
-     * Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+     * Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
      * 
      */
     @Import(name="key", required=true)
     private Output<String> key;
 
     /**
-     * @return Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+     * @return Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
      * 
      */
     public Output<String> key() {
@@ -70,7 +70,7 @@ public final class CloudBackupSnapshotExportJobCustomDataArgs extends com.pulumi
         }
 
         /**
-         * @param key Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+         * @param key Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class CloudBackupSnapshotExportJobCustomDataArgs extends com.pulumi
         }
 
         /**
-         * @param key Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+         * @param key Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
          * 
          * @return builder
          * 

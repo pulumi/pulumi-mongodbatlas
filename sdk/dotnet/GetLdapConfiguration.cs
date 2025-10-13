@@ -193,7 +193,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string AuthzQueryTemplate;
         /// <summary>
-        /// The password used to authenticate the `bind_username`.
+        /// The password used to authenticate the `BindUsername`.
         /// </summary>
         public readonly string BindPassword;
         /// <summary>

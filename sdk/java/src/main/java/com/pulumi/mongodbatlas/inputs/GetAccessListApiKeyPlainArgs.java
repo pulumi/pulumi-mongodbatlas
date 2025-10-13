@@ -16,7 +16,7 @@ public final class GetAccessListApiKeyPlainArgs extends com.pulumi.resources.Inv
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
      * *
-     * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
+     * -&gt;**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don&#39;t set both.
      * 
      */
     @Import(name="apiKeyId", required=true)
@@ -25,7 +25,7 @@ public final class GetAccessListApiKeyPlainArgs extends com.pulumi.resources.Inv
     /**
      * @return Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
      * *
-     * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
+     * -&gt;**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don&#39;t set both.
      * 
      */
     public String apiKeyId() {
@@ -91,7 +91,7 @@ public final class GetAccessListApiKeyPlainArgs extends com.pulumi.resources.Inv
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
          * *
-         * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
+         * -&gt;**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don&#39;t set both.
          * 
          * @return builder
          * 

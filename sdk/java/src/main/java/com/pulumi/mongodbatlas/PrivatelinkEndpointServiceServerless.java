@@ -17,10 +17,10 @@ import javax.annotation.Nullable;
 /**
  * **WARNING:** This resource is deprecated and will be removed in March 2025. For more datails see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters
  * 
- * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+ * `privatelinkEndpointServiceServerless` Provides a Serverless PrivateLink Endpoint Service resource.
  * This is the second of two resources required to configure PrivateLink for Serverless, the first is mongodbatlas_privatelink_endpoint_serverless.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  * **NOTE:** Create waits for all serverless instances on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation of this resource. Default timeout is 2hrs.
  * 
  * ## Example with AWS

@@ -253,7 +253,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) and checking the latest eventTypeName options.
         /// 
         /// 
-        /// &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
+        /// &gt; **NOTE:** If `EventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `MetricThresholdConfig` field must also be configured.
         /// </summary>
         [Output("eventType")]
         public Output<string> EventType { get; private set; } = null!;
@@ -340,7 +340,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) and checking the latest eventTypeName options.
         /// 
         /// 
-        /// &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
+        /// &gt; **NOTE:** If `EventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `MetricThresholdConfig` field must also be configured.
         /// </summary>
         [Input("eventType", required: true)]
         public Input<string> EventType { get; set; } = null!;
@@ -405,7 +405,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) and checking the latest eventTypeName options.
         /// 
         /// 
-        /// &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
+        /// &gt; **NOTE:** If `EventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `MetricThresholdConfig` field must also be configured.
         /// </summary>
         [Input("eventType")]
         public Input<string>? EventType { get; set; }

@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CloudBackupSchedulePolicyItemHourly {
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      * 
      */
     private Integer frequencyInterval;
@@ -34,14 +34,14 @@ public final class CloudBackupSchedulePolicyItemHourly {
      */
     private String retentionUnit;
     /**
-     * @return Value to associate with `retention_unit`.
+     * @return Value to associate with `retentionUnit`.
      * 
      */
     private Integer retentionValue;
 
     private CloudBackupSchedulePolicyItemHourly() {}
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      * 
      */
     public Integer frequencyInterval() {
@@ -69,7 +69,7 @@ public final class CloudBackupSchedulePolicyItemHourly {
         return this.retentionUnit;
     }
     /**
-     * @return Value to associate with `retention_unit`.
+     * @return Value to associate with `retentionUnit`.
      * 
      */
     public Integer retentionValue() {

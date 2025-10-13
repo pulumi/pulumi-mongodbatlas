@@ -130,6 +130,8 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
 
     ## Example Usage
 
+    ### S
+
 
     :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
     :param _builtins.str processor_name: Human-readable label that identifies the stream processor.
@@ -161,6 +163,8 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.s
     `StreamProcessor` describes a stream processor.
 
     ## Example Usage
+
+    ### S
 
 
     :param _builtins.str instance_name: Human-readable label that identifies the stream instance.

@@ -24,7 +24,7 @@ public final class GetAlertConfigurationMatcher {
      */
     private String operator;
     /**
-     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * @return Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      * - `PRIMARY`
      * - `SECONDARY`
      * - `STANDALONE`
@@ -53,7 +53,7 @@ public final class GetAlertConfigurationMatcher {
         return this.operator;
     }
     /**
-     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * @return Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      * - `PRIMARY`
      * - `SECONDARY`
      * - `STANDALONE`

@@ -165,7 +165,7 @@ public final class GetClusterResult {
      */
     private String providerDiskTypeName;
     /**
-     * @return **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
+     * @return **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
      * 
      */
     private Boolean providerEncryptEbsVolume;
@@ -447,7 +447,7 @@ public final class GetClusterResult {
         return this.providerDiskTypeName;
     }
     /**
-     * @return **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
+     * @return **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
      * 
      */
     public Boolean providerEncryptEbsVolume() {

@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+        /// Set this field to `True` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
         /// </summary>
         [Input("useZoneIdForCopySettings")]
         public bool? UseZoneIdForCopySettings { get; set; }
@@ -72,7 +72,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+        /// Set this field to `True` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
         /// </summary>
         [Input("useZoneIdForCopySettings")]
         public Input<bool>? UseZoneIdForCopySettings { get; set; }
@@ -144,7 +144,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly int ReferenceHourOfDay;
         /// <summary>
-        /// UTC Minute of day between 0 and 59 representing which minute of the `reference_hour_of_day` that Atlas takes the snapshot.
+        /// UTC Minute of day between 0 and 59 representing which minute of the `ReferenceHourOfDay` that Atlas takes the snapshot.
         /// </summary>
         public readonly int ReferenceMinuteOfHour;
         /// <summary>

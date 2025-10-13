@@ -92,7 +92,7 @@ public final class GetCloudBackupScheduleResult {
      */
     private Integer referenceHourOfDay;
     /**
-     * @return UTC Minute of day between 0 and 59 representing which minute of the `reference_hour_of_day` that Atlas takes the snapshot.
+     * @return UTC Minute of day between 0 and 59 representing which minute of the `referenceHourOfDay` that Atlas takes the snapshot.
      * 
      */
     private Integer referenceMinuteOfHour;
@@ -209,7 +209,7 @@ public final class GetCloudBackupScheduleResult {
         return this.referenceHourOfDay;
     }
     /**
-     * @return UTC Minute of day between 0 and 59 representing which minute of the `reference_hour_of_day` that Atlas takes the snapshot.
+     * @return UTC Minute of day between 0 and 59 representing which minute of the `referenceHourOfDay` that Atlas takes the snapshot.
      * 
      */
     public Integer referenceMinuteOfHour() {
