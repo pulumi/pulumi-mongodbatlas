@@ -18,13 +18,13 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? DateField;
         /// <summary>
-        /// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+        /// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `Type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
         /// </summary>
         public readonly string? DateFormat;
         /// <summary>
         /// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
         /// 
-        /// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+        /// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `DateField` value_**
         /// 
         /// The only field required for criteria type `CUSTOM`
         /// </summary>

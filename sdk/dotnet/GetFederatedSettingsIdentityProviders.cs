@@ -17,6 +17,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
         /// Note: This implementation returns a maximum of 100 results.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Task<GetFederatedSettingsIdentityProvidersResult> InvokeAsync(GetFederatedSettingsIdentityProvidersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersArgs(), options.WithDefaults());
@@ -27,6 +29,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
         /// Note: This implementation returns a maximum of 100 results.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetFederatedSettingsIdentityProvidersResult> Invoke(GetFederatedSettingsIdentityProvidersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersInvokeArgs(), options.WithDefaults());
@@ -37,6 +41,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
         /// Note: This implementation returns a maximum of 100 results.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetFederatedSettingsIdentityProvidersResult> Invoke(GetFederatedSettingsIdentityProvidersInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersInvokeArgs(), options.WithDefaults());

@@ -132,7 +132,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Comment to add to the access list entry.
         /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
         /// </summary>
         [Output("comment")]
         public Output<string> Comment { get; private set; } = null!;
@@ -213,7 +213,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Comment to add to the access list entry.
         /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -256,7 +256,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Comment to add to the access list entry.
         /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }

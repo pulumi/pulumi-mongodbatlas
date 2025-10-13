@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
  * 
  * `mongodbatlas.EventTrigger` provides a Event Trigger resource.
  * 
- * Note: If the `app_id` changes in the mongodbatlas.EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
+ * Note: If the `appId` changes in the mongodbatlas.EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
  * 
  * ## Example Usage
  * 
@@ -238,7 +238,7 @@ import javax.annotation.Nullable;
 public class EventTrigger extends com.pulumi.resources.CustomResource {
     /**
      * The ObjectID of your application.
-     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
+     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
      * 
      */
     @Export(name="appId", refs={String.class}, tree="[0]")
@@ -246,7 +246,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The ObjectID of your application.
-     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
+     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
      * 
      */
     public Output<String> appId() {

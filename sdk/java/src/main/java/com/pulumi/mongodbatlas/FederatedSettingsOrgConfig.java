@@ -140,7 +140,7 @@ public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResou
     /**
      * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `&#34;&#34;` will detach/remove the SAML identity provider. This id can be found in two ways:
      * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
-     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
+     * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
     @Export(name="identityProviderId", refs={String.class}, tree="[0]")
@@ -149,7 +149,7 @@ public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResou
     /**
      * @return Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `&#34;&#34;` will detach/remove the SAML identity provider. This id can be found in two ways:
      * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
-     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
+     * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
     public Output<Optional<String>> identityProviderId() {

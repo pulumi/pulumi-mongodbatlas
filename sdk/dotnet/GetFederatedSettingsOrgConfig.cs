@@ -206,11 +206,11 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<string> DataAccessIdentityProviderIds;
         /// <summary>
-        /// List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domain_allow_list` includes: any SSO domains associated with organization's identity provider and any custom domains associated with the specific organization.
+        /// List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `DomainAllowList` includes: any SSO domains associated with organization's identity provider and any custom domains associated with the specific organization.
         /// </summary>
         public readonly ImmutableArray<string> DomainAllowLists;
         /// <summary>
-        /// Flag that indicates whether domain restriction is enabled for the connected organization.  User Conflicts returns null when `domain_restriction_enabled` is false.
+        /// Flag that indicates whether domain restriction is enabled for the connected organization.  User Conflicts returns null when `DomainRestrictionEnabled` is false.
         /// </summary>
         public readonly bool DomainRestrictionEnabled;
         /// <summary>
@@ -224,7 +224,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
         /// 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
-        /// 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
+        /// 2. `OktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
         /// </summary>
         public readonly string IdentityProviderId;
         public readonly string OrgId;

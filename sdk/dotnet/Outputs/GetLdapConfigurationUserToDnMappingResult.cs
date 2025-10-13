@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetLdapConfigurationUserToDnMappingResult
     {
         /// <summary>
-        /// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
+        /// An LDAP query formatting template that inserts the LDAP name matched by the `Match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
         /// </summary>
         public readonly string LdapQuery;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Match;
         /// <summary>
-        /// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
+        /// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `Match` regular expression into an LDAP Distinguished Name.
         /// </summary>
         public readonly string Substitution;
 

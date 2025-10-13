@@ -17,6 +17,9 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Task<GetSearchIndexesResult> InvokeAsync(GetSearchIndexesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesArgs(), options.WithDefaults());
@@ -27,6 +30,9 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetSearchIndexesResult> Invoke(GetSearchIndexesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesInvokeArgs(), options.WithDefaults());
@@ -37,6 +43,9 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetSearchIndexesResult> Invoke(GetSearchIndexesInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesInvokeArgs(), options.WithDefaults());

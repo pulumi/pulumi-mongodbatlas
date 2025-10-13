@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// </summary>
         public static Task<GetAlertConfigurationsResult> InvokeAsync(GetAlertConfigurationsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsArgs(), options.WithDefaults());
@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// </summary>
         public static Output<GetAlertConfigurationsResult> Invoke(GetAlertConfigurationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsInvokeArgs(), options.WithDefaults());
@@ -36,7 +36,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// </summary>
         public static Output<GetAlertConfigurationsResult> Invoke(GetAlertConfigurationsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsInvokeArgs(), options.WithDefaults());
@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
         private List<string>? _outputTypes;
 
         /// <summary>
-        /// List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
+        /// List of requested string formatted output to be included on each individual result. Options are `ResourceHcl` and `ResourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
         /// </summary>
         public List<string> OutputTypes
         {
@@ -105,7 +105,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _outputTypes;
 
         /// <summary>
-        /// List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
+        /// List of requested string formatted output to be included on each individual result. Options are `ResourceHcl` and `ResourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
         /// </summary>
         public InputList<string> OutputTypes
         {
@@ -137,7 +137,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// A list of alert configurations for the project_id, constrained by the `list_options`.
+        /// A list of alert configurations for the project_id, constrained by the `ListOptions`.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultResult> Results;
         /// <summary>

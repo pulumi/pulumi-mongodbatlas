@@ -128,7 +128,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> MasterKeyUuid { get; private set; } = null!;
 
         /// <summary>
-        /// Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
+        /// Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `Type` is `shardedCluster`. See below
         /// </summary>
         [Output("members")]
         public Output<ImmutableArray<Outputs.CloudBackupSnapshotMember>> Members { get; private set; } = null!;
@@ -164,7 +164,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> SnapshotId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
+        /// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `Type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
         /// </summary>
         [Output("snapshotIds")]
         public Output<ImmutableArray<string>> SnapshotIds { get; private set; } = null!;
@@ -311,7 +311,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.CloudBackupSnapshotMemberGetArgs>? _members;
 
         /// <summary>
-        /// Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
+        /// Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `Type` is `shardedCluster`. See below
         /// </summary>
         public InputList<Inputs.CloudBackupSnapshotMemberGetArgs> Members
         {
@@ -353,7 +353,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _snapshotIds;
 
         /// <summary>
-        /// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
+        /// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `Type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
         /// </summary>
         public InputList<string> SnapshotIds
         {

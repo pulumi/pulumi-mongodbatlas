@@ -11,7 +11,7 @@ import java.util.Objects;
 @CustomType
 public final class CloudBackupSnapshotExportJobCustomData {
     /**
-     * @return Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+     * @return Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
      * 
      */
     private String key;
@@ -23,7 +23,7 @@ public final class CloudBackupSnapshotExportJobCustomData {
 
     private CloudBackupSnapshotExportJobCustomData() {}
     /**
-     * @return Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+     * @return Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
      * 
      */
     public String key() {

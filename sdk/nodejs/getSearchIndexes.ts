@@ -12,6 +12,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
  */
 export function getSearchIndexes(args: GetSearchIndexesArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchIndexesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -78,6 +80,8 @@ export interface GetSearchIndexesResult {
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
  */
 export function getSearchIndexesOutput(args: GetSearchIndexesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSearchIndexesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

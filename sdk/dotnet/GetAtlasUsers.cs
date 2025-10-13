@@ -12,15 +12,15 @@ namespace Pulumi.Mongodbatlas
     public static class GetAtlasUsers
     {
         /// <summary>
-        /// ## # Data Source: atlas_users
+        /// ## # Data Source: AtlasUsers
         /// 
-        /// `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+        /// `AtlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using org_id attribute to query Organization Atlas Users
+        /// ### Using OrgId attribute to query Organization Atlas Users
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### Using project_id attribute to query Project Atlas Users
+        /// ### Using ProjectId attribute to query Project Atlas Users
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### Using team_id and org_id attribute to query Team Atlas Users
+        /// ### Using TeamId and OrgId attribute to query Team Atlas Users
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -79,15 +79,15 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAtlasUsersResult>("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args ?? new GetAtlasUsersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: atlas_users
+        /// ## # Data Source: AtlasUsers
         /// 
-        /// `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+        /// `AtlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using org_id attribute to query Organization Atlas Users
+        /// ### Using OrgId attribute to query Organization Atlas Users
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -105,7 +105,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### Using project_id attribute to query Project Atlas Users
+        /// ### Using ProjectId attribute to query Project Atlas Users
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -123,7 +123,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### Using team_id and org_id attribute to query Team Atlas Users
+        /// ### Using TeamId and OrgId attribute to query Team Atlas Users
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -146,15 +146,15 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAtlasUsersResult>("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args ?? new GetAtlasUsersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: atlas_users
+        /// ## # Data Source: AtlasUsers
         /// 
-        /// `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+        /// `AtlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using org_id attribute to query Organization Atlas Users
+        /// ### Using OrgId attribute to query Organization Atlas Users
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -172,7 +172,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### Using project_id attribute to query Project Atlas Users
+        /// ### Using ProjectId attribute to query Project Atlas Users
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -190,7 +190,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### Using team_id and org_id attribute to query Team Atlas Users
+        /// ### Using TeamId and OrgId attribute to query Team Atlas Users
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -219,13 +219,13 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
         /// 
-        /// &gt; **IMPORTANT:** Either `org_id`, `project_id`, or `team_id` with `org_id` must be configurated.
+        /// &gt; **IMPORTANT:** Either `OrgId`, `ProjectId`, or `TeamId` with `OrgId` must be configurated.
         /// </summary>
         [Input("itemsPerPage")]
         public int? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+        /// Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `TeamId` attributes is defined.
         /// </summary>
         [Input("orgId")]
         public string? OrgId { get; set; }
@@ -259,13 +259,13 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
         /// 
-        /// &gt; **IMPORTANT:** Either `org_id`, `project_id`, or `team_id` with `org_id` must be configurated.
+        /// &gt; **IMPORTANT:** Either `OrgId`, `ProjectId`, or `TeamId` with `OrgId` must be configurated.
         /// </summary>
         [Input("itemsPerPage")]
         public Input<int>? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+        /// Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `TeamId` attributes is defined.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }

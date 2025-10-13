@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// `mongodbatlas.NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. You must delete network peering containers before creating clusters in your project. You can't delete a network peering container if your project contains clusters. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully.
     /// 
-    ///  Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the "containers per cloud provider" information that follows (in this case you can obtain the container id from the cluster resource attribute `container_id`).
+    ///  Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the "containers per cloud provider" information that follows (in this case you can obtain the container id from the cluster resource attribute `ContainerId`).
     /// 
     /// The following is the maximum number of Network Peering containers per cloud provider:
     /// &lt;br&gt; &amp;#8226;  GCP -  One container per project.
@@ -171,7 +171,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> RegionName { get; private set; } = null!;
 
         /// <summary>
-        /// Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        /// Atlas regions where the container resides. Provide this field only if you provide an `AtlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
         /// </summary>
         [Output("regions")]
         public Output<ImmutableArray<string>> Regions { get; private set; } = null!;
@@ -275,7 +275,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _regions;
 
         /// <summary>
-        /// Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        /// Atlas regions where the container resides. Provide this field only if you provide an `AtlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
         /// </summary>
         public InputList<string> Regions
         {
@@ -362,7 +362,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _regions;
 
         /// <summary>
-        /// Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        /// Atlas regions where the container resides. Provide this field only if you provide an `AtlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
         /// </summary>
         public InputList<string> Regions
         {

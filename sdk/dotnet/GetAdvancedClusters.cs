@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
@@ -189,7 +189,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
@@ -360,7 +360,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
@@ -535,7 +535,7 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `ReplicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
         /// </summary>
         [Input("useReplicationSpecPerShard")]
         public bool? UseReplicationSpecPerShard { get; set; }
@@ -555,7 +555,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `ReplicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
         /// </summary>
         [Input("useReplicationSpecPerShard")]
         public Input<bool>? UseReplicationSpecPerShard { get; set; }

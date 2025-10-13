@@ -21,6 +21,8 @@ import (
 //
 // ### S
 //
+// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+//
 // ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
 // ```go
 // package main

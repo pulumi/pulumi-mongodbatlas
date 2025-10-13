@@ -15,7 +15,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly string GroupId;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+        /// Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `TeamId` attributes is defined.
         /// </summary>
         public readonly string OrgId;
         public readonly string RoleName;

@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// Value for the key specified using `key`.
+        /// Value for the key specified using `Key`.
         /// </summary>
         public readonly string Value;
 

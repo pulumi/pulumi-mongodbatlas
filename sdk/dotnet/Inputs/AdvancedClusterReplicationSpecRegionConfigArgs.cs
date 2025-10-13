@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class AdvancedClusterReplicationSpecRegionConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
+        /// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `AnalyticsAutoScaling` attribute must be the same for all `RegionConfigs` of a cluster. See below.
         /// </summary>
         [Input("analyticsAutoScaling")]
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs>? AnalyticsAutoScaling { get; set; }
@@ -25,26 +25,26 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs>? AnalyticsSpecs { get; set; }
 
         /// <summary>
-        /// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
+        /// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `AutoScaling` attribute must be the same for all `RegionConfigs` of a cluster. See below.
         /// </summary>
         [Input("autoScaling")]
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs>? AutoScaling { get; set; }
 
         /// <summary>
-        /// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
+        /// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `ProviderName` is `TENANT` and `InstanceSize` is `M0`.
         /// </summary>
         [Input("backingProviderName")]
         public Input<string>? BackingProviderName { get; set; }
 
         /// <summary>
-        /// Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+        /// Hardware specifications for electable nodes in the region. All `ElectableSpecs` in the `RegionConfigs` of a `ReplicationSpecs` must have the same `InstanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
         /// </summary>
         [Input("electableSpecs")]
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs>? ElectableSpecs { get; set; }
 
         /// <summary>
         /// Election priority of the region. For regions with only read-only nodes, set this value to 0.
-        /// * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
+        /// * If you have multiple `RegionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
         /// * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         /// </summary>
         [Input("priority", required: true)]
@@ -62,7 +62,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string> ProviderName { get; set; } = null!;
 
         /// <summary>
-        /// Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+        /// Hardware specifications for read-only nodes in the region. All `ReadOnlySpecs` in the `RegionConfigs` of a `ReplicationSpecs` must have the same `InstanceSize` as `ElectableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         /// </summary>
         [Input("readOnlySpecs")]
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs>? ReadOnlySpecs { get; set; }

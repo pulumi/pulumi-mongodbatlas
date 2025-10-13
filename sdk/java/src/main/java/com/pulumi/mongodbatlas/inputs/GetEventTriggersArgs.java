@@ -16,7 +16,7 @@ public final class GetEventTriggersArgs extends com.pulumi.resources.InvokeArgs 
 
     /**
      * The ObjectID of your application.
-     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
+     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
      * 
      */
     @Import(name="appId", required=true)
@@ -24,7 +24,7 @@ public final class GetEventTriggersArgs extends com.pulumi.resources.InvokeArgs 
 
     /**
      * @return The ObjectID of your application.
-     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
+     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
      * 
      */
     public Output<String> appId() {
@@ -73,7 +73,7 @@ public final class GetEventTriggersArgs extends com.pulumi.resources.InvokeArgs 
 
         /**
          * @param appId The ObjectID of your application.
-         * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
+         * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
          * 
          * @return builder
          * 
@@ -85,7 +85,7 @@ public final class GetEventTriggersArgs extends com.pulumi.resources.InvokeArgs 
 
         /**
          * @param appId The ObjectID of your application.
-         * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
+         * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
          * 
          * @return builder
          * 

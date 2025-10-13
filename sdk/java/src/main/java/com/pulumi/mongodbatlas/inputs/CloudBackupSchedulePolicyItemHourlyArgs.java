@@ -18,14 +18,14 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
     public static final CloudBackupSchedulePolicyItemHourlyArgs Empty = new CloudBackupSchedulePolicyItemHourlyArgs();
 
     /**
-     * Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      * 
      */
     @Import(name="frequencyInterval", required=true)
     private Output<Integer> frequencyInterval;
 
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
+     * @return Desired frequency of the new backup policy item specified by `frequencyType` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      * 
      */
     public Output<Integer> frequencyInterval() {
@@ -78,14 +78,14 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
     }
 
     /**
-     * Value to associate with `retention_unit`.
+     * Value to associate with `retentionUnit`.
      * 
      */
     @Import(name="retentionValue", required=true)
     private Output<Integer> retentionValue;
 
     /**
-     * @return Value to associate with `retention_unit`.
+     * @return Value to associate with `retentionUnit`.
      * 
      */
     public Output<Integer> retentionValue() {
@@ -121,7 +121,7 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequencyType` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
          * 
          * @return builder
          * 
@@ -132,7 +132,7 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequencyType` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
          * 
          * @return builder
          * 
@@ -205,7 +205,7 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`.
+         * @param retentionValue Value to associate with `retentionUnit`.
          * 
          * @return builder
          * 
@@ -216,7 +216,7 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`.
+         * @param retentionValue Value to associate with `retentionUnit`.
          * 
          * @return builder
          * 

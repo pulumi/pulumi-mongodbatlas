@@ -105,6 +105,8 @@ def get509_authentication_database_user(project_id: Optional[_builtins.str] = No
 
     ### S
 
+    ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+
     ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
     ```python
     import pulumi
@@ -162,6 +164,8 @@ def get509_authentication_database_user_output(project_id: Optional[pulumi.Input
     ## Example Usage
 
     ### S
+
+    ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
 
     ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
     ```python

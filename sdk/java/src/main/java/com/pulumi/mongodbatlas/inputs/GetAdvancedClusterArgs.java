@@ -63,14 +63,14 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
-     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
      * 
      */
     @Import(name="useReplicationSpecPerShard")
     private @Nullable Output<Boolean> useReplicationSpecPerShard;
 
     /**
-     * @return Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+     * @return Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
      * 
      */
     public Optional<Output<Boolean>> useReplicationSpecPerShard() {
@@ -168,7 +168,7 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param useReplicationSpecPerShard Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+         * @param useReplicationSpecPerShard Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param useReplicationSpecPerShard Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+         * @param useReplicationSpecPerShard Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
          * 
          * @return builder
          * 

@@ -34,7 +34,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string> Operator { get; set; } = null!;
 
         /// <summary>
-        /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        /// Value to test with the specified operator. If `FieldName` is set to TYPE_NAME, you can match on the following values:
         /// - `PRIMARY`
         /// - `SECONDARY`
         /// - `STANDALONE`

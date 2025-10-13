@@ -35,14 +35,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+     * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
      * 
      */
     @Import(name="customOpensslCipherConfigTls12s")
     private @Nullable Output<List<String>> customOpensslCipherConfigTls12s;
 
     /**
-     * @return The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+     * @return The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
      * 
      */
     public Optional<Output<List<String>>> customOpensslCipherConfigTls12s() {
@@ -328,7 +328,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param customOpensslCipherConfigTls12s The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+         * @param customOpensslCipherConfigTls12s The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
          * 
          * @return builder
          * 
@@ -339,7 +339,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param customOpensslCipherConfigTls12s The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+         * @param customOpensslCipherConfigTls12s The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
          * 
          * @return builder
          * 
@@ -349,7 +349,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param customOpensslCipherConfigTls12s The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+         * @param customOpensslCipherConfigTls12s The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
          * 
          * @return builder
          * 

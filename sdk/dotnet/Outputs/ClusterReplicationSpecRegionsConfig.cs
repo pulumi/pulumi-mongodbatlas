@@ -21,12 +21,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
         /// * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
         /// * Specify 0 if you do not want any electable nodes in the region.
-        /// * You cannot create electable nodes in a region if `priority` is 0.
+        /// * You cannot create electable nodes in a region if `Priority` is 0.
         /// </summary>
         public readonly int? ElectableNodes;
         /// <summary>
         /// Election priority of the region. For regions with only read-only nodes, set this value to 0.
-        /// * For regions where `electable_nodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
+        /// * For regions where `ElectableNodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
         /// * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
         /// * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
         /// </summary>

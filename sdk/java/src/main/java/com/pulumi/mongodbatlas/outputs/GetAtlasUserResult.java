@@ -37,10 +37,10 @@ public final class GetAtlasUserResult {
     private String firstName;
     /**
      * @deprecated
-     * Please use user_id id attribute instead
+     * Please use userId id attribute instead
      * 
      */
-    @Deprecated /* Please use user_id id attribute instead */
+    @Deprecated /* Please use userId id attribute instead */
     private String id;
     /**
      * @return Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
@@ -103,10 +103,10 @@ public final class GetAtlasUserResult {
     }
     /**
      * @deprecated
-     * Please use user_id id attribute instead
+     * Please use userId id attribute instead
      * 
      */
-    @Deprecated /* Please use user_id id attribute instead */
+    @Deprecated /* Please use userId id attribute instead */
     public String id() {
         return this.id;
     }

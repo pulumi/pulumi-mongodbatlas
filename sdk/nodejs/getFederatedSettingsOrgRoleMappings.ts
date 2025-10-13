@@ -10,6 +10,8 @@ import * as utilities from "./utilities";
  * ## # Data Source: mongodbatlas.getFederatedSettingsOrgRoleMappings
  *
  * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+ *
+ * ## Example Usage
  */
 export function getFederatedSettingsOrgRoleMappings(args: GetFederatedSettingsOrgRoleMappingsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgRoleMappingsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -65,6 +67,8 @@ export interface GetFederatedSettingsOrgRoleMappingsResult {
  * ## # Data Source: mongodbatlas.getFederatedSettingsOrgRoleMappings
  *
  * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+ *
+ * ## Example Usage
  */
 export function getFederatedSettingsOrgRoleMappingsOutput(args: GetFederatedSettingsOrgRoleMappingsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -17,6 +17,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Task<GetCloudBackupSnapshotsResult> InvokeAsync(GetCloudBackupSnapshotsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotsResult>("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", args ?? new GetCloudBackupSnapshotsArgs(), options.WithDefaults());
@@ -27,6 +29,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetCloudBackupSnapshotsResult> Invoke(GetCloudBackupSnapshotsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotsResult>("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", args ?? new GetCloudBackupSnapshotsInvokeArgs(), options.WithDefaults());
@@ -37,6 +41,8 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetCloudBackupSnapshotsResult> Invoke(GetCloudBackupSnapshotsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotsResult>("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", args ?? new GetCloudBackupSnapshotsInvokeArgs(), options.WithDefaults());

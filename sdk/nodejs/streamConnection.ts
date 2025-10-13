@@ -72,6 +72,10 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example Kafka SASL SSL Connection
+ *
+ * ### Example AWSLambda Connection
+ *
  * ### Example Https Connection
  *
  * ```typescript
