@@ -20,6 +20,61 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var pipeline = new Mongodbatlas.DataLakePipeline("pipeline", new()
+        ///     {
+        ///         ProjectId = projectTest.ProjectId,
+        ///         Name = "DataLakePipelineName",
+        ///         Sink = new Mongodbatlas.Inputs.DataLakePipelineSinkArgs
+        ///         {
+        ///             Type = "DLS",
+        ///             PartitionFields = new[]
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DataLakePipelineSinkPartitionFieldArgs
+        ///                 {
+        ///                     Name = "access",
+        ///                     Order = 0,
+        ///                 },
+        ///             },
+        ///         },
+        ///         Source = new Mongodbatlas.Inputs.DataLakePipelineSourceArgs
+        ///         {
+        ///             Type = "ON_DEMAND_CPS",
+        ///             ClusterName = clusterTest.Name,
+        ///             DatabaseName = "sample_airbnb",
+        ///             CollectionName = "listingsAndReviews",
+        ///         },
+        ///         Transformations = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test22",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetDataLakePipelineRuns.Invoke(new()
+        ///     {
+        ///         ProjectId = projectTest.ProjectId,
+        ///         PipelineName = pipeline.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetDataLakePipelineRunsResult> InvokeAsync(GetDataLakePipelineRunsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataLakePipelineRunsResult>("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", args ?? new GetDataLakePipelineRunsArgs(), options.WithDefaults());
@@ -33,6 +88,61 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var pipeline = new Mongodbatlas.DataLakePipeline("pipeline", new()
+        ///     {
+        ///         ProjectId = projectTest.ProjectId,
+        ///         Name = "DataLakePipelineName",
+        ///         Sink = new Mongodbatlas.Inputs.DataLakePipelineSinkArgs
+        ///         {
+        ///             Type = "DLS",
+        ///             PartitionFields = new[]
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DataLakePipelineSinkPartitionFieldArgs
+        ///                 {
+        ///                     Name = "access",
+        ///                     Order = 0,
+        ///                 },
+        ///             },
+        ///         },
+        ///         Source = new Mongodbatlas.Inputs.DataLakePipelineSourceArgs
+        ///         {
+        ///             Type = "ON_DEMAND_CPS",
+        ///             ClusterName = clusterTest.Name,
+        ///             DatabaseName = "sample_airbnb",
+        ///             CollectionName = "listingsAndReviews",
+        ///         },
+        ///         Transformations = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test22",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetDataLakePipelineRuns.Invoke(new()
+        ///     {
+        ///         ProjectId = projectTest.ProjectId,
+        ///         PipelineName = pipeline.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetDataLakePipelineRunsResult> Invoke(GetDataLakePipelineRunsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataLakePipelineRunsResult>("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", args ?? new GetDataLakePipelineRunsInvokeArgs(), options.WithDefaults());
@@ -46,6 +156,61 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var pipeline = new Mongodbatlas.DataLakePipeline("pipeline", new()
+        ///     {
+        ///         ProjectId = projectTest.ProjectId,
+        ///         Name = "DataLakePipelineName",
+        ///         Sink = new Mongodbatlas.Inputs.DataLakePipelineSinkArgs
+        ///         {
+        ///             Type = "DLS",
+        ///             PartitionFields = new[]
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DataLakePipelineSinkPartitionFieldArgs
+        ///                 {
+        ///                     Name = "access",
+        ///                     Order = 0,
+        ///                 },
+        ///             },
+        ///         },
+        ///         Source = new Mongodbatlas.Inputs.DataLakePipelineSourceArgs
+        ///         {
+        ///             Type = "ON_DEMAND_CPS",
+        ///             ClusterName = clusterTest.Name,
+        ///             DatabaseName = "sample_airbnb",
+        ///             CollectionName = "listingsAndReviews",
+        ///         },
+        ///         Transformations = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test22",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetDataLakePipelineRuns.Invoke(new()
+        ///     {
+        ///         ProjectId = projectTest.ProjectId,
+        ///         PipelineName = pipeline.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetDataLakePipelineRunsResult> Invoke(GetDataLakePipelineRunsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataLakePipelineRunsResult>("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", args ?? new GetDataLakePipelineRunsInvokeArgs(), options.WithDefaults());

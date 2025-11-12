@@ -675,10 +675,10 @@ class SearchIndex(pulumi.CustomResource):
             database="database_test",
             type="vectorSearch",
             fields=\"\"\"[{
-              "type": "vector",
-              "path": "plot_embedding",
-              "numDimensions": 1536,
-              "similarity": "euclidean"
+              \\"type\\": \\"vector\\",
+              \\"path\\": \\"plot_embedding\\",
+              \\"numDimensions\\": 1536,
+              \\"similarity\\": \\"euclidean\\"
         }]
         \"\"\")
         ```
@@ -696,54 +696,54 @@ class SearchIndex(pulumi.CustomResource):
             database="database_test",
             mappings_dynamic=False,
             mappings_fields=\"\"\"{
-              "address": {
-                "type": "document",
-                "fields": {
-                  "city": {
-                    "type": "string",
-                    "analyzer": "lucene.simple",
-                    "ignoreAbove": 255
+              \\"address\\": {
+                \\"type\\": \\"document\\",
+                \\"fields\\": {
+                  \\"city\\": {
+                    \\"type\\": \\"string\\",
+                    \\"analyzer\\": \\"lucene.simple\\",
+                    \\"ignoreAbove\\": 255
                   },
-                  "state": {
-                    "type": "string",
-                    "analyzer": "lucene.english"
+                  \\"state\\": {
+                    \\"type\\": \\"string\\",
+                    \\"analyzer\\": \\"lucene.english\\"
                   }
                 }
               },
-              "company": {
-                "type": "string",
-                "analyzer": "lucene.whitespace",
-                "multi": {
-                  "mySecondaryAnalyzer": {
-                    "type": "string",
-                    "analyzer": "lucene.french"
+              \\"company\\": {
+                \\"type\\": \\"string\\",
+                \\"analyzer\\": \\"lucene.whitespace\\",
+                \\"multi\\": {
+                  \\"mySecondaryAnalyzer\\": {
+                    \\"type\\": \\"string\\",
+                    \\"analyzer\\": \\"lucene.french\\"
                   }
                 }
               },
-              "employees": {
-                "type": "string",
-                "analyzer": "lucene.standard"
+              \\"employees\\": {
+                \\"type\\": \\"string\\",
+                \\"analyzer\\": \\"lucene.standard\\"
               }
         }
         \"\"\",
             name="test-advanced-search-index",
             search_analyzer="lucene.standard",
             analyzers=\"\"\" [{
-         "name": "index_analyzer_test_name",
-         "charFilters": [{
-        "type": "mapping",
-        "mappings": {"\\\\" : "/"}
-           \\x09}],
-         "tokenizer": {
-         "type": "nGram",
-         "minGram": 2,
-         "maxGram": 5
-        \\x09},
-         "tokenFilters": [{
-        "type": "length",
-        "min": 20,
-        "max": 33
-           \\x09}]
+         \\"name\\": \\"index_analyzer_test_name\\",
+         \\"charFilters\\": [{
+        \\"type\\": \\"mapping\\",
+        \\"mappings\\": {\\"\\\\\\\\\\" : \\"/\\"}
+           \\t}],
+         \\"tokenizer\\": {
+         \\"type\\": \\"nGram\\",
+         \\"minGram\\": 2,
+         \\"maxGram\\": 5
+        \\t},
+         \\"tokenFilters\\": [{
+        \\"type\\": \\"length\\",
+        \\"min\\": 20,
+        \\"max\\": 33
+           \\t}]
          }]
         \"\"\",
             synonyms=[{
@@ -832,10 +832,10 @@ class SearchIndex(pulumi.CustomResource):
             database="database_test",
             type="vectorSearch",
             fields=\"\"\"[{
-              "type": "vector",
-              "path": "plot_embedding",
-              "numDimensions": 1536,
-              "similarity": "euclidean"
+              \\"type\\": \\"vector\\",
+              \\"path\\": \\"plot_embedding\\",
+              \\"numDimensions\\": 1536,
+              \\"similarity\\": \\"euclidean\\"
         }]
         \"\"\")
         ```
@@ -853,54 +853,54 @@ class SearchIndex(pulumi.CustomResource):
             database="database_test",
             mappings_dynamic=False,
             mappings_fields=\"\"\"{
-              "address": {
-                "type": "document",
-                "fields": {
-                  "city": {
-                    "type": "string",
-                    "analyzer": "lucene.simple",
-                    "ignoreAbove": 255
+              \\"address\\": {
+                \\"type\\": \\"document\\",
+                \\"fields\\": {
+                  \\"city\\": {
+                    \\"type\\": \\"string\\",
+                    \\"analyzer\\": \\"lucene.simple\\",
+                    \\"ignoreAbove\\": 255
                   },
-                  "state": {
-                    "type": "string",
-                    "analyzer": "lucene.english"
+                  \\"state\\": {
+                    \\"type\\": \\"string\\",
+                    \\"analyzer\\": \\"lucene.english\\"
                   }
                 }
               },
-              "company": {
-                "type": "string",
-                "analyzer": "lucene.whitespace",
-                "multi": {
-                  "mySecondaryAnalyzer": {
-                    "type": "string",
-                    "analyzer": "lucene.french"
+              \\"company\\": {
+                \\"type\\": \\"string\\",
+                \\"analyzer\\": \\"lucene.whitespace\\",
+                \\"multi\\": {
+                  \\"mySecondaryAnalyzer\\": {
+                    \\"type\\": \\"string\\",
+                    \\"analyzer\\": \\"lucene.french\\"
                   }
                 }
               },
-              "employees": {
-                "type": "string",
-                "analyzer": "lucene.standard"
+              \\"employees\\": {
+                \\"type\\": \\"string\\",
+                \\"analyzer\\": \\"lucene.standard\\"
               }
         }
         \"\"\",
             name="test-advanced-search-index",
             search_analyzer="lucene.standard",
             analyzers=\"\"\" [{
-         "name": "index_analyzer_test_name",
-         "charFilters": [{
-        "type": "mapping",
-        "mappings": {"\\\\" : "/"}
-           \\x09}],
-         "tokenizer": {
-         "type": "nGram",
-         "minGram": 2,
-         "maxGram": 5
-        \\x09},
-         "tokenFilters": [{
-        "type": "length",
-        "min": 20,
-        "max": 33
-           \\x09}]
+         \\"name\\": \\"index_analyzer_test_name\\",
+         \\"charFilters\\": [{
+        \\"type\\": \\"mapping\\",
+        \\"mappings\\": {\\"\\\\\\\\\\" : \\"/\\"}
+           \\t}],
+         \\"tokenizer\\": {
+         \\"type\\": \\"nGram\\",
+         \\"minGram\\": 2,
+         \\"maxGram\\": 5
+        \\t},
+         \\"tokenFilters\\": [{
+        \\"type\\": \\"length\\",
+        \\"min\\": 20,
+        \\"max\\": 33
+           \\t}]
          }]
         \"\"\",
             synonyms=[{

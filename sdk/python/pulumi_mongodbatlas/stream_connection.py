@@ -509,7 +509,45 @@ class StreamConnection(pulumi.CustomResource):
 
         ### Example Kafka SASL SSL Connection
 
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            instance_name="NewInstance",
+            connection_name="KafkaConnection",
+            type="Kafka",
+            authentication={
+                "mechanism": "PLAIN",
+                "username": "user",
+                "password": "somepassword",
+            },
+            security={
+                "protocol": "SASL_SSL",
+                "broker_public_certificate": "-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----",
+            },
+            config={
+                "auto.offset.reset": "latest",
+            },
+            bootstrap_servers="localhost:9091,localhost:9092")
+        ```
+
         ### Example AWSLambda Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            instance_name="NewInstance",
+            connection_name="AWSLambdaConnection",
+            type="AWSLambda",
+            aws={
+                "role_arn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/lambdaRole",
+            })
+        ```
 
         ### Example Https Connection
 
@@ -617,7 +655,45 @@ class StreamConnection(pulumi.CustomResource):
 
         ### Example Kafka SASL SSL Connection
 
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            instance_name="NewInstance",
+            connection_name="KafkaConnection",
+            type="Kafka",
+            authentication={
+                "mechanism": "PLAIN",
+                "username": "user",
+                "password": "somepassword",
+            },
+            security={
+                "protocol": "SASL_SSL",
+                "broker_public_certificate": "-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----",
+            },
+            config={
+                "auto.offset.reset": "latest",
+            },
+            bootstrap_servers="localhost:9091,localhost:9092")
+        ```
+
         ### Example AWSLambda Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            instance_name="NewInstance",
+            connection_name="AWSLambdaConnection",
+            type="AWSLambda",
+            aws={
+                "role_arn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/lambdaRole",
+            })
+        ```
 
         ### Example Https Connection
 

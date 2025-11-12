@@ -70,10 +70,10 @@ import (
 //				Database:       pulumi.String("database_test"),
 //				Type:           pulumi.String("vectorSearch"),
 //				Fields: pulumi.String(`[{
-//	      "type": "vector",
-//	      "path": "plot_embedding",
-//	      "numDimensions": 1536,
-//	      "similarity": "euclidean"
+//	      \"type\": \"vector\",
+//	      \"path\": \"plot_embedding\",
+//	      \"numDimensions\": 1536,
+//	      \"similarity\": \"euclidean\"
 //	}]
 //
 // `),
@@ -109,33 +109,33 @@ import (
 //				Database:        pulumi.String("database_test"),
 //				MappingsDynamic: pulumi.Bool(false),
 //				MappingsFields: pulumi.String(`{
-//	      "address": {
-//	        "type": "document",
-//	        "fields": {
-//	          "city": {
-//	            "type": "string",
-//	            "analyzer": "lucene.simple",
-//	            "ignoreAbove": 255
+//	      \"address\": {
+//	        \"type\": \"document\",
+//	        \"fields\": {
+//	          \"city\": {
+//	            \"type\": \"string\",
+//	            \"analyzer\": \"lucene.simple\",
+//	            \"ignoreAbove\": 255
 //	          },
-//	          "state": {
-//	            "type": "string",
-//	            "analyzer": "lucene.english"
+//	          \"state\": {
+//	            \"type\": \"string\",
+//	            \"analyzer\": \"lucene.english\"
 //	          }
 //	        }
 //	      },
-//	      "company": {
-//	        "type": "string",
-//	        "analyzer": "lucene.whitespace",
-//	        "multi": {
-//	          "mySecondaryAnalyzer": {
-//	            "type": "string",
-//	            "analyzer": "lucene.french"
+//	      \"company\": {
+//	        \"type\": \"string\",
+//	        \"analyzer\": \"lucene.whitespace\",
+//	        \"multi\": {
+//	          \"mySecondaryAnalyzer\": {
+//	            \"type\": \"string\",
+//	            \"analyzer\": \"lucene.french\"
 //	          }
 //	        }
 //	      },
-//	      "employees": {
-//	        "type": "string",
-//	        "analyzer": "lucene.standard"
+//	      \"employees\": {
+//	        \"type\": \"string\",
+//	        \"analyzer\": \"lucene.standard\"
 //	      }
 //	}
 //
@@ -144,25 +144,27 @@ import (
 //				Name:           pulumi.String("test-advanced-search-index"),
 //				SearchAnalyzer: pulumi.String("lucene.standard"),
 //				Analyzers: pulumi.String(` [{
-//	 "name": "index_analyzer_test_name",
-//	 "charFilters": [{
+//	 \"name\": \"index_analyzer_test_name\",
+//	 \"charFilters\": [{
 //
-// "type": "mapping",
-// "mappings": {"\\" : "/"}
+// \"type\": \"mapping\",
+// \"mappings\": {\"\\\\\" : \"/\"}
 //
-//	   	}],
-//	 "tokenizer": {
-//	 "type": "nGram",
-//	 "minGram": 2,
-//	 "maxGram": 5
-//		},
-//	 "tokenFilters": [{
+//	  \t}],
+//	\"tokenizer\": {
+//	\"type\": \"nGram\",
+//	\"minGram\": 2,
+//	\"maxGram\": 5
 //
-// "type": "length",
-// "min": 20,
-// "max": 33
+// \t},
 //
-//	  	}]
+//	\"tokenFilters\": [{
+//
+// \"type\": \"length\",
+// \"min\": 20,
+// \"max\": 33
+//
+//	  \t}]
 //	}]
 //
 // `),

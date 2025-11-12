@@ -37,8 +37,8 @@ import * as utilities from "./utilities";
  *     configCollection: "COLLECTION NAME",
  *     configServiceId: "SERVICE ID",
  *     configMatch: `{
- *   "updateDescription.updatedFields": {
- *     "status": "blocked"
+ *   \\"updateDescription.updatedFields\\": {
+ *     \\"status\\": \\"blocked\\"
  *   }
  * }
  * `,

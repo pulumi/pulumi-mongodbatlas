@@ -8,6 +8,60 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_CENTRAL_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 14,
+ *     },
+ *     copySettings: [{
+ *         cloudProvider: "AWS",
+ *         frequencies: [
+ *             "HOURLY",
+ *             "DAILY",
+ *             "WEEKLY",
+ *             "MONTHLY",
+ *             "YEARLY",
+ *             "ON_DEMAND",
+ *         ],
+ *         regionName: "US_EAST_1",
+ *         zoneId: myCluster.replicationSpecs.apply(replicationSpecs => replicationSpecs.map(__item => __item.zoneId?.[0])),
+ *         shouldCopyOplogs: false,
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupScheduleOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ *     clusterName: testCloudBackupSchedule.clusterName,
+ *     useZoneIdForCopySettings: true,
+ * });
+ * ```
  */
 export function getCloudBackupSchedule(args: GetCloudBackupScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupScheduleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -112,6 +166,60 @@ export interface GetCloudBackupScheduleResult {
 }
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_CENTRAL_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 14,
+ *     },
+ *     copySettings: [{
+ *         cloudProvider: "AWS",
+ *         frequencies: [
+ *             "HOURLY",
+ *             "DAILY",
+ *             "WEEKLY",
+ *             "MONTHLY",
+ *             "YEARLY",
+ *             "ON_DEMAND",
+ *         ],
+ *         regionName: "US_EAST_1",
+ *         zoneId: myCluster.replicationSpecs.apply(replicationSpecs => replicationSpecs.map(__item => __item.zoneId?.[0])),
+ *         shouldCopyOplogs: false,
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupScheduleOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ *     clusterName: testCloudBackupSchedule.clusterName,
+ *     useZoneIdForCopySettings: true,
+ * });
+ * ```
  */
 export function getCloudBackupScheduleOutput(args: GetCloudBackupScheduleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudBackupScheduleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

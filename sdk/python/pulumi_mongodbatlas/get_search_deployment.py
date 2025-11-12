@@ -121,6 +121,40 @@ def get_search_deployment(cluster_name: Optional[_builtins.str] = None,
     ## Example Usage
 
     ### S
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_project = mongodbatlas.Project("example",
+        name="project-name",
+        org_id=org_id)
+    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+        project_id=example_project.id,
+        name="ClusterExample",
+        cluster_type="REPLICASET",
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+                "provider_name": "AWS",
+                "priority": 7,
+                "region_name": "US_EAST_1",
+            }],
+        }])
+    example_search_deployment = mongodbatlas.SearchDeployment("example",
+        project_id=example_project.id,
+        cluster_name=example_advanced_cluster.name,
+        specs=[{
+            "instance_size": "S20_HIGHCPU_NVME",
+            "node_count": 2,
+        }])
+    example = mongodbatlas.get_search_deployment_output(project_id=example_search_deployment.project_id,
+        cluster_name=example_search_deployment.cluster_name)
+    pulumi.export("mongodbatlasSearchDeploymentId", example.id)
+    pulumi.export("mongodbatlasSearchDeploymentEncryptionAtRestProvider", example.encryption_at_rest_provider)
+    ```
 
 
     :param _builtins.str cluster_name: Label that identifies the cluster to return the search nodes for.
@@ -150,6 +184,40 @@ def get_search_deployment_output(cluster_name: Optional[pulumi.Input[_builtins.s
     ## Example Usage
 
     ### S
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_project = mongodbatlas.Project("example",
+        name="project-name",
+        org_id=org_id)
+    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+        project_id=example_project.id,
+        name="ClusterExample",
+        cluster_type="REPLICASET",
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+                "provider_name": "AWS",
+                "priority": 7,
+                "region_name": "US_EAST_1",
+            }],
+        }])
+    example_search_deployment = mongodbatlas.SearchDeployment("example",
+        project_id=example_project.id,
+        cluster_name=example_advanced_cluster.name,
+        specs=[{
+            "instance_size": "S20_HIGHCPU_NVME",
+            "node_count": 2,
+        }])
+    example = mongodbatlas.get_search_deployment_output(project_id=example_search_deployment.project_id,
+        cluster_name=example_search_deployment.cluster_name)
+    pulumi.export("mongodbatlasSearchDeploymentId", example.id)
+    pulumi.export("mongodbatlasSearchDeploymentEncryptionAtRestProvider", example.encryption_at_rest_provider)
+    ```
 
 
     :param _builtins.str cluster_name: Label that identifies the cluster to return the search nodes for.

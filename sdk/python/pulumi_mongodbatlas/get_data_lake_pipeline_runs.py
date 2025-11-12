@@ -92,6 +92,40 @@ def get_data_lake_pipeline_runs(pipeline_name: Optional[_builtins.str] = None,
 
     ## Example Usage
 
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    pipeline = mongodbatlas.DataLakePipeline("pipeline",
+        project_id=project_test["projectId"],
+        name="DataLakePipelineName",
+        sink={
+            "type": "DLS",
+            "partition_fields": [{
+                "name": "access",
+                "order": 0,
+            }],
+        },
+        source={
+            "type": "ON_DEMAND_CPS",
+            "cluster_name": cluster_test["name"],
+            "database_name": "sample_airbnb",
+            "collection_name": "listingsAndReviews",
+        },
+        transformations=[
+            {
+                "field": "test",
+                "type": "EXCLUDE",
+            },
+            {
+                "field": "test22",
+                "type": "EXCLUDE",
+            },
+        ])
+    test = pipeline.name.apply(lambda name: mongodbatlas.get_data_lake_pipeline_runs_output(project_id=project_test["projectId"],
+        pipeline_name=name))
+    ```
+
 
     :param _builtins.str pipeline_name: Human-readable label that identifies the Data Lake Pipeline.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
@@ -118,6 +152,40 @@ def get_data_lake_pipeline_runs_output(pipeline_name: Optional[pulumi.Input[_bui
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    pipeline = mongodbatlas.DataLakePipeline("pipeline",
+        project_id=project_test["projectId"],
+        name="DataLakePipelineName",
+        sink={
+            "type": "DLS",
+            "partition_fields": [{
+                "name": "access",
+                "order": 0,
+            }],
+        },
+        source={
+            "type": "ON_DEMAND_CPS",
+            "cluster_name": cluster_test["name"],
+            "database_name": "sample_airbnb",
+            "collection_name": "listingsAndReviews",
+        },
+        transformations=[
+            {
+                "field": "test",
+                "type": "EXCLUDE",
+            },
+            {
+                "field": "test22",
+                "type": "EXCLUDE",
+            },
+        ])
+    test = pipeline.name.apply(lambda name: mongodbatlas.get_data_lake_pipeline_runs_output(project_id=project_test["projectId"],
+        pipeline_name=name))
+    ```
 
 
     :param _builtins.str pipeline_name: Human-readable label that identifies the Data Lake Pipeline.

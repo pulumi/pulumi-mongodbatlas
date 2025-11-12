@@ -20,6 +20,53 @@ import (
 // ## Example Usage
 //
 // First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
+//				ProjectId:       pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				ClusterName:     pulumi.String("MyCluster"),
+//				Description:     pulumi.String("MyDescription"),
+//				RetentionInDays: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCloudBackupSnapshotRestoreJob, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//				ProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				ClusterName: pulumi.String("MyCluster"),
+//				SnapshotId:  testCloudBackupSnapshot.ID(),
+//				DeliveryType: []map[string]interface{}{
+//					map[string]interface{}{
+//						"automated":         true,
+//						"targetClusterName": "MyCluster",
+//						"targetProjectId":   "5cf5a45a9ccf6400e60981b6",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudBackupSnapshotRestoreJobOutput(ctx, mongodbatlas.GetCloudBackupSnapshotRestoreJobOutputArgs{
+//				ProjectId:            testCloudBackupSnapshotRestoreJob.ProjectId,
+//				ClusterName:          testCloudBackupSnapshotRestoreJob.ClusterName,
+//				SnapshotRestoreJobId: testCloudBackupSnapshotRestoreJob.SnapshotRestoreJobId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCloudBackupSnapshotRestoreJob(ctx *pulumi.Context, args *LookupCloudBackupSnapshotRestoreJobArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotRestoreJobResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotRestoreJobResult

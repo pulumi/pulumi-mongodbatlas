@@ -12,6 +12,40 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", {
+ *     federationSettingsId: "",
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     groupId: "628aa20d7f7f7f7f7098b81b8",
+ *     externalGroupName: "myGrouptest",
+ *     organizationRoles: [
+ *         "ORG_OWNER",
+ *         "ORG_MEMBER",
+ *         "ORG_BILLING_ADMIN",
+ *         "ORG_GROUP_CREATOR",
+ *         "ORG_READ_ONLY",
+ *     ],
+ *     groupRoles: [
+ *         "GROUP_OWNER",
+ *         "GROUP_CLUSTER_MANAGER",
+ *         "GROUP_DATA_ACCESS_ADMIN",
+ *         "GROUP_DATA_ACCESS_READ_WRITE",
+ *         "GROUP_SEARCH_INDEX_EDITOR",
+ *         "GROUP_DATA_ACCESS_READ_ONLY",
+ *         "GROUP_READ_ONLY",
+ *     ],
+ * });
+ * const roleMappings = orgGroupRoleMappingImport.id.apply(id => mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
+ *     federationSettingsId: id,
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     pageNum: 1,
+ *     itemsPerPage: 5,
+ * }));
+ * ```
  */
 export function getFederatedSettingsOrgRoleMappings(args: GetFederatedSettingsOrgRoleMappingsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgRoleMappingsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -69,6 +103,40 @@ export interface GetFederatedSettingsOrgRoleMappingsResult {
  * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", {
+ *     federationSettingsId: "",
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     groupId: "628aa20d7f7f7f7f7098b81b8",
+ *     externalGroupName: "myGrouptest",
+ *     organizationRoles: [
+ *         "ORG_OWNER",
+ *         "ORG_MEMBER",
+ *         "ORG_BILLING_ADMIN",
+ *         "ORG_GROUP_CREATOR",
+ *         "ORG_READ_ONLY",
+ *     ],
+ *     groupRoles: [
+ *         "GROUP_OWNER",
+ *         "GROUP_CLUSTER_MANAGER",
+ *         "GROUP_DATA_ACCESS_ADMIN",
+ *         "GROUP_DATA_ACCESS_READ_WRITE",
+ *         "GROUP_SEARCH_INDEX_EDITOR",
+ *         "GROUP_DATA_ACCESS_READ_ONLY",
+ *         "GROUP_READ_ONLY",
+ *     ],
+ * });
+ * const roleMappings = orgGroupRoleMappingImport.id.apply(id => mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
+ *     federationSettingsId: id,
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     pageNum: 1,
+ *     itemsPerPage: 5,
+ * }));
+ * ```
  */
 export function getFederatedSettingsOrgRoleMappingsOutput(args: GetFederatedSettingsOrgRoleMappingsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

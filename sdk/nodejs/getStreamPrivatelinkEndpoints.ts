@@ -15,6 +15,76 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
+ * ### AWS Confluent Privatelink
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as confluent from "@pulumi/confluent";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * import * as std from "@pulumi/std";
+ *
+ * const staging = new confluent.index.Environment("staging", {displayName: "Staging"});
+ * const privateLink = new confluent.index.Network("private_link", {
+ *     displayName: "terraform-test-private-link-network-manual",
+ *     cloud: "AWS",
+ *     region: awsRegion,
+ *     connectionTypes: ["PRIVATELINK"],
+ *     zones: std.index.keys({
+ *         input: subnetsToPrivatelink,
+ *     }).result,
+ *     environment: [{
+ *         id: staging.id,
+ *     }],
+ *     dnsConfig: [{
+ *         resolution: "PRIVATE",
+ *     }],
+ * });
+ * const aws = new confluent.index.PrivateLinkAccess("aws", {
+ *     displayName: "example-private-link-access",
+ *     aws: [{
+ *         account: awsAccountId,
+ *     }],
+ *     environment: [{
+ *         id: staging.id,
+ *     }],
+ *     network: [{
+ *         id: privateLink.id,
+ *     }],
+ * });
+ * const dedicated = new confluent.index.KafkaCluster("dedicated", {
+ *     displayName: "example-dedicated-cluster",
+ *     availability: "MULTI_ZONE",
+ *     cloud: privateLink.cloud,
+ *     region: privateLink.region,
+ *     dedicated: [{
+ *         cku: 2,
+ *     }],
+ *     environment: [{
+ *         id: staging.id,
+ *     }],
+ *     network: [{
+ *         id: privateLink.id,
+ *     }],
+ * });
+ * const test = new mongodbatlas.StreamPrivatelinkEndpoint("test", {
+ *     projectId: projectId,
+ *     dnsDomain: privateLink.dnsDomain,
+ *     providerName: "AWS",
+ *     region: awsRegion,
+ *     vendor: "CONFLUENT",
+ *     serviceEndpointId: privateLink.aws[0].privateLinkEndpointService,
+ *     dnsSubDomains: privateLink.zonalSubdomains,
+ * });
+ * const singularDatasource = test.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ *     projectId: projectId,
+ *     id: id,
+ * }));
+ * const pluralDatasource = mongodbatlas.getStreamPrivatelinkEndpoints({
+ *     projectId: projectId,
+ * });
+ * export const interfaceEndpointId = singularDatasource.apply(singularDatasource => singularDatasource.interfaceEndpointId);
+ * export const interfaceEndpointIds = pluralDatasource.then(pluralDatasource => pluralDatasource.results.map(__item => __item.interfaceEndpointId));
+ * ```
+ *
  * ### AWS S3 Privatelink
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -84,6 +154,76 @@ export interface GetStreamPrivatelinkEndpointsResult {
  * ## Example Usage
  *
  * ### S
+ *
+ * ### AWS Confluent Privatelink
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as confluent from "@pulumi/confluent";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * import * as std from "@pulumi/std";
+ *
+ * const staging = new confluent.index.Environment("staging", {displayName: "Staging"});
+ * const privateLink = new confluent.index.Network("private_link", {
+ *     displayName: "terraform-test-private-link-network-manual",
+ *     cloud: "AWS",
+ *     region: awsRegion,
+ *     connectionTypes: ["PRIVATELINK"],
+ *     zones: std.index.keys({
+ *         input: subnetsToPrivatelink,
+ *     }).result,
+ *     environment: [{
+ *         id: staging.id,
+ *     }],
+ *     dnsConfig: [{
+ *         resolution: "PRIVATE",
+ *     }],
+ * });
+ * const aws = new confluent.index.PrivateLinkAccess("aws", {
+ *     displayName: "example-private-link-access",
+ *     aws: [{
+ *         account: awsAccountId,
+ *     }],
+ *     environment: [{
+ *         id: staging.id,
+ *     }],
+ *     network: [{
+ *         id: privateLink.id,
+ *     }],
+ * });
+ * const dedicated = new confluent.index.KafkaCluster("dedicated", {
+ *     displayName: "example-dedicated-cluster",
+ *     availability: "MULTI_ZONE",
+ *     cloud: privateLink.cloud,
+ *     region: privateLink.region,
+ *     dedicated: [{
+ *         cku: 2,
+ *     }],
+ *     environment: [{
+ *         id: staging.id,
+ *     }],
+ *     network: [{
+ *         id: privateLink.id,
+ *     }],
+ * });
+ * const test = new mongodbatlas.StreamPrivatelinkEndpoint("test", {
+ *     projectId: projectId,
+ *     dnsDomain: privateLink.dnsDomain,
+ *     providerName: "AWS",
+ *     region: awsRegion,
+ *     vendor: "CONFLUENT",
+ *     serviceEndpointId: privateLink.aws[0].privateLinkEndpointService,
+ *     dnsSubDomains: privateLink.zonalSubdomains,
+ * });
+ * const singularDatasource = test.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ *     projectId: projectId,
+ *     id: id,
+ * }));
+ * const pluralDatasource = mongodbatlas.getStreamPrivatelinkEndpoints({
+ *     projectId: projectId,
+ * });
+ * export const interfaceEndpointId = singularDatasource.apply(singularDatasource => singularDatasource.interfaceEndpointId);
+ * export const interfaceEndpointIds = pluralDatasource.then(pluralDatasource => pluralDatasource.results.map(__item => __item.interfaceEndpointId));
+ * ```
  *
  * ### AWS S3 Privatelink
  * ```typescript

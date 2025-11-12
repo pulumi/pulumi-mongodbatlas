@@ -13,6 +13,20 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.StreamInstance("test", {
+ *     projectId: projectId,
+ *     instanceName: "InstanceName",
+ *     dataProcessRegion: {
+ *         region: "VIRGINIA_USA",
+ *         cloudProvider: "AWS",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * You can import stream instance resource using the project ID and instance name, in the format `PROJECT_ID-INSTANCE_NAME`. For example:

@@ -14,6 +14,31 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("test", {
+ *     username: "test-acc-username",
+ *     password: "test-acc-password",
+ *     projectId: "<PROJECT-ID>",
+ *     databaseName: "admin",
+ *     roles: [
+ *         {
+ *             roleName: "readWrite",
+ *             databaseName: "admin",
+ *         },
+ *         {
+ *             roleName: "atlasAdmin",
+ *             databaseName: "admin",
+ *         },
+ *     ],
+ * });
+ * const test = mongodbatlas.getCustomDbRoles({
+ *     projectId: testMongodbatlasCustomDbRole.projectId,
+ * });
+ * ```
  */
 export function getCustomDbRoles(args: GetCustomDbRolesArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRolesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -54,6 +79,31 @@ export interface GetCustomDbRolesResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("test", {
+ *     username: "test-acc-username",
+ *     password: "test-acc-password",
+ *     projectId: "<PROJECT-ID>",
+ *     databaseName: "admin",
+ *     roles: [
+ *         {
+ *             roleName: "readWrite",
+ *             databaseName: "admin",
+ *         },
+ *         {
+ *             roleName: "atlasAdmin",
+ *             databaseName: "admin",
+ *         },
+ *     ],
+ * });
+ * const test = mongodbatlas.getCustomDbRoles({
+ *     projectId: testMongodbatlasCustomDbRole.projectId,
+ * });
+ * ```
  */
 export function getCustomDbRolesOutput(args: GetCustomDbRolesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCustomDbRolesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -326,6 +326,57 @@ class DataLakePipeline(pulumi.CustomResource):
 
         ### S
 
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        project_test = mongodbatlas.Project("projectTest",
+            name="NAME OF THE PROJECT",
+            org_id="ORGANIZATION ID")
+        automated_backup_test = mongodbatlas.AdvancedCluster("automated_backup_test",
+            project_id=project_id,
+            name="automated-backup-test",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "GCP",
+                    "region_name": "US_EAST_4",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        pipeline = mongodbatlas.DataLakePipeline("pipeline",
+            project_id=project_test.project_id,
+            name="DataLakePipelineName",
+            sink={
+                "type": "DLS",
+                "partition_fields": [{
+                    "name": "access",
+                    "order": 0,
+                }],
+            },
+            source={
+                "type": "ON_DEMAND_CPS",
+                "cluster_name": automated_backup_test.name,
+                "database_name": "sample_airbnb",
+                "collection_name": "listingsAndReviews",
+            },
+            transformations=[
+                {
+                    "field": "test",
+                    "type": "EXCLUDE",
+                },
+                {
+                    "field": "test22",
+                    "type": "EXCLUDE",
+                },
+            ])
+        ```
+
         ## Import
 
         Data Lake Pipeline can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`, e.g.
@@ -360,6 +411,57 @@ class DataLakePipeline(pulumi.CustomResource):
         ## Example Usage
 
         ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        project_test = mongodbatlas.Project("projectTest",
+            name="NAME OF THE PROJECT",
+            org_id="ORGANIZATION ID")
+        automated_backup_test = mongodbatlas.AdvancedCluster("automated_backup_test",
+            project_id=project_id,
+            name="automated-backup-test",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "GCP",
+                    "region_name": "US_EAST_4",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        pipeline = mongodbatlas.DataLakePipeline("pipeline",
+            project_id=project_test.project_id,
+            name="DataLakePipelineName",
+            sink={
+                "type": "DLS",
+                "partition_fields": [{
+                    "name": "access",
+                    "order": 0,
+                }],
+            },
+            source={
+                "type": "ON_DEMAND_CPS",
+                "cluster_name": automated_backup_test.name,
+                "database_name": "sample_airbnb",
+                "collection_name": "listingsAndReviews",
+            },
+            transformations=[
+                {
+                    "field": "test",
+                    "type": "EXCLUDE",
+                },
+                {
+                    "field": "test22",
+                    "type": "EXCLUDE",
+                },
+            ])
+        ```
 
         ## Import
 
