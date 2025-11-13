@@ -16,6 +16,36 @@ import (
 // ### Using CIDR Block
 //
 // ### Using IP Address
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testAccessListApiKey, err := mongodbatlas.NewAccessListApiKey(ctx, "test", &mongodbatlas.AccessListApiKeyArgs{
+//				OrgId:     pulumi.String("<ORG_ID>"),
+//				IpAddress: pulumi.String("2.3.4.5"),
+//				ApiKey:    "a29120e123cd",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupAccessListApiKeyOutput(ctx, mongodbatlas.GetAccessListApiKeyOutputArgs{
+//				OrgId:     testAccessListApiKey.OrgId,
+//				IpAddress: testAccessListApiKey.IpAddress,
+//				ApiKeyId:  testAccessListApiKey.ApiKeyId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAccessListApiKey(ctx *pulumi.Context, args *LookupAccessListApiKeyArgs, opts ...pulumi.InvokeOption) (*LookupAccessListApiKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccessListApiKeyResult

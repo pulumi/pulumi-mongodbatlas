@@ -14,6 +14,43 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const pipeline = new mongodbatlas.DataLakePipeline("pipeline", {
+ *     projectId: projectTest.projectId,
+ *     name: "DataLakePipelineName",
+ *     sink: {
+ *         type: "DLS",
+ *         partitionFields: [{
+ *             name: "access",
+ *             order: 0,
+ *         }],
+ *     },
+ *     source: {
+ *         type: "ON_DEMAND_CPS",
+ *         clusterName: clusterTest.name,
+ *         databaseName: "sample_airbnb",
+ *         collectionName: "listingsAndReviews",
+ *     },
+ *     transformations: [
+ *         {
+ *             field: "test",
+ *             type: "EXCLUDE",
+ *         },
+ *         {
+ *             field: "test22",
+ *             type: "EXCLUDE",
+ *         },
+ *     ],
+ * });
+ * const test = pipeline.name.apply(name => mongodbatlas.getDataLakePipelineRunsOutput({
+ *     projectId: projectTest.projectId,
+ *     pipelineName: name,
+ * }));
+ * ```
  */
 export function getDataLakePipelineRuns(args: GetDataLakePipelineRunsArgs, opts?: pulumi.InvokeOptions): Promise<GetDataLakePipelineRunsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -60,6 +97,43 @@ export interface GetDataLakePipelineRunsResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const pipeline = new mongodbatlas.DataLakePipeline("pipeline", {
+ *     projectId: projectTest.projectId,
+ *     name: "DataLakePipelineName",
+ *     sink: {
+ *         type: "DLS",
+ *         partitionFields: [{
+ *             name: "access",
+ *             order: 0,
+ *         }],
+ *     },
+ *     source: {
+ *         type: "ON_DEMAND_CPS",
+ *         clusterName: clusterTest.name,
+ *         databaseName: "sample_airbnb",
+ *         collectionName: "listingsAndReviews",
+ *     },
+ *     transformations: [
+ *         {
+ *             field: "test",
+ *             type: "EXCLUDE",
+ *         },
+ *         {
+ *             field: "test22",
+ *             type: "EXCLUDE",
+ *         },
+ *     ],
+ * });
+ * const test = pipeline.name.apply(name => mongodbatlas.getDataLakePipelineRunsOutput({
+ *     projectId: projectTest.projectId,
+ *     pipelineName: name,
+ * }));
+ * ```
  */
 export function getDataLakePipelineRunsOutput(args: GetDataLakePipelineRunsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataLakePipelineRunsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

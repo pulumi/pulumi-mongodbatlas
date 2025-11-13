@@ -19,6 +19,49 @@ namespace Pulumi.Mongodbatlas
         /// **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example_clusterFlexCluster = new Mongodbatlas.FlexCluster("example-cluster", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = clusterName,
+        ///         ProviderSettings = new Mongodbatlas.Inputs.FlexClusterProviderSettingsArgs
+        ///         {
+        ///             BackingProviderName = "AWS",
+        ///             RegionName = "US_EAST_1",
+        ///         },
+        ///         TerminationProtectionEnabled = true,
+        ///     });
+        /// 
+        ///     var example_cluster = Mongodbatlas.GetFlexCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = example_clusterFlexCluster.Name,
+        ///     });
+        /// 
+        ///     var example_clusters = Mongodbatlas.GetFlexClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["mongodbatlasFlexCluster"] = example_cluster.Apply(example_cluster =&gt; example_cluster.Apply(getFlexClusterResult =&gt; getFlexClusterResult.Name)),
+        ///         ["mongodbatlasFlexClustersNames"] = example_clusters.Apply(example_clusters =&gt; .Select(cluster =&gt; 
+        ///         {
+        ///             return cluster.Name;
+        ///         }).ToList()),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetFlexClustersResult> InvokeAsync(GetFlexClustersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFlexClustersResult>("mongodbatlas:index/getFlexClusters:getFlexClusters", args ?? new GetFlexClustersArgs(), options.WithDefaults());
@@ -31,6 +74,49 @@ namespace Pulumi.Mongodbatlas
         /// **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example_clusterFlexCluster = new Mongodbatlas.FlexCluster("example-cluster", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = clusterName,
+        ///         ProviderSettings = new Mongodbatlas.Inputs.FlexClusterProviderSettingsArgs
+        ///         {
+        ///             BackingProviderName = "AWS",
+        ///             RegionName = "US_EAST_1",
+        ///         },
+        ///         TerminationProtectionEnabled = true,
+        ///     });
+        /// 
+        ///     var example_cluster = Mongodbatlas.GetFlexCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = example_clusterFlexCluster.Name,
+        ///     });
+        /// 
+        ///     var example_clusters = Mongodbatlas.GetFlexClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["mongodbatlasFlexCluster"] = example_cluster.Apply(example_cluster =&gt; example_cluster.Apply(getFlexClusterResult =&gt; getFlexClusterResult.Name)),
+        ///         ["mongodbatlasFlexClustersNames"] = example_clusters.Apply(example_clusters =&gt; .Select(cluster =&gt; 
+        ///         {
+        ///             return cluster.Name;
+        ///         }).ToList()),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetFlexClustersResult> Invoke(GetFlexClustersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFlexClustersResult>("mongodbatlas:index/getFlexClusters:getFlexClusters", args ?? new GetFlexClustersInvokeArgs(), options.WithDefaults());
@@ -43,6 +129,49 @@ namespace Pulumi.Mongodbatlas
         /// **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example_clusterFlexCluster = new Mongodbatlas.FlexCluster("example-cluster", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = clusterName,
+        ///         ProviderSettings = new Mongodbatlas.Inputs.FlexClusterProviderSettingsArgs
+        ///         {
+        ///             BackingProviderName = "AWS",
+        ///             RegionName = "US_EAST_1",
+        ///         },
+        ///         TerminationProtectionEnabled = true,
+        ///     });
+        /// 
+        ///     var example_cluster = Mongodbatlas.GetFlexCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = example_clusterFlexCluster.Name,
+        ///     });
+        /// 
+        ///     var example_clusters = Mongodbatlas.GetFlexClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["mongodbatlasFlexCluster"] = example_cluster.Apply(example_cluster =&gt; example_cluster.Apply(getFlexClusterResult =&gt; getFlexClusterResult.Name)),
+        ///         ["mongodbatlasFlexClustersNames"] = example_clusters.Apply(example_clusters =&gt; .Select(cluster =&gt; 
+        ///         {
+        ///             return cluster.Name;
+        ///         }).ToList()),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetFlexClustersResult> Invoke(GetFlexClustersInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetFlexClustersResult>("mongodbatlas:index/getFlexClusters:getFlexClusters", args ?? new GetFlexClustersInvokeArgs(), options.WithDefaults());

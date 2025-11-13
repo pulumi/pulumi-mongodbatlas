@@ -421,6 +421,66 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
 
         ### S
 
+        ### AWS Confluent Privatelink
+        ```python
+        import pulumi
+        import pulumi_confluent as confluent
+        import pulumi_mongodbatlas as mongodbatlas
+        import pulumi_std as std
+
+        staging = confluent.index.Environment("staging", display_name=Staging)
+        private_link = confluent.index.Network("private_link",
+            display_name=terraform-test-private-link-network-manual,
+            cloud=AWS,
+            region=aws_region,
+            connection_types=[PRIVATELINK],
+            zones=std.index.keys(input=subnets_to_privatelink).result,
+            environment=[{
+                id: staging.id,
+            }],
+            dns_config=[{
+                resolution: PRIVATE,
+            }])
+        aws = confluent.index.PrivateLinkAccess("aws",
+            display_name=example-private-link-access,
+            aws=[{
+                account: aws_account_id,
+            }],
+            environment=[{
+                id: staging.id,
+            }],
+            network=[{
+                id: private_link.id,
+            }])
+        dedicated = confluent.index.KafkaCluster("dedicated",
+            display_name=example-dedicated-cluster,
+            availability=MULTI_ZONE,
+            cloud=private_link.cloud,
+            region=private_link.region,
+            dedicated=[{
+                cku: 2,
+            }],
+            environment=[{
+                id: staging.id,
+            }],
+            network=[{
+                id: private_link.id,
+            }])
+        test = mongodbatlas.StreamPrivatelinkEndpoint("test",
+            project_id=project_id,
+            dns_domain=private_link["dnsDomain"],
+            provider_name="AWS",
+            region=aws_region,
+            vendor="CONFLUENT",
+            service_endpoint_id=private_link["aws"][0]["privateLinkEndpointService"],
+            dns_sub_domains=private_link["zonalSubdomains"])
+        singular_datasource = test.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+            id=id))
+        plural_datasource = mongodbatlas.get_stream_privatelink_endpoints(project_id=project_id)
+        pulumi.export("interfaceEndpointId", singular_datasource.interface_endpoint_id)
+        pulumi.export("interfaceEndpointIds", [__item.interface_endpoint_id for __item in plural_datasource.results])
+        ```
+
         ### AWS S3 Privatelink
         ```python
         import pulumi
@@ -486,6 +546,66 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         ## Example Usage
 
         ### S
+
+        ### AWS Confluent Privatelink
+        ```python
+        import pulumi
+        import pulumi_confluent as confluent
+        import pulumi_mongodbatlas as mongodbatlas
+        import pulumi_std as std
+
+        staging = confluent.index.Environment("staging", display_name=Staging)
+        private_link = confluent.index.Network("private_link",
+            display_name=terraform-test-private-link-network-manual,
+            cloud=AWS,
+            region=aws_region,
+            connection_types=[PRIVATELINK],
+            zones=std.index.keys(input=subnets_to_privatelink).result,
+            environment=[{
+                id: staging.id,
+            }],
+            dns_config=[{
+                resolution: PRIVATE,
+            }])
+        aws = confluent.index.PrivateLinkAccess("aws",
+            display_name=example-private-link-access,
+            aws=[{
+                account: aws_account_id,
+            }],
+            environment=[{
+                id: staging.id,
+            }],
+            network=[{
+                id: private_link.id,
+            }])
+        dedicated = confluent.index.KafkaCluster("dedicated",
+            display_name=example-dedicated-cluster,
+            availability=MULTI_ZONE,
+            cloud=private_link.cloud,
+            region=private_link.region,
+            dedicated=[{
+                cku: 2,
+            }],
+            environment=[{
+                id: staging.id,
+            }],
+            network=[{
+                id: private_link.id,
+            }])
+        test = mongodbatlas.StreamPrivatelinkEndpoint("test",
+            project_id=project_id,
+            dns_domain=private_link["dnsDomain"],
+            provider_name="AWS",
+            region=aws_region,
+            vendor="CONFLUENT",
+            service_endpoint_id=private_link["aws"][0]["privateLinkEndpointService"],
+            dns_sub_domains=private_link["zonalSubdomains"])
+        singular_datasource = test.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+            id=id))
+        plural_datasource = mongodbatlas.get_stream_privatelink_endpoints(project_id=project_id)
+        pulumi.export("interfaceEndpointId", singular_datasource.interface_endpoint_id)
+        pulumi.export("interfaceEndpointIds", [__item.interface_endpoint_id for __item in plural_datasource.results])
+        ```
 
         ### AWS S3 Privatelink
         ```python

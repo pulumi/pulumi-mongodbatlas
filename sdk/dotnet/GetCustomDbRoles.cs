@@ -19,6 +19,43 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
+        ///     {
+        ///         Username = "test-acc-username",
+        ///         Password = "test-acc-password",
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         DatabaseName = "admin",
+        ///         Roles = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "readWrite",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCustomDbRoles.Invoke(new()
+        ///     {
+        ///         ProjectId = testMongodbatlasCustomDbRole.ProjectId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetCustomDbRolesResult> InvokeAsync(GetCustomDbRolesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCustomDbRolesResult>("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", args ?? new GetCustomDbRolesArgs(), options.WithDefaults());
@@ -31,6 +68,43 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
+        ///     {
+        ///         Username = "test-acc-username",
+        ///         Password = "test-acc-password",
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         DatabaseName = "admin",
+        ///         Roles = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "readWrite",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCustomDbRoles.Invoke(new()
+        ///     {
+        ///         ProjectId = testMongodbatlasCustomDbRole.ProjectId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCustomDbRolesResult> Invoke(GetCustomDbRolesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCustomDbRolesResult>("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", args ?? new GetCustomDbRolesInvokeArgs(), options.WithDefaults());
@@ -43,6 +117,43 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
+        ///     {
+        ///         Username = "test-acc-username",
+        ///         Password = "test-acc-password",
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         DatabaseName = "admin",
+        ///         Roles = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "readWrite",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCustomDbRoles.Invoke(new()
+        ///     {
+        ///         ProjectId = testMongodbatlasCustomDbRole.ProjectId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCustomDbRolesResult> Invoke(GetCustomDbRolesInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetCustomDbRolesResult>("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", args ?? new GetCustomDbRolesInvokeArgs(), options.WithDefaults());

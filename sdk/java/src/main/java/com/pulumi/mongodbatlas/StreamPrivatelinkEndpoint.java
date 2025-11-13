@@ -24,6 +24,98 @@ import javax.annotation.Nullable;
  * 
  * ### S
  * 
+ * ### AWS Confluent Privatelink
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.confluent.Environment;
+ * import com.pulumi.confluent.EnvironmentArgs;
+ * import com.pulumi.confluent.Network;
+ * import com.pulumi.confluent.NetworkArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.confluent.PrivateLinkAccess;
+ * import com.pulumi.confluent.PrivateLinkAccessArgs;
+ * import com.pulumi.confluent.KafkaCluster;
+ * import com.pulumi.confluent.KafkaClusterArgs;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+ * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var staging = new Environment("staging", EnvironmentArgs.builder()
+ *             .displayName("Staging")
+ *             .build());
+ * 
+ *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+ *             .displayName("terraform-test-private-link-network-manual")
+ *             .cloud("AWS")
+ *             .region(awsRegion)
+ *             .connectionTypes(List.of("PRIVATELINK"))
+ *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+ *             .environment(List.of(Map.of("id", staging.id())))
+ *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+ *             .build());
+ * 
+ *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+ *             .displayName("example-private-link-access")
+ *             .aws(List.of(Map.of("account", awsAccountId)))
+ *             .environment(List.of(Map.of("id", staging.id())))
+ *             .network(List.of(Map.of("id", privateLink.id())))
+ *             .build());
+ * 
+ *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+ *             .displayName("example-dedicated-cluster")
+ *             .availability("MULTI_ZONE")
+ *             .cloud(privateLink.cloud())
+ *             .region(privateLink.region())
+ *             .dedicated(List.of(Map.of("cku", 2)))
+ *             .environment(List.of(Map.of("id", staging.id())))
+ *             .network(List.of(Map.of("id", privateLink.id())))
+ *             .build());
+ * 
+ *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .dnsDomain(privateLink.dnsDomain())
+ *             .providerName("AWS")
+ *             .region(awsRegion)
+ *             .vendor("CONFLUENT")
+ *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+ *             .dnsSubDomains(privateLink.zonalSubdomains())
+ *             .build());
+ * 
+ *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .id(_id)
+ *             .build()));
+ * 
+ *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+ *             .projectId(projectId)
+ *             .build());
+ * 
+ *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+ *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### AWS S3 Privatelink
  * <pre>
  * {@code
@@ -32,12 +124,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.aws.s3Bucket;
- * import com.pulumi.aws.s3BucketArgs;
- * import com.pulumi.aws.s3BucketVersioning;
- * import com.pulumi.aws.s3BucketVersioningArgs;
- * import com.pulumi.aws.s3BucketServerSideEncryptionConfiguration;
- * import com.pulumi.aws.s3BucketServerSideEncryptionConfigurationArgs;
+ * import com.pulumi.aws.S3Bucket;
+ * import com.pulumi.aws.S3BucketArgs;
+ * import com.pulumi.aws.S3BucketVersioning;
+ * import com.pulumi.aws.S3BucketVersioningArgs;
+ * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
+ * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
  * import java.util.List;

@@ -253,6 +253,29 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[_builtins.str] 
 
     First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
 
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("test",
+        project_id="5cf5a45a9ccf6400e60981b6",
+        cluster_name="MyCluster",
+        description="MyDescription",
+        retention_in_days=1)
+    test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+        project_id="5cf5a45a9ccf6400e60981b6",
+        cluster_name="MyCluster",
+        snapshot_id=test_cloud_backup_snapshot.id,
+        delivery_type=[{
+            "automated": True,
+            "targetClusterName": "MyCluster",
+            "targetProjectId": "5cf5a45a9ccf6400e60981b6",
+        }])
+    test = mongodbatlas.get_cloud_backup_snapshot_restore_job_output(project_id=test_cloud_backup_snapshot_restore_job.project_id,
+        cluster_name=test_cloud_backup_snapshot_restore_job.cluster_name,
+        snapshot_restore_job_id=test_cloud_backup_snapshot_restore_job.snapshot_restore_job_id)
+    ```
+
 
     :param _builtins.str cluster_name: The name of the Atlas cluster for which you want to retrieve the restore job.
     :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
@@ -298,6 +321,29 @@ def get_cloud_backup_snapshot_restore_job_output(cluster_name: Optional[pulumi.I
     ## Example Usage
 
     First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("test",
+        project_id="5cf5a45a9ccf6400e60981b6",
+        cluster_name="MyCluster",
+        description="MyDescription",
+        retention_in_days=1)
+    test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+        project_id="5cf5a45a9ccf6400e60981b6",
+        cluster_name="MyCluster",
+        snapshot_id=test_cloud_backup_snapshot.id,
+        delivery_type=[{
+            "automated": True,
+            "targetClusterName": "MyCluster",
+            "targetProjectId": "5cf5a45a9ccf6400e60981b6",
+        }])
+    test = mongodbatlas.get_cloud_backup_snapshot_restore_job_output(project_id=test_cloud_backup_snapshot_restore_job.project_id,
+        cluster_name=test_cloud_backup_snapshot_restore_job.cluster_name,
+        snapshot_restore_job_id=test_cloud_backup_snapshot_restore_job.snapshot_restore_job_id)
+    ```
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster for which you want to retrieve the restore job.

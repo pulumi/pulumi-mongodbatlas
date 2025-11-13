@@ -23,7 +23,53 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Username = "myUsername",
+        ///         X509Type = "MANAGED",
+        ///         DatabaseName = "$external",
+        ///         Roles = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///         },
+        ///         Labels = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///             {
+        ///                 Key = "My Key",
+        ///                 Value = "My Value",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+        ///     {
+        ///         ProjectId = user.ProjectId,
+        ///         Username = user.Username,
+        ///         MonthsUntilExpiration = 2,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetX509AuthenticationDatabaseUser.Invoke(new()
+        ///     {
+        ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
+        ///         Username = testX509AuthenticationDatabaseUser.Username,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
@@ -52,7 +98,7 @@ namespace Pulumi.Mongodbatlas
         /// SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
         /// 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
         /// iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-        /// -----END CERTIFICATE-----""
+        /// -----END CERTIFICATE-----\""
         /// ",
         ///     });
         /// 
@@ -79,7 +125,53 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Username = "myUsername",
+        ///         X509Type = "MANAGED",
+        ///         DatabaseName = "$external",
+        ///         Roles = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///         },
+        ///         Labels = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///             {
+        ///                 Key = "My Key",
+        ///                 Value = "My Value",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+        ///     {
+        ///         ProjectId = user.ProjectId,
+        ///         Username = user.Username,
+        ///         MonthsUntilExpiration = 2,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetX509AuthenticationDatabaseUser.Invoke(new()
+        ///     {
+        ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
+        ///         Username = testX509AuthenticationDatabaseUser.Username,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
@@ -108,7 +200,7 @@ namespace Pulumi.Mongodbatlas
         /// SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
         /// 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
         /// iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-        /// -----END CERTIFICATE-----""
+        /// -----END CERTIFICATE-----\""
         /// ",
         ///     });
         /// 
@@ -135,7 +227,53 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Username = "myUsername",
+        ///         X509Type = "MANAGED",
+        ///         DatabaseName = "$external",
+        ///         Roles = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///         },
+        ///         Labels = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///             {
+        ///                 Key = "My Key",
+        ///                 Value = "My Value",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+        ///     {
+        ///         ProjectId = user.ProjectId,
+        ///         Username = user.Username,
+        ///         MonthsUntilExpiration = 2,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetX509AuthenticationDatabaseUser.Invoke(new()
+        ///     {
+        ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
+        ///         Username = testX509AuthenticationDatabaseUser.Username,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
@@ -164,7 +302,7 @@ namespace Pulumi.Mongodbatlas
         /// SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
         /// 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
         /// iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-        /// -----END CERTIFICATE-----""
+        /// -----END CERTIFICATE-----\""
         /// ",
         ///     });
         /// 

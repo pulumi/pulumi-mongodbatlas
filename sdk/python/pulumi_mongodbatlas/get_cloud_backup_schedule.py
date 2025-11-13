@@ -266,6 +266,56 @@ def get_cloud_backup_schedule(cluster_name: Optional[_builtins.str] = None,
     """
     ## Example Usage
 
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+        project_id="<PROJECT-ID>",
+        name="clusterTest",
+        cluster_type="REPLICASET",
+        backup_enabled=True,
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "AWS",
+                "region_name": "EU_CENTRAL_1",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
+    test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
+        project_id=my_cluster.project_id,
+        cluster_name=my_cluster.name,
+        reference_hour_of_day=3,
+        reference_minute_of_hour=45,
+        restore_window_days=4,
+        policy_item_daily={
+            "frequency_interval": 1,
+            "retention_unit": "days",
+            "retention_value": 14,
+        },
+        copy_settings=[{
+            "cloud_provider": "AWS",
+            "frequencies": [
+                "HOURLY",
+                "DAILY",
+                "WEEKLY",
+                "MONTHLY",
+                "YEARLY",
+                "ON_DEMAND",
+            ],
+            "region_name": "US_EAST_1",
+            "zone_id": my_cluster.replication_specs.apply(lambda replication_specs: [__item.zone_id[0] for __item in replication_specs]),
+            "should_copy_oplogs": False,
+        }])
+    test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
+        cluster_name=test_cloud_backup_schedule.cluster_name,
+        use_zone_id_for_copy_settings=True)
+    ```
+
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
     :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
@@ -304,6 +354,56 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[_builti
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupScheduleResult]:
     """
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+        project_id="<PROJECT-ID>",
+        name="clusterTest",
+        cluster_type="REPLICASET",
+        backup_enabled=True,
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "AWS",
+                "region_name": "EU_CENTRAL_1",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
+    test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
+        project_id=my_cluster.project_id,
+        cluster_name=my_cluster.name,
+        reference_hour_of_day=3,
+        reference_minute_of_hour=45,
+        restore_window_days=4,
+        policy_item_daily={
+            "frequency_interval": 1,
+            "retention_unit": "days",
+            "retention_value": 14,
+        },
+        copy_settings=[{
+            "cloud_provider": "AWS",
+            "frequencies": [
+                "HOURLY",
+                "DAILY",
+                "WEEKLY",
+                "MONTHLY",
+                "YEARLY",
+                "ON_DEMAND",
+            ],
+            "region_name": "US_EAST_1",
+            "zone_id": my_cluster.replication_specs.apply(lambda replication_specs: [__item.zone_id[0] for __item in replication_specs]),
+            "should_copy_oplogs": False,
+        }])
+    test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
+        cluster_name=test_cloud_backup_schedule.cluster_name,
+        use_zone_id_for_copy_settings=True)
+    ```
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.

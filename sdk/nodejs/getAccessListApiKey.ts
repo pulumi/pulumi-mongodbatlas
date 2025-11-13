@@ -10,6 +10,21 @@ import * as utilities from "./utilities";
  * ### Using CIDR Block
  *
  * ### Using IP Address
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testAccessListApiKey = new mongodbatlas.AccessListApiKey("test", {
+ *     orgId: "<ORG_ID>",
+ *     ipAddress: "2.3.4.5",
+ *     apiKey: "a29120e123cd",
+ * });
+ * const test = mongodbatlas.getAccessListApiKeyOutput({
+ *     orgId: testAccessListApiKey.orgId,
+ *     ipAddress: testAccessListApiKey.ipAddress,
+ *     apiKeyId: testAccessListApiKey.apiKeyId,
+ * });
+ * ```
  */
 export function getAccessListApiKey(args: GetAccessListApiKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessListApiKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -63,6 +78,21 @@ export interface GetAccessListApiKeyResult {
  * ### Using CIDR Block
  *
  * ### Using IP Address
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testAccessListApiKey = new mongodbatlas.AccessListApiKey("test", {
+ *     orgId: "<ORG_ID>",
+ *     ipAddress: "2.3.4.5",
+ *     apiKey: "a29120e123cd",
+ * });
+ * const test = mongodbatlas.getAccessListApiKeyOutput({
+ *     orgId: testAccessListApiKey.orgId,
+ *     ipAddress: testAccessListApiKey.ipAddress,
+ *     apiKeyId: testAccessListApiKey.apiKeyId,
+ * });
+ * ```
  */
 export function getAccessListApiKeyOutput(args: GetAccessListApiKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccessListApiKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

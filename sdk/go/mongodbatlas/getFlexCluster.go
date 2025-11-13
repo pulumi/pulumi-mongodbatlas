@@ -18,6 +18,8 @@ import (
 // **RECOMMENDATION:** We recommend using the `AdvancedCluster` data source instead of `FlexCluster` data source to retrieve Flex clusters. The `AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.
 //
 // ## Example Usage
+//
+// ### S
 func LookupFlexCluster(ctx *pulumi.Context, args *LookupFlexClusterArgs, opts ...pulumi.InvokeOption) (*LookupFlexClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFlexClusterResult

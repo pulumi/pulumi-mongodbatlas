@@ -20,13 +20,135 @@ import (
 //
 // ### S
 //
+// ### AWS Confluent Privatelink
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-confluent/sdk/go/confluent"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// staging, err := confluent.NewEnvironment(ctx, "staging", &confluent.EnvironmentArgs{
+// DisplayName: "Staging",
+// })
+// if err != nil {
+// return err
+// }
+// privateLink, err := confluent.NewNetwork(ctx, "private_link", &confluent.NetworkArgs{
+// DisplayName: "terraform-test-private-link-network-manual",
+// Cloud: "AWS",
+// Region: awsRegion,
+// ConnectionTypes: []string{
+// "PRIVATELINK",
+// },
+// Zones: std.Keys(ctx, map[string]interface{}{
+// "input": subnetsToPrivatelink,
+// }, nil).Result,
+// Environment: []map[string]interface{}{
+// map[string]interface{}{
+// "id": staging.Id,
+// },
+// },
+// DnsConfig: []map[string]interface{}{
+// map[string]interface{}{
+// "resolution": "PRIVATE",
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// _, err = confluent.NewPrivateLinkAccess(ctx, "aws", &confluent.PrivateLinkAccessArgs{
+// DisplayName: "example-private-link-access",
+// Aws: []map[string]interface{}{
+// map[string]interface{}{
+// "account": awsAccountId,
+// },
+// },
+// Environment: []map[string]interface{}{
+// map[string]interface{}{
+// "id": staging.Id,
+// },
+// },
+// Network: []map[string]interface{}{
+// map[string]interface{}{
+// "id": privateLink.Id,
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// _, err = confluent.NewKafkaCluster(ctx, "dedicated", &confluent.KafkaClusterArgs{
+// DisplayName: "example-dedicated-cluster",
+// Availability: "MULTI_ZONE",
+// Cloud: privateLink.Cloud,
+// Region: privateLink.Region,
+// Dedicated: []map[string]interface{}{
+// map[string]interface{}{
+// "cku": 2,
+// },
+// },
+// Environment: []map[string]interface{}{
+// map[string]interface{}{
+// "id": staging.Id,
+// },
+// },
+// Network: []map[string]interface{}{
+// map[string]interface{}{
+// "id": privateLink.Id,
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// test, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, "test", &mongodbatlas.StreamPrivatelinkEndpointArgs{
+// ProjectId: pulumi.Any(projectId),
+// DnsDomain: privateLink.DnsDomain,
+// ProviderName: pulumi.String("AWS"),
+// Region: pulumi.Any(awsRegion),
+// Vendor: pulumi.String("CONFLUENT"),
+// ServiceEndpointId: privateLink.Aws[0].PrivateLinkEndpointService,
+// DnsSubDomains: privateLink.ZonalSubdomains,
+// })
+// if err != nil {
+// return err
+// }
+// singularDatasource := test.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
+// return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.LookupStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
+// ProjectId: projectId,
+// Id: id,
+// }, nil))), nil
+// }).(mongodbatlas.GetStreamPrivatelinkEndpointResultOutput)
+// pluralDatasource, err := mongodbatlas.LookupStreamPrivatelinkEndpoints(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointsArgs{
+// ProjectId: projectId,
+// }, nil);
+// if err != nil {
+// return err
+// }
+// ctx.Export("interfaceEndpointId", singularDatasource.ApplyT(func(singularDatasource mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
+// return &singularDatasource.InterfaceEndpointId, nil
+// }).(pulumi.StringPtrOutput))
+// ctx.Export("interfaceEndpointIds", pulumi.StringArray(%!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ example.pp:74,11-58)))
+// return nil
+// })
+// }
+// ```
+//
 // ### AWS S3 Privatelink
 // ```go
 // package main
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //

@@ -197,6 +197,59 @@ def get_data_lake_pipeline(name: Optional[_builtins.str] = None,
 
     ### S
 
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    project_test = mongodbatlas.Project("projectTest",
+        name="NAME OF THE PROJECT",
+        org_id="ORGANIZATION ID")
+    automated_backup_test = mongodbatlas.AdvancedCluster("automated_backup_test",
+        project_id=project_id,
+        name="automated-backup-test",
+        cluster_type="REPLICASET",
+        backup_enabled=True,
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "GCP",
+                "region_name": "US_EAST_4",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
+    pipeline = mongodbatlas.DataLakePipeline("pipeline",
+        project_id=project_test.project_id,
+        name="DataLakePipelineName",
+        sink={
+            "type": "DLS",
+            "partition_fields": [{
+                "name": "access",
+                "order": 0,
+            }],
+        },
+        source={
+            "type": "ON_DEMAND_CPS",
+            "cluster_name": automated_backup_test.name,
+            "database_name": "sample_airbnb",
+            "collection_name": "listingsAndReviews",
+        },
+        transformations=[
+            {
+                "field": "test",
+                "type": "EXCLUDE",
+            },
+            {
+                "field": "test22",
+                "type": "EXCLUDE",
+            },
+        ])
+    pipeline_data_source = mongodbatlas.get_data_lake_pipeline_output(project_id=pipeline.project_id,
+        name=pipeline.name)
+    ```
+
 
     :param _builtins.str name: Name of the Atlas Data Lake Pipeline.
     :param _builtins.str project_id: The unique ID for the project to create a Data Lake Pipeline.
@@ -232,6 +285,59 @@ def get_data_lake_pipeline_output(name: Optional[pulumi.Input[_builtins.str]] = 
     ## Example Usage
 
     ### S
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    project_test = mongodbatlas.Project("projectTest",
+        name="NAME OF THE PROJECT",
+        org_id="ORGANIZATION ID")
+    automated_backup_test = mongodbatlas.AdvancedCluster("automated_backup_test",
+        project_id=project_id,
+        name="automated-backup-test",
+        cluster_type="REPLICASET",
+        backup_enabled=True,
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "GCP",
+                "region_name": "US_EAST_4",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
+    pipeline = mongodbatlas.DataLakePipeline("pipeline",
+        project_id=project_test.project_id,
+        name="DataLakePipelineName",
+        sink={
+            "type": "DLS",
+            "partition_fields": [{
+                "name": "access",
+                "order": 0,
+            }],
+        },
+        source={
+            "type": "ON_DEMAND_CPS",
+            "cluster_name": automated_backup_test.name,
+            "database_name": "sample_airbnb",
+            "collection_name": "listingsAndReviews",
+        },
+        transformations=[
+            {
+                "field": "test",
+                "type": "EXCLUDE",
+            },
+            {
+                "field": "test22",
+                "type": "EXCLUDE",
+            },
+        ])
+    pipeline_data_source = mongodbatlas.get_data_lake_pipeline_output(project_id=pipeline.project_id,
+        name=pipeline.name)
+    ```
 
 
     :param _builtins.str name: Name of the Atlas Data Lake Pipeline.
