@@ -21,6 +21,9 @@ namespace Pulumi.Mongodbatlas
         [Output("createdDate")]
         public Output<string> CreatedDate { get; private set; } = null!;
 
+        [Output("gcpConfigs")]
+        public Output<ImmutableArray<Outputs.CloudProviderAccessSetupGcpConfig>> GcpConfigs { get; private set; } = null!;
+
         [Output("lastUpdatedDate")]
         public Output<string> LastUpdatedDate { get; private set; } = null!;
 
@@ -119,6 +122,14 @@ namespace Pulumi.Mongodbatlas
 
         [Input("createdDate")]
         public Input<string>? CreatedDate { get; set; }
+
+        [Input("gcpConfigs")]
+        private InputList<Inputs.CloudProviderAccessSetupGcpConfigGetArgs>? _gcpConfigs;
+        public InputList<Inputs.CloudProviderAccessSetupGcpConfigGetArgs> GcpConfigs
+        {
+            get => _gcpConfigs ?? (_gcpConfigs = new InputList<Inputs.CloudProviderAccessSetupGcpConfigGetArgs>());
+            set => _gcpConfigs = value;
+        }
 
         [Input("lastUpdatedDate")]
         public Input<string>? LastUpdatedDate { get; set; }

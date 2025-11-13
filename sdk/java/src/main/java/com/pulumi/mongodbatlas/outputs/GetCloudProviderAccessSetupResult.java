@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupAwsConfig;
 import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupAzureConfig;
+import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupGcpConfig;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -15,10 +16,6 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetCloudProviderAccessSetupResult {
-    /**
-     * @return aws related role information
-     * 
-     */
     private Map<String,String> aws;
     /**
      * @return aws related role information
@@ -36,6 +33,11 @@ public final class GetCloudProviderAccessSetupResult {
      */
     private String createdDate;
     /**
+     * @return gcp related configurations
+     * 
+     */
+    private List<GetCloudProviderAccessSetupGcpConfig> gcpConfigs;
+    /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
@@ -50,10 +52,6 @@ public final class GetCloudProviderAccessSetupResult {
     private String roleId;
 
     private GetCloudProviderAccessSetupResult() {}
-    /**
-     * @return aws related role information
-     * 
-     */
     public Map<String,String> aws() {
         return this.aws;
     }
@@ -77,6 +75,13 @@ public final class GetCloudProviderAccessSetupResult {
      */
     public String createdDate() {
         return this.createdDate;
+    }
+    /**
+     * @return gcp related configurations
+     * 
+     */
+    public List<GetCloudProviderAccessSetupGcpConfig> gcpConfigs() {
+        return this.gcpConfigs;
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -115,6 +120,7 @@ public final class GetCloudProviderAccessSetupResult {
         private List<GetCloudProviderAccessSetupAwsConfig> awsConfigs;
         private @Nullable List<GetCloudProviderAccessSetupAzureConfig> azureConfigs;
         private String createdDate;
+        private List<GetCloudProviderAccessSetupGcpConfig> gcpConfigs;
         private String id;
         private String lastUpdatedDate;
         private String projectId;
@@ -127,6 +133,7 @@ public final class GetCloudProviderAccessSetupResult {
     	      this.awsConfigs = defaults.awsConfigs;
     	      this.azureConfigs = defaults.azureConfigs;
     	      this.createdDate = defaults.createdDate;
+    	      this.gcpConfigs = defaults.gcpConfigs;
     	      this.id = defaults.id;
     	      this.lastUpdatedDate = defaults.lastUpdatedDate;
     	      this.projectId = defaults.projectId;
@@ -169,6 +176,17 @@ public final class GetCloudProviderAccessSetupResult {
             }
             this.createdDate = createdDate;
             return this;
+        }
+        @CustomType.Setter
+        public Builder gcpConfigs(List<GetCloudProviderAccessSetupGcpConfig> gcpConfigs) {
+            if (gcpConfigs == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupResult", "gcpConfigs");
+            }
+            this.gcpConfigs = gcpConfigs;
+            return this;
+        }
+        public Builder gcpConfigs(GetCloudProviderAccessSetupGcpConfig... gcpConfigs) {
+            return gcpConfigs(List.of(gcpConfigs));
         }
         @CustomType.Setter
         public Builder id(String id) {
@@ -216,6 +234,7 @@ public final class GetCloudProviderAccessSetupResult {
             _resultValue.awsConfigs = awsConfigs;
             _resultValue.azureConfigs = azureConfigs;
             _resultValue.createdDate = createdDate;
+            _resultValue.gcpConfigs = gcpConfigs;
             _resultValue.id = id;
             _resultValue.lastUpdatedDate = lastUpdatedDate;
             _resultValue.projectId = projectId;

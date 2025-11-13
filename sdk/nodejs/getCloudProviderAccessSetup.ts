@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
  *
- * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+ * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -44,6 +44,23 @@ import * as utilities from "./utilities";
  *         servicePrincipalId: "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
  *         tenantId: "91402384-d71e-22f5-22dd-759e272cdc1c",
  *     }],
+ * });
+ * const singleSetup = mongodbatlas.getCloudProviderAccessSetupOutput({
+ *     projectId: testRole.projectId,
+ *     providerName: testRole.providerName,
+ *     roleId: testRole.roleId,
+ * });
+ * ```
+ *
+ * ### With GCP
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("test_role", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "GCP",
  * });
  * const singleSetup = mongodbatlas.getCloudProviderAccessSetupOutput({
  *     projectId: testRole.projectId,
@@ -75,11 +92,11 @@ export interface GetCloudProviderAccessSetupArgs {
      */
     projectId: string;
     /**
-     * cloud provider name, currently only AWS is supported
+     * cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
      */
     providerName: string;
     /**
-     * unique role id among all the aws roles provided by mongodb atlas
+     * unique role id among all the roles provided by MongoDB Atlas.
      */
     roleId: string;
 }
@@ -88,9 +105,6 @@ export interface GetCloudProviderAccessSetupArgs {
  * A collection of values returned by getCloudProviderAccessSetup.
  */
 export interface GetCloudProviderAccessSetupResult {
-    /**
-     * aws related role information
-     */
     readonly aws: {[key: string]: string};
     /**
      * aws related role information
@@ -104,6 +118,10 @@ export interface GetCloudProviderAccessSetupResult {
      * Date on which this role was created.
      */
     readonly createdDate: string;
+    /**
+     * gcp related configurations
+     */
+    readonly gcpConfigs: outputs.GetCloudProviderAccessSetupGcpConfig[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -119,7 +137,7 @@ export interface GetCloudProviderAccessSetupResult {
 /**
  * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
  *
- * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+ * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -161,6 +179,23 @@ export interface GetCloudProviderAccessSetupResult {
  *     roleId: testRole.roleId,
  * });
  * ```
+ *
+ * ### With GCP
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("test_role", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "GCP",
+ * });
+ * const singleSetup = mongodbatlas.getCloudProviderAccessSetupOutput({
+ *     projectId: testRole.projectId,
+ *     providerName: testRole.providerName,
+ *     roleId: testRole.roleId,
+ * });
+ * ```
  */
 export function getCloudProviderAccessSetupOutput(args: GetCloudProviderAccessSetupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudProviderAccessSetupResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -185,11 +220,11 @@ export interface GetCloudProviderAccessSetupOutputArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * cloud provider name, currently only AWS is supported
+     * cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
      */
     providerName: pulumi.Input<string>;
     /**
-     * unique role id among all the aws roles provided by mongodb atlas
+     * unique role id among all the roles provided by MongoDB Atlas.
      */
     roleId: pulumi.Input<string>;
 }

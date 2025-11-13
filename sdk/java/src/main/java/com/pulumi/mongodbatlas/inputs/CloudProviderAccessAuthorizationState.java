@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAzureArgs;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationFeatureUsageArgs;
+import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationGcpArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +48,13 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
         return Optional.ofNullable(this.featureUsages);
     }
 
+    @Import(name="gcps")
+    private @Nullable Output<List<CloudProviderAccessAuthorizationGcpArgs>> gcps;
+
+    public Optional<Output<List<CloudProviderAccessAuthorizationGcpArgs>>> gcps() {
+        return Optional.ofNullable(this.gcps);
+    }
+
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
@@ -68,6 +76,7 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
         this.aws = $.aws;
         this.azure = $.azure;
         this.featureUsages = $.featureUsages;
+        this.gcps = $.gcps;
         this.projectId = $.projectId;
         this.roleId = $.roleId;
     }
@@ -128,6 +137,19 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
 
         public Builder featureUsages(CloudProviderAccessAuthorizationFeatureUsageArgs... featureUsages) {
             return featureUsages(List.of(featureUsages));
+        }
+
+        public Builder gcps(@Nullable Output<List<CloudProviderAccessAuthorizationGcpArgs>> gcps) {
+            $.gcps = gcps;
+            return this;
+        }
+
+        public Builder gcps(List<CloudProviderAccessAuthorizationGcpArgs> gcps) {
+            return gcps(Output.of(gcps));
+        }
+
+        public Builder gcps(CloudProviderAccessAuthorizationGcpArgs... gcps) {
+            return gcps(List.of(gcps));
         }
 
         public Builder projectId(@Nullable Output<String> projectId) {

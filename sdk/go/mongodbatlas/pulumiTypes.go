@@ -6921,6 +6921,100 @@ func (o CloudProviderAccessAuthorizationFeatureUsageArrayOutput) Index(i pulumi.
 	}).(CloudProviderAccessAuthorizationFeatureUsageOutput)
 }
 
+type CloudProviderAccessAuthorizationGcp struct {
+	ServiceAccountForAtlas *string `pulumi:"serviceAccountForAtlas"`
+}
+
+// CloudProviderAccessAuthorizationGcpInput is an input type that accepts CloudProviderAccessAuthorizationGcpArgs and CloudProviderAccessAuthorizationGcpOutput values.
+// You can construct a concrete instance of `CloudProviderAccessAuthorizationGcpInput` via:
+//
+//	CloudProviderAccessAuthorizationGcpArgs{...}
+type CloudProviderAccessAuthorizationGcpInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessAuthorizationGcpOutput() CloudProviderAccessAuthorizationGcpOutput
+	ToCloudProviderAccessAuthorizationGcpOutputWithContext(context.Context) CloudProviderAccessAuthorizationGcpOutput
+}
+
+type CloudProviderAccessAuthorizationGcpArgs struct {
+	ServiceAccountForAtlas pulumi.StringPtrInput `pulumi:"serviceAccountForAtlas"`
+}
+
+func (CloudProviderAccessAuthorizationGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessAuthorizationGcp)(nil)).Elem()
+}
+
+func (i CloudProviderAccessAuthorizationGcpArgs) ToCloudProviderAccessAuthorizationGcpOutput() CloudProviderAccessAuthorizationGcpOutput {
+	return i.ToCloudProviderAccessAuthorizationGcpOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessAuthorizationGcpArgs) ToCloudProviderAccessAuthorizationGcpOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationGcpOutput)
+}
+
+// CloudProviderAccessAuthorizationGcpArrayInput is an input type that accepts CloudProviderAccessAuthorizationGcpArray and CloudProviderAccessAuthorizationGcpArrayOutput values.
+// You can construct a concrete instance of `CloudProviderAccessAuthorizationGcpArrayInput` via:
+//
+//	CloudProviderAccessAuthorizationGcpArray{ CloudProviderAccessAuthorizationGcpArgs{...} }
+type CloudProviderAccessAuthorizationGcpArrayInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessAuthorizationGcpArrayOutput() CloudProviderAccessAuthorizationGcpArrayOutput
+	ToCloudProviderAccessAuthorizationGcpArrayOutputWithContext(context.Context) CloudProviderAccessAuthorizationGcpArrayOutput
+}
+
+type CloudProviderAccessAuthorizationGcpArray []CloudProviderAccessAuthorizationGcpInput
+
+func (CloudProviderAccessAuthorizationGcpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessAuthorizationGcp)(nil)).Elem()
+}
+
+func (i CloudProviderAccessAuthorizationGcpArray) ToCloudProviderAccessAuthorizationGcpArrayOutput() CloudProviderAccessAuthorizationGcpArrayOutput {
+	return i.ToCloudProviderAccessAuthorizationGcpArrayOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessAuthorizationGcpArray) ToCloudProviderAccessAuthorizationGcpArrayOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationGcpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationGcpArrayOutput)
+}
+
+type CloudProviderAccessAuthorizationGcpOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessAuthorizationGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessAuthorizationGcp)(nil)).Elem()
+}
+
+func (o CloudProviderAccessAuthorizationGcpOutput) ToCloudProviderAccessAuthorizationGcpOutput() CloudProviderAccessAuthorizationGcpOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationGcpOutput) ToCloudProviderAccessAuthorizationGcpOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationGcpOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationGcpOutput) ServiceAccountForAtlas() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationGcp) *string { return v.ServiceAccountForAtlas }).(pulumi.StringPtrOutput)
+}
+
+type CloudProviderAccessAuthorizationGcpArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessAuthorizationGcpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessAuthorizationGcp)(nil)).Elem()
+}
+
+func (o CloudProviderAccessAuthorizationGcpArrayOutput) ToCloudProviderAccessAuthorizationGcpArrayOutput() CloudProviderAccessAuthorizationGcpArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationGcpArrayOutput) ToCloudProviderAccessAuthorizationGcpArrayOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationGcpArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationGcpArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessAuthorizationGcpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessAuthorizationGcp {
+		return vs[0].([]CloudProviderAccessAuthorizationGcp)[vs[1].(int)]
+	}).(CloudProviderAccessAuthorizationGcpOutput)
+}
+
 type CloudProviderAccessSetupAwsConfig struct {
 	AtlasAssumedRoleExternalId *string `pulumi:"atlasAssumedRoleExternalId"`
 	AtlasAwsAccountArn         *string `pulumi:"atlasAwsAccountArn"`
@@ -7125,6 +7219,106 @@ func (o CloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessSetupAzureConfig {
 		return vs[0].([]CloudProviderAccessSetupAzureConfig)[vs[1].(int)]
 	}).(CloudProviderAccessSetupAzureConfigOutput)
+}
+
+type CloudProviderAccessSetupGcpConfig struct {
+	ServiceAccountForAtlas *string `pulumi:"serviceAccountForAtlas"`
+	Status                 *string `pulumi:"status"`
+}
+
+// CloudProviderAccessSetupGcpConfigInput is an input type that accepts CloudProviderAccessSetupGcpConfigArgs and CloudProviderAccessSetupGcpConfigOutput values.
+// You can construct a concrete instance of `CloudProviderAccessSetupGcpConfigInput` via:
+//
+//	CloudProviderAccessSetupGcpConfigArgs{...}
+type CloudProviderAccessSetupGcpConfigInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessSetupGcpConfigOutput() CloudProviderAccessSetupGcpConfigOutput
+	ToCloudProviderAccessSetupGcpConfigOutputWithContext(context.Context) CloudProviderAccessSetupGcpConfigOutput
+}
+
+type CloudProviderAccessSetupGcpConfigArgs struct {
+	ServiceAccountForAtlas pulumi.StringPtrInput `pulumi:"serviceAccountForAtlas"`
+	Status                 pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (CloudProviderAccessSetupGcpConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessSetupGcpConfig)(nil)).Elem()
+}
+
+func (i CloudProviderAccessSetupGcpConfigArgs) ToCloudProviderAccessSetupGcpConfigOutput() CloudProviderAccessSetupGcpConfigOutput {
+	return i.ToCloudProviderAccessSetupGcpConfigOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessSetupGcpConfigArgs) ToCloudProviderAccessSetupGcpConfigOutputWithContext(ctx context.Context) CloudProviderAccessSetupGcpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupGcpConfigOutput)
+}
+
+// CloudProviderAccessSetupGcpConfigArrayInput is an input type that accepts CloudProviderAccessSetupGcpConfigArray and CloudProviderAccessSetupGcpConfigArrayOutput values.
+// You can construct a concrete instance of `CloudProviderAccessSetupGcpConfigArrayInput` via:
+//
+//	CloudProviderAccessSetupGcpConfigArray{ CloudProviderAccessSetupGcpConfigArgs{...} }
+type CloudProviderAccessSetupGcpConfigArrayInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessSetupGcpConfigArrayOutput() CloudProviderAccessSetupGcpConfigArrayOutput
+	ToCloudProviderAccessSetupGcpConfigArrayOutputWithContext(context.Context) CloudProviderAccessSetupGcpConfigArrayOutput
+}
+
+type CloudProviderAccessSetupGcpConfigArray []CloudProviderAccessSetupGcpConfigInput
+
+func (CloudProviderAccessSetupGcpConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessSetupGcpConfig)(nil)).Elem()
+}
+
+func (i CloudProviderAccessSetupGcpConfigArray) ToCloudProviderAccessSetupGcpConfigArrayOutput() CloudProviderAccessSetupGcpConfigArrayOutput {
+	return i.ToCloudProviderAccessSetupGcpConfigArrayOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessSetupGcpConfigArray) ToCloudProviderAccessSetupGcpConfigArrayOutputWithContext(ctx context.Context) CloudProviderAccessSetupGcpConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupGcpConfigArrayOutput)
+}
+
+type CloudProviderAccessSetupGcpConfigOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessSetupGcpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessSetupGcpConfig)(nil)).Elem()
+}
+
+func (o CloudProviderAccessSetupGcpConfigOutput) ToCloudProviderAccessSetupGcpConfigOutput() CloudProviderAccessSetupGcpConfigOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupGcpConfigOutput) ToCloudProviderAccessSetupGcpConfigOutputWithContext(ctx context.Context) CloudProviderAccessSetupGcpConfigOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupGcpConfigOutput) ServiceAccountForAtlas() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupGcpConfig) *string { return v.ServiceAccountForAtlas }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudProviderAccessSetupGcpConfigOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupGcpConfig) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type CloudProviderAccessSetupGcpConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessSetupGcpConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessSetupGcpConfig)(nil)).Elem()
+}
+
+func (o CloudProviderAccessSetupGcpConfigArrayOutput) ToCloudProviderAccessSetupGcpConfigArrayOutput() CloudProviderAccessSetupGcpConfigArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupGcpConfigArrayOutput) ToCloudProviderAccessSetupGcpConfigArrayOutputWithContext(ctx context.Context) CloudProviderAccessSetupGcpConfigArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupGcpConfigArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessSetupGcpConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessSetupGcpConfig {
+		return vs[0].([]CloudProviderAccessSetupGcpConfig)[vs[1].(int)]
+	}).(CloudProviderAccessSetupGcpConfigOutput)
 }
 
 type ClusterAdvancedConfiguration struct {
@@ -11548,6 +11742,8 @@ type EncryptionAtRestGoogleCloudKmsConfig struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId *string `pulumi:"keyVersionResourceId"`
+	// Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+	RoleId *string `pulumi:"roleId"`
 	// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
 	ServiceAccountKey *string `pulumi:"serviceAccountKey"`
 	// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
@@ -11570,6 +11766,8 @@ type EncryptionAtRestGoogleCloudKmsConfigArgs struct {
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId pulumi.StringPtrInput `pulumi:"keyVersionResourceId"`
+	// Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+	RoleId pulumi.StringPtrInput `pulumi:"roleId"`
 	// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
 	ServiceAccountKey pulumi.StringPtrInput `pulumi:"serviceAccountKey"`
 	// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
@@ -11663,6 +11861,11 @@ func (o EncryptionAtRestGoogleCloudKmsConfigOutput) KeyVersionResourceId() pulum
 	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *string { return v.KeyVersionResourceId }).(pulumi.StringPtrOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+func (o EncryptionAtRestGoogleCloudKmsConfigOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *string { return v.RoleId }).(pulumi.StringPtrOutput)
+}
+
 // JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
 func (o EncryptionAtRestGoogleCloudKmsConfigOutput) ServiceAccountKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *string { return v.ServiceAccountKey }).(pulumi.StringPtrOutput)
@@ -11714,6 +11917,16 @@ func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) KeyVersionResourceId() pu
 			return nil
 		}
 		return v.KeyVersionResourceId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -30963,6 +31176,112 @@ func (o GetCloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInp
 	}).(GetCloudProviderAccessSetupAzureConfigOutput)
 }
 
+type GetCloudProviderAccessSetupGcpConfig struct {
+	// The GCP service account email that Atlas uses.
+	ServiceAccountForAtlas string `pulumi:"serviceAccountForAtlas"`
+	// The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+	Status string `pulumi:"status"`
+}
+
+// GetCloudProviderAccessSetupGcpConfigInput is an input type that accepts GetCloudProviderAccessSetupGcpConfigArgs and GetCloudProviderAccessSetupGcpConfigOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessSetupGcpConfigInput` via:
+//
+//	GetCloudProviderAccessSetupGcpConfigArgs{...}
+type GetCloudProviderAccessSetupGcpConfigInput interface {
+	pulumi.Input
+
+	ToGetCloudProviderAccessSetupGcpConfigOutput() GetCloudProviderAccessSetupGcpConfigOutput
+	ToGetCloudProviderAccessSetupGcpConfigOutputWithContext(context.Context) GetCloudProviderAccessSetupGcpConfigOutput
+}
+
+type GetCloudProviderAccessSetupGcpConfigArgs struct {
+	// The GCP service account email that Atlas uses.
+	ServiceAccountForAtlas pulumi.StringInput `pulumi:"serviceAccountForAtlas"`
+	// The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetCloudProviderAccessSetupGcpConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessSetupGcpConfig)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessSetupGcpConfigArgs) ToGetCloudProviderAccessSetupGcpConfigOutput() GetCloudProviderAccessSetupGcpConfigOutput {
+	return i.ToGetCloudProviderAccessSetupGcpConfigOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessSetupGcpConfigArgs) ToGetCloudProviderAccessSetupGcpConfigOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupGcpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessSetupGcpConfigOutput)
+}
+
+// GetCloudProviderAccessSetupGcpConfigArrayInput is an input type that accepts GetCloudProviderAccessSetupGcpConfigArray and GetCloudProviderAccessSetupGcpConfigArrayOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessSetupGcpConfigArrayInput` via:
+//
+//	GetCloudProviderAccessSetupGcpConfigArray{ GetCloudProviderAccessSetupGcpConfigArgs{...} }
+type GetCloudProviderAccessSetupGcpConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudProviderAccessSetupGcpConfigArrayOutput() GetCloudProviderAccessSetupGcpConfigArrayOutput
+	ToGetCloudProviderAccessSetupGcpConfigArrayOutputWithContext(context.Context) GetCloudProviderAccessSetupGcpConfigArrayOutput
+}
+
+type GetCloudProviderAccessSetupGcpConfigArray []GetCloudProviderAccessSetupGcpConfigInput
+
+func (GetCloudProviderAccessSetupGcpConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessSetupGcpConfig)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessSetupGcpConfigArray) ToGetCloudProviderAccessSetupGcpConfigArrayOutput() GetCloudProviderAccessSetupGcpConfigArrayOutput {
+	return i.ToGetCloudProviderAccessSetupGcpConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessSetupGcpConfigArray) ToGetCloudProviderAccessSetupGcpConfigArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupGcpConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessSetupGcpConfigArrayOutput)
+}
+
+type GetCloudProviderAccessSetupGcpConfigOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessSetupGcpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessSetupGcpConfig)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessSetupGcpConfigOutput) ToGetCloudProviderAccessSetupGcpConfigOutput() GetCloudProviderAccessSetupGcpConfigOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessSetupGcpConfigOutput) ToGetCloudProviderAccessSetupGcpConfigOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupGcpConfigOutput {
+	return o
+}
+
+// The GCP service account email that Atlas uses.
+func (o GetCloudProviderAccessSetupGcpConfigOutput) ServiceAccountForAtlas() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessSetupGcpConfig) string { return v.ServiceAccountForAtlas }).(pulumi.StringOutput)
+}
+
+// The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+func (o GetCloudProviderAccessSetupGcpConfigOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessSetupGcpConfig) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetCloudProviderAccessSetupGcpConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessSetupGcpConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessSetupGcpConfig)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessSetupGcpConfigArrayOutput) ToGetCloudProviderAccessSetupGcpConfigArrayOutput() GetCloudProviderAccessSetupGcpConfigArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessSetupGcpConfigArrayOutput) ToGetCloudProviderAccessSetupGcpConfigArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupGcpConfigArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessSetupGcpConfigArrayOutput) Index(i pulumi.IntInput) GetCloudProviderAccessSetupGcpConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudProviderAccessSetupGcpConfig {
+		return vs[0].([]GetCloudProviderAccessSetupGcpConfig)[vs[1].(int)]
+	}).(GetCloudProviderAccessSetupGcpConfigOutput)
+}
+
 type GetClusterAdvancedConfiguration struct {
 	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
@@ -38740,6 +39059,8 @@ type GetEncryptionAtRestGoogleCloudKmsConfig struct {
 	Enabled bool `pulumi:"enabled"`
 	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId string `pulumi:"keyVersionResourceId"`
+	// Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+	RoleId string `pulumi:"roleId"`
 	// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
 	ServiceAccountKey string `pulumi:"serviceAccountKey"`
 	// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
@@ -38762,6 +39083,8 @@ type GetEncryptionAtRestGoogleCloudKmsConfigArgs struct {
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId pulumi.StringInput `pulumi:"keyVersionResourceId"`
+	// Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
 	// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
 	ServiceAccountKey pulumi.StringInput `pulumi:"serviceAccountKey"`
 	// Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
@@ -38802,6 +39125,11 @@ func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) Enabled() pulumi.BoolOutp
 // Resource path that displays the key version resource ID for your Google Cloud KMS.
 func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) KeyVersionResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEncryptionAtRestGoogleCloudKmsConfig) string { return v.KeyVersionResourceId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestGoogleCloudKmsConfig) string { return v.RoleId }).(pulumi.StringOutput)
 }
 
 // JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
@@ -56585,10 +56913,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationAzurePtrInput)(nil)).Elem(), CloudProviderAccessAuthorizationAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationFeatureUsageInput)(nil)).Elem(), CloudProviderAccessAuthorizationFeatureUsageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationFeatureUsageArrayInput)(nil)).Elem(), CloudProviderAccessAuthorizationFeatureUsageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationGcpInput)(nil)).Elem(), CloudProviderAccessAuthorizationGcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationGcpArrayInput)(nil)).Elem(), CloudProviderAccessAuthorizationGcpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupAwsConfigInput)(nil)).Elem(), CloudProviderAccessSetupAwsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupAwsConfigArrayInput)(nil)).Elem(), CloudProviderAccessSetupAwsConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupAzureConfigInput)(nil)).Elem(), CloudProviderAccessSetupAzureConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupAzureConfigArrayInput)(nil)).Elem(), CloudProviderAccessSetupAzureConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupGcpConfigInput)(nil)).Elem(), CloudProviderAccessSetupGcpConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupGcpConfigArrayInput)(nil)).Elem(), CloudProviderAccessSetupGcpConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAdvancedConfigurationInput)(nil)).Elem(), ClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAdvancedConfigurationPtrInput)(nil)).Elem(), ClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterBiConnectorConfigInput)(nil)).Elem(), ClusterBiConnectorConfigArgs{})
@@ -56910,6 +57242,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessSetupAwsConfigArrayInput)(nil)).Elem(), GetCloudProviderAccessSetupAwsConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessSetupAzureConfigInput)(nil)).Elem(), GetCloudProviderAccessSetupAzureConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessSetupAzureConfigArrayInput)(nil)).Elem(), GetCloudProviderAccessSetupAzureConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessSetupGcpConfigInput)(nil)).Elem(), GetCloudProviderAccessSetupGcpConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessSetupGcpConfigArrayInput)(nil)).Elem(), GetCloudProviderAccessSetupGcpConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAdvancedConfigurationInput)(nil)).Elem(), GetClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAdvancedConfigurationArrayInput)(nil)).Elem(), GetClusterAdvancedConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterBiConnectorConfigInput)(nil)).Elem(), GetClusterBiConnectorConfigArgs{})
@@ -57367,10 +57701,14 @@ func init() {
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAzurePtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationFeatureUsageOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationFeatureUsageArrayOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationGcpOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationGcpArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsConfigOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsConfigArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessSetupAzureConfigOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessSetupAzureConfigArrayOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessSetupGcpConfigOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessSetupGcpConfigArrayOutput{})
 	pulumi.RegisterOutputType(ClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(ClusterAdvancedConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(ClusterBiConnectorConfigOutput{})
@@ -57692,6 +58030,8 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAwsConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAzureConfigOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAzureConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessSetupGcpConfigOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessSetupGcpConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(GetClusterAdvancedConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterBiConnectorConfigOutput{})

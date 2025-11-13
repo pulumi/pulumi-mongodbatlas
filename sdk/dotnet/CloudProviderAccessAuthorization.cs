@@ -24,6 +24,9 @@ namespace Pulumi.Mongodbatlas
         [Output("featureUsages")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessAuthorizationFeatureUsage>> FeatureUsages { get; private set; } = null!;
 
+        [Output("gcps")]
+        public Output<ImmutableArray<Outputs.CloudProviderAccessAuthorizationGcp>> Gcps { get; private set; } = null!;
+
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
@@ -111,6 +114,14 @@ namespace Pulumi.Mongodbatlas
         {
             get => _featureUsages ?? (_featureUsages = new InputList<Inputs.CloudProviderAccessAuthorizationFeatureUsageGetArgs>());
             set => _featureUsages = value;
+        }
+
+        [Input("gcps")]
+        private InputList<Inputs.CloudProviderAccessAuthorizationGcpGetArgs>? _gcps;
+        public InputList<Inputs.CloudProviderAccessAuthorizationGcpGetArgs> Gcps
+        {
+            get => _gcps ?? (_gcps = new InputList<Inputs.CloudProviderAccessAuthorizationGcpGetArgs>());
+            set => _gcps = value;
         }
 
         [Input("projectId")]

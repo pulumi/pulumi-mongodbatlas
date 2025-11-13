@@ -744,8 +744,8 @@ class EventTrigger(pulumi.CustomResource):
             config_collection="COLLECTION NAME",
             config_service_id="SERVICE ID",
             config_match=\"\"\"{
-          "updateDescription.updatedFields": {
-            "status": "blocked"
+          \\"updateDescription.updatedFields\\": {
+            \\"status\\": \\"blocked\\"
           }
         }
         \"\"\",
@@ -895,8 +895,8 @@ class EventTrigger(pulumi.CustomResource):
             config_collection="COLLECTION NAME",
             config_service_id="SERVICE ID",
             config_match=\"\"\"{
-          "updateDescription.updatedFields": {
-            "status": "blocked"
+          \\"updateDescription.updatedFields\\": {
+            \\"status\\": \\"blocked\\"
           }
         }
         \"\"\",

@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.Project;
  * import com.pulumi.mongodbatlas.ProjectArgs;
- * import com.pulumi.aws.vpcEndpoint;
- * import com.pulumi.aws.vpcEndpointArgs;
+ * import com.pulumi.aws.ec2.VpcEndpoint;
+ * import com.pulumi.aws.ec2.VpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
  * import java.util.List;
@@ -60,8 +60,8 @@ import javax.annotation.Nullable;
  *             .vpcId("vpc-7fc0a543")
  *             .serviceName("<SERVICE-NAME>")
  *             .vpcEndpointType("Interface")
- *             .subnetIds(List.of("subnet-de0406d2"))
- *             .securityGroupIds(List.of("sg-3f238186"))
+ *             .subnetIds("subnet-de0406d2")
+ *             .securityGroupIds("sg-3f238186")
  *             .build());
  * 
  *         var testPrivatelinkEndpointServiceDataFederationOnlineArchive = new PrivatelinkEndpointServiceDataFederationOnlineArchive("testPrivatelinkEndpointServiceDataFederationOnlineArchive", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
@@ -70,7 +70,7 @@ import javax.annotation.Nullable;
  *             .providerName("AWS")
  *             .comment("Test")
  *             .region("US_EAST_1")
- *             .customerEndpointDnsName(test.dnsEntry()[0].dnsName())
+ *             .customerEndpointDnsName(test.dnsEntries().applyValue(_dnsEntries -> _dnsEntries[0].dnsName()))
  *             .build());
  * 
  *     }

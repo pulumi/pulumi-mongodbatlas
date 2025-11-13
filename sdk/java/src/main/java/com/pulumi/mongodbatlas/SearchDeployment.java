@@ -31,6 +31,79 @@ import javax.annotation.Nullable;
  * 
  * ### S
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Project;
+ * import com.pulumi.mongodbatlas.ProjectArgs;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.SearchDeployment;
+ * import com.pulumi.mongodbatlas.SearchDeploymentArgs;
+ * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()
+ *             .name("project-name")
+ *             .orgId(orgId)
+ *             .build());
+ * 
+ *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
+ *             .projectId(exampleProject.id())
+ *             .name("ClusterExample")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .providerName("AWS")
+ *                     .priority(7)
+ *                     .regionName("US_EAST_1")
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()
+ *             .projectId(exampleProject.id())
+ *             .clusterName(exampleAdvancedCluster.name())
+ *             .specs(SearchDeploymentSpecArgs.builder()
+ *                 .instanceSize("S20_HIGHCPU_NVME")
+ *                 .nodeCount(2)
+ *                 .build())
+ *             .build());
+ * 
+ *         final var example = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
+ *             .projectId(exampleSearchDeployment.projectId())
+ *             .clusterName(exampleSearchDeployment.clusterName())
+ *             .build());
+ * 
+ *         ctx.export("mongodbatlasSearchDeploymentId", example.applyValue(_example -> _example.id()));
+ *         ctx.export("mongodbatlasSearchDeploymentEncryptionAtRestProvider", example.applyValue(_example -> _example.encryptionAtRestProvider()));
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.

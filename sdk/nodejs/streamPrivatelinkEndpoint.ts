@@ -13,6 +13,111 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
+ * ### AWS MSK Privatelink
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const vpc = new aws.ec2.Vpc("vpc", {cidrBlock: "192.168.0.0/22"});
+ * const azs = aws.getAvailabilityZones({
+ *     state: "available",
+ * });
+ * const subnetAz1 = new aws.ec2.Subnet("subnet_az1", {
+ *     availabilityZone: azs.then(azs => azs.names?.[0]),
+ *     cidrBlock: "192.168.0.0/24",
+ *     vpcId: vpc.id,
+ * });
+ * const subnetAz2 = new aws.ec2.Subnet("subnet_az2", {
+ *     availabilityZone: azs.then(azs => azs.names?.[1]),
+ *     cidrBlock: "192.168.1.0/24",
+ *     vpcId: vpc.id,
+ * });
+ * const sg = new aws.ec2.SecurityGroup("sg", {vpcId: vpc.id});
+ * const exampleConfiguration = new aws.msk.Configuration("example", {
+ *     name: `${mskClusterName}-msk-configuration`,
+ *     serverProperties: `auto.create.topics.enable=false
+ * default.replication.factor=3
+ * min.insync.replicas=2
+ * num.io.threads=8
+ * num.network.threads=5
+ * num.partitions=1
+ * num.replica.fetchers=2
+ * replica.lag.time.max.ms=30000
+ * socket.receive.buffer.bytes=102400
+ * socket.request.max.bytes=104857600
+ * socket.send.buffer.bytes=102400
+ * unclean.leader.election.enable=true
+ * allow.everyone.if.no.acl.found=false
+ * `,
+ * });
+ * const example = new aws.msk.Cluster("example", {
+ *     clusterName: mskClusterName,
+ *     kafkaVersion: "3.6.0",
+ *     numberOfBrokerNodes: 2,
+ *     brokerNodeGroupInfo: {
+ *         instanceType: "kafka.m5.large",
+ *         clientSubnets: [
+ *             subnetAz1.id,
+ *             subnetAz2.id,
+ *         ],
+ *         securityGroups: [sg.id],
+ *         connectivityInfo: {
+ *             vpcConnectivity: {
+ *                 clientAuthentication: {
+ *                     sasl: {
+ *                         scram: true,
+ *                     },
+ *                 },
+ *             },
+ *         },
+ *     },
+ *     clientAuthentication: {
+ *         sasl: {
+ *             scram: true,
+ *         },
+ *     },
+ *     configurationInfo: {
+ *         arn: exampleConfiguration.arn,
+ *         revision: exampleConfiguration.latestRevision,
+ *     },
+ * });
+ * const exampleClusterPolicy = new aws.msk.ClusterPolicy("example", {
+ *     clusterArn: example.arn,
+ *     policy: pulumi.jsonStringify({
+ *         Version: "2012-10-17",
+ *         Statement: [{
+ *             Effect: "Allow",
+ *             Principal: {
+ *                 AWS: `arn:aws:iam::${awsAccountId}:root`,
+ *             },
+ *             Action: [
+ *                 "kafka:CreateVpcConnection",
+ *                 "kafka:GetBootstrapBrokers",
+ *                 "kafka:DescribeCluster",
+ *                 "kafka:DescribeClusterV2",
+ *             ],
+ *             Resource: example.arn,
+ *         }],
+ *     }),
+ * });
+ * const exampleSingleScramSecretAssociation = new aws.msk.SingleScramSecretAssociation("example", {
+ *     clusterArn: example.arn,
+ *     secretArn: awsSecretArn,
+ * });
+ * const test = new mongodbatlas.StreamPrivatelinkEndpoint("test", {
+ *     projectId: projectId,
+ *     providerName: "AWS",
+ *     vendor: "MSK",
+ *     arn: example.arn,
+ * });
+ * const singularDatasource = test.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ *     projectId: projectId,
+ *     id: id,
+ * }));
+ * export const privatelinkEndpointId = singularDatasource.apply(singularDatasource => singularDatasource.id);
+ * ```
+ *
  * ### AWS S3 Privatelink
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -20,22 +125,22 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * // S3 bucket for stream data
- * const streamBucket = new aws.index.S3Bucket("stream_bucket", {
+ * const streamBucket = new aws.s3.Bucket("stream_bucket", {
  *     bucket: s3BucketName,
  *     forceDestroy: true,
  * });
- * const streamBucketVersioning = new aws.index.S3BucketVersioning("stream_bucket_versioning", {
+ * const streamBucketVersioning = new aws.s3.BucketVersioning("stream_bucket_versioning", {
  *     bucket: streamBucket.id,
- *     versioningConfiguration: [{
+ *     versioningConfiguration: {
  *         status: "Enabled",
- *     }],
+ *     },
  * });
- * const streamBucketEncryption = new aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption", {
+ * const streamBucketEncryption = new aws.s3.BucketServerSideEncryptionConfiguration("stream_bucket_encryption", {
  *     bucket: streamBucket.id,
- *     rule: [{
- *         applyServerSideEncryptionByDefault: [{
+ *     rules: [{
+ *         applyServerSideEncryptionByDefault: {
  *             sseAlgorithm: "AES256",
- *         }],
+ *         },
  *     }],
  * });
  * // PrivateLink for S3

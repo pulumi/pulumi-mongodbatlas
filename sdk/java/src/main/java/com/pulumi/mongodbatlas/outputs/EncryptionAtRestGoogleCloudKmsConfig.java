@@ -23,6 +23,11 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
      */
     private @Nullable String keyVersionResourceId;
     /**
+     * @return Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+     * 
+     */
+    private @Nullable String roleId;
+    /**
      * @return JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      * 
      */
@@ -47,6 +52,13 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
      */
     public Optional<String> keyVersionResourceId() {
         return Optional.ofNullable(this.keyVersionResourceId);
+    }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+     * 
+     */
+    public Optional<String> roleId() {
+        return Optional.ofNullable(this.roleId);
     }
     /**
      * @return JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
@@ -74,6 +86,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
     public static final class Builder {
         private @Nullable Boolean enabled;
         private @Nullable String keyVersionResourceId;
+        private @Nullable String roleId;
         private @Nullable String serviceAccountKey;
         private @Nullable Boolean valid;
         public Builder() {}
@@ -81,6 +94,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
     	      Objects.requireNonNull(defaults);
     	      this.enabled = defaults.enabled;
     	      this.keyVersionResourceId = defaults.keyVersionResourceId;
+    	      this.roleId = defaults.roleId;
     	      this.serviceAccountKey = defaults.serviceAccountKey;
     	      this.valid = defaults.valid;
         }
@@ -95,6 +109,12 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
         public Builder keyVersionResourceId(@Nullable String keyVersionResourceId) {
 
             this.keyVersionResourceId = keyVersionResourceId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder roleId(@Nullable String roleId) {
+
+            this.roleId = roleId;
             return this;
         }
         @CustomType.Setter
@@ -113,6 +133,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
             final var _resultValue = new EncryptionAtRestGoogleCloudKmsConfig();
             _resultValue.enabled = enabled;
             _resultValue.keyVersionResourceId = keyVersionResourceId;
+            _resultValue.roleId = roleId;
             _resultValue.serviceAccountKey = serviceAccountKey;
             _resultValue.valid = valid;
             return _resultValue;

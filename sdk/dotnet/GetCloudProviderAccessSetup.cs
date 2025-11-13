@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## # Data Source: mongodbatlas.CloudProviderAccessSetup
         /// 
-        /// `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+        /// `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -68,6 +68,33 @@ namespace Pulumi.Mongodbatlas
         ///                 TenantId = "91402384-d71e-22f5-22dd-759e272cdc1c",
         ///             },
         ///         },
+        ///     });
+        /// 
+        ///     var singleSetup = Mongodbatlas.GetCloudProviderAccessSetup.Invoke(new()
+        ///     {
+        ///         ProjectId = testRole.ProjectId,
+        ///         ProviderName = testRole.ProviderName,
+        ///         RoleId = testRole.RoleId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// 
+        /// ### With GCP
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
+        ///     {
+        ///         ProjectId = "64259ee860c43338194b0f8e",
+        ///         ProviderName = "GCP",
         ///     });
         /// 
         ///     var singleSetup = Mongodbatlas.GetCloudProviderAccessSetup.Invoke(new()
@@ -86,7 +113,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## # Data Source: mongodbatlas.CloudProviderAccessSetup
         /// 
-        /// `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+        /// `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -140,6 +167,33 @@ namespace Pulumi.Mongodbatlas
         ///                 TenantId = "91402384-d71e-22f5-22dd-759e272cdc1c",
         ///             },
         ///         },
+        ///     });
+        /// 
+        ///     var singleSetup = Mongodbatlas.GetCloudProviderAccessSetup.Invoke(new()
+        ///     {
+        ///         ProjectId = testRole.ProjectId,
+        ///         ProviderName = testRole.ProviderName,
+        ///         RoleId = testRole.RoleId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// 
+        /// ### With GCP
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
+        ///     {
+        ///         ProjectId = "64259ee860c43338194b0f8e",
+        ///         ProviderName = "GCP",
         ///     });
         /// 
         ///     var singleSetup = Mongodbatlas.GetCloudProviderAccessSetup.Invoke(new()
@@ -158,7 +212,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## # Data Source: mongodbatlas.CloudProviderAccessSetup
         /// 
-        /// `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+        /// `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -212,6 +266,33 @@ namespace Pulumi.Mongodbatlas
         ///                 TenantId = "91402384-d71e-22f5-22dd-759e272cdc1c",
         ///             },
         ///         },
+        ///     });
+        /// 
+        ///     var singleSetup = Mongodbatlas.GetCloudProviderAccessSetup.Invoke(new()
+        ///     {
+        ///         ProjectId = testRole.ProjectId,
+        ///         ProviderName = testRole.ProviderName,
+        ///         RoleId = testRole.RoleId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// 
+        /// ### With GCP
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
+        ///     {
+        ///         ProjectId = "64259ee860c43338194b0f8e",
+        ///         ProviderName = "GCP",
         ///     });
         /// 
         ///     var singleSetup = Mongodbatlas.GetCloudProviderAccessSetup.Invoke(new()
@@ -250,13 +331,13 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// cloud provider name, currently only AWS is supported
+        /// cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public string ProviderName { get; set; } = null!;
 
         /// <summary>
-        /// unique role id among all the aws roles provided by mongodb atlas
+        /// unique role id among all the roles provided by MongoDB Atlas.
         /// </summary>
         [Input("roleId", required: true)]
         public string RoleId { get; set; } = null!;
@@ -288,13 +369,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// cloud provider name, currently only AWS is supported
+        /// cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
 
         /// <summary>
-        /// unique role id among all the aws roles provided by mongodb atlas
+        /// unique role id among all the roles provided by MongoDB Atlas.
         /// </summary>
         [Input("roleId", required: true)]
         public Input<string> RoleId { get; set; } = null!;
@@ -309,9 +390,6 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetCloudProviderAccessSetupResult
     {
-        /// <summary>
-        /// aws related role information
-        /// </summary>
         public readonly ImmutableDictionary<string, string> Aws;
         /// <summary>
         /// aws related role information
@@ -325,6 +403,10 @@ namespace Pulumi.Mongodbatlas
         /// Date on which this role was created.
         /// </summary>
         public readonly string CreatedDate;
+        /// <summary>
+        /// gcp related configurations
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetCloudProviderAccessSetupGcpConfigResult> GcpConfigs;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -347,6 +429,8 @@ namespace Pulumi.Mongodbatlas
 
             string createdDate,
 
+            ImmutableArray<Outputs.GetCloudProviderAccessSetupGcpConfigResult> gcpConfigs,
+
             string id,
 
             string lastUpdatedDate,
@@ -361,6 +445,7 @@ namespace Pulumi.Mongodbatlas
             AwsConfigs = awsConfigs;
             AzureConfigs = azureConfigs;
             CreatedDate = createdDate;
+            GcpConfigs = gcpConfigs;
             Id = id;
             LastUpdatedDate = lastUpdatedDate;
             ProjectId = projectId;

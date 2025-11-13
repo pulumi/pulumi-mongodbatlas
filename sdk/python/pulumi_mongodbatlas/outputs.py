@@ -55,8 +55,10 @@ __all__ = [
     'CloudProviderAccessAuthorizationAws',
     'CloudProviderAccessAuthorizationAzure',
     'CloudProviderAccessAuthorizationFeatureUsage',
+    'CloudProviderAccessAuthorizationGcp',
     'CloudProviderAccessSetupAwsConfig',
     'CloudProviderAccessSetupAzureConfig',
+    'CloudProviderAccessSetupGcpConfig',
     'ClusterAdvancedConfiguration',
     'ClusterBiConnectorConfig',
     'ClusterConnectionString',
@@ -221,6 +223,7 @@ __all__ = [
     'GetCloudBackupSnapshotsResultMemberResult',
     'GetCloudProviderAccessSetupAwsConfigResult',
     'GetCloudProviderAccessSetupAzureConfigResult',
+    'GetCloudProviderAccessSetupGcpConfigResult',
     'GetClusterAdvancedConfigurationResult',
     'GetClusterBiConnectorConfigResult',
     'GetClusterConnectionStringResult',
@@ -3904,6 +3907,36 @@ class CloudProviderAccessAuthorizationFeatureUsage(dict):
 
 
 @pulumi.output_type
+class CloudProviderAccessAuthorizationGcp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "serviceAccountForAtlas":
+            suggest = "service_account_for_atlas"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessAuthorizationGcp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderAccessAuthorizationGcp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderAccessAuthorizationGcp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 service_account_for_atlas: Optional[_builtins.str] = None):
+        if service_account_for_atlas is not None:
+            pulumi.set(__self__, "service_account_for_atlas", service_account_for_atlas)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountForAtlas")
+    def service_account_for_atlas(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "service_account_for_atlas")
+
+
+@pulumi.output_type
 class CloudProviderAccessSetupAwsConfig(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3988,6 +4021,44 @@ class CloudProviderAccessSetupAzureConfig(dict):
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> _builtins.str:
         return pulumi.get(self, "tenant_id")
+
+
+@pulumi.output_type
+class CloudProviderAccessSetupGcpConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "serviceAccountForAtlas":
+            suggest = "service_account_for_atlas"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessSetupGcpConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderAccessSetupGcpConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderAccessSetupGcpConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 service_account_for_atlas: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None):
+        if service_account_for_atlas is not None:
+            pulumi.set(__self__, "service_account_for_atlas", service_account_for_atlas)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountForAtlas")
+    def service_account_for_atlas(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "service_account_for_atlas")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -6188,6 +6259,8 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
         suggest = None
         if key == "keyVersionResourceId":
             suggest = "key_version_resource_id"
+        elif key == "roleId":
+            suggest = "role_id"
         elif key == "serviceAccountKey":
             suggest = "service_account_key"
 
@@ -6205,11 +6278,13 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
     def __init__(__self__, *,
                  enabled: Optional[_builtins.bool] = None,
                  key_version_resource_id: Optional[_builtins.str] = None,
+                 role_id: Optional[_builtins.str] = None,
                  service_account_key: Optional[_builtins.str] = None,
                  valid: Optional[_builtins.bool] = None):
         """
         :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         :param _builtins.str key_version_resource_id: Resource path that displays the key version resource ID for your Google Cloud KMS.
+        :param _builtins.str role_id: Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
         :param _builtins.str service_account_key: JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
         :param _builtins.bool valid: Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
         """
@@ -6217,6 +6292,8 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
             pulumi.set(__self__, "enabled", enabled)
         if key_version_resource_id is not None:
             pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
         if service_account_key is not None:
             pulumi.set(__self__, "service_account_key", service_account_key)
         if valid is not None:
@@ -6237,6 +6314,14 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
         Resource path that displays the key version resource ID for your Google Cloud KMS.
         """
         return pulumi.get(self, "key_version_resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[_builtins.str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+        """
+        return pulumi.get(self, "role_id")
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountKey")
@@ -14546,6 +14631,35 @@ class GetCloudProviderAccessSetupAzureConfigResult(dict):
 
 
 @pulumi.output_type
+class GetCloudProviderAccessSetupGcpConfigResult(dict):
+    def __init__(__self__, *,
+                 service_account_for_atlas: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str service_account_for_atlas: The GCP service account email that Atlas uses.
+        :param _builtins.str status: The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+        """
+        pulumi.set(__self__, "service_account_for_atlas", service_account_for_atlas)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountForAtlas")
+    def service_account_for_atlas(self) -> _builtins.str:
+        """
+        The GCP service account email that Atlas uses.
+        """
+        return pulumi.get(self, "service_account_for_atlas")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetClusterAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: _builtins.int,
@@ -18068,16 +18182,19 @@ class GetEncryptionAtRestGoogleCloudKmsConfigResult(dict):
     def __init__(__self__, *,
                  enabled: _builtins.bool,
                  key_version_resource_id: _builtins.str,
+                 role_id: _builtins.str,
                  service_account_key: _builtins.str,
                  valid: _builtins.bool):
         """
         :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         :param _builtins.str key_version_resource_id: Resource path that displays the key version resource ID for your Google Cloud KMS.
+        :param _builtins.str role_id: Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
         :param _builtins.str service_account_key: JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
         :param _builtins.bool valid: Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
+        pulumi.set(__self__, "role_id", role_id)
         pulumi.set(__self__, "service_account_key", service_account_key)
         pulumi.set(__self__, "valid", valid)
 
@@ -18096,6 +18213,14 @@ class GetEncryptionAtRestGoogleCloudKmsConfigResult(dict):
         Resource path that displays the key version resource ID for your Google Cloud KMS.
         """
         return pulumi.get(self, "key_version_resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+        """
+        return pulumi.get(self, "role_id")
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountKey")

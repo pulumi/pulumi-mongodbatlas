@@ -55,9 +55,63 @@ import * as utilities from "./utilities";
  * });
  * // the following assumes an AWS provider is configured
  * // Accept the peering connection request
- * const peer = new aws.index.VpcPeeringConnectionAccepter("peer", {
+ * const peer = new aws.ec2.VpcPeeringConnectionAccepter("peer", {
  *     vpcPeeringConnectionId: testNetworkPeering.connectionId,
  *     autoAccept: true,
+ * });
+ * ```
+ *
+ * ### Example with GCP
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // Container example provided but not always required, 
+ * // see network_container documentation for details. 
+ * const test = new mongodbatlas.NetworkContainer("test", {
+ *     projectId: projectId,
+ *     atlasCidrBlock: "10.8.0.0/21",
+ *     providerName: "GCP",
+ * });
+ * // Create the peering connection request
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
+ *     projectId: projectId,
+ *     containerId: test.containerId,
+ *     providerName: "GCP",
+ *     gcpProjectId: GCP_PROJECT_ID,
+ *     networkName: "default",
+ * });
+ * // the following assumes a GCP provider is configured
+ * const _default = gcp.compute.getNetwork({
+ *     name: "default",
+ * });
+ * // Create the GCP peer
+ * const peering = new gcp.compute.NetworkPeering("peering", {
+ *     name: "peering-gcp-terraform-test",
+ *     network: _default.then(_default => _default.selfLink),
+ *     peerNetwork: pulumi.interpolate`https://www.googleapis.com/compute/v1/projects/${testNetworkPeering.atlasGcpProjectId}/global/networks/${testNetworkPeering.atlasVpcName}`,
+ * });
+ * // Create the cluster once the peering connection is completed
+ * const testAdvancedCluster = new mongodbatlas.AdvancedCluster("test", {
+ *     projectId: projectId,
+ *     name: "terraform-manually-test",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "GCP",
+ *             regionName: "US_EAST_4",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * }, {
+ *     dependsOn: [peering],
  * });
  * ```
  *

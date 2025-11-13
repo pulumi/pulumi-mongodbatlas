@@ -66,6 +66,7 @@ class _CloudProviderAccessSetupState:
                  aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]] = None,
                  azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None,
                  created_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcp_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupGcpConfigArgs']]]] = None,
                  last_updated_date: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -79,6 +80,8 @@ class _CloudProviderAccessSetupState:
             pulumi.set(__self__, "azure_configs", azure_configs)
         if created_date is not None:
             pulumi.set(__self__, "created_date", created_date)
+        if gcp_configs is not None:
+            pulumi.set(__self__, "gcp_configs", gcp_configs)
         if last_updated_date is not None:
             pulumi.set(__self__, "last_updated_date", last_updated_date)
         if project_id is not None:
@@ -114,6 +117,15 @@ class _CloudProviderAccessSetupState:
     @created_date.setter
     def created_date(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "created_date", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gcpConfigs")
+    def gcp_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupGcpConfigArgs']]]]:
+        return pulumi.get(self, "gcp_configs")
+
+    @gcp_configs.setter
+    def gcp_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupGcpConfigArgs']]]]):
+        pulumi.set(self, "gcp_configs", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUpdatedDate")
@@ -211,6 +223,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
             __props__.__dict__["provider_name"] = provider_name
             __props__.__dict__["aws_configs"] = None
             __props__.__dict__["created_date"] = None
+            __props__.__dict__["gcp_configs"] = None
             __props__.__dict__["last_updated_date"] = None
             __props__.__dict__["role_id"] = None
         super(CloudProviderAccessSetup, __self__).__init__(
@@ -226,6 +239,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
             aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAwsConfigArgs', 'CloudProviderAccessSetupAwsConfigArgsDict']]]]] = None,
             azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
             created_date: Optional[pulumi.Input[_builtins.str]] = None,
+            gcp_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupGcpConfigArgs', 'CloudProviderAccessSetupGcpConfigArgsDict']]]]] = None,
             last_updated_date: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             provider_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -245,6 +259,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         __props__.__dict__["aws_configs"] = aws_configs
         __props__.__dict__["azure_configs"] = azure_configs
         __props__.__dict__["created_date"] = created_date
+        __props__.__dict__["gcp_configs"] = gcp_configs
         __props__.__dict__["last_updated_date"] = last_updated_date
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["provider_name"] = provider_name
@@ -265,6 +280,11 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     @pulumi.getter(name="createdDate")
     def created_date(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "created_date")
+
+    @_builtins.property
+    @pulumi.getter(name="gcpConfigs")
+    def gcp_configs(self) -> pulumi.Output[Sequence['outputs.CloudProviderAccessSetupGcpConfig']]:
+        return pulumi.get(self, "gcp_configs")
 
     @_builtins.property
     @pulumi.getter(name="lastUpdatedDate")

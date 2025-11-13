@@ -74,7 +74,47 @@ import * as utilities from "./utilities";
  *
  * ### Example Kafka SASL SSL Connection
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.StreamConnection("test", {
+ *     projectId: projectId,
+ *     instanceName: "NewInstance",
+ *     connectionName: "KafkaConnection",
+ *     type: "Kafka",
+ *     authentication: {
+ *         mechanism: "PLAIN",
+ *         username: "user",
+ *         password: "somepassword",
+ *     },
+ *     security: {
+ *         protocol: "SASL_SSL",
+ *         brokerPublicCertificate: "-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----",
+ *     },
+ *     config: {
+ *         "auto.offset.reset": "latest",
+ *     },
+ *     bootstrapServers: "localhost:9091,localhost:9092",
+ * });
+ * ```
+ *
  * ### Example AWSLambda Connection
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.StreamConnection("test", {
+ *     projectId: projectId,
+ *     instanceName: "NewInstance",
+ *     connectionName: "AWSLambdaConnection",
+ *     type: "AWSLambda",
+ *     aws: {
+ *         roleArn: "arn:aws:iam::<AWS_ACCOUNT_ID>:role/lambdaRole",
+ *     },
+ * });
+ * ```
  *
  * ### Example Https Connection
  *
