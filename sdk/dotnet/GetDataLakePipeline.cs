@@ -21,6 +21,96 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var projectTest = new Mongodbatlas.Project("projectTest", new()
+        ///     {
+        ///         Name = "NAME OF THE PROJECT",
+        ///         OrgId = "ORGANIZATION ID",
+        ///     });
+        /// 
+        ///     var automatedBackupTest = new Mongodbatlas.AdvancedCluster("automated_backup_test", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = "automated-backup-test",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "GCP",
+        ///                         RegionName = "US_EAST_4",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var pipeline = new Mongodbatlas.DataLakePipeline("pipeline", new()
+        ///     {
+        ///         ProjectId = projectTest.ProjectId,
+        ///         Name = "DataLakePipelineName",
+        ///         Sink = new Mongodbatlas.Inputs.DataLakePipelineSinkArgs
+        ///         {
+        ///             Type = "DLS",
+        ///             PartitionFields = new[]
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DataLakePipelineSinkPartitionFieldArgs
+        ///                 {
+        ///                     Name = "access",
+        ///                     Order = 0,
+        ///                 },
+        ///             },
+        ///         },
+        ///         Source = new Mongodbatlas.Inputs.DataLakePipelineSourceArgs
+        ///         {
+        ///             Type = "ON_DEMAND_CPS",
+        ///             ClusterName = automatedBackupTest.Name,
+        ///             DatabaseName = "sample_airbnb",
+        ///             CollectionName = "listingsAndReviews",
+        ///         },
+        ///         Transformations = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test22",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var pipelineDataSource = Mongodbatlas.GetDataLakePipeline.Invoke(new()
+        ///     {
+        ///         ProjectId = pipeline.ProjectId,
+        ///         Name = pipeline.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetDataLakePipelineResult> InvokeAsync(GetDataLakePipelineArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataLakePipelineResult>("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", args ?? new GetDataLakePipelineArgs(), options.WithDefaults());
@@ -35,6 +125,96 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var projectTest = new Mongodbatlas.Project("projectTest", new()
+        ///     {
+        ///         Name = "NAME OF THE PROJECT",
+        ///         OrgId = "ORGANIZATION ID",
+        ///     });
+        /// 
+        ///     var automatedBackupTest = new Mongodbatlas.AdvancedCluster("automated_backup_test", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = "automated-backup-test",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "GCP",
+        ///                         RegionName = "US_EAST_4",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var pipeline = new Mongodbatlas.DataLakePipeline("pipeline", new()
+        ///     {
+        ///         ProjectId = projectTest.ProjectId,
+        ///         Name = "DataLakePipelineName",
+        ///         Sink = new Mongodbatlas.Inputs.DataLakePipelineSinkArgs
+        ///         {
+        ///             Type = "DLS",
+        ///             PartitionFields = new[]
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DataLakePipelineSinkPartitionFieldArgs
+        ///                 {
+        ///                     Name = "access",
+        ///                     Order = 0,
+        ///                 },
+        ///             },
+        ///         },
+        ///         Source = new Mongodbatlas.Inputs.DataLakePipelineSourceArgs
+        ///         {
+        ///             Type = "ON_DEMAND_CPS",
+        ///             ClusterName = automatedBackupTest.Name,
+        ///             DatabaseName = "sample_airbnb",
+        ///             CollectionName = "listingsAndReviews",
+        ///         },
+        ///         Transformations = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test22",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var pipelineDataSource = Mongodbatlas.GetDataLakePipeline.Invoke(new()
+        ///     {
+        ///         ProjectId = pipeline.ProjectId,
+        ///         Name = pipeline.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetDataLakePipelineResult> Invoke(GetDataLakePipelineInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataLakePipelineResult>("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", args ?? new GetDataLakePipelineInvokeArgs(), options.WithDefaults());
@@ -49,6 +229,96 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var projectTest = new Mongodbatlas.Project("projectTest", new()
+        ///     {
+        ///         Name = "NAME OF THE PROJECT",
+        ///         OrgId = "ORGANIZATION ID",
+        ///     });
+        /// 
+        ///     var automatedBackupTest = new Mongodbatlas.AdvancedCluster("automated_backup_test", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = "automated-backup-test",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "GCP",
+        ///                         RegionName = "US_EAST_4",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var pipeline = new Mongodbatlas.DataLakePipeline("pipeline", new()
+        ///     {
+        ///         ProjectId = projectTest.ProjectId,
+        ///         Name = "DataLakePipelineName",
+        ///         Sink = new Mongodbatlas.Inputs.DataLakePipelineSinkArgs
+        ///         {
+        ///             Type = "DLS",
+        ///             PartitionFields = new[]
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DataLakePipelineSinkPartitionFieldArgs
+        ///                 {
+        ///                     Name = "access",
+        ///                     Order = 0,
+        ///                 },
+        ///             },
+        ///         },
+        ///         Source = new Mongodbatlas.Inputs.DataLakePipelineSourceArgs
+        ///         {
+        ///             Type = "ON_DEMAND_CPS",
+        ///             ClusterName = automatedBackupTest.Name,
+        ///             DatabaseName = "sample_airbnb",
+        ///             CollectionName = "listingsAndReviews",
+        ///         },
+        ///         Transformations = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DataLakePipelineTransformationArgs
+        ///             {
+        ///                 Field = "test22",
+        ///                 Type = "EXCLUDE",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var pipelineDataSource = Mongodbatlas.GetDataLakePipeline.Invoke(new()
+        ///     {
+        ///         ProjectId = pipeline.ProjectId,
+        ///         Name = pipeline.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetDataLakePipelineResult> Invoke(GetDataLakePipelineInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataLakePipelineResult>("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", args ?? new GetDataLakePipelineInvokeArgs(), options.WithDefaults());

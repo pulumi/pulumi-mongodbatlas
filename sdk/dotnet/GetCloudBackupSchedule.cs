@@ -13,18 +13,258 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Name = "clusterTest",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AWS",
+        ///                         RegionName = "EU_CENTRAL_1",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
+        ///     {
+        ///         ProjectId = myCluster.ProjectId,
+        ///         ClusterName = myCluster.Name,
+        ///         ReferenceHourOfDay = 3,
+        ///         ReferenceMinuteOfHour = 45,
+        ///         RestoreWindowDays = 4,
+        ///         PolicyItemDaily = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemDailyArgs
+        ///         {
+        ///             FrequencyInterval = 1,
+        ///             RetentionUnit = "days",
+        ///             RetentionValue = 14,
+        ///         },
+        ///         CopySettings = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingArgs
+        ///             {
+        ///                 CloudProvider = "AWS",
+        ///                 Frequencies = new[]
+        ///                 {
+        ///                     "HOURLY",
+        ///                     "DAILY",
+        ///                     "WEEKLY",
+        ///                     "MONTHLY",
+        ///                     "YEARLY",
+        ///                     "ON_DEMAND",
+        ///                 },
+        ///                 RegionName = "US_EAST_1",
+        ///                 ZoneId = myCluster.ReplicationSpecs.Apply(replicationSpecs =&gt; replicationSpecs.Select(__item =&gt; __item.ZoneId[0]).ToList()),
+        ///                 ShouldCopyOplogs = false,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSchedule.ProjectId,
+        ///         ClusterName = testCloudBackupSchedule.ClusterName,
+        ///         UseZoneIdForCopySettings = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetCloudBackupScheduleResult> InvokeAsync(GetCloudBackupScheduleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Name = "clusterTest",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AWS",
+        ///                         RegionName = "EU_CENTRAL_1",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
+        ///     {
+        ///         ProjectId = myCluster.ProjectId,
+        ///         ClusterName = myCluster.Name,
+        ///         ReferenceHourOfDay = 3,
+        ///         ReferenceMinuteOfHour = 45,
+        ///         RestoreWindowDays = 4,
+        ///         PolicyItemDaily = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemDailyArgs
+        ///         {
+        ///             FrequencyInterval = 1,
+        ///             RetentionUnit = "days",
+        ///             RetentionValue = 14,
+        ///         },
+        ///         CopySettings = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingArgs
+        ///             {
+        ///                 CloudProvider = "AWS",
+        ///                 Frequencies = new[]
+        ///                 {
+        ///                     "HOURLY",
+        ///                     "DAILY",
+        ///                     "WEEKLY",
+        ///                     "MONTHLY",
+        ///                     "YEARLY",
+        ///                     "ON_DEMAND",
+        ///                 },
+        ///                 RegionName = "US_EAST_1",
+        ///                 ZoneId = myCluster.ReplicationSpecs.Apply(replicationSpecs =&gt; replicationSpecs.Select(__item =&gt; __item.ZoneId[0]).ToList()),
+        ///                 ShouldCopyOplogs = false,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSchedule.ProjectId,
+        ///         ClusterName = testCloudBackupSchedule.ClusterName,
+        ///         UseZoneIdForCopySettings = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCloudBackupScheduleResult> Invoke(GetCloudBackupScheduleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Name = "clusterTest",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AWS",
+        ///                         RegionName = "EU_CENTRAL_1",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
+        ///     {
+        ///         ProjectId = myCluster.ProjectId,
+        ///         ClusterName = myCluster.Name,
+        ///         ReferenceHourOfDay = 3,
+        ///         ReferenceMinuteOfHour = 45,
+        ///         RestoreWindowDays = 4,
+        ///         PolicyItemDaily = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemDailyArgs
+        ///         {
+        ///             FrequencyInterval = 1,
+        ///             RetentionUnit = "days",
+        ///             RetentionValue = 14,
+        ///         },
+        ///         CopySettings = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingArgs
+        ///             {
+        ///                 CloudProvider = "AWS",
+        ///                 Frequencies = new[]
+        ///                 {
+        ///                     "HOURLY",
+        ///                     "DAILY",
+        ///                     "WEEKLY",
+        ///                     "MONTHLY",
+        ///                     "YEARLY",
+        ///                     "ON_DEMAND",
+        ///                 },
+        ///                 RegionName = "US_EAST_1",
+        ///                 ZoneId = myCluster.ReplicationSpecs.Apply(replicationSpecs =&gt; replicationSpecs.Select(__item =&gt; __item.ZoneId[0]).ToList()),
+        ///                 ShouldCopyOplogs = false,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSchedule.ProjectId,
+        ///         ClusterName = testCloudBackupSchedule.ClusterName,
+        ///         UseZoneIdForCopySettings = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCloudBackupScheduleResult> Invoke(GetCloudBackupScheduleInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleInvokeArgs(), options.WithDefaults());

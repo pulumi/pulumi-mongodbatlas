@@ -22,6 +22,87 @@ import (
 //
 // ### S
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			projectTest, err := mongodbatlas.NewProject(ctx, "projectTest", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("NAME OF THE PROJECT"),
+//				OrgId: pulumi.String("ORGANIZATION ID"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			automatedBackupTest, err := mongodbatlas.NewAdvancedCluster(ctx, "automated_backup_test", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.Any(projectId),
+//				Name:          pulumi.String("automated-backup-test"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("GCP"),
+//								RegionName:   pulumi.String("US_EAST_4"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewDataLakePipeline(ctx, "pipeline", &mongodbatlas.DataLakePipelineArgs{
+//				ProjectId: projectTest.ProjectId,
+//				Name:      pulumi.String("DataLakePipelineName"),
+//				Sink: &mongodbatlas.DataLakePipelineSinkArgs{
+//					Type: pulumi.String("DLS"),
+//					PartitionFields: mongodbatlas.DataLakePipelineSinkPartitionFieldArray{
+//						&mongodbatlas.DataLakePipelineSinkPartitionFieldArgs{
+//							Name:  "access",
+//							Order: pulumi.Int(0),
+//						},
+//					},
+//				},
+//				Source: &mongodbatlas.DataLakePipelineSourceArgs{
+//					Type:           pulumi.String("ON_DEMAND_CPS"),
+//					ClusterName:    automatedBackupTest.Name,
+//					DatabaseName:   pulumi.String("sample_airbnb"),
+//					CollectionName: pulumi.String("listingsAndReviews"),
+//				},
+//				Transformations: mongodbatlas.DataLakePipelineTransformationArray{
+//					&mongodbatlas.DataLakePipelineTransformationArgs{
+//						Field: pulumi.String("test"),
+//						Type:  pulumi.String("EXCLUDE"),
+//					},
+//					&mongodbatlas.DataLakePipelineTransformationArgs{
+//						Field: pulumi.String("test22"),
+//						Type:  pulumi.String("EXCLUDE"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Data Lake Pipeline can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`, e.g.

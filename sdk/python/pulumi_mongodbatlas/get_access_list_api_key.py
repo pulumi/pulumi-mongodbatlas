@@ -131,6 +131,18 @@ def get_access_list_api_key(api_key_id: Optional[_builtins.str] = None,
     ### Using CIDR Block
 
     ### Using IP Address
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_access_list_api_key = mongodbatlas.AccessListApiKey("test",
+        org_id="<ORG_ID>",
+        ip_address="2.3.4.5",
+        api_key="a29120e123cd")
+    test = mongodbatlas.get_access_list_api_key_output(org_id=test_access_list_api_key.org_id,
+        ip_address=test_access_list_api_key.ip_address,
+        api_key_id=test_access_list_api_key.api_key_id)
+    ```
 
 
     :param _builtins.str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
@@ -166,6 +178,18 @@ def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.s
     ### Using CIDR Block
 
     ### Using IP Address
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_access_list_api_key = mongodbatlas.AccessListApiKey("test",
+        org_id="<ORG_ID>",
+        ip_address="2.3.4.5",
+        api_key="a29120e123cd")
+    test = mongodbatlas.get_access_list_api_key_output(org_id=test_access_list_api_key.org_id,
+        ip_address=test_access_list_api_key.ip_address,
+        api_key_id=test_access_list_api_key.api_key_id)
+    ```
 
 
     :param _builtins.str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.

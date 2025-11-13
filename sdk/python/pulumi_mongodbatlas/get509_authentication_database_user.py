@@ -106,6 +106,33 @@ def get509_authentication_database_user(project_id: Optional[_builtins.str] = No
     ### S
 
     ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    user = mongodbatlas.DatabaseUser("user",
+        project_id="<PROJECT-ID>",
+        username="myUsername",
+        x509_type="MANAGED",
+        database_name="$external",
+        roles=[{
+            "role_name": "atlasAdmin",
+            "database_name": "admin",
+        }],
+        labels=[{
+            "key": "My Key",
+            "value": "My Value",
+        }])
+    test_x509_authentication_database_user = mongodbatlas.X509AuthenticationDatabaseUser("test",
+        project_id=user.project_id,
+        username=user.username,
+        months_until_expiration=2)
+    test = pulumi.Output.all(
+        project_id=test_x509_authentication_database_user.project_id,
+        username=test_x509_authentication_database_user.username
+    ).apply(lambda resolved_outputs: mongodbatlas.get_x509_authentication_database_user_output(project_id=resolved_outputs['project_id'],
+        username=resolved_outputs['username']))
+    ```
 
     ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
     ```python
@@ -129,7 +156,7 @@ def get509_authentication_database_user(project_id: Optional[_builtins.str] = No
     SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
     7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
     iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-    -----END CERTIFICATE-----"
+    -----END CERTIFICATE-----\\"
     \"\"\")
     test = mongodbatlas.get_x509_authentication_database_user_output(project_id=test_x509_authentication_database_user.project_id)
     ```
@@ -166,6 +193,33 @@ def get509_authentication_database_user_output(project_id: Optional[pulumi.Input
     ### S
 
     ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    user = mongodbatlas.DatabaseUser("user",
+        project_id="<PROJECT-ID>",
+        username="myUsername",
+        x509_type="MANAGED",
+        database_name="$external",
+        roles=[{
+            "role_name": "atlasAdmin",
+            "database_name": "admin",
+        }],
+        labels=[{
+            "key": "My Key",
+            "value": "My Value",
+        }])
+    test_x509_authentication_database_user = mongodbatlas.X509AuthenticationDatabaseUser("test",
+        project_id=user.project_id,
+        username=user.username,
+        months_until_expiration=2)
+    test = pulumi.Output.all(
+        project_id=test_x509_authentication_database_user.project_id,
+        username=test_x509_authentication_database_user.username
+    ).apply(lambda resolved_outputs: mongodbatlas.get_x509_authentication_database_user_output(project_id=resolved_outputs['project_id'],
+        username=resolved_outputs['username']))
+    ```
 
     ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
     ```python
@@ -189,7 +243,7 @@ def get509_authentication_database_user_output(project_id: Optional[pulumi.Input
     SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
     7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
     iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-    -----END CERTIFICATE-----"
+    -----END CERTIFICATE-----\\"
     \"\"\")
     test = mongodbatlas.get_x509_authentication_database_user_output(project_id=test_x509_authentication_database_user.project_id)
     ```

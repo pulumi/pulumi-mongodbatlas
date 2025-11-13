@@ -16,6 +16,57 @@ import (
 // `getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			orgGroupRoleMappingImport, err := mongodbatlas.NewFederatedSettingsOrgRoleMapping(ctx, "org_group_role_mapping_import", &mongodbatlas.FederatedSettingsOrgRoleMappingArgs{
+//				FederationSettingsId: pulumi.String(""),
+//				OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
+//				GroupId:              "628aa20d7f7f7f7f7098b81b8",
+//				ExternalGroupName:    pulumi.String("myGrouptest"),
+//				OrganizationRoles: []string{
+//					"ORG_OWNER",
+//					"ORG_MEMBER",
+//					"ORG_BILLING_ADMIN",
+//					"ORG_GROUP_CREATOR",
+//					"ORG_READ_ONLY",
+//				},
+//				GroupRoles: []string{
+//					"GROUP_OWNER",
+//					"GROUP_CLUSTER_MANAGER",
+//					"GROUP_DATA_ACCESS_ADMIN",
+//					"GROUP_DATA_ACCESS_READ_WRITE",
+//					"GROUP_SEARCH_INDEX_EDITOR",
+//					"GROUP_DATA_ACCESS_READ_ONLY",
+//					"GROUP_READ_ONLY",
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = orgGroupRoleMappingImport.ID().ApplyT(func(id string) (mongodbatlas.GetFederatedSettingsOrgRoleMappingsResult, error) {
+//				return mongodbatlas.GetFederatedSettingsOrgRoleMappingsResult(interface{}(mongodbatlas.LookupFederatedSettingsOrgRoleMappings(ctx, &mongodbatlas.LookupFederatedSettingsOrgRoleMappingsArgs{
+//					FederationSettingsId: id,
+//					OrgId:                "627a9683e7f7f7ff7fe306f14",
+//					PageNum:              pulumi.IntRef(pulumi.IntRef(int(1))),
+//					ItemsPerPage:         pulumi.IntRef(pulumi.IntRef(int(5))),
+//				}, nil))), nil
+//			}).(mongodbatlas.GetFederatedSettingsOrgRoleMappingsResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupFederatedSettingsOrgRoleMappings(ctx *pulumi.Context, args *LookupFederatedSettingsOrgRoleMappingsArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsOrgRoleMappingsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsOrgRoleMappingsResult

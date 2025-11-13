@@ -20,6 +20,136 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### S
         /// 
+        /// ### AWS Confluent Privatelink
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Confluent = Pulumi.Confluent;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var staging = new Confluent.Index.Environment("staging", new()
+        ///     {
+        ///         DisplayName = "Staging",
+        ///     });
+        /// 
+        ///     var privateLink = new Confluent.Index.Network("private_link", new()
+        ///     {
+        ///         DisplayName = "terraform-test-private-link-network-manual",
+        ///         Cloud = "AWS",
+        ///         Region = awsRegion,
+        ///         ConnectionTypes = new[]
+        ///         {
+        ///             "PRIVATELINK",
+        ///         },
+        ///         Zones = Std.Index.Keys.Invoke(new()
+        ///         {
+        ///             Input = subnetsToPrivatelink,
+        ///         }).Result,
+        ///         Environment = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", staging.Id },
+        ///             },
+        ///         },
+        ///         DnsConfig = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "resolution", "PRIVATE" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var aws = new Confluent.Index.PrivateLinkAccess("aws", new()
+        ///     {
+        ///         DisplayName = "example-private-link-access",
+        ///         Aws = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "account", awsAccountId },
+        ///             },
+        ///         },
+        ///         Environment = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", staging.Id },
+        ///             },
+        ///         },
+        ///         Network = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", privateLink.Id },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var dedicated = new Confluent.Index.KafkaCluster("dedicated", new()
+        ///     {
+        ///         DisplayName = "example-dedicated-cluster",
+        ///         Availability = "MULTI_ZONE",
+        ///         Cloud = privateLink.Cloud,
+        ///         Region = privateLink.Region,
+        ///         Dedicated = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "cku", 2 },
+        ///             },
+        ///         },
+        ///         Environment = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", staging.Id },
+        ///             },
+        ///         },
+        ///         Network = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", privateLink.Id },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         DnsDomain = privateLink.DnsDomain,
+        ///         ProviderName = "AWS",
+        ///         Region = awsRegion,
+        ///         Vendor = "CONFLUENT",
+        ///         ServiceEndpointId = privateLink.Aws[0].PrivateLinkEndpointService,
+        ///         DnsSubDomains = privateLink.ZonalSubdomains,
+        ///     });
+        /// 
+        ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Id = test.Id,
+        ///     });
+        /// 
+        ///     var pluralDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoints.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["interfaceEndpointId"] = singularDatasource.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.InterfaceEndpointId),
+        ///         ["interfaceEndpointIds"] = pluralDatasource.Apply(getStreamPrivatelinkEndpointsResult =&gt; getStreamPrivatelinkEndpointsResult.Results).Select(__item =&gt; __item.InterfaceEndpointId).ToList(),
+        ///     };
+        /// });
+        /// ```
+        /// 
         /// ### AWS S3 Privatelink
         /// ```csharp
         /// using System.Collections.Generic;
@@ -96,6 +226,136 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### S
         /// 
+        /// ### AWS Confluent Privatelink
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Confluent = Pulumi.Confluent;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var staging = new Confluent.Index.Environment("staging", new()
+        ///     {
+        ///         DisplayName = "Staging",
+        ///     });
+        /// 
+        ///     var privateLink = new Confluent.Index.Network("private_link", new()
+        ///     {
+        ///         DisplayName = "terraform-test-private-link-network-manual",
+        ///         Cloud = "AWS",
+        ///         Region = awsRegion,
+        ///         ConnectionTypes = new[]
+        ///         {
+        ///             "PRIVATELINK",
+        ///         },
+        ///         Zones = Std.Index.Keys.Invoke(new()
+        ///         {
+        ///             Input = subnetsToPrivatelink,
+        ///         }).Result,
+        ///         Environment = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", staging.Id },
+        ///             },
+        ///         },
+        ///         DnsConfig = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "resolution", "PRIVATE" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var aws = new Confluent.Index.PrivateLinkAccess("aws", new()
+        ///     {
+        ///         DisplayName = "example-private-link-access",
+        ///         Aws = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "account", awsAccountId },
+        ///             },
+        ///         },
+        ///         Environment = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", staging.Id },
+        ///             },
+        ///         },
+        ///         Network = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", privateLink.Id },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var dedicated = new Confluent.Index.KafkaCluster("dedicated", new()
+        ///     {
+        ///         DisplayName = "example-dedicated-cluster",
+        ///         Availability = "MULTI_ZONE",
+        ///         Cloud = privateLink.Cloud,
+        ///         Region = privateLink.Region,
+        ///         Dedicated = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "cku", 2 },
+        ///             },
+        ///         },
+        ///         Environment = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", staging.Id },
+        ///             },
+        ///         },
+        ///         Network = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", privateLink.Id },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         DnsDomain = privateLink.DnsDomain,
+        ///         ProviderName = "AWS",
+        ///         Region = awsRegion,
+        ///         Vendor = "CONFLUENT",
+        ///         ServiceEndpointId = privateLink.Aws[0].PrivateLinkEndpointService,
+        ///         DnsSubDomains = privateLink.ZonalSubdomains,
+        ///     });
+        /// 
+        ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Id = test.Id,
+        ///     });
+        /// 
+        ///     var pluralDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoints.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["interfaceEndpointId"] = singularDatasource.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.InterfaceEndpointId),
+        ///         ["interfaceEndpointIds"] = pluralDatasource.Apply(getStreamPrivatelinkEndpointsResult =&gt; getStreamPrivatelinkEndpointsResult.Results).Select(__item =&gt; __item.InterfaceEndpointId).ToList(),
+        ///     };
+        /// });
+        /// ```
+        /// 
         /// ### AWS S3 Privatelink
         /// ```csharp
         /// using System.Collections.Generic;
@@ -171,6 +431,136 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// ### AWS Confluent Privatelink
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Confluent = Pulumi.Confluent;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var staging = new Confluent.Index.Environment("staging", new()
+        ///     {
+        ///         DisplayName = "Staging",
+        ///     });
+        /// 
+        ///     var privateLink = new Confluent.Index.Network("private_link", new()
+        ///     {
+        ///         DisplayName = "terraform-test-private-link-network-manual",
+        ///         Cloud = "AWS",
+        ///         Region = awsRegion,
+        ///         ConnectionTypes = new[]
+        ///         {
+        ///             "PRIVATELINK",
+        ///         },
+        ///         Zones = Std.Index.Keys.Invoke(new()
+        ///         {
+        ///             Input = subnetsToPrivatelink,
+        ///         }).Result,
+        ///         Environment = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", staging.Id },
+        ///             },
+        ///         },
+        ///         DnsConfig = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "resolution", "PRIVATE" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var aws = new Confluent.Index.PrivateLinkAccess("aws", new()
+        ///     {
+        ///         DisplayName = "example-private-link-access",
+        ///         Aws = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "account", awsAccountId },
+        ///             },
+        ///         },
+        ///         Environment = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", staging.Id },
+        ///             },
+        ///         },
+        ///         Network = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", privateLink.Id },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var dedicated = new Confluent.Index.KafkaCluster("dedicated", new()
+        ///     {
+        ///         DisplayName = "example-dedicated-cluster",
+        ///         Availability = "MULTI_ZONE",
+        ///         Cloud = privateLink.Cloud,
+        ///         Region = privateLink.Region,
+        ///         Dedicated = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "cku", 2 },
+        ///             },
+        ///         },
+        ///         Environment = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", staging.Id },
+        ///             },
+        ///         },
+        ///         Network = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "id", privateLink.Id },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         DnsDomain = privateLink.DnsDomain,
+        ///         ProviderName = "AWS",
+        ///         Region = awsRegion,
+        ///         Vendor = "CONFLUENT",
+        ///         ServiceEndpointId = privateLink.Aws[0].PrivateLinkEndpointService,
+        ///         DnsSubDomains = privateLink.ZonalSubdomains,
+        ///     });
+        /// 
+        ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Id = test.Id,
+        ///     });
+        /// 
+        ///     var pluralDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoints.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["interfaceEndpointId"] = singularDatasource.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.InterfaceEndpointId),
+        ///         ["interfaceEndpointIds"] = pluralDatasource.Apply(getStreamPrivatelinkEndpointsResult =&gt; getStreamPrivatelinkEndpointsResult.Results).Select(__item =&gt; __item.InterfaceEndpointId).ToList(),
+        ///     };
+        /// });
+        /// ```
         /// 
         /// ### AWS S3 Privatelink
         /// ```csharp

@@ -18,6 +18,62 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pipeline, err := mongodbatlas.NewDataLakePipeline(ctx, "pipeline", &mongodbatlas.DataLakePipelineArgs{
+//				ProjectId: pulumi.Any(projectTest.ProjectId),
+//				Name:      pulumi.String("DataLakePipelineName"),
+//				Sink: &mongodbatlas.DataLakePipelineSinkArgs{
+//					Type: pulumi.String("DLS"),
+//					PartitionFields: mongodbatlas.DataLakePipelineSinkPartitionFieldArray{
+//						&mongodbatlas.DataLakePipelineSinkPartitionFieldArgs{
+//							Name:  "access",
+//							Order: pulumi.Int(0),
+//						},
+//					},
+//				},
+//				Source: &mongodbatlas.DataLakePipelineSourceArgs{
+//					Type:           pulumi.String("ON_DEMAND_CPS"),
+//					ClusterName:    pulumi.Any(clusterTest.Name),
+//					DatabaseName:   pulumi.String("sample_airbnb"),
+//					CollectionName: pulumi.String("listingsAndReviews"),
+//				},
+//				Transformations: mongodbatlas.DataLakePipelineTransformationArray{
+//					&mongodbatlas.DataLakePipelineTransformationArgs{
+//						Field: pulumi.String("test"),
+//						Type:  pulumi.String("EXCLUDE"),
+//					},
+//					&mongodbatlas.DataLakePipelineTransformationArgs{
+//						Field: pulumi.String("test22"),
+//						Type:  pulumi.String("EXCLUDE"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = pipeline.Name.ApplyT(func(name string) (mongodbatlas.GetDataLakePipelineRunsResult, error) {
+//				return mongodbatlas.GetDataLakePipelineRunsResult(interface{}(mongodbatlas.LookupDataLakePipelineRuns(ctx, &mongodbatlas.LookupDataLakePipelineRunsArgs{
+//					ProjectId:    projectTest.ProjectId,
+//					PipelineName: name,
+//				}, nil))), nil
+//			}).(mongodbatlas.GetDataLakePipelineRunsResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupDataLakePipelineRuns(ctx *pulumi.Context, args *LookupDataLakePipelineRunsArgs, opts ...pulumi.InvokeOption) (*LookupDataLakePipelineRunsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDataLakePipelineRunsResult

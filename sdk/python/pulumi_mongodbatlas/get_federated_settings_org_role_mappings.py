@@ -111,6 +111,37 @@ def get_federated_settings_org_role_mappings(federation_settings_id: Optional[_b
 
     ## Example Usage
 
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import",
+        federation_settings_id="",
+        org_id="627a9683e7f7f7ff7fe306f14",
+        group_id="628aa20d7f7f7f7f7098b81b8",
+        external_group_name="myGrouptest",
+        organization_roles=[
+            "ORG_OWNER",
+            "ORG_MEMBER",
+            "ORG_BILLING_ADMIN",
+            "ORG_GROUP_CREATOR",
+            "ORG_READ_ONLY",
+        ],
+        group_roles=[
+            "GROUP_OWNER",
+            "GROUP_CLUSTER_MANAGER",
+            "GROUP_DATA_ACCESS_ADMIN",
+            "GROUP_DATA_ACCESS_READ_WRITE",
+            "GROUP_SEARCH_INDEX_EDITOR",
+            "GROUP_DATA_ACCESS_READ_ONLY",
+            "GROUP_READ_ONLY",
+        ])
+    role_mappings = org_group_role_mapping_import.id.apply(lambda id: mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=id,
+        org_id="627a9683e7f7f7ff7fe306f14",
+        page_num=1,
+        items_per_page=5))
+    ```
+
 
     :param _builtins.str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -143,6 +174,37 @@ def get_federated_settings_org_role_mappings_output(federation_settings_id: Opti
     `get_federated_settings_org_role_mappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
 
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import",
+        federation_settings_id="",
+        org_id="627a9683e7f7f7ff7fe306f14",
+        group_id="628aa20d7f7f7f7f7098b81b8",
+        external_group_name="myGrouptest",
+        organization_roles=[
+            "ORG_OWNER",
+            "ORG_MEMBER",
+            "ORG_BILLING_ADMIN",
+            "ORG_GROUP_CREATOR",
+            "ORG_READ_ONLY",
+        ],
+        group_roles=[
+            "GROUP_OWNER",
+            "GROUP_CLUSTER_MANAGER",
+            "GROUP_DATA_ACCESS_ADMIN",
+            "GROUP_DATA_ACCESS_READ_WRITE",
+            "GROUP_SEARCH_INDEX_EDITOR",
+            "GROUP_DATA_ACCESS_READ_ONLY",
+            "GROUP_READ_ONLY",
+        ])
+    role_mappings = org_group_role_mapping_import.id.apply(lambda id: mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=id,
+        org_id="627a9683e7f7f7ff7fe306f14",
+        page_num=1,
+        items_per_page=5))
+    ```
 
 
     :param _builtins.str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
