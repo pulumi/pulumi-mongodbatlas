@@ -269,19 +269,19 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         atlas_project = mongodbatlas.Project("atlas-project",
             org_id=atlas_org_id,
             name=atlas_project_name)
-        test = aws.index.VpcEndpoint("test",
-            vpc_id=vpc-7fc0a543,
-            service_name=<SERVICE-NAME>,
-            vpc_endpoint_type=Interface,
-            subnet_ids=[subnet-de0406d2],
-            security_group_ids=[sg-3f238186])
+        test = aws.ec2.VpcEndpoint("test",
+            vpc_id="vpc-7fc0a543",
+            service_name="<SERVICE-NAME>",
+            vpc_endpoint_type="Interface",
+            subnet_ids=["subnet-de0406d2"],
+            security_group_ids=["sg-3f238186"])
         test_privatelink_endpoint_service_data_federation_online_archive = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
             project_id=atlas_project.id,
-            endpoint_id=test["id"],
+            endpoint_id=test.id,
             provider_name="AWS",
             comment="Test",
             region="US_EAST_1",
-            customer_endpoint_dns_name=test["dnsEntry"][0]["dnsName"])
+            customer_endpoint_dns_name=test.dns_entries[0].dns_name)
         ```
 
         The `service_name` value for the region in question can be found in the [MongoDB Atlas Administration](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatafederationprivateendpoint) documentation.
@@ -329,19 +329,19 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         atlas_project = mongodbatlas.Project("atlas-project",
             org_id=atlas_org_id,
             name=atlas_project_name)
-        test = aws.index.VpcEndpoint("test",
-            vpc_id=vpc-7fc0a543,
-            service_name=<SERVICE-NAME>,
-            vpc_endpoint_type=Interface,
-            subnet_ids=[subnet-de0406d2],
-            security_group_ids=[sg-3f238186])
+        test = aws.ec2.VpcEndpoint("test",
+            vpc_id="vpc-7fc0a543",
+            service_name="<SERVICE-NAME>",
+            vpc_endpoint_type="Interface",
+            subnet_ids=["subnet-de0406d2"],
+            security_group_ids=["sg-3f238186"])
         test_privatelink_endpoint_service_data_federation_online_archive = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
             project_id=atlas_project.id,
-            endpoint_id=test["id"],
+            endpoint_id=test.id,
             provider_name="AWS",
             comment="Test",
             region="US_EAST_1",
-            customer_endpoint_dns_name=test["dnsEntry"][0]["dnsName"])
+            customer_endpoint_dns_name=test.dns_entries[0].dns_name)
         ```
 
         The `service_name` value for the region in question can be found in the [MongoDB Atlas Administration](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatafederationprivateendpoint) documentation.

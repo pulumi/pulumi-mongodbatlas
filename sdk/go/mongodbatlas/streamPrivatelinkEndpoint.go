@@ -20,13 +20,187 @@ import (
 //
 // ### S
 //
+// ### AWS MSK Privatelink
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/ec2"
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/msk"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc, err := ec2.NewVpc(ctx, "vpc", &ec2.VpcArgs{
+//				CidrBlock: pulumi.String("192.168.0.0/22"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			azs, err := aws.GetAvailabilityZones(ctx, &aws.GetAvailabilityZonesArgs{
+//				State: pulumi.StringRef("available"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			subnetAz1, err := ec2.NewSubnet(ctx, "subnet_az1", &ec2.SubnetArgs{
+//				AvailabilityZone: pulumi.String(azs.Names[0]),
+//				CidrBlock:        pulumi.String("192.168.0.0/24"),
+//				VpcId:            vpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			subnetAz2, err := ec2.NewSubnet(ctx, "subnet_az2", &ec2.SubnetArgs{
+//				AvailabilityZone: pulumi.String(azs.Names[1]),
+//				CidrBlock:        pulumi.String("192.168.1.0/24"),
+//				VpcId:            vpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			sg, err := ec2.NewSecurityGroup(ctx, "sg", &ec2.SecurityGroupArgs{
+//				VpcId: vpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleConfiguration, err := msk.NewConfiguration(ctx, "example", &msk.ConfigurationArgs{
+//				Name: pulumi.Sprintf("%v-msk-configuration", mskClusterName),
+//				ServerProperties: pulumi.String(`auto.create.topics.enable=false
+//
+// default.replication.factor=3
+// min.insync.replicas=2
+// num.io.threads=8
+// num.network.threads=5
+// num.partitions=1
+// num.replica.fetchers=2
+// replica.lag.time.max.ms=30000
+// socket.receive.buffer.bytes=102400
+// socket.request.max.bytes=104857600
+// socket.send.buffer.bytes=102400
+// unclean.leader.election.enable=true
+// allow.everyone.if.no.acl.found=false
+// `),
+//
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := msk.NewCluster(ctx, "example", &msk.ClusterArgs{
+//				ClusterName:         pulumi.Any(mskClusterName),
+//				KafkaVersion:        pulumi.String("3.6.0"),
+//				NumberOfBrokerNodes: pulumi.Int(2),
+//				BrokerNodeGroupInfo: &msk.ClusterBrokerNodeGroupInfoArgs{
+//					InstanceType: pulumi.String("kafka.m5.large"),
+//					ClientSubnets: pulumi.StringArray{
+//						subnetAz1.ID(),
+//						subnetAz2.ID(),
+//					},
+//					SecurityGroups: pulumi.StringArray{
+//						sg.ID(),
+//					},
+//					ConnectivityInfo: &msk.ClusterBrokerNodeGroupInfoConnectivityInfoArgs{
+//						VpcConnectivity: &msk.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs{
+//							ClientAuthentication: &msk.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs{
+//								Sasl: &msk.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs{
+//									Scram: pulumi.Bool(true),
+//								},
+//							},
+//						},
+//					},
+//				},
+//				ClientAuthentication: &msk.ClusterClientAuthenticationArgs{
+//					Sasl: &msk.ClusterClientAuthenticationSaslArgs{
+//						Scram: pulumi.Bool(true),
+//					},
+//				},
+//				ConfigurationInfo: &msk.ClusterConfigurationInfoArgs{
+//					Arn:      exampleConfiguration.Arn,
+//					Revision: exampleConfiguration.LatestRevision,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = msk.NewClusterPolicy(ctx, "example", &msk.ClusterPolicyArgs{
+//				ClusterArn: example.Arn,
+//				Policy: example.Arn.ApplyT(func(arn string) (pulumi.String, error) {
+//					var _zero pulumi.String
+//					tmpJSON0, err := json.Marshal(map[string]interface{}{
+//						"Version": "2012-10-17",
+//						"Statement": []map[string]interface{}{
+//							map[string]interface{}{
+//								"Effect": "Allow",
+//								"Principal": map[string]interface{}{
+//									"AWS": fmt.Sprintf("arn:aws:iam::%v:root", awsAccountId),
+//								},
+//								"Action": []string{
+//									"kafka:CreateVpcConnection",
+//									"kafka:GetBootstrapBrokers",
+//									"kafka:DescribeCluster",
+//									"kafka:DescribeClusterV2",
+//								},
+//								"Resource": arn,
+//							},
+//						},
+//					})
+//					if err != nil {
+//						return _zero, err
+//					}
+//					json0 := string(tmpJSON0)
+//					return pulumi.String(json0), nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = msk.NewSingleScramSecretAssociation(ctx, "example", &msk.SingleScramSecretAssociationArgs{
+//				ClusterArn: example.Arn,
+//				SecretArn:  pulumi.Any(awsSecretArn),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, "test", &mongodbatlas.StreamPrivatelinkEndpointArgs{
+//				ProjectId:    pulumi.Any(projectId),
+//				ProviderName: pulumi.String("AWS"),
+//				Vendor:       pulumi.String("MSK"),
+//				Arn:          example.Arn,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			singularDatasource := test.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
+//				return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.LookupStreamPrivatelinkEndpointOutput(ctx, mongodbatlas.GetStreamPrivatelinkEndpointOutputArgs{
+//					ProjectId: projectId,
+//					Id:        id,
+//				}, nil))), nil
+//			}).(mongodbatlas.GetStreamPrivatelinkEndpointResultOutput)
+//			ctx.Export("privatelinkEndpointId", singularDatasource.ApplyT(func(singularDatasource mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
+//				return &singularDatasource.Id, nil
+//			}).(pulumi.StringPtrOutput))
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### AWS S3 Privatelink
 // ```go
 // package main
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/s3"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -35,32 +209,28 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// S3 bucket for stream data
-//			streamBucket, err := aws.NewS3Bucket(ctx, "stream_bucket", &aws.S3BucketArgs{
-//				Bucket:       s3BucketName,
-//				ForceDestroy: true,
+//			streamBucket, err := s3.NewBucket(ctx, "stream_bucket", &s3.BucketArgs{
+//				Bucket:       pulumi.Any(s3BucketName),
+//				ForceDestroy: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = aws.NewS3BucketVersioning(ctx, "stream_bucket_versioning", &aws.S3BucketVersioningArgs{
-//				Bucket: streamBucket.Id,
-//				VersioningConfiguration: []map[string]interface{}{
-//					map[string]interface{}{
-//						"status": "Enabled",
-//					},
+//			_, err = s3.NewBucketVersioning(ctx, "stream_bucket_versioning", &s3.BucketVersioningArgs{
+//				Bucket: streamBucket.ID(),
+//				VersioningConfiguration: &s3.BucketVersioningVersioningConfigurationArgs{
+//					Status: pulumi.String("Enabled"),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = aws.NewS3BucketServerSideEncryptionConfiguration(ctx, "stream_bucket_encryption", &aws.S3BucketServerSideEncryptionConfigurationArgs{
-//				Bucket: streamBucket.Id,
-//				Rule: []map[string]interface{}{
-//					map[string]interface{}{
-//						"applyServerSideEncryptionByDefault": []map[string]interface{}{
-//							map[string]interface{}{
-//								"sseAlgorithm": "AES256",
-//							},
+//			_, err = s3.NewBucketServerSideEncryptionConfiguration(ctx, "stream_bucket_encryption", &s3.BucketServerSideEncryptionConfigurationArgs{
+//				Bucket: streamBucket.ID(),
+//				Rules: s3.BucketServerSideEncryptionConfigurationRuleArray{
+//					&s3.BucketServerSideEncryptionConfigurationRuleArgs{
+//						ApplyServerSideEncryptionByDefault: &s3.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{
+//							SseAlgorithm: pulumi.String("AES256"),
 //						},
 //					},
 //				},

@@ -14,6 +14,31 @@ import * as utilities from "./utilities";
  * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` data source instead of `mongodbatlas.FlexCluster` data source to retrieve Flex clusters. The `mongodbatlas.AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example_clusterFlexCluster = new mongodbatlas.FlexCluster("example-cluster", {
+ *     projectId: projectId,
+ *     name: clusterName,
+ *     providerSettings: {
+ *         backingProviderName: "AWS",
+ *         regionName: "US_EAST_1",
+ *     },
+ *     terminationProtectionEnabled: true,
+ * });
+ * const example_cluster = example_clusterFlexCluster.name.apply(name => mongodbatlas.getFlexClusterOutput({
+ *     projectId: projectId,
+ *     name: name,
+ * }));
+ * const example_clusters = mongodbatlas.getFlexClusters({
+ *     projectId: projectId,
+ * });
+ * export const mongodbatlasFlexCluster = example_cluster.apply(example_cluster => example_cluster.name);
+ * export const mongodbatlasFlexClustersNames = example_clusters.then(example_clusters => .map(cluster => (cluster.name)));
+ * ```
  */
 export function getFlexCluster(args: GetFlexClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetFlexClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -102,6 +127,31 @@ export interface GetFlexClusterResult {
  * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` data source instead of `mongodbatlas.FlexCluster` data source to retrieve Flex clusters. The `mongodbatlas.AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example_clusterFlexCluster = new mongodbatlas.FlexCluster("example-cluster", {
+ *     projectId: projectId,
+ *     name: clusterName,
+ *     providerSettings: {
+ *         backingProviderName: "AWS",
+ *         regionName: "US_EAST_1",
+ *     },
+ *     terminationProtectionEnabled: true,
+ * });
+ * const example_cluster = example_clusterFlexCluster.name.apply(name => mongodbatlas.getFlexClusterOutput({
+ *     projectId: projectId,
+ *     name: name,
+ * }));
+ * const example_clusters = mongodbatlas.getFlexClusters({
+ *     projectId: projectId,
+ * });
+ * export const mongodbatlasFlexCluster = example_cluster.apply(example_cluster => example_cluster.name);
+ * export const mongodbatlasFlexClustersNames = example_clusters.then(example_clusters => .map(cluster => (cluster.name)));
+ * ```
  */
 export function getFlexClusterOutput(args: GetFlexClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFlexClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

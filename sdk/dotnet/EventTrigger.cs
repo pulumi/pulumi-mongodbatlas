@@ -46,8 +46,8 @@ namespace Pulumi.Mongodbatlas
     ///         ConfigCollection = "COLLECTION NAME",
     ///         ConfigServiceId = "SERVICE ID",
     ///         ConfigMatch = @"{
-    ///   ""updateDescription.updatedFields"": {
-    ///     ""status"": ""blocked""
+    ///   \""updateDescription.updatedFields\"": {
+    ///     \""status\"": \""blocked\""
     ///   }
     /// }
     /// ",

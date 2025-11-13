@@ -94,10 +94,10 @@ import javax.annotation.Nullable;
  *             .type("vectorSearch")
  *             .fields("""
  * [{
- *       "type": "vector",
- *       "path": "plot_embedding",
- *       "numDimensions": 1536,
- *       "similarity": "euclidean"
+ *       \"type\": \"vector\",
+ *       \"path\": \"plot_embedding\",
+ *       \"numDimensions\": 1536,
+ *       \"similarity\": \"euclidean\"
  * }]
  *             """)
  *             .build());
@@ -140,33 +140,33 @@ import javax.annotation.Nullable;
  *             .mappingsDynamic(false)
  *             .mappingsFields("""
  * {
- *       "address": {
- *         "type": "document",
- *         "fields": {
- *           "city": {
- *             "type": "string",
- *             "analyzer": "lucene.simple",
- *             "ignoreAbove": 255
+ *       \"address\": {
+ *         \"type\": \"document\",
+ *         \"fields\": {
+ *           \"city\": {
+ *             \"type\": \"string\",
+ *             \"analyzer\": \"lucene.simple\",
+ *             \"ignoreAbove\": 255
  *           },
- *           "state": {
- *             "type": "string",
- *             "analyzer": "lucene.english"
+ *           \"state\": {
+ *             \"type\": \"string\",
+ *             \"analyzer\": \"lucene.english\"
  *           }
  *         }
  *       },
- *       "company": {
- *         "type": "string",
- *         "analyzer": "lucene.whitespace",
- *         "multi": {
- *           "mySecondaryAnalyzer": {
- *             "type": "string",
- *             "analyzer": "lucene.french"
+ *       \"company\": {
+ *         \"type\": \"string\",
+ *         \"analyzer\": \"lucene.whitespace\",
+ *         \"multi\": {
+ *           \"mySecondaryAnalyzer\": {
+ *             \"type\": \"string\",
+ *             \"analyzer\": \"lucene.french\"
  *           }
  *         }
  *       },
- *       "employees": {
- *         "type": "string",
- *         "analyzer": "lucene.standard"
+ *       \"employees\": {
+ *         \"type\": \"string\",
+ *         \"analyzer\": \"lucene.standard\"
  *       }
  * }
  *             """)
@@ -174,21 +174,21 @@ import javax.annotation.Nullable;
  *             .searchAnalyzer("lucene.standard")
  *             .analyzers("""
  *  [{
- *  "name": "index_analyzer_test_name",
- *  "charFilters": [{
- * "type": "mapping",
- * "mappings": {"\\" : "/"}
- *    	}],
- *  "tokenizer": {
- *  "type": "nGram",
- *  "minGram": 2,
- *  "maxGram": 5
- * 	},
- *  "tokenFilters": [{
- * "type": "length",
- * "min": 20,
- * "max": 33
- *    	}]
+ *  \"name\": \"index_analyzer_test_name\",
+ *  \"charFilters\": [{
+ * \"type\": \"mapping\",
+ * \"mappings\": {\"\\\\\" : \"/\"}
+ *    \t}],
+ *  \"tokenizer\": {
+ *  \"type\": \"nGram\",
+ *  \"minGram\": 2,
+ *  \"maxGram\": 5
+ * \t},
+ *  \"tokenFilters\": [{
+ * \"type\": \"length\",
+ * \"min\": 20,
+ * \"max\": 33
+ *    \t}]
  *  }]
  *             """)
  *             .synonyms(SearchIndexSynonymArgs.builder()

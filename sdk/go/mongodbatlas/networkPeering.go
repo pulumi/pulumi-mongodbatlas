@@ -44,7 +44,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/ec2"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -78,10 +78,101 @@ import (
 //			}
 //			// the following assumes an AWS provider is configured
 //			// Accept the peering connection request
-//			_, err = aws.NewVpcPeeringConnectionAccepter(ctx, "peer", &aws.VpcPeeringConnectionAccepterArgs{
+//			_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, "peer", &ec2.VpcPeeringConnectionAccepterArgs{
 //				VpcPeeringConnectionId: testNetworkPeering.ConnectionId,
-//				AutoAccept:             true,
+//				AutoAccept:             pulumi.Bool(true),
 //			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example with GCP
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-gcp/sdk/v9/go/gcp/compute"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Container example provided but not always required,
+//			// see network_container documentation for details.
+//			test, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
+//				ProjectId:      pulumi.Any(projectId),
+//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
+//				ProviderName:   pulumi.String("GCP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Create the peering connection request
+//			testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "test", &mongodbatlas.NetworkPeeringArgs{
+//				ProjectId:    pulumi.Any(projectId),
+//				ContainerId:  test.ContainerId,
+//				ProviderName: pulumi.String("GCP"),
+//				GcpProjectId: pulumi.Any(GCP_PROJECT_ID),
+//				NetworkName:  pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// the following assumes a GCP provider is configured
+//			_default, err := compute.LookupNetwork(ctx, &compute.LookupNetworkArgs{
+//				Name: "default",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// Create the GCP peer
+//			peering, err := compute.NewNetworkPeering(ctx, "peering", &compute.NetworkPeeringArgs{
+//				Name:    pulumi.String("peering-gcp-terraform-test"),
+//				Network: pulumi.String(_default.SelfLink),
+//				PeerNetwork: pulumi.All(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).ApplyT(func(_args []interface{}) (string, error) {
+//					atlasGcpProjectId := _args[0].(string)
+//					atlasVpcName := _args[1].(string)
+//					return fmt.Sprintf("https://www.googleapis.com/compute/v1/projects/%v/global/networks/%v", atlasGcpProjectId, atlasVpcName), nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Create the cluster once the peering connection is completed
+//			_, err = mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.Any(projectId),
+//				Name:          pulumi.String("terraform-manually-test"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("GCP"),
+//								RegionName:   pulumi.String("US_EAST_4"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				peering,
+//			}))
 //			if err != nil {
 //				return err
 //			}

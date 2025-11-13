@@ -22,6 +22,75 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### S
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleProject = new Mongodbatlas.Project("example", new()
+    ///     {
+    ///         Name = "project-name",
+    ///         OrgId = orgId,
+    ///     });
+    /// 
+    ///     var exampleAdvancedCluster = new Mongodbatlas.AdvancedCluster("example", new()
+    ///     {
+    ///         ProjectId = exampleProject.Id,
+    ///         Name = "ClusterExample",
+    ///         ClusterType = "REPLICASET",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                         ProviderName = "AWS",
+    ///                         Priority = 7,
+    ///                         RegionName = "US_EAST_1",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleSearchDeployment = new Mongodbatlas.SearchDeployment("example", new()
+    ///     {
+    ///         ProjectId = exampleProject.Id,
+    ///         ClusterName = exampleAdvancedCluster.Name,
+    ///         Specs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.SearchDeploymentSpecArgs
+    ///             {
+    ///                 InstanceSize = "S20_HIGHCPU_NVME",
+    ///                 NodeCount = 2,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var example = Mongodbatlas.GetSearchDeployment.Invoke(new()
+    ///     {
+    ///         ProjectId = exampleSearchDeployment.ProjectId,
+    ///         ClusterName = exampleSearchDeployment.ClusterName,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["mongodbatlasSearchDeploymentId"] = example.Apply(getSearchDeploymentResult =&gt; getSearchDeploymentResult.Id),
+    ///         ["mongodbatlasSearchDeploymentEncryptionAtRestProvider"] = example.Apply(getSearchDeploymentResult =&gt; getSearchDeploymentResult.EncryptionAtRestProvider),
+    ///     };
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.

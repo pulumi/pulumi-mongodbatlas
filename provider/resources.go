@@ -234,7 +234,7 @@ var cleanUpOverviewSection = tfbridge.DocsEdit{
 		} else {
 			// Hard error to ensure we keep this content up to date
 			return nil, fmt.Errorf("could not find text in upstream index.md, "+
-				"please verify file content at %s\n*****\n%s\n*****\n", replacesDir+"overview-input.md", string(input))
+				"please verify file content at %s\n*****\n%s\n*****", replacesDir+"overview-input.md", string(input))
 		}
 		return content, nil
 	},

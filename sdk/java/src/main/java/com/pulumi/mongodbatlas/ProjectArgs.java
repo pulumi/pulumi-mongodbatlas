@@ -224,14 +224,14 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
      * 
      */
     @Import(name="withDefaultAlertsSettings")
     private @Nullable Output<Boolean> withDefaultAlertsSettings;
 
     /**
-     * @return It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     * @return Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
      * 
      */
     public Optional<Output<Boolean>> withDefaultAlertsSettings() {
@@ -563,7 +563,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param withDefaultAlertsSettings It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+         * @param withDefaultAlertsSettings Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
          * 
          * @return builder
          * 
@@ -574,7 +574,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param withDefaultAlertsSettings It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+         * @param withDefaultAlertsSettings Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
          * 
          * @return builder
          * 

@@ -50,8 +50,8 @@ import (
 //				ConfigCollection: pulumi.String("COLLECTION NAME"),
 //				ConfigServiceId:  pulumi.String("SERVICE ID"),
 //				ConfigMatch: pulumi.String(`{
-//	  "updateDescription.updatedFields": {
-//	    "status": "blocked"
+//	  \"updateDescription.updatedFields\": {
+//	    \"status\": \"blocked\"
 //	  }
 //	}
 //

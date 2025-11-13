@@ -101,7 +101,65 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### Example Kafka SASL SSL Connection
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         InstanceName = "NewInstance",
+    ///         ConnectionName = "KafkaConnection",
+    ///         Type = "Kafka",
+    ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
+    ///         {
+    ///             Mechanism = "PLAIN",
+    ///             Username = "user",
+    ///             Password = "somepassword",
+    ///         },
+    ///         Security = new Mongodbatlas.Inputs.StreamConnectionSecurityArgs
+    ///         {
+    ///             Protocol = "SASL_SSL",
+    ///             BrokerPublicCertificate = "-----BEGIN CERTIFICATE-----&lt;CONTENT&gt;-----END CERTIFICATE-----",
+    ///         },
+    ///         Config = 
+    ///         {
+    ///             { "auto.offset.reset", "latest" },
+    ///         },
+    ///         BootstrapServers = "localhost:9091,localhost:9092",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example AWSLambda Connection
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         InstanceName = "NewInstance",
+    ///         ConnectionName = "AWSLambdaConnection",
+    ///         Type = "AWSLambda",
+    ///         Aws = new Mongodbatlas.Inputs.StreamConnectionAwsArgs
+    ///         {
+    ///             RoleArn = "arn:aws:iam::&lt;AWS_ACCOUNT_ID&gt;:role/lambdaRole",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ### Example Https Connection
     /// 

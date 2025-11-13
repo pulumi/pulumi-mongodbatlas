@@ -85,6 +85,26 @@ def get_flex_clusters(project_id: Optional[_builtins.str] = None,
 
     ## Example Usage
 
+    ### S
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_cluster_flex_cluster = mongodbatlas.FlexCluster("example-cluster",
+        project_id=project_id,
+        name=cluster_name,
+        provider_settings={
+            "backing_provider_name": "AWS",
+            "region_name": "US_EAST_1",
+        },
+        termination_protection_enabled=True)
+    example_cluster = example_cluster_flex_cluster.name.apply(lambda name: mongodbatlas.get_flex_cluster_output(project_id=project_id,
+        name=name))
+    example_clusters = mongodbatlas.get_flex_clusters(project_id=project_id)
+    pulumi.export("mongodbatlasFlexCluster", example_cluster.name)
+    pulumi.export("mongodbatlasFlexClustersNames", [cluster.name for cluster in example_clusters.results])
+    ```
+
 
     :param _builtins.str project_id: Unique 24-hexadecimal character string that identifies the project.
     """
@@ -107,6 +127,26 @@ def get_flex_clusters_output(project_id: Optional[pulumi.Input[_builtins.str]] =
     **RECOMMENDATION:** We recommend using the `get_advanced_clusters` data source instead of the `get_flex_clusters` data source to retrieve Flex clusters. The `get_advanced_clusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
 
     ## Example Usage
+
+    ### S
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_cluster_flex_cluster = mongodbatlas.FlexCluster("example-cluster",
+        project_id=project_id,
+        name=cluster_name,
+        provider_settings={
+            "backing_provider_name": "AWS",
+            "region_name": "US_EAST_1",
+        },
+        termination_protection_enabled=True)
+    example_cluster = example_cluster_flex_cluster.name.apply(lambda name: mongodbatlas.get_flex_cluster_output(project_id=project_id,
+        name=name))
+    example_clusters = mongodbatlas.get_flex_clusters(project_id=project_id)
+    pulumi.export("mongodbatlasFlexCluster", example_cluster.name)
+    pulumi.export("mongodbatlasFlexClustersNames", [cluster.name for cluster in example_clusters.results])
+    ```
 
 
     :param _builtins.str project_id: Unique 24-hexadecimal character string that identifies the project.

@@ -68,8 +68,8 @@ import javax.annotation.Nullable;
  *             .configServiceId("SERVICE ID")
  *             .configMatch("""
  * {
- *   "updateDescription.updatedFields": {
- *     "status": "blocked"
+ *   \"updateDescription.updatedFields\": {
+ *     \"status\": \"blocked\"
  *   }
  * }
  *             """)

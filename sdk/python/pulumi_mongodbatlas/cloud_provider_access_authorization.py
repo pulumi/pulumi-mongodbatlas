@@ -79,6 +79,7 @@ class _CloudProviderAccessAuthorizationState:
                  aws: Optional[pulumi.Input['CloudProviderAccessAuthorizationAwsArgs']] = None,
                  azure: Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']] = None,
                  feature_usages: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationFeatureUsageArgs']]]] = None,
+                 gcps: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationGcpArgs']]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -92,6 +93,8 @@ class _CloudProviderAccessAuthorizationState:
             pulumi.set(__self__, "azure", azure)
         if feature_usages is not None:
             pulumi.set(__self__, "feature_usages", feature_usages)
+        if gcps is not None:
+            pulumi.set(__self__, "gcps", gcps)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if role_id is not None:
@@ -132,6 +135,15 @@ class _CloudProviderAccessAuthorizationState:
     @feature_usages.setter
     def feature_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationFeatureUsageArgs']]]]):
         pulumi.set(self, "feature_usages", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def gcps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationGcpArgs']]]]:
+        return pulumi.get(self, "gcps")
+
+    @gcps.setter
+    def gcps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationGcpArgs']]]]):
+        pulumi.set(self, "gcps", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -214,6 +226,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
             __props__.__dict__["role_id"] = role_id
             __props__.__dict__["authorized_date"] = None
             __props__.__dict__["feature_usages"] = None
+            __props__.__dict__["gcps"] = None
         super(CloudProviderAccessAuthorization, __self__).__init__(
             'mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization',
             resource_name,
@@ -228,6 +241,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
             aws: Optional[pulumi.Input[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict']]] = None,
             azure: Optional[pulumi.Input[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict']]] = None,
             feature_usages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationFeatureUsageArgs', 'CloudProviderAccessAuthorizationFeatureUsageArgsDict']]]]] = None,
+            gcps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationGcpArgs', 'CloudProviderAccessAuthorizationGcpArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             role_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'CloudProviderAccessAuthorization':
         """
@@ -246,6 +260,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
         __props__.__dict__["aws"] = aws
         __props__.__dict__["azure"] = azure
         __props__.__dict__["feature_usages"] = feature_usages
+        __props__.__dict__["gcps"] = gcps
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["role_id"] = role_id
         return CloudProviderAccessAuthorization(resource_name, opts=opts, __props__=__props__)
@@ -269,6 +284,11 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     @pulumi.getter(name="featureUsages")
     def feature_usages(self) -> pulumi.Output[Sequence['outputs.CloudProviderAccessAuthorizationFeatureUsage']]:
         return pulumi.get(self, "feature_usages")
+
+    @_builtins.property
+    @pulumi.getter
+    def gcps(self) -> pulumi.Output[Sequence['outputs.CloudProviderAccessAuthorizationGcp']]:
+        return pulumi.get(self, "gcps")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

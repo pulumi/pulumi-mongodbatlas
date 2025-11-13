@@ -22,6 +22,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string KeyVersionResourceId;
         /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+        /// </summary>
+        public readonly string RoleId;
+        /// <summary>
         /// JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
         /// </summary>
         public readonly string ServiceAccountKey;
@@ -36,12 +40,15 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string keyVersionResourceId,
 
+            string roleId,
+
             string serviceAccountKey,
 
             bool valid)
         {
             Enabled = enabled;
             KeyVersionResourceId = keyVersionResourceId;
+            RoleId = roleId;
             ServiceAccountKey = serviceAccountKey;
             Valid = valid;
         }

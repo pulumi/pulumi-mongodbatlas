@@ -6,7 +6,7 @@ Subject: [PATCH] Add shim package to expose internals
 
 diff --git a/shim/shim.go b/shim/shim.go
 new file mode 100644
-index 00000000..8c3b3bac
+index 000000000..8c3b3bac0
 --- /dev/null
 +++ b/shim/shim.go
 @@ -0,0 +1,12 @@

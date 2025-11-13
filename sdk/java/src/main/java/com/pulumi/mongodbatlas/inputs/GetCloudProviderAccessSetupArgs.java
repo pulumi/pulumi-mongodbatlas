@@ -49,14 +49,14 @@ public final class GetCloudProviderAccessSetupArgs extends com.pulumi.resources.
     }
 
     /**
-     * cloud provider name, currently only AWS is supported
+     * cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
      * 
      */
     @Import(name="providerName", required=true)
     private Output<String> providerName;
 
     /**
-     * @return cloud provider name, currently only AWS is supported
+     * @return cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
      * 
      */
     public Output<String> providerName() {
@@ -64,14 +64,14 @@ public final class GetCloudProviderAccessSetupArgs extends com.pulumi.resources.
     }
 
     /**
-     * unique role id among all the aws roles provided by mongodb atlas
+     * unique role id among all the roles provided by MongoDB Atlas.
      * 
      */
     @Import(name="roleId", required=true)
     private Output<String> roleId;
 
     /**
-     * @return unique role id among all the aws roles provided by mongodb atlas
+     * @return unique role id among all the roles provided by MongoDB Atlas.
      * 
      */
     public Output<String> roleId() {
@@ -158,7 +158,7 @@ public final class GetCloudProviderAccessSetupArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param providerName cloud provider name, currently only AWS is supported
+         * @param providerName cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
          * 
          * @return builder
          * 
@@ -169,7 +169,7 @@ public final class GetCloudProviderAccessSetupArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param providerName cloud provider name, currently only AWS is supported
+         * @param providerName cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class GetCloudProviderAccessSetupArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param roleId unique role id among all the aws roles provided by mongodb atlas
+         * @param roleId unique role id among all the roles provided by MongoDB Atlas.
          * 
          * @return builder
          * 
@@ -190,7 +190,7 @@ public final class GetCloudProviderAccessSetupArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param roleId unique role id among all the aws roles provided by mongodb atlas
+         * @param roleId unique role id among all the roles provided by MongoDB Atlas.
          * 
          * @return builder
          * 

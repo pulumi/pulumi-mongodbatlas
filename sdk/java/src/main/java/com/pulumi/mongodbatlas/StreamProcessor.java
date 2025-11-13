@@ -29,6 +29,188 @@ import javax.annotation.Nullable;
  * 
  * ### S
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamInstance;
+ * import com.pulumi.mongodbatlas.StreamInstanceArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamInstanceDataProcessRegionArgs;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+ * import com.pulumi.mongodbatlas.StreamProcessor;
+ * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
+ * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName("InstanceName")
+ *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
+ *                 .region("VIRGINIA_USA")
+ *                 .cloudProvider("AWS")
+ *                 .build())
+ *             .build());
+ * 
+ *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName(example.instanceName())
+ *             .connectionName("sample_stream_solar")
+ *             .type("Sample")
+ *             .build());
+ * 
+ *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName(example.instanceName())
+ *             .connectionName("ClusterConnection")
+ *             .type("Cluster")
+ *             .clusterName(clusterName)
+ *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+ *                 .role("atlasAdmin")
+ *                 .type("BUILT_IN")
+ *                 .build())
+ *             .build());
+ * 
+ *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName(example.instanceName())
+ *             .connectionName("KafkaPlaintextConnection")
+ *             .type("Kafka")
+ *             .authentication(StreamConnectionAuthenticationArgs.builder()
+ *                 .mechanism("PLAIN")
+ *                 .username(kafkaUsername)
+ *                 .password(kafkaPassword)
+ *                 .build())
+ *             .bootstrapServers("localhost:9092,localhost:9092")
+ *             .config(Map.of("auto.offset.reset", "earliest"))
+ *             .security(StreamConnectionSecurityArgs.builder()
+ *                 .protocol("SASL_PLAINTEXT")
+ *                 .build())
+ *             .build());
+ * 
+ *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName(example.instanceName())
+ *             .processorName("sampleProcessorName")
+ *             .pipeline(serializeJson(
+ *                 jsonArray(
+ *                     jsonObject(
+ *                         jsonProperty("$source", jsonObject(
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
+ *                         ))
+ *                     ), 
+ *                     jsonObject(
+ *                         jsonProperty("$emit", jsonObject(
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+ *                             jsonProperty("db", "sample"),
+ *                             jsonProperty("coll", "solar"),
+ *                             jsonProperty("timeseries", jsonObject(
+ *                                 jsonProperty("timeField", "_ts")
+ *                             ))
+ *                         ))
+ *                     )
+ *                 )))
+ *             .state("STARTED")
+ *             .build());
+ * 
+ *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName(example.instanceName())
+ *             .processorName("clusterProcessorName")
+ *             .pipeline(serializeJson(
+ *                 jsonArray(
+ *                     jsonObject(
+ *                         jsonProperty("$source", jsonObject(
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
+ *                         ))
+ *                     ), 
+ *                     jsonObject(
+ *                         jsonProperty("$emit", jsonObject(
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+ *                             jsonProperty("topic", "topic_from_cluster")
+ *                         ))
+ *                     )
+ *                 )))
+ *             .state("CREATED")
+ *             .build());
+ * 
+ *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName(example.instanceName())
+ *             .processorName("kafkaProcessorName")
+ *             .pipeline(serializeJson(
+ *                 jsonArray(
+ *                     jsonObject(
+ *                         jsonProperty("$source", jsonObject(
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
+ *                             jsonProperty("topic", "topic_source")
+ *                         ))
+ *                     ), 
+ *                     jsonObject(
+ *                         jsonProperty("$emit", jsonObject(
+ *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
+ *                             jsonProperty("db", "kafka"),
+ *                             jsonProperty("coll", "topic_source"),
+ *                             jsonProperty("timeseries", jsonObject(
+ *                                 jsonProperty("timeField", "ts")
+ *                             ))
+ *                         ))
+ *                     )
+ *                 )))
+ *             .state("CREATED")
+ *             .options(StreamProcessorOptionsArgs.builder()
+ *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
+ *                     .coll("exampleColumn")
+ *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+ *                     .db("exampleDb")
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName(_instanceName)
+ *             .build()));
+ * 
+ *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
+ *             var instanceName = values.t1;
+ *             var processorName = values.t2;
+ *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+ *                 .projectId(projectId)
+ *                 .instanceName(instanceName)
+ *                 .processorName(processorName)
+ *                 .build());
+ *         });
+ * 
+ *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
+ *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Stream Processor resource can be imported using the Project ID, Stream Instance name and Stream Processor name, in the format `INSTANCE_NAME-PROJECT_ID-PROCESSOR_NAME`, e.g.

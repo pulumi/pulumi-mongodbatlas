@@ -48,14 +48,14 @@ public final class GetCloudProviderAccessSetupPlainArgs extends com.pulumi.resou
     }
 
     /**
-     * cloud provider name, currently only AWS is supported
+     * cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
      * 
      */
     @Import(name="providerName", required=true)
     private String providerName;
 
     /**
-     * @return cloud provider name, currently only AWS is supported
+     * @return cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
      * 
      */
     public String providerName() {
@@ -63,14 +63,14 @@ public final class GetCloudProviderAccessSetupPlainArgs extends com.pulumi.resou
     }
 
     /**
-     * unique role id among all the aws roles provided by mongodb atlas
+     * unique role id among all the roles provided by MongoDB Atlas.
      * 
      */
     @Import(name="roleId", required=true)
     private String roleId;
 
     /**
-     * @return unique role id among all the aws roles provided by mongodb atlas
+     * @return unique role id among all the roles provided by MongoDB Atlas.
      * 
      */
     public String roleId() {
@@ -137,7 +137,7 @@ public final class GetCloudProviderAccessSetupPlainArgs extends com.pulumi.resou
         }
 
         /**
-         * @param providerName cloud provider name, currently only AWS is supported
+         * @param providerName cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
          * 
          * @return builder
          * 
@@ -148,7 +148,7 @@ public final class GetCloudProviderAccessSetupPlainArgs extends com.pulumi.resou
         }
 
         /**
-         * @param roleId unique role id among all the aws roles provided by mongodb atlas
+         * @param roleId unique role id among all the roles provided by MongoDB Atlas.
          * 
          * @return builder
          * 

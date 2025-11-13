@@ -19,6 +19,7 @@ type CloudProviderAccessAuthorization struct {
 	Aws            CloudProviderAccessAuthorizationAwsPtrOutput            `pulumi:"aws"`
 	Azure          CloudProviderAccessAuthorizationAzurePtrOutput          `pulumi:"azure"`
 	FeatureUsages  CloudProviderAccessAuthorizationFeatureUsageArrayOutput `pulumi:"featureUsages"`
+	Gcps           CloudProviderAccessAuthorizationGcpArrayOutput          `pulumi:"gcps"`
 	ProjectId      pulumi.StringOutput                                     `pulumi:"projectId"`
 	RoleId         pulumi.StringOutput                                     `pulumi:"roleId"`
 }
@@ -63,6 +64,7 @@ type cloudProviderAccessAuthorizationState struct {
 	Aws            *CloudProviderAccessAuthorizationAws           `pulumi:"aws"`
 	Azure          *CloudProviderAccessAuthorizationAzure         `pulumi:"azure"`
 	FeatureUsages  []CloudProviderAccessAuthorizationFeatureUsage `pulumi:"featureUsages"`
+	Gcps           []CloudProviderAccessAuthorizationGcp          `pulumi:"gcps"`
 	ProjectId      *string                                        `pulumi:"projectId"`
 	RoleId         *string                                        `pulumi:"roleId"`
 }
@@ -72,6 +74,7 @@ type CloudProviderAccessAuthorizationState struct {
 	Aws            CloudProviderAccessAuthorizationAwsPtrInput
 	Azure          CloudProviderAccessAuthorizationAzurePtrInput
 	FeatureUsages  CloudProviderAccessAuthorizationFeatureUsageArrayInput
+	Gcps           CloudProviderAccessAuthorizationGcpArrayInput
 	ProjectId      pulumi.StringPtrInput
 	RoleId         pulumi.StringPtrInput
 }
@@ -200,6 +203,12 @@ func (o CloudProviderAccessAuthorizationOutput) FeatureUsages() CloudProviderAcc
 	return o.ApplyT(func(v *CloudProviderAccessAuthorization) CloudProviderAccessAuthorizationFeatureUsageArrayOutput {
 		return v.FeatureUsages
 	}).(CloudProviderAccessAuthorizationFeatureUsageArrayOutput)
+}
+
+func (o CloudProviderAccessAuthorizationOutput) Gcps() CloudProviderAccessAuthorizationGcpArrayOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorization) CloudProviderAccessAuthorizationGcpArrayOutput {
+		return v.Gcps
+	}).(CloudProviderAccessAuthorizationGcpArrayOutput)
 }
 
 func (o CloudProviderAccessAuthorizationOutput) ProjectId() pulumi.StringOutput {

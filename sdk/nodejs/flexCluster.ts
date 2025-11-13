@@ -15,6 +15,32 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example_clusterFlexCluster = new mongodbatlas.FlexCluster("example-cluster", {
+ *     projectId: projectId,
+ *     name: clusterName,
+ *     providerSettings: {
+ *         backingProviderName: "AWS",
+ *         regionName: "US_EAST_1",
+ *     },
+ *     terminationProtectionEnabled: true,
+ * });
+ * const example_cluster = example_clusterFlexCluster.name.apply(name => mongodbatlas.getFlexClusterOutput({
+ *     projectId: projectId,
+ *     name: name,
+ * }));
+ * const example_clusters = mongodbatlas.getFlexClusters({
+ *     projectId: projectId,
+ * });
+ * export const mongodbatlasFlexCluster = example_cluster.apply(example_cluster => example_cluster.name);
+ * export const mongodbatlasFlexClustersNames = example_clusters.then(example_clusters => .map(cluster => (cluster.name)));
+ * ```
+ *
  * ## Import
  *
  * You can import the Flex Cluster resource by using the Project ID and Flex Cluster name, in the format `PROJECT_ID-FLEX_CLUSTER_NAME`. For example:

@@ -38,6 +38,7 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
     declare public readonly aws: pulumi.Output<outputs.CloudProviderAccessAuthorizationAws | undefined>;
     declare public readonly azure: pulumi.Output<outputs.CloudProviderAccessAuthorizationAzure | undefined>;
     declare public /*out*/ readonly featureUsages: pulumi.Output<outputs.CloudProviderAccessAuthorizationFeatureUsage[]>;
+    declare public /*out*/ readonly gcps: pulumi.Output<outputs.CloudProviderAccessAuthorizationGcp[]>;
     declare public readonly projectId: pulumi.Output<string>;
     declare public readonly roleId: pulumi.Output<string>;
 
@@ -58,6 +59,7 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
             resourceInputs["aws"] = state?.aws;
             resourceInputs["azure"] = state?.azure;
             resourceInputs["featureUsages"] = state?.featureUsages;
+            resourceInputs["gcps"] = state?.gcps;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["roleId"] = state?.roleId;
         } else {
@@ -74,6 +76,7 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
             resourceInputs["roleId"] = args?.roleId;
             resourceInputs["authorizedDate"] = undefined /*out*/;
             resourceInputs["featureUsages"] = undefined /*out*/;
+            resourceInputs["gcps"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CloudProviderAccessAuthorization.__pulumiType, name, resourceInputs, opts);
@@ -88,6 +91,7 @@ export interface CloudProviderAccessAuthorizationState {
     aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
     azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure>;
     featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationFeatureUsage>[]>;
+    gcps?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationGcp>[]>;
     projectId?: pulumi.Input<string>;
     roleId?: pulumi.Input<string>;
 }

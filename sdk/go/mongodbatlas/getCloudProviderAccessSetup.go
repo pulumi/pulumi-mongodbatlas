@@ -13,7 +13,7 @@ import (
 
 // ## # Data Source: CloudProviderAccessSetup
 //
-// `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+// `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
@@ -87,6 +87,38 @@ import (
 //	}
 //
 // ```
+//
+// ### With GCP
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testRole, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "test_role", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("GCP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
+//				ProjectId:    testRole.ProjectId,
+//				ProviderName: testRole.ProviderName,
+//				RoleId:       testRole.RoleId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCloudProviderAccessSetup(ctx *pulumi.Context, args *LookupCloudProviderAccessSetupArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderAccessSetupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudProviderAccessSetupResult
@@ -103,15 +135,14 @@ type LookupCloudProviderAccessSetupArgs struct {
 	AzureConfigs []GetCloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
 	// The unique ID for the project to get all Cloud Provider Access
 	ProjectId string `pulumi:"projectId"`
-	// cloud provider name, currently only AWS is supported
+	// cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
 	ProviderName string `pulumi:"providerName"`
-	// unique role id among all the aws roles provided by mongodb atlas
+	// unique role id among all the roles provided by MongoDB Atlas.
 	RoleId string `pulumi:"roleId"`
 }
 
 // A collection of values returned by getCloudProviderAccessSetup.
 type LookupCloudProviderAccessSetupResult struct {
-	// aws related role information
 	Aws map[string]string `pulumi:"aws"`
 	// aws related role information
 	AwsConfigs []GetCloudProviderAccessSetupAwsConfig `pulumi:"awsConfigs"`
@@ -119,6 +150,8 @@ type LookupCloudProviderAccessSetupResult struct {
 	AzureConfigs []GetCloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
 	// Date on which this role was created.
 	CreatedDate string `pulumi:"createdDate"`
+	// gcp related configurations
+	GcpConfigs []GetCloudProviderAccessSetupGcpConfig `pulumi:"gcpConfigs"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -143,9 +176,9 @@ type LookupCloudProviderAccessSetupOutputArgs struct {
 	AzureConfigs GetCloudProviderAccessSetupAzureConfigArrayInput `pulumi:"azureConfigs"`
 	// The unique ID for the project to get all Cloud Provider Access
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// cloud provider name, currently only AWS is supported
+	// cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// unique role id among all the aws roles provided by mongodb atlas
+	// unique role id among all the roles provided by MongoDB Atlas.
 	RoleId pulumi.StringInput `pulumi:"roleId"`
 }
 
@@ -168,7 +201,6 @@ func (o LookupCloudProviderAccessSetupResultOutput) ToLookupCloudProviderAccessS
 	return o
 }
 
-// aws related role information
 func (o LookupCloudProviderAccessSetupResultOutput) Aws() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) map[string]string { return v.Aws }).(pulumi.StringMapOutput)
 }
@@ -190,6 +222,13 @@ func (o LookupCloudProviderAccessSetupResultOutput) AzureConfigs() GetCloudProvi
 // Date on which this role was created.
 func (o LookupCloudProviderAccessSetupResultOutput) CreatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// gcp related configurations
+func (o LookupCloudProviderAccessSetupResultOutput) GcpConfigs() GetCloudProviderAccessSetupGcpConfigArrayOutput {
+	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) []GetCloudProviderAccessSetupGcpConfig {
+		return v.GcpConfigs
+	}).(GetCloudProviderAccessSetupGcpConfigArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

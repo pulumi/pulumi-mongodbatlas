@@ -24,6 +24,77 @@ import (
 //
 // ### S
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleProject, err := mongodbatlas.NewProject(ctx, "example", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("project-name"),
+//				OrgId: pulumi.Any(orgId),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   exampleProject.ID(),
+//				Name:        pulumi.String("ClusterExample"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleSearchDeployment, err := mongodbatlas.NewSearchDeployment(ctx, "example", &mongodbatlas.SearchDeploymentArgs{
+//				ProjectId:   exampleProject.ID(),
+//				ClusterName: exampleAdvancedCluster.Name,
+//				Specs: mongodbatlas.SearchDeploymentSpecArray{
+//					&mongodbatlas.SearchDeploymentSpecArgs{
+//						InstanceSize: pulumi.String("S20_HIGHCPU_NVME"),
+//						NodeCount:    pulumi.Int(2),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example := mongodbatlas.LookupSearchDeploymentOutput(ctx, mongodbatlas.GetSearchDeploymentOutputArgs{
+//				ProjectId:   exampleSearchDeployment.ProjectId,
+//				ClusterName: exampleSearchDeployment.ClusterName,
+//			}, nil)
+//			ctx.Export("mongodbatlasSearchDeploymentId", example.ApplyT(func(example mongodbatlas.GetSearchDeploymentResult) (*string, error) {
+//				return &example.Id, nil
+//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("mongodbatlasSearchDeploymentEncryptionAtRestProvider", example.ApplyT(func(example mongodbatlas.GetSearchDeploymentResult) (*string, error) {
+//				return &example.EncryptionAtRestProvider, nil
+//			}).(pulumi.StringPtrOutput))
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
