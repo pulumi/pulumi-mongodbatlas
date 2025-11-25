@@ -18,6 +18,34 @@ import * as utilities from "./utilities";
  * ### S
  *
  * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const user = new mongodbatlas.DatabaseUser("user", {
+ *     projectId: "<PROJECT-ID>",
+ *     username: "myUsername",
+ *     x509Type: "MANAGED",
+ *     databaseName: "$external",
+ *     roles: [{
+ *         roleName: "atlasAdmin",
+ *         databaseName: "admin",
+ *     }],
+ *     labels: [{
+ *         key: "My Key",
+ *         value: "My Value",
+ *     }],
+ * });
+ * const testX509AuthenticationDatabaseUser = new mongodbatlas.X509AuthenticationDatabaseUser("test", {
+ *     projectId: user.projectId,
+ *     username: user.username,
+ *     monthsUntilExpiration: 2,
+ * });
+ * const test = pulumi.all([testX509AuthenticationDatabaseUser.projectId, testX509AuthenticationDatabaseUser.username]).apply(([projectId, username]) => mongodbatlas.getX509AuthenticationDatabaseUserOutput({
+ *     projectId: projectId,
+ *     username: username,
+ * }));
+ * ```
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript
@@ -99,6 +127,34 @@ export interface GetX509AuthenticationDatabaseUserResult {
  * ### S
  *
  * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const user = new mongodbatlas.DatabaseUser("user", {
+ *     projectId: "<PROJECT-ID>",
+ *     username: "myUsername",
+ *     x509Type: "MANAGED",
+ *     databaseName: "$external",
+ *     roles: [{
+ *         roleName: "atlasAdmin",
+ *         databaseName: "admin",
+ *     }],
+ *     labels: [{
+ *         key: "My Key",
+ *         value: "My Value",
+ *     }],
+ * });
+ * const testX509AuthenticationDatabaseUser = new mongodbatlas.X509AuthenticationDatabaseUser("test", {
+ *     projectId: user.projectId,
+ *     username: user.username,
+ *     monthsUntilExpiration: 2,
+ * });
+ * const test = pulumi.all([testX509AuthenticationDatabaseUser.projectId, testX509AuthenticationDatabaseUser.username]).apply(([projectId, username]) => mongodbatlas.getX509AuthenticationDatabaseUserOutput({
+ *     projectId: projectId,
+ *     username: username,
+ * }));
+ * ```
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript

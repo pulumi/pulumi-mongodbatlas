@@ -14,6 +14,33 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("test", {
+ *     projectId: "5cf5a45a9ccf6400e60981b6",
+ *     clusterName: "MyCluster",
+ *     description: "MyDescription",
+ *     retentionInDays: 1,
+ * });
+ * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("test", {
+ *     projectId: "5cf5a45a9ccf6400e60981b6",
+ *     clusterName: "MyCluster",
+ *     snapshotId: testCloudBackupSnapshot.id,
+ *     deliveryType: [{
+ *         automated: true,
+ *         targetClusterName: "MyCluster",
+ *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshotRestoreJobOutput({
+ *     projectId: testCloudBackupSnapshotRestoreJob.projectId,
+ *     clusterName: testCloudBackupSnapshotRestoreJob.clusterName,
+ *     snapshotRestoreJobId: testCloudBackupSnapshotRestoreJob.snapshotRestoreJobId,
+ * });
+ * ```
  */
 export function getCloudBackupSnapshotRestoreJob(args: GetCloudBackupSnapshotRestoreJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotRestoreJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -114,6 +141,33 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
  * ## Example Usage
  *
  * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("test", {
+ *     projectId: "5cf5a45a9ccf6400e60981b6",
+ *     clusterName: "MyCluster",
+ *     description: "MyDescription",
+ *     retentionInDays: 1,
+ * });
+ * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("test", {
+ *     projectId: "5cf5a45a9ccf6400e60981b6",
+ *     clusterName: "MyCluster",
+ *     snapshotId: testCloudBackupSnapshot.id,
+ *     deliveryType: [{
+ *         automated: true,
+ *         targetClusterName: "MyCluster",
+ *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshotRestoreJobOutput({
+ *     projectId: testCloudBackupSnapshotRestoreJob.projectId,
+ *     clusterName: testCloudBackupSnapshotRestoreJob.clusterName,
+ *     snapshotRestoreJobId: testCloudBackupSnapshotRestoreJob.snapshotRestoreJobId,
+ * });
+ * ```
  */
 export function getCloudBackupSnapshotRestoreJobOutput(args: GetCloudBackupSnapshotRestoreJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudBackupSnapshotRestoreJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

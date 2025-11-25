@@ -28,8 +28,105 @@ namespace Pulumi.Mongodbatlas
     /// ### S
     /// 
     /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+    ///     {
+    ///         ProjectId = "64b926dd56206839b1c8bae9",
+    ///         Username = "myUsername",
+    ///         X509Type = "MANAGED",
+    ///         DatabaseName = "$external",
+    ///         Roles = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///             {
+    ///                 RoleName = "atlasAdmin",
+    ///                 DatabaseName = "admin",
+    ///             },
+    ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+    ///             {
+    ///                 Key = "My Key",
+    ///                 Value = "My Value",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+    ///     {
+    ///         ProjectId = user.ProjectId,
+    ///         Username = user.Username,
+    ///         MonthsUntilExpiration = 2,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         CustomerX509Cas = @"-----BEGIN CERTIFICATE-----
+    /// MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+    /// VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+    /// c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+    /// SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+    /// MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+    /// VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+    /// BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+    /// c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+    /// iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+    /// cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+    /// Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+    /// SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+    /// 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+    /// iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+    /// -----END CERTIFICATE-----\""
+    /// ",
+    ///     });
+    /// 
+    ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+    ///     {
+    ///         ProjectId = "64b926dd56206839b1c8bae9",
+    ///         Username = "myUsername",
+    ///         X509Type = "CUSTOMER",
+    ///         DatabaseName = "$external",
+    ///         Roles = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///             {
+    ///                 RoleName = "atlasAdmin",
+    ///                 DatabaseName = "admin",
+    ///             },
+    ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+    ///             {
+    ///                 Key = "My Key",
+    ///                 Value = "My Value",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

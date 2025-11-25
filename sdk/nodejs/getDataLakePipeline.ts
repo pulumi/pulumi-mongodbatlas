@@ -16,6 +16,64 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const projectTest = new mongodbatlas.Project("projectTest", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORGANIZATION ID",
+ * });
+ * const automatedBackupTest = new mongodbatlas.AdvancedCluster("automated_backup_test", {
+ *     projectId: projectId,
+ *     name: "automated-backup-test",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "GCP",
+ *             regionName: "US_EAST_4",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const pipeline = new mongodbatlas.DataLakePipeline("pipeline", {
+ *     projectId: projectTest.projectId,
+ *     name: "DataLakePipelineName",
+ *     sink: {
+ *         type: "DLS",
+ *         partitionFields: [{
+ *             name: "access",
+ *             order: 0,
+ *         }],
+ *     },
+ *     source: {
+ *         type: "ON_DEMAND_CPS",
+ *         clusterName: automatedBackupTest.name,
+ *         databaseName: "sample_airbnb",
+ *         collectionName: "listingsAndReviews",
+ *     },
+ *     transformations: [
+ *         {
+ *             field: "test",
+ *             type: "EXCLUDE",
+ *         },
+ *         {
+ *             field: "test22",
+ *             type: "EXCLUDE",
+ *         },
+ *     ],
+ * });
+ * const pipelineDataSource = mongodbatlas.getDataLakePipelineOutput({
+ *     projectId: pipeline.projectId,
+ *     name: pipeline.name,
+ * });
+ * ```
  */
 export function getDataLakePipeline(args: GetDataLakePipelineArgs, opts?: pulumi.InvokeOptions): Promise<GetDataLakePipelineResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -111,6 +169,64 @@ export interface GetDataLakePipelineResult {
  * ## Example Usage
  *
  * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const projectTest = new mongodbatlas.Project("projectTest", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORGANIZATION ID",
+ * });
+ * const automatedBackupTest = new mongodbatlas.AdvancedCluster("automated_backup_test", {
+ *     projectId: projectId,
+ *     name: "automated-backup-test",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "GCP",
+ *             regionName: "US_EAST_4",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const pipeline = new mongodbatlas.DataLakePipeline("pipeline", {
+ *     projectId: projectTest.projectId,
+ *     name: "DataLakePipelineName",
+ *     sink: {
+ *         type: "DLS",
+ *         partitionFields: [{
+ *             name: "access",
+ *             order: 0,
+ *         }],
+ *     },
+ *     source: {
+ *         type: "ON_DEMAND_CPS",
+ *         clusterName: automatedBackupTest.name,
+ *         databaseName: "sample_airbnb",
+ *         collectionName: "listingsAndReviews",
+ *     },
+ *     transformations: [
+ *         {
+ *             field: "test",
+ *             type: "EXCLUDE",
+ *         },
+ *         {
+ *             field: "test22",
+ *             type: "EXCLUDE",
+ *         },
+ *     ],
+ * });
+ * const pipelineDataSource = mongodbatlas.getDataLakePipelineOutput({
+ *     projectId: pipeline.projectId,
+ *     name: pipeline.name,
+ * });
+ * ```
  */
 export function getDataLakePipelineOutput(args: GetDataLakePipelineOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataLakePipelineResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

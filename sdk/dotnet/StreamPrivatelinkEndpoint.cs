@@ -18,6 +18,136 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### S
     /// 
+    /// ### AWS Confluent Privatelink
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Confluent = Pulumi.Confluent;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var staging = new Confluent.Index.Environment("staging", new()
+    ///     {
+    ///         DisplayName = "Staging",
+    ///     });
+    /// 
+    ///     var privateLink = new Confluent.Index.Network("private_link", new()
+    ///     {
+    ///         DisplayName = "terraform-test-private-link-network-manual",
+    ///         Cloud = "AWS",
+    ///         Region = awsRegion,
+    ///         ConnectionTypes = new[]
+    ///         {
+    ///             "PRIVATELINK",
+    ///         },
+    ///         Zones = Std.Index.Keys.Invoke(new()
+    ///         {
+    ///             Input = subnetsToPrivatelink,
+    ///         }).Result,
+    ///         Environment = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "id", staging.Id },
+    ///             },
+    ///         },
+    ///         DnsConfig = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "resolution", "PRIVATE" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var aws = new Confluent.Index.PrivateLinkAccess("aws", new()
+    ///     {
+    ///         DisplayName = "example-private-link-access",
+    ///         Aws = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "account", awsAccountId },
+    ///             },
+    ///         },
+    ///         Environment = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "id", staging.Id },
+    ///             },
+    ///         },
+    ///         Network = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "id", privateLink.Id },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var dedicated = new Confluent.Index.KafkaCluster("dedicated", new()
+    ///     {
+    ///         DisplayName = "example-dedicated-cluster",
+    ///         Availability = "MULTI_ZONE",
+    ///         Cloud = privateLink.Cloud,
+    ///         Region = privateLink.Region,
+    ///         Dedicated = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "cku", 2 },
+    ///             },
+    ///         },
+    ///         Environment = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "id", staging.Id },
+    ///             },
+    ///         },
+    ///         Network = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "id", privateLink.Id },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         DnsDomain = privateLink.DnsDomain,
+    ///         ProviderName = "AWS",
+    ///         Region = awsRegion,
+    ///         Vendor = "CONFLUENT",
+    ///         ServiceEndpointId = privateLink.Aws[0].PrivateLinkEndpointService,
+    ///         DnsSubDomains = privateLink.ZonalSubdomains,
+    ///     });
+    /// 
+    ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         Id = test.Id,
+    ///     });
+    /// 
+    ///     var pluralDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoints.Invoke(new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["interfaceEndpointId"] = singularDatasource.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.InterfaceEndpointId),
+    ///         ["interfaceEndpointIds"] = pluralDatasource.Apply(getStreamPrivatelinkEndpointsResult =&gt; getStreamPrivatelinkEndpointsResult.Results).Select(__item =&gt; __item.InterfaceEndpointId).ToList(),
+    ///     };
+    /// });
+    /// ```
+    /// 
     /// ### AWS MSK Privatelink
     /// ```csharp
     /// using System.Collections.Generic;
@@ -150,7 +280,7 @@ namespace Pulumi.Mongodbatlas
     ///         })),
     ///     });
     /// 
-    ///     var exampleSingleScramSecretAssociation = new Aws.Msk.SingleScramSecretAssociation("example", new()
+    ///     var exampleMskSingleScramSecretAssociation = new Aws.Index.MskSingleScramSecretAssociation("example", new()
     ///     {
     ///         ClusterArn = example.Arn,
     ///         SecretArn = awsSecretArn,
@@ -188,29 +318,29 @@ namespace Pulumi.Mongodbatlas
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // S3 bucket for stream data
-    ///     var streamBucket = new Aws.S3.Bucket("stream_bucket", new()
+    ///     var streamBucket = new Aws.S3.BucketV2("stream_bucket", new()
     ///     {
-    ///         BucketName = s3BucketName,
+    ///         Bucket = s3BucketName,
     ///         ForceDestroy = true,
     ///     });
     /// 
-    ///     var streamBucketVersioning = new Aws.S3.BucketVersioning("stream_bucket_versioning", new()
+    ///     var streamBucketVersioning = new Aws.S3.BucketVersioningV2("stream_bucket_versioning", new()
     ///     {
     ///         Bucket = streamBucket.Id,
-    ///         VersioningConfiguration = new Aws.S3.Inputs.BucketVersioningVersioningConfigurationArgs
+    ///         VersioningConfiguration = new Aws.S3.Inputs.BucketVersioningV2VersioningConfigurationArgs
     ///         {
     ///             Status = "Enabled",
     ///         },
     ///     });
     /// 
-    ///     var streamBucketEncryption = new Aws.S3.BucketServerSideEncryptionConfiguration("stream_bucket_encryption", new()
+    ///     var streamBucketEncryption = new Aws.S3.BucketServerSideEncryptionConfigurationV2("stream_bucket_encryption", new()
     ///     {
     ///         Bucket = streamBucket.Id,
     ///         Rules = new[]
     ///         {
-    ///             new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationRuleArgs
+    ///             new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationV2RuleArgs
     ///             {
-    ///                 ApplyServerSideEncryptionByDefault = new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs
+    ///                 ApplyServerSideEncryptionByDefault = new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs
     ///                 {
     ///                     SseAlgorithm = "AES256",
     ///                 },

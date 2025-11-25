@@ -24,6 +24,98 @@ import javax.annotation.Nullable;
  * 
  * ### S
  * 
+ * ### AWS Confluent Privatelink
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.confluent.Environment;
+ * import com.pulumi.confluent.EnvironmentArgs;
+ * import com.pulumi.confluent.Network;
+ * import com.pulumi.confluent.NetworkArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.confluent.PrivateLinkAccess;
+ * import com.pulumi.confluent.PrivateLinkAccessArgs;
+ * import com.pulumi.confluent.KafkaCluster;
+ * import com.pulumi.confluent.KafkaClusterArgs;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+ * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var staging = new Environment("staging", EnvironmentArgs.builder()
+ *             .displayName("Staging")
+ *             .build());
+ * 
+ *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+ *             .displayName("terraform-test-private-link-network-manual")
+ *             .cloud("AWS")
+ *             .region(awsRegion)
+ *             .connectionTypes(List.of("PRIVATELINK"))
+ *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+ *             .environment(List.of(Map.of("id", staging.id())))
+ *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+ *             .build());
+ * 
+ *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+ *             .displayName("example-private-link-access")
+ *             .aws(List.of(Map.of("account", awsAccountId)))
+ *             .environment(List.of(Map.of("id", staging.id())))
+ *             .network(List.of(Map.of("id", privateLink.id())))
+ *             .build());
+ * 
+ *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+ *             .displayName("example-dedicated-cluster")
+ *             .availability("MULTI_ZONE")
+ *             .cloud(privateLink.cloud())
+ *             .region(privateLink.region())
+ *             .dedicated(List.of(Map.of("cku", 2)))
+ *             .environment(List.of(Map.of("id", staging.id())))
+ *             .network(List.of(Map.of("id", privateLink.id())))
+ *             .build());
+ * 
+ *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .dnsDomain(privateLink.dnsDomain())
+ *             .providerName("AWS")
+ *             .region(awsRegion)
+ *             .vendor("CONFLUENT")
+ *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+ *             .dnsSubDomains(privateLink.zonalSubdomains())
+ *             .build());
+ * 
+ *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .id(_id)
+ *             .build()));
+ * 
+ *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+ *             .projectId(projectId)
+ *             .build());
+ * 
+ *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+ *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### AWS MSK Privatelink
  * <pre>
  * {@code
@@ -54,8 +146,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
  * import com.pulumi.aws.msk.ClusterPolicy;
  * import com.pulumi.aws.msk.ClusterPolicyArgs;
- * import com.pulumi.aws.msk.SingleScramSecretAssociation;
- * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+ * import com.pulumi.aws.MskSingleScramSecretAssociation;
+ * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
  * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -169,7 +261,7 @@ import javax.annotation.Nullable;
  *                 ))))
  *             .build());
  * 
- *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+ *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
  *             .clusterArn(example.arn())
  *             .secretArn(awsSecretArn)
  *             .build());
@@ -200,15 +292,15 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.aws.s3.Bucket;
- * import com.pulumi.aws.s3.BucketArgs;
- * import com.pulumi.aws.s3.BucketVersioning;
- * import com.pulumi.aws.s3.BucketVersioningArgs;
- * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
- * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
- * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
- * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
- * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+ * import com.pulumi.aws.s3.BucketV2;
+ * import com.pulumi.aws.s3.BucketV2Args;
+ * import com.pulumi.aws.s3.BucketVersioningV2;
+ * import com.pulumi.aws.s3.BucketVersioningV2Args;
+ * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+ * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+ * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+ * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+ * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
  * import java.util.List;
@@ -225,22 +317,22 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // S3 bucket for stream data
- *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+ *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
  *             .bucket(s3BucketName)
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+ *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
  *             .bucket(streamBucket.id())
- *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+ *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
  *                 .status("Enabled")
  *                 .build())
  *             .build());
  * 
- *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+ *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
  *             .bucket(streamBucket.id())
- *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
- *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+ *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+ *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
  *                     .sseAlgorithm("AES256")
  *                     .build())
  *                 .build())

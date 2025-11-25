@@ -366,6 +366,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -443,6 +505,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -520,6 +644,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -597,6 +783,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -674,6 +922,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -745,6 +1055,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAccessListApiKeyResult> getAccessListApiKey(GetAccessListApiKeyArgs args) {
@@ -756,6 +1106,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAccessListApiKeyResult> getAccessListApiKeyPlain(GetAccessListApiKeyPlainArgs args) {
@@ -767,6 +1157,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAccessListApiKeyResult> getAccessListApiKey(GetAccessListApiKeyArgs args, InvokeOptions options) {
@@ -778,6 +1208,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAccessListApiKeyResult> getAccessListApiKey(GetAccessListApiKeyArgs args, InvokeOutputOptions options) {
@@ -789,6 +1259,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAccessListApiKeyResult> getAccessListApiKeyPlain(GetAccessListApiKeyPlainArgs args, InvokeOptions options) {
@@ -800,6 +1310,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args) {
@@ -811,6 +1361,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAccessListApiKeysInvokeResult> getAccessListApiKeysPlain(GetAccessListApiKeysPlainArgs args) {
@@ -822,6 +1412,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args, InvokeOptions options) {
@@ -833,6 +1463,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args, InvokeOutputOptions options) {
@@ -844,6 +1514,46 @@ public final class MongodbatlasFunctions {
      * ### Using CIDR Block
      * 
      * ### Using IP Address
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AccessListApiKey;
+     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
+     *             .orgId("<ORG_ID>")
+     *             .ipAddress("2.3.4.5")
+     *             .apiKey("a29120e123cd")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *             .orgId(testAccessListApiKey.orgId())
+     *             .ipAddress(testAccessListApiKey.ipAddress())
+     *             .apiKeyId(testAccessListApiKey.apiKeyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAccessListApiKeysInvokeResult> getAccessListApiKeysPlain(GetAccessListApiKeysPlainArgs args, InvokeOptions options) {
@@ -6712,12 +7422,180 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+     * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .name("clusterTest")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("EU_CENTRAL_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
+     *             .projectId(myCluster.projectId())
+     *             .clusterName(myCluster.name())
+     *             .referenceHourOfDay(3)
+     *             .referenceMinuteOfHour(45)
+     *             .restoreWindowDays(4)
+     *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(14)
+     *                 .build())
+     *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
+     *                 .cloudProvider("AWS")
+     *                 .frequencies(                
+     *                     "HOURLY",
+     *                     "DAILY",
+     *                     "WEEKLY",
+     *                     "MONTHLY",
+     *                     "YEARLY",
+     *                     "ON_DEMAND")
+     *                 .regionName("US_EAST_1")
+     *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
+     *                 .shouldCopyOplogs(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
+     *             .projectId(testCloudBackupSchedule.projectId())
+     *             .clusterName(testCloudBackupSchedule.clusterName())
+     *             .useZoneIdForCopySettings(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetCloudBackupScheduleResult> getCloudBackupSchedule(GetCloudBackupScheduleArgs args) {
         return getCloudBackupSchedule(args, InvokeOptions.Empty);
     }
     /**
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+     * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .name("clusterTest")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("EU_CENTRAL_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
+     *             .projectId(myCluster.projectId())
+     *             .clusterName(myCluster.name())
+     *             .referenceHourOfDay(3)
+     *             .referenceMinuteOfHour(45)
+     *             .restoreWindowDays(4)
+     *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(14)
+     *                 .build())
+     *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
+     *                 .cloudProvider("AWS")
+     *                 .frequencies(                
+     *                     "HOURLY",
+     *                     "DAILY",
+     *                     "WEEKLY",
+     *                     "MONTHLY",
+     *                     "YEARLY",
+     *                     "ON_DEMAND")
+     *                 .regionName("US_EAST_1")
+     *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
+     *                 .shouldCopyOplogs(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
+     *             .projectId(testCloudBackupSchedule.projectId())
+     *             .clusterName(testCloudBackupSchedule.clusterName())
+     *             .useZoneIdForCopySettings(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetCloudBackupScheduleResult> getCloudBackupSchedulePlain(GetCloudBackupSchedulePlainArgs args) {
@@ -6726,6 +7604,90 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+     * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .name("clusterTest")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("EU_CENTRAL_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
+     *             .projectId(myCluster.projectId())
+     *             .clusterName(myCluster.name())
+     *             .referenceHourOfDay(3)
+     *             .referenceMinuteOfHour(45)
+     *             .restoreWindowDays(4)
+     *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(14)
+     *                 .build())
+     *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
+     *                 .cloudProvider("AWS")
+     *                 .frequencies(                
+     *                     "HOURLY",
+     *                     "DAILY",
+     *                     "WEEKLY",
+     *                     "MONTHLY",
+     *                     "YEARLY",
+     *                     "ON_DEMAND")
+     *                 .regionName("US_EAST_1")
+     *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
+     *                 .shouldCopyOplogs(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
+     *             .projectId(testCloudBackupSchedule.projectId())
+     *             .clusterName(testCloudBackupSchedule.clusterName())
+     *             .useZoneIdForCopySettings(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetCloudBackupScheduleResult> getCloudBackupSchedule(GetCloudBackupScheduleArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", TypeShape.of(GetCloudBackupScheduleResult.class), args, Utilities.withVersion(options));
@@ -6733,12 +7695,180 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+     * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .name("clusterTest")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("EU_CENTRAL_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
+     *             .projectId(myCluster.projectId())
+     *             .clusterName(myCluster.name())
+     *             .referenceHourOfDay(3)
+     *             .referenceMinuteOfHour(45)
+     *             .restoreWindowDays(4)
+     *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(14)
+     *                 .build())
+     *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
+     *                 .cloudProvider("AWS")
+     *                 .frequencies(                
+     *                     "HOURLY",
+     *                     "DAILY",
+     *                     "WEEKLY",
+     *                     "MONTHLY",
+     *                     "YEARLY",
+     *                     "ON_DEMAND")
+     *                 .regionName("US_EAST_1")
+     *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
+     *                 .shouldCopyOplogs(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
+     *             .projectId(testCloudBackupSchedule.projectId())
+     *             .clusterName(testCloudBackupSchedule.clusterName())
+     *             .useZoneIdForCopySettings(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetCloudBackupScheduleResult> getCloudBackupSchedule(GetCloudBackupScheduleArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", TypeShape.of(GetCloudBackupScheduleResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+     * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .name("clusterTest")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AWS")
+     *                     .regionName("EU_CENTRAL_1")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
+     *             .projectId(myCluster.projectId())
+     *             .clusterName(myCluster.name())
+     *             .referenceHourOfDay(3)
+     *             .referenceMinuteOfHour(45)
+     *             .restoreWindowDays(4)
+     *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit("days")
+     *                 .retentionValue(14)
+     *                 .build())
+     *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
+     *                 .cloudProvider("AWS")
+     *                 .frequencies(                
+     *                     "HOURLY",
+     *                     "DAILY",
+     *                     "WEEKLY",
+     *                     "MONTHLY",
+     *                     "YEARLY",
+     *                     "ON_DEMAND")
+     *                 .regionName("US_EAST_1")
+     *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
+     *                 .shouldCopyOplogs(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
+     *             .projectId(testCloudBackupSchedule.projectId())
+     *             .clusterName(testCloudBackupSchedule.clusterName())
+     *             .useZoneIdForCopySettings(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetCloudBackupScheduleResult> getCloudBackupSchedulePlain(GetCloudBackupSchedulePlainArgs args, InvokeOptions options) {
@@ -8250,6 +9380,61 @@ public final class MongodbatlasFunctions {
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .description("MyDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .snapshotId(testCloudBackupSnapshot.id())
+     *             .deliveryType(List.of(Map.ofEntries(
+     *                 Map.entry("automated", true),
+     *                 Map.entry("targetClusterName", "MyCluster"),
+     *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
+     *             )))
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .snapshotRestoreJobId(testCloudBackupSnapshotRestoreJob.snapshotRestoreJobId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs args) {
         return getCloudBackupSnapshotRestoreJob(args, InvokeOptions.Empty);
@@ -8264,6 +9449,61 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .description("MyDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .snapshotId(testCloudBackupSnapshot.id())
+     *             .deliveryType(List.of(Map.ofEntries(
+     *                 Map.entry("automated", true),
+     *                 Map.entry("targetClusterName", "MyCluster"),
+     *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
+     *             )))
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .snapshotRestoreJobId(testCloudBackupSnapshotRestoreJob.snapshotRestoreJobId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJobPlain(GetCloudBackupSnapshotRestoreJobPlainArgs args) {
@@ -8280,6 +9520,61 @@ public final class MongodbatlasFunctions {
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .description("MyDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .snapshotId(testCloudBackupSnapshot.id())
+     *             .deliveryType(List.of(Map.ofEntries(
+     *                 Map.entry("automated", true),
+     *                 Map.entry("targetClusterName", "MyCluster"),
+     *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
+     *             )))
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .snapshotRestoreJobId(testCloudBackupSnapshotRestoreJob.snapshotRestoreJobId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", TypeShape.of(GetCloudBackupSnapshotRestoreJobResult.class), args, Utilities.withVersion(options));
@@ -8295,6 +9590,61 @@ public final class MongodbatlasFunctions {
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .description("MyDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .snapshotId(testCloudBackupSnapshot.id())
+     *             .deliveryType(List.of(Map.ofEntries(
+     *                 Map.entry("automated", true),
+     *                 Map.entry("targetClusterName", "MyCluster"),
+     *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
+     *             )))
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .snapshotRestoreJobId(testCloudBackupSnapshotRestoreJob.snapshotRestoreJobId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob", TypeShape.of(GetCloudBackupSnapshotRestoreJobResult.class), args, Utilities.withVersion(options));
@@ -8309,6 +9659,61 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .description("MyDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId("5cf5a45a9ccf6400e60981b6")
+     *             .clusterName("MyCluster")
+     *             .snapshotId(testCloudBackupSnapshot.id())
+     *             .deliveryType(List.of(Map.ofEntries(
+     *                 Map.entry("automated", true),
+     *                 Map.entry("targetClusterName", "MyCluster"),
+     *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
+     *             )))
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .snapshotRestoreJobId(testCloudBackupSnapshotRestoreJob.snapshotRestoreJobId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotRestoreJobResult> getCloudBackupSnapshotRestoreJobPlain(GetCloudBackupSnapshotRestoreJobPlainArgs args, InvokeOptions options) {
@@ -10975,6 +12380,56 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
+     *             .username("test-acc-username")
+     *             .password("test-acc-password")
+     *             .projectId("<PROJECT-ID>")
+     *             .databaseName("admin")
+     *             .roles(            
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("readWrite")
+     *                     .databaseName("admin")
+     *                     .build(),
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("atlasAdmin")
+     *                     .databaseName("admin")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
+     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args) {
         return getCustomDbRoles(args, InvokeOptions.Empty);
@@ -10987,6 +12442,56 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
+     *             .username("test-acc-username")
+     *             .password("test-acc-password")
+     *             .projectId("<PROJECT-ID>")
+     *             .databaseName("admin")
+     *             .roles(            
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("readWrite")
+     *                     .databaseName("admin")
+     *                     .build(),
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("atlasAdmin")
+     *                     .databaseName("admin")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
+     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetCustomDbRolesInvokeResult> getCustomDbRolesPlain(GetCustomDbRolesPlainArgs args) {
@@ -11001,6 +12506,56 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
+     *             .username("test-acc-username")
+     *             .password("test-acc-password")
+     *             .projectId("<PROJECT-ID>")
+     *             .databaseName("admin")
+     *             .roles(            
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("readWrite")
+     *                     .databaseName("admin")
+     *                     .build(),
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("atlasAdmin")
+     *                     .databaseName("admin")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
+     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", TypeShape.of(GetCustomDbRolesInvokeResult.class), args, Utilities.withVersion(options));
@@ -11014,6 +12569,56 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
+     *             .username("test-acc-username")
+     *             .password("test-acc-password")
+     *             .projectId("<PROJECT-ID>")
+     *             .databaseName("admin")
+     *             .roles(            
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("readWrite")
+     *                     .databaseName("admin")
+     *                     .build(),
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("atlasAdmin")
+     *                     .databaseName("admin")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
+     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", TypeShape.of(GetCustomDbRolesInvokeResult.class), args, Utilities.withVersion(options));
@@ -11026,6 +12631,56 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
+     *             .username("test-acc-username")
+     *             .password("test-acc-password")
+     *             .projectId("<PROJECT-ID>")
+     *             .databaseName("admin")
+     *             .roles(            
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("readWrite")
+     *                     .databaseName("admin")
+     *                     .build(),
+     *                 DatabaseUserRoleArgs.builder()
+     *                     .roleName("atlasAdmin")
+     *                     .databaseName("admin")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
+     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetCustomDbRolesInvokeResult> getCustomDbRolesPlain(GetCustomDbRolesPlainArgs args, InvokeOptions options) {
@@ -11297,6 +12952,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var projectTest = new Project("projectTest", ProjectArgs.builder()
+     *             .name("NAME OF THE PROJECT")
+     *             .orgId("ORGANIZATION ID")
+     *             .build());
+     * 
+     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name("automated-backup-test")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("GCP")
+     *                     .regionName("US_EAST_4")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(automatedBackupTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
+     *             .projectId(pipeline.projectId())
+     *             .name(pipeline.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetDataLakePipelineResult> getDataLakePipeline(GetDataLakePipelineArgs args) {
         return getDataLakePipeline(args, InvokeOptions.Empty);
@@ -11311,6 +13058,98 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var projectTest = new Project("projectTest", ProjectArgs.builder()
+     *             .name("NAME OF THE PROJECT")
+     *             .orgId("ORGANIZATION ID")
+     *             .build());
+     * 
+     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name("automated-backup-test")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("GCP")
+     *                     .regionName("US_EAST_4")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(automatedBackupTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
+     *             .projectId(pipeline.projectId())
+     *             .name(pipeline.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetDataLakePipelineResult> getDataLakePipelinePlain(GetDataLakePipelinePlainArgs args) {
@@ -11327,6 +13166,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var projectTest = new Project("projectTest", ProjectArgs.builder()
+     *             .name("NAME OF THE PROJECT")
+     *             .orgId("ORGANIZATION ID")
+     *             .build());
+     * 
+     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name("automated-backup-test")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("GCP")
+     *                     .regionName("US_EAST_4")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(automatedBackupTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
+     *             .projectId(pipeline.projectId())
+     *             .name(pipeline.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetDataLakePipelineResult> getDataLakePipeline(GetDataLakePipelineArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", TypeShape.of(GetDataLakePipelineResult.class), args, Utilities.withVersion(options));
@@ -11342,6 +13273,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var projectTest = new Project("projectTest", ProjectArgs.builder()
+     *             .name("NAME OF THE PROJECT")
+     *             .orgId("ORGANIZATION ID")
+     *             .build());
+     * 
+     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name("automated-backup-test")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("GCP")
+     *                     .regionName("US_EAST_4")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(automatedBackupTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
+     *             .projectId(pipeline.projectId())
+     *             .name(pipeline.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetDataLakePipelineResult> getDataLakePipeline(GetDataLakePipelineArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", TypeShape.of(GetDataLakePipelineResult.class), args, Utilities.withVersion(options));
@@ -11356,6 +13379,98 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var projectTest = new Project("projectTest", ProjectArgs.builder()
+     *             .name("NAME OF THE PROJECT")
+     *             .orgId("ORGANIZATION ID")
+     *             .build());
+     * 
+     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name("automated-backup-test")
+     *             .clusterType("REPLICASET")
+     *             .backupEnabled(true)
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("GCP")
+     *                     .regionName("US_EAST_4")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(automatedBackupTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
+     *             .projectId(pipeline.projectId())
+     *             .name(pipeline.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetDataLakePipelineResult> getDataLakePipelinePlain(GetDataLakePipelinePlainArgs args, InvokeOptions options) {
@@ -11435,6 +13550,70 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(clusterTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = pipeline.name().applyValue(_name -> MongodbatlasFunctions.getDataLakePipelineRuns(GetDataLakePipelineRunsArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .pipelineName(_name)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRuns(GetDataLakePipelineRunsArgs args) {
         return getDataLakePipelineRuns(args, InvokeOptions.Empty);
@@ -11447,6 +13626,70 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(clusterTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = pipeline.name().applyValue(_name -> MongodbatlasFunctions.getDataLakePipelineRuns(GetDataLakePipelineRunsArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .pipelineName(_name)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRunsPlain(GetDataLakePipelineRunsPlainArgs args) {
@@ -11461,6 +13704,70 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(clusterTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = pipeline.name().applyValue(_name -> MongodbatlasFunctions.getDataLakePipelineRuns(GetDataLakePipelineRunsArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .pipelineName(_name)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRuns(GetDataLakePipelineRunsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", TypeShape.of(GetDataLakePipelineRunsInvokeResult.class), args, Utilities.withVersion(options));
@@ -11474,6 +13781,70 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(clusterTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = pipeline.name().applyValue(_name -> MongodbatlasFunctions.getDataLakePipelineRuns(GetDataLakePipelineRunsArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .pipelineName(_name)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRuns(GetDataLakePipelineRunsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", TypeShape.of(GetDataLakePipelineRunsInvokeResult.class), args, Utilities.withVersion(options));
@@ -11486,6 +13857,70 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DataLakePipeline;
+     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .name("DataLakePipelineName")
+     *             .sink(DataLakePipelineSinkArgs.builder()
+     *                 .type("DLS")
+     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+     *                     .name("access")
+     *                     .order(0)
+     *                     .build())
+     *                 .build())
+     *             .source(DataLakePipelineSourceArgs.builder()
+     *                 .type("ON_DEMAND_CPS")
+     *                 .clusterName(clusterTest.name())
+     *                 .databaseName("sample_airbnb")
+     *                 .collectionName("listingsAndReviews")
+     *                 .build())
+     *             .transformations(            
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test")
+     *                     .type("EXCLUDE")
+     *                     .build(),
+     *                 DataLakePipelineTransformationArgs.builder()
+     *                     .field("test22")
+     *                     .type("EXCLUDE")
+     *                     .build())
+     *             .build());
+     * 
+     *         final var test = pipeline.name().applyValue(_name -> MongodbatlasFunctions.getDataLakePipelineRuns(GetDataLakePipelineRunsArgs.builder()
+     *             .projectId(projectTest.projectId())
+     *             .pipelineName(_name)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRunsPlain(GetDataLakePipelineRunsPlainArgs args, InvokeOptions options) {
@@ -17293,6 +19728,63 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
+     *             .federationSettingsId("")
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .groupId("628aa20d7f7f7f7f7098b81b8")
+     *             .externalGroupName("myGrouptest")
+     *             .organizationRoles(List.of(            
+     *                 "ORG_OWNER",
+     *                 "ORG_MEMBER",
+     *                 "ORG_BILLING_ADMIN",
+     *                 "ORG_GROUP_CREATOR",
+     *                 "ORG_READ_ONLY"))
+     *             .groupRoles(List.of(            
+     *                 "GROUP_OWNER",
+     *                 "GROUP_CLUSTER_MANAGER",
+     *                 "GROUP_DATA_ACCESS_ADMIN",
+     *                 "GROUP_DATA_ACCESS_READ_WRITE",
+     *                 "GROUP_SEARCH_INDEX_EDITOR",
+     *                 "GROUP_DATA_ACCESS_READ_ONLY",
+     *                 "GROUP_READ_ONLY"))
+     *             .build());
+     * 
+     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(_id)
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args) {
         return getFederatedSettingsOrgRoleMappings(args, InvokeOptions.Empty);
@@ -17303,6 +19795,63 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
+     *             .federationSettingsId("")
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .groupId("628aa20d7f7f7f7f7098b81b8")
+     *             .externalGroupName("myGrouptest")
+     *             .organizationRoles(List.of(            
+     *                 "ORG_OWNER",
+     *                 "ORG_MEMBER",
+     *                 "ORG_BILLING_ADMIN",
+     *                 "ORG_GROUP_CREATOR",
+     *                 "ORG_READ_ONLY"))
+     *             .groupRoles(List.of(            
+     *                 "GROUP_OWNER",
+     *                 "GROUP_CLUSTER_MANAGER",
+     *                 "GROUP_DATA_ACCESS_ADMIN",
+     *                 "GROUP_DATA_ACCESS_READ_WRITE",
+     *                 "GROUP_SEARCH_INDEX_EDITOR",
+     *                 "GROUP_DATA_ACCESS_READ_ONLY",
+     *                 "GROUP_READ_ONLY"))
+     *             .build());
+     * 
+     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(_id)
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappingsPlain(GetFederatedSettingsOrgRoleMappingsPlainArgs args) {
@@ -17315,6 +19864,63 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
+     *             .federationSettingsId("")
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .groupId("628aa20d7f7f7f7f7098b81b8")
+     *             .externalGroupName("myGrouptest")
+     *             .organizationRoles(List.of(            
+     *                 "ORG_OWNER",
+     *                 "ORG_MEMBER",
+     *                 "ORG_BILLING_ADMIN",
+     *                 "ORG_GROUP_CREATOR",
+     *                 "ORG_READ_ONLY"))
+     *             .groupRoles(List.of(            
+     *                 "GROUP_OWNER",
+     *                 "GROUP_CLUSTER_MANAGER",
+     *                 "GROUP_DATA_ACCESS_ADMIN",
+     *                 "GROUP_DATA_ACCESS_READ_WRITE",
+     *                 "GROUP_SEARCH_INDEX_EDITOR",
+     *                 "GROUP_DATA_ACCESS_READ_ONLY",
+     *                 "GROUP_READ_ONLY"))
+     *             .build());
+     * 
+     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(_id)
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", TypeShape.of(GetFederatedSettingsOrgRoleMappingsInvokeResult.class), args, Utilities.withVersion(options));
@@ -17326,6 +19932,63 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
+     *             .federationSettingsId("")
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .groupId("628aa20d7f7f7f7f7098b81b8")
+     *             .externalGroupName("myGrouptest")
+     *             .organizationRoles(List.of(            
+     *                 "ORG_OWNER",
+     *                 "ORG_MEMBER",
+     *                 "ORG_BILLING_ADMIN",
+     *                 "ORG_GROUP_CREATOR",
+     *                 "ORG_READ_ONLY"))
+     *             .groupRoles(List.of(            
+     *                 "GROUP_OWNER",
+     *                 "GROUP_CLUSTER_MANAGER",
+     *                 "GROUP_DATA_ACCESS_ADMIN",
+     *                 "GROUP_DATA_ACCESS_READ_WRITE",
+     *                 "GROUP_SEARCH_INDEX_EDITOR",
+     *                 "GROUP_DATA_ACCESS_READ_ONLY",
+     *                 "GROUP_READ_ONLY"))
+     *             .build());
+     * 
+     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(_id)
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", TypeShape.of(GetFederatedSettingsOrgRoleMappingsInvokeResult.class), args, Utilities.withVersion(options));
@@ -17336,6 +19999,63 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
+     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
+     *             .federationSettingsId("")
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .groupId("628aa20d7f7f7f7f7098b81b8")
+     *             .externalGroupName("myGrouptest")
+     *             .organizationRoles(List.of(            
+     *                 "ORG_OWNER",
+     *                 "ORG_MEMBER",
+     *                 "ORG_BILLING_ADMIN",
+     *                 "ORG_GROUP_CREATOR",
+     *                 "ORG_READ_ONLY"))
+     *             .groupRoles(List.of(            
+     *                 "GROUP_OWNER",
+     *                 "GROUP_CLUSTER_MANAGER",
+     *                 "GROUP_DATA_ACCESS_ADMIN",
+     *                 "GROUP_DATA_ACCESS_READ_WRITE",
+     *                 "GROUP_SEARCH_INDEX_EDITOR",
+     *                 "GROUP_DATA_ACCESS_READ_ONLY",
+     *                 "GROUP_READ_ONLY"))
+     *             .build());
+     * 
+     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(_id)
+     *             .orgId("627a9683e7f7f7ff7fe306f14")
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappingsPlain(GetFederatedSettingsOrgRoleMappingsPlainArgs args, InvokeOptions options) {
@@ -31289,6 +34009,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -31319,8 +34131,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -31434,7 +34246,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -31465,15 +34277,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -31490,22 +34302,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -31539,6 +34351,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -31569,8 +34473,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -31684,7 +34588,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -31715,15 +34619,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -31740,22 +34644,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -31789,6 +34693,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -31819,8 +34815,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -31934,7 +34930,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -31965,15 +34961,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -31990,22 +34986,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -32039,6 +35035,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -32069,8 +35157,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -32184,7 +35272,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -32215,15 +35303,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -32240,22 +35328,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -32289,6 +35377,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -32319,8 +35499,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -32434,7 +35614,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -32465,15 +35645,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -32490,22 +35670,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -32539,6 +35719,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -32569,8 +35841,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -32684,7 +35956,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -32715,15 +35987,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -32740,22 +36012,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -32789,6 +36061,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -32819,8 +36183,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -32934,7 +36298,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -32965,15 +36329,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -32990,22 +36354,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -33039,6 +36403,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -33069,8 +36525,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -33184,7 +36640,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -33215,15 +36671,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -33240,22 +36696,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -33289,6 +36745,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -33319,8 +36867,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -33434,7 +36982,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -33465,15 +37013,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -33490,22 +37038,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -33539,6 +37087,98 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * ### AWS Confluent Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.confluent.Environment;
+     * import com.pulumi.confluent.EnvironmentArgs;
+     * import com.pulumi.confluent.Network;
+     * import com.pulumi.confluent.NetworkArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.confluent.PrivateLinkAccess;
+     * import com.pulumi.confluent.PrivateLinkAccessArgs;
+     * import com.pulumi.confluent.KafkaCluster;
+     * import com.pulumi.confluent.KafkaClusterArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var staging = new Environment("staging", EnvironmentArgs.builder()
+     *             .displayName("Staging")
+     *             .build());
+     * 
+     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
+     *             .displayName("terraform-test-private-link-network-manual")
+     *             .cloud("AWS")
+     *             .region(awsRegion)
+     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .build());
+     * 
+     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
+     *             .displayName("example-private-link-access")
+     *             .aws(List.of(Map.of("account", awsAccountId)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
+     *             .displayName("example-dedicated-cluster")
+     *             .availability("MULTI_ZONE")
+     *             .cloud(privateLink.cloud())
+     *             .region(privateLink.region())
+     *             .dedicated(List.of(Map.of("cku", 2)))
+     *             .environment(List.of(Map.of("id", staging.id())))
+     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .dnsDomain(privateLink.dnsDomain())
+     *             .providerName("AWS")
+     *             .region(awsRegion)
+     *             .vendor("CONFLUENT")
+     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
+     *             .dnsSubDomains(privateLink.zonalSubdomains())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
+     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS MSK Privatelink
      * <pre>
      * {@code
@@ -33569,8 +37209,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
      * import com.pulumi.aws.msk.ClusterPolicy;
      * import com.pulumi.aws.msk.ClusterPolicyArgs;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociation;
-     * import com.pulumi.aws.msk.SingleScramSecretAssociationArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -33684,7 +37324,7 @@ public final class MongodbatlasFunctions {
      *                 ))))
      *             .build());
      * 
-     *         var exampleSingleScramSecretAssociation = new SingleScramSecretAssociation("exampleSingleScramSecretAssociation", SingleScramSecretAssociationArgs.builder()
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
      *             .clusterArn(example.arn())
      *             .secretArn(awsSecretArn)
      *             .build());
@@ -33715,15 +37355,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.s3.Bucket;
-     * import com.pulumi.aws.s3.BucketArgs;
-     * import com.pulumi.aws.s3.BucketVersioning;
-     * import com.pulumi.aws.s3.BucketVersioningArgs;
-     * import com.pulumi.aws.s3.inputs.BucketVersioningVersioningConfigurationArgs;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleArgs;
-     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -33740,22 +37380,22 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new Bucket("streamBucket", BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new BucketVersioning("streamBucketVersioning", BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
      *                 .status("Enabled")
      *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new BucketServerSideEncryptionConfiguration("streamBucketEncryption", BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rules(BucketServerSideEncryptionConfigurationRuleArgs.builder()
-     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
      *                     .sseAlgorithm("AES256")
      *                     .build())
      *                 .build())
@@ -36852,6 +40492,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -36925,6 +40627,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -36998,6 +40762,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -37071,6 +40897,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>
@@ -37144,6 +41032,68 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
+     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .username("myUsername")
+     *             .x509Type("MANAGED")
+     *             .databaseName("$external")
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .roleName("atlasAdmin")
+     *                 .databaseName("admin")
+     *                 .build())
+     *             .labels(DatabaseUserLabelArgs.builder()
+     *                 .key("My Key")
+     *                 .value("My Value")
+     *                 .build())
+     *             .build());
+     * 
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(user.projectId())
+     *             .username(user.username())
+     *             .monthsUntilExpiration(2)
+     *             .build());
+     * 
+     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
+     *             var projectId = values.t1;
+     *             var username = values.t2;
+     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *                 .projectId(projectId)
+     *                 .username(username)
+     *                 .build());
+     *         });
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
      * <pre>

@@ -192,7 +192,7 @@ import (
 //				return err
 //			}
 //			example_stream_processors := example.InstanceName.ApplyT(func(instanceName string) (mongodbatlas.GetStreamProcessorsResult, error) {
-//				return mongodbatlas.GetStreamProcessorsResult(interface{}(mongodbatlas.LookupStreamProcessorsOutput(ctx, mongodbatlas.GetStreamProcessorsOutputArgs{
+//				return mongodbatlas.GetStreamProcessorsResult(interface{}(mongodbatlas.LookupStreamProcessors(ctx, &mongodbatlas.LookupStreamProcessorsArgs{
 //					ProjectId:    projectId,
 //					InstanceName: instanceName,
 //				}, nil))), nil
@@ -200,7 +200,7 @@ import (
 //			example_stream_processor := pulumi.All(example.InstanceName, stream_processor_sample_example.ProcessorName).ApplyT(func(_args []interface{}) (mongodbatlas.GetStreamProcessorResult, error) {
 //				instanceName := _args[0].(string)
 //				processorName := _args[1].(string)
-//				return mongodbatlas.GetStreamProcessorResult(interface{}(mongodbatlas.LookupStreamProcessorOutput(ctx, mongodbatlas.GetStreamProcessorOutputArgs{
+//				return mongodbatlas.GetStreamProcessorResult(interface{}(mongodbatlas.LookupStreamProcessor(ctx, &mongodbatlas.LookupStreamProcessorArgs{
 //					ProjectId:     projectId,
 //					InstanceName:  instanceName,
 //					ProcessorName: processorName,

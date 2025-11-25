@@ -18,6 +18,30 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// ### Using IP Address
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAccessListApiKey = new Mongodbatlas.AccessListApiKey("test", new()
+        ///     {
+        ///         OrgId = "&lt;ORG_ID&gt;",
+        ///         IpAddress = "2.3.4.5",
+        ///         ApiKey = "a29120e123cd",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
+        ///     {
+        ///         OrgId = testAccessListApiKey.OrgId,
+        ///         IpAddress = testAccessListApiKey.IpAddress,
+        ///         ApiKeyId = testAccessListApiKey.ApiKeyId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetAccessListApiKeyResult> InvokeAsync(GetAccessListApiKeyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccessListApiKeyResult>("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", args ?? new GetAccessListApiKeyArgs(), options.WithDefaults());
@@ -29,6 +53,30 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// ### Using IP Address
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAccessListApiKey = new Mongodbatlas.AccessListApiKey("test", new()
+        ///     {
+        ///         OrgId = "&lt;ORG_ID&gt;",
+        ///         IpAddress = "2.3.4.5",
+        ///         ApiKey = "a29120e123cd",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
+        ///     {
+        ///         OrgId = testAccessListApiKey.OrgId,
+        ///         IpAddress = testAccessListApiKey.IpAddress,
+        ///         ApiKeyId = testAccessListApiKey.ApiKeyId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAccessListApiKeyResult> Invoke(GetAccessListApiKeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessListApiKeyResult>("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", args ?? new GetAccessListApiKeyInvokeArgs(), options.WithDefaults());
@@ -40,6 +88,30 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// ### Using IP Address
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAccessListApiKey = new Mongodbatlas.AccessListApiKey("test", new()
+        ///     {
+        ///         OrgId = "&lt;ORG_ID&gt;",
+        ///         IpAddress = "2.3.4.5",
+        ///         ApiKey = "a29120e123cd",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
+        ///     {
+        ///         OrgId = testAccessListApiKey.OrgId,
+        ///         IpAddress = testAccessListApiKey.IpAddress,
+        ///         ApiKeyId = testAccessListApiKey.ApiKeyId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAccessListApiKeyResult> Invoke(GetAccessListApiKeyInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessListApiKeyResult>("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", args ?? new GetAccessListApiKeyInvokeArgs(), options.WithDefaults());

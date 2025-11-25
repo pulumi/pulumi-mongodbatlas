@@ -17,6 +17,60 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const projectTest = new mongodbatlas.Project("projectTest", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORGANIZATION ID",
+ * });
+ * const automatedBackupTest = new mongodbatlas.AdvancedCluster("automated_backup_test", {
+ *     projectId: projectId,
+ *     name: "automated-backup-test",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "GCP",
+ *             regionName: "US_EAST_4",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const pipeline = new mongodbatlas.DataLakePipeline("pipeline", {
+ *     projectId: projectTest.projectId,
+ *     name: "DataLakePipelineName",
+ *     sink: {
+ *         type: "DLS",
+ *         partitionFields: [{
+ *             name: "access",
+ *             order: 0,
+ *         }],
+ *     },
+ *     source: {
+ *         type: "ON_DEMAND_CPS",
+ *         clusterName: automatedBackupTest.name,
+ *         databaseName: "sample_airbnb",
+ *         collectionName: "listingsAndReviews",
+ *     },
+ *     transformations: [
+ *         {
+ *             field: "test",
+ *             type: "EXCLUDE",
+ *         },
+ *         {
+ *             field: "test22",
+ *             type: "EXCLUDE",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Data Lake Pipeline can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`, e.g.
