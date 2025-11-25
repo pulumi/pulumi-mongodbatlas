@@ -236,6 +236,9 @@
                     },
                     "feature_usages": {
                         "maxItemsOne": false
+                    },
+                    "gcp": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -247,6 +250,9 @@
                         "maxItemsOne": false
                     },
                     "azure_config": {
+                        "maxItemsOne": false
+                    },
+                    "gcp_config": {
                         "maxItemsOne": false
                     }
                 }
@@ -1394,6 +1400,9 @@
                         "maxItemsOne": false
                     },
                     "azure_config": {
+                        "maxItemsOne": false
+                    },
+                    "gcp_config": {
                         "maxItemsOne": false
                     }
                 }

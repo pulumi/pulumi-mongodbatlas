@@ -27,7 +27,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
+//	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ec2"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -54,15 +54,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ptfeService, err := aws.NewVpcEndpoint(ctx, "ptfe_service", &aws.VpcEndpointArgs{
-//				VpcId:           "vpc-7fc0a543",
+//			ptfeService, err := ec2.NewVpcEndpoint(ctx, "ptfe_service", &ec2.VpcEndpointArgs{
+//				VpcId:           pulumi.String("vpc-7fc0a543"),
 //				ServiceName:     test.EndpointServiceName,
-//				VpcEndpointType: "Interface",
-//				SubnetIds: []string{
-//					"subnet-de0406d2",
+//				VpcEndpointType: pulumi.String("Interface"),
+//				SubnetIds: pulumi.StringArray{
+//					pulumi.String("subnet-de0406d2"),
 //				},
-//				SecurityGroupIds: []string{
-//					"sg-3f238186",
+//				SecurityGroupIds: pulumi.StringArray{
+//					pulumi.String("sg-3f238186"),
 //				},
 //			})
 //			if err != nil {
@@ -72,7 +72,7 @@ import (
 //				ProjectId:               pulumi.String("<PROJECT_ID>"),
 //				InstanceName:            testServerlessInstance.Name,
 //				EndpointId:              test.EndpointId,
-//				CloudProviderEndpointId: ptfeService.Id,
+//				CloudProviderEndpointId: ptfeService.ID(),
 //				ProviderName:            pulumi.String("AWS"),
 //				Comment:                 pulumi.String("New serverless endpoint"),
 //			})
@@ -92,7 +92,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-azurerm/sdk/go/azurerm"
+//	"github.com/pulumi/pulumi-azure/sdk/v6/go/azure/privatelink"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -107,18 +107,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testPrivateEndpoint, err := azurerm.NewPrivateEndpoint(ctx, "test", &azurerm.PrivateEndpointArgs{
-//				Name:              "endpoint-test",
-//				Location:          testAzurermResourceGroup.Location,
-//				ResourceGroupName: resourceGroupName,
-//				SubnetId:          testAzurermSubnet.Id,
-//				PrivateServiceConnection: []map[string]interface{}{
-//					map[string]interface{}{
-//						"name":                        test.PrivateLinkServiceName,
-//						"privateConnectionResourceId": test.PrivateLinkServiceResourceId,
-//						"isManualConnection":          true,
-//						"requestMessage":              "Azure Private Link test",
-//					},
+//			testEndpoint, err := privatelink.NewEndpoint(ctx, "test", &privatelink.EndpointArgs{
+//				Name:              pulumi.String("endpoint-test"),
+//				Location:          pulumi.Any(testAzurermResourceGroup.Location),
+//				ResourceGroupName: pulumi.Any(resourceGroupName),
+//				SubnetId:          pulumi.Any(testAzurermSubnet.Id),
+//				PrivateServiceConnection: &privatelink.EndpointPrivateServiceConnectionArgs{
+//					Name:                        test.PrivateLinkServiceName,
+//					PrivateConnectionResourceId: test.PrivateLinkServiceResourceId,
+//					IsManualConnection:          pulumi.Bool(true),
+//					RequestMessage:              pulumi.String("Azure Private Link test"),
 //				},
 //			})
 //			if err != nil {
@@ -136,13 +134,15 @@ import (
 //				return err
 //			}
 //			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
-//				ProjectId:                test.ProjectId,
-//				InstanceName:             testServerlessInstance.Name,
-//				EndpointId:               test.EndpointId,
-//				CloudProviderEndpointId:  testPrivateEndpoint.Id,
-//				PrivateEndpointIpAddress: testPrivateEndpoint.PrivateServiceConnection[0].PrivateIpAddress,
-//				ProviderName:             pulumi.String("AZURE"),
-//				Comment:                  pulumi.String("test"),
+//				ProjectId:               test.ProjectId,
+//				InstanceName:            testServerlessInstance.Name,
+//				EndpointId:              test.EndpointId,
+//				CloudProviderEndpointId: testEndpoint.ID(),
+//				PrivateEndpointIpAddress: pulumi.String(testEndpoint.PrivateServiceConnection.ApplyT(func(privateServiceConnection privatelink.EndpointPrivateServiceConnection) (*string, error) {
+//					return &privateServiceConnection.PrivateIpAddress, nil
+//				}).(pulumi.StringPtrOutput)),
+//				ProviderName: pulumi.String("AZURE"),
+//				Comment:      pulumi.String("test"),
 //			})
 //			if err != nil {
 //				return err

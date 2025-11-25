@@ -200,6 +200,8 @@ def get_encryption_at_rest(project_id: Optional[_builtins.str] = None,
     > **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `EncryptionAtRestPrivateEndpoint` resource. Please review the `EncryptionAtRestPrivateEndpoint` resource for details.
 
     ### Configuring encryption at rest using customer key management in GCP
+    For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -320,6 +322,8 @@ def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[_builtins.st
     > **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `EncryptionAtRestPrivateEndpoint` resource. Please review the `EncryptionAtRestPrivateEndpoint` resource for details.
 
     ### Configuring encryption at rest using customer key management in GCP
+    For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas

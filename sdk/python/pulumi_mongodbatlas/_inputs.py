@@ -93,10 +93,14 @@ __all__ = [
     'CloudProviderAccessAuthorizationAzureArgsDict',
     'CloudProviderAccessAuthorizationFeatureUsageArgs',
     'CloudProviderAccessAuthorizationFeatureUsageArgsDict',
+    'CloudProviderAccessAuthorizationGcpArgs',
+    'CloudProviderAccessAuthorizationGcpArgsDict',
     'CloudProviderAccessSetupAwsConfigArgs',
     'CloudProviderAccessSetupAwsConfigArgsDict',
     'CloudProviderAccessSetupAzureConfigArgs',
     'CloudProviderAccessSetupAzureConfigArgsDict',
+    'CloudProviderAccessSetupGcpConfigArgs',
+    'CloudProviderAccessSetupGcpConfigArgsDict',
     'ClusterAdvancedConfigurationArgs',
     'ClusterAdvancedConfigurationArgsDict',
     'ClusterBiConnectorConfigArgs',
@@ -4712,6 +4716,29 @@ class CloudProviderAccessAuthorizationFeatureUsageArgs:
 
 
 if not MYPY:
+    class CloudProviderAccessAuthorizationGcpArgsDict(TypedDict):
+        service_account_for_atlas: NotRequired[pulumi.Input[_builtins.str]]
+elif False:
+    CloudProviderAccessAuthorizationGcpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CloudProviderAccessAuthorizationGcpArgs:
+    def __init__(__self__, *,
+                 service_account_for_atlas: Optional[pulumi.Input[_builtins.str]] = None):
+        if service_account_for_atlas is not None:
+            pulumi.set(__self__, "service_account_for_atlas", service_account_for_atlas)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountForAtlas")
+    def service_account_for_atlas(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "service_account_for_atlas")
+
+    @service_account_for_atlas.setter
+    def service_account_for_atlas(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_account_for_atlas", value)
+
+
+if not MYPY:
     class CloudProviderAccessSetupAwsConfigArgsDict(TypedDict):
         atlas_assumed_role_external_id: NotRequired[pulumi.Input[_builtins.str]]
         atlas_aws_account_arn: NotRequired[pulumi.Input[_builtins.str]]
@@ -4791,6 +4818,42 @@ class CloudProviderAccessSetupAzureConfigArgs:
     @tenant_id.setter
     def tenant_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "tenant_id", value)
+
+
+if not MYPY:
+    class CloudProviderAccessSetupGcpConfigArgsDict(TypedDict):
+        service_account_for_atlas: NotRequired[pulumi.Input[_builtins.str]]
+        status: NotRequired[pulumi.Input[_builtins.str]]
+elif False:
+    CloudProviderAccessSetupGcpConfigArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CloudProviderAccessSetupGcpConfigArgs:
+    def __init__(__self__, *,
+                 service_account_for_atlas: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None):
+        if service_account_for_atlas is not None:
+            pulumi.set(__self__, "service_account_for_atlas", service_account_for_atlas)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountForAtlas")
+    def service_account_for_atlas(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "service_account_for_atlas")
+
+    @service_account_for_atlas.setter
+    def service_account_for_atlas(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_account_for_atlas", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
 
 
 if not MYPY:
@@ -7613,6 +7676,10 @@ if not MYPY:
         """
         Resource path that displays the key version resource ID for your Google Cloud KMS.
         """
+        role_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+        """
         service_account_key: NotRequired[pulumi.Input[_builtins.str]]
         """
         JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
@@ -7629,11 +7696,13 @@ class EncryptionAtRestGoogleCloudKmsConfigArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_version_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  service_account_key: Optional[pulumi.Input[_builtins.str]] = None,
                  valid: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
         :param pulumi.Input[_builtins.str] key_version_resource_id: Resource path that displays the key version resource ID for your Google Cloud KMS.
+        :param pulumi.Input[_builtins.str] role_id: Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
         :param pulumi.Input[_builtins.str] service_account_key: JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
         :param pulumi.Input[_builtins.bool] valid: Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
         """
@@ -7641,6 +7710,8 @@ class EncryptionAtRestGoogleCloudKmsConfigArgs:
             pulumi.set(__self__, "enabled", enabled)
         if key_version_resource_id is not None:
             pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
         if service_account_key is not None:
             pulumi.set(__self__, "service_account_key", service_account_key)
         if valid is not None:
@@ -7669,6 +7740,18 @@ class EncryptionAtRestGoogleCloudKmsConfigArgs:
     @key_version_resource_id.setter
     def key_version_resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "key_version_resource_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountKey")

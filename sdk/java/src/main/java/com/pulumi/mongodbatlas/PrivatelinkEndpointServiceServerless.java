@@ -36,8 +36,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
- * import com.pulumi.aws.VpcEndpoint;
- * import com.pulumi.aws.VpcEndpointArgs;
+ * import com.pulumi.aws.ec2.VpcEndpoint;
+ * import com.pulumi.aws.ec2.VpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
  * import java.util.List;
@@ -72,8 +72,8 @@ import javax.annotation.Nullable;
  *             .vpcId("vpc-7fc0a543")
  *             .serviceName(test.endpointServiceName())
  *             .vpcEndpointType("Interface")
- *             .subnetIds(List.of("subnet-de0406d2"))
- *             .securityGroupIds(List.of("sg-3f238186"))
+ *             .subnetIds("subnet-de0406d2")
+ *             .securityGroupIds("sg-3f238186")
  *             .build());
  * 
  *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
@@ -101,8 +101,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
- * import com.pulumi.azurerm.PrivateEndpoint;
- * import com.pulumi.azurerm.PrivateEndpointArgs;
+ * import com.pulumi.azure.privatelink.Endpoint;
+ * import com.pulumi.azure.privatelink.EndpointArgs;
+ * import com.pulumi.azure.privatelink.inputs.EndpointPrivateServiceConnectionArgs;
  * import com.pulumi.mongodbatlas.ServerlessInstance;
  * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
@@ -125,17 +126,17 @@ import javax.annotation.Nullable;
  *             .providerName("AZURE")
  *             .build());
  * 
- *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
+ *         var testEndpoint = new Endpoint("testEndpoint", EndpointArgs.builder()
  *             .name("endpoint-test")
  *             .location(testAzurermResourceGroup.location())
  *             .resourceGroupName(resourceGroupName)
  *             .subnetId(testAzurermSubnet.id())
- *             .privateServiceConnection(List.of(Map.ofEntries(
- *                 Map.entry("name", test.privateLinkServiceName()),
- *                 Map.entry("privateConnectionResourceId", test.privateLinkServiceResourceId()),
- *                 Map.entry("isManualConnection", true),
- *                 Map.entry("requestMessage", "Azure Private Link test")
- *             )))
+ *             .privateServiceConnection(EndpointPrivateServiceConnectionArgs.builder()
+ *                 .name(test.privateLinkServiceName())
+ *                 .privateConnectionResourceId(test.privateLinkServiceResourceId())
+ *                 .isManualConnection(true)
+ *                 .requestMessage("Azure Private Link test")
+ *                 .build())
  *             .build());
  * 
  *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
@@ -151,8 +152,8 @@ import javax.annotation.Nullable;
  *             .projectId(test.projectId())
  *             .instanceName(testServerlessInstance.name())
  *             .endpointId(test.endpointId())
- *             .cloudProviderEndpointId(testPrivateEndpoint.id())
- *             .privateEndpointIpAddress(testPrivateEndpoint.privateServiceConnection()[0].privateIpAddress())
+ *             .cloudProviderEndpointId(testEndpoint.id())
+ *             .privateEndpointIpAddress(testEndpoint.privateServiceConnection().applyValue(_privateServiceConnection -> _privateServiceConnection.privateIpAddress()))
  *             .providerName("AZURE")
  *             .comment("test")
  *             .build());

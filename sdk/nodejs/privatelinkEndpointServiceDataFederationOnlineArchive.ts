@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *     orgId: atlasOrgId,
  *     name: atlasProjectName,
  * });
- * const test = new aws.index.VpcEndpoint("test", {
+ * const test = new aws.ec2.VpcEndpoint("test", {
  *     vpcId: "vpc-7fc0a543",
  *     serviceName: "<SERVICE-NAME>",
  *     vpcEndpointType: "Interface",
@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     comment: "Test",
  *     region: "US_EAST_1",
- *     customerEndpointDnsName: test.dnsEntry[0].dnsName,
+ *     customerEndpointDnsName: test.dnsEntries.apply(dnsEntries => dnsEntries[0].dnsName),
  * });
  * ```
  *

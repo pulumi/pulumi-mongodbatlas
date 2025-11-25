@@ -10167,7 +10167,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -10248,6 +10248,48 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With GCP
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -10268,7 +10310,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -10349,6 +10391,48 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With GCP
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -10369,7 +10453,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -10450,6 +10534,48 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With GCP
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -10470,7 +10596,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -10551,6 +10677,48 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With GCP
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -10571,7 +10739,7 @@ public final class MongodbatlasFunctions {
     /**
      * ## # Data Source: mongodbatlas.CloudProviderAccessSetup
      * 
-     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -10652,6 +10820,48 @@ public final class MongodbatlasFunctions {
      *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
      *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
      *                 .build())
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With GCP
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+     *             .projectId("64259ee860c43338194b0f8e")
+     *             .providerName("GCP")
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -15181,6 +15391,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * <pre>
      * {@code
      * package generated_program;
@@ -15389,6 +15601,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * <pre>
      * {@code
      * package generated_program;
@@ -15597,6 +15811,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * <pre>
      * {@code
      * package generated_program;
@@ -15805,6 +16021,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * <pre>
      * {@code
      * package generated_program;
@@ -16013,6 +16231,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource. Please review the `mongodbatlas.EncryptionAtRestPrivateEndpoint` resource for details.
      * 
      * ### Configuring encryption at rest using customer key management in GCP
+     * For authentication, you must provide either serviceAccountKey (static credentials) or roleId (service-account–based authentication). Once roleId is configured, serviceAccountKey is no longer supported.
+     * 
      * <pre>
      * {@code
      * package generated_program;
@@ -33881,6 +34101,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -33889,12 +34277,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -33911,19 +34302,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -34046,6 +34443,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -34054,12 +34619,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -34076,19 +34644,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -34211,6 +34785,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -34219,12 +34961,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -34241,19 +34986,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -34376,6 +35127,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -34384,12 +35303,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -34406,19 +35328,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -34541,6 +35469,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -34549,12 +35645,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -34571,19 +35670,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -34706,6 +35811,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -34714,12 +35987,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -34736,19 +36012,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -34871,6 +36153,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -34879,12 +36329,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -34901,19 +36354,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -35036,6 +36495,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -35044,12 +36671,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -35066,19 +36696,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -35201,6 +36837,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -35209,12 +37013,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -35231,19 +37038,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -35366,6 +37179,174 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### AWS MSK Privatelink
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.aws.ec2.Vpc;
+     * import com.pulumi.aws.ec2.VpcArgs;
+     * import com.pulumi.aws.AwsFunctions;
+     * import com.pulumi.aws.inputs.GetAvailabilityZonesArgs;
+     * import com.pulumi.aws.ec2.Subnet;
+     * import com.pulumi.aws.ec2.SubnetArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.msk.Configuration;
+     * import com.pulumi.aws.msk.ConfigurationArgs;
+     * import com.pulumi.aws.msk.Cluster;
+     * import com.pulumi.aws.msk.ClusterArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterClientAuthenticationSaslArgs;
+     * import com.pulumi.aws.msk.inputs.ClusterConfigurationInfoArgs;
+     * import com.pulumi.aws.msk.ClusterPolicy;
+     * import com.pulumi.aws.msk.ClusterPolicyArgs;
+     * import com.pulumi.aws.MskSingleScramSecretAssociation;
+     * import com.pulumi.aws.MskSingleScramSecretAssociationArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var vpc = new Vpc("vpc", VpcArgs.builder()
+     *             .cidrBlock("192.168.0.0/22")
+     *             .build());
+     * 
+     *         final var azs = AwsFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .state("available")
+     *             .build());
+     * 
+     *         var subnetAz1 = new Subnet("subnetAz1", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[0])
+     *             .cidrBlock("192.168.0.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var subnetAz2 = new Subnet("subnetAz2", SubnetArgs.builder()
+     *             .availabilityZone(azs.names()[1])
+     *             .cidrBlock("192.168.1.0/24")
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var sg = new SecurityGroup("sg", SecurityGroupArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *         var exampleConfiguration = new Configuration("exampleConfiguration", ConfigurationArgs.builder()
+     *             .name(String.format("%s-msk-configuration", mskClusterName))
+     *             .serverProperties("""
+     * auto.create.topics.enable=false
+     * default.replication.factor=3
+     * min.insync.replicas=2
+     * num.io.threads=8
+     * num.network.threads=5
+     * num.partitions=1
+     * num.replica.fetchers=2
+     * replica.lag.time.max.ms=30000
+     * socket.receive.buffer.bytes=102400
+     * socket.request.max.bytes=104857600
+     * socket.send.buffer.bytes=102400
+     * unclean.leader.election.enable=true
+     * allow.everyone.if.no.acl.found=false
+     *             """)
+     *             .build());
+     * 
+     *         var example = new Cluster("example", ClusterArgs.builder()
+     *             .clusterName(mskClusterName)
+     *             .kafkaVersion("3.6.0")
+     *             .numberOfBrokerNodes(2)
+     *             .brokerNodeGroupInfo(ClusterBrokerNodeGroupInfoArgs.builder()
+     *                 .instanceType("kafka.m5.large")
+     *                 .clientSubnets(                
+     *                     subnetAz1.id(),
+     *                     subnetAz2.id())
+     *                 .securityGroups(sg.id())
+     *                 .connectivityInfo(ClusterBrokerNodeGroupInfoConnectivityInfoArgs.builder()
+     *                     .vpcConnectivity(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs.builder()
+     *                         .clientAuthentication(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs.builder()
+     *                             .sasl(ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs.builder()
+     *                                 .scram(true)
+     *                                 .build())
+     *                             .build())
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .clientAuthentication(ClusterClientAuthenticationArgs.builder()
+     *                 .sasl(ClusterClientAuthenticationSaslArgs.builder()
+     *                     .scram(true)
+     *                     .build())
+     *                 .build())
+     *             .configurationInfo(ClusterConfigurationInfoArgs.builder()
+     *                 .arn(exampleConfiguration.arn())
+     *                 .revision(exampleConfiguration.latestRevision())
+     *                 .build())
+     *             .build());
+     * 
+     *         var exampleClusterPolicy = new ClusterPolicy("exampleClusterPolicy", ClusterPolicyArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .policy(example.arn().applyValue(_arn -> serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("Version", "2012-10-17"),
+     *                     jsonProperty("Statement", jsonArray(jsonObject(
+     *                         jsonProperty("Effect", "Allow"),
+     *                         jsonProperty("Principal", jsonObject(
+     *                             jsonProperty("AWS", String.format("arn:aws:iam::%s:root", awsAccountId))
+     *                         )),
+     *                         jsonProperty("Action", jsonArray(
+     *                             "kafka:CreateVpcConnection", 
+     *                             "kafka:GetBootstrapBrokers", 
+     *                             "kafka:DescribeCluster", 
+     *                             "kafka:DescribeClusterV2"
+     *                         )),
+     *                         jsonProperty("Resource", _arn)
+     *                     )))
+     *                 ))))
+     *             .build());
+     * 
+     *         var exampleMskSingleScramSecretAssociation = new MskSingleScramSecretAssociation("exampleMskSingleScramSecretAssociation", MskSingleScramSecretAssociationArgs.builder()
+     *             .clusterArn(example.arn())
+     *             .secretArn(awsSecretArn)
+     *             .build());
+     * 
+     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .vendor("MSK")
+     *             .arn(example.arn())
+     *             .build());
+     * 
+     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .id(_id)
+     *             .build()));
+     * 
+     *         ctx.export("privatelinkEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -35374,12 +37355,15 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.aws.S3Bucket;
-     * import com.pulumi.aws.S3BucketArgs;
-     * import com.pulumi.aws.S3BucketVersioning;
-     * import com.pulumi.aws.S3BucketVersioningArgs;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfiguration;
-     * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketV2;
+     * import com.pulumi.aws.s3.BucketV2Args;
+     * import com.pulumi.aws.s3.BucketVersioningV2;
+     * import com.pulumi.aws.s3.BucketVersioningV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketVersioningV2VersioningConfigurationArgs;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2;
+     * import com.pulumi.aws.s3.BucketServerSideEncryptionConfigurationV2Args;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleArgs;
+     * import com.pulumi.aws.s3.inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import java.util.List;
@@ -35396,19 +37380,25 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         // S3 bucket for stream data
-     *         var streamBucket = new S3Bucket("streamBucket", S3BucketArgs.builder()
+     *         var streamBucket = new BucketV2("streamBucket", BucketV2Args.builder()
      *             .bucket(s3BucketName)
      *             .forceDestroy(true)
      *             .build());
      * 
-     *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
+     *         var streamBucketVersioning = new BucketVersioningV2("streamBucketVersioning", BucketVersioningV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(BucketVersioningV2VersioningConfigurationArgs.builder()
+     *                 .status("Enabled")
+     *                 .build())
      *             .build());
      * 
-     *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
+     *         var streamBucketEncryption = new BucketServerSideEncryptionConfigurationV2("streamBucketEncryption", BucketServerSideEncryptionConfigurationV2Args.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rules(BucketServerSideEncryptionConfigurationV2RuleArgs.builder()
+     *                 .applyServerSideEncryptionByDefault(BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs.builder()
+     *                     .sseAlgorithm("AES256")
+     *                     .build())
+     *                 .build())
      *             .build());
      * 
      *         // PrivateLink for S3

@@ -50,8 +50,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.NetworkContainerArgs;
  * import com.pulumi.mongodbatlas.NetworkPeering;
  * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
- * import com.pulumi.aws.VpcPeeringConnectionAccepter;
- * import com.pulumi.aws.VpcPeeringConnectionAccepterArgs;
+ * import com.pulumi.aws.ec2.VpcPeeringConnectionAccepter;
+ * import com.pulumi.aws.ec2.VpcPeeringConnectionAccepterArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -91,6 +91,95 @@ import javax.annotation.Nullable;
  *             .vpcPeeringConnectionId(testNetworkPeering.connectionId())
  *             .autoAccept(true)
  *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example with GCP
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.NetworkContainer;
+ * import com.pulumi.mongodbatlas.NetworkContainerArgs;
+ * import com.pulumi.gcp.compute.ComputeFunctions;
+ * import com.pulumi.gcp.compute.inputs.GetNetworkArgs;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Container example provided but not always required, 
+ *         // see network_container documentation for details. 
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
+ *             .projectId(projectId)
+ *             .atlasCidrBlock("10.8.0.0/21")
+ *             .providerName("GCP")
+ *             .build());
+ * 
+ *         // Create the peering connection request
+ *         var testNetworkPeering = new com.pulumi.mongodbatlas.NetworkPeering("testNetworkPeering", com.pulumi.mongodbatlas.NetworkPeeringArgs.builder()
+ *             .projectId(projectId)
+ *             .containerId(test.containerId())
+ *             .providerName("GCP")
+ *             .gcpProjectId(GCP_PROJECT_ID)
+ *             .networkName("default")
+ *             .build());
+ * 
+ *         // the following assumes a GCP provider is configured
+ *         final var default = ComputeFunctions.getNetwork(GetNetworkArgs.builder()
+ *             .name("default")
+ *             .build());
+ * 
+ *         // Create the GCP peer
+ *         var peering = new com.pulumi.gcp.compute.NetworkPeering("peering", com.pulumi.gcp.compute.NetworkPeeringArgs.builder()
+ *             .name("peering-gcp-terraform-test")
+ *             .network(default_.selfLink())
+ *             .peerNetwork(Output.tuple(testNetworkPeering.atlasGcpProjectId(), testNetworkPeering.atlasVpcName()).applyValue(values -> {
+ *                 var atlasGcpProjectId = values.t1;
+ *                 var atlasVpcName = values.t2;
+ *                 return String.format("https://www.googleapis.com/compute/v1/projects/%s/global/networks/%s", atlasGcpProjectId,atlasVpcName);
+ *             }))
+ *             .build());
+ * 
+ *         // Create the cluster once the peering connection is completed
+ *         var testAdvancedCluster = new AdvancedCluster("testAdvancedCluster", AdvancedClusterArgs.builder()
+ *             .projectId(projectId)
+ *             .name("terraform-manually-test")
+ *             .clusterType("REPLICASET")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("GCP")
+ *                     .regionName("US_EAST_4")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(peering)
+ *                 .build());
  * 
  *     }
  * }

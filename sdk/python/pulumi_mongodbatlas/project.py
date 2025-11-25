@@ -50,7 +50,7 @@ class ProjectArgs:
         :param pulumi.Input[_builtins.str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[_builtins.str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
-        :param pulumi.Input[_builtins.bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        :param pulumi.Input[_builtins.bool] with_default_alerts_settings: Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         pulumi.set(__self__, "org_id", org_id)
         if is_collect_database_specifics_statistics_enabled is not None:
@@ -252,7 +252,7 @@ class ProjectArgs:
     @pulumi.getter(name="withDefaultAlertsSettings")
     def with_default_alerts_settings(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         return pulumi.get(self, "with_default_alerts_settings")
 
@@ -299,7 +299,7 @@ class _ProjectState:
         :param pulumi.Input[_builtins.str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[_builtins.str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
-        :param pulumi.Input[_builtins.bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        :param pulumi.Input[_builtins.bool] with_default_alerts_settings: Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         if cluster_count is not None:
             pulumi.set(__self__, "cluster_count", cluster_count)
@@ -548,7 +548,7 @@ class _ProjectState:
     @pulumi.getter(name="withDefaultAlertsSettings")
     def with_default_alerts_settings(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         return pulumi.get(self, "with_default_alerts_settings")
 
@@ -652,7 +652,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[_builtins.str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
-        :param pulumi.Input[_builtins.bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        :param pulumi.Input[_builtins.bool] with_default_alerts_settings: Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         ...
     @overload
@@ -828,7 +828,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[_builtins.str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
-        :param pulumi.Input[_builtins.bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        :param pulumi.Input[_builtins.bool] with_default_alerts_settings: Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -990,7 +990,7 @@ class Project(pulumi.CustomResource):
     @pulumi.getter(name="withDefaultAlertsSettings")
     def with_default_alerts_settings(self) -> pulumi.Output[_builtins.bool]:
         """
-        It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         return pulumi.get(self, "with_default_alerts_settings")
 

@@ -753,9 +753,60 @@ class NetworkPeering(pulumi.CustomResource):
             aws_account_id="abc123abc123")
         # the following assumes an AWS provider is configured
         # Accept the peering connection request
-        peer = aws.index.VpcPeeringConnectionAccepter("peer",
+        peer = aws.ec2.VpcPeeringConnectionAccepter("peer",
             vpc_peering_connection_id=test_network_peering.connection_id,
             auto_accept=True)
+        ```
+
+        ### Example with GCP
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # Container example provided but not always required, 
+        # see network_container documentation for details. 
+        test = mongodbatlas.NetworkContainer("test",
+            project_id=project_id,
+            atlas_cidr_block="10.8.0.0/21",
+            provider_name="GCP")
+        # Create the peering connection request
+        test_network_peering = mongodbatlas.NetworkPeering("test",
+            project_id=project_id,
+            container_id=test.container_id,
+            provider_name="GCP",
+            gcp_project_id=gc_p__projec_t__id,
+            network_name="default")
+        # the following assumes a GCP provider is configured
+        default = gcp.compute.get_network(name="default")
+        # Create the GCP peer
+        peering = gcp.compute.NetworkPeering("peering",
+            name="peering-gcp-terraform-test",
+            network=default.self_link,
+            peer_network=pulumi.Output.all(
+                atlas_gcp_project_id=test_network_peering.atlas_gcp_project_id,
+                atlas_vpc_name=test_network_peering.atlas_vpc_name
+        ).apply(lambda resolved_outputs: f"https://www.googleapis.com/compute/v1/projects/{resolved_outputs['atlas_gcp_project_id']}/global/networks/{resolved_outputs['atlas_vpc_name']}")
+        )
+        # Create the cluster once the peering connection is completed
+        test_advanced_cluster = mongodbatlas.AdvancedCluster("test",
+            project_id=project_id,
+            name="terraform-manually-test",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "GCP",
+                    "region_name": "US_EAST_4",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }],
+            opts = pulumi.ResourceOptions(depends_on=[peering]))
         ```
 
         ### Example with Azure
@@ -900,9 +951,60 @@ class NetworkPeering(pulumi.CustomResource):
             aws_account_id="abc123abc123")
         # the following assumes an AWS provider is configured
         # Accept the peering connection request
-        peer = aws.index.VpcPeeringConnectionAccepter("peer",
+        peer = aws.ec2.VpcPeeringConnectionAccepter("peer",
             vpc_peering_connection_id=test_network_peering.connection_id,
             auto_accept=True)
+        ```
+
+        ### Example with GCP
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # Container example provided but not always required, 
+        # see network_container documentation for details. 
+        test = mongodbatlas.NetworkContainer("test",
+            project_id=project_id,
+            atlas_cidr_block="10.8.0.0/21",
+            provider_name="GCP")
+        # Create the peering connection request
+        test_network_peering = mongodbatlas.NetworkPeering("test",
+            project_id=project_id,
+            container_id=test.container_id,
+            provider_name="GCP",
+            gcp_project_id=gc_p__projec_t__id,
+            network_name="default")
+        # the following assumes a GCP provider is configured
+        default = gcp.compute.get_network(name="default")
+        # Create the GCP peer
+        peering = gcp.compute.NetworkPeering("peering",
+            name="peering-gcp-terraform-test",
+            network=default.self_link,
+            peer_network=pulumi.Output.all(
+                atlas_gcp_project_id=test_network_peering.atlas_gcp_project_id,
+                atlas_vpc_name=test_network_peering.atlas_vpc_name
+        ).apply(lambda resolved_outputs: f"https://www.googleapis.com/compute/v1/projects/{resolved_outputs['atlas_gcp_project_id']}/global/networks/{resolved_outputs['atlas_vpc_name']}")
+        )
+        # Create the cluster once the peering connection is completed
+        test_advanced_cluster = mongodbatlas.AdvancedCluster("test",
+            project_id=project_id,
+            name="terraform-manually-test",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "GCP",
+                    "region_name": "US_EAST_4",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }],
+            opts = pulumi.ResourceOptions(depends_on=[peering]))
         ```
 
         ### Example with Azure

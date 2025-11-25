@@ -68,10 +68,97 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///     // the following assumes an AWS provider is configured
     ///     // Accept the peering connection request
-    ///     var peer = new Aws.Index.VpcPeeringConnectionAccepter("peer", new()
+    ///     var peer = new Aws.Ec2.VpcPeeringConnectionAccepter("peer", new()
     ///     {
     ///         VpcPeeringConnectionId = testNetworkPeering.ConnectionId,
     ///         AutoAccept = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example with GCP
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Container example provided but not always required, 
+    ///     // see network_container documentation for details. 
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         AtlasCidrBlock = "10.8.0.0/21",
+    ///         ProviderName = "GCP",
+    ///     });
+    /// 
+    ///     // Create the peering connection request
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ContainerId = test.ContainerId,
+    ///         ProviderName = "GCP",
+    ///         GcpProjectId = GCP_PROJECT_ID,
+    ///         NetworkName = "default",
+    ///     });
+    /// 
+    ///     // the following assumes a GCP provider is configured
+    ///     var @default = Gcp.Compute.GetNetwork.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     // Create the GCP peer
+    ///     var peering = new Gcp.Compute.NetworkPeering("peering", new()
+    ///     {
+    ///         Name = "peering-gcp-terraform-test",
+    ///         Network = @default.Apply(@default =&gt; @default.Apply(getNetworkResult =&gt; getNetworkResult.SelfLink)),
+    ///         PeerNetwork = Output.Tuple(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).Apply(values =&gt;
+    ///         {
+    ///             var atlasGcpProjectId = values.Item1;
+    ///             var atlasVpcName = values.Item2;
+    ///             return $"https://www.googleapis.com/compute/v1/projects/{atlasGcpProjectId}/global/networks/{atlasVpcName}";
+    ///         }),
+    ///     });
+    /// 
+    ///     // Create the cluster once the peering connection is completed
+    ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         Name = "terraform-manually-test",
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "GCP",
+    ///                         RegionName = "US_EAST_4",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             peering,
+    ///         },
     ///     });
     /// 
     /// });

@@ -918,6 +918,10 @@ export interface CloudProviderAccessAuthorizationFeatureUsage {
     featureType?: pulumi.Input<string>;
 }
 
+export interface CloudProviderAccessAuthorizationGcp {
+    serviceAccountForAtlas?: pulumi.Input<string>;
+}
+
 export interface CloudProviderAccessSetupAwsConfig {
     atlasAssumedRoleExternalId?: pulumi.Input<string>;
     atlasAwsAccountArn?: pulumi.Input<string>;
@@ -927,6 +931,11 @@ export interface CloudProviderAccessSetupAzureConfig {
     atlasAzureAppId: pulumi.Input<string>;
     servicePrincipalId: pulumi.Input<string>;
     tenantId: pulumi.Input<string>;
+}
+
+export interface CloudProviderAccessSetupGcpConfig {
+    serviceAccountForAtlas?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
 }
 
 export interface ClusterAdvancedConfiguration {
@@ -1483,6 +1492,10 @@ export interface EncryptionAtRestGoogleCloudKmsConfig {
      * Resource path that displays the key version resource ID for your Google Cloud KMS.
      */
     keyVersionResourceId?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
+     */
+    roleId?: pulumi.Input<string>;
     /**
      * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      */
