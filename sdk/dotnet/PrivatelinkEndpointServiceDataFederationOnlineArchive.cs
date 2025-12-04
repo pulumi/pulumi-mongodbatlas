@@ -35,7 +35,7 @@ namespace Pulumi.Mongodbatlas
     ///         Name = atlasProjectName,
     ///     });
     /// 
-    ///     var test = new Aws.Ec2.VpcEndpoint("test", new()
+    ///     var test = new Aws.Index.VpcEndpoint("test", new()
     ///     {
     ///         VpcId = "vpc-7fc0a543",
     ///         ServiceName = "&lt;SERVICE-NAME&gt;",
@@ -57,7 +57,7 @@ namespace Pulumi.Mongodbatlas
     ///         ProviderName = "AWS",
     ///         Comment = "Test",
     ///         Region = "US_EAST_1",
-    ///         CustomerEndpointDnsName = test.DnsEntries.Apply(dnsEntries =&gt; dnsEntries[0].DnsName),
+    ///         CustomerEndpointDnsName = test.DnsEntry[0].DnsName,
     ///     });
     /// 
     /// });

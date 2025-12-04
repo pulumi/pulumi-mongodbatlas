@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas
     ///         ProviderName = "AWS",
     ///     });
     /// 
-    ///     var ptfeService = new Aws.Ec2.VpcEndpoint("ptfe_service", new()
+    ///     var ptfeService = new Aws.Index.VpcEndpoint("ptfe_service", new()
     ///     {
     ///         VpcId = "vpc-7fc0a543",
     ///         ServiceName = test.EndpointServiceName,
@@ -80,7 +80,7 @@ namespace Pulumi.Mongodbatlas
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Azure = Pulumi.Azure;
+    /// using Azurerm = Pulumi.Azurerm;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -91,18 +91,21 @@ namespace Pulumi.Mongodbatlas
     ///         ProviderName = "AZURE",
     ///     });
     /// 
-    ///     var testEndpoint = new Azure.PrivateLink.Endpoint("test", new()
+    ///     var testPrivateEndpoint = new Azurerm.Index.PrivateEndpoint("test", new()
     ///     {
     ///         Name = "endpoint-test",
     ///         Location = testAzurermResourceGroup.Location,
     ///         ResourceGroupName = resourceGroupName,
     ///         SubnetId = testAzurermSubnet.Id,
-    ///         PrivateServiceConnection = new Azure.PrivateLink.Inputs.EndpointPrivateServiceConnectionArgs
+    ///         PrivateServiceConnection = new[]
     ///         {
-    ///             Name = test.PrivateLinkServiceName,
-    ///             PrivateConnectionResourceId = test.PrivateLinkServiceResourceId,
-    ///             IsManualConnection = true,
-    ///             RequestMessage = "Azure Private Link test",
+    ///             
+    ///             {
+    ///                 { "name", test.PrivateLinkServiceName },
+    ///                 { "privateConnectionResourceId", test.PrivateLinkServiceResourceId },
+    ///                 { "isManualConnection", true },
+    ///                 { "requestMessage", "Azure Private Link test" },
+    ///             },
     ///         },
     ///     });
     /// 
@@ -121,8 +124,8 @@ namespace Pulumi.Mongodbatlas
     ///         ProjectId = test.ProjectId,
     ///         InstanceName = testServerlessInstance.Name,
     ///         EndpointId = test.EndpointId,
-    ///         CloudProviderEndpointId = testEndpoint.Id,
-    ///         PrivateEndpointIpAddress = testEndpoint.PrivateServiceConnection.Apply(privateServiceConnection =&gt; privateServiceConnection.PrivateIpAddress),
+    ///         CloudProviderEndpointId = testPrivateEndpoint.Id,
+    ///         PrivateEndpointIpAddress = testPrivateEndpoint.PrivateServiceConnection[0].PrivateIpAddress,
     ///         ProviderName = "AZURE",
     ///         Comment = "test",
     ///     });

@@ -27,7 +27,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ec2"
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -42,29 +42,27 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			test, err := ec2.NewVpcEndpoint(ctx, "test", &ec2.VpcEndpointArgs{
-//				VpcId:           pulumi.String("vpc-7fc0a543"),
-//				ServiceName:     pulumi.String("<SERVICE-NAME>"),
-//				VpcEndpointType: pulumi.String("Interface"),
-//				SubnetIds: pulumi.StringArray{
-//					pulumi.String("subnet-de0406d2"),
+//			test, err := aws.NewVpcEndpoint(ctx, "test", &aws.VpcEndpointArgs{
+//				VpcId:           "vpc-7fc0a543",
+//				ServiceName:     "<SERVICE-NAME>",
+//				VpcEndpointType: "Interface",
+//				SubnetIds: []string{
+//					"subnet-de0406d2",
 //				},
-//				SecurityGroupIds: pulumi.StringArray{
-//					pulumi.String("sg-3f238186"),
+//				SecurityGroupIds: []string{
+//					"sg-3f238186",
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = mongodbatlas.NewPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs{
-//				ProjectId:    atlas_project.ID(),
-//				EndpointId:   test.ID(),
-//				ProviderName: pulumi.String("AWS"),
-//				Comment:      pulumi.String("Test"),
-//				Region:       pulumi.String("US_EAST_1"),
-//				CustomerEndpointDnsName: pulumi.String(test.DnsEntries.ApplyT(func(dnsEntries []ec2.VpcEndpointDnsEntry) (*string, error) {
-//					return &dnsEntries[0].DnsName, nil
-//				}).(pulumi.StringPtrOutput)),
+//				ProjectId:               atlas_project.ID(),
+//				EndpointId:              test.Id,
+//				ProviderName:            pulumi.String("AWS"),
+//				Comment:                 pulumi.String("Test"),
+//				Region:                  pulumi.String("US_EAST_1"),
+//				CustomerEndpointDnsName: test.DnsEntry[0].DnsName,
 //			})
 //			if err != nil {
 //				return err

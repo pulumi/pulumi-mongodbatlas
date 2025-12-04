@@ -150,165 +150,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### AWS MSK Privatelink
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using System.Text.Json;
-        /// using Pulumi;
-        /// using Aws = Pulumi.Aws;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpc = new Aws.Ec2.Vpc("vpc", new()
-        ///     {
-        ///         CidrBlock = "192.168.0.0/22",
-        ///     });
-        /// 
-        ///     var azs = Aws.GetAvailabilityZones.Invoke(new()
-        ///     {
-        ///         State = "available",
-        ///     });
-        /// 
-        ///     var subnetAz1 = new Aws.Ec2.Subnet("subnet_az1", new()
-        ///     {
-        ///         AvailabilityZone = azs.Apply(getAvailabilityZonesResult =&gt; getAvailabilityZonesResult.Names[0]),
-        ///         CidrBlock = "192.168.0.0/24",
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        ///     var subnetAz2 = new Aws.Ec2.Subnet("subnet_az2", new()
-        ///     {
-        ///         AvailabilityZone = azs.Apply(getAvailabilityZonesResult =&gt; getAvailabilityZonesResult.Names[1]),
-        ///         CidrBlock = "192.168.1.0/24",
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        ///     var sg = new Aws.Ec2.SecurityGroup("sg", new()
-        ///     {
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        ///     var exampleConfiguration = new Aws.Msk.Configuration("example", new()
-        ///     {
-        ///         Name = $"{mskClusterName}-msk-configuration",
-        ///         ServerProperties = @"auto.create.topics.enable=false
-        /// default.replication.factor=3
-        /// min.insync.replicas=2
-        /// num.io.threads=8
-        /// num.network.threads=5
-        /// num.partitions=1
-        /// num.replica.fetchers=2
-        /// replica.lag.time.max.ms=30000
-        /// socket.receive.buffer.bytes=102400
-        /// socket.request.max.bytes=104857600
-        /// socket.send.buffer.bytes=102400
-        /// unclean.leader.election.enable=true
-        /// allow.everyone.if.no.acl.found=false
-        /// ",
-        ///     });
-        /// 
-        ///     var example = new Aws.Msk.Cluster("example", new()
-        ///     {
-        ///         ClusterName = mskClusterName,
-        ///         KafkaVersion = "3.6.0",
-        ///         NumberOfBrokerNodes = 2,
-        ///         BrokerNodeGroupInfo = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoArgs
-        ///         {
-        ///             InstanceType = "kafka.m5.large",
-        ///             ClientSubnets = new[]
-        ///             {
-        ///                 subnetAz1.Id,
-        ///                 subnetAz2.Id,
-        ///             },
-        ///             SecurityGroups = new[]
-        ///             {
-        ///                 sg.Id,
-        ///             },
-        ///             ConnectivityInfo = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs
-        ///             {
-        ///                 VpcConnectivity = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs
-        ///                 {
-        ///                     ClientAuthentication = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs
-        ///                     {
-        ///                         Sasl = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs
-        ///                         {
-        ///                             Scram = true,
-        ///                         },
-        ///                     },
-        ///                 },
-        ///             },
-        ///         },
-        ///         ClientAuthentication = new Aws.Msk.Inputs.ClusterClientAuthenticationArgs
-        ///         {
-        ///             Sasl = new Aws.Msk.Inputs.ClusterClientAuthenticationSaslArgs
-        ///             {
-        ///                 Scram = true,
-        ///             },
-        ///         },
-        ///         ConfigurationInfo = new Aws.Msk.Inputs.ClusterConfigurationInfoArgs
-        ///         {
-        ///             Arn = exampleConfiguration.Arn,
-        ///             Revision = exampleConfiguration.LatestRevision,
-        ///         },
-        ///     });
-        /// 
-        ///     var exampleClusterPolicy = new Aws.Msk.ClusterPolicy("example", new()
-        ///     {
-        ///         ClusterArn = example.Arn,
-        ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
-        ///         {
-        ///             ["Version"] = "2012-10-17",
-        ///             ["Statement"] = new[]
-        ///             {
-        ///                 new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["Effect"] = "Allow",
-        ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
-        ///                     {
-        ///                         ["AWS"] = $"arn:aws:iam::{awsAccountId}:root",
-        ///                     },
-        ///                     ["Action"] = new[]
-        ///                     {
-        ///                         "kafka:CreateVpcConnection",
-        ///                         "kafka:GetBootstrapBrokers",
-        ///                         "kafka:DescribeCluster",
-        ///                         "kafka:DescribeClusterV2",
-        ///                     },
-        ///                     ["Resource"] = example.Arn,
-        ///                 },
-        ///             },
-        ///         })),
-        ///     });
-        /// 
-        ///     var exampleMskSingleScramSecretAssociation = new Aws.Index.MskSingleScramSecretAssociation("example", new()
-        ///     {
-        ///         ClusterArn = example.Arn,
-        ///         SecretArn = awsSecretArn,
-        ///     });
-        /// 
-        ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
-        ///     {
-        ///         ProjectId = projectId,
-        ///         ProviderName = "AWS",
-        ///         Vendor = "MSK",
-        ///         Arn = example.Arn,
-        ///     });
-        /// 
-        ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
-        ///     {
-        ///         ProjectId = projectId,
-        ///         Id = test.Id,
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["privatelinkEndpointId"] = singularDatasource.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.Id),
-        ///     };
-        /// });
-        /// ```
-        /// 
         /// ### AWS S3 Privatelink
         /// ```csharp
         /// using System.Collections.Generic;
@@ -320,32 +161,38 @@ namespace Pulumi.Mongodbatlas
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // S3 bucket for stream data
-        ///     var streamBucket = new Aws.S3.BucketV2("stream_bucket", new()
+        ///     var streamBucket = new Aws.Index.S3Bucket("stream_bucket", new()
         ///     {
         ///         Bucket = s3BucketName,
         ///         ForceDestroy = true,
         ///     });
         /// 
-        ///     var streamBucketVersioning = new Aws.S3.BucketVersioningV2("stream_bucket_versioning", new()
+        ///     var streamBucketVersioning = new Aws.Index.S3BucketVersioning("stream_bucket_versioning", new()
         ///     {
         ///         Bucket = streamBucket.Id,
-        ///         VersioningConfiguration = new Aws.S3.Inputs.BucketVersioningV2VersioningConfigurationArgs
+        ///         VersioningConfiguration = new[]
         ///         {
-        ///             Status = "Enabled",
+        ///             
+        ///             {
+        ///                 { "status", "Enabled" },
+        ///             },
         ///         },
         ///     });
         /// 
-        ///     var streamBucketEncryption = new Aws.S3.BucketServerSideEncryptionConfigurationV2("stream_bucket_encryption", new()
+        ///     var streamBucketEncryption = new Aws.Index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption", new()
         ///     {
         ///         Bucket = streamBucket.Id,
-        ///         Rules = new[]
+        ///         Rule = new[]
         ///         {
-        ///             new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationV2RuleArgs
+        ///             
         ///             {
-        ///                 ApplyServerSideEncryptionByDefault = new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs
+        ///                 { "applyServerSideEncryptionByDefault", new[]
         ///                 {
-        ///                     SseAlgorithm = "AES256",
-        ///                 },
+        ///                     
+        ///                     {
+        ///                         { "sseAlgorithm", "AES256" },
+        ///                     },
+        ///                 } },
         ///             },
         ///         },
         ///     });
@@ -509,165 +356,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### AWS MSK Privatelink
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using System.Text.Json;
-        /// using Pulumi;
-        /// using Aws = Pulumi.Aws;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpc = new Aws.Ec2.Vpc("vpc", new()
-        ///     {
-        ///         CidrBlock = "192.168.0.0/22",
-        ///     });
-        /// 
-        ///     var azs = Aws.GetAvailabilityZones.Invoke(new()
-        ///     {
-        ///         State = "available",
-        ///     });
-        /// 
-        ///     var subnetAz1 = new Aws.Ec2.Subnet("subnet_az1", new()
-        ///     {
-        ///         AvailabilityZone = azs.Apply(getAvailabilityZonesResult =&gt; getAvailabilityZonesResult.Names[0]),
-        ///         CidrBlock = "192.168.0.0/24",
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        ///     var subnetAz2 = new Aws.Ec2.Subnet("subnet_az2", new()
-        ///     {
-        ///         AvailabilityZone = azs.Apply(getAvailabilityZonesResult =&gt; getAvailabilityZonesResult.Names[1]),
-        ///         CidrBlock = "192.168.1.0/24",
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        ///     var sg = new Aws.Ec2.SecurityGroup("sg", new()
-        ///     {
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        ///     var exampleConfiguration = new Aws.Msk.Configuration("example", new()
-        ///     {
-        ///         Name = $"{mskClusterName}-msk-configuration",
-        ///         ServerProperties = @"auto.create.topics.enable=false
-        /// default.replication.factor=3
-        /// min.insync.replicas=2
-        /// num.io.threads=8
-        /// num.network.threads=5
-        /// num.partitions=1
-        /// num.replica.fetchers=2
-        /// replica.lag.time.max.ms=30000
-        /// socket.receive.buffer.bytes=102400
-        /// socket.request.max.bytes=104857600
-        /// socket.send.buffer.bytes=102400
-        /// unclean.leader.election.enable=true
-        /// allow.everyone.if.no.acl.found=false
-        /// ",
-        ///     });
-        /// 
-        ///     var example = new Aws.Msk.Cluster("example", new()
-        ///     {
-        ///         ClusterName = mskClusterName,
-        ///         KafkaVersion = "3.6.0",
-        ///         NumberOfBrokerNodes = 2,
-        ///         BrokerNodeGroupInfo = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoArgs
-        ///         {
-        ///             InstanceType = "kafka.m5.large",
-        ///             ClientSubnets = new[]
-        ///             {
-        ///                 subnetAz1.Id,
-        ///                 subnetAz2.Id,
-        ///             },
-        ///             SecurityGroups = new[]
-        ///             {
-        ///                 sg.Id,
-        ///             },
-        ///             ConnectivityInfo = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs
-        ///             {
-        ///                 VpcConnectivity = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs
-        ///                 {
-        ///                     ClientAuthentication = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs
-        ///                     {
-        ///                         Sasl = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs
-        ///                         {
-        ///                             Scram = true,
-        ///                         },
-        ///                     },
-        ///                 },
-        ///             },
-        ///         },
-        ///         ClientAuthentication = new Aws.Msk.Inputs.ClusterClientAuthenticationArgs
-        ///         {
-        ///             Sasl = new Aws.Msk.Inputs.ClusterClientAuthenticationSaslArgs
-        ///             {
-        ///                 Scram = true,
-        ///             },
-        ///         },
-        ///         ConfigurationInfo = new Aws.Msk.Inputs.ClusterConfigurationInfoArgs
-        ///         {
-        ///             Arn = exampleConfiguration.Arn,
-        ///             Revision = exampleConfiguration.LatestRevision,
-        ///         },
-        ///     });
-        /// 
-        ///     var exampleClusterPolicy = new Aws.Msk.ClusterPolicy("example", new()
-        ///     {
-        ///         ClusterArn = example.Arn,
-        ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
-        ///         {
-        ///             ["Version"] = "2012-10-17",
-        ///             ["Statement"] = new[]
-        ///             {
-        ///                 new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["Effect"] = "Allow",
-        ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
-        ///                     {
-        ///                         ["AWS"] = $"arn:aws:iam::{awsAccountId}:root",
-        ///                     },
-        ///                     ["Action"] = new[]
-        ///                     {
-        ///                         "kafka:CreateVpcConnection",
-        ///                         "kafka:GetBootstrapBrokers",
-        ///                         "kafka:DescribeCluster",
-        ///                         "kafka:DescribeClusterV2",
-        ///                     },
-        ///                     ["Resource"] = example.Arn,
-        ///                 },
-        ///             },
-        ///         })),
-        ///     });
-        /// 
-        ///     var exampleMskSingleScramSecretAssociation = new Aws.Index.MskSingleScramSecretAssociation("example", new()
-        ///     {
-        ///         ClusterArn = example.Arn,
-        ///         SecretArn = awsSecretArn,
-        ///     });
-        /// 
-        ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
-        ///     {
-        ///         ProjectId = projectId,
-        ///         ProviderName = "AWS",
-        ///         Vendor = "MSK",
-        ///         Arn = example.Arn,
-        ///     });
-        /// 
-        ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
-        ///     {
-        ///         ProjectId = projectId,
-        ///         Id = test.Id,
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["privatelinkEndpointId"] = singularDatasource.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.Id),
-        ///     };
-        /// });
-        /// ```
-        /// 
         /// ### AWS S3 Privatelink
         /// ```csharp
         /// using System.Collections.Generic;
@@ -679,32 +367,38 @@ namespace Pulumi.Mongodbatlas
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // S3 bucket for stream data
-        ///     var streamBucket = new Aws.S3.BucketV2("stream_bucket", new()
+        ///     var streamBucket = new Aws.Index.S3Bucket("stream_bucket", new()
         ///     {
         ///         Bucket = s3BucketName,
         ///         ForceDestroy = true,
         ///     });
         /// 
-        ///     var streamBucketVersioning = new Aws.S3.BucketVersioningV2("stream_bucket_versioning", new()
+        ///     var streamBucketVersioning = new Aws.Index.S3BucketVersioning("stream_bucket_versioning", new()
         ///     {
         ///         Bucket = streamBucket.Id,
-        ///         VersioningConfiguration = new Aws.S3.Inputs.BucketVersioningV2VersioningConfigurationArgs
+        ///         VersioningConfiguration = new[]
         ///         {
-        ///             Status = "Enabled",
+        ///             
+        ///             {
+        ///                 { "status", "Enabled" },
+        ///             },
         ///         },
         ///     });
         /// 
-        ///     var streamBucketEncryption = new Aws.S3.BucketServerSideEncryptionConfigurationV2("stream_bucket_encryption", new()
+        ///     var streamBucketEncryption = new Aws.Index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption", new()
         ///     {
         ///         Bucket = streamBucket.Id,
-        ///         Rules = new[]
+        ///         Rule = new[]
         ///         {
-        ///             new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationV2RuleArgs
+        ///             
         ///             {
-        ///                 ApplyServerSideEncryptionByDefault = new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs
+        ///                 { "applyServerSideEncryptionByDefault", new[]
         ///                 {
-        ///                     SseAlgorithm = "AES256",
-        ///                 },
+        ///                     
+        ///                     {
+        ///                         { "sseAlgorithm", "AES256" },
+        ///                     },
+        ///                 } },
         ///             },
         ///         },
         ///     });
@@ -868,165 +562,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### AWS MSK Privatelink
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using System.Text.Json;
-        /// using Pulumi;
-        /// using Aws = Pulumi.Aws;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpc = new Aws.Ec2.Vpc("vpc", new()
-        ///     {
-        ///         CidrBlock = "192.168.0.0/22",
-        ///     });
-        /// 
-        ///     var azs = Aws.GetAvailabilityZones.Invoke(new()
-        ///     {
-        ///         State = "available",
-        ///     });
-        /// 
-        ///     var subnetAz1 = new Aws.Ec2.Subnet("subnet_az1", new()
-        ///     {
-        ///         AvailabilityZone = azs.Apply(getAvailabilityZonesResult =&gt; getAvailabilityZonesResult.Names[0]),
-        ///         CidrBlock = "192.168.0.0/24",
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        ///     var subnetAz2 = new Aws.Ec2.Subnet("subnet_az2", new()
-        ///     {
-        ///         AvailabilityZone = azs.Apply(getAvailabilityZonesResult =&gt; getAvailabilityZonesResult.Names[1]),
-        ///         CidrBlock = "192.168.1.0/24",
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        ///     var sg = new Aws.Ec2.SecurityGroup("sg", new()
-        ///     {
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        ///     var exampleConfiguration = new Aws.Msk.Configuration("example", new()
-        ///     {
-        ///         Name = $"{mskClusterName}-msk-configuration",
-        ///         ServerProperties = @"auto.create.topics.enable=false
-        /// default.replication.factor=3
-        /// min.insync.replicas=2
-        /// num.io.threads=8
-        /// num.network.threads=5
-        /// num.partitions=1
-        /// num.replica.fetchers=2
-        /// replica.lag.time.max.ms=30000
-        /// socket.receive.buffer.bytes=102400
-        /// socket.request.max.bytes=104857600
-        /// socket.send.buffer.bytes=102400
-        /// unclean.leader.election.enable=true
-        /// allow.everyone.if.no.acl.found=false
-        /// ",
-        ///     });
-        /// 
-        ///     var example = new Aws.Msk.Cluster("example", new()
-        ///     {
-        ///         ClusterName = mskClusterName,
-        ///         KafkaVersion = "3.6.0",
-        ///         NumberOfBrokerNodes = 2,
-        ///         BrokerNodeGroupInfo = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoArgs
-        ///         {
-        ///             InstanceType = "kafka.m5.large",
-        ///             ClientSubnets = new[]
-        ///             {
-        ///                 subnetAz1.Id,
-        ///                 subnetAz2.Id,
-        ///             },
-        ///             SecurityGroups = new[]
-        ///             {
-        ///                 sg.Id,
-        ///             },
-        ///             ConnectivityInfo = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoArgs
-        ///             {
-        ///                 VpcConnectivity = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityArgs
-        ///                 {
-        ///                     ClientAuthentication = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationArgs
-        ///                     {
-        ///                         Sasl = new Aws.Msk.Inputs.ClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSaslArgs
-        ///                         {
-        ///                             Scram = true,
-        ///                         },
-        ///                     },
-        ///                 },
-        ///             },
-        ///         },
-        ///         ClientAuthentication = new Aws.Msk.Inputs.ClusterClientAuthenticationArgs
-        ///         {
-        ///             Sasl = new Aws.Msk.Inputs.ClusterClientAuthenticationSaslArgs
-        ///             {
-        ///                 Scram = true,
-        ///             },
-        ///         },
-        ///         ConfigurationInfo = new Aws.Msk.Inputs.ClusterConfigurationInfoArgs
-        ///         {
-        ///             Arn = exampleConfiguration.Arn,
-        ///             Revision = exampleConfiguration.LatestRevision,
-        ///         },
-        ///     });
-        /// 
-        ///     var exampleClusterPolicy = new Aws.Msk.ClusterPolicy("example", new()
-        ///     {
-        ///         ClusterArn = example.Arn,
-        ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
-        ///         {
-        ///             ["Version"] = "2012-10-17",
-        ///             ["Statement"] = new[]
-        ///             {
-        ///                 new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["Effect"] = "Allow",
-        ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
-        ///                     {
-        ///                         ["AWS"] = $"arn:aws:iam::{awsAccountId}:root",
-        ///                     },
-        ///                     ["Action"] = new[]
-        ///                     {
-        ///                         "kafka:CreateVpcConnection",
-        ///                         "kafka:GetBootstrapBrokers",
-        ///                         "kafka:DescribeCluster",
-        ///                         "kafka:DescribeClusterV2",
-        ///                     },
-        ///                     ["Resource"] = example.Arn,
-        ///                 },
-        ///             },
-        ///         })),
-        ///     });
-        /// 
-        ///     var exampleMskSingleScramSecretAssociation = new Aws.Index.MskSingleScramSecretAssociation("example", new()
-        ///     {
-        ///         ClusterArn = example.Arn,
-        ///         SecretArn = awsSecretArn,
-        ///     });
-        /// 
-        ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
-        ///     {
-        ///         ProjectId = projectId,
-        ///         ProviderName = "AWS",
-        ///         Vendor = "MSK",
-        ///         Arn = example.Arn,
-        ///     });
-        /// 
-        ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
-        ///     {
-        ///         ProjectId = projectId,
-        ///         Id = test.Id,
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["privatelinkEndpointId"] = singularDatasource.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.Id),
-        ///     };
-        /// });
-        /// ```
-        /// 
         /// ### AWS S3 Privatelink
         /// ```csharp
         /// using System.Collections.Generic;
@@ -1038,32 +573,38 @@ namespace Pulumi.Mongodbatlas
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // S3 bucket for stream data
-        ///     var streamBucket = new Aws.S3.BucketV2("stream_bucket", new()
+        ///     var streamBucket = new Aws.Index.S3Bucket("stream_bucket", new()
         ///     {
         ///         Bucket = s3BucketName,
         ///         ForceDestroy = true,
         ///     });
         /// 
-        ///     var streamBucketVersioning = new Aws.S3.BucketVersioningV2("stream_bucket_versioning", new()
+        ///     var streamBucketVersioning = new Aws.Index.S3BucketVersioning("stream_bucket_versioning", new()
         ///     {
         ///         Bucket = streamBucket.Id,
-        ///         VersioningConfiguration = new Aws.S3.Inputs.BucketVersioningV2VersioningConfigurationArgs
+        ///         VersioningConfiguration = new[]
         ///         {
-        ///             Status = "Enabled",
+        ///             
+        ///             {
+        ///                 { "status", "Enabled" },
+        ///             },
         ///         },
         ///     });
         /// 
-        ///     var streamBucketEncryption = new Aws.S3.BucketServerSideEncryptionConfigurationV2("stream_bucket_encryption", new()
+        ///     var streamBucketEncryption = new Aws.Index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption", new()
         ///     {
         ///         Bucket = streamBucket.Id,
-        ///         Rules = new[]
+        ///         Rule = new[]
         ///         {
-        ///             new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationV2RuleArgs
+        ///             
         ///             {
-        ///                 ApplyServerSideEncryptionByDefault = new Aws.S3.Inputs.BucketServerSideEncryptionConfigurationV2RuleApplyServerSideEncryptionByDefaultArgs
+        ///                 { "applyServerSideEncryptionByDefault", new[]
         ///                 {
-        ///                     SseAlgorithm = "AES256",
-        ///                 },
+        ///                     
+        ///                     {
+        ///                         { "sseAlgorithm", "AES256" },
+        ///                     },
+        ///                 } },
         ///             },
         ///         },
         ///     });
