@@ -99,6 +99,7 @@ In order to enable the Pulumi MongoDB Atlas Provider with AWS SM, please follow 
       "private_key":"secret2"
      }
 ```
+
 2. Create an AWS IAM Role to attach to the AWS STS (Security Token Service) generated short lived API keys. This is required since STS generated API Keys by default have restricted permissions and need to have their permissions elevated in order to authenticate with Pulumi. Take note of Role ARN and ensure IAM Role has permission for “sts:AssumeRole”. For example:
 ```
 {
@@ -115,6 +116,7 @@ In order to enable the Pulumi MongoDB Atlas Provider with AWS SM, please follow 
     ]
 }
 ```
+
 In addition, you are required to also attach the AWS Managed policy of `SecretsManagerReadWrite` to this IAM role.
 
 Note: this policy may be overly broad for many use cases, feel free to adjust accordingly to your organization's needs.
@@ -124,6 +126,7 @@ Note: this policy may be overly broad for many use cases, feel free to adjust ac
 export AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
 export AWS_SECRET_ACCESS_KEY='<AWS_SECRET_ACCESS_KEY>'
 ```
+
 4. In terminal, use the AWS CLI command: `aws sts assume-role --role-arn ROLE_ARN_FROM_ABOVE --role-session-name newSession`
 
 Note: AWS STS secrets are short lived by default, use the ` --duration-seconds` flag to specify longer duration as needed

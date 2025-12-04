@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *     instanceName: testServerlessInstance.name,
  *     providerName: "AWS",
  * });
- * const ptfeService = new aws.ec2.VpcEndpoint("ptfe_service", {
+ * const ptfeService = new aws.index.VpcEndpoint("ptfe_service", {
  *     vpcId: "vpc-7fc0a543",
  *     serviceName: test.endpointServiceName,
  *     vpcEndpointType: "Interface",
@@ -54,24 +54,24 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as azure from "@pulumi/azure";
+ * import * as azurerm from "@pulumi/azurerm";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.PrivatelinkEndpointServerless("test", {
  *     projectId: projectId,
  *     providerName: "AZURE",
  * });
- * const testEndpoint = new azure.privatelink.Endpoint("test", {
+ * const testPrivateEndpoint = new azurerm.index.PrivateEndpoint("test", {
  *     name: "endpoint-test",
  *     location: testAzurermResourceGroup.location,
  *     resourceGroupName: resourceGroupName,
  *     subnetId: testAzurermSubnet.id,
- *     privateServiceConnection: {
+ *     privateServiceConnection: [{
  *         name: test.privateLinkServiceName,
  *         privateConnectionResourceId: test.privateLinkServiceResourceId,
  *         isManualConnection: true,
  *         requestMessage: "Azure Private Link test",
- *     },
+ *     }],
  * });
  * const testServerlessInstance = new mongodbatlas.ServerlessInstance("test", {
  *     projectId: "<PROJECT_ID>",
@@ -85,8 +85,8 @@ import * as utilities from "./utilities";
  *     projectId: test.projectId,
  *     instanceName: testServerlessInstance.name,
  *     endpointId: test.endpointId,
- *     cloudProviderEndpointId: testEndpoint.id,
- *     privateEndpointIpAddress: testEndpoint.privateServiceConnection.apply(privateServiceConnection => privateServiceConnection.privateIpAddress),
+ *     cloudProviderEndpointId: testPrivateEndpoint.id,
+ *     privateEndpointIpAddress: testPrivateEndpoint.privateServiceConnection[0].privateIpAddress,
  *     providerName: "AZURE",
  *     comment: "test",
  * });

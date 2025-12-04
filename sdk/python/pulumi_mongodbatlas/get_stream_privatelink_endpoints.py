@@ -139,101 +139,6 @@ def get_stream_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
     pulumi.export("interfaceEndpointIds", [__item.interface_endpoint_id for __item in plural_datasource.results])
     ```
 
-    ### AWS MSK Privatelink
-    ```python
-    import pulumi
-    import json
-    import pulumi_aws as aws
-    import pulumi_mongodbatlas as mongodbatlas
-
-    vpc = aws.ec2.Vpc("vpc", cidr_block="192.168.0.0/22")
-    azs = aws.get_availability_zones(state="available")
-    subnet_az1 = aws.ec2.Subnet("subnet_az1",
-        availability_zone=azs.names[0],
-        cidr_block="192.168.0.0/24",
-        vpc_id=vpc.id)
-    subnet_az2 = aws.ec2.Subnet("subnet_az2",
-        availability_zone=azs.names[1],
-        cidr_block="192.168.1.0/24",
-        vpc_id=vpc.id)
-    sg = aws.ec2.SecurityGroup("sg", vpc_id=vpc.id)
-    example_configuration = aws.msk.Configuration("example",
-        name=f"{msk_cluster_name}-msk-configuration",
-        server_properties=\"\"\"auto.create.topics.enable=false
-    default.replication.factor=3
-    min.insync.replicas=2
-    num.io.threads=8
-    num.network.threads=5
-    num.partitions=1
-    num.replica.fetchers=2
-    replica.lag.time.max.ms=30000
-    socket.receive.buffer.bytes=102400
-    socket.request.max.bytes=104857600
-    socket.send.buffer.bytes=102400
-    unclean.leader.election.enable=true
-    allow.everyone.if.no.acl.found=false
-    \"\"\")
-    example = aws.msk.Cluster("example",
-        cluster_name=msk_cluster_name,
-        kafka_version="3.6.0",
-        number_of_broker_nodes=2,
-        broker_node_group_info={
-            "instance_type": "kafka.m5.large",
-            "client_subnets": [
-                subnet_az1.id,
-                subnet_az2.id,
-            ],
-            "security_groups": [sg.id],
-            "connectivity_info": {
-                "vpc_connectivity": {
-                    "client_authentication": {
-                        "sasl": {
-                            "scram": True,
-                        },
-                    },
-                },
-            },
-        },
-        client_authentication={
-            "sasl": {
-                "scram": True,
-            },
-        },
-        configuration_info={
-            "arn": example_configuration.arn,
-            "revision": example_configuration.latest_revision,
-        })
-    example_cluster_policy = aws.msk.ClusterPolicy("example",
-        cluster_arn=example.arn,
-        policy=pulumi.Output.json_dumps({
-            "Version": "2012-10-17",
-            "Statement": [{
-                "Effect": "Allow",
-                "Principal": {
-                    "AWS": f"arn:aws:iam::{aws_account_id}:root",
-                },
-                "Action": [
-                    "kafka:CreateVpcConnection",
-                    "kafka:GetBootstrapBrokers",
-                    "kafka:DescribeCluster",
-                    "kafka:DescribeClusterV2",
-                ],
-                "Resource": example.arn,
-            }],
-        }))
-    example_msk_single_scram_secret_association = aws.index.MskSingleScramSecretAssociation("example",
-        cluster_arn=example.arn,
-        secret_arn=aws_secret_arn)
-    test = mongodbatlas.StreamPrivatelinkEndpoint("test",
-        project_id=project_id,
-        provider_name="AWS",
-        vendor="MSK",
-        arn=example.arn)
-    singular_datasource = test.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
-        id=id))
-    pulumi.export("privatelinkEndpointId", singular_datasource.id)
-    ```
-
     ### AWS S3 Privatelink
     ```python
     import pulumi
@@ -241,20 +146,20 @@ def get_stream_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
     import pulumi_mongodbatlas as mongodbatlas
 
     # S3 bucket for stream data
-    stream_bucket = aws.s3.BucketV2("stream_bucket",
+    stream_bucket = aws.index.S3Bucket("stream_bucket",
         bucket=s3_bucket_name,
         force_destroy=True)
-    stream_bucket_versioning = aws.s3.BucketVersioningV2("stream_bucket_versioning",
+    stream_bucket_versioning = aws.index.S3BucketVersioning("stream_bucket_versioning",
         bucket=stream_bucket.id,
-        versioning_configuration={
-            "status": "Enabled",
-        })
-    stream_bucket_encryption = aws.s3.BucketServerSideEncryptionConfigurationV2("stream_bucket_encryption",
+        versioning_configuration=[{
+            status: Enabled,
+        }])
+    stream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
         bucket=stream_bucket.id,
-        rules=[{
-            "apply_server_side_encryption_by_default": {
-                "sse_algorithm": "AES256",
-            },
+        rule=[{
+            applyServerSideEncryptionByDefault: [{
+                sseAlgorithm: AES256,
+            }],
         }])
     # PrivateLink for S3
     this = mongodbatlas.StreamPrivatelinkEndpoint("this",
@@ -346,101 +251,6 @@ def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[_b
     pulumi.export("interfaceEndpointIds", [__item.interface_endpoint_id for __item in plural_datasource.results])
     ```
 
-    ### AWS MSK Privatelink
-    ```python
-    import pulumi
-    import json
-    import pulumi_aws as aws
-    import pulumi_mongodbatlas as mongodbatlas
-
-    vpc = aws.ec2.Vpc("vpc", cidr_block="192.168.0.0/22")
-    azs = aws.get_availability_zones(state="available")
-    subnet_az1 = aws.ec2.Subnet("subnet_az1",
-        availability_zone=azs.names[0],
-        cidr_block="192.168.0.0/24",
-        vpc_id=vpc.id)
-    subnet_az2 = aws.ec2.Subnet("subnet_az2",
-        availability_zone=azs.names[1],
-        cidr_block="192.168.1.0/24",
-        vpc_id=vpc.id)
-    sg = aws.ec2.SecurityGroup("sg", vpc_id=vpc.id)
-    example_configuration = aws.msk.Configuration("example",
-        name=f"{msk_cluster_name}-msk-configuration",
-        server_properties=\"\"\"auto.create.topics.enable=false
-    default.replication.factor=3
-    min.insync.replicas=2
-    num.io.threads=8
-    num.network.threads=5
-    num.partitions=1
-    num.replica.fetchers=2
-    replica.lag.time.max.ms=30000
-    socket.receive.buffer.bytes=102400
-    socket.request.max.bytes=104857600
-    socket.send.buffer.bytes=102400
-    unclean.leader.election.enable=true
-    allow.everyone.if.no.acl.found=false
-    \"\"\")
-    example = aws.msk.Cluster("example",
-        cluster_name=msk_cluster_name,
-        kafka_version="3.6.0",
-        number_of_broker_nodes=2,
-        broker_node_group_info={
-            "instance_type": "kafka.m5.large",
-            "client_subnets": [
-                subnet_az1.id,
-                subnet_az2.id,
-            ],
-            "security_groups": [sg.id],
-            "connectivity_info": {
-                "vpc_connectivity": {
-                    "client_authentication": {
-                        "sasl": {
-                            "scram": True,
-                        },
-                    },
-                },
-            },
-        },
-        client_authentication={
-            "sasl": {
-                "scram": True,
-            },
-        },
-        configuration_info={
-            "arn": example_configuration.arn,
-            "revision": example_configuration.latest_revision,
-        })
-    example_cluster_policy = aws.msk.ClusterPolicy("example",
-        cluster_arn=example.arn,
-        policy=pulumi.Output.json_dumps({
-            "Version": "2012-10-17",
-            "Statement": [{
-                "Effect": "Allow",
-                "Principal": {
-                    "AWS": f"arn:aws:iam::{aws_account_id}:root",
-                },
-                "Action": [
-                    "kafka:CreateVpcConnection",
-                    "kafka:GetBootstrapBrokers",
-                    "kafka:DescribeCluster",
-                    "kafka:DescribeClusterV2",
-                ],
-                "Resource": example.arn,
-            }],
-        }))
-    example_msk_single_scram_secret_association = aws.index.MskSingleScramSecretAssociation("example",
-        cluster_arn=example.arn,
-        secret_arn=aws_secret_arn)
-    test = mongodbatlas.StreamPrivatelinkEndpoint("test",
-        project_id=project_id,
-        provider_name="AWS",
-        vendor="MSK",
-        arn=example.arn)
-    singular_datasource = test.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
-        id=id))
-    pulumi.export("privatelinkEndpointId", singular_datasource.id)
-    ```
-
     ### AWS S3 Privatelink
     ```python
     import pulumi
@@ -448,20 +258,20 @@ def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[_b
     import pulumi_mongodbatlas as mongodbatlas
 
     # S3 bucket for stream data
-    stream_bucket = aws.s3.BucketV2("stream_bucket",
+    stream_bucket = aws.index.S3Bucket("stream_bucket",
         bucket=s3_bucket_name,
         force_destroy=True)
-    stream_bucket_versioning = aws.s3.BucketVersioningV2("stream_bucket_versioning",
+    stream_bucket_versioning = aws.index.S3BucketVersioning("stream_bucket_versioning",
         bucket=stream_bucket.id,
-        versioning_configuration={
-            "status": "Enabled",
-        })
-    stream_bucket_encryption = aws.s3.BucketServerSideEncryptionConfigurationV2("stream_bucket_encryption",
+        versioning_configuration=[{
+            status: Enabled,
+        }])
+    stream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
         bucket=stream_bucket.id,
-        rules=[{
-            "apply_server_side_encryption_by_default": {
-                "sse_algorithm": "AES256",
-            },
+        rule=[{
+            applyServerSideEncryptionByDefault: [{
+                sseAlgorithm: AES256,
+            }],
         }])
     # PrivateLink for S3
     this = mongodbatlas.StreamPrivatelinkEndpoint("this",

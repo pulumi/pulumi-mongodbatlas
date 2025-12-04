@@ -325,17 +325,17 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             project_id="<PROJECT_ID>",
             instance_name=test_serverless_instance.name,
             provider_name="AWS")
-        ptfe_service = aws.ec2.VpcEndpoint("ptfe_service",
-            vpc_id="vpc-7fc0a543",
+        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+            vpc_id=vpc-7fc0a543,
             service_name=test.endpoint_service_name,
-            vpc_endpoint_type="Interface",
-            subnet_ids=["subnet-de0406d2"],
-            security_group_ids=["sg-3f238186"])
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186])
         test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("test",
             project_id="<PROJECT_ID>",
             instance_name=test_serverless_instance.name,
             endpoint_id=test.endpoint_id,
-            cloud_provider_endpoint_id=ptfe_service.id,
+            cloud_provider_endpoint_id=ptfe_service["id"],
             provider_name="AWS",
             comment="New serverless endpoint")
         ```
@@ -344,23 +344,23 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_azure as azure
+        import pulumi_azurerm as azurerm
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.PrivatelinkEndpointServerless("test",
             project_id=project_id,
             provider_name="AZURE")
-        test_endpoint = azure.privatelink.Endpoint("test",
-            name="endpoint-test",
-            location=test_azurerm_resource_group["location"],
+        test_private_endpoint = azurerm.index.PrivateEndpoint("test",
+            name=endpoint-test,
+            location=test_azurerm_resource_group.location,
             resource_group_name=resource_group_name,
-            subnet_id=test_azurerm_subnet["id"],
-            private_service_connection={
-                "name": test.private_link_service_name,
-                "private_connection_resource_id": test.private_link_service_resource_id,
-                "is_manual_connection": True,
-                "request_message": "Azure Private Link test",
-            })
+            subnet_id=test_azurerm_subnet.id,
+            private_service_connection=[{
+                name: test.private_link_service_name,
+                privateConnectionResourceId: test.private_link_service_resource_id,
+                isManualConnection: True,
+                requestMessage: Azure Private Link test,
+            }])
         test_serverless_instance = mongodbatlas.ServerlessInstance("test",
             project_id="<PROJECT_ID>",
             name="test-db",
@@ -372,8 +372,8 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             project_id=test.project_id,
             instance_name=test_serverless_instance.name,
             endpoint_id=test.endpoint_id,
-            cloud_provider_endpoint_id=test_endpoint.id,
-            private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
+            cloud_provider_endpoint_id=test_private_endpoint["id"],
+            private_endpoint_ip_address=test_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
             provider_name="AZURE",
             comment="test")
         ```
@@ -433,17 +433,17 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             project_id="<PROJECT_ID>",
             instance_name=test_serverless_instance.name,
             provider_name="AWS")
-        ptfe_service = aws.ec2.VpcEndpoint("ptfe_service",
-            vpc_id="vpc-7fc0a543",
+        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+            vpc_id=vpc-7fc0a543,
             service_name=test.endpoint_service_name,
-            vpc_endpoint_type="Interface",
-            subnet_ids=["subnet-de0406d2"],
-            security_group_ids=["sg-3f238186"])
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186])
         test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("test",
             project_id="<PROJECT_ID>",
             instance_name=test_serverless_instance.name,
             endpoint_id=test.endpoint_id,
-            cloud_provider_endpoint_id=ptfe_service.id,
+            cloud_provider_endpoint_id=ptfe_service["id"],
             provider_name="AWS",
             comment="New serverless endpoint")
         ```
@@ -452,23 +452,23 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_azure as azure
+        import pulumi_azurerm as azurerm
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.PrivatelinkEndpointServerless("test",
             project_id=project_id,
             provider_name="AZURE")
-        test_endpoint = azure.privatelink.Endpoint("test",
-            name="endpoint-test",
-            location=test_azurerm_resource_group["location"],
+        test_private_endpoint = azurerm.index.PrivateEndpoint("test",
+            name=endpoint-test,
+            location=test_azurerm_resource_group.location,
             resource_group_name=resource_group_name,
-            subnet_id=test_azurerm_subnet["id"],
-            private_service_connection={
-                "name": test.private_link_service_name,
-                "private_connection_resource_id": test.private_link_service_resource_id,
-                "is_manual_connection": True,
-                "request_message": "Azure Private Link test",
-            })
+            subnet_id=test_azurerm_subnet.id,
+            private_service_connection=[{
+                name: test.private_link_service_name,
+                privateConnectionResourceId: test.private_link_service_resource_id,
+                isManualConnection: True,
+                requestMessage: Azure Private Link test,
+            }])
         test_serverless_instance = mongodbatlas.ServerlessInstance("test",
             project_id="<PROJECT_ID>",
             name="test-db",
@@ -480,8 +480,8 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             project_id=test.project_id,
             instance_name=test_serverless_instance.name,
             endpoint_id=test.endpoint_id,
-            cloud_provider_endpoint_id=test_endpoint.id,
-            private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
+            cloud_provider_endpoint_id=test_private_endpoint["id"],
+            private_endpoint_ip_address=test_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
             provider_name="AZURE",
             comment="test")
         ```
