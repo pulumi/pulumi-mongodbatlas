@@ -15,10 +15,8 @@
 package mongodbatlas
 
 import (
-	"bytes"
 	"context"
 	"fmt"
-	"os"
 	"path/filepath"
 	"regexp"
 	"unicode"
@@ -180,15 +178,8 @@ func Provider() tfbridge.ProviderInfo {
 }
 
 func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
-	edits := []tfbridge.DocsEdit{
-		// These sections would trigger other edit rules so they must run first for discovery.
-		cleanUpOverviewSection,
-	}
-	edits = append(edits,
-		defaults...,
-	)
 	return append(
-		edits,
+		defaults,
 		skipSections(),
 	)
 }
@@ -196,6 +187,8 @@ func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
 // Removes a set of sections not applicable to Pulumi
 func skipSections() tfbridge.DocsEdit {
 	headersRegexps := []*regexp.Regexp{
+		regexp.MustCompile("Version Requirements"),
+		regexp.MustCompile("MongoDB Atlas Provider Versioning Policy"),
 		regexp.MustCompile("Compatibility Matrix"),
 		regexp.MustCompile("Supported OS and Architectures"),
 		regexp.MustCompile("Helpful Links/Information"),
@@ -215,30 +208,6 @@ func skipSections() tfbridge.DocsEdit {
 			})
 		},
 	}
-}
-
-var cleanUpOverviewSection = tfbridge.DocsEdit{
-	Path: "index.md",
-	Edit: func(_ string, content []byte) ([]byte, error) {
-		replacesDir := "provider/index-md-replaces/"
-
-		input, err := os.ReadFile(replacesDir + "overview-input.md")
-		if err != nil {
-			return nil, err
-		}
-		// Skip replacement if input is empty or text doesn't exist (upstream may have already removed it)
-		if len(input) == 0 {
-			return content, nil
-		}
-		if bytes.Contains(content, input) {
-			content = bytes.ReplaceAll(
-				content,
-				input,
-				nil)
-		}
-		// If text doesn't exist, it may have already been removed upstream, so we skip silently
-		return content, nil
-	},
 }
 
 var noUpstreamDocs = &tfbridge.DocInfo{AllowMissing: true}
